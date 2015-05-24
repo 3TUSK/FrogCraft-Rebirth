@@ -1,0 +1,10 @@
+.gradle
+.project
+.settings
+
+bin
+eclipse
+gradle
+
+*.txt
+

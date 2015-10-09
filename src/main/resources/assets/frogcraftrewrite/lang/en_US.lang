@@ -1,0 +1,193 @@
+﻿#Master Language File, 2013.5.3
+
+#Items
+item.ItemRailgun.name=Only my railgun!!!
+item.ItemRailgun.info=PiliPili~~~
+item.ItemRailgun.tooTired=No enough power QAQ
+tile.BlockMobilePS.name=Mobile Power Supply
+tile.BlockMobilePS.info=The best camping gear
+item.CoolantAmmonia60K.name=60K ammonia coolant cell
+item.CoolantAmmonia180K.name=180K ammonia coolant cell
+item.CoolantAmmonia360K.name=360K ammonia coolant cell
+item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
+item.ACWindMill_Rotor.name=Academic City Windmill Rotor
+item.UBattery.name=Uranium Decay Battery
+item.ThBattery.name=Thorium Decay Battery
+item.PuBattery.name=Plutonium Decay Battery
+item.Item_NitricAcidBucket.name=Nitric Acid Bucket
+item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
+
+#Cells
+item.Item_Cells.cell_Ammonia=Ammonia Cell
+item.Item_Cells.cell_Ammonia.info=NH3
+item.Item_Cells.cell_CoalTar=Coal Tar Cell
+item.Item_Cells.cell_CoalTar.info=What the hell does it contain?!
+item.Item_Cells.cell_Oxygen=Oxygen Cell
+item.Item_Cells.cell_Oxygen.info=O2
+item.Item_Cells.cell_LiquifiedAir=Liquefied Air Cell
+item.Item_Cells.cell_LiquifiedAir.info=N2.O2.CO2.Ar
+item.Item_Cells.cell_CO2=Carbon Dioxide Cell
+item.Item_Cells.cell_CO2.info=CO2
+item.Item_Cells.cell_Argon=Argon Cell
+item.Item_Cells.cell_Argon.info=Ar
+item.Item_Cells.cell_HNO3=Nitric Acid Cell
+item.Item_Cells.cell_HNO3.info=HNO3
+item.Item_Cells.cell_NO=Nitrogen Monoxide Cell
+item.Item_Cells.cell_NO.info=NO
+item.Item_Cells.cell_CO=Carbon Monoxide Cell
+item.Item_Cells.cell_CO.info=CO
+item.Item_Cells.cell_Benzene=Benzene Cell
+item.Item_Cells.cell_Benzene.info=C6H6
+item.Item_Cells.cell_Bromine=Bromine Cell
+item.Item_Cells.cell_Bromine.info=Br2
+item.Item_Cells.cell_Fluorine=Fluorine Cell
+item.Item_Cells.cell_Fluorine.info=F2
+item.Item_Cells.cell_SO2=Sulfur Dioxide Cell
+item.Item_Cells.cell_SO2.info=SO2
+item.Item_Cells.cell_SO3=Sulfur Trioxide Cell
+item.Item_Cells.cell_SO3.info=SO3
+
+#Miscs
+item.Item_Miscs.pCokingCoal=Coking coal fragments
+item.Item_Miscs.pCokingCoal.info=Efficient fuel~
+item.Item_Miscs.Briquette=Briquette
+item.Item_Miscs.Briquette.info=Chinese style
+item.Item_Miscs.Railgun_Core=Superconductive rail
+item.Item_Miscs.Railgun_Core.info=Made of superconductor
+item.Item_Miscs.GoldClod=Goldclod
+item.Item_Miscs.GoldClod.info=Magical fertilizer additive
+item.Item_Miscs.ElectrolizeModule=Electrolizer component
+item.Item_Miscs.ElectrolizeModule.info=Electrolize the reactant
+item.Item_Miscs.HeatingModule=Heating component
+item.Item_Miscs.HeatingModule.info=Provide heat to a endothermic reaction
+item.Item_Miscs.AmmoniaModule=Ammonia catalyst
+item.Item_Miscs.AmmoniaModule.info=Necessary for ammonia manufactoring
+item.Item_Miscs.V2O5Module=Vanadium Pentoxide Catalyst
+item.Item_Miscs.V2O5Module.info=Necessary for SO3 manufactoring
+
+#Dusts
+item.Item_Dusts.CaO=Calcium Oxide Dust
+item.Item_Dusts.CaO.info=CaO
+item.Item_Dusts.Urea=Urea Dust
+item.Item_Dusts.Urea.info=CO(NH2)2
+item.Item_Dusts.NH4NO3=Ammonia nitrate Dust
+item.Item_Dusts.NH4NO3.info=NH4NO3
+item.Item_Dusts.CaSiO3=Calcium silicate Dust
+item.Item_Dusts.CaSiO3.info=CaSiO3
+item.Item_Dusts.CaOH2=Calcium hydroxide Dust
+item.Item_Dusts.CaOH2.info=Ca(OH)2
+item.Item_Dusts.Magnalium=Magnalium Dust
+item.Item_Dusts.Magnalium.info=Mg.Al2
+item.Item_Dusts.Carnallite=Carnallite Dust
+item.Item_Dusts.Carnallite.info=4KCl.MgBr2.8H2O
+item.Item_Dusts.KCl=Potassium Chloride Dust
+item.Item_Dusts.KCl.info=KCl
+item.Item_Dusts.MgBr2=Magnesium Bromied  Dust
+item.Item_Dusts.MgBr2.info=MgBr2
+item.Item_Dusts.Fluorapatite=Fluorapatite Dust
+item.Item_Dusts.Fluorapatite.info=Ca5F(PO4)3
+item.Item_Dusts.CaF2=Calcium Fluoride Dust
+item.Item_Dusts.CaF2.info=CaF2
+item.Item_Dusts.V2O5=Vanadium Pentoxide Dust
+item.Item_Dusts.V2O5.info=V2O5
+item.Item_Dusts.Dewalquite=Dewalquite Dust
+item.Item_Dusts.Dewalquite.info=25Al2O3.TiO2.V2O5
+item.Item_Dusts.TiO2=Titanium Dioxide Dust
+item.Item_Dusts.TiO2.info=TiO2
+item.Item_Dusts.Al2O3=Aluminum Oxide Dust
+item.Item_Dusts.Al2O3.info=Al2O3
+
+#Ingots
+item.Item_Ingots.K=Potassium
+item.Item_Ingots.K.info=K
+item.Item_Ingots.P=Phosphor
+item.Item_Ingots.P.info=P
+item.Item_Ingots.Ruby=Ruby
+item.Item_Ingots.Ruby.info=Al2O3Cr
+item.Item_Ingots.Sapphire=Sapphire
+item.Item_Ingots.Sapphire.info=Al2O3
+item.Item_Ingots.GreenSapphire=Green Sapphire
+item.Item_Ingots.GreenSapphire.info=Al2O3
+item.Item_Ingots.NaturalGasHydrate=Methane clathrate
+item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
+item.Item_Ingots.gemDesc=YES these stuff are from RedPower actually
+item.Item_Ingots.ingotDesc=But it's not always real ingot
+item.Item_Ingots.nghDesc=It is believed as useful fuel...
+
+#Blocks
+tile.Machines.PneumaticCompressor.name=Pneumatic Compressor
+tile.Machines.AirPump.name=Industrial Pump
+tile.Machines.IndustrialCompressor.name=Industrial Compressor
+tile.Machines.IndustrialMacerator.name=Industrial Macerator
+tile.Machines.IndustrialExtractor.name=Industrial Extractor
+tile.Machines.IndustrialFurnance.name=Industrial Furnace
+tile.Machines.HSU.name=Hybrid Storage Unit
+tile.Machines.UHSU.name=Ultimate Hybrid Storage Unit
+tile.Machines.EVT.name=EV Transformer
+tile.Machines.Liquifier.name=Liquefier
+tile.Machines.LiquidInjector.name=Condense Tower
+tile.Machines.ThermalCracker.name=Thermal Cracker
+tile.Machines.AdvanceChemicalReactor.name=Advanced Chemical Reactor
+
+tile.Machines2.LiquidOutput.name=Liquid Outlet
+tile.Machines2.CondenseTowerCylinder.name=Condense Tower Wall
+tile.Machines2.ACWindMillTurbine.name=Academic City Windmill Generator
+tile.Machines2.ACWindMillBase.name=Academic City Windmill Base
+tile.Machines2.AutoWorkBench.name=Auto WorkBench
+tile.Machines2.CombustionFurnace.name=Combustion Furnace
+
+tile.ACWindMill_Cylinder.name=Academic City Windmill Wall
+
+tile.fcOre.oreCarnallite.name=Carnallite Ore
+tile.fcOre.oreFluorapatite.name=Fluorapatite Ore
+tile.fcOre.oreDewalquite.name=Dewalquite Ore
+tile.fcOre.oreRuby.name=Ruby Ore
+tile.fcOre.oreSapphire.name=Sapphire Ore
+tile.fcOre.oreGreenSapphire.name=Green Sapphire Ore
+tile.fcOre.stoneMarble.name=Marble
+tile.fcOre.stoneBasalt.name=Basalt
+
+
+#Achivements
+achievement.get_railgun=Only my railgun!
+achievement.get_railgun.desc=Come on man?!
+achievement.get_EVT=EV transformer
+achievement.get_EVT.desc=Step down to 2048
+achievement.killed_by_Potassium=Explode by potassium
+achievement.killed_by_Potassium.desc=Never makes the alkaline metal with water!
+achievement.gaspump=Power of gas
+achievement.gaspump.desc=A invisible power
+achievement.pneumaticCompressor=Say goodbye to ITNT
+achievement.pneumaticCompressor.desc=You nolonger have to prepare tones of ITNT
+achievement.liquifier=Infinite raw material
+achievement.liquifier.desc=You have learnt how to get raw material from air
+achievement.hsu=Larger MFSU
+achievement.hsu.desc=Stores 100000000eu!
+achievement.uhsu=Hentai MFSU
+achievement.uhsu.desc=Stores 1000000000eu!
+achievement.goldclod=Goldclod
+achievement.goldclod.desc=Goldclod is mine!
+achievement.get_ACR=Way of chemistry
+achievement.get_ACR.desc=Will there be any interesting reactions?
+achievement.condensetower=Seperate them?
+achievement.condensetower.desc=Seems missing something...
+achievement.condensetower2=Seperate them。
+achievement.condensetower2.desc=You have learnt how to seperate liquid mixtures
+achievement.suicideExpert=Suicide Expert
+achievement.suicideExpert.desc=Potassium plus acid equals explosion!
+
+gui.hybridEStorage.current=Power level: 
+gui.hybridEStorage.max=Max power level: 
+
+#NEI GUI texts
+nei.euTotal=Total Eu
+nei.euTick=Eu per tick
+nei.euTotalGen=Total generated
+nei.euTickOut=Eu per tick
+nei.tick=tick
+nei.tickWithCatalyst=Reaction tick under catalyst
+nei.catalystRequird=This reaction needs catalyst
+nei.outputLiquid=Output liquid
+
+#Misc
+itemGroup.FrogCraft=FrogCraft

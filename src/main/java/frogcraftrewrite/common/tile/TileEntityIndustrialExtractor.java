@@ -1,0 +1,29 @@
+package frogcraftrewrite.common.tile;
+
+import ic2.api.recipe.Recipes;
+import net.minecraft.item.ItemStack;
+
+public class TileEntityIndustrialExtractor extends TileAbstractInductionalDevice{
+
+	@Override
+	public String getInventoryName() {
+		return "TileEntityIndustrialExtrator";
+	}
+
+	@Override
+	protected boolean canProcess() {
+		for (ItemStack input : inv) {
+			ItemStack output = getOutputFrom(input);
+			if (output != null) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	protected ItemStack getOutputFrom(ItemStack input) {
+		return Recipes.extractor.getOutputFor(input, false).items.get(0);
+	}
+
+}

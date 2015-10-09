@@ -1,0 +1,195 @@
+#German Language File, 2013.8.25
+
+#Items
+item.ItemRailgun.name=Only my railgun!!!
+item.ItemRailgun.info=PiliPili~~~
+item.ItemRailgun.tooTired=Nicht genug Energie QAQ
+tile.BlockMobilePS.name=Mobile Energieversorgung
+item.CoolantAmmonia60K.name=60K Ammoniak-Kühlzelle
+item.CoolantAmmonia180K.name=180K Ammoniak-Kühlzelle
+item.CoolantAmmonia360K.name=360K Ammoniak-Kühlzelle
+#Note: This one is English, please delete note after translated
+item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
+item.ACWindMill_Rotor.name=Academic City Windmühlrotor
+item.UBattery.name=Uran-Zerfallsbatterie
+item.ThBattery.name=Thorium-Zerfallsbatterie
+item.PuBattery.name=Plutonium-Zerfallsbatterie
+
+#Cells
+item.Item_Cells.cell_Ammonia=Ammoniakzelle
+item.Item_Cells.cell_Ammonia.info=NH3
+item.Item_Cells.cell_CoalTar=Steinkohlenteerzelle
+item.Item_Cells.cell_CoalTar.info=Was zum Teufel beinhaltet es?!
+item.Item_Cells.cell_Oxygen=Sauerstoffzelle
+item.Item_Cells.cell_Oxygen.info=O2
+item.Item_Cells.cell_LiquifiedAir=Zelle verflüssigter Luft
+item.Item_Cells.cell_LiquifiedAir.info=N2.O2.CO2.Ar
+item.Item_Cells.cell_CO2=Kohlenstoffdioxidzelle
+item.Item_Cells.cell_CO2.info=CO2
+item.Item_Cells.cell_Argon=Argonzelle
+item.Item_Cells.cell_Argon.info=Ar
+item.Item_Cells.cell_HNO3=Salpetersäurezelle
+item.Item_Cells.cell_HNO3.info=HNO3
+item.Item_Cells.cell_NO=Stickstoffmonoxidzelle
+item.Item_Cells.cell_NO.info=NO
+item.Item_Cells.cell_CO=Kohlenstoffmonoxidzelle
+item.Item_Cells.cell_CO.info=CO
+item.Item_Cells.cell_Benzene=Benzolzelle
+item.Item_Cells.cell_Benzene.info=C6H6
+item.Item_Cells.cell_Bromine=Bromzelle
+item.Item_Cells.cell_Bromine.info=Br2
+item.Item_Cells.cell_Fluorine=Fluorzelle
+item.Item_Cells.cell_Fluorine.info=F2
+
+#Miscs
+item.Item_Miscs.pCokingCoal=Kokskohlefragmente
+item.Item_Miscs.pCokingCoal.info=Effizienter Treibstoff~
+item.Item_Miscs.Briquette=Brikett
+item.Item_Miscs.Briquette.info=Chinese style
+item.Item_Miscs.Railgun_Core=Supraleitfähige Schiene
+item.Item_Miscs.Railgun_Core.info=Gemacht mit Supraleitern
+item.Item_Miscs.GoldClod=Goldclod
+item.Item_Miscs.GoldClod.info=Magischer Düngemittelzusatz
+item.Item_Miscs.ElectrolizeModule=Elektrolysier-Komponente
+item.Item_Miscs.ElectrolizeModule.info=Elektrolysiert den Reaktionspartner
+item.Item_Miscs.HeatingModule=Aufheiz-Komponente
+item.Item_Miscs.HeatingModule.info=Bietet einer endothermen Reaktion Wärme an
+item.Item_Miscs.AmmoniaModule=Ammoniak-Katalysator
+item.Item_Miscs.AmmoniaModule.info=Nötig für Ammoniak-Herstellung
+
+#Dusts
+item.Item_Dusts.CaO=Calciumoxidstaub
+item.Item_Dusts.CaO.info=CaO
+item.Item_Dusts.Urea=Ureastaub
+item.Item_Dusts.Urea.info=CO(NH2)2
+item.Item_Dusts.NH4NO3=Ammoniumnitratstaub
+item.Item_Dusts.NH4NO3.info=NH4NO3
+item.Item_Dusts.CaSiO3=Calciumsilicatstaub
+item.Item_Dusts.CaSiO3.info=CaSiO3
+item.Item_Dusts.CaOH2=Calciumhydroxidstaub
+item.Item_Dusts.CaOH2.info=Ca(OH)2
+item.Item_Dusts.Magnalium=Magnaliumstaub
+item.Item_Dusts.Magnalium.info=Mg.Al2
+item.Item_Dusts.Carnallite=Carnallitstaub
+item.Item_Dusts.Carnallite.info=4KCl.MgBr2.8H2O
+item.Item_Dusts.KCl=Kaliumchlorid
+item.Item_Dusts.KCl.info=KCl
+item.Item_Dusts.MgBr2=Magnesiumbromid
+item.Item_Dusts.MgBr2.info=MgBr2
+item.Item_Dusts.Fluorapatite=Fluorapatitstaub
+item.Item_Dusts.Fluorapatite.info=Ca5F(PO4)3
+item.Item_Dusts.CaF2=Calciumfluorid
+item.Item_Dusts.CaF2.info=CaF2
+
+#Ingots Note:some untranslated stuff. Delete notes after translated.
+item.Item_Ingots.K=Kalium
+item.Item_Ingots.K.info=K
+item.Item_Ingots.P=Phosphor
+item.Item_Ingots.P.info=P
+item.Item_Ingots.Ruby=Ruby
+item.Item_Ingots.Ruby.info=Al2O3Cr
+item.Item_Ingots.Sapphire=Sapphire
+item.Item_Ingots.Sapphire.info=Al2O3
+item.Item_Ingots.GreenSapphire=Green Sapphire
+item.Item_Ingots.GreenSapphire.info=Al2O3
+item.Item_Ingots.NaturalGasHydrate=Methane clathrate
+item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
+item.Item_Ingots.gemDesc=YES these stuff are from RedPower actually
+item.Item_Ingots.ingotDesc=But it's not always real ingot
+item.Item_Ingots.nghDesc=It is believed as useful fuel...
+
+#Liquids
+item.Item_Liquids.LiquifiedAir=Verflüssigte Luft
+item.Item_Liquids.LiquifiedAir.info=Warnung:Superkalt!
+item.Item_Liquids.CoalTar=Steinkohlenteer
+item.Item_Liquids.CoalTar.info=Ölige und dunkle Flüssigkeit
+item.Item_Liquids.HNO3=Salpetersäure
+item.Item_Liquids.HNO3.info=Du solltest besser Handschuhe tragen
+item.Item_Liquids.Benzene=Benzol
+item.Item_Liquids.Benzene.info=Ein spezieller Geruch
+item.Item_Liquids.Bromine=Flüssiges Brom
+item.Item_Liquids.Bromine.info=Versuche niemals, es zu berühren
+
+#Gases
+item.Item_Gases.Oxygen=Sauerstoff
+item.Item_Gases.Oxygen.info=Du kannst es nicht verlassen
+item.Item_Gases.CO2=Kohlenstoffdioxid
+item.Item_Gases.CO2.info=Erstickung
+item.Item_Gases.Argon=Argon
+item.Item_Gases.Argon.info=Scheint nutzlos
+item.Item_Gases.Ammonia=Ammoniak
+item.Item_Gases.Ammonia.info=Riecht fantastisch
+item.Item_Gases.NO=Stickstoffmonoxid
+item.Item_Gases.NO.info=Farbloses Gas
+item.Item_Gases.CO=Kohlenstoffmonoxid
+item.Item_Gases.CO.info=Giftiger Treibstoff
+item.Item_Gases.Fluorine=Fluor
+item.Item_Gases.Fluorine.info=Reagiert mit Allem!
+
+
+#Blocks
+tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
+tile.Machines.AirPump.name=Industrielle Pumpe
+tile.Machines.IndustrialCompressor.name=Industrieller Kompressor
+tile.Machines.IndustrialMacerator.name=Industrieller Zerkleinerer
+tile.Machines.IndustrialExtractor.name=Industrieller Extraktor
+tile.Machines.IndustrialFurnance.name=Industrieller Ofen
+tile.Machines.HSU.name=Hybrid-Speichereinheit
+tile.Machines.UHSU.name=Ultimative Hybrid-Speichereinheit
+tile.Machines.EVT.name=ES-Transformator
+tile.Machines.Liquifier.name=Verflüssiger
+tile.Machines.LiquidInjector.name=Kondensationsturm
+tile.Machines.ThermalCracker.name=Thermaler Cracker
+tile.Machines.AdvanceChemicalReactor.name=Fortgeschrittener Chemischer Reaktor
+
+tile.Machines2.LiquidOutput.name=Flüssigkeitsabfluss
+tile.Machines2.CondenseTowerCylinder.name=Kondensationsturmwand
+tile.Machines2.ACWindMillTurbine.name=Academic City Windmühlgenerator
+tile.Machines2.ACWindMillBase.name=Academic City Windmühlbasis
+tile.Machines2.AutoWorkBench.name=Auto-Werkbank
+tile.Machines2.CombustionFurnace.name=Verbrennungsofen
+
+tile.fcOre.oreCarnallite.name=Carnallit
+tile.fcOre.oreFluorapatite.name=Fluorapatit
+
+tile.ACWindMill_Cylinder.name=Academic City Windmühlwand
+
+#Achivements
+achievement.get_railgun=Only my railgun!
+achievement.get_railgun.desc=Come on man?!
+achievement.get_EVT=ES-Transformator
+achievement.get_EVT.desc=Reduziere auf 2048
+achievement.killed_by_Potassium=Durch Kalium hochgegangen
+achievement.killed_by_Potassium.desc=Mische dieses Alkalimetall niemals mit Wasser!
+achievement.gaspump=Macht des Gases
+achievement.gaspump.desc=Eine unsichtbare Kraft
+achievement.pneumaticCompressor=Sag Auf Wiedersehen zu ITNT
+achievement.pneumaticCompressor.desc=Du brauchst nie wieder Tonnen von ITNT vorzubereiten
+achievement.liquifier=Unendliches rohes Material
+achievement.liquifier.desc=Du hast gelernt, wie man rohes Material aus Luft gewinnt
+achievement.hsu=Größerer MFSU
+achievement.hsu.desc=Speichert 100000000EU!
+achievement.uhsu=Hentai MFSU
+achievement.uhsu.desc=Speichert 1000000000EU!
+achievement.goldclod=Goldclod
+achievement.goldclod.desc=Goldclod ist mein!
+achievement.get_ACR=Weg der Chemie
+achievement.get_ACR.desc=Wird es irgendwelche interessanten Reaktionen geben?
+achievement.condensetower=Sie seperieren?
+achievement.condensetower.desc=Irgendwas scheint zu fehlen...
+achievement.condensetower2=Sie seperieren。
+achievement.condensetower2.desc=Du hast gelernt, wie man flüssige Gemische seperiert
+
+gui.hybridEStorage.current=Energy Level: 
+gui.hybridEStorage.max=Maximum energy level: 
+
+#NEI GUI texts
+nei.euTotal=Gesamte EU
+nei.euTick=EU pro Tick
+nei.tick=Tick
+nei.tickWithCatalyst=Reaktion tickt unter Katalysator
+nei.catalystRequird=Diese Reaktion benötigt Katalysator
+nei.outputLiquid=Stoße Flüssigkeit aus
+
+#Misc
+itemGroup.FrogCraft=FrogCraft

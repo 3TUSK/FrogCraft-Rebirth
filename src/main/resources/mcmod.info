@@ -1,0 +1,18 @@
+[
+	{
+    	"modid": "FrogCraftRebirth",
+    	"name": "FrogCraft: Rebirth",
+    	"description": "Taking back the chemical industry to Minecraft world!",
+    	"version": "${version}",
+    	"mcversion": "${mcversion}",
+    	"url" : "",
+    	"updateUrl": "",
+    	"authorList": ["FrogCraftRebirth Dev. Team"],
+    	"credits": "M3gaFra3k, ueyudiud, dunge",
+    	"logoFile": "",
+    	"screenshots": [],
+    	"parent": "",
+    	"requiredMods": [],
+    	"dependencies": []
+	}
+]

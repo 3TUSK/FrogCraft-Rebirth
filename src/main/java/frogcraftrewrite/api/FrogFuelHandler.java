@@ -9,8 +9,6 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
 
 public final class FrogFuelHandler implements IFuelHandler{
-
-	private HashMap<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
@@ -20,8 +18,9 @@ public final class FrogFuelHandler implements IFuelHandler{
 	@Override
 	public int getBurnTime(ItemStack fuel) {
 		try {
-			return getBurnTime(fuel);
-		} catch (NullPointerException e) {
+			return fuelMap.get(fuel);
+		} catch (Exception e) {
+			//Should be a NullPointerException, but here it's in case of unknown error
 			return 0;
 		}
 	}
@@ -34,4 +33,5 @@ public final class FrogFuelHandler implements IFuelHandler{
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
 
+	private HashMap<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
 }

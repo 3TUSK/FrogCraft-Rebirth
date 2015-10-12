@@ -1,7 +1,8 @@
-package frogcraftrewrite.common.block.acwindmill;
+package frogcraftrewrite.common.item.itemblock;
 
 import java.util.List;
 
+import frogcraftrewrite.common.block.BlockACWindmill;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -12,7 +13,7 @@ public class ItemBlockACWindmill extends ItemBlock {
 
 	public ItemBlockACWindmill(Block block) {
 		super(block);
-		assert ((BlockACWindmill)field_150939_a).nameBuffer.length > 1;
+		assert ((BlockACWindmill)field_150939_a).nameBuffer.length > 1 : new RuntimeException("Fail on checking sub-name");
 		setHasSubtypes(true);
 	}
 	

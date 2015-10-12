@@ -1,11 +1,10 @@
-package frogcraftrewrite.common.block.acwindmill;
+package frogcraftrewrite.common.item;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.item.ItemFrogCraft;
-import frogcraftrewrite.common.lib.FrogItems;
+import frogcraftrewrite.common.tile.TileACWindmillTurbine;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
@@ -13,9 +12,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class ACWindmillFan extends ItemFrogCraft {
+public class ItemACWindmillFan extends ItemFrogCraft {
 	
-	public ACWindmillFan() {
+	public ItemACWindmillFan() {
 		super(false);
 		setMaxDamage(0);
 		setMaxStackSize(1);
@@ -29,7 +28,7 @@ public class ACWindmillFan extends ItemFrogCraft {
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (tile instanceof TileACWindmillTurbine) {
 			((TileACWindmillTurbine)tile).hasRotor = true;
-			player.inventory.consumeInventoryItem(FrogItems.acwinmillFan);
+			player.inventory.consumeInventoryItem(this);
 			return true;
 		}
 		return false;

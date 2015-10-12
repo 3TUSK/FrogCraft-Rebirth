@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.block.acwindmill;
+package frogcraftrewrite.common.block;
 
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;

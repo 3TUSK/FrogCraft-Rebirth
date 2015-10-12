@@ -1,4 +1,4 @@
-package frogcraftrewrite.client.gui.mps;
+package frogcraftrewrite.client.gui;
 
 import org.lwjgl.opengl.GL11;
 

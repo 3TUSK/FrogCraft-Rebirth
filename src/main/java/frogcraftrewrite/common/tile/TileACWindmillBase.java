@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.block.acwindmill;
+package frogcraftrewrite.common.tile;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

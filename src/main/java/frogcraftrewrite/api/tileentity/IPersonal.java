@@ -5,9 +5,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import com.mojang.authlib.GameProfile;
 
 /**
- * Usage is still unclear. Implementation of this interface will mark a tileEntity 
- * can be personalized so that permission control will be applied.
- * Method may be called in the future.
+ * Usage is still unclear. Implementation of this interface will mark a 
+ * tileEntity can be personalized so that permission control will be 
+ * applied. Method may be called in the future.
  * */
 public interface IPersonal {
 	

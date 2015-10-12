@@ -1,10 +1,12 @@
-package frogcraftrewrite.common.block.acwindmill;
+package frogcraftrewrite.common.block;
 
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.common.tile.TileACWindmillBase;
+import frogcraftrewrite.common.tile.TileACWindmillTurbine;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,9 +24,9 @@ import net.minecraft.world.World;
 public class BlockACWindmill extends BlockContainer {
 	
 	@SideOnly(Side.CLIENT)
-	IIcon[][] iconBuffer;
+	public IIcon[][] iconBuffer;
 	
-	String[] nameBuffer = {"ACWindMillBase", "ACWindMillTurbine"};
+	public String[] nameBuffer = {"ACWindMillBase", "ACWindMillTurbine"};
 	
 	public BlockACWindmill() {
 		super(Material.iron);

@@ -26,6 +26,8 @@ public class ItemIngot extends ItemFrogCraft{
 		nameMap.put(3, "Sapphire");
 		nameMap.put(4, "GreenSapphire");
 		nameMap.put(5, "NaturalGasHydrate");
+		nameMap.put(6, "Briquette");
+		nameMap.put(7, "CoalCokeShattered");
 	}
 	
 	public ItemIngot() {
@@ -73,7 +75,14 @@ public class ItemIngot extends ItemFrogCraft{
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
 				break;
 			case 5:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.nghDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.fuelDesc"));
+				break;
+			case 6: 
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.fuelDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.Briquette.info"));
+				break;
+			case 7:
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.CoalCokeShattered.info"));
 				break;
 			default:
 				break;

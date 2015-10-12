@@ -61,26 +61,47 @@ public class BlockNitricAcid extends BlockFluidClassic {
 		icons[1] = r.registerIcon("frogcraftrewrite:fluids/HNO3_flow");
 	}
 
-	
+	int corrosion;
 	@Override
-    public void updateTick(World world, int x, int y, int z, Random rand) {
+	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);
 		if (rand.nextBoolean()) return;
+		
 		for (int m=-3;m<3;m++) {
 			for (int n=-3;n<3;n++) {
 				int randInt = rand.nextInt(10);
-				if (world.getBlock(x+m, y, z+n) == Blocks.grass && randInt < 7)
+				if (world.getBlock(x+m, y, z+n) == Blocks.grass && randInt < 7) {
 					world.setBlock(x+m, y, z+n, Blocks.dirt);
-				if (world.getBlock(x+m, y, z+n) == Blocks.dirt && randInt < 5)
+					++corrosion;
+					checkCorrosion(world, x, y, z);
+				}
+				if (world.getBlock(x+m, y, z+n) == Blocks.dirt && randInt < 5) {
 					world.setBlock(x+m, y, z+n, Blocks.sand);
-				if (world.getBlock(x+m, y, z+n) == Blocks.stone && randInt < 5)
+					++corrosion;
+					checkCorrosion(world, x, y, z);
+				}
+				if (world.getBlock(x+m, y, z+n) == Blocks.stone && randInt < 5) {
 					world.setBlock(x+m, y, z+n, Blocks.cobblestone);
-				if (world.getBlock(x+m, y, z+n) == Blocks.cobblestone && randInt < 8)
+					++corrosion;
+					checkCorrosion(world, x, y, z);
+				}
+				if (world.getBlock(x+m, y, z+n) == Blocks.cobblestone && randInt < 8) {
 					world.setBlock(x+m, y, z+n, Blocks.gravel);
-				if (world.getBlock(x+m, y, z+n) == Blocks.gravel && randInt < 6)
+					++corrosion;
+					checkCorrosion(world, x, y, z);
+				}
+				if (world.getBlock(x+m, y, z+n) == Blocks.gravel && randInt < 6) {
 					world.setBlock(x+m, y, z+n, Blocks.sand);
+					++corrosion;
+					checkCorrosion(world, x, y, z);	
+				}
 			}
 		}
+	}
+	
+	private void checkCorrosion(World world, int x, int y, int z) {
+		if (corrosion > 20)
+			world.setBlock(x, y, z, Blocks.air);
 	}
 	
 	@Override

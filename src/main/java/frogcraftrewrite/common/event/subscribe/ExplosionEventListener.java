@@ -14,6 +14,7 @@ public class ExplosionEventListener {
 	
 	@SubscribeEvent
 	public void onPotassiumExplosion(ExplosionEvent event) {
+		if (event.world.isRemote) return;
 		Entity item = event.explosion.exploder;
 		Block block = event.world.getBlock(
 				(int)event.explosion.explosionX, 

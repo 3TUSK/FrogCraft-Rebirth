@@ -133,6 +133,12 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		info.add("Amount" + fluid.amount);
 	}
 
+	//Fluid armor side-effect system start, TODO: finish this system
+	
 	private static Multimap<Fluid, Potion> fluidSideEffect = ArrayListMultimap.<Fluid, Potion>create();
+	
+	public static boolean registerFluidArmorSideEffect(Fluid fluid, Potion potion) {
+		return fluidSideEffect.put(fluid, potion);
+	}
 	
 }

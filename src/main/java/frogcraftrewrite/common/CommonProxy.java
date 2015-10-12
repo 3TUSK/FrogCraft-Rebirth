@@ -70,6 +70,8 @@ public class CommonProxy implements IGuiHandler{
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
+		RegFrogItemsBlocks.postInit();
+		
 		MinecraftForge.EVENT_BUS.register(new ExplosionEventListener());
 	}
 

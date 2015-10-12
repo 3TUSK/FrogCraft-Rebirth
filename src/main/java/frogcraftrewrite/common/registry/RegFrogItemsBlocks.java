@@ -3,6 +3,7 @@ package frogcraftrewrite.common.registry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.block.BlockHybridEStorage;
+import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.common.block.BlockFrogOre;
 import frogcraftrewrite.common.block.acwindmill.ACWindmillFan;
 import frogcraftrewrite.common.block.acwindmill.BlockACWindmill;
@@ -10,9 +11,11 @@ import frogcraftrewrite.common.block.acwindmill.ItemBlockACWindmill;
 import frogcraftrewrite.common.block.acwindmill.TileACWindmillBase;
 import frogcraftrewrite.common.block.acwindmill.TileACWindmillTurbine;
 import frogcraftrewrite.common.item.ItemAmmoniaCoolant;
+import frogcraftrewrite.common.item.ItemCatalystModule;
 import frogcraftrewrite.common.item.ItemCell;
 import frogcraftrewrite.common.item.ItemDecayBattery;
 import frogcraftrewrite.common.item.ItemIngot;
+import frogcraftrewrite.common.item.ItemJinkela;
 import frogcraftrewrite.common.item.ItemRailgun;
 import frogcraftrewrite.common.item.itemblock.ItemBlockOre;
 import frogcraftrewrite.common.lib.FrogItems;
@@ -35,7 +38,9 @@ public class RegFrogItemsBlocks {
 	}
 	
 	public static void postInit() {
-		
+		//Register crafting recipe!
+		FrogFuelHandler.FUEL_REG.reg(new ItemStack(FrogItems.itemIngot, 1, 6), 4800);
+		FrogFuelHandler.FUEL_REG.reg(new ItemStack(FrogItems.itemIngot, 1, 7), 400);
 	}
 	
 	static void initBlocks() {
@@ -51,7 +56,6 @@ public class RegFrogItemsBlocks {
 	}
 
 	static void initItems() {
-		FrogItems.railgun = new ItemRailgun(1000000);
 		FrogItems.decayBatteryUranium = new ItemDecayBattery("U");
 		FrogItems.decayBatteryThorium = new ItemDecayBattery("Th");
 		FrogItems.decayBatteryPlutoium = new ItemDecayBattery("Pu");
@@ -61,9 +65,11 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemCell = new ItemCell();
 		FrogItems.itemIngot = new ItemIngot();
 		FrogItems.itemDust = new ItemDust();
+		FrogItems.itemReactionModule = new ItemCatalystModule();
 		FrogItems.acwinmillFan = new ACWindmillFan();
+		FrogItems.railgun = new ItemRailgun(1000000);
+		FrogItems.jinkela = new ItemJinkela();
 		
-		GameRegistry.registerItem(FrogItems.railgun, "railgun");
 		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");
 		GameRegistry.registerItem(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
@@ -73,7 +79,10 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.itemCell, "frogCells");
 		GameRegistry.registerItem(FrogItems.itemIngot, "frogIngots");
 		GameRegistry.registerItem(FrogItems.itemDust, "frogDusts");
+		GameRegistry.registerItem(FrogItems.itemReactionModule, "frogModule");
 		GameRegistry.registerItem(FrogItems.acwinmillFan, "academyWindmillFan");
+		GameRegistry.registerItem(FrogItems.railgun, "railgun");
+		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
 	}
 	
 	static void initOreDict() {

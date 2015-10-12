@@ -10,31 +10,27 @@ import cpw.mods.fml.common.IFuelHandler;
 
 public final class FrogFuelHandler implements IFuelHandler{
 
-	private HashMap<Item, Integer> fuelMap = new HashMap<Item, Integer>();
+	private HashMap<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
 	//Unconstructable
 	private FrogFuelHandler() {}
 	
-	int getBurnTime(Item fuel) {
+	@Override
+	public int getBurnTime(ItemStack fuel) {
 		try {
-			return fuelMap.get(fuel);
+			return getBurnTime(fuel);
 		} catch (NullPointerException e) {
 			return 0;
 		}
 	}
 	
-	@Override
-	public int getBurnTime(ItemStack fuel) {
-		return getBurnTime(fuel.getItem());
+	public void reg(@Nonnull Item fuel, int timeInTicks) {
+		reg(new ItemStack(fuel, 1), timeInTicks);
 	}
 	
-	public void reg(ItemStack fuel, int timeInTicks) {
-		reg(fuel.getItem(), timeInTicks);
-	}
-	
-	public void reg(@Nonnull Item fuel, int timeInTicks){
+	public void reg(@Nonnull ItemStack fuel, int timeInTicks){
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
 

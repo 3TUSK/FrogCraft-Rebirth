@@ -52,10 +52,8 @@ item.Item_Dusts.V2O5=五氧化二钒
 item.Item_Dusts.V2O5.info=V2O5
 
 #Miscs
-item.Item_Miscs.pCokingCoal=焦煤炭碎片
-item.Item_Miscs.pCokingCoal.info=有效的燃料
-item.Item_Miscs.Briquette=蜂窝煤
-item.Item_Miscs.Briquette.info=中国特色!
+#For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
+#If you are not sure about the translation, please keep as Jinkela as Chinese Pinyin
 item.Item_Miscs.Railgun_Core=超电磁炮导轨
 item.Item_Miscs.Railgun_Core.info=采用超导体制成
 item.Item_Miscs.GoldClod=金坷垃
@@ -64,14 +62,14 @@ item.Item_Miscs.ElectrolizeModule=电解器插件
 item.Item_Miscs.ElectrolizeModule.info=电解反应物
 item.Item_Miscs.HeatingModule=加热器插件
 item.Item_Miscs.HeatingModule.info=用来给反应提供热量
-item.Item_Miscs.AmmoniaModule=氨合成专用催化器件
+item.Item_Miscs.AmmoniaModule=氨合成专用催化剂
 item.Item_Miscs.AmmoniaModule.info=合成氨的专用催化剂
 item.Item_Miscs.V2O5Module=五氧化二钒催化剂
 item.Item_Miscs.V2O5Module.info=合成三氧化硫的专用催化剂
 
 #Dusts
 item.Item_Dusts.CaO=氧化钙粉
-item.Item_Dusts.CaO.info=CaO  生石灰
+item.Item_Dusts.CaO.info=CaO 生石灰
 item.Item_Dusts.Urea=尿素粉
 item.Item_Dusts.Urea.info=CO(NH2)2
 item.Item_Dusts.NH4NO3=硝酸铵粉
@@ -100,6 +98,9 @@ item.Item_Dusts.Al2O3=三氧化二铝粉
 item.Item_Dusts.Al2O3.info=Al2O3
 
 #Ingots
+#To translators: for briquette, see the following links:
+#https://en.wikipedia.org/wiki/Briquette
+#https://en.wikipedia.org/wiki/Yeontan
 item.Item_Ingots.K=钾单质
 item.Item_Ingots.K.info=K
 item.Item_Ingots.P=磷单质
@@ -112,9 +113,13 @@ item.Item_Ingots.GreenSapphire=绿色蓝宝石
 item.Item_Ingots.GreenSapphire.info=Al2O3
 item.Item_Ingots.NaturalGasHydrate=可燃冰
 item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
+item.Item_Ingots.CoalCokeShattered=焦煤炭碎片
+item.Item_Ingots.CoalCokeShattered.info=有效的燃料
+item.Item_Ingots.Briquette=蜂窝煤
+item.Item_Ingots.Briquette.info=中国特色！
 item.Item_Ingots.gemDesc=没错这些都是些红石力量的玩意
 item.Item_Ingots.ingotDesc=然而并不一定都是锭
-item.Item_Ingots.nghDesc=据信是好用的燃料
+item.Item_Ingots.fuelDesc=据信是好用的燃料
 
 #Blocks
 tile.Machines.PneumaticCompressor.name=气动压缩机

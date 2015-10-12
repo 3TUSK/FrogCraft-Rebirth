@@ -11,6 +11,7 @@ public class FrogItems {
 	public static Item itemCell;
 	public static Item itemIngot;
 	public static Item itemDust;
+	public static Item itemReactionModule;
 
 	public static Item railgun;
 	public static Item decayBatteryUranium;
@@ -18,5 +19,7 @@ public class FrogItems {
 	public static Item decayBatteryPlutoium;
 	
 	public static Item acwinmillFan;
+	
+	public static Item jinkela;
 
 }

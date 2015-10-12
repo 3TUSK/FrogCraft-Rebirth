@@ -16,7 +16,7 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	private String type;
 	
 	public ItemAmmoniaCoolant(String type, int storage) {
-		super();
+		super(false);
 		this.heatStorage = storage;
 		this.type = type;
 		setUnlocalizedName("CoolantAmmonia"+type);
@@ -87,6 +87,12 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 
 	@Override
 	public float influenceExplosion(IReactor reactor, ItemStack yourStack) {
+		return 0;
+	}
+
+	@Override
+	public int getSubItemNumber() {
+		// TODO Auto-generated method stub
 		return 0;
 	}
 

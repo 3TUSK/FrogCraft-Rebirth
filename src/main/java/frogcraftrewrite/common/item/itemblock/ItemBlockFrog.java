@@ -7,7 +7,6 @@ public abstract class ItemBlockFrog extends ItemBlock {
 
 	public ItemBlockFrog(Block block) {
 		super(block);
-		setHasSubtypes(true);
 	}
 	
 	@Override

@@ -14,8 +14,10 @@ item.ACWindMill_Rotor.name=学园都市风力发电机叶片
 item.UBattery.name=铀衰变电池
 item.ThBattery.name=钍衰变电池
 item.PuBattery.name=钚衰变电池
+item.DecayBattery.info.0=只是一个衰变电池
+item.DecayBattery.info.1=超高造价，无限电力！
 item.Item_NitricAcidBucket.name=硝酸桶
-item.Item_NitricAcidBucket.info=注意:超级腐蚀性液体!
+item.Item_NitricAcidBucket.info=注意：超级腐蚀性液体！
 
 #Cells
 item.Item_Cells.cell_Ammonia=氨槽
@@ -146,6 +148,8 @@ tile.fcOre.oreSapphire.name=蓝宝石矿石
 tile.fcOre.oreGreenSapphire.name=绿宝石矿石
 tile.fcOre.stoneMarble.name=大理石
 tile.fcOre.stoneBasalt.name=玄武岩
+
+tile.nitricAcid.name=硝酸
 
 #Achivements
 achievement.get_railgun=Only my railgun!

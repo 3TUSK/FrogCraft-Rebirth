@@ -7,9 +7,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
@@ -40,8 +38,7 @@ public class ItemDust extends ItemFrogCraft {
 	}
 
 	public ItemDust() {
-		super();
-		setHasSubtypes(true);
+		super(true);
 		setUnlocalizedName("Item_Dusts");
 	}
 	
@@ -69,14 +66,11 @@ public class ItemDust extends ItemFrogCraft {
 	public String getUnlocalizedName(ItemStack stack) {
 		return super.getUnlocalizedName()+"."+nameMap.get(stack.getItemDamage());
 	}
-	
-	@SuppressWarnings("unchecked")
-	@SideOnly(Side.CLIENT)
+
 	@Override
-	public void getSubItems(Item item, CreativeTabs aTab, @SuppressWarnings("rawtypes") List subItems) {
-		for (int n=0;n<nameMap.size();n++) {
-			subItems.add(new ItemStack(this, 1, n));
-		}
+	public int getSubItemNumber() {
+		return nameMap.size();
 	}
+	
 
 }

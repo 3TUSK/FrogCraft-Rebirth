@@ -1,14 +1,14 @@
-package frogcraftrewrite.common;
+package frogcraftrewrite.common.lib.config;
 
 import java.io.File;
 
 import net.minecraftforge.common.config.Configuration;
 
-public class Config {
+public class ConfigMain {
 
 	public static double railgunDamageScale;
 	
-	public static void initConfig(File file) {
+	public static void initMainConfig(File file) {
 		Configuration config = new Configuration(file);
 		
 		config.load();

@@ -2,17 +2,19 @@ package frogcraftrewrite.api;
 
 import java.util.HashMap;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import cpw.mods.fml.common.IFuelHandler;
-/**The product of eggache.*/
+
 public final class FrogFuelHandler implements IFuelHandler{
 
 	private HashMap<Item, Integer> fuelMap = new HashMap<Item, Integer>();
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
-	/**Unconstructable.*/
+	//Unconstructable
 	private FrogFuelHandler() {}
 	
 	int getBurnTime(Item fuel) {
@@ -32,7 +34,7 @@ public final class FrogFuelHandler implements IFuelHandler{
 		reg(fuel.getItem(), timeInTicks);
 	}
 	
-	public void reg(Item fuel, int timeInTicks){
+	public void reg(@Nonnull Item fuel, int timeInTicks){
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
 

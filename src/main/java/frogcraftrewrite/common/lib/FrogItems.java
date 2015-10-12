@@ -1,4 +1,4 @@
-package frogcraftrewrite.api;
+package frogcraftrewrite.common.lib;
 
 import net.minecraft.item.Item;
 

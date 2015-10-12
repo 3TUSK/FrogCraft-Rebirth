@@ -1,21 +1,46 @@
 package frogcraftrewrite.client;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.client.render.RenderEntityRailgunCoin;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
+import frogcraftrewrite.common.lib.FrogFluids;
+import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy{
 	
-	public void preInit(FMLPreInitializationEvent event) {
-		super.preInit(event);
-	}
-	
+	@Override
 	public void init(FMLInitializationEvent event) {
 		RenderingRegistry.registerEntityRenderingHandler(EntityRailgunCoin.class, new RenderEntityRailgunCoin());
-		//super.init(event);	
+
+		MinecraftForge.EVENT_BUS.register(this);
+		FMLCommonHandler.instance().bus().register(this);
+		FrogCraftRebirth.frogLogger.info("Client side initialization finished");
 	}
+
+		@SubscribeEvent
+		public void onTextureStiching(TextureStitchEvent.Pre event) {
+			if (event.map.getTextureType() == 0) {
+				FrogFluids.ammonia.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Ammonia"));
+				FrogFluids.argon.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Argon"));
+				FrogFluids.benzene.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Benzene"));
+				FrogFluids.bromine.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Bromine"));
+				FrogFluids.carbonOxide.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/CO"));
+				FrogFluids.carbonDioxide.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/CO2"));
+				FrogFluids.coalTar.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/CoalTar"));
+				FrogFluids.fluorine.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Fluorine"));
+				FrogFluids.nitricAcid.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/HNO3"));
+				FrogFluids.liquidAir.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/LiquifiedAir"));
+				FrogFluids.nitrogenOxide.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/NO"));
+				FrogFluids.oxygen.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/Oxygen"));
+				FrogFluids.sulfurDioxide.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/SO2"));
+				FrogFluids.sulfurTrioxide.setIcons(event.map.registerIcon("frogcraftrewrite:fluids/SO3"));
+			}
+		}
 
 }

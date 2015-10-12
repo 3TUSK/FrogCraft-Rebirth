@@ -1,10 +1,9 @@
 package frogcraftrewrite.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import frogcraftrewrite.api.FrogBlocks;
-import frogcraftrewrite.api.FrogItems;
+import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.block.BlockHybridEStorage;
-import frogcraftrewrite.common.block.BlockNGH;
+import frogcraftrewrite.common.block.BlockFrogOre;
 import frogcraftrewrite.common.block.acwindmill.ACWindmillFan;
 import frogcraftrewrite.common.block.acwindmill.BlockACWindmill;
 import frogcraftrewrite.common.block.acwindmill.ItemBlockACWindmill;
@@ -15,6 +14,8 @@ import frogcraftrewrite.common.item.ItemCell;
 import frogcraftrewrite.common.item.ItemDecayBattery;
 import frogcraftrewrite.common.item.ItemIngot;
 import frogcraftrewrite.common.item.ItemRailgun;
+import frogcraftrewrite.common.item.itemblock.ItemBlockOre;
+import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
 import frogcraftrewrite.common.item.ItemDust;
@@ -23,26 +24,33 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class RegFrogItemsBlocks {
 	
-	public static void init() {
+	public static void preInit() {
 		initBlocks();
 		initItems();
-		initOreDict();
 		initTileEntity();
 	}
 	
-	public static void initBlocks() {
-		FrogBlocks.naturalGasHydrate = new BlockNGH();
+	public static void init() {
+		initOreDict();
+	}
+	
+	public static void postInit() {
+		
+	}
+	
+	static void initBlocks() {
+		FrogBlocks.frogOres = new BlockFrogOre();
 		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage("HSU");
 		FrogBlocks.hybridStorageUnitUltra = new BlockHybridEStorage("UHSU");
 		
-		GameRegistry.registerBlock(FrogBlocks.naturalGasHydrate, "naturalgasHydrate");
+		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemBlockOre.class, "naturalgasHydrate");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemBlockACWindmill.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, "frogHSU");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnitUltra, "frogUHSU");
 	}
 
-	public static void initItems() {
+	static void initItems() {
 		FrogItems.railgun = new ItemRailgun(1000000);
 		FrogItems.decayBatteryUranium = new ItemDecayBattery("U");
 		FrogItems.decayBatteryThorium = new ItemDecayBattery("Th");
@@ -68,13 +76,15 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.acwinmillFan, "academyWindmillFan");
 	}
 	
-	public static void initOreDict() {
+	static void initOreDict() {
 		OreDictionary.registerOre("gemRuby", new ItemStack(FrogItems.itemIngot, 1, 2));
 		OreDictionary.registerOre("gemSapphire", new ItemStack(FrogItems.itemIngot, 1, 3));
 		OreDictionary.registerOre("gemGreenSapphire", new ItemStack(FrogItems.itemIngot, 1, 4));
+		
+		OreDictionary.registerOre("cellAmmonia", new ItemStack(FrogItems.itemCell, 1, 0));
 	}
 	
-	public static void initTileEntity() {
+	static void initTileEntity() {
 		GameRegistry.registerTileEntity(TileACWindmillBase.class, "tileFrogAcademyWindmill");
 		GameRegistry.registerTileEntity(TileACWindmillTurbine.class, "tileFrogAcademyTurbine");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");

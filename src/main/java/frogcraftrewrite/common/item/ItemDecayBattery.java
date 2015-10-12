@@ -1,17 +1,21 @@
 package frogcraftrewrite.common.item;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.item.IElectricItem;
 
 public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	
 	public ItemDecayBattery(String name) {
-		super();
+		super(false);
 		setMaxDamage(0);
 		setMaxStackSize(1);
 		setNoRepair();
@@ -67,9 +71,21 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		return java.util.Arrays.asList(new String[] {
-				"A radioactive decay battery",
-				"Provide you with infinity electricity with high cost!"
+				StatCollector.translateToLocal("item.DecayBattery.info.0"),
+				StatCollector.translateToLocal("item.DecayBattery.info.1")
 		});
+	}
+
+	@Override
+	public int getSubItemNumber() {
+		return 1;
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@SideOnly(Side.CLIENT)
+	public void getSubItems(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes") List list) {
+		list.add(new ItemStack(item, 1, 0));
 	}
 
 }

@@ -1,9 +1,16 @@
 package frogcraftrewrite.api;
 
-import frogcraftrewrite.api.recipes.IRecipeManager;
-import net.minecraft.creativetab.CreativeTabs;
+import java.lang.reflect.Field;
 
-public class Constants {
+import frogcraftrewrite.api.recipes.IRecipeManager;
+import frogcraftrewrite.common.lib.FrogBlocks;
+import frogcraftrewrite.common.lib.FrogItems;
+import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+
+public class FrogAPI {
 	/**
 	 * FrogCraft (2013-) is a Minecraft Mod authored by Rikka.<br>
 	 * Credits to Rikka for original code and M3gaFrank (original
@@ -20,7 +27,7 @@ public class Constants {
 	 * applied on several special-designed block, e.g. mobile power station, 
 	 * ic2-ish industrial device, etc.
 	 * */
-	public static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
+	private static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
 	//General stuff.
 	public static final String MODID = "FrogCraftRebirth";
@@ -32,7 +39,8 @@ public class Constants {
 			+ "after:minetweaker3;"
 			+ "after:techreborn;";
 	
-	/** Creative Page for all FrogCraft stuff. DO NOT OVERRIDE IT.*/
+	//Not be used, and more likely not to be used in future
+	@Deprecated
 	public static CreativeTabs tabFrogCraft;
 	
 	//Recipe manager, and I can't stand the loooooooong name!
@@ -44,5 +52,26 @@ public class Constants {
 	 */
 	public static String getFinalAnswer() {
 		return Integer.toString(MEANING_OF_LIFE_UNIVERSE_EVERYTHING);
+	}
+	
+	//Plan: This method need document
+	public static ItemStack findFrogStuff(String name, int damage) {
+		Field stuff;
+		
+		try {
+			stuff = FrogItems.class.getField(name);
+			return new ItemStack((Item)stuff.get(Item.class), 1, damage);
+		} catch (Exception e) {
+			
+		}
+		
+		try {
+			stuff = FrogBlocks.class.getField(name);
+			return new ItemStack((Block)stuff.get(Block.class), 1, damage);
+		} catch (Exception e) {
+			
+		}
+		
+		return null;
 	}
 }

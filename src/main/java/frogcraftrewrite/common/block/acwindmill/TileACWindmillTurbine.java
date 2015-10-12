@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.block.acwindmill;
 
-import frogcraftrewrite.api.FrogBlocks;
+import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.tile.TileEntityFrog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

@@ -7,9 +7,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
@@ -31,24 +29,14 @@ public class ItemIngot extends ItemFrogCraft{
 	}
 	
 	public ItemIngot() {
-		super();
+		super(true);
 		setUnlocalizedName("Item_Ingots");
-		setHasSubtypes(true);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIconFromDamage(int damage) {
 		return iconMap.get(damage);
-	}
-	
-	@SuppressWarnings("unchecked")
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubItems(Item item, CreativeTabs aTab, @SuppressWarnings("rawtypes") List subItems) {
-		for (int n=0;n<nameMap.size();n++) {
-			subItems.add(new ItemStack(this, 1, n));
-		}
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -70,19 +58,19 @@ public class ItemIngot extends ItemFrogCraft{
 		list.add(StatCollector.translateToLocal("item.Item_Ingots."+nameMap.get(stack.getItemDamage())+".info"));
 		switch (stack.getItemDamage()) {
 			case 0:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.ingotDesc"));
 				break;
 			case 1:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.ingotDesc"));
 				break;
 			case 2:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.ingotDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
 				break;
 			case 3:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.ingotDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
 				break;
 			case 4:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.ingotDesc"));
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
 				break;
 			case 5:
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.nghDesc"));
@@ -91,6 +79,11 @@ public class ItemIngot extends ItemFrogCraft{
 				break;
 		}
 		return list;
+	}
+
+	@Override
+	public int getSubItemNumber() {
+		return nameMap.size();
 	}
 
 }

@@ -13,7 +13,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockMachine extends BlockContainer{
+public abstract class BlockMachine extends BlockContainer {
 
 	public BlockMachine() {
 		super(Material.iron);

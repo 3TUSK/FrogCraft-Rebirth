@@ -1,4 +1,4 @@
-package frogcraftrewrite.api;
+package frogcraftrewrite.common.lib;
 
 import net.minecraftforge.fluids.Fluid;
 //What a heck?

@@ -1,5 +1,5 @@
 package frogcraftrewrite.common.entity;
-import static frogcraftrewrite.common.Config.railgunDamageScale;
+import static frogcraftrewrite.common.lib.config.ConfigMain.railgunDamageScale;
 import static frogcraftrewrite.common.item.ItemRailgun.railgun;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

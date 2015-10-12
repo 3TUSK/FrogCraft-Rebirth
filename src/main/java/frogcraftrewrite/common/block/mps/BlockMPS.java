@@ -2,7 +2,7 @@ package frogcraftrewrite.common.block.mps;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.api.Constants;
+import frogcraftrewrite.api.FrogAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -24,7 +24,7 @@ public class BlockMPS extends BlockContainer implements ITileEntityProvider{
 	
 	public BlockMPS() {
 		super(Material.rock);
-		setCreativeTab(Constants.tabFrogCraft);
+		setCreativeTab(FrogAPI.tabFrogCraft);
 		setHardness(1.0F);
 		setResistance(1000.0F);//Our MPS won't exploded!
 		setBlockTextureName("frogcraftrewrite:MobilePS");

@@ -32,7 +32,7 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	private boolean active;
 	
 	public ItemRailgun(int maxEnergy) {
-		super();
+		super(false);
 		setFull3D();
 		setMaxStackSize(1);
 		setMaxDamage(100);
@@ -166,6 +166,11 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	public ItemRailgun setStatus(boolean status) {
 		this.active = status;
 		return this;
+	}
+
+	@Override
+	public int getSubItemNumber() {
+		return 1;
 	}
 
 }

@@ -2,15 +2,19 @@ package frogcraftrewrite.common.item;
 
 import java.util.List;
 
-import frogcraftrewrite.api.Constants;
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
+import frogcraftrewrite.FrogCraftRebirth;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-/*import net.minecraft.potion.Potion;
+import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.world.World;*/
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import ic2.api.item.IMetalArmor;
@@ -30,9 +34,9 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	protected int capacity;
 	
 	public ItemFluidArmor(int capacity) {
-		super(FLUID_ARMOR, 0, 2);//2--->chestplate; 0--->cloth(leather) renderer;
+		super(FLUID_ARMOR, 0, 2);//2->chestplate; 0->cloth(leather) renderer; render stuff is WIP
 		setMaxStackSize(1);
-		setCreativeTab(Constants.tabFrogCraft);
+		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		this.capacity = capacity;
 	}
 
@@ -41,11 +45,11 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		return true;
 	}
 	
-	/*@Override
+	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30));
-		//TODO It can do more stuff.
-	}*/
+		//Plan: MultiMap(Fluid, Potion)
+	}
 
 	@Override
 	public FluidStack getFluid(ItemStack container) {
@@ -129,4 +133,6 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		info.add("Amount" + fluid.amount);
 	}
 
+	private static Multimap<Fluid, Potion> fluidSideEffect = ArrayListMultimap.<Fluid, Potion>create();
+	
 }

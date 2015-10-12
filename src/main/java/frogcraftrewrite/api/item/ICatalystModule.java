@@ -1,6 +1,6 @@
 package frogcraftrewrite.api.item;
 
-import frogcraftrewrite.api.frogmatter.Catalyst;
+import tritusk.trichemistry.matter.Catalyst;
 
 /**
  * Modulized cataylst provides a flexible way to extends your advanced chemical reactor.

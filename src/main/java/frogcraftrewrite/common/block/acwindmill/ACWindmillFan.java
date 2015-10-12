@@ -2,8 +2,8 @@ package frogcraftrewrite.common.block.acwindmill;
 
 import java.util.List;
 
-import frogcraftrewrite.api.FrogItems;
 import frogcraftrewrite.common.item.ItemFrogCraft;
+import frogcraftrewrite.common.lib.FrogItems;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 public class ACWindmillFan extends ItemFrogCraft {
 	
 	public ACWindmillFan() {
-		super();
+		super(false);
 		setMaxDamage(0);
 		setMaxStackSize(1);
 		setNoRepair();
@@ -34,6 +34,11 @@ public class ACWindmillFan extends ItemFrogCraft {
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		return new java.util.ArrayList<String>();
+	}
+
+	@Override
+	public int getSubItemNumber() {
+		return 1;
 	}
 
 }

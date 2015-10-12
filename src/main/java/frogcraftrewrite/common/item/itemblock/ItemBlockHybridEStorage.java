@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.item;
+package frogcraftrewrite.common.item.itemblock;
 
 import frogcraftrewrite.common.block.BlockHybridEStorage;
 import net.minecraft.item.ItemBlock;

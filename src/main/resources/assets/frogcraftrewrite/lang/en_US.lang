@@ -14,6 +14,8 @@ item.ACWindMill_Rotor.name=Academic City Windmill Rotor
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery
+item.DecayBattery.info.0=A radioactive decay battery
+item.DecayBattery.info.1=Provide you with infinity electricity with high cost!
 item.Item_NitricAcidBucket.name=Nitric Acid Bucket
 item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
 
@@ -147,6 +149,7 @@ tile.fcOre.oreGreenSapphire.name=Green Sapphire Ore
 tile.fcOre.stoneMarble.name=Marble
 tile.fcOre.stoneBasalt.name=Basalt
 
+tile.nitricAcid.name=Nitric Acid
 
 #Achivements
 achievement.get_railgun=Only my railgun!

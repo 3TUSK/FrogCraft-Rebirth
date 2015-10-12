@@ -1,4 +1,4 @@
-#German Language File, 2013.8.25
+#German Language File, 2013.8.25 Author: Vextao
 
 #Items
 item.ItemRailgun.name=Only my railgun!!!
@@ -14,6 +14,8 @@ item.ACWindMill_Rotor.name=Academic City Windmühlrotor
 item.UBattery.name=Uran-Zerfallsbatterie
 item.ThBattery.name=Thorium-Zerfallsbatterie
 item.PuBattery.name=Plutonium-Zerfallsbatterie
+item.DecayBattery.info.0=A radioactive decay battery
+item.DecayBattery.info.1=Provide you with infinity electricity with high cost!
 
 #Cells
 item.Item_Cells.cell_Ammonia=Ammoniakzelle
@@ -126,7 +128,6 @@ item.Item_Gases.CO.info=Giftiger Treibstoff
 item.Item_Gases.Fluorine=Fluor
 item.Item_Gases.Fluorine.info=Reagiert mit Allem!
 
-
 #Blocks
 tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 tile.Machines.AirPump.name=Industrielle Pumpe
@@ -153,6 +154,8 @@ tile.fcOre.oreCarnallite.name=Carnallit
 tile.fcOre.oreFluorapatite.name=Fluorapatit
 
 tile.ACWindMill_Cylinder.name=Academic City Windmühlwand
+
+tile.nitricAcid.name=Nitric Acid
 
 #Achivements
 achievement.get_railgun=Only my railgun!

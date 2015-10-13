@@ -3,7 +3,7 @@ package frogcraftrewrite.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
-import frogcraftrewrite.common.tile.TileAbstractInductionalDevice;
+import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileEntityIndustrialCompressor;
 import frogcraftrewrite.common.tile.TileEntityIndustrialEFurnace;
 import frogcraftrewrite.common.tile.TileEntityIndustrialExtractor;
@@ -15,9 +15,9 @@ import net.minecraft.util.StatCollector;
 
 public class GuiIndustrialDevice extends GuiContainer{
 
-	public TileAbstractInductionalDevice tile;
+	public TileFrogInductionalDevice tile;
 	
-	public GuiIndustrialDevice(InventoryPlayer invPlayer, TileAbstractInductionalDevice tileEntity) {
+	public GuiIndustrialDevice(InventoryPlayer invPlayer, TileFrogInductionalDevice tileEntity) {
 		super(new ContainerIndustrialDevice(invPlayer, tileEntity));
 		this.tile = tileEntity;
 	}

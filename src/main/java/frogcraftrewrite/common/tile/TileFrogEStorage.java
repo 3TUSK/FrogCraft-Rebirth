@@ -10,14 +10,14 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileAbstractEStorage extends TileEntityFrog implements IEnergySink, IEnergySource, IEnergyStorage {
+public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage {
 
 	public ForgeDirection emitDir;
 	public int storedE, maxE, output;
 	protected boolean loaded = false;
 	boolean usableForTp;
 	
-	public TileAbstractEStorage(int maxEnergy, int output, ForgeDirection emitTo, boolean allowTelep) {
+	public TileFrogEStorage(int maxEnergy, int output, ForgeDirection emitTo, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;

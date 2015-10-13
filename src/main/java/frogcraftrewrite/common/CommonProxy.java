@@ -17,7 +17,7 @@ import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
 import frogcraftrewrite.common.registry.RegFluid;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
-import frogcraftrewrite.common.tile.TileAbstractInductionalDevice;
+import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
 
 public class CommonProxy implements IGuiHandler{
@@ -28,8 +28,8 @@ public class CommonProxy implements IGuiHandler{
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch(id) {
 			case 0:{
-				if (aTile instanceof TileAbstractInductionalDevice)
-					return new ContainerIndustrialDevice(player.inventory, (TileAbstractInductionalDevice)aTile);
+				if (aTile instanceof TileFrogInductionalDevice)
+					return new ContainerIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
 			}
 			case 1:{
 				if (aTile instanceof TileHSU)
@@ -46,8 +46,8 @@ public class CommonProxy implements IGuiHandler{
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch (ID) {
 			case 0:{
-				if (aTile instanceof TileAbstractInductionalDevice)
-					return new GuiIndustrialDevice(player.inventory, (TileAbstractInductionalDevice)aTile);
+				if (aTile instanceof TileFrogInductionalDevice)
+					return new GuiIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
 			}
 			case 1:{
 				if (aTile instanceof TileHSU)

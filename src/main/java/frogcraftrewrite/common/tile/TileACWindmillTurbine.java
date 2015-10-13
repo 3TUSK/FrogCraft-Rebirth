@@ -6,7 +6,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileACWindmillTurbine extends TileEntityFrog {
+public class TileACWindmillTurbine extends TileFrog {
 
 	//public ForgeDirection dir;
 	public boolean canGenEnergy, hasRotor, isBlocked, isHighEnough, isRaining;

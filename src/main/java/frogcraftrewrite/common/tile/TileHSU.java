@@ -12,7 +12,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileHSU extends TileAbstractEStorage implements IInventory {
+public class TileHSU extends TileFrogEStorage implements IInventory {
 	
 	public ItemStack[] inv;
 	

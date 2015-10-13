@@ -1,13 +1,17 @@
 package frogcraftrewrite.client.gui;
 
+import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
+import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.InventoryPlayer;
 
 public class GuiAdvChemReactor extends GuiContainer {
 
-	public GuiAdvChemReactor(Container p_i1072_1_) {
-		super(p_i1072_1_);
-		// TODO Auto-generated constructor stub
+	TileAdvChemReactor tile;
+	
+	public GuiAdvChemReactor(InventoryPlayer playerInv, TileAdvChemReactor tile) {
+		super(new ContainerAdvChemReactor(playerInv, tile));
+		this.tile = tile;
 	}
 
 	@Override

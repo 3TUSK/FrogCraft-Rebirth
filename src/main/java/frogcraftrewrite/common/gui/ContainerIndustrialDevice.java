@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.tile.TileAbstractInductionalDevice;
+import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -13,9 +13,9 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerIndustrialDevice extends Container {
 
-	public TileAbstractInductionalDevice tileEntity;
+	public TileFrogInductionalDevice tileEntity;
 	
-	public ContainerIndustrialDevice(InventoryPlayer inventoryPlayer, TileAbstractInductionalDevice te) {
+	public ContainerIndustrialDevice(InventoryPlayer inventoryPlayer, TileFrogInductionalDevice te) {
         tileEntity = te;
         //Bind input & output start.
         for (int i = 0; i < 2; i++) {

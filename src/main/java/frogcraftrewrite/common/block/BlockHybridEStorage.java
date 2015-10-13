@@ -3,7 +3,7 @@ package frogcraftrewrite.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
-import frogcraftrewrite.common.tile.TileAbstractEStorage;
+import frogcraftrewrite.common.tile.TileFrogEStorage;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
 import net.minecraft.block.BlockContainer;
@@ -54,10 +54,10 @@ public class BlockHybridEStorage extends BlockContainer {
 			return true;
 		} else {
 			TileEntity tile = world.getTileEntity(x, y, z);
-			if (tile instanceof TileAbstractEStorage) {
+			if (tile instanceof TileFrogEStorage) {
 				if (player.isSneaking()) {
-					player.addChatComponentMessage(new net.minecraft.util.ChatComponentText(((TileAbstractEStorage)tile).storedE+";"+((TileAbstractEStorage)tile).maxE));
-				} else if (tile instanceof TileAbstractEStorage) {
+					player.addChatComponentMessage(new net.minecraft.util.ChatComponentText(((TileFrogEStorage)tile).storedE+";"+((TileFrogEStorage)tile).maxE));
+				} else if (tile instanceof TileFrogEStorage) {
 					//What is modGuiId?
 					player.openGui(FrogCraftRebirth.instance, 1, world, x, y, z);
 				}

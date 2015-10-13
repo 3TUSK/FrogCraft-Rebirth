@@ -3,7 +3,7 @@ package frogcraftrewrite.common.tile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class TileEntityIndustrialEFurnace extends TileAbstractInductionalDevice{
+public class TileEntityIndustrialEFurnace extends TileFrogInductionalDevice{
 
 	@Override
 	public String getInventoryName() {

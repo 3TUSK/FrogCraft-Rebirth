@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public abstract class TileFrogInventory extends TileEntityFrog implements IInventory {
+public abstract class TileFrogInventory extends TileFrog implements IInventory {
 
 	protected ItemStack[] inv;
 	

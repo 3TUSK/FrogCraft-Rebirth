@@ -12,7 +12,7 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 
-public abstract class TileAbstractInductionalDevice extends TileEntityFrog implements IEnergySink, ISidedInventory {
+public abstract class TileFrogInductionalDevice extends TileFrog implements IEnergySink, ISidedInventory {
 	/**The inventory.*/
 	public ItemStack[] inv;
 	/**The amount of energy contained*/
@@ -24,7 +24,7 @@ public abstract class TileAbstractInductionalDevice extends TileEntityFrog imple
 	
 	boolean created, isInENet;
 	
-	public TileAbstractInductionalDevice() {
+	public TileFrogInductionalDevice() {
 		this.inv = new ItemStack[13];//[0] is the charger slot, 1-6 are input, 7-12 are output
 		this.heat = 0;
 		this.process = 0;

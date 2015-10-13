@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import ic2.api.tile.IWrenchable;
 
-public abstract class TileEntityFrog extends TileEntity implements IWrenchable{
+public abstract class TileFrog extends TileEntity implements IWrenchable{
 
 	@Override
 	public void updateEntity() {

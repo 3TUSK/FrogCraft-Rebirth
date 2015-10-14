@@ -1,4 +1,4 @@
-package frogcraftrewrite.client.render;
+package frogcraftrewrite.client.model;
 
 import net.minecraft.client.model.ModelBiped;
 

@@ -25,6 +25,11 @@ public class CombustionFurnaceRecipeManager implements IRecipeManager<Combustion
 		return recipes;
 	}
 	
+	@Override
+	public CombustionFurnaceRecipe getRecipe(Object... input) {
+		return null;
+	}
+	
 	private static ArrayList<CombustionFurnaceRecipe> recipes = new ArrayList<CombustionFurnaceRecipe>();
 
 }

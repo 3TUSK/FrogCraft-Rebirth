@@ -16,16 +16,16 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.lib.config.ConfigMain;
+import frogcraftrewrite.common.lib.FrogReference;
 import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = FrogAPI.MODID, name = FrogAPI.NAME, dependencies = FrogAPI.DEPENDING, useMetadata = true)
+@Mod(modid = FrogReference.MODID, name = FrogReference.NAME, dependencies = FrogReference.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 	
 	@Instance("FrogCraftRebirth")

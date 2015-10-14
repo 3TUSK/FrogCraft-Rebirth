@@ -29,16 +29,6 @@ public class FrogAPI {
 	 * */
 	private static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
-	//General stuff.
-	public static final String MODID = "FrogCraftRebirth";
-	public static final String NAME = "FrogCraft: Rebirth";
-	public static final String DEPENDING = 
-			"required-after:IC2;"
-			+ "after:gregtech_api;"
-			+ "after:thaumcraft;"
-			+ "after:minetweaker3;"
-			+ "after:techreborn;";
-	
 	//Not be used, and more likely not to be used in future
 	@Deprecated
 	public static CreativeTabs tabFrogCraft;

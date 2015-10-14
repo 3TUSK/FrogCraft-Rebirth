@@ -1,6 +1,6 @@
 package tritusk.trichemistry.matter;
 
-public interface Catalyst {
+public @interface Catalyst {
 	
 	//I have no idea about this!
 	

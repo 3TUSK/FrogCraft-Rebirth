@@ -2,21 +2,21 @@ package frogcraftrewrite.common.tile;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergySink;
+import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileFrogMachine extends TileFrogInventory implements ISidedInventory, IEnergySink {
-	
-	public int energy, maxEnergy, sinkTier;
+public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource {
+
+	public int energy, sourceTier, output;
 	protected boolean isInENet;
 	
-	protected TileFrogMachine(int sinkTier, int maxEnergy) {
-		this.sinkTier = sinkTier;
-		
+	public TileFrogGenerator (int sourceTier, int output) {
+		this.sourceTier = sourceTier;
+		this.output = output;
 	}
 	
 	@Override
@@ -35,27 +35,26 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 			isInENet = true;
 		}
 	}
-
+	
 	@Override
-	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
 		return true;
 	}
 
 	@Override
-	public double getDemandedEnergy() {
-		return maxEnergy - energy;
+	public double getOfferedEnergy() {
+		return Math.min(energy, output);
 	}
 
 	@Override
-	public int getSinkTier() {
-		return sinkTier;
+	public void drawEnergy(double amount) {
+		this.energy -= amount;
+		this.energy = energy < 0 ? 0 : energy;
 	}
 
 	@Override
-	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
-		this.energy += amount;
-		this.energy = energy > maxEnergy ? maxEnergy : energy;
-		return 0;
+	public int getSourceTier() {
+		return sourceTier;
 	}
 
 	@Override
@@ -66,5 +65,23 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 
 	@Override
 	public abstract boolean canExtractItem(int slot, ItemStack item, int side);
+	
+	@Override
+	public ItemStack decrStackSize(int slot, int decrNum) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int slot) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

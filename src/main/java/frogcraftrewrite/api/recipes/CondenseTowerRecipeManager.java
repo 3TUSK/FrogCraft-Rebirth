@@ -25,6 +25,11 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 		return recipes;
 	}
 	
+	@Override
+	public CondenseTowerRecipe getRecipe(Object... input) {
+		return null;
+	}
+	
 	private static ArrayList<CondenseTowerRecipe> recipes = new ArrayList<CondenseTowerRecipe>();
 
 }

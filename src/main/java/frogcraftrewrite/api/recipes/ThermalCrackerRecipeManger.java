@@ -25,6 +25,11 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 		return recipes;
 	}
 	
+	@Override
+	public ThermalCrackerRecipe getRecipe(Object... input) {
+		return null;
+	}
+	
 	private static ArrayList<ThermalCrackerRecipe> recipes = new ArrayList<ThermalCrackerRecipe>();
 
 }

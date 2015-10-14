@@ -1,11 +1,12 @@
 package frogcraftrewrite.common.tile;
 
+//import frogcraftrewrite.api.FrogAPI;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class TileAdvChemReactor extends TileFrogMachine {
 
-	public int process;
+	public int process, processMax;
 	
 	public TileAdvChemReactor() {
 		super(2, 100000);
@@ -17,11 +18,14 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	public void updateEntity() {
 		super.updateEntity();
 		//TODO: Real process.
-		//1.check inv
-		//2.check charge
-		//3.if available, consume material and start react
-		//4.process++ until finish
-		//5.clean up
+		if (!worldObj.isRemote) {
+			//1.check inv
+			//AdvChemReactorRecipe recipe = FrogAPI.managerACR.getRecipe(input)
+			//2.check charge
+			//3.if available, consume material and start react
+			//4.process++ until finish
+			//5.clean up
+		}
 	}
 	
 
@@ -61,6 +65,18 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean canInsertItem(int slot, ItemStack item, int side) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack item, int side) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

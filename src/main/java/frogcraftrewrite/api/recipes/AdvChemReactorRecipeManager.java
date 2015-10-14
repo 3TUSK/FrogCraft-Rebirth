@@ -54,4 +54,15 @@ public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReacto
 
 	private static ArrayList<AdvChemReactorRecipe> recipes = new ArrayList<AdvChemReactorRecipe>();
 
+	@Override
+	public AdvChemReactorRecipe getRecipe(Object... input) {
+		for (AdvChemReactorRecipe recipe : recipes) {
+			if (recipe.getInput().toArray() == input) {
+				return recipe;
+			}
+		}
+		
+		return null;
+	}
+
 }

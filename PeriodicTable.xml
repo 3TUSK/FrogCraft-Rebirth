@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Everything is based on IUPAC.-->
+<frogElements>
+
+	<elemnetData name="Hydrogen" symbol="H" num="1">
+	</elementData>
+
+	<elemnetData name="Helium" symbol="He" num="2">
+	</elementData>
+
+	<elemnetData name="Lithium" symbol="Li" num="3">
+	</elementData>
+
+	<elemnetData name="Beryllium" symbol="Be" num="4">
+	</elementData>
+
+	<elemnetData name="Boron" symbol="B" num="5">
+	</elementData>
+
+	<elemnetData name="Carbon" symbol="C" num="6">
+	</elementData>
+
+	<elemnetData name="Nitrogen" symbol="N" num="7">
+	</elementData>
+
+	<elemnetData name="Oxygen" symbol="O" num="8">
+	</elementData>
+
+	<elemnetData name="Florine" symbol="F" num="9">
+	</elementData>
+
+	<elemnetData name="Neon" symbol="N" num="10">
+	</elementData>
+
+	<elemnetData name="Sodium" symbol="Na" num="11">
+	</elementData>
+
+	<elemnetData name="Magnesium" symbol="Mg" num="12">
+	</elementData>
+
+	<elementData name="Aluminium" symbol="Al" num="13">
+		<alternativeNames>
+			<nameOption>
+				Aluminum
+			</nameOption>
+		</alternativeNames>
+		<stdAtomicWeight value="26.982"/>
+		<densityValue unit="kg/m^3" value="2770"/>
+		<meltingPoint unit="K" value="933.47" />
+	</elementData>
+
+	<elemnetData name="Silicon" symbol="Si" num="14">
+	</elementData>
+
+	<elemnetData name="Phosphorus" symbol="P" num="15">
+	</elementData>
+
+	<elemnetData name="Sulfur" symbol="S" num="16">
+		<alternativeNames>
+			<nameOption region="en_GB">
+				Sulphur
+			</nameOption>
+		</alternativeNames>
+		<stdAtomicWeight value="32.06"/>
+		<densityValue unit="kg/m^3" value="2070"/>
+		<meltingPoint unit="K" value="388.36" />
+	</elementData>
+
+	<elemnetData name="Chlorine" symbol="Cl" num="17">
+	</elementData>
+
+	<elemnetData name="Argon" symbol="Ar" num="18">
+	</elementData>
+
+	<elemnetData name="Potassium" symbol="K" num="19">
+	</elementData>
+
+	<elemnetData name="Calcium" symbol="Ca" num="20">
+	</elementData>
+
+</frogElements>

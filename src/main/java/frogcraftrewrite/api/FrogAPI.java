@@ -5,8 +5,8 @@ import java.lang.reflect.Field;
 import frogcraftrewrite.api.recipes.IRecipeManager;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
+import frogcraftrewrite.common.lib.FrogReference;
 import net.minecraft.block.Block;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -27,22 +27,14 @@ public class FrogAPI {
 	 * applied on several special-designed block, e.g. mobile power station, 
 	 * ic2-ish industrial device, etc.
 	 * */
-	private static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
+	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
-	//Not be used, and more likely not to be used in future
-	@Deprecated
-	public static CreativeTabs tabFrogCraft;
+	//Public usage
+	public static final String MODID = FrogReference.MODID, NAME = FrogReference.NAME;
 	
 	//Recipe manager, and I can't stand the loooooooong name!
 	@SuppressWarnings("rawtypes")
 	public static IRecipeManager managerACR, managerCFG, managerCT, managerTC;
-	
-	/**
-	 * @return THE FINAL ANSWER: 42
-	 */
-	public static String getFinalAnswer() {
-		return Integer.toString(MEANING_OF_LIFE_UNIVERSE_EVERYTHING);
-	}
 	
 	//Plan: This method need document
 	public static ItemStack findFrogStuff(String name, int damage) {

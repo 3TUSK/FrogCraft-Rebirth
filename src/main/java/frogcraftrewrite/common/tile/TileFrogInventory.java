@@ -19,7 +19,24 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 
 	@Override
-	public abstract ItemStack decrStackSize(int slot, int decrNum);
+	public ItemStack decrStackSize(int slot, int decrNum) {
+		if (this.inv[slot] != null) {
+            ItemStack itemstack;
+            if (this.inv[slot].stackSize <= decrNum) {
+                itemstack = this.inv[slot];
+                this.inv[slot] = null;
+                return itemstack;
+            } else {
+                itemstack = this.inv[slot].splitStack(decrNum);
+                if (this.inv[slot].stackSize == 0) {
+                    this.inv[slot] = null;
+                }
+                return itemstack;
+            }
+        } else {
+            return null;
+        }
+	}
 	
 	@Override
 	public abstract ItemStack getStackInSlotOnClosing(int slot);

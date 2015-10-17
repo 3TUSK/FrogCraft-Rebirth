@@ -1,12 +1,16 @@
 package frogcraftrewrite.common.tile;
 
-//import frogcraftrewrite.api.FrogAPI;
+import java.util.Arrays;
+
+import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
 public class TileAdvChemReactor extends TileFrogMachine {
 
 	public int process, processMax;
+	boolean working, changed, needUpdate;
 	
 	public TileAdvChemReactor() {
 		super(2, 100000);
@@ -17,15 +21,22 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
 		//TODO: Real process.
-		if (!worldObj.isRemote) {
-			//1.check inv
-			//AdvChemReactorRecipe recipe = FrogAPI.managerACR.getRecipe(input)
-			//2.check charge
-			//3.if available, consume material and start react
-			//4.process++ until finish
-			//5.clean up
-		}
+		
+		Object[] input = Arrays.copyOfRange(inv, 1, 5);
+		//1.check inv
+		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.getRecipe(input);
+		working = recipe == null ? false : true;
+		//2.check charge
+		
+		//3.if available, consume material and start react
+			for (int i=1;i<=5;i++) {
+				//--inv[i].stackSize; todo: consume certain number of items
+			}
+		//4.process++ until finish
+		++process;
+		//5.clean up
 	}
 	
 
@@ -45,12 +56,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ItemStack decrStackSize(int slot, int decrNum) {
 		// TODO Auto-generated method stub
 		return null;
 	}

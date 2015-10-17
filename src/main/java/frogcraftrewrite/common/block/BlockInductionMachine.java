@@ -13,9 +13,9 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockMachine extends BlockContainer {
+public abstract class BlockInductionMachine extends BlockContainer {
 
-	public BlockMachine() {
+	public BlockInductionMachine() {
 		super(Material.iron);
 		setCreativeTab(FrogCraftRebirth.TAB_FC);
 	}

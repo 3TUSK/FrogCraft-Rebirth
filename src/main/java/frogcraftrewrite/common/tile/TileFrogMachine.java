@@ -5,6 +5,7 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -16,7 +17,6 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	
 	protected TileFrogMachine(int sinkTier, int maxEnergy) {
 		this.sinkTier = sinkTier;
-		
 	}
 	
 	@Override
@@ -34,6 +34,18 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.energy = tag.getInteger("charge");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tag.setInteger("charge", this.energy);
 	}
 
 	@Override

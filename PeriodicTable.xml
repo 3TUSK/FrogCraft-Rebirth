@@ -78,4 +78,255 @@
 	<elemnetData name="Calcium" symbol="Ca" num="20">
 	</elementData>
 
+	<elemnetData name="Scandium" symbol="Sc" num="21">
+	</elementData>
+
+	<elemnetData name="Titanium" symbol="Ti" num="22">
+	</elementData>
+
+	<elemnetData name="Vanadium" symbol="V" num="23">
+	</elementData>
+
+	<elemnetData name="Chromium" symbol="Cr" num="24">
+	</elementData>
+
+	<elemnetData name="Manganese" symbol="Mn" num="25">
+	</elementData>
+
+	<elemnetData name="Iron" symbol="Fe" num="26">
+	</elementData>
+
+	<elemnetData name="Cobalt" symbol="Co" num="27">
+	</elementData>
+
+	<elemnetData name="Nickel" symbol="Ni" num="28">
+	</elementData>
+
+	<elemnetData name="Copper" symbol="Cu" num="29">
+	</elementData>
+
+	<elemnetData name="Zinc" symbol="Zi" num="30">
+	</elementData>
+
+	<elemnetData name="Gallium" symbol="Ga" num="31">
+	</elementData>
+
+	<elemnetData name="Germanium" symbol="Ge" num="32">
+	</elementData>
+
+	<elemnetData name="Arsenic" symbol="As" num="33">
+	</elementData>
+
+	<elemnetData name="Selenium" symbol="Se" num="34">
+	</elementData>
+
+	<elemnetData name="Bromine" symbol="Br" num="35">
+	</elementData>
+
+	<elemnetData name="Krpyton" symbol="Kr" num="36">
+	</elementData>
+
+	<elemnetData name="Rubidium" symbol="Rb" num="37">
+ 	</elementData>
+
+ 	<elemnetData name="Strontium" symbol="Sr" num="38">
+ 	</elementData>
+
+ 	<elemnetData name="Yttrium" symbol="Y" num="39">
+ 	</elementData>
+
+ 	<elemnetData name="Zirconium" symbol="Zr" num="40">
+ 	</elementData>
+
+ 	<elemnetData name="Niobium" symbol="Nb" num="41">
+ 	</elementData>
+
+ 	<elemnetData name="Molybdenum" symbol="Mo" num="42">
+ 	</elementData>
+
+ 	<elemnetData name="Technetium" symbol="Tc" num="43">
+ 	</elementData>
+
+ 	<elemnetData name="Ruthenium" symbol="Ru" num="44">
+ 	</elementData>
+
+ 	<elemnetData name="Rhodium" symbol="Rh" num="45">
+ 	</elementData>
+
+ 	<elemnetData name="Palladium" symbol="Pd" num="46">
+ 	</elementData>
+
+ 	<elemnetData name="Silver" symbol="Ag" num="47">
+ 	</elementData>
+
+ 	<elemnetData name="Cadmium" symbol="Cd" num="48">
+ 	</elementData>
+
+ 	<elemnetData name="Indium" symbol="In" num="49">
+ 	</elementData>
+
+ 	<elemnetData name="Tin" symbol="Sn" num="50">
+ 	</elementData>
+
+ 	<elemnetData name="Antimony" symbol="Sb" num="51">
+ 	</elementData>
+
+ 	<elemnetData name="Tellurium" symbol="Te" num="52">
+ 	</elementData>
+
+ 	<elemnetData name="Iodine" symbol="I" num="53">
+ 	</elementData>
+
+ 	<elemnetData name="Xenon" symbol="Xe" num="54">
+ 	</elementData>
+
+ 	<elemnetData name="Caesium" symbol="Cs" num="55">
+ 	</elementData>
+
+ 	<elemnetData name="Barium" symbol="Ba" num="56">
+ 	</elementData>
+
+ 	<elemnetData name="Lanthanum" symbol="La" num="57">
+ 	</elementData>
+
+ 	<elemnetData name="Cerium" symbol="Ce" num="58">
+ 	</elementData>
+
+ 	<elemnetData name="Praseodymium" symbol="Pr" num="59">
+ 	</elementData>
+
+ 	<elemnetData name="Neodymium" symbol="Nd" num="60">
+ 	</elementData>
+
+ 	<elemnetData name="Promethium" symbol="Pm" num="61">
+ 	</elementData>
+
+ 	<elemnetData name="Samarium" symbol="Sm" num="62">
+ 	</elementData>
+
+ 	<elemnetData name="Europium" symbol="Eu" num="63">
+ 	</elementData>
+
+ 	<elemnetData name="Gadolinium" symbol="Gd" num="64">
+ 	</elementData>
+
+ 	<elemnetData name="Terbium" symbol="Tb" num="65">
+ 	</elementData>
+
+ 	<elemnetData name="Dysprosium" symbol="Dy" num="66">
+ 	</elementData>
+
+ 	<elemnetData name="Holmium" symbol="Ho" num="67">
+ 	</elementData>
+
+ 	<elemnetData name="Erbium" symbol="Er" num="68">
+ 	</elementData>
+
+ 	<elemnetData name="Thulium" symbol="Tm" num="69">
+ 	</elementData>
+
+ 	<elemnetData name="Ytterbium" symbol="Yb" num="70">
+ 	</elementData>
+
+ 	<elemnetData name="Lutetium" symbol="Lu" num="71">
+ 	</elementData>
+
+ 	<elemnetData name="Hafnium" symbol="Hf" num="72">
+ 	</elementData>
+
+ 	<elemnetData name="Tantalum" symbol="Ta" num="73">
+ 	</elementData>
+
+ 	<elemnetData name="Tungsten" symbol="W" num="74">
+ 	</elementData>
+
+ 	<elemnetData name="Rhenium" symbol="Re" num="75">
+ 	</elementData>
+
+ 	<elemnetData name="Osmium" symbol="Os" num="76">
+ 	</elementData>
+
+ 	<elemnetData name="Iridium" symbol="Ir" num="77">
+ 	</elementData>
+
+ 	<elemnetData name="Platinum" symbol="Pt" num="78">
+ 	</elementData>
+
+ 	<elemnetData name="Gold" symbol="Au" num="79">
+ 	</elementData>
+
+ 	<elemnetData name="Mercury" symbol="Hg" num="80">
+ 	</elementData>
+
+ 	<elemnetData name="Thallium" symbol="Tl" num="81">
+ 	</elementData>
+
+ 	<elemnetData name="Lead" symbol="Pb" num="82">
+ 	</elementData>
+
+ 	<elemnetData name="Bismuth" symbol="Bi" num="83">
+ 	</elementData>
+
+ 	<elemnetData name="Polonium" symbol="Po" num="84">
+ 	</elementData>
+
+ 	<elemnetData name="Astatine" symbol="At" num="85">
+ 	</elementData>
+
+ 	<elemnetData name="Radon" symbol="Rn" num="86">
+ 	</elementData>
+
+ 	<elemnetData name="Francium" symbol="Fr" num="87">
+ 	</elementData>
+
+ 	<elemnetData name="Radium" symbol="Ra" num="88">
+ 	</elementData>
+
+ 	<elemnetData name="Actinium" symbol="Ac" num="89">
+ 	</elementData>
+
+ 	<elemnetData name="Thorium" symbol="Th" num="90">
+ 	</elementData>
+
+ 	<elemnetData name="Protactinium" symbol="Pa" num="91">
+ 	</elementData>
+
+ 	<elemnetData name="Uranium" symbol="U" num="92">
+ 	</elementData>
+
+ 	<elemnetData name="Neptunium" symbol="Np" num="93">
+ 	</elementData>
+
+ 	<elemnetData name="Plutonium" symbol="Pu" num="94">
+ 	</elementData>
+
+ 	<elemnetData name="Americium" symbol="Am" num="95">
+ 	</elementData>
+
+ 	<elemnetData name="Curium" symbol="Cm" num="96">
+ 	</elementData>
+
+ 	<elemnetData name="Berkelium" symbol="Bk" num="97">
+ 	</elementData>
+
+ 	<elemnetData name="Californium" symbol="Cf" num="98">
+ 	</elementData>
+
+ 	<elemnetData name="Einsteinium" symbol="Es" num="99">
+ 	</elementData>
+
+ 	<elemnetData name="Fermium" symbol="Fm" num="100">
+ 	</elementData>
+
+ 	<elemnetData name="Mendelevium" symbol="Md" num="101">
+ 	</elementData>
+
+ 	<elemnetData name="Nobelium" symbol="No" num="102">
+ 	</elementData>
+
+ 	<elemnetData name="Lawrencium" symbol="Lr" num="103">
+ 	</elementData>
+
+
+
 </frogElements>

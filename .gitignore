@@ -1,4 +1,4 @@
-.claspath
+.classpath
 .DS_Store
 .gradle
 .project
@@ -16,3 +16,8 @@ xcfStuff
 *.txt
 *.doc
 
+LICENSE_FrogCraft_Rebirth
+
+gradle
+gradlew
+gradlew.bat

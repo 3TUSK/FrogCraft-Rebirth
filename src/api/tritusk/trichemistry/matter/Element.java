@@ -15,7 +15,9 @@ public interface Element {
 	/**
 	 * return null for unavailable
 	 */
-	String[] alternativeName();
+	default String[] alternativeName() {
+		return null;
+	}
 	
 	/**
 	 * Mathematically equivalent.

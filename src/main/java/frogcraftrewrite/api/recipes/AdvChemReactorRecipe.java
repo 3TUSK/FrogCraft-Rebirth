@@ -18,22 +18,19 @@ public class AdvChemReactorRecipe{
 	/**The catalyst. Can be null.*/
 	private ICatalystModule catalyst;
 	/**Time which will spend on processing*/
-	private int time;
-	/**Acceleration constant.*/
-	private float accelerate;
+	private int time, energyRate;
 	
 	/**Constructor method without catalyst. By default the <code>accelerate</code> parameter will be 1 if no catalyst.*/
-	public AdvChemReactorRecipe(Object[] input, Object[] output, int time) {
-		this(new HashSet<Object>(Arrays.asList(input)), new HashSet<Object>(Arrays.asList(output)), null, time, 1F);
+	public AdvChemReactorRecipe(Object[] input, Object[] output, int time, int energyRate) {
+		this(new HashSet<Object>(Arrays.asList(input)), new HashSet<Object>(Arrays.asList(output)), null, time, energyRate);
 	}
 	
 	/**Constructor method.*/
-	public AdvChemReactorRecipe(Set<Object> input, Set<Object> output, ICatalystModule catalyst, int time, float accelerate) {
+	public AdvChemReactorRecipe(Set<Object> input, Set<Object> output, ICatalystModule catalyst, int time, int energyRate) {
 		this.input = input;
 		this.output = output;
 		this.catalyst = catalyst;
 		this.time = time;
-		this.accelerate = accelerate;
 	}
 	
 	/**Internal usage only, for checking whether a input combination matches a recipe.*/
@@ -58,9 +55,10 @@ public class AdvChemReactorRecipe{
 		return time;
 	}
 	
-	public float getAccelerate() {
-		return accelerate;
+	public int getEnergyPerTick() {
+		return energyRate;
 	}
+
 	
 	public boolean hasCatalyst() {
 		return catalyst != null;
@@ -68,13 +66,11 @@ public class AdvChemReactorRecipe{
 	
 	public AdvChemReactorRecipe setCatalyst(ICatalystModule catalyst, float accelerate) {
 		this.catalyst = catalyst;
-		this.accelerate = accelerate;
 		return this;
 	}
 	
 	public AdvChemReactorRecipe cancelCatalyst(){
 		this.catalyst = null;
-		this.accelerate = 1F;
 		return this;
 	}
 

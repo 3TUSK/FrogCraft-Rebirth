@@ -11,15 +11,8 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 	private FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	@Override
-	public ItemStack decrStackSize(int slot, int decrNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getInventoryName() {
+		return "";
 	}
 
 	@Override

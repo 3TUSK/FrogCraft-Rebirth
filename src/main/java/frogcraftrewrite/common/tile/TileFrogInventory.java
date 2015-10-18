@@ -39,16 +39,20 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 	
 	@Override
-	public abstract ItemStack getStackInSlotOnClosing(int slot);
+	public ItemStack getStackInSlotOnClosing(int slot) {
+		if (inv[slot] != null) {
+			ItemStack stack = inv[slot];
+			inv[slot] = null;
+			return stack;
+		}
+		return null;
+	}
 
 	@Override
 	public abstract void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_);
 	
-
 	@Override
-	public String getInventoryName() {
-		return null;
-	}
+	public abstract String getInventoryName();
 
 	@Override
 	public boolean hasCustomInventoryName() {

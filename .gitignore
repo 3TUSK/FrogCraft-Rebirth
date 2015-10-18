@@ -1,10 +1,18 @@
+.claspath
+.DS_Store
 .gradle
 .project
 .settings
 
 bin
+build
+conf
+config
 eclipse
-gradle
+frogcraft_assets
+ui
+xcfStuff
 
 *.txt
+*.doc
 

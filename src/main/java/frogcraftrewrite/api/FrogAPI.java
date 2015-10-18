@@ -1,14 +1,19 @@
 package frogcraftrewrite.api;
 
 import java.lang.reflect.Field;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 import frogcraftrewrite.api.recipes.IRecipeManager;
+import frogcraftrewrite.api.trichemcompat.ElementLoader;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.FrogReference;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import tritusk.trichemistry.matter.Element;
 
 public class FrogAPI {
 	/**
@@ -35,6 +40,8 @@ public class FrogAPI {
 	//Recipe manager, and I can't stand the loooooooong name!
 	@SuppressWarnings("rawtypes")
 	public static IRecipeManager managerACR, managerCFG, managerCT, managerTC;
+	
+	public static List<Element> elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(null, false)));
 	
 	//Plan: This method need document
 	public static ItemStack findFrogStuff(String name, int damage) {

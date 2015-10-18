@@ -25,6 +25,11 @@ public class TileConbustionFurnace extends TileFrogGenerator implements IFluidTa
 	public double getOfferedEnergy() {
 		return isWorking ? super.getOfferedEnergy() : 0;
 	}
+	
+	@Override
+	public String getInventoryName() {
+		return "";
+	}
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {

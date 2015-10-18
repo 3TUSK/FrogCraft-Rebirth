@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
+import frogcraftrewrite.common.lib.util.ItemUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 
@@ -22,24 +23,26 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	public void updateEntity() {
 		super.updateEntity();
 		if (worldObj.isRemote) return;
-		//TODO: Real process.
-		
-		Object[] input = Arrays.copyOfRange(inv, 1, 5);
-		//1.check inv
+		//Seriously, fully oreDict support seems very complex due to the registry mechanism
+		Object[] input = ItemUtil.asFrogInputsArray(Arrays.copyOfRange(inv, 1, 5));
+		//check inv
 		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.getRecipe(input);
 		working = recipe == null ? false : true;
-		//2.check charge
-		
-		//3.if available, consume material and start react
-			for (int i=1;i<=5;i++) {
-				//--inv[i].stackSize; todo: consume certain number of items
-			}
+		//if available, consume material and start react
+		for (int i=1;i<=5;i++) {
+			//--inv[i].stackSize; todo: consume certain number of items
+		}
 		//4.process++ until finish
-		++process;
-		//5.clean up
+		if (working) {
+			this.energy -= recipe.getEnergyPerTick();
+			++process;
+		}
+		if (process == processMax) {
+			//5.clean up
+			this.markDirty();
+		}
 	}
 	
-
 	@Override
 	public short getFacing() {
 		return 2;
@@ -56,14 +59,19 @@ public class TileAdvChemReactor extends TileFrogMachine {
 
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (side) {
+			case 0: //Bottom
+				return new int[] {6,7,8,9,10,12};
+			case 1: //Top
+				return new int[] {1,2,3,4,5,11};
+			default: //Disallow auto-insert module
+				return null;
+		}
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		// TODO Auto-generated method stub
-		return null;
+	public String getInventoryName() {
+		return "";
 	}
 
 	@Override

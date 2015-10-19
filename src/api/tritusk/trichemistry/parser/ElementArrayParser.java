@@ -1,6 +1,6 @@
 package tritusk.trichemistry.parser;
 
-import java.io.File;
+import java.io.InputStream;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,6 +16,6 @@ public interface ElementArrayParser {
 	 * @param force Allow manual reload file
 	 * @return An array that contains all chemcial elements
 	 */
-	Element[] parseElements(File file, boolean force);
+	Element[] parseElements(InputStream input, boolean force);
 
 }

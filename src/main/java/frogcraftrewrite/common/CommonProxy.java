@@ -4,11 +4,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
+import tritusk.trichemistry.matter.Element;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
+import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.trichemcompat.ElementLoader;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
@@ -24,7 +31,6 @@ public class CommonProxy implements IGuiHandler{
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		// TODO WTF!
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch(id) {
 			case 0:{
@@ -42,7 +48,6 @@ public class CommonProxy implements IGuiHandler{
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		// TODO WTF!
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch (ID) {
 			case 0:{
@@ -58,6 +63,8 @@ public class CommonProxy implements IGuiHandler{
 	}
 	
 	public void preInit(FMLPreInitializationEvent event) {
+		FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/chemistry/PeriodicTable.xml"), false)));
+		
 		RegFrogItemsBlocks.preInit();
 		
 		RegFluid.init();

@@ -1,6 +1,6 @@
 package frogcraftrewrite.api.trichemcompat;
 
-import java.io.File;
+import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -9,9 +9,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.IResource;
-import net.minecraft.util.ResourceLocation;
 import tritusk.trichemistry.matter.Element;
 import tritusk.trichemistry.parser.ElementArrayParser;
 
@@ -24,7 +21,7 @@ public final class ElementLoader implements ElementArrayParser {
 	private volatile boolean parsingFinished = false;
 	
 	@Override
-	public synchronized Element[] parseElements(File file, boolean force) {
+	public synchronized Element[] parseElements(InputStream input, boolean force) {
 		if (parsingFinished && force == false) {
 			parseLog.info("FrogCraft has finished elements parsing. Call will be denied.");
 			return null;
@@ -33,9 +30,7 @@ public final class ElementLoader implements ElementArrayParser {
 			Element[] elements = new Element[103];	
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder construct = factory.newDocumentBuilder();		
-			ResourceLocation location = new ResourceLocation("frogcraftrewrite", "config/PeriodicTable.xml");
-			IResource rawFile = Minecraft.getMinecraft().getResourceManager().getResource(location);
-			Document xmlDoc = construct.parse(rawFile.getInputStream());
+			Document xmlDoc = construct.parse(input);
 			xmlDoc.getDocumentElement().normalize();
 			parseLog.info("Found target file. Loading...");
 			NodeList array = xmlDoc.getElementsByTagName("elementData");

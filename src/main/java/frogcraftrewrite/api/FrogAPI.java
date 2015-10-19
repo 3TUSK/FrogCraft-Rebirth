@@ -1,12 +1,9 @@
 package frogcraftrewrite.api;
 
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import frogcraftrewrite.api.recipes.IRecipeManager;
-import frogcraftrewrite.api.trichemcompat.ElementLoader;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.FrogReference;
@@ -34,14 +31,12 @@ public class FrogAPI {
 	 * */
 	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
-	//Public usage
 	public static final String MODID = FrogReference.MODID, NAME = FrogReference.NAME;
 	
-	//Recipe manager, and I can't stand the loooooooong name!
 	@SuppressWarnings("rawtypes")
 	public static IRecipeManager managerACR, managerCFG, managerCT, managerTC;
 	
-	public static List<Element> elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(null, false)));
+	public static List<Element> elementsList;
 	
 	//Plan: This method need document
 	public static ItemStack findFrogStuff(String name, int damage) {

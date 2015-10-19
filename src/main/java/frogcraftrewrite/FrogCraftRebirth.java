@@ -16,6 +16,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.lib.config.ConfigMain;
 import frogcraftrewrite.common.lib.FrogReference;
@@ -54,7 +55,7 @@ public class FrogCraftRebirth {
 		frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
 		instance = this;
 		
-		File configDir = new File(event.getModConfigurationDirectory(), "FrogCraft");
+		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);
 		if (!configDir.exists()) configDir.mkdirs();
 		ConfigMain.initMainConfig(new File(configDir, "FrogMain.cfg"));
 		File reactionDir = new File(configDir, "reactions");

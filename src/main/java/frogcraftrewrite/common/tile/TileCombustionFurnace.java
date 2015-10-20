@@ -5,30 +5,31 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 
-public class TileConbustionFurnace extends TileFrogGenerator implements IFluidTank {
+public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTank {
 
 	public boolean isWorking;
-	public int buffer, tankCapacity;
+	public int tankCapacity;
 	protected FluidStack tank;
 	
-	public TileConbustionFurnace() {
-		super(1, 64);
-		this.inv = new ItemStack[5]; //in original FrogCraft there is 4, but I add one for solid waste
+	public TileCombustionFurnace() {
+		super(5, "TileEntityCombustionFurnace", 1, 64);
+		//in original FrogCraft there is 4, but I add one for solid waste
 	}
 	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (this.getFluidAmount() >= this.getCapacity()) {
+			this.isWorking = false;
+			markDirty();
+			return;
+		}
+		//todo
 	}
 	
 	@Override
 	public double getOfferedEnergy() {
 		return isWorking ? super.getOfferedEnergy() : 0;
-	}
-	
-	@Override
-	public String getInventoryName() {
-		return "";
 	}
 
 	@Override
@@ -55,17 +56,17 @@ public class TileConbustionFurnace extends TileFrogGenerator implements IFluidTa
 
 	@Override
 	public FluidStack getFluid() {
-		return tank;
+		return this.tank;
 	}
 
 	@Override
 	public int getFluidAmount() {
-		return tank.amount;
+		return this.tank.amount;
 	}
 
 	@Override
 	public int getCapacity() {
-		return tankCapacity;
+		return this.tankCapacity;
 	}
 
 	@Override

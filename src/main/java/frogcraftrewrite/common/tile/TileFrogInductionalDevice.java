@@ -13,12 +13,14 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 
 public abstract class TileFrogInductionalDevice extends TileFrog implements IEnergySink, ISidedInventory {
+	private final int PROCESS_MAX = 100;
+	
 	/**The inventory.*/
 	public ItemStack[] inv;
 	/**The amount of energy contained*/
 	public int energy, energyMax;
 	/**Processing progress, as well as the max value*/
-	public int process, processMax = 100;
+	public int process;
 	public int heat;
 	public int tick;
 	
@@ -61,7 +63,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 				invalidInput = false;
 		}
 		//2.Starting process by calling doWork() as mentioned above.
-		//At this time the variable processMax will get default value.
+		//At this time the variable PROCESS_MAX will get default value.
 		if(!invalidInput && hasOutputSpace()) {
 			//3.For every tick, ++tick, ++process and check the variable *heat*.
 			tick++;//Work as a timer.
@@ -88,11 +90,11 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 					energy -= 50;
 				}
 			}
-			//4.Check if (process == processMax).
+			//4.Check if (process == PROCESS_MAX).
 			//If the return is true, then process = 0, as well as call getRecipesOutput(ItemStack input) to get the result
 			//And put the output into the corresponded slot(s)
 			//FrogCraft MV processing machine can process upon 6 items at one time, which is the famous feature.
-			if (process == processMax) {
+			if (process == PROCESS_MAX) {
 				process(hasOutputSpace());
 				process = 0;
 			}
@@ -125,10 +127,8 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		process = tag.getInteger("process");
-		processMax = tag.getInteger("maxProcess");
 		heat = tag.getInteger("heat");
 		tick = tag.getInteger("tick");
-		
 		NBTTagList invList = tag.getTagList("inventory", 10);
 		for (int n = 0; n < invList.tagCount(); n++) {
 			NBTTagCompound aItem = invList.getCompoundTagAt(n);
@@ -137,17 +137,14 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 				inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
 			}
 		}
-		
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		tag.setInteger("process", process);
-		tag.setInteger("maxProcess", processMax);
 		tag.setInteger("heat", heat);
 		tag.setInteger("tick", tick);
-		
 		NBTTagList list = new NBTTagList();
 		for(int n = 0; n < inv.length; n++) {
 			ItemStack stack = inv[n];

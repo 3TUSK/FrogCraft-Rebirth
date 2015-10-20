@@ -5,6 +5,7 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -14,7 +15,8 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	public int energy, sourceTier, output;
 	protected boolean isInENet;
 	
-	public TileFrogGenerator (int sourceTier, int output) {
+	public TileFrogGenerator (int invSize, String name, int sourceTier, int output) {
+		super(invSize, name);
 		this.sourceTier = sourceTier;
 		this.output = output;
 	}
@@ -34,6 +36,18 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.energy = tag.getInteger("charge");
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tag.setInteger("charge", this.energy);
 	}
 	
 	@Override
@@ -65,23 +79,5 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 
 	@Override
 	public abstract boolean canExtractItem(int slot, ItemStack item, int side);
-	
-	@Override
-	public ItemStack decrStackSize(int slot, int decrNum) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

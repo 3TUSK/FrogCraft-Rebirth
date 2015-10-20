@@ -3,10 +3,47 @@ package frogcraftrewrite.common.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 
 public abstract class TileFrogInventory extends TileFrog implements IInventory {
 
 	protected ItemStack[] inv;
+	protected String name;
+	
+	protected TileFrogInventory(int invSize, String invName) {
+		this.inv = new ItemStack[invSize];
+		this.name = invName;
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		NBTTagList invList = tag.getTagList("inventory", 10);
+		for (int n = 0; n < invList.tagCount(); n++) {
+			NBTTagCompound anItem = invList.getCompoundTagAt(n);
+			byte slot = anItem.getByte("slot");
+			if (slot >= 0 && slot < inv.length) {
+				inv[slot] = ItemStack.loadItemStackFromNBT(anItem);
+			}
+		}
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		NBTTagList invList = new NBTTagList();
+		for (int n = 0; n < inv.length; n++) {
+			ItemStack stack = inv[n];
+			if (stack != null) {
+				NBTTagCompound tagStack = new NBTTagCompound();
+				tagStack.setByte("slot", (byte) n);
+				stack.writeToNBT(tagStack);
+				invList.appendTag(tagStack);
+			}
+		}
+		tag.setTag("inventory", invList);
+	}
 	
 	@Override
 	public int getSizeInventory() {
@@ -49,14 +86,22 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 
 	@Override
-	public abstract void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_);
+	public void setInventorySlotContents(int slot, ItemStack stack) {
+		this.inv[slot] = stack;
+		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
+			stack.stackSize = this.getInventoryStackLimit();
+		}
+		this.markDirty();
+	}
 	
 	@Override
-	public abstract String getInventoryName();
+	public String getInventoryName() {
+		return this.name;
+	}
 
 	@Override
 	public boolean hasCustomInventoryName() {
-		return getInventoryName() != null;
+		return false; //we will have it later, we need to figure out how it work
 	}
 
 	@Override

@@ -73,7 +73,7 @@ public class TileEntityMPS extends TileEntity implements IPersonal, IInventory, 
 		NBTTagList invList = tag.getTagList("inventory", 10);
 		for (int n = 0; n < invList.tagCount(); n++) {
 			NBTTagCompound aItem = invList.getCompoundTagAt(n);
-			byte slot = aItem.getByte("Slot");
+			byte slot = aItem.getByte("slot");
 			if (slot >= 0 && slot < inv.length) {
 				inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
 			}
@@ -93,7 +93,7 @@ public class TileEntityMPS extends TileEntity implements IPersonal, IInventory, 
 			ItemStack stack = inv[n];
 			if (stack != null) {
 				NBTTagCompound tagStack = new NBTTagCompound();
-				tagStack.setByte("Slot", (byte) n);
+				tagStack.setByte("slot", (byte) n);
 				stack.writeToNBT(tagStack);
 				invList.appendTag(tagStack);
 			}

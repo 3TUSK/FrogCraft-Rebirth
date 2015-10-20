@@ -1,7 +1,6 @@
 package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.api.tileentity.FrogFluidTank;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
@@ -10,21 +9,13 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 
 	private FrogFluidTank tank = new FrogFluidTank(8000);
 	
-	@Override
-	public String getInventoryName() {
-		return "";
-	}
-
-	@Override
-	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-		// TODO Auto-generated method stub
-		
+	public TileFluidOutputHatch() {
+		super(2, "TileEntityFluidOutput");
 	}
 
 	@Override
 	public FluidStack getFluid() {
-		// TODO Auto-generated method stub
-		return null;
+		return tank.getFluid();
 	}
 
 	@Override

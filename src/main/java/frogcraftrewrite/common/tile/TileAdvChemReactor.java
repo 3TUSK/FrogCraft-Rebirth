@@ -11,10 +11,10 @@ import net.minecraft.item.ItemStack;
 public class TileAdvChemReactor extends TileFrogMachine {
 
 	public int process, processMax;
-	boolean working, changed, needUpdate;
+	boolean working, changed;
 	
 	public TileAdvChemReactor() {
-		super(2, 100000);
+		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
 		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
 		this.inv = new ItemStack[13];
 	}
@@ -72,12 +72,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public String getInventoryName() {
 		return "";
-	}
-
-	@Override
-	public void setInventorySlotContents(int p_70299_1_, ItemStack p_70299_2_) {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override

@@ -35,13 +35,5 @@ public abstract class TileFrog extends TileEntity implements IWrenchable{
 
 	@Override
 	public abstract ItemStack getWrenchDrop(EntityPlayer entityPlayer);
-	
-	protected void onENetLoad(boolean flag) {
-		
-	}
-	
-	protected void onENetUnload(boolean flag) {
-		
-	}
 
 }

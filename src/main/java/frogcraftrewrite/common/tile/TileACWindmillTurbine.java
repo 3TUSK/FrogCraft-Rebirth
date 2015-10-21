@@ -8,7 +8,6 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class TileACWindmillTurbine extends TileFrog {
 
-	//public ForgeDirection dir;
 	public boolean canGenEnergy, hasRotor, isBlocked, isHighEnough, isRaining;
 	
 	public TileACWindmillTurbine() {
@@ -19,7 +18,6 @@ public class TileACWindmillTurbine extends TileFrog {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		//TODO Finish power generation
 		this.isRaining = this.worldObj.isRaining();
 		
 		this.isHighEnough = this.yCoord > 78;

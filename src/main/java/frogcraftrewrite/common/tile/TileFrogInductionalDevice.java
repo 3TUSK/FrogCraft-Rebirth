@@ -24,7 +24,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 	public int heat;
 	public int tick;
 	
-	boolean created, isInENet;
+	boolean needUpdate, isInENet;
 	
 	public TileFrogInductionalDevice() {
 		this.inv = new ItemStack[13];//[0] is the charger slot, 1-6 are input, 7-12 are output
@@ -44,17 +44,11 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 	
 	@Override
 	public void updateEntity() {
-		//Update start.
-		if (!created) created = true;
 		super.updateEntity();
-		//Server side.
-		if (worldObj.isRemote) return;
-		//Announce the IC2 electric TileEntity loaded
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}
-		//Processing steps:
 		//1.Check input by calling method checkInput(). 
 		//If machine get a valid input, then machine call method doWork();
 		boolean invalidInput = true;
@@ -66,7 +60,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		//At this time the variable PROCESS_MAX will get default value.
 		if(!invalidInput && hasOutputSpace()) {
 			//3.For every tick, ++tick, ++process and check the variable *heat*.
-			tick++;//Work as a timer.
+			tick++;
 			//Heat is defined as a int with the upper bound of 100 and a lower bound of 0.
 			//Heat will increase as long as there is redstone powered, or keeping working for a while.
 			//Heat can influence porcessMax by decreasing it so that regular player will see the processing arrow go dramatically "fast".
@@ -99,7 +93,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 				process = 0;
 			}
 		}
-		//If there is no more input and no redstone signal, heat will decrease constantly until 0.0F.
+		
 		if (invalidInput) {
 			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
 				if (tick >= 50) {
@@ -114,13 +108,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 					heat = 0;
 			}
 		}
-		//Following such a thinking, the only difference among macerator, compressor, extractor, e-furnace
-		//is ONLY the recipes. Add "abstract" to proper method and define them in corresponding TileEntity[insert machine name].class.
-		//
-		//What a heck. 3TUSK.
-		//All machine are the same. There is no more way to do so.
-		//Programming is it. There will be no more imaginary.
-		//Creating a GUI/HUD then tell user what they get at that time. That's all.
+		//The only difference among macerator, compressor, extractor, e-furnace is ONLY the recipes.
 	}
 	
 	@Override
@@ -258,23 +246,17 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		energy += amount;
 		if (energy > energyMax)
 			energy = energyMax;
-		
-		if (heat > 0)
-			return 0D;
-		
-		return energy > energyMax ? energy + amount - energyMax : 0D;	
+		return 0D;	
 	}
 
 	@Override
 	public short getFacing() {
-		// TODO Auto-generated method stub
-		return 0;
+		return 5;
 	}
 
 	@Override
 	public void setFacing(short facing) {
-		// TODO Auto-generated method stub
-		
+		//should it rotate?
 	}
 
 	@Override

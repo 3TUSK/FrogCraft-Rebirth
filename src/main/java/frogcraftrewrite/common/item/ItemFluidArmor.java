@@ -1,5 +1,7 @@
 package frogcraftrewrite.common.item;
 
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import com.google.common.collect.ArrayListMultimap;
@@ -10,7 +12,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.EnumHelper;
@@ -19,7 +20,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
 import ic2.api.item.IMetalArmor;
 /**
- * Maybe in next e__ could risk a__ forward toward
  * @author 3TUSK
  * Created at 7:46:59 PM Sep 6, 2015 EST 2015
  */
@@ -47,8 +47,13 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
-		player.addPotionEffect(new PotionEffect(Potion.moveSlowdown.id, 30));
-		//Plan: MultiMap(Fluid, Potion)
+		if (world.isRemote) return;
+		
+		Collection<PotionEffect> effectList = fluidSideEffect.get(this.getFluid(itemStack).getFluid());
+		Iterator<PotionEffect> iter = effectList.iterator();
+		while (iter.hasNext()) {
+			player.addPotionEffect(iter.next());
+		}
 	}
 
 	@Override
@@ -135,9 +140,9 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 
 	//Fluid armor side-effect system start, TODO: finish this system
 	
-	private static Multimap<Fluid, Potion> fluidSideEffect = ArrayListMultimap.<Fluid, Potion>create();
+	private static Multimap<Fluid, PotionEffect> fluidSideEffect = ArrayListMultimap.<Fluid, PotionEffect>create();
 	
-	public static boolean registerFluidArmorSideEffect(Fluid fluid, Potion potion) {
+	public static boolean registerFluidArmorSideEffect(Fluid fluid, PotionEffect potion) {
 		return fluidSideEffect.put(fluid, potion);
 	}
 	

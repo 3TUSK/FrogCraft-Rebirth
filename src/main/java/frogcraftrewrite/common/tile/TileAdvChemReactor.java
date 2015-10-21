@@ -22,7 +22,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (worldObj.isRemote) return;
 		//Seriously, fully oreDict support seems very complex due to the registry mechanism
 		Object[] input = ItemUtil.asFrogInputsArray(Arrays.copyOfRange(inv, 1, 5));
 		//check inv

@@ -10,6 +10,8 @@ public abstract class TileFrog extends TileEntity implements IWrenchable{
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote)
+			return;
 	}
 	
 	@Override

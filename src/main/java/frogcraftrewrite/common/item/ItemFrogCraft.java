@@ -19,14 +19,20 @@ public abstract class ItemFrogCraft extends Item{
 		this.setHasSubtypes(hasSubType);
 	}
 	
+	/**
+	 * @param stack The itemstack 
+	 * @param player The player
+	 * @param adv Require F3+H on?
+	 * @return A list which contains tooltips you want to show.
+	 */
 	public abstract List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv);
 	
 	public abstract int getSubItemNumber();
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List aList, boolean what) {
-		aList.addAll(getToolTip(stack, player, what));
+	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List aList, boolean adv) {
+		aList.addAll(getToolTip(stack, player, adv));
 	}
 	
 	@Override

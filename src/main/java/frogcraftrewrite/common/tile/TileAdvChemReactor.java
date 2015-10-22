@@ -16,7 +16,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	public TileAdvChemReactor() {
 		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
 		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
-		this.inv = new ItemStack[13];
 	}
 	
 	@Override
@@ -75,14 +74,18 @@ public class TileAdvChemReactor extends TileFrogMachine {
 
 	@Override
 	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		// TODO Auto-generated method stub
-		return false;
+		if (side != 1)
+			return false;
+		
+		return Arrays.asList(1,2,3,4,5,11).contains(slot);
 	}
 
 	@Override
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		// TODO Auto-generated method stub
-		return false;
+		if (side != 0)
+			return false;
+		
+		return Arrays.asList(6,7,8,9,10,12).contains(slot);
 	}
 
 }

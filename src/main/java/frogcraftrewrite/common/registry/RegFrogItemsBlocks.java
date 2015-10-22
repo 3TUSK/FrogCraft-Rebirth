@@ -86,11 +86,23 @@ public class RegFrogItemsBlocks {
 	}
 	
 	static void initOreDict() {
+		OreDictionary.registerOre("railgun", FrogItems.railgun);
+		
 		OreDictionary.registerOre("gemRuby", new ItemStack(FrogItems.itemIngot, 1, 2));
 		OreDictionary.registerOre("gemSapphire", new ItemStack(FrogItems.itemIngot, 1, 3));
 		OreDictionary.registerOre("gemGreenSapphire", new ItemStack(FrogItems.itemIngot, 1, 4));
 		
 		OreDictionary.registerOre("cellAmmonia", new ItemStack(FrogItems.itemCell, 1, 0));
+		
+		OreDictionary.registerOre("stoneBasalt", new ItemStack(FrogBlocks.frogOres, 1, 0));
+		OreDictionary.registerOre("stoneMarble", new ItemStack(FrogBlocks.frogOres, 1, 1));
+		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 2));
+		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 3));
+		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogBlocks.frogOres, 1, 4));
+		OreDictionary.registerOre("oreRuby", new ItemStack(FrogBlocks.frogOres, 1, 6));
+		OreDictionary.registerOre("oreSapphire", new ItemStack(FrogBlocks.frogOres, 1, 7));
+		OreDictionary.registerOre("oreGreenSapphire", new ItemStack(FrogBlocks.frogOres, 1, 8));
+		
 	}
 	
 	static void initTileEntity() {

@@ -5,33 +5,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.tile.TileHSU;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.Container;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraft.tileentity.TileEntityFurnace;
 
-public class ContainerHybridEStorage extends Container {
-	
-	TileHSU tile;
+public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
+
 	int charge;
 	
 	public ContainerHybridEStorage(InventoryPlayer playerInv, TileHSU tile) {
-		this.tile = tile;
-		//Draw HSU charge/discharge slot
+		super(playerInv, tile);
+		//Draw HSU charge/discharge slot, player slots is drawn by ContainerTileFrog<T extends TileFrog>
 		this.addSlotToContainer(new Slot(tile, 0, 113, 24));
         this.addSlotToContainer(new Slot(tile, 1, 113, 42));
-		//Draw player slot
-		for (int i=0;i<3;++i) {
-			for (int j=0;j<9;++j) {
-				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-        }
-        for (int i=0;i<9;++i) {
-        	this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
-        }
-		
 	}
 	
 	public void addCraftingToCrafters(ICrafting crafting) {

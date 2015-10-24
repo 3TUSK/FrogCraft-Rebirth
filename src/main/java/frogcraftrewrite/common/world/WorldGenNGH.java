@@ -11,11 +11,13 @@ import net.minecraft.world.biome.BiomeGenBase;
 public class WorldGenNGH extends WorldGenerator{
 
 	private Block block;
+	private int meta;
 	
 	ArrayList<Block> vaildBlocks;
 	
-	public WorldGenNGH(Block aOre) {
+	public WorldGenNGH(Block aOre, int meta) {
 		this.block = aOre;
+		this.meta = meta;
 		vaildBlocks = new ArrayList<Block>();
 		vaildBlocks.add(Blocks.stone);
 		vaildBlocks.add(Blocks.dirt);
@@ -30,7 +32,7 @@ public class WorldGenNGH extends WorldGenerator{
 				if (size != null){
 					for (int n = -1; n > -9; n--) {
 						if (vaildBlocks.contains(world.getBlock(x,y+n,z))) {
-						world.setBlock(x, y+n, z, block);
+							world.setBlock(x, y+n, z, block, meta, 3);
 						}
 						for (int o = -size.value(); o < size.value(); o++) {
 							if (vaildBlocks.contains(world.getBlock(x+o, y+n, z+o))) {

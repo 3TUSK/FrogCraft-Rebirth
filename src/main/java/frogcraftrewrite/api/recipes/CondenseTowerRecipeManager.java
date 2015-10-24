@@ -3,6 +3,8 @@ package frogcraftrewrite.api.recipes;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
+
 public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe>{
 
 	@Override
@@ -26,7 +28,7 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 	}
 	
 	@Override
-	public CondenseTowerRecipe getRecipe(Object... input) {
+	public CondenseTowerRecipe getRecipe(ItemStack... input) {
 		return null;
 	}
 	

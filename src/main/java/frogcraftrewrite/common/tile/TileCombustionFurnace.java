@@ -12,7 +12,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 	protected FluidStack tank;
 	
 	public TileCombustionFurnace() {
-		super(5, "TileEntityCombustionFurnace", 1, 64);
+		super(5, "TileEntityCombustionFurnace", 1, 5000);
 		//in original FrogCraft there is 4, but I add one for solid waste
 	}
 	
@@ -84,6 +84,11 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 	public FluidStack drain(int maxDrain, boolean doDrain) {
 		//TODO
 		return null;
+	}
+
+	@Override
+	public void setFacing(short facing) {
+		// TODO Auto-generated method stub
 	}
 
 }

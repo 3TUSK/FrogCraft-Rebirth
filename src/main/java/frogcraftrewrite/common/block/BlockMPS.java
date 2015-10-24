@@ -1,8 +1,9 @@
-package frogcraftrewrite.common.block.mps;
+package frogcraftrewrite.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
@@ -58,14 +59,14 @@ public class BlockMPS extends BlockContainer implements ITileEntityProvider{
 
 	@Override
 	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileEntityMPS(false);
+		return new TileMobilePowerStation(false);
 	}
 	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemstack) {
-		if (world.getTileEntity(x, y, z) instanceof TileEntityMPS){		
+		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation){		
 			if (itemstack.stackTagCompound != null) {
-				TileEntityMPS tile = (TileEntityMPS) world.getTileEntity(x, y, z);
+				TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
 				
 				tile.storedEnergy = itemstack.stackTagCompound.getDouble("storedEnergy");
 				tile.maxEnergy = itemstack.stackTagCompound.getDouble("maxEnergy");
@@ -87,8 +88,8 @@ public class BlockMPS extends BlockContainer implements ITileEntityProvider{
 	public void breakBlock(World world, int x, int y, int z, Block block, int what) {
 		ItemStack mps = new ItemStack(this, 1);
 		
-		if (world.getTileEntity(x, y, z) instanceof TileEntityMPS) {
-			TileEntityMPS tile = (TileEntityMPS) world.getTileEntity(x, y, z);
+		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation) {
+			TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
 			if (mps.stackTagCompound == null) mps.stackTagCompound = new NBTTagCompound();
 			mps.stackTagCompound.setString("UUID", tile.profile.getId().toString());
 			mps.stackTagCompound.setString("name", tile.profile.getName());

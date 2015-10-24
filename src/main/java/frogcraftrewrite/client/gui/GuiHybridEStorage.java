@@ -5,7 +5,6 @@ import org.lwjgl.opengl.GL11;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.tile.TileHSU;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
@@ -25,7 +24,7 @@ public class GuiHybridEStorage extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
-		this.fontRendererObj.drawString(I18n.format("container.inventory", new Object[0]), 8, this.ySize-96+2, 4210752);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize-96+2, 4210752);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.current"), 8, ySize-150, 4210752);
 		this.fontRendererObj.drawString(Integer.toString((int)tile.getStored()), 8, ySize-140, 4210752);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.max"), 8, ySize-130, 4210752);

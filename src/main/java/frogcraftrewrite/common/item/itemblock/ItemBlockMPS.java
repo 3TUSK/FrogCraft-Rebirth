@@ -1,8 +1,8 @@
-package frogcraftrewrite.common.block.mps;
+package frogcraftrewrite.common.item.itemblock;
 
 import java.util.List;
 
-import frogcraftrewrite.common.block.mps.BlockMPS;
+import frogcraftrewrite.common.block.BlockMPS;
 import ic2.api.item.IElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;

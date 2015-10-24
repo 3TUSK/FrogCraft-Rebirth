@@ -1,10 +1,10 @@
-package frogcraftrewrite.api.tileentity;
+package frogcraftrewrite.api.tile;
 
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 /**
- * Create a instance of this class will provide a efficient way to manage fluid.
+ * Create a instance of this class will provide a efficient way to manage fluid?
  * @author 3TUSK
  */
 public class FrogFluidTank implements IFluidTank {

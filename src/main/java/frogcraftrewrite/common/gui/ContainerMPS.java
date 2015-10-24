@@ -1,14 +1,15 @@
-package frogcraftrewrite.common.block.mps;
+package frogcraftrewrite.common.gui;
 
+import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 
 public class ContainerMPS extends Container{
 	
-	protected TileEntityMPS tile;
+	protected TileMobilePowerStation tile;
 	
-	public ContainerMPS (TileEntityMPS tile) {
+	public ContainerMPS (TileMobilePowerStation tile) {
 		this.tile = tile;
 		//Charging slots
 		addSlotToContainer(new Slot(tile, 0, 44, 20));//Charging Slot 1

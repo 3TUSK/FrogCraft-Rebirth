@@ -2,7 +2,7 @@ package frogcraftrewrite.common.event;
 
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.Event.HasResult;
-import frogcraftrewrite.api.tileentity.IPersonal;
+import frogcraftrewrite.api.tile.IPersonal;
 import net.minecraft.entity.player.EntityPlayer;
 
 @HasResult

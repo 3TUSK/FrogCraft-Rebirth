@@ -17,7 +17,7 @@ public class WorldGenerator implements IWorldGenerator{
 		int xCor = chunkX * 16 + random.nextInt(16);
 		int zCor = chunkZ * 16 + random.nextInt(16);
 		
-		//new WorldGenNGH(new BlockNGH()).genOre(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
+		new WorldGenNGH(FrogBlocks.frogOres, 5).genOre(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
 	
 		//Gen something
 		new WorldGenMinable(FrogBlocks.frogOres, 2, 32, Blocks.dirt).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);

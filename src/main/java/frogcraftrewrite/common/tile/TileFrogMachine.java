@@ -4,6 +4,7 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.inventory.ISidedInventory;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
@@ -19,6 +20,15 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 		this.sinkTier = sinkTier;
 		this.maxEnergy = maxEnergy;
 	}
+	
+	@Override
+	public abstract int[] getAccessibleSlotsFromSide(int side);
+
+	@Override
+	public abstract boolean canInsertItem(int slot, ItemStack item, int side);
+	
+	@Override
+	public abstract boolean canExtractItem(int slot, ItemStack item, int side);
 	
 	@Override
 	public void invalidate() {

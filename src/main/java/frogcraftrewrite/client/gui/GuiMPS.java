@@ -2,16 +2,16 @@ package frogcraftrewrite.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import frogcraftrewrite.common.block.mps.ContainerMPS;
-import frogcraftrewrite.common.block.mps.TileEntityMPS;
+import frogcraftrewrite.common.gui.ContainerMPS;
+import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiMPS extends GuiContainer{
 
-	protected TileEntityMPS tile;
+	protected TileMobilePowerStation tile;
 	
-	public GuiMPS(TileEntityMPS tile) {
+	public GuiMPS(TileMobilePowerStation tile) {
 		super(new ContainerMPS(tile));
 		this.tile = tile;
 	}

@@ -1,4 +1,4 @@
-package frogcraftrewrite.api.tileentity;
+package frogcraftrewrite.api.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 

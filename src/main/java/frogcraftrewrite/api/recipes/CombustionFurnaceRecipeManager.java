@@ -3,6 +3,8 @@ package frogcraftrewrite.api.recipes;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
+
 public class CombustionFurnaceRecipeManager implements IRecipeManager<CombustionFurnaceRecipe>{
 
 	@Override
@@ -26,7 +28,7 @@ public class CombustionFurnaceRecipeManager implements IRecipeManager<Combustion
 	}
 	
 	@Override
-	public CombustionFurnaceRecipe getRecipe(Object... input) {
+	public CombustionFurnaceRecipe getRecipe(ItemStack... input) {
 		return null;
 	}
 	

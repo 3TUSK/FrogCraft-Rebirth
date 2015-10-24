@@ -7,6 +7,8 @@ import ic2.api.tile.IWrenchable;
 
 public abstract class TileFrog extends TileEntity implements IWrenchable{
 
+	protected short facing = 2;
+	
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
@@ -20,7 +22,9 @@ public abstract class TileFrog extends TileEntity implements IWrenchable{
 	}
 
 	@Override
-	public abstract short getFacing();
+	public short getFacing() {
+		return facing;
+	}
 
 	@Override
 	public abstract void setFacing(short facing);
@@ -36,6 +40,8 @@ public abstract class TileFrog extends TileEntity implements IWrenchable{
 	}
 
 	@Override
-	public abstract ItemStack getWrenchDrop(EntityPlayer entityPlayer);
+	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
+		return new ItemStack(this.getBlockType(), 1, this.blockMetadata);
+	}
 
 }

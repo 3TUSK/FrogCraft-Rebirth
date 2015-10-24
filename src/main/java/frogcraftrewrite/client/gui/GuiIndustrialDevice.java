@@ -4,10 +4,10 @@ import org.lwjgl.opengl.GL11;
 
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
 import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
-import frogcraftrewrite.common.tile.TileEntityIndustrialCompressor;
-import frogcraftrewrite.common.tile.TileEntityIndustrialEFurnace;
-import frogcraftrewrite.common.tile.TileEntityIndustrialExtractor;
-import frogcraftrewrite.common.tile.TileEntityIndustrialMacerator;
+import frogcraftrewrite.common.tile.TileInductionalCompressor;
+import frogcraftrewrite.common.tile.TileInductionalEFurnace;
+import frogcraftrewrite.common.tile.TileInductionalExtractor;
+import frogcraftrewrite.common.tile.TileInductionalMacerator;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
@@ -45,23 +45,23 @@ public class GuiIndustrialDevice extends GuiContainer{
         if (tile.energy>0)
         	this.drawTexturedModalRect(x + 81, y + 52+14-energyCurrent, 176, 31 - energyCurrent, 14, energyCurrent);
         
-        if (tile instanceof TileEntityIndustrialEFurnace)
+        if (tile instanceof TileInductionalEFurnace)
         	this.drawTexturedModalRect(x + 76, y + 25, 201, 0, 24, 16);
-        if (tile instanceof TileEntityIndustrialCompressor)
+        if (tile instanceof TileInductionalCompressor)
         	this.drawTexturedModalRect(x + 76, y + 25, 201, 32, 24, 16);	
-        if (tile instanceof TileEntityIndustrialMacerator)
+        if (tile instanceof TileInductionalMacerator)
         	this.drawTexturedModalRect(x + 76, y + 25, 201, 50, 24, 16);
-        if (tile instanceof TileEntityIndustrialExtractor)      
+        if (tile instanceof TileInductionalExtractor)      
         	this.drawTexturedModalRect(x + 76, y + 25, 201, 68, 24, 16);
         
         if (tile.process > 0){
-        	if (tile instanceof TileEntityIndustrialEFurnace)
+        	if (tile instanceof TileInductionalEFurnace)
         		this.drawTexturedModalRect(x + 76, y + 25, 176, 0, processCurrent, 16);
-        	if (tile instanceof TileEntityIndustrialCompressor)
+        	if (tile instanceof TileInductionalCompressor)
         		this.drawTexturedModalRect(x + 76, y + 25, 176, 32, processCurrent, 16);
-        	if (tile instanceof TileEntityIndustrialMacerator)
+        	if (tile instanceof TileInductionalMacerator)
         		this.drawTexturedModalRect(x + 76, y + 25, 176, 50, processCurrent, 16);
-        	if (tile instanceof TileEntityIndustrialExtractor)
+        	if (tile instanceof TileInductionalExtractor)
         		this.drawTexturedModalRect(x + 76, y + 25, 176, 68, processCurrent, 16);                	
         }
 	}

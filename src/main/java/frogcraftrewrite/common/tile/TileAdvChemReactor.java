@@ -1,17 +1,17 @@
 package frogcraftrewrite.common.tile;
 
 import java.util.Arrays;
+import java.util.List;
 
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
-import frogcraftrewrite.common.lib.util.ItemUtil;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class TileAdvChemReactor extends TileFrogMachine {
-
 	public int process, processMax;
-	boolean working, changed;
+	boolean working, changed = false;
 	
 	public TileAdvChemReactor() {
 		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
@@ -19,40 +19,92 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	}
 	
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
-		//Seriously, fully oreDict support seems very complex due to the registry mechanism
-		Object[] input = ItemUtil.asFrogInputsArray(Arrays.copyOfRange(inv, 1, 5));
-		//check inv
-		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.getRecipe(input);
-		working = recipe == null ? false : true;
-		//if available, consume material and start react
-		for (int i=1;i<=5;i++) {
-			//--inv[i].stackSize; todo: consume certain number of items
-		}
-		//4.process++ until finish
-		if (working) {
-			this.energy -= recipe.getEnergyPerTick();
-			++process;
-		}
-		if (process == processMax) {
-			//5.clean up
-			this.markDirty();
-		}
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.working = tag.getBoolean("working");
+		this.process = tag.getInteger("process");
+		this.processMax = tag.getInteger("processMax");
 	}
 	
 	@Override
-	public short getFacing() {
-		return 2;
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tag.setBoolean("working", this.working);
+		tag.setInteger("process", this.process);
+		tag.setInteger("processMax", this.processMax);
+	}
+	
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		
+		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.getRecipe(Arrays.copyOfRange(inv, 1, 5));
+		List<ItemStack> recipeInput = recipe.getInput();
+		if (!working && recipe!=null && recipeInput!=null) {
+			for (ItemStack s : recipeInput) {
+				for (int i=1;i<6;i++) {
+					if (OreDictionary.itemMatches(s, inv[i], false) && inv[i].stackSize >= s.stackSize) {
+						ItemStack temp = inv[i].copy();
+						temp.stackSize -= s.stackSize;
+						this.setInventorySlotContents(i, temp);
+						break;
+					}
+				}
+			}
+			working = recipe == null ? false : true;
+		}
+		List<ItemStack> recipeOutput = recipe.getOutput();
+		int freeOutSlot = 0;
+		for (int i=6;i<11;i++) {
+			if (this.getStackInSlot(i) == null)
+				++freeOutSlot;
+		}
+		if (working && process == 0 && freeOutSlot < recipeOutput.size()) {
+			working = false; //Not enough output slots, stop working.
+		} else {
+			this.processMax = recipe.getTime();
+		}
+		
+		if (working && energy >= recipe.getEnergyPerTick()) {
+			this.energy -= recipe.getEnergyPerTick();
+			++process;
+		}
+		
+		if (process == processMax) {
+			int outputLength = recipeOutput.size();
+			boolean emptyOutput = true;
+			for (int i=6;i<11;i++) {
+				if (this.getStackInSlot(i) != null) {
+					emptyOutput = false;
+					break;
+				}
+			}
+			if (emptyOutput) {
+				for (int i=0;i<outputLength;i++) {
+					this.setInventorySlotContents(i+5, recipeOutput.get(i));
+				}
+			} else {
+				for (ItemStack s : recipeOutput) {
+					for (int i=6;i<11;i++) {
+						if (OreDictionary.itemMatches(this.getStackInSlot(i), s, false) && this.inv[i].stackSize >= s.stackSize) {
+							ItemStack temp = this.getStackInSlot(i);
+							temp.stackSize -= s.stackSize;
+							this.setInventorySlotContents(i, temp);
+							break;
+						}
+					}
+				}
+			}
+			this.changed = true;
+		}
+		if (changed) {
+			this.markDirty();
+			changed = false;
+		}
 	}
 
 	@Override
 	public void setFacing(short facing) {
-	}
-
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
-		return new ItemStack(this.blockType, 1, this.blockMetadata);
 	}
 
 	@Override
@@ -66,17 +118,11 @@ public class TileAdvChemReactor extends TileFrogMachine {
 				return null;
 		}
 	}
-
-	@Override
-	public String getInventoryName() {
-		return "";
-	}
-
+	
 	@Override
 	public boolean canInsertItem(int slot, ItemStack item, int side) {
 		if (side != 1)
 			return false;
-		
 		return Arrays.asList(1,2,3,4,5,11).contains(slot);
 	}
 
@@ -84,7 +130,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
 		if (side != 0)
 			return false;
-		
 		return Arrays.asList(6,7,8,9,10,12).contains(slot);
 	}
 

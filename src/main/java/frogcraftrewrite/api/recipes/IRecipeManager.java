@@ -2,6 +2,8 @@ package frogcraftrewrite.api.recipes;
 
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
+
 /**Meaningless.*/
 public interface IRecipeManager<RECIPE> {
 	
@@ -13,5 +15,5 @@ public interface IRecipeManager<RECIPE> {
 	
 	public Collection<RECIPE> getRecipes();
 	
-	public RECIPE getRecipe(Object... input);
+	public RECIPE getRecipe(ItemStack... input);
 }

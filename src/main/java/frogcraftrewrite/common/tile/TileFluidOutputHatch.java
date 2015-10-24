@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.tile;
 
-import frogcraftrewrite.api.tileentity.FrogFluidTank;
+import frogcraftrewrite.api.tile.FrogFluidTank;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -68,6 +68,12 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {
 		return tank.drain(maxDrain, doDrain);
+	}
+
+	@Override
+	public void setFacing(short facing) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

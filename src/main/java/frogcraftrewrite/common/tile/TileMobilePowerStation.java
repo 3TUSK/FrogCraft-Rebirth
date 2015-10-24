@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.block.mps;
+package frogcraftrewrite.common.tile;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -8,7 +8,7 @@ import java.util.UUID;
 
 import com.mojang.authlib.GameProfile;
 
-import frogcraftrewrite.api.tileentity.IPersonal;
+import frogcraftrewrite.api.tile.IPersonal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.ForgeDirection;
  * <br> 4.Top face allows player to open a crafting table.
  * <p> Created by 3TUSK on Jul. 13th 2015
  * */
-public class TileEntityMPS extends TileEntity implements IPersonal, IInventory, IEnergySource {
+public class TileMobilePowerStation extends TileEntity implements IPersonal, IInventory, IEnergySource {
 	/**Allow the tileEntity to record the player's info, in case that the player doesn't want other to use it.*/
 	public GameProfile profile;
 	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
@@ -38,7 +38,7 @@ public class TileEntityMPS extends TileEntity implements IPersonal, IInventory, 
 	
 	public boolean isInENet;
 
-	public TileEntityMPS(boolean privateMode) {
+	public TileMobilePowerStation(boolean privateMode) {
 		this.inv = new ItemStack[12]; //Will get a increase upon 10 more, due to the further usage extension.
 		this.isPrivate = privateMode;
 	}

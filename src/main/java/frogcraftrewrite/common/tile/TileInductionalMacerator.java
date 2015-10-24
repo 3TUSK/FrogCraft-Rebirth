@@ -3,7 +3,7 @@ package frogcraftrewrite.common.tile;
 import ic2.api.recipe.Recipes;
 import net.minecraft.item.ItemStack;
 
-public class TileEntityIndustrialCompressor extends TileFrogInductionalDevice{
+public class TileInductionalMacerator extends TileFrogInductionalDevice{
 
 	@Override
 	public String getInventoryName() {
@@ -23,7 +23,7 @@ public class TileEntityIndustrialCompressor extends TileFrogInductionalDevice{
 
 	@Override
 	protected ItemStack getOutputFrom(ItemStack input) {
-		return Recipes.compressor.getOutputFor(input, false).items.get(0);
+		return Recipes.macerator.getOutputFor(input, false).items.get(0);
 	}
 
 }

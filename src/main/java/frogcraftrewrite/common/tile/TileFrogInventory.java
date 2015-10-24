@@ -12,6 +12,7 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	protected String name;
 	
 	protected TileFrogInventory(int invSize, String invName) {
+		super();
 		this.inv = new ItemStack[invSize];
 		this.name = invName;
 	}
@@ -123,24 +124,6 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return true;
-	}
-
-	@Override
-	public short getFacing() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setFacing(short facing) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

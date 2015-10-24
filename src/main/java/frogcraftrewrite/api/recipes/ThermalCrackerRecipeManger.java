@@ -3,6 +3,8 @@ package frogcraftrewrite.api.recipes;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
+
 public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCrackerRecipe>{
 
 	@Override
@@ -26,7 +28,7 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 	}
 	
 	@Override
-	public ThermalCrackerRecipe getRecipe(Object... input) {
+	public ThermalCrackerRecipe getRecipe(ItemStack... input) {
 		return null;
 	}
 	

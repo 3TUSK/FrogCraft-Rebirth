@@ -1,18 +1,20 @@
 package frogcraftrewrite.common.tile;
 
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
-import ic2.api.energy.tile.IEnergySource;
-/**
- * The Academy Windmill base block.
- * */
-public class TileACWindmillBase extends TileEntity implements IEnergySource{
 
-	boolean isInENet, canGenEnergy;
+public class TileACWindmillBase extends TileFrogGenerator {
+	
+	boolean canGenEnergy;
+
+	public TileACWindmillBase() {
+		super(0, "TileAcademyCityWindmillBase", 1, 32);
+	}
 	
 	@Override
 	public void invalidate() {
@@ -43,11 +45,13 @@ public class TileACWindmillBase extends TileEntity implements IEnergySource{
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
 		this.canGenEnergy = tag.getBoolean("canGenEnergy");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
 		tag.setBoolean("canGenEnergy", canGenEnergy);
 	}
 
@@ -58,15 +62,25 @@ public class TileACWindmillBase extends TileEntity implements IEnergySource{
 
 	@Override
 	public double getOfferedEnergy() {
-		return canGenEnergy ? 32 : 0;
+		return canGenEnergy ? super.getOfferedEnergy() : 0;
 	}
 
 	@Override
-	public void drawEnergy(double amount) {}
+	public int[] getAccessibleSlotsFromSide(int side) {
+		return null;
+	}
 
 	@Override
-	public int getSourceTier() {
-		return 1;
+	public boolean canInsertItem(int slot, ItemStack item, int side) {
+		return false;
 	}
+
+	@Override
+	public boolean canExtractItem(int slot, ItemStack item, int side) {
+		return false;
+	}
+
+	@Override
+	public void setFacing(short facing) {}
 
 }

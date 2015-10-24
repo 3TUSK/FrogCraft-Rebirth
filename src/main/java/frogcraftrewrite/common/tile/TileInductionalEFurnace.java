@@ -1,19 +1,19 @@
 package frogcraftrewrite.common.tile;
 
-import ic2.api.recipe.Recipes;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 
-public class TileEntityIndustrialMacerator extends TileFrogInductionalDevice{
+public class TileInductionalEFurnace extends TileFrogInductionalDevice{
 
 	@Override
 	public String getInventoryName() {
-		return "TileEntityIndustrialCompressor";
+		return "TileEntityIndustrialEFurnace";
 	}
 
 	@Override
 	protected boolean canProcess() {
 		for (ItemStack input : inv) {
-			ItemStack output = getOutputFrom(input);
+			ItemStack output = FurnaceRecipes.smelting().getSmeltingResult(input);
 			if (output != null) {
 				return true;
 			}
@@ -23,7 +23,7 @@ public class TileEntityIndustrialMacerator extends TileFrogInductionalDevice{
 
 	@Override
 	protected ItemStack getOutputFrom(ItemStack input) {
-		return Recipes.macerator.getOutputFor(input, false).items.get(0);
+		return FurnaceRecipes.smelting().getSmeltingResult(input).copy();
 	}
 
 }

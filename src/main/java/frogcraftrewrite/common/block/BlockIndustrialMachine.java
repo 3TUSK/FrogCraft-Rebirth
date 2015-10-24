@@ -1,9 +1,9 @@
 package frogcraftrewrite.common.block;
 
-import frogcraftrewrite.common.tile.TileEntityIndustrialCompressor;
-import frogcraftrewrite.common.tile.TileEntityIndustrialEFurnace;
-import frogcraftrewrite.common.tile.TileEntityIndustrialExtractor;
-import frogcraftrewrite.common.tile.TileEntityIndustrialMacerator;
+import frogcraftrewrite.common.tile.TileInductionalCompressor;
+import frogcraftrewrite.common.tile.TileInductionalEFurnace;
+import frogcraftrewrite.common.tile.TileInductionalExtractor;
+import frogcraftrewrite.common.tile.TileInductionalMacerator;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
@@ -34,13 +34,13 @@ public class BlockIndustrialMachine extends BlockInductionMachine{
 	public TileEntity createNewTileEntity(World world, int meta) {
 		switch(meta) {
 			case 0:
-				return new TileEntityIndustrialEFurnace();
+				return new TileInductionalEFurnace();
 			case 1:
-				return new TileEntityIndustrialMacerator();
+				return new TileInductionalMacerator();
 			case 2:
-				return new TileEntityIndustrialExtractor();
+				return new TileInductionalExtractor();
 			case 3:
-				return new TileEntityIndustrialCompressor();
+				return new TileInductionalCompressor();
 			default:
 				return null;
 		}

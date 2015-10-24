@@ -3,6 +3,7 @@ package frogcraftrewrite.api.recipes;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import net.minecraft.item.ItemStack;
 import scala.actors.threadpool.Arrays;
 
 public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReactorRecipe> {
@@ -32,7 +33,7 @@ public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReacto
 	}
 	
 	@Override
-	public AdvChemReactorRecipe getRecipe(Object... inputs) {
+	public AdvChemReactorRecipe getRecipe(ItemStack... inputs) {
 		AdvChemReactorRecipe aRecipe = null;
 		for (AdvChemReactorRecipe recipe : recipes) {
 			if (recipe.getInput().containsAll(Arrays.asList(inputs))) {

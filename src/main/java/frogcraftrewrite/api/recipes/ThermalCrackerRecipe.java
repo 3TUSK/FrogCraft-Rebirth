@@ -3,7 +3,7 @@ package frogcraftrewrite.api.recipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-@FrogRecipe(machine = "Thermal Cracker", reactionType = FrogRecipe.ReactionType.CHEMICAL)
+@FrogRecipe(machine = "ThermalCracker", reactionType = FrogRecipe.ReactionType.CHEMICAL)
 public class ThermalCrackerRecipe{
 
 	private ItemStack input, output;

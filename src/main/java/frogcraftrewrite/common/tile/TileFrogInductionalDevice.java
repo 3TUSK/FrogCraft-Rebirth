@@ -248,21 +248,6 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 			energy = energyMax;
 		return 0D;	
 	}
-
-	@Override
-	public short getFacing() {
-		return 5;
-	}
-
-	@Override
-	public void setFacing(short facing) {
-		//should it rotate?
-	}
-
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
-		return new ItemStack(worldObj.getBlock(xCoord, yCoord, zCoord), 1, worldObj.getBlockMetadata(xCoord, yCoord, zCoord));
-	}
 	
 	protected abstract boolean canProcess();
 	

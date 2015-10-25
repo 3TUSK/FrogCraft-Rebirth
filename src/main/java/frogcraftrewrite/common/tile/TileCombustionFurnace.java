@@ -86,9 +86,4 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 		return null;
 	}
 
-	@Override
-	public void setFacing(short facing) {
-		// TODO Auto-generated method stub
-	}
-
 }

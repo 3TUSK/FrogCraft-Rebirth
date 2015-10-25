@@ -70,10 +70,4 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 		return tank.drain(maxDrain, doDrain);
 	}
 
-	@Override
-	public void setFacing(short facing) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

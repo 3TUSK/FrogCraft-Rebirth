@@ -3,10 +3,7 @@ package frogcraftrewrite.common.tile;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 
 public class TileACWindmillBase extends TileFrogGenerator {
 	
@@ -17,24 +14,8 @@ public class TileACWindmillBase extends TileFrogGenerator {
 	}
 	
 	@Override
-	public void invalidate() {
-		if (isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-			isInENet = false;
-		}
-		super.invalidate();
-	}
-	
-	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (worldObj.isRemote)
-			return;
-		
-		if (!isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
-		}
 		
 		TileEntity turbine = worldObj.getTileEntity(xCoord, yCoord+7, zCoord);
 		if (turbine instanceof TileACWindmillTurbine) {
@@ -57,7 +38,7 @@ public class TileACWindmillBase extends TileFrogGenerator {
 
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
-		return direction != ForgeDirection.UP;
+		return direction == ForgeDirection.DOWN;
 	}
 
 	@Override
@@ -79,8 +60,5 @@ public class TileACWindmillBase extends TileFrogGenerator {
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
 		return false;
 	}
-
-	@Override
-	public void setFacing(short facing) {}
 
 }

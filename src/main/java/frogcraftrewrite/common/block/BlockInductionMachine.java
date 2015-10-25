@@ -5,25 +5,50 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.common.tile.TileInductionalCompressor;
+import frogcraftrewrite.common.tile.TileInductionalEFurnace;
+import frogcraftrewrite.common.tile.TileInductionalExtractor;
+import frogcraftrewrite.common.tile.TileInductionalMacerator;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public abstract class BlockInductionMachine extends BlockContainer {
+public class BlockInductionMachine extends BlockContainer {
 
 	public BlockInductionMachine() {
 		super(Material.iron);
 		setCreativeTab(FrogCraftRebirth.TAB_FC);
 	}
 	
+	@Override
+	public TileEntity createNewTileEntity(World world, int meta) {
+		switch(meta) {
+			case 0:
+				return new TileInductionalEFurnace();
+			case 1:
+				return new TileInductionalMacerator();
+			case 2:
+				return new TileInductionalExtractor();
+			case 3:
+				return new TileInductionalCompressor();
+			default:
+				return null;
+		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IIcon getIcon(int side, int meta) {
+		return null;
+	}
+	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
-		world.func_147479_m(x, y, z);//This method is actually markBlockForRenderUpdate(x, y, z)
+		world.func_147479_m(x, y, z);//markBlockForRenderUpdate(x, y, z)
 		
 		if (random.nextInt() > 90) { //TODO specify which block has such a particle effect.
 			float var7 = (float)x + 1.0F;
@@ -38,20 +63,11 @@ public abstract class BlockInductionMachine extends BlockContainer {
     		}
 		}
 	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public abstract IIcon getIcon(IBlockAccess world, int x, int y, int z, int side);
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public abstract IIcon getIcon(int side, int meta);
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public abstract void registerBlockIcons(IIconRegister reg);
-	
-	@Override
-	public abstract TileEntity createNewTileEntity(World world, int meta);
+	public void registerBlockIcons(IIconRegister reg) {
+		
+	}
 
 }

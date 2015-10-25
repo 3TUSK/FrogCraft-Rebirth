@@ -4,8 +4,6 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.tile.IEnergyStorage;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -114,21 +112,6 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 		this.storedE += amount;
 		if (storedE >= maxE) storedE = maxE;
 		return 0;
-	}
-
-	@Override
-	public short getFacing() {
-		return (short)emitDir.ordinal();
-	}
-
-	@Override
-	public void setFacing(short facing) {
-		this.emitDir = ForgeDirection.getOrientation(facing);
-	}
-
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
-		return new ItemStack(this.blockType, 1);
 	}
 
 }

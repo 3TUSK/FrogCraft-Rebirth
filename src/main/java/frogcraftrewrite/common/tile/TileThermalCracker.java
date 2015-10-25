@@ -72,6 +72,4 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidTank {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 	
-	@Override
-	public void setFacing(short facing) {}
 }

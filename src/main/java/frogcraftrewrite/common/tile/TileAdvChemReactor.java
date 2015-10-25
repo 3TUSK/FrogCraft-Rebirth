@@ -104,10 +104,6 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	}
 
 	@Override
-	public void setFacing(short facing) {
-	}
-
-	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
 		switch (side) {
 			case 0: //Bottom

@@ -37,8 +37,8 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		
-		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.getRecipe(Arrays.copyOfRange(inv, 1, 5));
+		@SuppressWarnings("unchecked")
+		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		List<ItemStack> recipeInput = recipe.getInput();
 		if (!working && recipe!=null && recipeInput!=null) {
 			for (ItemStack s : recipeInput) {

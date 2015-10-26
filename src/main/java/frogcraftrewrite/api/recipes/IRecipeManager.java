@@ -2,18 +2,16 @@ package frogcraftrewrite.api.recipes;
 
 import java.util.Collection;
 
-import net.minecraft.item.ItemStack;
-
 /**Meaningless.*/
-public interface IRecipeManager<RECIPE> {
+public interface IRecipeManager<R> {
 	
-	public boolean equal(RECIPE recipe1, RECIPE recipe2);
+	public boolean equal(R recipe1, R recipe2);
 	
-	public boolean add(RECIPE recipe);
+	public boolean add(R recipe);
 	
-	public boolean remove(RECIPE recipe);
+	public boolean remove(R recipe);
 	
-	public Collection<RECIPE> getRecipes();
+	public Collection<R> getRecipes();
 	
-	public RECIPE getRecipe(ItemStack... input);
+	public <T> R getRecipe(@SuppressWarnings("unchecked")T... input);
 }

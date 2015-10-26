@@ -27,8 +27,9 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 		return recipes;
 	}
 	
+	@SuppressWarnings("hiding")
 	@Override
-	public ThermalCrackerRecipe getRecipe(ItemStack... input) {
+	public <ItemStack> ThermalCrackerRecipe getRecipe(@SuppressWarnings("unchecked") ItemStack... input) {
 		return null;
 	}
 	

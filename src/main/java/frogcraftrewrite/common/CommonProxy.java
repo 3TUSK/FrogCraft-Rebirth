@@ -16,14 +16,20 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.trichemcompat.ElementLoader;
+import frogcraftrewrite.client.gui.GuiAdvChemReactor;
+import frogcraftrewrite.client.gui.GuiAirPump;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
 import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
+import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
+import frogcraftrewrite.common.gui.ContainerAirPump;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
 import frogcraftrewrite.common.registry.RegFluid;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
+import frogcraftrewrite.common.tile.TileAdvChemReactor;
+import frogcraftrewrite.common.tile.TileAirPump;
 import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
 
@@ -33,14 +39,29 @@ public class CommonProxy implements IGuiHandler{
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch(id) {
-			case 0:{
+			case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)
 					return new ContainerIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
 			}
-			case 1:{
+			case 1: {
 				if (aTile instanceof TileHSU)
-					System.out.println("The Final Dawn Has Come, LUX ET FUTURA!");
 					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
+				//TODO UHSU
+			}
+			case 2: {
+				//TODO Condense tower core, Fluid output hatch
+				if (aTile instanceof TileAirPump)
+					return new ContainerAirPump(player.inventory, (TileAirPump)aTile);
+			}
+			case 3: {
+				
+			}
+			case 4: {
+				
+			}
+			case 5: {
+				if (aTile instanceof TileAdvChemReactor)
+					return new ContainerAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
 			}
 		}
 		return null;
@@ -50,13 +71,29 @@ public class CommonProxy implements IGuiHandler{
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch (ID) {
-			case 0:{
+			case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)
 					return new GuiIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
 			}
-			case 1:{
+			case 1: {
 				if (aTile instanceof TileHSU)
 					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
+				//TODO UHSU
+			}
+			case 2: {
+				//TODO Condense tower core, Fluid output hatch
+				if (aTile instanceof TileAirPump)
+					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
+			}
+			case 3: {
+				
+			}
+			case 4: {
+				
+			}
+			case 5: {
+				if (aTile instanceof TileAdvChemReactor)
+					return new GuiAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
 			}
 		}
 		return null;

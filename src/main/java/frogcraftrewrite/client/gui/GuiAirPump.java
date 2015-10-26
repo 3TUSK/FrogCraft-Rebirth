@@ -9,9 +9,12 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiAirPump extends GuiContainer {
+	
+	TileAirPump tile;
 
 	public GuiAirPump(InventoryPlayer playerInv, TileAirPump tile) {
 		super(new ContainerAirPump(playerInv, tile));
+		this.tile = tile;
 	}
 	
 	@Override
@@ -26,6 +29,9 @@ public class GuiAirPump extends GuiContainer {
         int k = (this.width - this.xSize) / 2;
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+        int airPercentage = (int)(tile.availableAmount()/1000);
+        this.drawTexturedModalRect(k+145, l+63-airPercentage, 176, 0, 12, airPercentage);
+        this.drawTexturedModalRect(k+145, l+59-airPercentage, 176, 42, 12, 4);
 	}
 	
 	private static ResourceLocation texture_AirPump = new ResourceLocation("frogcraftrewrite:GUI_AirPump");

@@ -27,8 +27,9 @@ public class CombustionFurnaceRecipeManager implements IRecipeManager<Combustion
 		return recipes;
 	}
 	
+	@SuppressWarnings("hiding")
 	@Override
-	public CombustionFurnaceRecipe getRecipe(ItemStack... input) {
+	public <ItemStack> CombustionFurnaceRecipe getRecipe(@SuppressWarnings("unchecked") ItemStack... input) {
 		return null;
 	}
 	

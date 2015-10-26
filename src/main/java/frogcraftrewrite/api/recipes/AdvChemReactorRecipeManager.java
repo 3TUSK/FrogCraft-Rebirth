@@ -32,8 +32,9 @@ public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReacto
 		return recipes;
 	}
 	
+	@SuppressWarnings("hiding")
 	@Override
-	public AdvChemReactorRecipe getRecipe(ItemStack... inputs) {
+	public <ItemStack> AdvChemReactorRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
 		AdvChemReactorRecipe aRecipe = null;
 		for (AdvChemReactorRecipe recipe : recipes) {
 			if (recipe.getInput().containsAll(Arrays.asList(inputs))) {

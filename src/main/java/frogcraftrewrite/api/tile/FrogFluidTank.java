@@ -1,5 +1,6 @@
 package frogcraftrewrite.api.tile;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
@@ -9,11 +10,19 @@ import net.minecraftforge.fluids.IFluidTank;
  */
 public class FrogFluidTank implements IFluidTank {
 
-	int capacity;
-	FluidStack fluidInv;
+	private final int capacity;
+	private FluidStack fluidInv;
 	
 	public FrogFluidTank (int capacity) {
 		this.capacity = capacity;
+	}
+	
+	public void readFromNBT(NBTTagCompound tag) {
+		fluidInv.writeToNBT(tag);
+	}
+	
+	public void writeToNBT(NBTTagCompound tag) {
+		FluidStack.loadFluidStackFromNBT(tag);
 	}
 	
 	@Override
@@ -37,7 +46,6 @@ public class FrogFluidTank implements IFluidTank {
 	}
 
 	//Todo: major logic
-	
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
 		return 0;

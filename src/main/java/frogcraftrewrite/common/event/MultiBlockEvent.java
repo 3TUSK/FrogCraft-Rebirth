@@ -1,17 +1,16 @@
 package frogcraftrewrite.common.event;
 
 import cpw.mods.fml.common.eventhandler.Event;
-import net.minecraft.block.Block;
+import net.minecraft.tileentity.TileEntity;
 
 public class MultiBlockEvent extends Event {
 	
-	public final Block main;
+	public final TileEntity main;
 
-	public final Block[] subs;
+	//public final Block[] subs;
 	
-	public MultiBlockEvent(Block main, Block[] subs) {
+	public MultiBlockEvent(TileEntity main) {
 		this.main = main;
-		this.subs = subs;
 	}
 
 }

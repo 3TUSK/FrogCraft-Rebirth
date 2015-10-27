@@ -10,7 +10,6 @@ import net.minecraftforge.fluids.FluidStack;
  * Aim to improve recipe system of FrogCraft, preparing for MineTweaker support.
  * @author 3TUSK
  */
-@FrogRecipe(machine = "Condense Tower", reactionType = FrogRecipe.ReactionType.PHYSICAL)
 public class CondenseTowerRecipe{
 	
 	/**Constructor method. Theoretically speaking, the length of output parameter is NOT larger that 4.*/

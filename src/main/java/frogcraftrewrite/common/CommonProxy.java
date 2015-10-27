@@ -32,6 +32,7 @@ import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
 import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
+import frogcraftrewrite.common.tile.TileUHSU;
 
 public class CommonProxy implements IGuiHandler{
 
@@ -46,7 +47,8 @@ public class CommonProxy implements IGuiHandler{
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
-				//TODO UHSU
+				if (aTile instanceof TileUHSU)
+					return new ContainerHybridEStorage(player.inventory, (TileUHSU)aTile);
 			}
 			case 2: {
 				//TODO Condense tower core, Fluid output hatch
@@ -78,7 +80,8 @@ public class CommonProxy implements IGuiHandler{
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
-				//TODO UHSU
+				if (aTile instanceof TileUHSU)
+					return new GuiHybridEStorage(player.inventory, (TileUHSU)aTile);
 			}
 			case 2: {
 				//TODO Condense tower core, Fluid output hatch

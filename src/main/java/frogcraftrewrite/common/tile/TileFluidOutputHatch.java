@@ -2,12 +2,14 @@ package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTank {
+public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler {
 
 	private FrogFluidTank tank = new FrogFluidTank(8000);
 	
@@ -21,7 +23,7 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 	public void updateEntity() {
 		super.updateEntity();
 		tick++;
-		if (getFluid() == null)
+		if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid == null)
 			return;
 		if (inv[0] == null)
 			return;
@@ -30,44 +32,45 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidTan
 		
 		if (FluidContainerRegistry.isEmptyContainer(inv[0]) && tick >= 20) {
 			if (inv[1] == null) {
-				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(this.getFluid().getFluid(), 1000), new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
-				this.drain(1000, true);
+				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), 1000), new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
+				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
 			if (FluidContainerRegistry.isContainer(inv[1]) && FluidContainerRegistry.getFluidForFilledItem(inv[1]).isFluidEqual(inv[1])) {
 				inv[1].stackSize += 1;
-				this.drain(1000, true);
+				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
 		}
 	}
-	
+
 	@Override
-	public FluidStack getFluid() {
-		return tank.getFluid();
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public int getFluidAmount() {
-		return tank.getFluidAmount();
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public int getCapacity() {
-		return tank.getCapacity();
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return this.tank.drain(maxDrain, doDrain);
 	}
 
 	@Override
-	public FluidTankInfo getInfo() {
-		return tank.getInfo();
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return true;
 	}
 
 	@Override
-	public int fill(FluidStack resource, boolean doFill) {
-		return tank.fill(resource, doFill);
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return true;
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		return tank.drain(maxDrain, doDrain);
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 
 }

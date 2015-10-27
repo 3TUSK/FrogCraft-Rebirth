@@ -3,8 +3,11 @@ package frogcraftrewrite.common.tile;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.common.block.BlockCondenseTower;
+import frogcraftrewrite.common.event.MultiBlockEvent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -14,36 +17,65 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileCondenseTower extends TileFrogMachine implements IFluidHandler {
 	
 	public FrogFluidTank tank = new FrogFluidTank(8000);
-	private boolean isCompleted;
-	
-	@SuppressWarnings("unused") //Will be used later
-	private static final char[] 
-			STRUCTURE_ARRAY 		= new char[] {'p', 'c', 't', 't', 'o', 'o', 'o', 'o'},
-			STRUCTURE_ARRAY_NO_PUMP	= new char[] {'c', 't', 't', 'o', 'o', 'o', 'o'};
+	private boolean isCompleted = false, craftingFinished = false;
+	private int tick;
 	
 	protected TileCondenseTower() {
 		super(2, "TileCondenseTower", 2, 10000);
-		//0,2 for input; 1,3 for output
+		//0 for input; 1 for output
 	}
 	
-	public boolean checkStructure() {
-		return false;
+	private boolean checkStructure() {
+		for (int i=1;i<7;i++) {
+			if (i == 1 || i == 2) {
+				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 2))
+					return false;
+			} else {
+				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 3))
+					return false;
+			}
+		}
+		return true;
+	}
+	
+	public boolean isCompleted() {
+		return this.isCompleted;
 	}
 	
 	public void updateEntity() {
 		super.updateEntity();
-		if (!checkStructure())
+		if (!isCompleted) {
+			if (!checkStructure())
+				return;
+			else {
+				this.isCompleted = true;
+				MinecraftForge.EVENT_BUS.post(new MultiBlockEvent(this));
+			}
+		}
+		
+		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		
+		if (recipe != null && !craftingFinished) {
+			if (tick == 0) {
+				this.drain(ForgeDirection.UNKNOWN, recipe.getInput().amount, true);
+				this.tick = recipe.getTime();
+				tick--;
+				energy -= 500;//Should be configurable
+			} else {
+				tick--;
+				energy -= 500;
+			}
+		} else if (craftingFinished){
+			java.util.Set<FluidStack> outputs = recipe.getOutput();
+			for (int i=3;i<=6;i++) {
+				for (FluidStack fluid : outputs) {
+					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid()));//TODO
+				}
+			}
+		} else
 			return;
-		else {
-			this.isCompleted = true;
-			//TODO send message
-		}
 		
-		CondenseTowerRecipe recipe = (CondenseTowerRecipe)FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
-		
-		if (recipe != null) {
-			
-		}
+		this.markDirty();
 	}
 
 	public void readFromNBT(NBTTagCompound tag) {

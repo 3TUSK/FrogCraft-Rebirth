@@ -3,7 +3,11 @@ package frogcraftrewrite.api;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
+import frogcraftrewrite.api.recipes.CombustionFurnaceRecipe;
+import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.recipes.IRecipeManager;
+import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.FrogReference;
@@ -33,8 +37,10 @@ public class FrogAPI {
 	
 	public static final String MODID = FrogReference.MODID, NAME = FrogReference.NAME;
 	
-	@SuppressWarnings("rawtypes")
-	public static IRecipeManager managerACR, managerCFG, managerCT, managerTC;
+	public static IRecipeManager<AdvChemReactorRecipe> managerACR;
+	public static IRecipeManager<CombustionFurnaceRecipe> managerCFG;
+	public static IRecipeManager<CondenseTowerRecipe> managerCT;
+	public static IRecipeManager<ThermalCrackerRecipe> managerTC;
 	
 	public static List<Element> elementsList;
 	

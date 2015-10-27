@@ -1,5 +1,8 @@
 package frogcraftrewrite.common.tile;
 
+import static frogcraftrewrite.common.lib.config.ConfigMain.airPumpPowerRate;
+import static frogcraftrewrite.common.lib.config.ConfigMain.airPumpGenerateSpeed;
+
 import frogcraftrewrite.api.tile.IAirPump;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,7 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
 	public double charge, maxCharge;
-	private int airAmount, maxAirAmount = 1000;
+	private int airAmount, maxAirAmount = 1000, tick;
 	
 	public void updateEntity() {
 		super.updateEntity();
@@ -17,24 +20,28 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 			this.airAmount = maxAirAmount;
 			return;
 		}
-		//speed should be configurable
+
+		++tick;
+		if (tick == 20) {
+			this.airAmount+=airPumpGenerateSpeed;
+			this.charge-=airPumpPowerRate;
+			tick = 0;
+			this.markDirty();
+		}
 	}
 	
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.charge = tag.getDouble("charge");
 		this.airAmount = tag.getInteger("air");
+		this.tick = tag.getInteger("tick");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		tag.setDouble("charge", this.charge);
 		tag.setInteger("air", this.airAmount);
-	}
-
-	@Override
-	public void setFacing(short facing) {
-		
+		tag.setInteger("tick", this.tick);
 	}
 
 	@Override
@@ -67,7 +74,7 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	}
 
 	@Override
-	public void extract(ForgeDirection from, int amount, boolean simluated) {
+	public void extractAir(ForgeDirection from, int amount, boolean simluated) {
 		if (simluated) return;
 		this.airAmount -= amount;
 		if (airAmount < 0) this.airAmount = 0;

@@ -11,7 +11,6 @@ import java.util.Arrays;
  * Aim to improve recipe system of FrogCraft, preparing for MineTweaker support.
  * @author 3TUSK
  */
-@FrogRecipe(machine = "Advanced Chemical Reactor")
 public class AdvChemReactorRecipe{
 	
 	/**The input and output.*/

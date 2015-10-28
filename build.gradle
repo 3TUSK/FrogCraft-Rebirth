@@ -45,6 +45,9 @@ version = "0.1"
 group= "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
 minecraft {
     version = "1.7.10-10.13.4.1492-1.7.10"
     runDir = "eclipse"

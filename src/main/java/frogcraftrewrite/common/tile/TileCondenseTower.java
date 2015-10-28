@@ -20,7 +20,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	private boolean isCompleted = false, craftingFinished = false;
 	private int tick;
 	
-	protected TileCondenseTower() {
+	public TileCondenseTower() {
 		super(2, "TileCondenseTower", 2, 10000);
 		//0 for input; 1 for output
 	}
@@ -28,10 +28,10 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	private boolean checkStructure() {
 		for (int i=1;i<7;i++) {
 			if (i == 1 || i == 2) {
-				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 2))
+				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 1))
 					return false;
 			} else {
-				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 3))
+				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 2))
 					return false;
 			}
 		}
@@ -53,7 +53,12 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			}
 		}
 		
-		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		CondenseTowerRecipe recipe;
+		try {
+			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		} catch (Exception e) {
+			recipe = null;//I give up. Leave a try-catch block here and wait for repairing of recipe manager
+		}
 		
 		if (recipe != null && !craftingFinished) {
 			if (tick == 0) {
@@ -69,7 +74,8 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			java.util.Set<FluidStack> outputs = recipe.getOutput();
 			for (int i=3;i<=6;i++) {
 				for (FluidStack fluid : outputs) {
-					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid()));//TODO
+					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid()))
+						((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).drain(ForgeDirection.UNKNOWN, fluid, true);
 				}
 			}
 		} else

@@ -5,6 +5,7 @@ import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.block.BlockHybridEStorage;
 import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.common.block.BlockACWindmill;
+import frogcraftrewrite.common.block.BlockCondenseTower;
 import frogcraftrewrite.common.block.BlockFrogOre;
 import frogcraftrewrite.common.item.ItemACWindmillFan;
 import frogcraftrewrite.common.item.ItemAmmoniaCoolant;
@@ -15,11 +16,23 @@ import frogcraftrewrite.common.item.ItemIngot;
 import frogcraftrewrite.common.item.ItemJinkela;
 import frogcraftrewrite.common.item.ItemRailgun;
 import frogcraftrewrite.common.item.itemblock.ItemBlockACWindmill;
+import frogcraftrewrite.common.item.itemblock.ItemBlockCondenseTower;
 import frogcraftrewrite.common.item.itemblock.ItemBlockOre;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.tile.TileACWindmillBase;
 import frogcraftrewrite.common.tile.TileACWindmillTurbine;
+import frogcraftrewrite.common.tile.TileAdvChemReactor;
+import frogcraftrewrite.common.tile.TileAirPump;
+import frogcraftrewrite.common.tile.TileCombustionFurnace;
+import frogcraftrewrite.common.tile.TileCondenseTower;
+import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileHSU;
+import frogcraftrewrite.common.tile.TileInductionalCompressor;
+import frogcraftrewrite.common.tile.TileInductionalEFurnace;
+import frogcraftrewrite.common.tile.TileInductionalExtractor;
+import frogcraftrewrite.common.tile.TileInductionalMacerator;
+import frogcraftrewrite.common.tile.TileMobilePowerStation;
+import frogcraftrewrite.common.tile.TileThermalCracker;
 import frogcraftrewrite.common.tile.TileUHSU;
 import frogcraftrewrite.common.item.ItemDust;
 import net.minecraft.item.ItemStack;
@@ -48,11 +61,13 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage("HSU");
 		FrogBlocks.hybridStorageUnitUltra = new BlockHybridEStorage("UHSU");
+		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		
 		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemBlockOre.class, "naturalgasHydrate");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemBlockACWindmill.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, "frogHSU");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnitUltra, "frogUHSU");
+		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemBlockCondenseTower.class, "condenseTower");
 	}
 
 	static void initItems() {
@@ -106,9 +121,20 @@ public class RegFrogItemsBlocks {
 	}
 	
 	static void initTileEntity() {
+		GameRegistry.registerTileEntity(TileInductionalEFurnace.class, "tileInductionalElectricalFurnace");
+		GameRegistry.registerTileEntity(TileInductionalMacerator.class, "tileInductionalMacerator");
+		GameRegistry.registerTileEntity(TileInductionalExtractor.class, "tileInductionalExtractor");
+		GameRegistry.registerTileEntity(TileInductionalCompressor.class, "tileInductionalCompressor");
 		GameRegistry.registerTileEntity(TileACWindmillBase.class, "tileFrogAcademyWindmill");
 		GameRegistry.registerTileEntity(TileACWindmillTurbine.class, "tileFrogAcademyTurbine");
+		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileUHSU.class, "tileUltraHybridStorageUnit");
+		GameRegistry.registerTileEntity(TileAirPump.class, "tileAirPump");
+		GameRegistry.registerTileEntity(TileCondenseTower.class, "tileCondenseTowerCore");
+		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "tileCondenseTowerFluidOutput");
+		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "tileCombustionFurnace");
+		GameRegistry.registerTileEntity(TileThermalCracker.class, "tileThermalCracker");
+		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "tileAdvancedChemicalReactor");
 	}
 }

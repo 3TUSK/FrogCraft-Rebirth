@@ -26,7 +26,7 @@ public class GuiFluidOutputHatch extends GuiContainer {
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 		//TODO
-		GuiUtil.renderFluidTank(0, 0, 0, 0, tile.getFluid().getFluid(), 100*tile.getFluidAmount()/tile.getCapacity());
+		GuiUtil.renderFluidTank(0, 0, 0, 0, tile.getTankInfo()[0].fluid.getFluid(), 100*(tile.getTankInfo()[0].fluid.amount)/(tile.getTankInfo()[0].capacity));
 	}
 	
 	private static final ResourceLocation TEXTURE_FLUID_OUTPUT = new ResourceLocation("frogcraftrewrite:gui/Gui_LiquidOutput");

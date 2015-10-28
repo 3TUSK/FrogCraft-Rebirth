@@ -6,9 +6,9 @@ item.ItemRailgun.info=PiliPili~~~
 item.ItemRailgun.tooTired=No enough power QAQ
 tile.BlockMobilePS.name=Mobile Power Supply
 tile.BlockMobilePS.info=The best camping gear
-item.CoolantAmmonia60K.name=60K ammonia coolant cell
-item.CoolantAmmonia180K.name=180K ammonia coolant cell
-item.CoolantAmmonia360K.name=360K ammonia coolant cell
+item.CoolantAmmonia60K=60K ammonia coolant cell
+item.CoolantAmmonia180K=180K ammonia coolant cell
+item.CoolantAmmonia360K=360K ammonia coolant cell
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
 item.ACWindMill_Rotor.name=Academic City Windmill Rotor
 item.UBattery.name=Uranium Decay Battery
@@ -132,16 +132,15 @@ tile.Machines.HSU.name=Hybrid Storage Unit
 tile.Machines.UHSU.name=Ultimate Hybrid Storage Unit
 tile.Machines.EVT.name=EV Transformer
 tile.Machines.Liquifier.name=Liquefier
-tile.Machines.LiquidInjector.name=Condense Tower
 tile.Machines.ThermalCracker.name=Thermal Cracker
 tile.Machines.AdvanceChemicalReactor.name=Advanced Chemical Reactor
-
-tile.Machines2.LiquidOutput.name=Liquid Outlet
-tile.Machines2.CondenseTowerCylinder.name=Condense Tower Wall
-tile.Machines2.ACWindMillTurbine.name=Academic City Windmill Generator
-tile.Machines2.ACWindMillBase.name=Academic City Windmill Base
-tile.Machines2.AutoWorkBench.name=Auto WorkBench
-tile.Machines2.CombustionFurnace.name=Combustion Furnace
+tile.Machines.CondenseTower.Core.name=Condense Tower
+tile.Machines.CondenseTower.FluidOutput.name=Liquid Outlet
+tile.Machines.CondenseTower.Cylinder.name=Condense Tower Wall
+tile.Machines.ACWindMillTurbine.name=Academic City Windmill Generator
+tile.Machines.ACWindMillBase.name=Academic City Windmill Base
+tile.Machines.AutoWorkBench.name=Auto WorkBench
+tile.Machines.CombustionFurnace.name=Combustion Furnace
 
 tile.ACWindMill_Cylinder.name=Academic City Windmill Wall
 

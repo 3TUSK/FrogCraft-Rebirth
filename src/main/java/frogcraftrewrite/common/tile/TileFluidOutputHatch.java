@@ -49,8 +49,10 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 
 	@Override
 	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
-		// TODO Auto-generated method stub
-		return null;
+		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
+			return null;
+		}
+		return this.tank.drain(resource.amount, doDrain);
 	}
 
 	@Override
@@ -71,6 +73,10 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
+	}
+	
+	public FluidTankInfo[] getTankInfo() {
+		return this.getTankInfo(ForgeDirection.UNKNOWN);
 	}
 
 }

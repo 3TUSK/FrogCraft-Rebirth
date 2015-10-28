@@ -5,9 +5,9 @@ item.ItemRailgun.name=Only my railgun!!!
 item.ItemRailgun.info=PiliPili~~~
 item.ItemRailgun.tooTired=Nicht genug Energie QAQ
 tile.BlockMobilePS.name=Mobile Energieversorgung
-item.CoolantAmmonia60K.name=60K Ammoniak-Kühlzelle
-item.CoolantAmmonia180K.name=180K Ammoniak-Kühlzelle
-item.CoolantAmmonia360K.name=360K Ammoniak-Kühlzelle
+item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
+item.CoolantAmmonia180K=180K Ammoniak-Kühlzelle
+item.CoolantAmmonia360K=360K Ammoniak-Kühlzelle
 #Note: This one is English, please delete note after translated
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
 item.ACWindMill_Rotor.name=Academic City Windmühlrotor
@@ -144,16 +144,15 @@ tile.Machines.HSU.name=Hybrid-Speichereinheit
 tile.Machines.UHSU.name=Ultimative Hybrid-Speichereinheit
 tile.Machines.EVT.name=ES-Transformator
 tile.Machines.Liquifier.name=Verflüssiger
-tile.Machines.LiquidInjector.name=Kondensationsturm
 tile.Machines.ThermalCracker.name=Thermaler Cracker
 tile.Machines.AdvanceChemicalReactor.name=Fortgeschrittener Chemischer Reaktor
-
-tile.Machines2.LiquidOutput.name=Flüssigkeitsabfluss
-tile.Machines2.CondenseTowerCylinder.name=Kondensationsturmwand
-tile.Machines2.ACWindMillTurbine.name=Academic City Windmühlgenerator
-tile.Machines2.ACWindMillBase.name=Academic City Windmühlbasis
-tile.Machines2.AutoWorkBench.name=Auto-Werkbank
-tile.Machines2.CombustionFurnace.name=Verbrennungsofen
+tile.Machines.CondenseTower.Core.name=Kondensationsturm
+tile.Machines.CondenseTower.FluidOutput.name=Flüssigkeitsabfluss
+tile.Machines.CondenseTower.Cylinder.name=Kondensationsturmwand
+tile.Machines.ACWindMillTurbine.name=Academic City Windmühlgenerator
+tile.Machines.ACWindMillBase.name=Academic City Windmühlbasis
+tile.Machines.AutoWorkBench.name=Auto-Werkbank
+tile.Machines.CombustionFurnace.name=Verbrennungsofen
 
 tile.fcOre.oreCarnallite.name=Carnallit
 tile.fcOre.oreFluorapatite.name=Fluorapatit

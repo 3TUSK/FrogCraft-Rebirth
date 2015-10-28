@@ -5,7 +5,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
 /**
- * Create a instance of this class will provide a efficient way to manage fluid?
+ * Create a instance of this class will provide a efficient way to manage fluid.
  * @author 3TUSK
  */
 public class FrogFluidTank implements IFluidTank {
@@ -45,15 +45,38 @@ public class FrogFluidTank implements IFluidTank {
 		return new FluidTankInfo(this);
 	}
 
-	//Todo: major logic
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
+		if (!doFill) return 0;
+		
+		if (this.fluidInv == null) {
+			this.fluidInv = resource;
+			return this.fluidInv.amount;
+		}
+		
+		if (this.fluidInv.getFluid() == resource.getFluid()) {
+			int newAmount = this.fluidInv.amount + resource.amount;
+			newAmount = newAmount > capacity ? capacity : newAmount;
+			return newAmount > capacity ? resource.amount : capacity - this.fluidInv.amount;
+		}
+		
 		return 0;
 	}
 
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {
-		return null;
+		if (!doDrain) return null;
+		
+		if (this.fluidInv == null) return null;
+		
+		if (maxDrain > capacity || this.fluidInv.amount <= maxDrain) {
+			this.fluidInv = null;
+			return this.fluidInv;
+		} else {
+			int isDraining = this.fluidInv.amount - maxDrain;
+			this.fluidInv.amount -= isDraining;
+			return new FluidStack(this.fluidInv.getFluid(), isDraining);
+		}
 	}
 
 }

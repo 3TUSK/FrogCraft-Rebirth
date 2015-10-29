@@ -18,6 +18,7 @@ public class TileACWindmillTurbine extends TileFrog {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
 		this.isRaining = this.worldObj.isRaining();
 		
 		this.isHighEnough = this.yCoord > 78;

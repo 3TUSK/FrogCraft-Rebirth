@@ -7,10 +7,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
+import frogcraftrewrite.common.tile.TileFrog;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -60,6 +62,18 @@ public class BlockCondenseTower extends BlockContainer {
 	@Override
 	public IIcon getIcon(int blockSide, int blockMeta) {
 		return iconArray[blockMeta][blockSide];
+	}
+	
+	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {
+		if (world.isRemote)
+			return false;
+		else {
+			if (world.getTileEntity(x, y, z) instanceof TileFrog) {
+				player.openGui(FrogCraftRebirth.instance, 2, world, x, y, z);
+				return true;
+			}
+		}
+		return false;
 	}
 	
 	@SuppressWarnings("unchecked")

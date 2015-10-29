@@ -44,6 +44,8 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
+		
 		if (!isCompleted) {
 			if (!checkStructure())
 				return;
@@ -53,12 +55,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			}
 		}
 		
-		CondenseTowerRecipe recipe;
-		try {
-			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
-		} catch (Exception e) {
-			recipe = null;//I give up. Leave a try-catch block here and wait for repairing of recipe manager
-		}
+		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid().copy());
 		
 		if (recipe != null && !craftingFinished) {
 			if (tick == 0) {

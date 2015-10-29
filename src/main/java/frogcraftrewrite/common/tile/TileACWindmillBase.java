@@ -16,6 +16,7 @@ public class TileACWindmillBase extends TileFrogGenerator {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
 		
 		TileEntity turbine = worldObj.getTileEntity(xCoord, yCoord+7, zCoord);
 		if (turbine instanceof TileACWindmillTurbine) {

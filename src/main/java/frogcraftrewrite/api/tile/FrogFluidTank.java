@@ -15,6 +15,7 @@ public class FrogFluidTank implements IFluidTank {
 	
 	public FrogFluidTank (int capacity) {
 		this.capacity = capacity;
+		this.fluidInv = null;
 	}
 	
 	public void readFromNBT(NBTTagCompound tag) {

@@ -23,6 +23,8 @@ import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;
 //import frogcraftrewrite.api.trichemcompat.ElementLoader;
 import frogcraftrewrite.client.gui.GuiAdvChemReactor;
 import frogcraftrewrite.client.gui.GuiAirPump;
+import frogcraftrewrite.client.gui.GuiCondenseTower;
+import frogcraftrewrite.client.gui.GuiFluidOutputHatch;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
@@ -98,6 +100,10 @@ public class CommonProxy implements IGuiHandler{
 			case 2: {
 				if (aTile instanceof TileAirPump)
 					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
+				if (aTile instanceof TileCondenseTower)
+					return new GuiCondenseTower(player.inventory, (TileCondenseTower)aTile);
+				if (aTile instanceof TileFluidOutputHatch)
+					return new GuiFluidOutputHatch(player.inventory, (TileFluidOutputHatch)aTile);
 			}
 			case 3: {
 				

@@ -58,7 +58,6 @@ public class BlockHybridEStorage extends BlockContainer {
 				if (player.isSneaking()) {
 					player.addChatComponentMessage(new net.minecraft.util.ChatComponentText(((TileFrogEStorage)tile).storedE+";"+((TileFrogEStorage)tile).maxE));
 				} else if (tile instanceof TileFrogEStorage) {
-					//What is modGuiId?
 					player.openGui(FrogCraftRebirth.instance, 1, world, x, y, z);
 				}
 				return true;

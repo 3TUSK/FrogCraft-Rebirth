@@ -3,6 +3,7 @@ package frogcraftrewrite.client;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.client.render.RenderEntityRailgunCoin;
@@ -16,13 +17,19 @@ public class ClientProxy extends CommonProxy {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+		super.init(event);
 		RenderingRegistry.registerEntityRenderingHandler(EntityRailgunCoin.class, new RenderEntityRailgunCoin());
 
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
 		FrogCraftRebirth.frogLogger.info("Client side initialization finished");
 	}
-
+	
+	@Override
+	public void postInit(FMLPostInitializationEvent event) {
+		super.postInit(event);
+	}
+ 
 	@SubscribeEvent
 	public void onTextureStiching(TextureStitchEvent.Pre event) {
 		if (event.map.getTextureType() == 0) {

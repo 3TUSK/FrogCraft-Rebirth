@@ -3,11 +3,17 @@ package frogcraftrewrite.api.recipes;
 import java.util.ArrayList;
 import java.util.Collection;
 
-public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe>{
+import net.minecraftforge.fluids.FluidStack;
+
+public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe> {
+	
+	public CondenseTowerRecipeManager() {
+		System.out.println("If you still fuking immediately crash then fucking go out");
+	}
 
 	@Override
 	public boolean equal(CondenseTowerRecipe recipe1, CondenseTowerRecipe recipe2) {
-		return (recipe1.getInput() == recipe2.getInput());
+		return (recipe1.getInput().equals(recipe2.getInput()));
 	}
 
 	@Override
@@ -25,8 +31,16 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 		return recipes;
 	}
 	
+	//This method will only read the first parameter.
+	@SuppressWarnings("hiding")
 	@Override
 	public <FluidStack> CondenseTowerRecipe getRecipe(@SuppressWarnings("unchecked")FluidStack... input) {
+		if (input[0] == null) 
+			return null;
+		for (CondenseTowerRecipe recipe : recipes) {
+			if (recipe.getInput().isFluidStackIdentical((net.minecraftforge.fluids.FluidStack) input[0]))
+				return recipe;
+		}
 		return null;
 	}
 	

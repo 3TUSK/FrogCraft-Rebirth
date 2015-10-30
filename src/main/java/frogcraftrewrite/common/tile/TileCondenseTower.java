@@ -55,7 +55,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			}
 		}
 		
-		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid().copy());
+		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
 		
 		if (recipe != null && !craftingFinished) {
 			if (tick == 0) {

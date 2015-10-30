@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.lib;
 
-public class FrogReference {
+public class FrogRef {
 	
 	//General stuff.
 		public static final String MODID = "FrogCraftRebirth";

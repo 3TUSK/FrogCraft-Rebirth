@@ -2,12 +2,14 @@ package frogcraftrewrite.api.recipes;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import net.minecraftforge.fluids.FluidStack;
 
 public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe> {
 	
 	public CondenseTowerRecipeManager() {
+		recipes = new ArrayList<CondenseTowerRecipe>();
 		System.out.println("If you still fuking immediately crash then fucking go out");
 	}
 
@@ -44,6 +46,10 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 		return null;
 	}
 	
-	private static ArrayList<CondenseTowerRecipe> recipes = new ArrayList<CondenseTowerRecipe>();
+	private static List<CondenseTowerRecipe> recipes;
 
+	@Override
+	public String toString() {
+		return "CondenseTowerRecipeManager@"+recipes.toString();
+	}
 }

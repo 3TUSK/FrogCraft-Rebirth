@@ -19,14 +19,14 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.lib.config.ConfigMain;
-import frogcraftrewrite.common.lib.FrogReference;
+import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = FrogReference.MODID, name = FrogReference.NAME, dependencies = FrogReference.DEPENDING, useMetadata = true)
+@Mod(modid = FrogRef.MODID, name = FrogRef.NAME, dependencies = FrogRef.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 	
 	@Instance("FrogCraftRebirth")
@@ -68,7 +68,8 @@ public class FrogCraftRebirth {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		frogLogger.debug("F*** loading");
+		//frogLogger.debug("F*** loading");
+		System.out.println("wtf?");
 		MinecraftForge.EVENT_BUS.register(new ExplosionEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		

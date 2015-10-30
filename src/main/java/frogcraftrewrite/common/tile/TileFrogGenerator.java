@@ -23,7 +23,7 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	
 	@Override
 	public void invalidate() {
-		if (isInENet) {
+		if (!worldObj.isRemote && isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
@@ -32,7 +32,7 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	@Override
 	public void updateEntity() {
 		super.updateEntity();	
-		if (!isInENet) {
+		if (!worldObj.isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}

@@ -10,7 +10,7 @@ import frogcraftrewrite.api.recipes.IRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
-import frogcraftrewrite.common.lib.FrogReference;
+import frogcraftrewrite.common.lib.FrogRef;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -35,7 +35,7 @@ public class FrogAPI {
 	 * */
 	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
-	public static final String MODID = FrogReference.MODID, NAME = FrogReference.NAME;
+	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
 	
 	public static IRecipeManager<AdvChemReactorRecipe> managerACR;
 	public static IRecipeManager<CombustionFurnaceRecipe> managerCFG;

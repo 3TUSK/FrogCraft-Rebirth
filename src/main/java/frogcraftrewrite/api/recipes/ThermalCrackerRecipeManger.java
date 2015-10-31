@@ -13,13 +13,19 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 	}
 
 	@Override
-	public boolean add(ThermalCrackerRecipe recipe) {
-		return recipes.add(recipe);
+	public void add(ThermalCrackerRecipe recipe) {
+		recipes.add(recipe);
 	}
 
 	@Override
-	public boolean remove(ThermalCrackerRecipe recipe) {
-		return recipes.remove(recipe);
+	public void remove(ThermalCrackerRecipe recipe) {
+		java.util.Iterator<ThermalCrackerRecipe> iter = recipes.iterator();
+		while (iter.hasNext()) {
+			if (iter.next().equals(recipe)) {
+				iter.remove();
+				return;
+			}
+		}
 	}
 	
 	@Override

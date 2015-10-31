@@ -14,12 +14,11 @@ public class CondenseTowerRecipe{
 	
 	/**Constructor method. Theoretically speaking, the length of output parameter is NOT larger that 4.*/
 	public CondenseTowerRecipe(int time, FluidStack input, FluidStack[] output){
-		this.input = input;
-		this.output.addAll(Arrays.asList(output));
-		this.time = time;
+		this(time, input, Arrays.asList(output));
 	}
 	
 	public CondenseTowerRecipe(int time, FluidStack input, Collection<FluidStack> output){
+		this.output = new java.util.HashSet<FluidStack>();
 		this.input = input;
 		this.output.addAll(output);
 		this.time = time;

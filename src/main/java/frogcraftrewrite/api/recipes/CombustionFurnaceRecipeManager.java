@@ -13,13 +13,13 @@ public class CombustionFurnaceRecipeManager implements IRecipeManager<Combustion
 	}
 
 	@Override
-	public boolean add(CombustionFurnaceRecipe recipe) {
-		return recipes.add(recipe);
+	public void add(CombustionFurnaceRecipe recipe) {
+		recipes.add(recipe);
 	}
 
 	@Override
-	public boolean remove(CombustionFurnaceRecipe recipe) {
-		return recipes.remove(recipe);
+	public void remove(CombustionFurnaceRecipe recipe) {
+		recipes.remove(recipe);
 	}
 	
 	@Override

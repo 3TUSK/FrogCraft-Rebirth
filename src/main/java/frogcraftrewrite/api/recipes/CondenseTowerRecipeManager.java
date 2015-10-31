@@ -10,7 +10,6 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 	
 	public CondenseTowerRecipeManager() {
 		recipes = new ArrayList<CondenseTowerRecipe>();
-		System.out.println("If you still fuking immediately crash then fucking go out");
 	}
 
 	@Override
@@ -19,13 +18,13 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 	}
 
 	@Override
-	public boolean add(CondenseTowerRecipe recipe) {
-		return recipes.add(recipe);
+	public void add(CondenseTowerRecipe recipe) {
+		recipes.add(recipe);
 	}
 
 	@Override
-	public boolean remove(CondenseTowerRecipe recipe) {
-		return recipes.remove(recipe);
+	public void remove(CondenseTowerRecipe recipe) {
+		recipes.remove(recipe);
 	}
 	
 	@Override
@@ -48,8 +47,4 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 	
 	private static List<CondenseTowerRecipe> recipes;
 
-	@Override
-	public String toString() {
-		return "CondenseTowerRecipeManager@"+recipes.toString();
-	}
 }

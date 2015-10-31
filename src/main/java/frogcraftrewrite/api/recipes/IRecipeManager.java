@@ -7,9 +7,9 @@ public interface IRecipeManager<R> {
 	
 	public boolean equal(R recipe1, R recipe2);
 	
-	public boolean add(R recipe);
+	public void add(R recipe);
 	
-	public boolean remove(R recipe);
+	public void remove(R recipe);
 	
 	public Collection<R> getRecipes();
 	

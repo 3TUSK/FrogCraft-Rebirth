@@ -53,7 +53,6 @@ public class FrogCraftRebirth {
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
-		//instance = this;
 		
 		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);
 		if (!configDir.exists()) configDir.mkdirs();
@@ -68,8 +67,6 @@ public class FrogCraftRebirth {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		//frogLogger.debug("F*** loading");
-		System.out.println("wtf?");
 		MinecraftForge.EVENT_BUS.register(new ExplosionEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		

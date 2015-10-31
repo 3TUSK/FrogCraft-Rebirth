@@ -71,14 +71,14 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			java.util.Set<FluidStack> outputs = recipe.getOutput();
 			for (int i=3;i<=6;i++) {
 				for (FluidStack fluid : outputs) {
-					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid()))
+					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid())) {
 						((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).drain(ForgeDirection.UNKNOWN, fluid, true);
+						this.markDirty();
+					}
 				}
 			}
 		} else
 			return;
-		
-		this.markDirty();
 	}
 
 	public void readFromNBT(NBTTagCompound tag) {

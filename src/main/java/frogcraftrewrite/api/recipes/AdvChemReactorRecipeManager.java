@@ -18,13 +18,13 @@ public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReacto
 	}
 
 	@Override
-	public boolean add(AdvChemReactorRecipe recipe) {
-		return recipes.add(recipe);
+	public void add(AdvChemReactorRecipe recipe) {
+		recipes.add(recipe);
 	}
 
 	@Override
-	public boolean remove(AdvChemReactorRecipe recipe) {
-		return recipes.remove(recipe);
+	public void remove(AdvChemReactorRecipe recipe) {
+		recipes.remove(recipe);
 	}
 	
 	@Override

@@ -1,6 +1,7 @@
 package frogcraftrewrite.api;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
@@ -11,18 +12,16 @@ import cpw.mods.fml.common.IFuelHandler;
 public final class FrogFuelHandler implements IFuelHandler{
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
-	
-	//Unconstructable
+
 	private FrogFuelHandler() {}
 	
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		try {
-			return fuelMap.get(fuel);
-		} catch (Exception e) {
-			//Should be a NullPointerException, but here it's in case of unknown error
-			return 0;
+		for (ItemStack stack : fuelMap.keySet()) {
+			if (stack.isItemEqual(fuel))
+				return fuelMap.get(stack);
 		}
+		return 0;
 	}
 	
 	public void reg(@Nonnull Item fuel, int timeInTicks) {
@@ -33,5 +32,5 @@ public final class FrogFuelHandler implements IFuelHandler{
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
 
-	private HashMap<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
+	private Map<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
 }

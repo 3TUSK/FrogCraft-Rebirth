@@ -39,7 +39,7 @@ public class GuiHybridEStorage extends GuiContainer {
         int l = (this.height - this.ySize) / 2;
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);   
         //Draw electricity bar
-        int e = (int)(40*(tile.getStored()/tile.getCapacity()));
+        int e = (int)(40*(this.tile.getStored()/this.tile.getCapacity()));
         this.drawTexturedModalRect(k+145, l+63-e, 176, 0, 12, e);
         this.drawTexturedModalRect(k+145, l+59-e, 176, 42, 12, 4);
 	}

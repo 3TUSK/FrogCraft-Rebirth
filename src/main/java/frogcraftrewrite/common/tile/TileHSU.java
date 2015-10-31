@@ -1,5 +1,7 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.network.NetworkHandler;
+import frogcraftrewrite.common.network.PacketTileUpdate;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -46,6 +48,8 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.loaded = true;
 		}
+		
+		NetworkHandler.sendToAll(new PacketTileUpdate(this));
 		
 		this.markDirty();
 	}

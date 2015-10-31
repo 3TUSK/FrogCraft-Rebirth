@@ -3,9 +3,15 @@ package frogcraftrewrite.common.tile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import frogcraftrewrite.common.network.IFrogNetworkTile;
 import ic2.api.tile.IWrenchable;
 
-public abstract class TileFrog extends TileEntity implements IWrenchable{
+public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogNetworkTile {
 
 	protected short facing = 5, prevFacing;
 	
@@ -46,6 +52,16 @@ public abstract class TileFrog extends TileEntity implements IWrenchable{
 	@Override
 	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
 		return new ItemStack(this.getBlockType(), 1, this.blockMetadata);
+	}
+
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		output.writeShort(this.facing);
+	}
+
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		this.facing = input.readShort();
 	}
 
 }

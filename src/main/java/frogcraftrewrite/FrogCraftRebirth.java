@@ -19,6 +19,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.lib.config.ConfigMain;
+import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
 import net.minecraft.creativetab.CreativeTabs;
@@ -26,7 +27,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = FrogRef.MODID, name = FrogRef.NAME, dependencies = FrogRef.DEPENDING, useMetadata = true)
+@Mod(modid = FrogRef.MODID, name = FrogRef.NAME, version = "0.0.1 Alpha", dependencies = FrogRef.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 	
 	@Instance("FrogCraftRebirth")
@@ -61,6 +62,8 @@ public class FrogCraftRebirth {
 		if (!reactionDir.exists()) reactionDir.mkdirs(); //Prepare for extract xml configuration from jar
 		
 		GameRegistry.registerFuelHandler(FUEL_REG);
+		
+		NetworkHandler.init();
 		
 		proxy.preInit(event);
 	}

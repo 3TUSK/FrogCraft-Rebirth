@@ -18,11 +18,11 @@ public class FrogFluidTank implements IFluidTank {
 	}
 	
 	public void readFromNBT(NBTTagCompound tag) {
-		fluidInv.writeToNBT(tag);
+		this.fluidInv = FluidStack.loadFluidStackFromNBT(tag);
 	}
 	
-	public void writeToNBT(NBTTagCompound tag) {
-		FluidStack.loadFluidStackFromNBT(tag);
+	public void writeToNBT(NBTTagCompound tag) {	
+		fluidInv.writeToNBT(tag);
 	}
 	
 	@Override

@@ -11,6 +11,7 @@ import cpw.mods.fml.common.network.FMLEventChannel;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
 import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.lib.FrogRef;
@@ -19,6 +20,7 @@ import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
 
 public class NetworkHandler {
@@ -55,9 +57,9 @@ public class NetworkHandler {
 		try {
 			int identity = data.readInt();
 			switch(identity) {
-			case 0: {
+				case 0: {
 				new PacketTileUpdate().readData(data);
-			}
+				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -71,17 +73,29 @@ public class NetworkHandler {
 		try {
 			packet.writeData(data);
 		} catch (IOException e) {
-			FrogCraftRebirth.frogLogger.error("Fail to send updating packet, please report to author!");
+			FrogCraftRebirth.frogLogger.error("Fail to generate packet, please report to author!");
 		}
 		return Unpooled.wrappedBuffer(byteArray.toByteArray());
 	}
 	
 	public static void sendToAll(IFrogPacket packet) {
-		FROG_NETWORK.frogChannel.sendToAll(new FMLProxyPacket(asByteBuf(packet), null));
+		FROG_NETWORK.frogChannel.sendToAll(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
 	}
 	
-	public static void sendToPlayer(IFrogPacket packet) {
-		
+	public static void sendToAllAround(IFrogPacket packet, int dim, double x, double y, double z, double range) {
+		FROG_NETWORK.frogChannel.sendToAllAround(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), new TargetPoint(dim, x, y, z, range));
+	}
+	
+	public static void sendToDimension(IFrogPacket packet, int dim) {
+		FROG_NETWORK.frogChannel.sendToDimension(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), dim);
+	}
+	
+	public static void sendToPlayer(IFrogPacket packet, EntityPlayerMP player) {
+		FROG_NETWORK.frogChannel.sendTo(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), player);
+	}
+	
+	public static void sendToServer(IFrogPacket packet) {
+		FROG_NETWORK.frogChannel.sendToServer(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
 	}
 	
 }

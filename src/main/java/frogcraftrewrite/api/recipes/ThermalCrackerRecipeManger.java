@@ -35,7 +35,12 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 	
 	@SuppressWarnings("hiding")
 	@Override
-	public <ItemStack> ThermalCrackerRecipe getRecipe(@SuppressWarnings("unchecked") ItemStack... input) {
+	public <ItemStack> ThermalCrackerRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
+		ItemStack input = (ItemStack)inputs[0];
+		for (ThermalCrackerRecipe r : recipes) {
+			if (r.getInput().isItemEqual((net.minecraft.item.ItemStack)input))
+				return r;
+		}
 		return null;
 	}
 	

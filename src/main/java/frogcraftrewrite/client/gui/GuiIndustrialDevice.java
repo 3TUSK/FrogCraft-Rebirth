@@ -25,10 +25,9 @@ public class GuiIndustrialDevice extends GuiContainer{
 	@Override
 	protected void drawGuiContainerForegroundLayer(int what, int whhat) {
 		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96, 4210752);
-		fontRendererObj.drawString("Industrial Device test", 4, 4, 4210752);
+		fontRendererObj.drawString("Inductional Device test", 4, 4, 4210752);
 	}
 
-	//By the way, why this method has three useless parameters?!
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
 		//Draw GUI start. Based on vanilla furnace code.

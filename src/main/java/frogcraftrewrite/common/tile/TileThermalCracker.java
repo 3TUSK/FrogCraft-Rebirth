@@ -1,15 +1,23 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileThermalCracker extends TileFrogMachine implements IFluidTank {
+public class TileThermalCracker extends TileFrogMachine implements IFluidHandler {
 	
 	private FrogFluidTank tank = new FrogFluidTank(16000);
 
+	int process, processMax;
+	boolean working;
+	
 	protected TileThermalCracker() {
 		super(4, "TileThermalCracker", 2, 10000);
 		//0 input 1 output 2 fluidContainer input 3 fluidContainer output
@@ -18,6 +26,41 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidTank {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (this.worldObj.isRemote) return;
+		ThermalCrackerRecipe recipe;
+		if (!working) {
+			recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
+			if (recipe != null) {
+				this.process = 0;
+				this.processMax = recipe.getTime();
+				this.working = true;
+			}
+		} else {
+			process++;
+			this.energy -= 256;
+			if (process == processMax) {
+				recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
+				if (this.getStackInSlot(1) == null)
+					this.setInventorySlotContents(1, recipe.getOutput());
+				else {
+					inv[1].stackSize += recipe.getInput().stackSize;
+				}
+				if (this.canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0].getFluid()))
+					this.fill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0], true);
+			}
+		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.tank.readFromNBT(tag);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		this.tank.writeToNBT(tag);
 	}
 	
 	@Override
@@ -41,35 +84,38 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidTank {
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
 		return side == 1 && slot == 0;
 	}
-
+	
 	@Override
-	public FluidStack getFluid() {
-		return this.tank.getFluid();
-	}
-
-	@Override
-	public int getFluidAmount() {
-		return this.tank.getFluidAmount();
-	}
-
-	@Override
-	public int getCapacity() {
-		return this.tank.getCapacity();
-	}
-
-	@Override
-	public FluidTankInfo getInfo() {
-		return this.tank.getInfo();
-	}
-
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
+			return null;
+		}
+		return this.tank.drain(resource.amount, doDrain);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
-	
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return true;
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return true;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] {this.tank.getInfo()};
+	}
+
 }

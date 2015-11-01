@@ -23,7 +23,7 @@ public final class ElementLoader implements ElementArrayParser {
 	@Override
 	public synchronized Element[] parseElements(InputStream input, boolean force) {
 		if (parsingFinished && force == false) {
-			parseLog.info("FrogCraft has finished elements parsing. Call will be denied.");
+			//parseLog.info("FrogCraft has finished elements parsing. Call will be denied.");
 			return null;
 		}	
 		try {
@@ -32,7 +32,7 @@ public final class ElementLoader implements ElementArrayParser {
 			DocumentBuilder construct = factory.newDocumentBuilder();		
 			Document xmlDoc = construct.parse(input);
 			xmlDoc.getDocumentElement().normalize();
-			parseLog.info("Found target file. Loading...");
+			//parseLog.info("Found target file. Loading...");
 			NodeList array = xmlDoc.getElementsByTagName("elementData");
 			for (int n=0;n<array.getLength();n++) {
 				Node elementEntry = array.item(n);
@@ -44,7 +44,7 @@ public final class ElementLoader implements ElementArrayParser {
 			parsingFinished = true;
 			return elements;
 		} catch (Exception e) {
-			parseLog.error("An error has occured and loading cannot continue.");
+			//parseLog.error("An error has occurred and loading cannot continue.");
 			e.printStackTrace();
 			return null;
 		}

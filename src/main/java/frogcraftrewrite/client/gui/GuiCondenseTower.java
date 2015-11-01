@@ -27,5 +27,5 @@ public class GuiCondenseTower extends GuiContainer {
 	}
 
 	
-	private static final ResourceLocation texture_CondenseTower = new ResourceLocation("frogcraftrewrite:textures/gui/Gui_CondenseTower_Core");
+	private static final ResourceLocation texture_CondenseTower = new ResourceLocation("frogcraftrewrite:textures/gui/GUI_CondenseTower_Core.png");
 }

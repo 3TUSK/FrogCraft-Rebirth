@@ -14,6 +14,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
 import frogcraftrewrite.api.recipes.CombustionFurnaceRecipeManager;
@@ -44,6 +45,7 @@ import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
+import frogcraftrewrite.common.world.FrogWorldGenerator;
 
 public class CommonProxy implements IGuiHandler{
 
@@ -127,6 +129,8 @@ public class CommonProxy implements IGuiHandler{
 		RegFluid.init();
 		
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrewrite.FrogCraftRebirth.instance, 160, 5, true);
+	
+		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 	}
 
 	public void init(FMLInitializationEvent event) {

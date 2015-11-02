@@ -8,7 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class WorldGenNGH extends WorldGenerator{
+public class WorldGenNGH extends FrogWorldGenerator{
 
 	private Block block;
 	private int meta;

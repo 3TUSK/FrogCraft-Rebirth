@@ -6,7 +6,6 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,24 +14,24 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockFrogOre extends Block {
+public class BlockFrogOre extends BlockFrog {
 	
-	public static String[] nameArray = new String[] {"stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH", "oreRuby", "oreSapphire", "oreGreenSapphire"};
 	IIcon[] iconArray;
 
 	public BlockFrogOre() {
 		super(Material.rock);
+		setBlockName("mineral");
 		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(10.0F);
 		setResistance(15.0f);
-		super.setBlockName("mineral");
-		this.iconArray = new IIcon[nameArray.length];
+		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH", "oreRuby", "oreSapphire", "oreGreenSapphire");
+		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes")List list) {
-		for (int i=0;i<nameArray.length;i++) {
+		for (int i=0;i<this.nameArray.length;i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}
@@ -66,7 +65,7 @@ public class BlockFrogOre extends Block {
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
 		for (int i=0;i<iconArray.length;i++) {
-			iconArray[i] = r.registerIcon("frogcraftrewrite:ores/"+nameArray[i]);
+			iconArray[i] = r.registerIcon("frogcraftrewrite:ores/"+this.nameArray[i]);
 		}
 	}
 	

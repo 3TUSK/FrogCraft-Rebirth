@@ -51,7 +51,7 @@ item.Item_Cells.cell_SO3.info=SO3
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
-#If you are not sure about the translation, please keep as Jinkela as Chinese Pinyin
+#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.Railgun_Core=Superconductive rail
 item.Item_Miscs.Railgun_Core.info=Made of superconductor
 item.Item_Miscs.GoldClod=Goldclod

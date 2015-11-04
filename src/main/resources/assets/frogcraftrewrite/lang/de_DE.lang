@@ -5,10 +5,10 @@ item.ItemRailgun.name=Only my railgun!!!
 item.ItemRailgun.info=PiliPili~~~
 item.ItemRailgun.tooTired=Nicht genug Energie QAQ
 tile.BlockMobilePS.name=Mobile Energieversorgung
+tile.BlockMobilePS.info=The best camping gear
 item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
 item.CoolantAmmonia180K=180K Ammoniak-Kühlzelle
 item.CoolantAmmonia360K=360K Ammoniak-Kühlzelle
-#Note: This one is English, please delete note after translated
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
 item.ACWindMill_Rotor.name=Academic City Windmühlrotor
 item.UBattery.name=Uran-Zerfallsbatterie
@@ -16,6 +16,8 @@ item.ThBattery.name=Thorium-Zerfallsbatterie
 item.PuBattery.name=Plutonium-Zerfallsbatterie
 item.DecayBattery.info.0=A radioactive decay battery
 item.DecayBattery.info.1=Provide you with infinity electricity with high cost!
+item.Item_NitricAcidBucket.name=Nitric Acid Bucket
+item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
 
 #Cells
 item.Item_Cells.cell_Ammonia=Ammoniakzelle
@@ -42,10 +44,14 @@ item.Item_Cells.cell_Bromine=Bromzelle
 item.Item_Cells.cell_Bromine.info=Br2
 item.Item_Cells.cell_Fluorine=Fluorzelle
 item.Item_Cells.cell_Fluorine.info=F2
+item.Item_Cells.cell_SO2=Sulfur Dioxide Cell
+item.Item_Cells.cell_SO2.info=SO2
+item.Item_Cells.cell_SO3=Sulfur Trioxide Cell
+item.Item_Cells.cell_SO3.info=SO3
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
-#If you are not sure about the translation, please keep as Jinkela as Chinese Pinyin
+#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.Railgun_Core=Supraleitfähige Schiene
 item.Item_Miscs.Railgun_Core.info=Gemacht mit Supraleitern
 item.Item_Miscs.GoldClod=Goldclod
@@ -56,6 +62,8 @@ item.Item_Miscs.HeatingModule=Aufheiz-Komponente
 item.Item_Miscs.HeatingModule.info=Bietet einer endothermen Reaktion Wärme an
 item.Item_Miscs.AmmoniaModule=Ammoniak-Katalysator
 item.Item_Miscs.AmmoniaModule.info=Nötig für Ammoniak-Herstellung
+item.Item_Miscs.V2O5Module=Vanadium Pentoxide Catalyst
+item.Item_Miscs.V2O5Module.info=Necessary for SO3 manufactoring
 
 #Dusts
 item.Item_Dusts.CaO=Calciumoxidstaub
@@ -80,8 +88,16 @@ item.Item_Dusts.Fluorapatite=Fluorapatitstaub
 item.Item_Dusts.Fluorapatite.info=Ca5F(PO4)3
 item.Item_Dusts.CaF2=Calciumfluorid
 item.Item_Dusts.CaF2.info=CaF2
+item.Item_Dusts.V2O5=Vanadium Pentoxide Dust
+item.Item_Dusts.V2O5.info=V2O5
+item.Item_Dusts.Dewalquite=Dewalquite Dust
+item.Item_Dusts.Dewalquite.info=25Al2O3.TiO2.V2O5
+item.Item_Dusts.TiO2=Titanium Dioxide Dust
+item.Item_Dusts.TiO2.info=TiO2
+item.Item_Dusts.Al2O3=Aluminum Oxide Dust
+item.Item_Dusts.Al2O3.info=Al2O3
 
-#Ingots Note:some untranslated stuff. Delete notes after translated.
+#Ingots
 #To translators: for briquette, see the following links:
 #https://en.wikipedia.org/wiki/Briquette
 #https://en.wikipedia.org/wiki/Yeontan
@@ -105,34 +121,6 @@ item.Item_Ingots.gemDesc=YES these stuff are from RedPower actually
 item.Item_Ingots.ingotDesc=But it's not always real ingot
 item.Item_Ingots.nghDesc=It is believed as useful fuel...
 
-#Liquids
-item.Item_Liquids.LiquifiedAir=Verflüssigte Luft
-item.Item_Liquids.LiquifiedAir.info=Warnung:Superkalt!
-item.Item_Liquids.CoalTar=Steinkohlenteer
-item.Item_Liquids.CoalTar.info=Ölige und dunkle Flüssigkeit
-item.Item_Liquids.HNO3=Salpetersäure
-item.Item_Liquids.HNO3.info=Du solltest besser Handschuhe tragen
-item.Item_Liquids.Benzene=Benzol
-item.Item_Liquids.Benzene.info=Ein spezieller Geruch
-item.Item_Liquids.Bromine=Flüssiges Brom
-item.Item_Liquids.Bromine.info=Versuche niemals, es zu berühren
-
-#Gases
-item.Item_Gases.Oxygen=Sauerstoff
-item.Item_Gases.Oxygen.info=Du kannst es nicht verlassen
-item.Item_Gases.CO2=Kohlenstoffdioxid
-item.Item_Gases.CO2.info=Erstickung
-item.Item_Gases.Argon=Argon
-item.Item_Gases.Argon.info=Scheint nutzlos
-item.Item_Gases.Ammonia=Ammoniak
-item.Item_Gases.Ammonia.info=Riecht fantastisch
-item.Item_Gases.NO=Stickstoffmonoxid
-item.Item_Gases.NO.info=Farbloses Gas
-item.Item_Gases.CO=Kohlenstoffmonoxid
-item.Item_Gases.CO.info=Giftiger Treibstoff
-item.Item_Gases.Fluorine=Fluor
-item.Item_Gases.Fluorine.info=Reagiert mit Allem!
-
 #Blocks
 tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 tile.Machines.AirPump.name=Industrielle Pumpe
@@ -154,10 +142,16 @@ tile.Machines.ACWindMillBase.name=Academic City Windmühlbasis
 tile.Machines.AutoWorkBench.name=Auto-Werkbank
 tile.Machines.CombustionFurnace.name=Verbrennungsofen
 
+tile.ACWindMill_Cylinder.name=Academic City Windmühlwand
+
 tile.fcOre.oreCarnallite.name=Carnallit
 tile.fcOre.oreFluorapatite.name=Fluorapatit
-
-tile.ACWindMill_Cylinder.name=Academic City Windmühlwand
+tile.fcOre.oreDewalquite.name=Dewalquite Ore
+tile.fcOre.oreRuby.name=Ruby Ore
+tile.fcOre.oreSapphire.name=Sapphire Ore
+tile.fcOre.oreGreenSapphire.name=Green Sapphire Ore
+tile.fcOre.stoneMarble.name=Marble
+tile.fcOre.stoneBasalt.name=Basalt
 
 tile.nitricAcid.name=Nitric Acid
 
@@ -186,6 +180,8 @@ achievement.condensetower=Sie seperieren?
 achievement.condensetower.desc=Irgendwas scheint zu fehlen...
 achievement.condensetower2=Sie seperieren。
 achievement.condensetower2.desc=Du hast gelernt, wie man flüssige Gemische seperiert
+achievement.suicideExpert=Suicide Expert
+achievement.suicideExpert.desc=Potassium plus acid equals explosion!
 
 gui.hybridEStorage.current=Energy Level: 
 gui.hybridEStorage.max=Maximum energy level: 
@@ -193,6 +189,8 @@ gui.hybridEStorage.max=Maximum energy level:
 #NEI GUI texts
 nei.euTotal=Gesamte EU
 nei.euTick=EU pro Tick
+nei.euTotalGen=Total generated
+nei.euTickOut=Eu per tick
 nei.tick=Tick
 nei.tickWithCatalyst=Reaktion tickt unter Katalysator
 nei.catalystRequird=Diese Reaktion benötigt Katalysator
@@ -200,3 +198,36 @@ nei.outputLiquid=Stoße Flüssigkeit aus
 
 #Misc
 itemGroup.FrogCraft=FrogCraft
+
+############################
+# Unused translation
+# This part is for backup
+############################
+
+#Liquids
+item.Item_Liquids.LiquifiedAir=Verflüssigte Luft
+item.Item_Liquids.LiquifiedAir.info=Warnung:Superkalt!
+item.Item_Liquids.CoalTar=Steinkohlenteer
+item.Item_Liquids.CoalTar.info=Ölige und dunkle Flüssigkeit
+item.Item_Liquids.HNO3=Salpetersäure
+item.Item_Liquids.HNO3.info=Du solltest besser Handschuhe tragen
+item.Item_Liquids.Benzene=Benzol
+item.Item_Liquids.Benzene.info=Ein spezieller Geruch
+item.Item_Liquids.Bromine=Flüssiges Brom
+item.Item_Liquids.Bromine.info=Versuche niemals, es zu berühren
+
+#Gases
+item.Item_Gases.Oxygen=Sauerstoff
+item.Item_Gases.Oxygen.info=Du kannst es nicht verlassen
+item.Item_Gases.CO2=Kohlenstoffdioxid
+item.Item_Gases.CO2.info=Erstickung
+item.Item_Gases.Argon=Argon
+item.Item_Gases.Argon.info=Scheint nutzlos
+item.Item_Gases.Ammonia=Ammoniak
+item.Item_Gases.Ammonia.info=Riecht fantastisch
+item.Item_Gases.NO=Stickstoffmonoxid
+item.Item_Gases.NO.info=Farbloses Gas
+item.Item_Gases.CO=Kohlenstoffmonoxid
+item.Item_Gases.CO.info=Giftiger Treibstoff
+item.Item_Gases.Fluorine=Fluor
+item.Item_Gases.Fluorine.info=Reagiert mit Allem!

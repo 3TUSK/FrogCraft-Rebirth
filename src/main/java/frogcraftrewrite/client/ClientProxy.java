@@ -4,6 +4,7 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.client.render.RenderEntityRailgunCoin;
@@ -14,6 +15,11 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 
 public class ClientProxy extends CommonProxy {
+	
+	@Override
+	public void preInit(FMLPreInitializationEvent event) {
+		super.preInit(event);
+	}
 
 	@Override
 	public void init(FMLInitializationEvent event) {

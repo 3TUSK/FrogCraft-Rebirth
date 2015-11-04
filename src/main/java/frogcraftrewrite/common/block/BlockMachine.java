@@ -9,6 +9,7 @@ public class BlockMachine extends BlockContainer {
 
 	protected BlockMachine() {
 		super(Material.iron);
+		setBlockName("FrogCarftMachine");
 	}
 
 	@Override

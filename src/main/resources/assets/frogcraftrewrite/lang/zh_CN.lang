@@ -15,7 +15,7 @@ item.UBattery.name=铀衰变电池
 item.ThBattery.name=钍衰变电池
 item.PuBattery.name=钚衰变电池
 item.DecayBattery.info.0=只是一个衰变电池
-item.DecayBattery.info.1=超高造价，无限电力！
+item.DecayBattery.info.1=超高造价,无限电力！
 item.Item_NitricAcidBucket.name=硝酸桶
 item.Item_NitricAcidBucket.info=注意：超级腐蚀性液体！
 
@@ -53,7 +53,7 @@ item.Item_Dusts.V2O5.info=V2O5
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
-#If you are not sure about the translation, please keep as Jinkela as Chinese Pinyin
+#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.Railgun_Core=超电磁炮导轨
 item.Item_Miscs.Railgun_Core.info=采用超导体制成
 item.Item_Miscs.GoldClod=金坷垃

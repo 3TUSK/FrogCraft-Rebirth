@@ -1,11 +1,10 @@
 package frogcraftrewrite.common.block;
 
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockMachine extends BlockContainer {
+public class BlockMachine extends BlockFrog {
 
 	protected BlockMachine() {
 		super(Material.iron);
@@ -13,8 +12,7 @@ public class BlockMachine extends BlockContainer {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		// TODO Auto-generated method stub
+	public TileEntity createNewTileEntity(World world, int meta) {
 		return null;
 	}
 

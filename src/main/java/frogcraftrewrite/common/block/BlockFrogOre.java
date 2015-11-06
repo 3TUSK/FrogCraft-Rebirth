@@ -25,6 +25,7 @@ public class BlockFrogOre extends BlockFrog {
 		setHardness(10.0F);
 		setResistance(15.0f);
 		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH", "oreRuby", "oreSapphire", "oreGreenSapphire");
+		setTileProperty(false);
 		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	

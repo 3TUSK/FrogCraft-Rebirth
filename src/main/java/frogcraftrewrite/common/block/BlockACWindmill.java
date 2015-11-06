@@ -7,7 +7,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileACWindmillBase;
 import frogcraftrewrite.common.tile.TileACWindmillTurbine;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -21,7 +20,7 @@ import net.minecraft.world.World;
  * ACWindmill stands for "Academy Windmill", the major generator 
  * in the story settings of animation A Certain Scientific Railgun.
  * */
-public class BlockACWindmill extends BlockContainer {
+public class BlockACWindmill extends BlockFrog {
 	
 	@SideOnly(Side.CLIENT)
 	public IIcon[][] iconBuffer;

@@ -5,9 +5,9 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
-public class ItemBlockFrog extends ItemBlock {
+public class ItemFrogBlock extends ItemBlock {
 
-	public ItemBlockFrog(Block block) {
+	public ItemFrogBlock(Block block) {
 		super(block);
 		assert this.field_150939_a instanceof BlockFrog : new IllegalArgumentException("ItemBlockFrog can only be used internally for only FrogCraft!!!");
 		setHasSubtypes(true);

@@ -4,7 +4,7 @@ import net.minecraft.block.BlockFence;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.World;
 
-public class BlockACWindmillCylineder extends BlockFence{
+public class BlockACWindmillCylineder extends BlockFence {
 
 	public BlockACWindmillCylineder() {
 		super("iron_block", Material.iron);

@@ -35,11 +35,11 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.hybridStorageUnitUltra = new BlockHybridEStorage("UHSU");
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		
-		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemBlockFrog.class, "naturalgasHydrate");
-		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemBlockFrog.class, "academyWindmill");
+		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "naturalgasHydrate");
+		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, "frogHSU");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnitUltra, "frogUHSU");
-		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemBlockFrog.class, "condenseTower");
+		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
 	}
 
 	static void initItems() {

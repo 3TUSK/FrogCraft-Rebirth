@@ -9,14 +9,13 @@ import frogcraftrewrite.common.tile.TileInductionalCompressor;
 import frogcraftrewrite.common.tile.TileInductionalEFurnace;
 import frogcraftrewrite.common.tile.TileInductionalExtractor;
 import frogcraftrewrite.common.tile.TileInductionalMacerator;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockInductionMachine extends BlockContainer {
+public class BlockInductionMachine extends BlockFrog {
 
 	public BlockInductionMachine() {
 		super(Material.iron);

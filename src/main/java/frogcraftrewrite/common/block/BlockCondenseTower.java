@@ -8,7 +8,6 @@ import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileFrog;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,7 +19,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCondenseTower extends BlockContainer {
+public class BlockCondenseTower extends BlockFrog {
 	
 	IIcon[][] iconArray;
 	

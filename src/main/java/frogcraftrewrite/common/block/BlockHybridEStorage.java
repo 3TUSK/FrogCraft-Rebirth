@@ -6,7 +6,6 @@ import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileFrogEStorage;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
-import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,7 +14,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockHybridEStorage extends BlockContainer {
+public class BlockHybridEStorage extends BlockFrog {
 
 	protected String name;
 	IIcon[] icons;

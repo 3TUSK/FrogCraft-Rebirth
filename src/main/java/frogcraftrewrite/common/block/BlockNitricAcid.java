@@ -110,7 +110,6 @@ public class BlockNitricAcid extends BlockFluidClassic {
 		if (entity instanceof EntityItem) {
 			ItemStack stack = ((EntityItem)entity).getEntityItem();
 			if (stack.getItem() instanceof ItemIngot && stack.getItemDamage() == 0) {
-				//Check potassium.
 				world.createExplosion(entity, x, y, z, 15F, true);
 				//TODO: modify explosion scale
 			}

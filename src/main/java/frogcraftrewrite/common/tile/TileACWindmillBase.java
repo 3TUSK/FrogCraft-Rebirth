@@ -1,5 +1,7 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.network.NetworkHandler;
+import frogcraftrewrite.common.network.PacketTileUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -22,6 +24,9 @@ public class TileACWindmillBase extends TileFrogGenerator {
 		if (turbine instanceof TileACWindmillTurbine) {
 			this.canGenEnergy = ((TileACWindmillTurbine)turbine).canGenEnergy;
 		}
+		
+		NetworkHandler.sendToAll(new PacketTileUpdate(this));
+		
 		markDirty();
 	}
 	

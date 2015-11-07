@@ -47,6 +47,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 				}
 				if (this.canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0].getFluid()))
 					this.fill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0], true);
+				process = 0;
 			}
 		}
 	}

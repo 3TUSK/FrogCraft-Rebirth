@@ -1,6 +1,6 @@
 # FrogCraft: Rebirth
 Everything is about chemistry. Don't abuse it, or the environment will be destoryed.  
-Also, don't pay much attention on this project. *I will do it by myself, no metter how hard it is for me.*  
+Also, don't pay much attention on this project. *I will do it by myself, no matter how hard it is for me.*  
 #### Table of content:  
  1. Current progress
 
@@ -23,7 +23,7 @@ Also, don't pay much attention on this project. *I will do it by myself, no mett
     * Mobile power bank: (everything screwed up! the codes looks good but actually buggy)
 
 ### About _FrogCraft: Rebirth_
-FrogCraft is an add-on Mod (i.e. add-on, plugin, modification on Minecraft) about chemical industry, authored by Rikka. Rikka originally posted it [here][link_origin], then he stopped at 1.6.2; M3gaFra3k ported it to 1.6.4 and posted [here](link_164port).  
+FrogCraft is an add-on Mod (i.e. add-on, plugin, modification on Minecraft) for IndustrialCraft2, majorly about chemical industry, authored by Rikka. Rikka originally posted it [here][link_origin], then he stopped at 1.6.2; M3gaFra3k ported it to 1.6.4 and posted [here](link_164port).  
 Although the author said that he won't continue on FrogCraft, I still want to carry the torch, because I remember how much happiness it has brought to me, and also many players I probably don't know.  
 What you see right now is FrogCraft: Rebirth (under `1710port` branch), *not FrogCraft 2* (for more info please see below). However, some api code are prepared for the FrogCraft 2.  
 

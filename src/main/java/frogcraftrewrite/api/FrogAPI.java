@@ -4,7 +4,6 @@ import java.lang.reflect.Field;
 import java.util.List;
 
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
-import frogcraftrewrite.api.recipes.CombustionFurnaceRecipe;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.recipes.IRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
@@ -38,7 +37,6 @@ public class FrogAPI {
 	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
 	
 	public static IRecipeManager<AdvChemReactorRecipe> managerACR;
-	public static IRecipeManager<CombustionFurnaceRecipe> managerCFG;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<ThermalCrackerRecipe> managerTC;
 	

@@ -18,12 +18,11 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
+import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
+import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.lib.config.ConfigMain;
 import frogcraftrewrite.common.network.NetworkHandler;
-import frogcraftrewrite.common.lib.FrogRef;
-import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -78,9 +77,8 @@ public class FrogCraftRebirth {
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		FUEL_REG.reg(Items.nether_star, 2000);
-		
 		proxy.postInit(event);
+		frogLogger.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 	
 }

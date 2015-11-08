@@ -24,8 +24,8 @@ public class RegFrogItemsBlocks {
 	
 	public static void postInit() {
 		//Register crafting recipe!
-		FrogFuelHandler.FUEL_REG.reg(new ItemStack(FrogItems.itemIngot, 1, 6), 4800);
-		FrogFuelHandler.FUEL_REG.reg(new ItemStack(FrogItems.itemIngot, 1, 7), 400);
+		FrogFuelHandler.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 6), 4800);
+		FrogFuelHandler.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 7), 400);
 	}
 	
 	static void initBlocks() {

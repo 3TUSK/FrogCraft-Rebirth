@@ -17,10 +17,8 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
-import frogcraftrewrite.api.recipes.CombustionFurnaceRecipeManager;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;
-//import frogcraftrewrite.api.FrogAPI;
 //import frogcraftrewrite.api.trichemcompat.ElementLoader;
 import frogcraftrewrite.client.gui.GuiAdvChemReactor;
 import frogcraftrewrite.client.gui.GuiAirPump;
@@ -137,7 +135,6 @@ public class CommonProxy implements IGuiHandler{
 		RegFrogItemsBlocks.init();
 		
 		FrogAPI.managerACR = new AdvChemReactorRecipeManager();
-		FrogAPI.managerCFG = new CombustionFurnaceRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerTC = new ThermalCrackerRecipeManger();
 	}

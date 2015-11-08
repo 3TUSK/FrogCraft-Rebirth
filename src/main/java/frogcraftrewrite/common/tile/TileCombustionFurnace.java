@@ -1,7 +1,6 @@
 package frogcraftrewrite.common.tile;
 
-import frogcraftrewrite.api.FrogAPI;
-import frogcraftrewrite.api.recipes.CombustionFurnaceRecipe;
+import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -13,7 +12,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 	public boolean isWorking;
 	public int tankCapacity;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
-	private int heat;
+	private int time;
 	
 	public TileCombustionFurnace() {
 		super(4, "TileEntityCombustionFurnace", 1, 5000);
@@ -29,20 +28,20 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 			markDirty();
 			return;
 		}
-		//todo:kill combustion furnace recipe!!! There is no necessary to use it!!!
-		CombustionFurnaceRecipe recipe = FrogAPI.managerCFG.<ItemStack>getRecipe(inv[0]);
-		if (recipe != null) {
+		//Use vanilla furnace standard.
+		if (FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]) != 0) { 
 			this.isWorking = true;
 			this.inv[0].stackSize--;
-			this.heat = 100;
+			this.time = FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]);
 		} else
 			this.isWorking = false;
 		
 		if (this.isWorking) {
 			this.energy += 10;
-			this.heat--;
+			this.time--;
 		}
-		if (this.heat == 0);//todo
+		if (this.time == 0)
+			this.isWorking = false;
 	}
 	
 	@Override

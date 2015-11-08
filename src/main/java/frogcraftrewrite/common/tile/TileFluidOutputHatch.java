@@ -39,6 +39,7 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 				inv[1].stackSize += 1;
 				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
+			tick = 0;
 		}
 	}
 

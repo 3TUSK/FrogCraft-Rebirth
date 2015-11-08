@@ -1,5 +1,8 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.recipes.CombustionFurnaceRecipe;
+import frogcraftrewrite.api.tile.FrogFluidTank;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -9,11 +12,13 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 
 	public boolean isWorking;
 	public int tankCapacity;
-	protected FluidStack tank;
+	protected FrogFluidTank tank = new FrogFluidTank(8000);
+	private int heat;
 	
 	public TileCombustionFurnace() {
-		super(5, "TileEntityCombustionFurnace", 1, 5000);
-		//in original FrogCraft there is 4, but I add one for solid waste
+		super(4, "TileEntityCombustionFurnace", 1, 5000);
+		//in original FrogCraft there is 4, but I will add one for solid waste
+		//0 input 1 output 2 fluid container input 3 fluid container output
 	}
 	
 	@Override
@@ -24,7 +29,20 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 			markDirty();
 			return;
 		}
-		//todo
+		//todo:kill combustion furnace recipe!!! There is no necessary to use it!!!
+		CombustionFurnaceRecipe recipe = FrogAPI.managerCFG.<ItemStack>getRecipe(inv[0]);
+		if (recipe != null) {
+			this.isWorking = true;
+			this.inv[0].stackSize--;
+			this.heat = 100;
+		} else
+			this.isWorking = false;
+		
+		if (this.isWorking) {
+			this.energy += 10;
+			this.heat--;
+		}
+		if (this.heat == 0);//todo
 	}
 	
 	@Override
@@ -56,12 +74,12 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 
 	@Override
 	public FluidStack getFluid() {
-		return this.tank;
+		return this.tank.getFluid();
 	}
 
 	@Override
 	public int getFluidAmount() {
-		return this.tank.amount;
+		return this.tank.getFluidAmount();
 	}
 
 	@Override
@@ -76,14 +94,12 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
-		//TODO
-		return 0;
+		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {
-		//TODO
-		return null;
+		return this.tank.drain(maxDrain, doDrain);
 	}
 
 }

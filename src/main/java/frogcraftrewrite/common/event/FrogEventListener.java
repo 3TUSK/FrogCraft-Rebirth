@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.event.subscribe;
+package frogcraftrewrite.common.event;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -10,7 +10,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import frogcraftrewrite.common.item.ItemIngot;
 import frogcraftrewrite.common.lib.FrogBlocks;
 
-public class ExplosionEventListener {
+public class FrogEventListener {
 	
 	@SubscribeEvent
 	public void onPotassiumExplosion(ExplosionEvent event) {

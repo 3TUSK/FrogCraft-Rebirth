@@ -1,6 +1,7 @@
 package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;

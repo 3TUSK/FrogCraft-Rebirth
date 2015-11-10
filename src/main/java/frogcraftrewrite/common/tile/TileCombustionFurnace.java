@@ -2,6 +2,7 @@ package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;

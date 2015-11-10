@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
+import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;

@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.tile;
+package frogcraftrewrite.common.lib.tile;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;

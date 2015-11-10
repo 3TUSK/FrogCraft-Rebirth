@@ -5,6 +5,7 @@ import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.block.BlockCondenseTower;
 import frogcraftrewrite.common.event.MultiBlockEvent;
+import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;

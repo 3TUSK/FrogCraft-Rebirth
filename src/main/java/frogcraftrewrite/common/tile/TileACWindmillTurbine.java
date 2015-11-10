@@ -1,6 +1,7 @@
 package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.common.lib.FrogBlocks;
+import frogcraftrewrite.common.lib.tile.TileFrog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

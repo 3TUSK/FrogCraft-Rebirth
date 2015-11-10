@@ -4,6 +4,7 @@ import static frogcraftrewrite.common.lib.config.ConfigMain.airPumpPowerRate;
 import static frogcraftrewrite.common.lib.config.ConfigMain.airPumpGenerateSpeed;
 
 import frogcraftrewrite.api.tile.IAirPump;
+import frogcraftrewrite.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;

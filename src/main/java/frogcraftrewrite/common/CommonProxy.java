@@ -27,20 +27,20 @@ import frogcraftrewrite.client.gui.GuiFluidOutputHatch;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
-import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
+import frogcraftrewrite.common.event.FrogEventListener;
 import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
 import frogcraftrewrite.common.gui.ContainerAirPump;
 import frogcraftrewrite.common.gui.ContainerCondenseTower;
 import frogcraftrewrite.common.gui.ContainerFluidOutputHatch;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
+import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.registry.RegFluid;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
-import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
@@ -142,7 +142,7 @@ public class CommonProxy implements IGuiHandler{
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogItemsBlocks.postInit();
 		
-		MinecraftForge.EVENT_BUS.register(new ExplosionEventListener());
+		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 
 }

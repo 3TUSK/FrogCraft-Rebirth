@@ -5,6 +5,7 @@ import java.util.List;
 
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
+import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;

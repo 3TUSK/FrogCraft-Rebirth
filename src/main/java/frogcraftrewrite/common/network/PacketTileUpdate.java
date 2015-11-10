@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.tile.TileFrog;
+import frogcraftrewrite.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 
@@ -22,7 +22,7 @@ public class PacketTileUpdate implements IFrogPacket {
 
 	@Override
 	public void writeData(DataOutputStream output) throws IOException {
-		output.writeInt(0);//packet identity number, will work around it later
+		output.writeInt(PACKET_TILE);//packet identity number, will work around it later
 		output.writeInt(tile.xCoord);
 		output.writeInt(tile.yCoord);
 		output.writeInt(tile.zCoord);
@@ -41,6 +41,7 @@ public class PacketTileUpdate implements IFrogPacket {
 		
 		if  (tile instanceof TileFrog)
 			((TileFrog)tile).readPacketData(input);
+		
 	}
 
 }

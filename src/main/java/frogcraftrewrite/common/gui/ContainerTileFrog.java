@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.gui;
 
-import frogcraftrewrite.common.tile.TileFrog;
+import frogcraftrewrite.common.lib.tile.TileFrog;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;

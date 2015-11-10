@@ -3,6 +3,7 @@ package frogcraftrewrite.common.tile;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;

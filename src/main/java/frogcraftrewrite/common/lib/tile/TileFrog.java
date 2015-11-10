@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.tile;
+package frogcraftrewrite.common.lib.tile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

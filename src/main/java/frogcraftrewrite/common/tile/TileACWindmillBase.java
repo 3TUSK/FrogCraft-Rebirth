@@ -1,5 +1,6 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
 import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketTileUpdate;
 import net.minecraft.item.ItemStack;

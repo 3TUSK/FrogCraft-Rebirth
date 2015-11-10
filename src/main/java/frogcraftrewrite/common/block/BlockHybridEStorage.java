@@ -3,7 +3,7 @@ package frogcraftrewrite.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
-import frogcraftrewrite.common.tile.TileFrogEStorage;
+import frogcraftrewrite.common.lib.tile.TileFrogEStorage;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
 import net.minecraft.block.material.Material;

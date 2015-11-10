@@ -1,5 +1,6 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
 

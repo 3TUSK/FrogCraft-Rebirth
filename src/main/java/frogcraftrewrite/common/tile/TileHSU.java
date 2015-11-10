@@ -1,5 +1,6 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.lib.tile.TileFrogEStorage;
 import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketTileUpdate;
 import ic2.api.energy.event.EnergyTileLoadEvent;

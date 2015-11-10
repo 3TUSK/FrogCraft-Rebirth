@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.tile;
+package frogcraftrewrite.common.lib.tile;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;

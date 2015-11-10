@@ -18,7 +18,7 @@ import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
-import frogcraftrewrite.common.event.subscribe.ExplosionEventListener;
+import frogcraftrewrite.common.event.FrogEventListener;
 import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.lib.config.ConfigMain;
 import frogcraftrewrite.common.network.NetworkHandler;
@@ -69,7 +69,7 @@ public class FrogCraftRebirth {
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new ExplosionEventListener());
+		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		
 		proxy.init(event);

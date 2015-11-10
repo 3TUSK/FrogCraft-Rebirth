@@ -9,4 +9,12 @@ public interface IFrogPacket {
 	void writeData(DataOutputStream output) throws IOException;
 	
 	void readData(DataInputStream input) throws IOException;
+	
+	public static final int PACKET_INVALID = 0xFFFFFFFF;
+	
+	public static final int PACKET_TILE = 0x00000000;
+	
+	public static final int PACKET_ENTITY = 0x00000001;
+	
+	public static final int PACKET_GUI = 0x00000002;
 }

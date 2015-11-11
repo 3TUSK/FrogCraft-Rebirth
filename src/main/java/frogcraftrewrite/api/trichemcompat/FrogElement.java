@@ -1,6 +1,6 @@
 package frogcraftrewrite.api.trichemcompat;
 
-import tritusk.trichemistry.matter.Element;
+import info.tritusk.tritchemlab.matter.Element;
 
 public class FrogElement implements Element {
 	

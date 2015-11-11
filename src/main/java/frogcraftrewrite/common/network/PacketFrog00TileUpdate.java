@@ -10,19 +10,19 @@ import frogcraftrewrite.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
 
-public class PacketTileUpdate implements IFrogPacket {
+public class PacketFrog00TileUpdate implements IFrogPacket {
 	
 	TileFrog tile;
 	
-	public PacketTileUpdate() {}
+	public PacketFrog00TileUpdate() {}
 	
-	public PacketTileUpdate(TileFrog tile) {
+	public PacketFrog00TileUpdate(TileFrog tile) {
 		this.tile = tile;
 	}
 
 	@Override
 	public void writeData(DataOutputStream output) throws IOException {
-		output.writeInt(PACKET_TILE);//packet identity number, will work around it later
+		output.writeByte(PACKET_TILE);//packet identity number, will work around it later
 		output.writeInt(tile.xCoord);
 		output.writeInt(tile.yCoord);
 		output.writeInt(tile.zCoord);

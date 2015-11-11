@@ -5,12 +5,12 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
+import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import cpw.mods.fml.common.IFuelHandler;
 /**
  * This FuelHanlder implementation will handle both vanilla fuel registration
  * as well as combustion furnace fuel and byproducts registration.

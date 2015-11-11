@@ -10,10 +10,10 @@ import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.FrogRef;
+import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import tritusk.trichemistry.matter.Element;
 
 public class FrogAPI {
 	/**

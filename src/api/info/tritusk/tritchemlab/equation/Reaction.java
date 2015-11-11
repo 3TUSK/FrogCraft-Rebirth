@@ -1,6 +1,6 @@
-package tritusk.trichemistry.equation;
+package info.tritusk.tritchemlab.equation;
 
-import tritusk.trichemistry.matter.Molecule;
+import info.tritusk.tritchemlab.matter.Molecule;
 
 public interface Reaction {
 	

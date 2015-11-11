@@ -1,8 +1,8 @@
-package tritusk.trichemistry.parser;
+package info.tritusk.tritchemlab.parser;
 
 import java.io.InputStream;
 
-import tritusk.trichemistry.matter.Element;
+import info.tritusk.tritchemlab.matter.Element;
 
 public interface ElementArrayParser {
 	

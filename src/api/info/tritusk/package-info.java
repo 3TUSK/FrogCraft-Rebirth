@@ -1,5 +1,5 @@
 /**
  * @author 3TUSK
  */
-package tritusk;
+package info.tritusk;
 

@@ -1,4 +1,4 @@
-package tritusk.trichemistry.equation;
+package info.tritusk.tritchemlab.equation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

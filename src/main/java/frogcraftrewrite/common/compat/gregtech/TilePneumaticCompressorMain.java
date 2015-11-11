@@ -1,5 +1,7 @@
 package frogcraftrewrite.common.compat.gregtech;
 
-public class TilePneumaticCompressorMain {
+import frogcraftrewrite.common.lib.tile.TileFrog;
+
+public class TilePneumaticCompressorMain extends TileFrog {
 
 }

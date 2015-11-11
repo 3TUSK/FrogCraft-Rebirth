@@ -9,8 +9,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import tritusk.trichemistry.matter.Element;
-import tritusk.trichemistry.parser.ElementArrayParser;
+import info.tritusk.tritchemlab.matter.Element;
+import info.tritusk.tritchemlab.parser.ElementArrayParser;
 
 public final class ElementLoader implements ElementArrayParser {
 	

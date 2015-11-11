@@ -58,7 +58,7 @@ public class NetworkHandler {
 			int identity = data.readInt();
 			switch(identity) {
 				case 0: {
-				new PacketTileUpdate().readData(data);
+				new PacketFrog00TileUpdate().readData(data);
 				}
 			}
 		} catch (IOException e) {

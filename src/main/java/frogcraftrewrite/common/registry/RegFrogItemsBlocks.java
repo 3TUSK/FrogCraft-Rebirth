@@ -33,12 +33,14 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage("HSU");
 		FrogBlocks.hybridStorageUnitUltra = new BlockHybridEStorage("UHSU");
+		FrogBlocks.mobilePowerStation = new BlockMPS();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		
 		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "naturalgasHydrate");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, "frogHSU");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnitUltra, "frogUHSU");
+		GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMobliePowerStation.class, "mobilePowerStation");
 		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
 	}
 

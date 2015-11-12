@@ -10,7 +10,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
+//import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -23,52 +23,56 @@ public class BlockMPS extends BlockFrog {
 	
 	public BlockMPS() {
 		super(Material.rock);
+		this.icons = new IIcon[6];
 		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(1.0F);
-		setResistance(1000.0F);//Our MPS won't exploded!
-		setBlockTextureName("frogcraftrewrite:MobilePS");
+		setResistance(1000.0F);
 	}
 	
 	@SideOnly(Side.CLIENT)
+	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return icons[side];
 	}
 	
 	@SideOnly(Side.CLIENT)
+	@Override
+	public IIcon getIcon(int side, int meta) {
+		return icons[side];
+	}
+	
+	@SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
-		icons[0] = reg.registerIcon(getTextureName()+"_Top");
-		icons[1] = reg.registerIcon(getTextureName()+"_Bottom");
-		for (int a=2;a<=6;a++) {
-			icons[a] = reg.registerIcon(getTextureName()+"_Side");
+		icons[0] = reg.registerIcon("frogcraftrewrite:MobilePS_Top");
+		icons[1] = reg.registerIcon("frogcraftrewrite:MobilePS_Bottom");
+		for (int a=2;a<6;a++) {
+			icons[a] = reg.registerIcon("frogcraftrewrite:MobilePS_Side");
 		}
 	}
 	
-	/**Our MPS won't be replaced by leaves!*/
 	@Override
 	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
 		return false;
 	}
-	
-	/**Our MPS won't be burnt!*/
+
 	@Override
 	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
         return false;
     }
 
 	@Override
-	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-		return new TileMobilePowerStation(false);
+	public TileEntity createNewTileEntity(World world, int meta) {
+		return new TileMobilePowerStation();
 	}
 	
 	@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemstack) {
+		if (world.isRemote) return;
 		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation){		
 			if (itemstack.stackTagCompound != null) {
 				TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
-				
-				tile.storedEnergy = itemstack.stackTagCompound.getDouble("storedEnergy");
-				tile.maxEnergy = itemstack.stackTagCompound.getDouble("maxEnergy");
-				tile.isPrivate = itemstack.stackTagCompound.getBoolean("isPrivate");
+				/*tile.charge = itemstack.stackTagCompound.getDouble("storedEnergy");
+				tile.maxCharge = itemstack.stackTagCompound.getDouble("maxEnergy");
 				
 				NBTTagList invList = itemstack.stackTagCompound.getTagList("inventory", 10);
 				for (int n = 0; n < invList.tagCount(); n++) {
@@ -77,7 +81,8 @@ public class BlockMPS extends BlockFrog {
 					if (slot >= 0 && slot < tile.inv.length) {
 						tile.inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
 					}
-				}
+				}*/
+				tile.readFromNBT(itemstack.stackTagCompound);
 			}
 		}
 	}
@@ -87,13 +92,10 @@ public class BlockMPS extends BlockFrog {
 		ItemStack mps = new ItemStack(this, 1);
 		
 		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation) {
-			TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
+			TileMobilePowerStation tile = (TileMobilePowerStation)world.getTileEntity(x, y, z);
 			if (mps.stackTagCompound == null) mps.stackTagCompound = new NBTTagCompound();
-			mps.stackTagCompound.setString("UUID", tile.profile.getId().toString());
-			mps.stackTagCompound.setString("name", tile.profile.getName());
-			mps.stackTagCompound.setDouble("storedEnergy", tile.storedEnergy);
-			mps.stackTagCompound.setDouble("maxEnergy", tile.maxEnergy);
-			mps.stackTagCompound.setBoolean("isPrivate", tile.isPrivate);
+			/*mps.stackTagCompound.setDouble("storedEnergy", tile.charge);
+			mps.stackTagCompound.setDouble("maxEnergy", tile.maxCharge);
 			NBTTagList invList = new NBTTagList();
 			for (int n = 0; n < tile.inv.length; n++) {
 				ItemStack stack = tile.inv[n];
@@ -104,7 +106,8 @@ public class BlockMPS extends BlockFrog {
 					invList.appendTag(tagStack);
 				}
 			}
-			mps.stackTagCompound.setTag("inventory", invList);
+			mps.stackTagCompound.setTag("inventory", invList);*/
+			tile.writeToNBT(mps.stackTagCompound);
 		}
 		
 		dropBlockAsItem(world, x, y, z, mps);

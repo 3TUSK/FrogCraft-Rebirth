@@ -19,7 +19,7 @@ public class ItemFrogBlock extends ItemBlock {
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + ((BlockFrog)this.field_150939_a).nameArray[stack.getItemDamage()] + ".name";
+		return super.getUnlocalizedName(stack) + "." + ((BlockFrog)this.field_150939_a).nameArray[stack.getItemDamage()];
 	}
 
 }

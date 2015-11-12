@@ -7,6 +7,7 @@ public class FrogBlocks {
 	
 	public static Block hybridStorageUnit;
 	public static Block hybridStorageUnitUltra;
+	public static Block mobilePowerStation;
 	
 	public static Block condenseTowerPart;
 

@@ -55,10 +55,13 @@ public class NetworkHandler {
 	public void onPacketData(InputStream input, EntityPlayer player) {
 		DataInputStream data = new DataInputStream(input);
 		try {
-			int identity = data.readInt();
+			byte identity = data.readByte();
 			switch(identity) {
 				case 0: {
-				new PacketFrog00TileUpdate().readData(data);
+					new PacketFrog00TileUpdate().readData(data);
+				}
+				case 1: {
+					new PacketFrog01Entity().readData(data);
 				}
 			}
 		} catch (IOException e) {

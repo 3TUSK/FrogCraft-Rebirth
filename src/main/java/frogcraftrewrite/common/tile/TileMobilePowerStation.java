@@ -4,11 +4,6 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
 
-import java.util.UUID;
-
-import com.mojang.authlib.GameProfile;
-
-import frogcraftrewrite.api.tile.IPersonal;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -17,30 +12,18 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
-/**
- * This is The very first step of re-writing FrogCraft.
- * As its name shown, mobile power station shall has following features:
- * <br> 1.Four slots for charging items
- * <br> 2.Four slots for discharging items
- * <br> 3.Allow player to determine whether the MPS is personal or not
- * <br> 4.Top face allows player to open a crafting table.
- * <p> Created by 3TUSK on Jul. 13th 2015
- * */
-public class TileMobilePowerStation extends TileEntity implements IPersonal, IInventory, IEnergySource {
-	/**Allow the tileEntity to record the player's info, in case that the player doesn't want other to use it.*/
-	public GameProfile profile;
+
+public class TileMobilePowerStation extends TileEntity implements IInventory, IEnergySource {
+	
 	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
 	public ItemStack[] inv;
-	/**Determine whether the MPS is for personal usage.*/
-	public boolean isPrivate;
 	/**Energy amount and its maximum.*/
-	public double storedEnergy, maxEnergy;
+	public double charge, maxCharge;
 	
 	public boolean isInENet;
 
-	public TileMobilePowerStation(boolean privateMode) {
+	public TileMobilePowerStation() {
 		this.inv = new ItemStack[12]; //Will get a increase upon 10 more, due to the further usage extension.
-		this.isPrivate = privateMode;
 	}
 	
 	@Override
@@ -65,10 +48,8 @@ public class TileMobilePowerStation extends TileEntity implements IPersonal, IIn
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		profile = new GameProfile(UUID.fromString(tag.getString("UUID")), tag.getString("name"));
-		storedEnergy = tag.getDouble("storedEnergy");
-		maxEnergy = tag.getDouble("maxEnergy");
-		isPrivate = tag.getBoolean("isPrivate");
+		charge = tag.getDouble("charge");
+		maxCharge = tag.getDouble("maxCharge");
 		
 		NBTTagList invList = tag.getTagList("inventory", 10);
 		for (int n = 0; n < invList.tagCount(); n++) {
@@ -82,11 +63,8 @@ public class TileMobilePowerStation extends TileEntity implements IPersonal, IIn
 	
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		tag.setString("UUID", profile.getId().toString());
-		tag.setString("name", profile.getName());
-		tag.setDouble("storedEnergy", storedEnergy);
-		tag.setDouble("maxEnergy", maxEnergy);
-		tag.setBoolean("isPrivate", isPrivate);
+		tag.setDouble("charge", charge);
+		tag.setDouble("maxCharge", maxCharge);
 		
 		NBTTagList invList = new NBTTagList();
 		for (int n = 0; n < inv.length; n++) {
@@ -110,14 +88,14 @@ public class TileMobilePowerStation extends TileEntity implements IPersonal, IIn
 	/**Called when it is going to emit energy to somewhere.*/
 	@Override
 	public double getOfferedEnergy() {
-		return Math.min(storedEnergy, getSourceTier()*32);
+		return Math.min(charge, getSourceTier()*32);
 	}
 
 	@Override
 	public void drawEnergy(double amount) {
-		if (this.maxEnergy > (storedEnergy + amount))
-				storedEnergy += amount ;
-		else storedEnergy = maxEnergy;
+		if (this.maxCharge > (charge + amount))
+				charge += amount ;
+		else charge = maxCharge;
 	}
 
 	@Override
@@ -181,9 +159,7 @@ public class TileMobilePowerStation extends TileEntity implements IPersonal, IIn
 	/**Determine whether a player can use it, regardless anything else.*/
 	@Override
 	public boolean isUseableByPlayer(EntityPlayer player) {
-		if (!isPrivate)
-			return true;
-		else return profile.getId() == player.getGameProfile().getId();
+		return true;
 	}
 
 	/**Do not touch it.*/
@@ -197,32 +173,6 @@ public class TileMobilePowerStation extends TileEntity implements IPersonal, IIn
 	@Override
 	public boolean isItemValidForSlot(int aSlot, ItemStack aStack) {
 		return aSlot < 4;
-	}
-
-	@Override
-	public GameProfile getOwnerProfile() {
-		return profile;
-	}
-
-	@Override
-	public String getOwnerName() {
-		return profile.getName();
-	}
-
-	@Override
-	public boolean match(GameProfile beingChecked) {
-		return this.profile == beingChecked;
-	}
-
-	@Override
-	public String getWaringInfo(EntityPlayer player) {
-		return "Warning: This block is under wip";
-	}
-
-	@Override
-	public IPersonal setOwnerProfile(GameProfile profile) {
-		this.profile = profile;
-		return this;
 	}
 
 }

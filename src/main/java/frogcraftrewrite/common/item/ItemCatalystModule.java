@@ -6,7 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.api.item.ICatalystModule;
-import info.tritusk.tritchemlab.matter.Catalyst;
+import info.tritusk.tritchemlab.matter.Molecule;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -56,7 +56,7 @@ public class ItemCatalystModule extends ItemFrogCraft implements ICatalystModule
 	
 	//The following stuff belongs to the ChemAPI. Not used, and should be deprecated in the future
 	@Override
-	public Catalyst getCatalyst() { return null; }
+	public Molecule getCatalyst() { return null; }
 	@Override
 	public boolean match() { return false; }
 	@Override

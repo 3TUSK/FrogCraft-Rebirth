@@ -30,12 +30,12 @@ public class ContainerMPS extends Container{
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return tile.profile.getId() == player.getGameProfile().getId();
+		return true;
 	}
 	
 	@Override
 	public void updateProgressBar(int id, int value) {
-		if (id == 0) tile.storedEnergy = value;
+		if (id == 0) tile.charge = value;
 	}
 
 }

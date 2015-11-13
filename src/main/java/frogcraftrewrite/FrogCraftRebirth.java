@@ -35,9 +35,10 @@ public class FrogCraftRebirth {
 	@SidedProxy(serverSide = "frogcraftrewrite.common.CommonProxy", clientSide = "frogcraftrewrite.client.ClientProxy")
 	public static CommonProxy proxy;
 	
-	public static Logger frogLogger;
+	public static Logger frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
 	
 	public static final CreativeTabs TAB_FC = new CreativeTabs("FrogCraft") {
+		@SuppressWarnings("unused") private static final String IDENTITY = "0x0000002A"; //42.
 		Item frogLogo;	
 		{
 			frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
@@ -51,9 +52,7 @@ public class FrogCraftRebirth {
 	};
 	
 	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
-		
+	public void preInit(FMLPreInitializationEvent event) {	
 		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);
 		if (!configDir.exists()) configDir.mkdirs();
 		ConfigMain.initMainConfig(new File(configDir, "FrogMain.cfg"));

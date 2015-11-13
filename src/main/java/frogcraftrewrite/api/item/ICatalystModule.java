@@ -1,6 +1,6 @@
 package frogcraftrewrite.api.item;
 
-import info.tritusk.tritchemlab.matter.Catalyst;
+import info.tritusk.tritchemlab.matter.Molecule;
 
 /**
  * Modulized cataylst provides a flexible way to extends your advanced chemical reactor.
@@ -13,7 +13,7 @@ public interface ICatalystModule {
 	/**
 	 * @return The catalyst represented by this module.
 	 */
-	Catalyst getCatalyst();
+	Molecule getCatalyst();
 
 	/**
 	 * @return True if this catalyst can influence this reaction.

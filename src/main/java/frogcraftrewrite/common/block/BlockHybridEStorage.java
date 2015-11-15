@@ -24,7 +24,6 @@ public class BlockHybridEStorage extends BlockFrog {
 		this.icons = new IIcon[6];
 		this.name = internal;
 		setBlockName("Machines."+internal);
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -4,7 +4,6 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileACWindmillBase;
 import frogcraftrewrite.common.tile.TileACWindmillTurbine;
 import net.minecraft.block.material.Material;
@@ -25,15 +24,13 @@ public class BlockACWindmill extends BlockFrog {
 	@SideOnly(Side.CLIENT)
 	public IIcon[][] iconBuffer;
 	
-	public String[] nameBuffer = {"ACWindMillBase", "ACWindMillTurbine"};
-	
 	public BlockACWindmill() {
 		super(Material.iron);
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(10.0F);
 		setResistance(10.0F);
+		setSubNameArray("ACWindMillBase", "ACWindMillTurbine");
 		//setBlockName("Machines2.ACWindMillBase");
-		iconBuffer = new IIcon[6][6];
+		iconBuffer = new IIcon[2][6];
 	}
 	
 	@Override
@@ -78,7 +75,7 @@ public class BlockACWindmill extends BlockFrog {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs aTab, @SuppressWarnings("rawtypes")List sub) {
-		for (int i=0;i<nameBuffer.length;i++)
+		for (int i=0;i<nameArray.length;i++)
 			sub.add(new ItemStack(item, 1, i));
 	}
 

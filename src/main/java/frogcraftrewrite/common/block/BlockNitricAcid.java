@@ -4,7 +4,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.item.ItemIngot;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -25,7 +24,6 @@ public class BlockNitricAcid extends BlockFluidClassic {
 	public BlockNitricAcid(Fluid fluid) {
 		super(fluid, Material.water);
 		this.setBlockName("nitricAcid");
-		this.setCreativeTab(FrogCraftRebirth.TAB_FC);
 		this.setDensity(fluid.getDensity());
 		this.setQuantaPerBlock(8);
 		this.setTickRate(10);

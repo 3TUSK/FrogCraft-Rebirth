@@ -4,7 +4,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileInductionalCompressor;
 import frogcraftrewrite.common.tile.TileInductionalEFurnace;
 import frogcraftrewrite.common.tile.TileInductionalExtractor;
@@ -19,7 +18,6 @@ public class BlockInductionMachine extends BlockFrog {
 
 	public BlockInductionMachine() {
 		super(Material.iron);
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 	}
 	
 	@Override

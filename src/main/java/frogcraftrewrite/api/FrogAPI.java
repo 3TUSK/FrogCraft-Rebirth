@@ -35,7 +35,6 @@ public class FrogAPI {
 	
 	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
 	
-	@Deprecated //do not use it temporarily. Will move from main class to here soon.
 	public static CreativeTabs frogTab;
 	
 	public static IRecipeManager<AdvChemReactorRecipe> managerACR;

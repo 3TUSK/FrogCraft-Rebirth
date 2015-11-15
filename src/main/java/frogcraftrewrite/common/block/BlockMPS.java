@@ -2,7 +2,6 @@ package frogcraftrewrite.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.FrogCraftRebirth;
 import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -24,7 +23,6 @@ public class BlockMPS extends BlockFrog {
 	public BlockMPS() {
 		super(Material.rock);
 		this.icons = new IIcon[6];
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(1.0F);
 		setResistance(1000.0F);
 	}

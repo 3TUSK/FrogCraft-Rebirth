@@ -63,12 +63,12 @@ sourceSets {
 
 
 dependencies {
-    //compile 'net.industrial-craft:industrialcraft-2:2.2.780-experimental:dev'
-    //compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
-    //compile "codechicken:CodeChickenCore:1.7.10-1.0.6.+:dev"
-    //compile "codechicken:NotEnoughItems:1.7.10-1.0.4.+:dev"
+    compile 'net.industrial-craft:industrialcraft-2:2.2.793-experimental:dev'
+    compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
+    compile "codechicken:CodeChickenCore:1.7.10-1.0.6.+:dev"
+    compile "codechicken:NotEnoughItems:1.7.10-1.0.4.+:dev"
     //compile "mcp.mobius.waila:Waila:1.5.10_1.7.10:dev"
-    //compile name: "MineTweaker3", version: "1.7.10-3.0.9C", classifier: "Dev"
+    compile name: "MineTweaker3", version: "1.7.10-3.0.9C", classifier: "Dev"
     //compile 'Azanor:Thaumcraft:4.2.3.5:deobf@jar'
     //complie name: "Thaumcraft", version: "4.2.3.5", classifier: "deobf"
 }
@@ -106,7 +106,7 @@ task apiJar(type: Jar, dependsOn: jar) {
 }
 
 task apiJarChem(type: Jar, dependsOn: jar) {
-    classifier 'apiChemistry'
+    classifier 'apiChemLab'
     from (sourceSets.main.output) {
         include "**/src/api/**"
     }

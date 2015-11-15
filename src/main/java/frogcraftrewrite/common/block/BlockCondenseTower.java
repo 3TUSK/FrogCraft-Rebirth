@@ -29,7 +29,6 @@ public class BlockCondenseTower extends BlockFrog {
 		super(Material.iron);
 		this.iconArray = new IIcon[3][6];
 		setBlockName("Machine.CondenseTower");
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(15.0F);
 		setResistance(20.0f);
 	}

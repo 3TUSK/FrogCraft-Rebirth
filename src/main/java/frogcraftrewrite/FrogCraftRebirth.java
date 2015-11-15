@@ -37,20 +37,6 @@ public class FrogCraftRebirth {
 	
 	public static Logger frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
 	
-	public static final CreativeTabs TAB_FC = new CreativeTabs("FrogCraft") {
-		@SuppressWarnings("unused") private static final String IDENTITY = "0x0000002A"; //42.
-		Item frogLogo;	
-		{
-			frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
-			cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");
-			codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
-		}
-		@Override
-		public Item getTabIconItem() {
-			return frogLogo;
-		}
-	};
-	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {	
 		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);
@@ -58,6 +44,20 @@ public class FrogCraftRebirth {
 		ConfigMain.initMainConfig(new File(configDir, "FrogMain.cfg"));
 		File reactionDir = new File(configDir, "reactions");
 		if (!reactionDir.exists()) reactionDir.mkdirs(); //Prepare for extract xml configuration from jar
+		
+		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
+			@SuppressWarnings("unused") private static final String IDENTITY = "0x0000002A"; //42.
+			Item frogLogo;	
+			{
+				frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
+				cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");
+				codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
+			}
+			@Override
+			public Item getTabIconItem() {
+				return frogLogo;
+			}
+		};
 		
 		GameRegistry.registerFuelHandler(FUEL_REG);
 		

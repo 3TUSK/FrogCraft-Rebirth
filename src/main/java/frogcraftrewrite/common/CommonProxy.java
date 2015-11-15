@@ -1,11 +1,5 @@
 package frogcraftrewrite.common;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-//import tritusk.trichemistry.matter.Element;
-
 //import java.util.Arrays;
 //import java.util.LinkedList;
 
@@ -44,6 +38,11 @@ import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileUHSU;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+//import tritusk.trichemistry.matter.Element;
 
 public class CommonProxy implements IGuiHandler{
 

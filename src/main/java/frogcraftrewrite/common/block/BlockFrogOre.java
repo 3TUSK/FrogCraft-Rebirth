@@ -5,7 +5,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.FrogCraftRebirth;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -20,12 +19,11 @@ public class BlockFrogOre extends BlockFrog {
 
 	public BlockFrogOre() {
 		super(Material.rock);
+		setNoTile();
 		setBlockName("mineral");
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
 		setHardness(10.0F);
 		setResistance(15.0f);
 		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH", "oreRuby", "oreSapphire", "oreGreenSapphire");
-		setTileProperty(false);
 		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	

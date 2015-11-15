@@ -9,10 +9,15 @@ public class BlockMachine extends BlockFrog {
 	protected BlockMachine() {
 		super(Material.iron);
 		setBlockName("FrogCarftMachine");
+		setHardness(5.0F);
+		setResistance(10.0F);
 	}
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
+		switch (meta) {
+		
+		}
 		return null;
 	}
 

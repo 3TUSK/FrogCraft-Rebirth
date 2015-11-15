@@ -7,7 +7,8 @@ import java.util.List;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
 
-import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.api.FrogAPI;
+import ic2.api.item.IMetalArmor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,6 @@ import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
-import ic2.api.item.IMetalArmor;
 /**
  * @author 3TUSK
  * Created at 7:46:59 PM Sep 6, 2015 EST 2015
@@ -36,7 +36,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	public ItemFluidArmor(int capacity) {
 		super(FLUID_ARMOR, 0, 2);//2->chestplate; 0->cloth(leather) renderer; render stuff is WIP
 		setMaxStackSize(1);
-		setCreativeTab(FrogCraftRebirth.TAB_FC);
+		setCreativeTab(FrogAPI.frogTab);
 		this.capacity = capacity;
 	}
 

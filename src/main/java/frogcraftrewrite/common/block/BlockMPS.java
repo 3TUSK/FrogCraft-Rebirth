@@ -11,40 +11,25 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockMPS extends BlockFrog {
-
-	IIcon[] icons;
 	
 	public BlockMPS() {
 		super(Material.rock);
-		this.icons = new IIcon[6];
 		setHardness(1.0F);
 		setResistance(1000.0F);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return icons[side];
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(int side, int meta) {
-		return icons[side];
-	}
-	
-	@SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
-		icons[0] = reg.registerIcon("frogcraftrewrite:MobilePS_Top");
-		icons[1] = reg.registerIcon("frogcraftrewrite:MobilePS_Bottom");
+		iconArray[0][0] = reg.registerIcon("frogcraftrewrite:MobilePS_Top");
+		iconArray[0][1] = reg.registerIcon("frogcraftrewrite:MobilePS_Bottom");
 		for (int a=2;a<6;a++) {
-			icons[a] = reg.registerIcon("frogcraftrewrite:MobilePS_Side");
+			iconArray[0][a] = reg.registerIcon("frogcraftrewrite:MobilePS_Side");
 		}
 	}
 	

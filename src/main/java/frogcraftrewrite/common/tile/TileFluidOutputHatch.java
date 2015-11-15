@@ -23,6 +23,7 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
 		tick++;
 		if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid == null)
 			return;

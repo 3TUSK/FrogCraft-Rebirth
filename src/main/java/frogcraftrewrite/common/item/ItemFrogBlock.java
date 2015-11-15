@@ -9,7 +9,8 @@ public class ItemFrogBlock extends ItemBlock {
 
 	public ItemFrogBlock(Block block) {
 		super(block);
-		assert this.field_150939_a instanceof BlockFrog : new IllegalArgumentException("ItemBlockFrog can only be used internally for only FrogCraft!!!");
+		if (!(this.field_150939_a instanceof BlockFrog))
+			throw new IllegalArgumentException("ItemBlockFrog can only be used internally for only FrogCraft!!!");
 		setHasSubtypes(true);
 	}
 	

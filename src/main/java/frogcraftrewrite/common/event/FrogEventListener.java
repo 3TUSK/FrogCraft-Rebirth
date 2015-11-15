@@ -12,8 +12,10 @@ import frogcraftrewrite.common.lib.FrogBlocks;
 
 public class FrogEventListener {
 	
+	//TODO: achievement system.
+	
 	@SubscribeEvent
-	public void onPotassiumExplosion(ExplosionEvent event) {
+	public void onExplosion(ExplosionEvent event) {
 		if (event.world.isRemote) return;
 		Entity item = event.explosion.exploder;
 		Block block = event.world.getBlock(
@@ -28,6 +30,5 @@ public class FrogEventListener {
 			}
 		}
 	}
-	
-	//TODO: achievement system.
+
 }

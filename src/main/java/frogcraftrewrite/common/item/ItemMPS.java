@@ -8,11 +8,12 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class ItemMobliePowerStation extends ItemFrogBlock implements IElectricItem {
+public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
-	public ItemMobliePowerStation(Block block) {
+	public ItemMPS(Block block) {
 		super(block);
-		assert this.field_150939_a instanceof BlockMPS : new IllegalArgumentException("Failure on initialize MPS block!");
+		if (!(this.field_150939_a instanceof BlockMPS))
+			throw new IllegalArgumentException("Failure on initialize MPS block!");
 	}
 	
 	@Override

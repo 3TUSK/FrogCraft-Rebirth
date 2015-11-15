@@ -1,7 +1,5 @@
 package frogcraftrewrite.common.block;
 
-import java.util.List;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
@@ -10,27 +8,18 @@ import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCondenseTower extends BlockFrog {
-	
-	IIcon[][] iconArray;
-	
-	public static String[] nameArray = new String[] {"Core", "Cylinder", "FluidOutput"};
 
 	public BlockCondenseTower() {
-		super(Material.iron);
-		this.iconArray = new IIcon[3][6];
+		super(Material.iron, 2);
 		setBlockName("Machine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);
+		setSubNameArray("Core", "Cylinder", "FluidOutput");
 	}
 
 	@Override
@@ -45,23 +34,6 @@ public class BlockCondenseTower extends BlockFrog {
 		return null;
 	}
 	
-	@Override
-	public int damageDropped(int meta) {
-		return meta;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int blockSide) {
-		return iconArray[world.getBlockMetadata(x, y, z)][blockSide];
-	}
-	    
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(int blockSide, int blockMeta) {
-		return iconArray[blockMeta][blockSide];
-	}
-	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {
 		if (world.isRemote)
 			return false;
@@ -72,14 +44,6 @@ public class BlockCondenseTower extends BlockFrog {
 			}
 		}
 		return false;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes")List list) {
-		for (int i=0;i<nameArray.length;i++) {
-			list.add(new ItemStack(item, 1, i));
-		}
 	}
 	
 	@SideOnly(Side.CLIENT)

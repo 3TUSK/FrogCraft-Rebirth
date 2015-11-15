@@ -38,6 +38,7 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote) return;
 		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		List<ItemStack> recipeInput = recipe.getInput();
 		if (!working && recipe!=null && recipeInput!=null) {

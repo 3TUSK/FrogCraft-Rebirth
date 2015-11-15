@@ -31,16 +31,14 @@ public class RegFrogItemsBlocks {
 	static void initBlocks() {
 		FrogBlocks.frogOres = new BlockFrogOre();
 		FrogBlocks.acwindmill = new BlockACWindmill();
-		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage("HSU");
-		FrogBlocks.hybridStorageUnitUltra = new BlockHybridEStorage("UHSU");
+		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
 		FrogBlocks.mobilePowerStation = new BlockMPS();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		
 		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "naturalgasHydrate");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
-		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, "frogHSU");
-		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnitUltra, "frogUHSU");
-		GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMobliePowerStation.class, "mobilePowerStation");
+		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, ItemFrogBlock.class, "frogHSU");//TODO: make the storage block able to store energy
+		GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMPS.class, "mobilePowerStation");
 		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
 	}
 

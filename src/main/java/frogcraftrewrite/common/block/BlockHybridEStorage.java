@@ -15,36 +15,35 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockHybridEStorage extends BlockFrog {
-
-	protected String name;
-	IIcon[] icons;
 	
-	public BlockHybridEStorage(String internal) {
+	public BlockHybridEStorage() {
 		super(Material.iron);
-		this.icons = new IIcon[6];
-		this.name = internal;
-		setBlockName("Machines."+internal);
+		setSubNameArray("HSU", "UHSU");
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		icons[0] = r.registerIcon("frogcraftrewrite:"+name+"_Front");
+		iconArray[0][0] = r.registerIcon("frogcraftrewrite:HSU_Front");
 		for (int n=1;n<6;n++) {
-			icons[n] = r.registerIcon("frogcraftrewrite:"+name+"_Side");
+			iconArray[0][n] = r.registerIcon("frogcraftrewrite:HSU_Side");
+		}
+		iconArray[1][0] = r.registerIcon("frogcraftrewrite:UHSU_Front");
+		for (int n=1;n<6;n++) {
+			iconArray[1][n] = r.registerIcon("frogcraftrewrite:UHSU_Side");
 		}
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int blockSide) {
-		return icons[blockSide];
+		return iconArray[world.getBlockMetadata(x, y, z)][blockSide];
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(int side, int meta) {
-		return icons[side];
+		return iconArray[meta][side];
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {
@@ -65,16 +64,12 @@ public class BlockHybridEStorage extends BlockFrog {
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int p_149915_2_) {
-		if ("HSU".equals(name))
-			return new TileHSU();
-		if ("UHSU".equals(name))
-			return new TileUHSU();
-		return null;
-		//TODO
+	public TileEntity createNewTileEntity(World world, int meta) {
+		switch (meta) {
+			case 0: return new TileHSU();
+			case 1: return new TileUHSU();
+			default: return null;
+		}
 	}
 
-	public String getInternalName() {
-		return name;
-	}
 }

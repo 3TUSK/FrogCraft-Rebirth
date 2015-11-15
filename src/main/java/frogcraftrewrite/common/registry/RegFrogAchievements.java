@@ -27,7 +27,7 @@ public class RegFrogAchievements {
 		PNEUMATIC_COMPRESSOR("pneumaticCompressor", 2, 2, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
 		LIQUIFER("liquifier", 2, -2, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
 		HSU("HSU", 0, 2, new ItemStack(FrogBlocks.hybridStorageUnit), FrogAchievement.valueOf("EVT")),
-		UHSU("UHSU", 0, 4, new ItemStack(FrogBlocks.hybridStorageUnitUltra), FrogAchievement.valueOf("HSU")),
+		UHSU("UHSU", 0, 4, new ItemStack(FrogBlocks.hybridStorageUnit, 1, 1), FrogAchievement.valueOf("HSU")),
 		ADV_CHEM_REACTOR("advChemReactor", 4, 0, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
 		JINKELA("jinkela", 4, -2, new ItemStack(FrogItems.jinkela), FrogAchievement.valueOf("ADV_CHEM_REACTOR")),
 		CONDENSE_TOWER_CORE("condenseTowerCore", 2, -4, new ItemStack(unfinished), FrogAchievement.valueOf("LIQUIFIER")),

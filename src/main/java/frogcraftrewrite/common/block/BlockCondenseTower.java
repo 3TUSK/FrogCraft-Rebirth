@@ -3,6 +3,7 @@ package frogcraftrewrite.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.lib.tile.TileFrog;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
@@ -12,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockCondenseTower extends BlockFrog {
+public class BlockCondenseTower extends BlockFrogContainer {
 
 	public BlockCondenseTower() {
 		super(Material.iron, 2);

@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.item;
 
-import frogcraftrewrite.common.block.BlockFrog;
+import frogcraftrewrite.common.lib.block.BlockFrog;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;

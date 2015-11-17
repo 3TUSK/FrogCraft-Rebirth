@@ -101,7 +101,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerTileEntity(TileACWindmillTurbine.class, "tileFrogAcademyTurbine");
 		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
-		GameRegistry.registerTileEntity(TileUHSU.class, "tileUltraHybridStorageUnit");
+		GameRegistry.registerTileEntity(TileHSUUltra.class, "tileUltraHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileAirPump.class, "tileAirPump");
 		GameRegistry.registerTileEntity(TileCondenseTower.class, "tileCondenseTowerCore");
 		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "tileCondenseTowerFluidOutput");

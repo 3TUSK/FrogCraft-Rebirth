@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.network;
+package frogcraftrewrite.api.tile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

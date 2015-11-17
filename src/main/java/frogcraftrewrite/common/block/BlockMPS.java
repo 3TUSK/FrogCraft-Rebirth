@@ -2,6 +2,7 @@ package frogcraftrewrite.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -15,17 +16,17 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class BlockMPS extends BlockFrog {
+public class BlockMPS extends BlockFrogContainer {
 	
 	public BlockMPS() {
-		super(Material.rock);
+		super(Material.piston);
 		setHardness(1.0F);
-		setResistance(1000.0F);
+		setResistance(100.0F);
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-    public void registerBlockIcons(IIconRegister reg) {
+	public void registerBlockIcons(IIconRegister reg) {
 		iconArray[0][0] = reg.registerIcon("frogcraftrewrite:MobilePS_Top");
 		iconArray[0][1] = reg.registerIcon("frogcraftrewrite:MobilePS_Bottom");
 		for (int a=2;a<6;a++) {

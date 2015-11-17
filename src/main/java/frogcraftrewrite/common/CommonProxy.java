@@ -36,7 +36,7 @@ import frogcraftrewrite.common.tile.TileAirPump;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileHSU;
-import frogcraftrewrite.common.tile.TileUHSU;
+import frogcraftrewrite.common.tile.TileHSUUltra;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -57,8 +57,8 @@ public class CommonProxy implements IGuiHandler{
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
-				if (aTile instanceof TileUHSU)
-					return new ContainerHybridEStorage(player.inventory, (TileUHSU)aTile);
+				if (aTile instanceof TileHSUUltra)
+					return new ContainerHybridEStorage(player.inventory, (TileHSUUltra)aTile);
 			}
 			case 2: {
 				if (aTile instanceof TileAirPump)
@@ -93,8 +93,8 @@ public class CommonProxy implements IGuiHandler{
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
-				if (aTile instanceof TileUHSU)
-					return new GuiHybridEStorage(player.inventory, (TileUHSU)aTile);
+				if (aTile instanceof TileHSUUltra)
+					return new GuiHybridEStorage(player.inventory, (TileHSUUltra)aTile);
 			}
 			case 2: {
 				if (aTile instanceof TileAirPump)

@@ -26,7 +26,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = FrogRef.MODID, name = FrogRef.NAME, version = "0.0.1 Alpha", dependencies = FrogRef.DEPENDING, useMetadata = true)
+@Mod(modid = FrogRef.MODID, name = FrogRef.NAME, version = FrogRef.VERSION, dependencies = FrogRef.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 	
 	@Instance("FrogCraftRebirth")

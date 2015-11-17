@@ -19,7 +19,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	int process, processMax;
 	boolean working;
 	
-	protected TileThermalCracker() {
+	public TileThermalCracker() {
 		super(4, "TileThermalCracker", 2, 10000);
 		//0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	}

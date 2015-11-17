@@ -2,6 +2,7 @@ package frogcraftrewrite.common.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.tile.TileACWindmillBase;
 import frogcraftrewrite.common.tile.TileACWindmillTurbine;
 import net.minecraft.block.material.Material;
@@ -12,7 +13,7 @@ import net.minecraft.world.World;
  * ACWindmill stands for "Academy Windmill", the major generator 
  * in the story settings of animation A Certain Scientific Railgun.
  * */
-public class BlockACWindmill extends BlockFrog {
+public class BlockACWindmill extends BlockFrogContainer {
 	
 	public BlockACWindmill() {
 		super(Material.iron, 1);
@@ -30,9 +31,9 @@ public class BlockACWindmill extends BlockFrog {
 		this.iconArray[0][3] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
 		this.iconArray[0][4] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
 		this.iconArray[0][5] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
-
+		
 		this.iconArray[1][0] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
-    	this.iconArray[1][1] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
+		this.iconArray[1][1] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
     	this.iconArray[1][2] = r.registerIcon("frogcraftrewrite:ACWindMill_Back");
     	this.iconArray[1][3] = r.registerIcon("frogcraftrewrite:ACWindMill_Front");    	
     	this.iconArray[1][4] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");

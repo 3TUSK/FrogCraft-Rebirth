@@ -11,10 +11,10 @@ import net.minecraft.world.World;
  */
 public class WorldGenClayFake extends FrogWorldGenerator {
 	
-	public int numberOfBlocks;
+	final int numberOfBlocks;
 	
-	public final Block block;
-	public final int meta;
+	final Block block;
+	final int meta;
 	
 	public WorldGenClayFake(Block block, int meta, int numberOfBlocks) {
 		this.block = block;
@@ -37,13 +37,13 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 						for (int i2 = y - b0; i2 <= y + b0; ++i2) {
 							Block block = world.getBlock(i1, i2, j1);
 							if (block == Blocks.dirt || block == Blocks.clay) {
-								world.setBlock(i1, i2, j1, this.block, 0, 2);
+								world.setBlock(i1, i2, j1, this.block, meta, 2);
 							}
 						}
 					}
 				}
 			}
-            return true;
+			return true;
 		}
 	}
 

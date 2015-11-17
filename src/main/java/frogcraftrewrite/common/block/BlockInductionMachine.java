@@ -4,6 +4,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.tile.TileInductionalCompressor;
 import frogcraftrewrite.common.tile.TileInductionalEFurnace;
 import frogcraftrewrite.common.tile.TileInductionalExtractor;
@@ -13,7 +14,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 
-public class BlockInductionMachine extends BlockFrog {
+public class BlockInductionMachine extends BlockFrogContainer {
 
 	public BlockInductionMachine() {
 		super(Material.iron);

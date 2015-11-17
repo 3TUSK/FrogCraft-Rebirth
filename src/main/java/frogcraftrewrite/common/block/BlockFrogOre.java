@@ -4,6 +4,7 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
@@ -15,7 +16,6 @@ public class BlockFrogOre extends BlockFrog {
 
 	public BlockFrogOre() {
 		super(Material.rock);
-		setNoTile();
 		setBlockName("mineral");
 		setHardness(10.0F);
 		setResistance(15.0f);

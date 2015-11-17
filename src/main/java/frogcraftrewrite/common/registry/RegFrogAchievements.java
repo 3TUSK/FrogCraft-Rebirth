@@ -16,6 +16,7 @@ public class RegFrogAchievements {
 	public static void init() {
 		frogPage = new AchievementPage("FrogCraftRebirth", FrogAchievement.exportAll());
 		AchievementPage.registerAchievementPage(frogPage);
+		//pneumatic compressor is an issue.
 	}
 	
 	public static enum FrogAchievement {
@@ -23,15 +24,15 @@ public class RegFrogAchievements {
 		EVT("EVT", 0, 0, new ItemStack(unfinished)),
 		RAILGUN("railgun", 0, -2, new ItemStack(FrogItems.railgun)),
 		POTASSIUM("potassiumExplosion", -2, 0, new ItemStack(FrogItems.itemIngot, 1, 0)),
-		GAS_PUMP("gasPump", 2, 0, new ItemStack(unfinished)),
+		GAS_PUMP("gasPump", 2, 0, new ItemStack(FrogBlocks.machines, 1, 1)),
 		PNEUMATIC_COMPRESSOR("pneumaticCompressor", 2, 2, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
-		LIQUIFER("liquifier", 2, -2, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
+		LIQUIFER("liquifier", 2, -2, new ItemStack(FrogBlocks.machines), FrogAchievement.valueOf("GAS_PUMP")),
 		HSU("HSU", 0, 2, new ItemStack(FrogBlocks.hybridStorageUnit), FrogAchievement.valueOf("EVT")),
 		UHSU("UHSU", 0, 4, new ItemStack(FrogBlocks.hybridStorageUnit, 1, 1), FrogAchievement.valueOf("HSU")),
-		ADV_CHEM_REACTOR("advChemReactor", 4, 0, new ItemStack(unfinished), FrogAchievement.valueOf("GAS_PUMP")),
+		ADV_CHEM_REACTOR("advChemReactor", 4, 0, new ItemStack(FrogBlocks.machines, 1, 0), FrogAchievement.valueOf("GAS_PUMP")),
 		JINKELA("jinkela", 4, -2, new ItemStack(FrogItems.jinkela), FrogAchievement.valueOf("ADV_CHEM_REACTOR")),
-		CONDENSE_TOWER_CORE("condenseTowerCore", 2, -4, new ItemStack(unfinished), FrogAchievement.valueOf("LIQUIFIER")),
-		CONDENSE_TOWER("condenseTowerWall", 4, -4, new ItemStack(unfinished), FrogAchievement.valueOf("CONDENSE_TOWER_CORE")),
+		CONDENSE_TOWER_CORE("condenseTowerCore", 2, -4, new ItemStack(FrogBlocks.condenseTowerPart), FrogAchievement.valueOf("LIQUIFIER")),
+		CONDENSE_TOWER("condenseTowerWall", 4, -4, new ItemStack(FrogBlocks.condenseTowerPart), FrogAchievement.valueOf("CONDENSE_TOWER_CORE")),
 		NITRIC_ACID("nitricAcidExplodsion", -2, 2, new ItemStack(FrogBlocks.fluidNitricAcid), FrogAchievement.valueOf("POTASSIUM"));
 		
 		final String internal;

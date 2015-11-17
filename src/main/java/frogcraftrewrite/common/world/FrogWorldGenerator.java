@@ -11,7 +11,6 @@ import frogcraftrewrite.common.lib.FrogBlocks;
 
 public class FrogWorldGenerator implements IWorldGenerator{
 
-	//I gave up totally.
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		int xCor = chunkX * 16 + random.nextInt(16);

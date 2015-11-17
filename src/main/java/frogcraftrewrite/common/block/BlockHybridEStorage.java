@@ -3,9 +3,10 @@ package frogcraftrewrite.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.FrogCraftRebirth;
+import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.lib.tile.TileFrogEStorage;
 import frogcraftrewrite.common.tile.TileHSU;
-import frogcraftrewrite.common.tile.TileUHSU;
+import frogcraftrewrite.common.tile.TileHSUUltra;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +15,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockHybridEStorage extends BlockFrog {
+public class BlockHybridEStorage extends BlockFrogContainer {
 	
 	public BlockHybridEStorage() {
 		super(Material.iron);
@@ -67,7 +68,7 @@ public class BlockHybridEStorage extends BlockFrog {
 	public TileEntity createNewTileEntity(World world, int meta) {
 		switch (meta) {
 			case 0: return new TileHSU();
-			case 1: return new TileUHSU();
+			case 1: return new TileHSUUltra();
 			default: return null;
 		}
 	}

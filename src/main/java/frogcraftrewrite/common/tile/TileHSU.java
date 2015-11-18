@@ -1,17 +1,14 @@
 package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.common.lib.tile.TileFrogEStorage;
-import frogcraftrewrite.common.network.NetworkHandler;
-import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
+//import frogcraftrewrite.common.network.NetworkHandler;
+//import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.Packet;
-import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -28,16 +25,6 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 		super(maxEnergy, output, emitTo, allowTelep);
 		this.inv = new ItemStack[2];
 	}
-	
-	public Packet getDescriptionPacket() {
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setInteger("charge", storedE);
-		return new S35PacketUpdateTileEntity(xCoord, yCoord, zCoord, 1, tag);
-	}
-	
-	public void onDataPacket(NetworkManager net, S35PacketUpdateTileEntity pkt) {
-		this.storedE = pkt.func_148857_g().getInteger("charge");
-	}
 
 	@Override
 	public void updateEntity() {
@@ -49,8 +36,6 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.loaded = true;
 		}
-		
-		NetworkHandler.sendToAll(new PacketFrog00TileUpdate(this));
 		
 		this.markDirty();
 	}

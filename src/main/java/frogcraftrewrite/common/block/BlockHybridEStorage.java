@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 public class BlockHybridEStorage extends BlockFrogContainer {
 	
 	public BlockHybridEStorage() {
-		super(Material.iron);
+		super(Material.iron, 1);
 		setSubNameArray("HSU", "UHSU");
 	}
 	

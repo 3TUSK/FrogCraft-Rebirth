@@ -41,18 +41,16 @@ public class NetworkHandler {
 	@SubscribeEvent
 	public void serverPacket(ServerCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.packet.payload());
-		onPacketData(input, ((NetHandlerPlayServer)event.handler).playerEntity);
-		System.out.println("Something happened on server side");
+		decodeData(input, ((NetHandlerPlayServer)event.handler).playerEntity);
 	}
 	
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.packet.payload());
-		onPacketData(input, Minecraft.getMinecraft().thePlayer);
-		System.out.println("Something happened on client side");
+		decodeData(input, Minecraft.getMinecraft().thePlayer);
 	}
 	
-	public void onPacketData(InputStream input, EntityPlayer player) {
+	private void decodeData(InputStream input, EntityPlayer player) {
 		DataInputStream data = new DataInputStream(input);
 		try {
 			byte identity = data.readByte();
@@ -62,6 +60,9 @@ public class NetworkHandler {
 				}
 				case 1: {
 					new PacketFrog01Entity().readData(data);
+				}
+				case 2: {
+					new PacketFrog02GuiDataUpdate().readData(data);
 				}
 			}
 		} catch (IOException e) {

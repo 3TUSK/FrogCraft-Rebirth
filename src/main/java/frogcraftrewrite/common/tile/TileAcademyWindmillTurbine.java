@@ -7,11 +7,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileACWindmillTurbine extends TileFrog {
+public class TileAcademyWindmillTurbine extends TileFrog {
 
 	public boolean canGenEnergy, hasRotor, isBlocked, isHighEnough, isRaining;
 	
-	public TileACWindmillTurbine() {
+	public TileAcademyWindmillTurbine() {
 		this.hasRotor = false;
 	}
 	

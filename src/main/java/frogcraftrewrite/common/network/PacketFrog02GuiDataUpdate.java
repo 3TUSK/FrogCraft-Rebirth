@@ -11,7 +11,7 @@ public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 	
 	private int guiID, dataID, dataValue;
 	
-	public PacketFrog02GuiDataUpdate() {}
+	PacketFrog02GuiDataUpdate() {}
 	
 	public PacketFrog02GuiDataUpdate(int guiID, int dataID, int dataValue) {
 		this.guiID = guiID;

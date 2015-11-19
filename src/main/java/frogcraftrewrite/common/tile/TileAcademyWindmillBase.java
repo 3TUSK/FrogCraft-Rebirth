@@ -8,11 +8,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileACWindmillBase extends TileFrogGenerator {
+public class TileAcademyWindmillBase extends TileFrogGenerator {
 	
 	boolean canGenEnergy;
 
-	public TileACWindmillBase() {
+	public TileAcademyWindmillBase() {
 		super(0, "TileAcademyCityWindmillBase", 1, 32);
 	}
 	
@@ -22,8 +22,8 @@ public class TileACWindmillBase extends TileFrogGenerator {
 		if (worldObj.isRemote) return;
 		
 		TileEntity turbine = worldObj.getTileEntity(xCoord, yCoord+7, zCoord);
-		if (turbine instanceof TileACWindmillTurbine) {
-			this.canGenEnergy = ((TileACWindmillTurbine)turbine).canGenEnergy;
+		if (turbine instanceof TileAcademyWindmillTurbine) {
+			this.canGenEnergy = ((TileAcademyWindmillTurbine)turbine).canGenEnergy;
 		}
 		
 		NetworkHandler.sendToAll(new PacketFrog00TileUpdate(this));

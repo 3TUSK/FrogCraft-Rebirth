@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
-	public double charge, maxCharge;
+	public int charge, maxCharge;
 	private int airAmount, maxAirAmount = 1000, tick;
 	
 	public void updateEntity() {
@@ -33,14 +33,14 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		this.charge = tag.getDouble("charge");
+		this.charge = tag.getInteger("charge");
 		this.airAmount = tag.getInteger("air");
 		this.tick = tag.getInteger("tick");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		tag.setDouble("charge", this.charge);
+		tag.setInteger("charge", this.charge);
 		tag.setInteger("air", this.airAmount);
 		tag.setInteger("tick", this.tick);
 	}
@@ -70,7 +70,7 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	}
 
 	@Override
-	public int availableAmount() {
+	public int airAmount() {
 		return airAmount;
 	}
 

@@ -3,8 +3,8 @@ package frogcraftrewrite.common.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.lib.block.BlockFrogContainer;
-import frogcraftrewrite.common.tile.TileACWindmillBase;
-import frogcraftrewrite.common.tile.TileACWindmillTurbine;
+import frogcraftrewrite.common.tile.TileAcademyWindmillBase;
+import frogcraftrewrite.common.tile.TileAcademyWindmillTurbine;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
@@ -44,9 +44,9 @@ public class BlockACWindmill extends BlockFrogContainer {
 	public TileEntity createNewTileEntity(World world, int meta) {
 		switch(meta){
 			case 0:
-				return new TileACWindmillBase();
+				return new TileAcademyWindmillBase();
 			case 1:
-				return new TileACWindmillTurbine();
+				return new TileAcademyWindmillTurbine();
 			default:
 				return null;
 		}

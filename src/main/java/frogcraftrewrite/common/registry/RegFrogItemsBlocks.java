@@ -53,7 +53,7 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemIngot = new ItemIngot();
 		FrogItems.itemDust = new ItemDust();
 		FrogItems.itemReactionModule = new ItemCatalystModule();
-		FrogItems.acwinmillFan = new ItemACWindmillFan();
+		FrogItems.acwinmillFan = new ItemAcademyWindmillFan();
 		FrogItems.railgun = new ItemRailgun(1000000);
 		FrogItems.jinkela = new ItemJinkela();
 		
@@ -97,8 +97,8 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerTileEntity(TileInductionalMacerator.class, "tileInductionalMacerator");
 		GameRegistry.registerTileEntity(TileInductionalExtractor.class, "tileInductionalExtractor");
 		GameRegistry.registerTileEntity(TileInductionalCompressor.class, "tileInductionalCompressor");
-		GameRegistry.registerTileEntity(TileACWindmillBase.class, "tileFrogAcademyWindmill");
-		GameRegistry.registerTileEntity(TileACWindmillTurbine.class, "tileFrogAcademyTurbine");
+		GameRegistry.registerTileEntity(TileAcademyWindmillBase.class, "tileFrogAcademyWindmill");
+		GameRegistry.registerTileEntity(TileAcademyWindmillTurbine.class, "tileFrogAcademyTurbine");
 		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileHSUUltra.class, "tileUltraHybridStorageUnit");

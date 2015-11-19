@@ -8,9 +8,9 @@ import net.minecraft.entity.Entity;
 
 public class PacketFrog01Entity implements IFrogPacket {
 	
-	Entity e;
+	private Entity e;
 	
-	public PacketFrog01Entity() {}
+	PacketFrog01Entity() {}
 	
 	public PacketFrog01Entity(Entity e) {
 		this.e = e;

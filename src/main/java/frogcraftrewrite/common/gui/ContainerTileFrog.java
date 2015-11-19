@@ -24,6 +24,11 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
 		}
 	}
+	
+	@Override
+	public boolean canInteractWith(EntityPlayer player) {
+		return true;
+	}
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int aSlot) {

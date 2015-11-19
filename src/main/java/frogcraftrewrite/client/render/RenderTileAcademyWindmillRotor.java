@@ -2,19 +2,19 @@ package frogcraftrewrite.client.render;
 
 import org.lwjgl.opengl.GL11;
 
-import frogcraftrewrite.common.tile.TileACWindmillTurbine;
+import frogcraftrewrite.common.tile.TileAcademyWindmillTurbine;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderACWindmillRotor extends TileEntitySpecialRenderer{
+public class RenderTileAcademyWindmillRotor extends TileEntitySpecialRenderer{
 	
-	TileACWindmillTurbine tile;
+	TileAcademyWindmillTurbine tile;
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double relativeX, double relativeY, double relativeZ, float partialTick) {
-		this.tile = (TileACWindmillTurbine)tile;
+		this.tile = (TileAcademyWindmillTurbine)tile;
 		this.bindTexture(new ResourceLocation("frogcraftrewrite:model/acwindmillrotor"));
 		
 		@SuppressWarnings("unused") //Will be used later.

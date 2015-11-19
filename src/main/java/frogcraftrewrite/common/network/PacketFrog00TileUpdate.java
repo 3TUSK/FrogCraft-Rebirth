@@ -12,9 +12,9 @@ import net.minecraft.tileentity.TileEntity;
 
 public class PacketFrog00TileUpdate implements IFrogPacket {
 	
-	TileFrog tile;
+	private TileFrog tile;
 	
-	public PacketFrog00TileUpdate() {}
+	PacketFrog00TileUpdate() {}
 	
 	public PacketFrog00TileUpdate(TileFrog tile) {
 		this.tile = tile;

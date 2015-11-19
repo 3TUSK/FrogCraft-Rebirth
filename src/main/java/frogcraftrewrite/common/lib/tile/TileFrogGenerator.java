@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource {
 
-	public int energy, sourceTier, output;
+	public int charge, sourceTier, output;
 	protected boolean isInENet;
 	
 	public TileFrogGenerator (int invSize, String name, int sourceTier, int output) {
@@ -41,13 +41,13 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		this.energy = tag.getInteger("charge");
+		this.charge = tag.getInteger("charge");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		tag.setInteger("charge", this.energy);
+		tag.setInteger("charge", this.charge);
 	}
 	
 	@Override
@@ -57,13 +57,13 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 
 	@Override
 	public double getOfferedEnergy() {
-		return Math.min(energy, output);
+		return Math.min(charge, output);
 	}
 
 	@Override
 	public void drawEnergy(double amount) {
-		this.energy -= amount;
-		this.energy = energy < 0 ? 0 : energy;
+		this.charge -= amount;
+		this.charge = charge < 0 ? 0 : charge;
 	}
 
 	@Override

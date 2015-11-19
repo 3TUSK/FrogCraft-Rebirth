@@ -13,7 +13,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 	public boolean isWorking;
 	public int tankCapacity;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
-	private int time;
+	public int time;
 	
 	public TileCombustionFurnace() {
 		super(4, "TileEntityCombustionFurnace", 1, 5000);
@@ -38,7 +38,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 			this.isWorking = false;
 		
 		if (this.isWorking) {
-			this.energy += 10;
+			this.charge += 10;
 			this.time--;
 		}
 		if (this.time == 0)

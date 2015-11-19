@@ -5,7 +5,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrewrite.common.tile.TileHSU;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
@@ -18,17 +17,12 @@ public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 	public ContainerHybridEStorage(InventoryPlayer playerInv, TileHSU tile) {
 		super(playerInv, tile);
 		this.addSlotToContainer(new Slot(tile, 0, 113, 24));
-        this.addSlotToContainer(new Slot(tile, 1, 113, 42));
+		this.addSlotToContainer(new Slot(tile, 1, 113, 42));
 	}
 	
 	public void addCraftingToCrafters(ICrafting crafting) {
         super.addCraftingToCrafters(crafting);
         crafting.sendProgressBarUpdate(this, 0, this.tile.storedE);
-	}
-
-	@Override
-	public boolean canInteractWith(EntityPlayer player) {
-		return tile.isUseableByPlayer(player);
 	}
 	
 	@Override

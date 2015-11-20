@@ -12,13 +12,13 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public abstract class TileFrogMachine extends TileFrogInventory implements ISidedInventory, IEnergySink {
 	
-	public int energy, maxEnergy, sinkTier;
+	public int charge, maxCharge, sinkTier;
 	protected boolean isInENet;
 	
 	protected TileFrogMachine(int invSize, String invName, int sinkTier, int maxEnergy) {
 		super(invSize, invName);
 		this.sinkTier = sinkTier;
-		this.maxEnergy = maxEnergy;
+		this.maxCharge = maxEnergy;
 	}
 	
 	@Override
@@ -50,15 +50,15 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		this.energy = tag.getInteger("charge");
-		this.maxEnergy = tag.getInteger("maxCharge");
+		this.charge = tag.getInteger("charge");
+		this.maxCharge = tag.getInteger("maxCharge");
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		tag.setInteger("charge", this.energy);
-		tag.setInteger("maxCharge", maxEnergy);
+		tag.setInteger("charge", this.charge);
+		tag.setInteger("maxCharge", maxCharge);
 	}
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 
 	@Override
 	public double getDemandedEnergy() {
-		return maxEnergy - energy;
+		return maxCharge - charge;
 	}
 
 	@Override
@@ -78,8 +78,8 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 
 	@Override
 	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
-		this.energy += amount;
-		this.energy = energy > maxEnergy ? maxEnergy : energy;
+		this.charge += amount;
+		this.charge = charge > maxCharge ? maxCharge : charge;
 		return 0;
 	}
 

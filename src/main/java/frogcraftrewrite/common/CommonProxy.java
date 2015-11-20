@@ -1,7 +1,7 @@
 package frogcraftrewrite.common;
 
-//import java.util.Arrays;
-//import java.util.LinkedList;
+import java.util.Arrays;
+import java.util.LinkedList;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -13,7 +13,7 @@ import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;
-//import frogcraftrewrite.api.trichemcompat.ElementLoader;
+import frogcraftrewrite.api.trichemimpl.ElementLoader;
 import frogcraftrewrite.client.gui.GuiAdvChemReactor;
 import frogcraftrewrite.client.gui.GuiAirPump;
 import frogcraftrewrite.client.gui.GuiCondenseTower;
@@ -42,7 +42,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-//import tritusk.trichemistry.matter.Element;
+import info.tritusk.tritchemlab.matter.Element;
 
 public class CommonProxy implements IGuiHandler{
 
@@ -119,14 +119,14 @@ public class CommonProxy implements IGuiHandler{
 	}
 	
 	public void preInit(FMLPreInitializationEvent event) {
-		//FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/chemistry/PeriodicTable.xml"), false)));
-		
+		try {
+			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/chemistry/PeriodicTable.xml"), false)));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}		
 		RegFrogItemsBlocks.preInit();
-		
 		RegFluid.init();
-		
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrewrite.FrogCraftRebirth.instance, 160, 5, true);
-	
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 	}
 
@@ -139,8 +139,7 @@ public class CommonProxy implements IGuiHandler{
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
-		RegFrogItemsBlocks.postInit();
-		
+		RegFrogItemsBlocks.postInit();	
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

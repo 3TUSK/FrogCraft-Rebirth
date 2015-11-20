@@ -19,7 +19,7 @@ public class GuiAirPump extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
-		
+		//this.fontRendererObj.drawString(p_78276_1_, p_78276_2_, p_78276_3_, p_78276_4_)
 	}
 
 	@Override

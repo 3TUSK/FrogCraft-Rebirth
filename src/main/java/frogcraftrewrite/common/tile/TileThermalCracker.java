@@ -16,8 +16,8 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	
 	private FrogFluidTank tank = new FrogFluidTank(16000);
 
-	int process, processMax;
-	boolean working;
+	public int process, processMax;
+	public boolean working;
 	
 	public TileThermalCracker() {
 		super(4, "TileThermalCracker", 2, 10000);
@@ -38,7 +38,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 			}
 		} else {
 			process++;
-			this.energy -= 256;
+			this.charge -= 256;
 			if (process == processMax) {
 				recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
 				if (this.getStackInSlot(1) == null)
@@ -118,6 +118,10 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
+	}
+	
+	public FluidTankInfo[] getTankInfo() {
+		return this.getTankInfo(ForgeDirection.UNKNOWN);
 	}
 
 }

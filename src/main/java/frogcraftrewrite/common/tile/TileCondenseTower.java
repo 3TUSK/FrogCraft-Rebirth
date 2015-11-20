@@ -17,9 +17,9 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileCondenseTower extends TileFrogMachine implements IFluidHandler {
 	
-	public FrogFluidTank tank = new FrogFluidTank(8000);
+	private FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean isCompleted = false, craftingFinished = false;
-	private int tick;
+	public int tick;
 	
 	public TileCondenseTower() {
 		super(2, "TileCondenseTower", 2, 10000);
@@ -63,10 +63,10 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 				this.drain(ForgeDirection.UNKNOWN, recipe.getInput().amount, true);
 				this.tick = recipe.getTime();
 				tick--;
-				energy -= 500;//Should be configurable
+				charge -= 500;//Should be configurable
 			} else {
 				tick--;
-				energy -= 500;
+				charge -= 500;
 			}
 		} else if (craftingFinished){
 			java.util.Set<FluidStack> outputs = recipe.getOutput();
@@ -144,4 +144,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 
+	public FluidTankInfo[] getTankInfo() {
+		return this.getTankInfo(ForgeDirection.UNKNOWN);
+	}
 }

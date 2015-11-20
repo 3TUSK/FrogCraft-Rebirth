@@ -29,7 +29,7 @@ import net.minecraftforge.common.MinecraftForge;
 @Mod(modid = FrogRef.MODID, name = FrogRef.NAME, version = FrogRef.VERSION, dependencies = FrogRef.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 	
-	@Instance("FrogCraftRebirth")
+	@Instance(FrogRef.MODID)
 	public static FrogCraftRebirth instance;
 	
 	@SidedProxy(serverSide = "frogcraftrewrite.common.CommonProxy", clientSide = "frogcraftrewrite.client.ClientProxy")
@@ -77,6 +77,17 @@ public class FrogCraftRebirth {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
+		try {
+			java.lang.reflect.Field identityCheck = FrogAPI.frogTab.getClass().getField("IDENTITY");
+			identityCheck.setAccessible(true);
+			String value = (String)identityCheck.get(null);
+			if ("0x0000002A".equals(value) && Integer.parseInt(value, 16) == 42)
+				frogLogger.debug("Identity check finished.");
+			else
+				throw new RuntimeException("FrogCraft's creative tab has been overrided! THIS IS ILLEGAL AND FROGCRAFT HAS NO RESPONSIBILITY ON THIS EXCEPTION!");
+		} catch (Exception e) {
+			throw new RuntimeException(e);
+		}
 		frogLogger.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 	

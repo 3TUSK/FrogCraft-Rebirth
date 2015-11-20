@@ -3,8 +3,8 @@ package frogcraftrewrite.common.event;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
+//import net.minecraft.init.Items;
+//import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.ExplosionEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import frogcraftrewrite.common.item.ItemIngot;
@@ -25,8 +25,8 @@ public class FrogEventListener {
 		
 		if (item instanceof EntityItem){
 			if (((EntityItem)item).getEntityItem().getItem() instanceof ItemIngot&& ((EntityItem)item).getEntityItem().getItemDamage() == 0){
-				if (block == FrogBlocks.fluidNitricAcid)
-					item.entityDropItem(new ItemStack(Items.blaze_rod), 0.5F);
+				if (block == FrogBlocks.fluidNitricAcid);
+					//item.entityDropItem(new ItemStack(Items.blaze_rod), 0.5F);
 			}
 		}
 	}

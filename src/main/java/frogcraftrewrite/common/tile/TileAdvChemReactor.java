@@ -66,8 +66,8 @@ public class TileAdvChemReactor extends TileFrogMachine {
 			this.processMax = recipe.getTime();
 		}
 		
-		if (working && energy >= recipe.getEnergyPerTick()) {
-			this.energy -= recipe.getEnergyPerTick();
+		if (working && charge >= recipe.getEnergyPerTick()) {
+			this.charge -= recipe.getEnergyPerTick();
 			++process;
 		}
 		

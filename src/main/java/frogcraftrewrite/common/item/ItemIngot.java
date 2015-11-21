@@ -74,16 +74,18 @@ public class ItemIngot extends ItemFrogCraft{
 			case 4:
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.gemDesc"));
 				break;
-			case 5:
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.fuelDesc"));
+			case 5: {
+				list.add(StatCollector.translateToLocal("item.Item_Ingots.nghDesc"));
 				break;
-			case 6: 
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.fuelDesc"));
+			}
+			case 6: {
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.Briquette.info"));
 				break;
-			case 7:
+			}
+			case 7: {
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.CoalCokeShattered.info"));
 				break;
+			}
 			default:
 				break;
 		}

@@ -1,7 +1,6 @@
 package frogcraftrewrite.common.entity;
 import static frogcraftrewrite.common.lib.config.ConfigMain.railgunDamageScale;
 import static frogcraftrewrite.common.item.ItemRailgun.railgun;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -15,7 +14,6 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile{
 
 	private double damageCollision, damageExplosion;
 	
-	//Client usage only!
 	public EntityRailgunCoin(World world) {
 		super(world);
 		setSize(0.5F, 0.5F);
@@ -50,19 +48,17 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile{
 
 	@Override
 	protected void onImpact(MovingObjectPosition objPos) {
-
 		Vec3 aVec3 = objPos.hitVec;
 		double hitX = aVec3.xCoord, hitY = aVec3.yCoord, hitZ = aVec3.zCoord;
 			
 		if (objPos.typeOfHit == MovingObjectType.ENTITY) {
 			objPos.entityHit.attackEntityFrom(railgun, (float)damageCollision);
+			setDead();
 		}
 		if (objPos.typeOfHit == MovingObjectType.BLOCK) {
-			worldObj.createExplosion((Entity)null, hitX, hitY, hitZ, (float)this.damageExplosion, false);
-			System.out.println("Bham!");
+			worldObj.createExplosion(this, hitX, hitY, hitZ, (float)this.damageExplosion, false);
+			setDead();
 		}
-			
-		setDead();
 	}
 	
 	public double getDamageCollision() {

@@ -60,34 +60,20 @@ public class FrogCraftRebirth {
 		};
 		
 		GameRegistry.registerFuelHandler(FUEL_REG);
-		
 		NetworkHandler.init();
-		
 		proxy.preInit(event);
 	}
 	
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
-		
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);	
 		proxy.init(event);
 	}
 	
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-		/*try {
-			java.lang.reflect.Field identityCheck = FrogAPI.frogTab.getClass().getField("IDENTITY");
-			identityCheck.setAccessible(true);
-			String value = (String)identityCheck.get(null);
-			if ("0x0000002A".equals(value) && Integer.parseInt(value, 16) == 42)
-				frogLogger.debug("Identity check finished.");
-			else
-				throw new RuntimeException("FrogCraft's creative tab has been overrided! THIS IS ILLEGAL AND FROGCRAFT HAS NO RESPONSIBILITY ON THIS EXCEPTION!");
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}*/
 		frogLogger.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 	

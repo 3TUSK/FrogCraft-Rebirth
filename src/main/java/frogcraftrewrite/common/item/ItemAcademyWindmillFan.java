@@ -20,7 +20,7 @@ public class ItemAcademyWindmillFan extends ItemFrogCraft {
 		setMaxStackSize(1);
 		setNoRepair();
 		setTextureName("frogcraftrewrite:ACWindMill_Fan");
-		setUnlocalizedName("ACWindMill_Rotor.name");
+		setUnlocalizedName("academyWindmillRotor.name");
 	}
 	
 	@Override

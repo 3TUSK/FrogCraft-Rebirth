@@ -22,7 +22,7 @@ public class FrogFluidTank implements IFluidTank {
 	}
 	
 	public void writeToNBT(NBTTagCompound tag) {	
-		fluidInv.writeToNBT(tag);
+		if (fluidInv != null) fluidInv.writeToNBT(tag);
 	}
 	
 	@Override
@@ -32,7 +32,7 @@ public class FrogFluidTank implements IFluidTank {
 
 	@Override
 	public int getFluidAmount() {
-		return fluidInv.amount;
+		return fluidInv != null ? fluidInv.amount : 0;
 	}
 
 	@Override

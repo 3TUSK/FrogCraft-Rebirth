@@ -26,6 +26,6 @@ public class GuiCombustionFurnace extends GuiContainer {
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
 	}
 	
-	private static final ResourceLocation TEXTURE_COMBUSTION_FURNACE = new ResourceLocation("frogcraftrewrite:texture/gui/GUI_CombustionFurnace");
+	private static final ResourceLocation TEXTURE_COMBUSTION_FURNACE = new ResourceLocation("frogcraftrewrite:textures/gui/GUI_CombustionFurnace.png");
 
 }

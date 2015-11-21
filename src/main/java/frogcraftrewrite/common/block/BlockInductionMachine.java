@@ -18,6 +18,8 @@ public class BlockInductionMachine extends BlockFrogContainer {
 
 	public BlockInductionMachine() {
 		super(Material.iron);
+		setBlockName("inductionalMachine");
+		setSubNameArray("Compressor", "Macerator", "Extractor", "Furnace");
 	}
 	
 	@Override

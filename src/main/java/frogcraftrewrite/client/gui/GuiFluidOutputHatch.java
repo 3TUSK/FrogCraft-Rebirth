@@ -29,5 +29,5 @@ public class GuiFluidOutputHatch extends GuiContainer {
 		//GuiUtil.renderFluidTank(0, 0, 0, 0, tile.getTankInfo()[0].fluid.getFluid(), 100*(tile.getTankInfo()[0].fluid.amount)/(tile.getTankInfo()[0].capacity));
 	}
 	
-	private static final ResourceLocation TEXTURE_FLUID_OUTPUT = new ResourceLocation("frogcraftrewrite:gui/Gui_LiquidOutput");
+	private static final ResourceLocation TEXTURE_FLUID_OUTPUT = new ResourceLocation("frogcraftrewrite:textures/gui/Gui_LiquidOutput");
 }

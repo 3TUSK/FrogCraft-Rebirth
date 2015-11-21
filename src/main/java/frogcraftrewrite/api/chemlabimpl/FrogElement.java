@@ -1,4 +1,4 @@
-package frogcraftrewrite.api.trichemimpl;
+package frogcraftrewrite.api.chemlabimpl;
 
 import info.tritusk.tritchemlab.matter.Element;
 

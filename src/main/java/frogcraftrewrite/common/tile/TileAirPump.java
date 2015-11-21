@@ -5,18 +5,33 @@ import static frogcraftrewrite.common.lib.config.ConfigMain.airPumpGenerateSpeed
 
 import frogcraftrewrite.api.tile.IAirPump;
 import frogcraftrewrite.common.lib.tile.TileFrog;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
 	public int charge, maxCharge;
 	private int airAmount, maxAirAmount = 1000, tick;
+	private boolean isInENet;
+	
+	public void invalidate() {
+		if (isInENet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+			isInENet = false;
+		}
+	}
 	
 	public void updateEntity() {
 		super.updateEntity();
+		if (!isInENet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			isInENet = true;
+		}
 		if (airAmount >= maxAirAmount) {
 			this.airAmount = maxAirAmount;
 			return;

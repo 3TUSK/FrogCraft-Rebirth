@@ -17,9 +17,10 @@ public class BlockACWindmill extends BlockFrogContainer {
 	
 	public BlockACWindmill() {
 		super(Material.iron, 1);
+		setBlockName("academyWindmill");
 		setHardness(10.0F);
 		setResistance(10.0F);
-		setSubNameArray("ACWindMillBase", "ACWindMillTurbine");
+		setSubNameArray("Base", "Turbine");
 	}
 	
 	@SideOnly(Side.CLIENT)

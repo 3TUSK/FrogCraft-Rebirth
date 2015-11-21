@@ -19,6 +19,7 @@ public class GuiAirPump extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
+		super.drawGuiContainerForegroundLayer(par1int, par2int);
 		//this.fontRendererObj.drawString(p_78276_1_, p_78276_2_, p_78276_3_, p_78276_4_)
 	}
 
@@ -34,5 +35,5 @@ public class GuiAirPump extends GuiContainer {
         this.drawTexturedModalRect(k+145, l+59-airPercentage, 176, 42, 12, 4);
 	}
 	
-	private static ResourceLocation texture_AirPump = new ResourceLocation("frogcraftrewrite:GUI_AirPump");
+	private static ResourceLocation texture_AirPump = new ResourceLocation("frogcraftrewrite:textures/gui/GUI_AirPump.png");
 }

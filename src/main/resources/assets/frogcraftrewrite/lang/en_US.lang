@@ -10,7 +10,7 @@ item.CoolantAmmonia60K=60K ammonia coolant cell
 item.CoolantAmmonia180K=180K ammonia coolant cell
 item.CoolantAmmonia360K=360K ammonia coolant cell
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
-item.ACWindMill_Rotor.name=Academic City Windmill Rotor
+item.academyWindmillRotor.name=Academic City Windmill Rotor
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery
@@ -122,36 +122,41 @@ item.Item_Ingots.ingotDesc=But it's not always real ingot
 item.Item_Ingots.nghDesc=It is believed as useful fuel...
 
 #Blocks
-tile.Machines.PneumaticCompressor.name=Pneumatic Compressor
-tile.Machines.AirPump.name=Industrial Pump
-tile.Machines.IndustrialCompressor.name=Industrial Compressor
-tile.Machines.IndustrialMacerator.name=Industrial Macerator
-tile.Machines.IndustrialExtractor.name=Industrial Extractor
-tile.Machines.IndustrialFurnance.name=Industrial Furnace
-tile.Machines.HSU.name=Hybrid Storage Unit
-tile.Machines.UHSU.name=Ultimate Hybrid Storage Unit
-tile.Machines.EVT.name=EV Transformer
-tile.Machines.Liquifier.name=Liquefier
-tile.Machines.ThermalCracker.name=Thermal Cracker
-tile.Machines.AdvanceChemicalReactor.name=Advanced Chemical Reactor
-tile.Machines.CondenseTower.Core.name=Condense Tower
-tile.Machines.CondenseTower.FluidOutput.name=Liquid Outlet
-tile.Machines.CondenseTower.Cylinder.name=Condense Tower Wall
-tile.Machines.ACWindMillTurbine.name=Academic City Windmill Generator
-tile.Machines.ACWindMillBase.name=Academic City Windmill Base
-tile.Machines.AutoWorkBench.name=Auto WorkBench
-tile.Machines.CombustionFurnace.name=Combustion Furnace
+tile.inductionalMachine.Compressor.name=Industrial Compressor
+tile.inductionalMachine.Macerator.name=Industrial Macerator
+tile.inductionalMachine.Extractor.name=Industrial Extractor
+tile.inductionalMachine.Furnance.name=Industrial Furnace
 
-tile.ACWindMill_Cylinder.name=Academic City Windmill Wall
+tile.multiBlockMachine.CondenseTower.Core.name=Condense Tower
+tile.multiBlockMachine.CondenseTower.FluidOutput.name=Liquid Outlet
+tile.multiBlockMachine.CondenseTower.Cylinder.name=Condense Tower Wall
+tile.multiBlockMachine.Liquifier.name=Liquefier
 
-tile.fcOre.oreCarnallite.name=Carnallite Ore
-tile.fcOre.oreFluorapatite.name=Fluorapatite Ore
-tile.fcOre.oreDewalquite.name=Dewalquite Ore
-tile.fcOre.oreRuby.name=Ruby Ore
-tile.fcOre.oreSapphire.name=Sapphire Ore
-tile.fcOre.oreGreenSapphire.name=Green Sapphire Ore
-tile.fcOre.stoneMarble.name=Marble
-tile.fcOre.stoneBasalt.name=Basalt
+tile.hybridStorageUnit.HSU.name=Hybrid Storage Unit
+tile.hybridStorageUnit.UHSU.name=Ultimate Hybrid Storage Unit
+tile.hybridStorageUnit.EVT.name=EV Transformer
+
+tile.academyWindmill.Turbine.name=Academic City Windmill Generator
+tile.academyWindmill.Base.name=Academic City Windmill Base
+tile.academyWindmill.Cylinder.name=Academic City Windmill Wall
+tile.generator.CombustionFurnace.name=Combustion Furnace
+
+tile.PneumaticCompressor.name=Pneumatic Compressor
+
+tile.machines.AdvChemReactor.name=Advanced Chemical Reactor
+tile.machines.AirPump.name=Industrial Air Pump
+tile.machines.ThermalCracker.name=Thermal Cracker
+
+#tile.Machines.AutoWorkBench.name=Auto WorkBench
+
+tile.mineral.oreCarnallite.name=Carnallite Ore
+tile.mineral.oreFluorapatite.name=Fluorapatite Ore
+tile.mineral.oreDewalquite.name=Dewalquite Ore
+tile.mineral.oreRuby.name=Ruby Ore
+tile.mineral.oreSapphire.name=Sapphire Ore
+tile.mineral.oreGreenSapphire.name=Green Sapphire Ore
+tile.mineral.stoneMarble.name=Marble
+tile.mineral.stoneBasalt.name=Basalt
 
 tile.nitricAcid.name=Nitric Acid
 

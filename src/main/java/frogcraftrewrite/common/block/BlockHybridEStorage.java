@@ -19,6 +19,7 @@ public class BlockHybridEStorage extends BlockFrogContainer {
 	
 	public BlockHybridEStorage() {
 		super(Material.iron, 1);
+		setBlockName("hybridStorageUnit");
 		setSubNameArray("HSU", "UHSU");
 	}
 	

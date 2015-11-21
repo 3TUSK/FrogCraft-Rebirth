@@ -17,7 +17,7 @@ public class BlockCondenseTower extends BlockFrogContainer {
 
 	public BlockCondenseTower() {
 		super(Material.iron, 2);
-		setBlockName("Machine.CondenseTower");
+		setBlockName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);
 		setSubNameArray("Core", "Cylinder", "FluidOutput");

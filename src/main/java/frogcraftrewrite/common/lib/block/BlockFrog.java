@@ -56,7 +56,7 @@ public abstract class BlockFrog extends Block {
 			list.add(new ItemStack(item, 1, i));
 		}
 	}
-	
+
 	public String[] getSubNamesArray() {
 		return this.nameArray;
 	}

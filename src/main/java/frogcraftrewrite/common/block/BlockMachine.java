@@ -15,7 +15,7 @@ public class BlockMachine extends BlockFrogContainer {
 
 	public BlockMachine() {
 		super(Material.iron, 2);
-		setBlockName("FrogCarftMachine");
+		setBlockName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
 		setSubNameArray("AdvChemReactor", "AirPump", "ThermalCracker");

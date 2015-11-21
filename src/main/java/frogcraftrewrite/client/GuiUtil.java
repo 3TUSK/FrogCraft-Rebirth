@@ -5,9 +5,14 @@ import org.lwjgl.opengl.GL11;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
 public class GuiUtil {
+	
+	public static ResourceLocation getGuiBackground(final String machineName) {
+		return new ResourceLocation("frogcraftrewrite:textures/gui/" + machineName + ".png");
+	}
 
 	public static void renderFluidTank(int x, int y, int w, int h, Fluid fluid, int percentage) {
 		if (fluid == null) return;
@@ -41,6 +46,5 @@ public class GuiUtil {
 		GL11.glTexCoord2d(u2, v);
 		GL11.glVertex2i(x + w, y + h -z);
 		GL11.glEnd();
-		
 	}
 }

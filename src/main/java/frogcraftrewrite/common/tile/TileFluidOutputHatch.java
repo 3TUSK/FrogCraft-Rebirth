@@ -3,6 +3,7 @@ package frogcraftrewrite.common.tile;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -43,6 +44,18 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 			}
 			tick = 0;
 		}
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		tank.readFromNBT(tag);
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tank.writeToNBT(tag);
 	}
 
 	@Override

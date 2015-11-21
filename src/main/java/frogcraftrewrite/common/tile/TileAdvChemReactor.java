@@ -40,7 +40,8 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		super.updateEntity();
 		if (worldObj.isRemote) return;
 		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
-		List<ItemStack> recipeInput = recipe.getInput();
+		List<ItemStack> recipeInput;
+		recipeInput = recipe != null ? recipe.getInput() : null;
 		if (!working && recipe!=null && recipeInput!=null) {
 			for (ItemStack s : recipeInput) {
 				for (int i=1;i<6;i++) {
@@ -53,7 +54,7 @@ public class TileAdvChemReactor extends TileFrogMachine {
 				}
 			}
 			working = recipe == null ? false : true;
-		}
+		} else return;
 		List<ItemStack> recipeOutput = recipe.getOutput();
 		int freeOutSlot = 0;
 		for (int i=6;i<11;i++) {

@@ -8,6 +8,7 @@ import frogcraftrewrite.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFrogOre extends BlockFrog {
@@ -49,6 +50,12 @@ public class BlockFrogOre extends BlockFrog {
 		for (int i=0;i<iconArray.length;i++) {
 			iconArray[i] = r.registerIcon("frogcraftrewrite:ores/"+this.nameArray[i]);
 		}
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
+		return iconArray[world.getBlockMetadata(x, y, z)];
 	}
 	
 	@SideOnly(Side.CLIENT)

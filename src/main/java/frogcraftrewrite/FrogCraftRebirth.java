@@ -77,7 +77,7 @@ public class FrogCraftRebirth {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-		try {
+		/*try {
 			java.lang.reflect.Field identityCheck = FrogAPI.frogTab.getClass().getField("IDENTITY");
 			identityCheck.setAccessible(true);
 			String value = (String)identityCheck.get(null);
@@ -87,7 +87,7 @@ public class FrogCraftRebirth {
 				throw new RuntimeException("FrogCraft's creative tab has been overrided! THIS IS ILLEGAL AND FROGCRAFT HAS NO RESPONSIBILITY ON THIS EXCEPTION!");
 		} catch (Exception e) {
 			throw new RuntimeException(e);
-		}
+		}*/
 		frogLogger.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 	

@@ -20,6 +20,7 @@ import frogcraftrewrite.client.gui.GuiCondenseTower;
 import frogcraftrewrite.client.gui.GuiFluidOutputHatch;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
+import frogcraftrewrite.client.gui.GuiThermalCracker;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
 import frogcraftrewrite.common.event.FrogEventListener;
 import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
@@ -28,8 +29,10 @@ import frogcraftrewrite.common.gui.ContainerCondenseTower;
 import frogcraftrewrite.common.gui.ContainerFluidOutputHatch;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
+import frogcraftrewrite.common.gui.ContainerThermalCracker;
 import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.registry.RegFluid;
+//import frogcraftrewrite.common.registry.RegFrogAchievements;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
@@ -37,6 +40,7 @@ import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileHSUUltra;
+import frogcraftrewrite.common.tile.TileThermalCracker;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -61,8 +65,7 @@ public class CommonProxy implements IGuiHandler{
 					return new ContainerHybridEStorage(player.inventory, (TileHSUUltra)aTile);
 			}
 			case 2: {
-				if (aTile instanceof TileAirPump)
-					return new ContainerAirPump(player.inventory, (TileAirPump)aTile);
+				
 				if (aTile instanceof TileCondenseTower)
 					return new ContainerCondenseTower(player.inventory, (TileCondenseTower)aTile);
 				if (aTile instanceof TileFluidOutputHatch)
@@ -77,6 +80,10 @@ public class CommonProxy implements IGuiHandler{
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
 					return new ContainerAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
+				if (aTile instanceof TileAirPump)
+					return new ContainerAirPump(player.inventory, (TileAirPump)aTile);
+				if (aTile instanceof TileThermalCracker)
+					return new ContainerThermalCracker(player.inventory, (TileThermalCracker)aTile);
 			}
 		}
 		return null;
@@ -97,8 +104,6 @@ public class CommonProxy implements IGuiHandler{
 					return new GuiHybridEStorage(player.inventory, (TileHSUUltra)aTile);
 			}
 			case 2: {
-				if (aTile instanceof TileAirPump)
-					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
 				if (aTile instanceof TileCondenseTower)
 					return new GuiCondenseTower(player.inventory, (TileCondenseTower)aTile);
 				if (aTile instanceof TileFluidOutputHatch)
@@ -113,6 +118,10 @@ public class CommonProxy implements IGuiHandler{
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
 					return new GuiAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
+				if (aTile instanceof TileAirPump)
+					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
+				if (aTile instanceof TileThermalCracker)
+					return new GuiThermalCracker(player.inventory, (TileThermalCracker)aTile);
 			}
 		}
 		return null;
@@ -128,6 +137,7 @@ public class CommonProxy implements IGuiHandler{
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrewrite.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
+		//RegFrogAchievements.init();
 	}
 
 	public void init(FMLInitializationEvent event) {

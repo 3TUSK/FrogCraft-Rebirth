@@ -29,8 +29,9 @@ public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 
 	@Override
 	public void readData(DataInputStream input) throws IOException {
-		int
-		gui = input.readInt(), data = input.readInt(), value = input.readInt();
+		int gui = input.readInt();
+		int data = input.readInt();
+		int value = input.readInt();
 		EntityClientPlayerMP player = FMLClientHandler.instance().getClient().thePlayer;
 		if (player.openContainer != null && player.openContainer.windowId == gui)
 			player.openContainer.updateProgressBar(data, value);

@@ -1,4 +1,4 @@
-﻿#Master Language File, 2013.5.3
+#Master Language File, 2013.5.3
 
 #Items
 item.ItemRailgun.name=超电磁炮
@@ -143,7 +143,7 @@ tile.generator.CombustionFurnace.name=焚烧炉
 
 tile.PneumaticCompressor.name=气动压缩机
 
-tile.machines.AdvChemReactor.name=高级化学反应器
+tile.machines.AdvanceChemicalReactor.name=高级化学反应器
 tile.machines.AirPump.name=工业气泵
 tile.machines.ThermalCracker.name=热解裂机
 
@@ -169,8 +169,8 @@ achievement.killed_by_Potassium=被钾炸死
 achievement.killed_by_Potassium.desc=不作死就不会死,永远不要把碱金属放到水里!
 achievement.gaspump=空气的力量
 achievement.gaspump.desc=一股无形而强大的力量
-achievement.pneumaticCompressor=工业TNT 886~
-achievement.pneumaticCompressor.desc=制作衣板再也不需要工业TNT啦
+achievement.pneumaticCompressor=工业TNT,886~
+achievement.pneumaticCompressor.desc=制作铱板再也不需要工业TNT啦
 achievement.liquifier=无尽的原材料
 achievement.liquifier.desc=乃学会了从空气中获得原材料
 achievement.hsu=更大的MFSU

@@ -27,6 +27,7 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
+		super.invalidate();
 	}
 	
 	@Override

@@ -68,7 +68,6 @@ public class NetworkHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 	}
 	
 	private static ByteBuf asByteBuf(IFrogPacket packet) {

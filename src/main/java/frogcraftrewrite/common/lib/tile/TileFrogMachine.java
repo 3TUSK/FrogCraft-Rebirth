@@ -36,6 +36,7 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
+		super.invalidate();
 	}
 	
 	@Override

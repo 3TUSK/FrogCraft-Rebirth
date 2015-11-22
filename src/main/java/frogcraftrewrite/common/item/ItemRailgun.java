@@ -126,8 +126,6 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		if (world.isRemote)
 			return;
 	}
-	
-	//IC2 Start
 
 	@Override
 	public boolean canProvideEnergy(ItemStack itemStack) {
@@ -159,10 +157,6 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		return 1000;
 	}
 	
-	/**
-	 * @param status <code>true</coce> if it's active
-	 * @return
-	 */
 	public ItemRailgun setStatus(boolean status) {
 		this.active = status;
 		return this;

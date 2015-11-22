@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.Fluid;
 public class GuiUtil {
 	
 	public static ResourceLocation getGuiBackground(final String machineName) {
-		return new ResourceLocation("frogcraftrewrite:textures/gui/" + machineName + ".png");
+		return new ResourceLocation("frogcraftrewrite:textures/gui/GUI_" + machineName + ".png");
 	}
 
 	public static void renderFluidTank(int x, int y, int w, int h, Fluid fluid, int percentage) {

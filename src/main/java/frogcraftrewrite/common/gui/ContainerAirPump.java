@@ -11,7 +11,7 @@ import net.minecraft.inventory.ICrafting;
 
 public class ContainerAirPump extends ContainerTileFrog<TileAirPump> {
 	
-	int charge, air;
+	public int charge, air;
 	
 	public ContainerAirPump(InventoryPlayer playerInv, TileAirPump tile) {
 		super(playerInv, tile);

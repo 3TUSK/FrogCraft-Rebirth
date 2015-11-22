@@ -16,12 +16,12 @@ buildscript {
 }
 
 repositories {
-    maven {
-        name 'CB Repo'
+    /*maven {
+        name = "CB Repo"
         url "http://chickenbones.net/maven/"
     }
     maven {
-        name "Mobius Repo"
+        name = "Mobius Repo"
         url "http://mobiusstrip.eu/maven"
     }
     maven {
@@ -29,23 +29,23 @@ repositories {
         url = "http://maven.ic2.player.to"
     }
     ivy {
-        name "MineTweaker3"
+        name = "MineTweaker3"
         artifactPattern "http://minetweaker3.powerofbytes.com/download/[module]-[classifier]-[revision].[ext]"
     }
     ivy {
-        name = 'ThaumCraft 4 API'
+        name = "ThaumCraft 4 API"
         artifactPattern 'https://dl.dropboxusercontent.com/u/47135879/[module](-[classifier])-1.7.10-[revision](.[ext])'
     }
     ivy {
         name "TechReborn"
         artifactPattern "http://maven.modmuss50.me//[module]/[module]/[revision]/[module]-[revision]-[classifier].[ext]"
-    }
+    }*/
 }
 
 apply plugin: 'forge'
 apply plugin: 'maven'
 
-version = "0.1"
+version = "0.2"
 group= "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 

@@ -4,13 +4,13 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrewrite.api.tile.IFrogNetworkTile;
+import frogcraftrewrite.api.IFrogNetworkObject;
 import ic2.api.tile.IWrenchable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 
-public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogNetworkTile {
+public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogNetworkObject {
 
 	protected short facing = 5, prevFacing;
 	

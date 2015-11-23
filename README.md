@@ -1,6 +1,6 @@
 # FrogCraft: Rebirth
 Everything is about chemistry. Don't abuse it, or the environment will be destoryed.  
-Also, don't pay much attention on this project. *I will do it by myself, no matter how hard it is for me.* 
+Also, don't pay much attention on this project. *I will do it by myself, no matter how hard it is for me.*  
 By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS OF BREAKING CHANGES ON THE WAY! 
 
 ### Table of content:  
@@ -20,7 +20,7 @@ By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS O
    * World genertor: finished with minor issue  
  * Machines: 75%(estimated)  
     * Advanced Chemical Reactor: finishied but untested  
-    * Air Pump: GUI not working, working around
+    * Air Pump: Shall be 100% completed
     * Condense Tower: finished but untested  
     * Thermal Cracker: finished but untested
  * Generator: 75%(estimated)  
@@ -37,12 +37,12 @@ Although the author said that he won't continue on FrogCraft, I still want to ca
 What you see right now is FrogCraft: Rebirth (under `1710port` branch), *not FrogCraft 2* (for more info please see below). However, part of these codes are prepared for the FrogCraft 2.  
 
 #### About _FrogCraft 2: Chemica_
-FrogCraft 2: *Chemica* (latin. chemistry) is a mod concentrating on chemical industry, aiming to establish a whole system about syntheticing chemicals and making a good use.
+FrogCraft 2: *Chemica* (latin. chemistry) is a mod concentrating on chemical industry, aiming to establish a whole system about syntheticing chemicals and making a good use.  
 FrogCraft 2: *Chemica* will follow [Cult of Kitteh](http://asie.pl/kitteh/). 
 Thanks to asie, otherwise I won't even think about such a design.
 
 #### About _TriTChemLab_
-What? What is it?
+What? What is it?  
 Basically it is an API library, any implementation of this API should provide a system to read, express and use all kinds of data about chemistry, e.g.: elements and their properties, chemical equation and rough predition, simple calculation. 
 The final goal is to make a universal chem-lab-ish api, providing a convenience way to execute calculation in chemistry (roughly). 
 

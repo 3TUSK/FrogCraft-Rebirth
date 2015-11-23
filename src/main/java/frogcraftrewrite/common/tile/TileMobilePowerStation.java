@@ -1,5 +1,6 @@
 package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
@@ -13,7 +14,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileMobilePowerStation extends TileEntity implements IInventory, IEnergySource {
+public class TileMobilePowerStation extends TileFrog implements IInventory, IEnergySource {
 	
 	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
 	public ItemStack[] inv;

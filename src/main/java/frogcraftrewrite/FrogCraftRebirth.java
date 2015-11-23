@@ -1,7 +1,5 @@
 package frogcraftrewrite;
 
-import static frogcraftrewrite.api.FrogFuelHandler.FUEL_REG;
-
 import java.io.File;
 
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +13,6 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
 import frogcraftrewrite.common.event.FrogEventListener;
@@ -58,8 +55,6 @@ public class FrogCraftRebirth {
 				return frogLogo;
 			}
 		};
-		
-		GameRegistry.registerFuelHandler(FUEL_REG);
 		NetworkHandler.init();
 		proxy.preInit(event);
 	}

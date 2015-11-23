@@ -16,8 +16,8 @@ public class ConfigMain {
 		
 		config.load();
 		
-		airPumpPowerRate = config.get("Machine", "AirPumpPowerRate", 1000).getInt();
-		airPumpGenerateSpeed = config.get("Machine", "AirPumpGenerateSpeed", 5).getInt();
+		airPumpPowerRate = config.get("Machine", "AirPumpPowerRate", 120).getInt();
+		airPumpGenerateSpeed = config.get("Machine", "AirPumpGenerateSpeed", 50).getInt();
 		combustionFurnacePowerRate = config.get("Machine", "CombustionFurnacePowerRate", 10).getInt();
 		
 		railgunDamageScale = config.getFloat("RailgunDamageScale", "Misc", 100, Double.MIN_EXPONENT, Double.MAX_EXPONENT, null, "frogcraft.config.railgunDamageScale");

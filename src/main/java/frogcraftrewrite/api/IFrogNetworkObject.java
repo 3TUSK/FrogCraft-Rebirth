@@ -1,10 +1,10 @@
-package frogcraftrewrite.api.tile;
+package frogcraftrewrite.api;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-public interface IFrogNetworkTile {
+public interface IFrogNetworkObject {
 	
 	void writePacketData(DataOutputStream output) throws IOException;
 	

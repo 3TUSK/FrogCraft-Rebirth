@@ -2,15 +2,12 @@ package frogcraftrewrite.common.gui;
 
 import frogcraftrewrite.common.tile.TileMobilePowerStation;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.Container;
+import net.minecraft.entity.player.InventoryPlayer;
 
-public class ContainerMPS extends Container{
-	
-	protected TileMobilePowerStation tile;
-	
-	public ContainerMPS (TileMobilePowerStation tile) {
-		this.tile = tile;
-		//TODO: REWORK
+public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation>{
+
+	public ContainerMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
+		super(playerInv, tile);
 	}
 
 	@Override

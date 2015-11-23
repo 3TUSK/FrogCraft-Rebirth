@@ -37,6 +37,6 @@ public class ContainerFluidOutputHatch extends ContainerTileFrog<TileFluidOutput
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int value) {
-		if (id == 0) this.fluidAmount = value;
+		//if (id == 0) this.fluidAmount = value; TODO: synchronized FluidTank
 	}
 }

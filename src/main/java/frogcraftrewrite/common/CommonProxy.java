@@ -1,5 +1,7 @@
 package frogcraftrewrite.common;
 
+import static frogcraftrewrite.api.FrogFuelHandler.FUEL_REG;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 
@@ -42,11 +44,11 @@ import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileHSUUltra;
 import frogcraftrewrite.common.tile.TileThermalCracker;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
+import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import info.tritusk.tritchemlab.matter.Element;
 
 public class CommonProxy implements IGuiHandler{
 
@@ -132,7 +134,8 @@ public class CommonProxy implements IGuiHandler{
 			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/chemistry/PeriodicTable.xml"), false)));
 		} catch (Exception e) {
 			e.printStackTrace();
-		}		
+		}
+		GameRegistry.registerFuelHandler(FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrewrite.FrogCraftRebirth.instance, 160, 5, true);

@@ -49,8 +49,8 @@ public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracke
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int value) {
-		if (id == 0) this.charge = value;
-		if (id == 1) this.process = value;
-		if (id == 2) this.fluidAmount = value;
+		if (id == 0) this.tile.charge = value;
+		if (id == 1) this.tile.process = value;
+		//if (id == 2) this.fluidAmount = value; TODO: synchronized FluidTank
 	}
 }

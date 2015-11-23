@@ -48,8 +48,8 @@ public class ContainerAdvChemReactor extends ContainerTileFrog<TileAdvChemReacto
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void updateProgressBar(int id, int value) {
-		if (id == 0) this.charge = value;
-		if (id == 1) this.process = value;
+		if (id == 0) this.tile.charge = value;
+		if (id == 1) this.tile.process = value;
 	}
 
 }

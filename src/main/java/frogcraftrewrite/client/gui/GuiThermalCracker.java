@@ -7,6 +7,7 @@ import frogcraftrewrite.common.gui.ContainerThermalCracker;
 import frogcraftrewrite.common.tile.TileThermalCracker;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
 
 public class GuiThermalCracker extends GuiContainer {
 
@@ -16,6 +17,13 @@ public class GuiThermalCracker extends GuiContainer {
 		super(new ContainerThermalCracker(playerInv, tile));
 		this.tile = tile;
 	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString("Thermal Cracker", 8, ySize - 155, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString("Charge: "+tile.charge, 8, ySize - 145, GuiUtil.GRAY_40);
+	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
@@ -24,6 +32,15 @@ public class GuiThermalCracker extends GuiContainer {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		
+		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);
+		this.drawTexturedModalRect(k + 81, l + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
+		
+		if (tile.working) {
+			this.drawTexturedModalRect(k + 25, l + 50, 176, 66, 14, 14);
+			int progressPercent = (int) (24 * tile.process / tile.processMax);
+			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent, 17);
+		}
 	}
 
 }

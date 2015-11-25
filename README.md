@@ -22,7 +22,7 @@ By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS O
     * Advanced Chemical Reactor: finishied but untested  
     * Air Pump: 100% completed
     * Condense Tower: finished but untested  
-    * Thermal Cracker: finished but untested
+    * Thermal Cracker: 90% completed
  * Generator: 75%(estimated)  
     * Academy City Windmill: finished but can't work, need investgation   
     * Combustion Furnace: finished but untested

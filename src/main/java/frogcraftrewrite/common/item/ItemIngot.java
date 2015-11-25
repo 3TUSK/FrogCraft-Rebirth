@@ -78,14 +78,8 @@ public class ItemIngot extends ItemFrogCraft{
 				list.add(StatCollector.translateToLocal("item.Item_Ingots.nghDesc"));
 				break;
 			}
-			case 6: {
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.Briquette.info"));
-				break;
-			}
-			case 7: {
-				list.add(StatCollector.translateToLocal("item.Item_Ingots.CoalCokeShattered.info"));
-				break;
-			}
+			case 6:
+			case 7:
 			default:
 				break;
 		}

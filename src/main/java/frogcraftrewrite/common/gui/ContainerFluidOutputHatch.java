@@ -14,7 +14,7 @@ public class ContainerFluidOutputHatch extends ContainerTileFrog<TileFluidOutput
 	int fluidAmount;
 
 	public ContainerFluidOutputHatch(InventoryPlayer playerInv, TileFluidOutputHatch tile) {
-		super(playerInv, tile); //DRAW SLOTS!!!!!
+		super(playerInv, tile, 2); //DRAW SLOTS!!!!!
 	}
 
 	@Override

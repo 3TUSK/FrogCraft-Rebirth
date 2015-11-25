@@ -37,9 +37,11 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 	@Override
 	public <ItemStack> ThermalCrackerRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
 		ItemStack input = (ItemStack)inputs[0];
+		if (input == null)
+			return null;
 		for (ThermalCrackerRecipe r : recipes) {
 			if (r.getInput().isItemEqual((net.minecraft.item.ItemStack)input) 
-					&& r.getInput().stackSize == ((net.minecraft.item.ItemStack)input).stackSize)
+					&& r.getInput().stackSize <= ((net.minecraft.item.ItemStack)input).stackSize)
 				return r;
 		}
 		return null;

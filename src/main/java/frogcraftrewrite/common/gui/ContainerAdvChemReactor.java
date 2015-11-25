@@ -15,7 +15,7 @@ public class ContainerAdvChemReactor extends ContainerTileFrog<TileAdvChemReacto
 	private int charge, process;
 	
 	public ContainerAdvChemReactor(InventoryPlayer playerInv, TileAdvChemReactor tile) {
-		super(playerInv, tile);
+		super(playerInv, tile, 13);
 		this.addSlotToContainer(new Slot(tile, 0, 147, 52));
 		for (int i=1;i<=5;i++)
 			this.addSlotToContainer(new Slot(tile, i, 20+i*20, 22));

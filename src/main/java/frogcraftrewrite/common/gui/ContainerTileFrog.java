@@ -10,8 +10,10 @@ import net.minecraft.item.ItemStack;
 public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 
 	protected T tile;
+	
+	private int tileInvCount;
 
-	protected ContainerTileFrog(InventoryPlayer playerInv, T tile) {
+	protected ContainerTileFrog(InventoryPlayer playerInv, T tile, int tileInvCount) {
 		this.tile = tile;
 
 		for (int i = 0; i < 3; ++i) {
@@ -23,6 +25,8 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		for (int i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
 		}
+		
+		this.tileInvCount = tileInvCount;
 	}
 	
 	@Override
@@ -40,7 +44,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			itemstack = itemstack1.copy();
 
 			if (aSlot < this.inventorySlots.size()) {
-				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size(), 45, true)) {
+				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size(), 36 + this.tileInvCount, true)) { //question
 					return null;
 				}
 			} else if (!this.mergeItemStack(itemstack1, 0, this.inventorySlots.size(), false)) {

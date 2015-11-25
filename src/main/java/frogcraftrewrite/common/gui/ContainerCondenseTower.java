@@ -15,7 +15,7 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
 	private int charge, tick, fluidAmount;
 
 	public ContainerCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
-		super(playerInv, tile);
+		super(playerInv, tile, 2);
 		this.addSlotToContainer(new Slot(tile, 0, 113, 21));
 		this.addSlotToContainer(new Slot(tile, 1, 113, 56));
 	}

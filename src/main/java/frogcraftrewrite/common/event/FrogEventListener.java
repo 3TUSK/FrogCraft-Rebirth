@@ -27,7 +27,9 @@ public class FrogEventListener {
 			if (((EntityItem)item).getEntityItem().getItem() instanceof ItemIngot&& ((EntityItem)item).getEntityItem().getItemDamage() == 0){
 				if (block == FrogBlocks.fluidNitricAcid);
 					//item.entityDropItem(new ItemStack(Items.blaze_rod), 0.5F);
+				//Entity entity = event.world.getClosestPlayer(event.explosion.explosionX, event.explosion.explosionY, event.explosion.explosionZ, p_72977_7_)
 			}
+			
 		}
 	}
 

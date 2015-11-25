@@ -14,7 +14,7 @@ public class ContainerCombustionFurnace extends ContainerTileFrog<TileCombustion
 	private int charge, time;
 	
 	public ContainerCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
-		super(playerInv, tile);
+		super(playerInv, tile, 4);
 	}
 	
 	public void addCraftingToCrafters(ICrafting crafting) {

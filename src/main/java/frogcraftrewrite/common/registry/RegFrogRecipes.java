@@ -1,5 +1,14 @@
 package frogcraftrewrite.common.registry;
 
+import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.ItemStack;
+
 public class RegFrogRecipes {
+	
+	public static void init() {
+		FrogAPI.managerTC.add(new ThermalCrackerRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.diamond_block), null, 1000));
+	}
 
 }

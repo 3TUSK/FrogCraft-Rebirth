@@ -36,6 +36,7 @@ import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.registry.RegFluid;
 //import frogcraftrewrite.common.registry.RegFrogAchievements;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
+import frogcraftrewrite.common.registry.RegFrogRecipes;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
 import frogcraftrewrite.common.tile.TileCondenseTower;
@@ -152,7 +153,8 @@ public class CommonProxy implements IGuiHandler{
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
-		RegFrogItemsBlocks.postInit();	
+		RegFrogItemsBlocks.postInit();
+		RegFrogRecipes.init();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

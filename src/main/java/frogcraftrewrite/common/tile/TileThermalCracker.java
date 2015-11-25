@@ -28,10 +28,14 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	public void updateEntity() {
 		super.updateEntity();
 		if (this.worldObj.isRemote) return;
+		if (inv[0] == null) {
+			this.process = 0;
+			return;
+		}
 		ThermalCrackerRecipe recipe;
 		if (!working) {
 			recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
-			if (recipe != null) {
+			if (recipe != null && canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0].getFluid())) {
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
@@ -41,6 +45,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 			this.charge -= 256;
 			if (process == processMax) {
 				recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
+				this.decrStackSize(0, recipe.getInput().stackSize);
 				if (this.getStackInSlot(1) == null)
 					this.setInventorySlotContents(1, recipe.getOutput());
 				else {
@@ -49,6 +54,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 				if (this.canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0].getFluid()))
 					this.fill(ForgeDirection.UNKNOWN, recipe.getOutputFluid()[0], true);
 				process = 0;
+				working = false;
 			}
 		}
 	}

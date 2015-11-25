@@ -32,11 +32,13 @@ public class GuiAirPump extends GuiContainer {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
-		int chargeIcon = (int) (tile.charge / tile.maxCharge) * 15;
-		this.drawTexturedModalRect(k + 118, l + 33 + 15 - chargeIcon, 188, 15 - chargeIcon, 10, chargeIcon);
-		int airPercentage = (int) (tile.airAmount() / 1000) * 40;
+		
+		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);
+		this.drawTexturedModalRect(k + 118, l + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
+		
+		int airPercentage = (int) (40 * tile.airAmount() / 1000);
 		this.drawTexturedModalRect(k + 145, l + 63 - airPercentage, 176, 0, 12, airPercentage);
-		this.drawTexturedModalRect(k + 145, l + 59 - airPercentage, 176, 42, 12, 4);
+		this.drawTexturedModalRect(k + 145, l + 60 - airPercentage, 176, 41, 12, 4);
 	}
 
 }

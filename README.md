@@ -20,7 +20,7 @@ By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS O
    * World genertor: finished with minor issue  
  * Machines: 75%(estimated)  
     * Advanced Chemical Reactor: finishied but untested  
-    * Air Pump: Shall be 100% completed
+    * Air Pump: 100% completed
     * Condense Tower: finished but untested  
     * Thermal Cracker: finished but untested
  * Generator: 75%(estimated)  

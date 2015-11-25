@@ -10,6 +10,8 @@ import net.minecraftforge.fluids.Fluid;
 
 public class GuiUtil {
 	
+	public static final int GRAY_40 = 0x404040;
+	
 	public static ResourceLocation getGuiBackground(final String machineName) {
 		return new ResourceLocation("frogcraftrewrite:textures/gui/GUI_" + machineName + ".png");
 	}

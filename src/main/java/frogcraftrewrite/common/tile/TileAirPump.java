@@ -16,7 +16,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
 	public int charge, maxCharge;
-	private int airAmount, maxAirAmount = 1000, tick;
+	private int airAmount, tick;
 	private boolean isInENet;
 	
 	public TileAirPump() {
@@ -44,10 +44,13 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 		if (this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
 			return;
 		
-		if (airAmount >= maxAirAmount) {
-			this.airAmount = maxAirAmount;
+		if (this.charge <= 0 || this.charge < airPumpPowerRate)
+			return;
+		if (airAmount >= 1000) {
+			this.airAmount = 1000;//Remove maxAirAmount, use fixed upper bound
 			return;
 		}
+		
 		this.charge-=airPumpPowerRate;
 		this.tick++;
 		if (tick == 4) {
@@ -61,12 +64,14 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 		super.readFromNBT(tag);
 		this.charge = tag.getInteger("charge");
 		this.airAmount = tag.getInteger("air");
+		this.tick = tag.getInteger("tick");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		tag.setInteger("charge", this.charge);
 		tag.setInteger("air", this.airAmount);
+		tag.setInteger("tick", this.tick);
 	}
 
 	@Override
@@ -86,8 +91,6 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 
 	@Override
 	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
-		if (directionFrom == ForgeDirection.UP)
-			return amount;
 		this.charge += amount;
 		if (this.charge >= maxCharge)
 			this.charge = maxCharge;

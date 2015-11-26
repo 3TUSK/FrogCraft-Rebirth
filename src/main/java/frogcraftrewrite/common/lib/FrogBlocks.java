@@ -9,6 +9,7 @@ public class FrogBlocks {
 	public static Block mobilePowerStation;
 	
 	public static Block condenseTowerPart;
+	public static Block generators;
 	public static Block machines;
 	public static Block inductionalMachines;
 

@@ -16,11 +16,12 @@ public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracke
 	private boolean working;
 
 	public ContainerThermalCracker(InventoryPlayer playerInv, TileThermalCracker tile) {
-		super(playerInv, tile, 4);
+		super(playerInv, tile);
 		this.addSlotToContainer(new Slot(tile, 0, 24, 28));
 		this.addSlotToContainer(new Slot(tile, 1, 75, 28));
 		this.addSlotToContainer(new Slot(tile, 2, 113, 21));
 		this.addSlotToContainer(new Slot(tile, 3, 113, 56));
+		this.registerPlayerInventory(playerInv);
 	}
 
 	public void addCraftingToCrafters(ICrafting crafting) {

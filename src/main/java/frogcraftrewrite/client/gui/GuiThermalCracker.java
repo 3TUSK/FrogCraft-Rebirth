@@ -37,7 +37,7 @@ public class GuiThermalCracker extends GuiContainer {
 		this.drawTexturedModalRect(k + 81, l + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
 		
 		if (tile.working) {
-			this.drawTexturedModalRect(k + 25, l + 50, 176, 66, 14, 14);
+			this.drawTexturedModalRect(k + 25, l + 49, 176, 66, 14, 14);
 			int progressPercent = (int) (24 * tile.process / tile.processMax);
 			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent, 17);
 		}

@@ -49,6 +49,7 @@ public abstract class BlockFrog extends Block {
 		return iconArray[meta][side];
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@SuppressWarnings("unchecked")
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes")List list) {

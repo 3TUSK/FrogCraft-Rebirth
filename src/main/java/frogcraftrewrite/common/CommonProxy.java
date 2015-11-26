@@ -18,6 +18,7 @@ import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;
 import frogcraftrewrite.client.gui.GuiAdvChemReactor;
 import frogcraftrewrite.client.gui.GuiAirPump;
+import frogcraftrewrite.client.gui.GuiCombustionFurnace;
 import frogcraftrewrite.client.gui.GuiCondenseTower;
 import frogcraftrewrite.client.gui.GuiFluidOutputHatch;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
@@ -27,6 +28,7 @@ import frogcraftrewrite.common.entity.EntityRailgunCoin;
 import frogcraftrewrite.common.event.FrogEventListener;
 import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
 import frogcraftrewrite.common.gui.ContainerAirPump;
+import frogcraftrewrite.common.gui.ContainerCombustionFurnace;
 import frogcraftrewrite.common.gui.ContainerCondenseTower;
 import frogcraftrewrite.common.gui.ContainerFluidOutputHatch;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
@@ -39,6 +41,7 @@ import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
 import frogcraftrewrite.common.registry.RegFrogRecipes;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
+import frogcraftrewrite.common.tile.TileCombustionFurnace;
 import frogcraftrewrite.common.tile.TileCondenseTower;
 import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileHSU;
@@ -68,14 +71,14 @@ public class CommonProxy implements IGuiHandler{
 					return new ContainerHybridEStorage(player.inventory, (TileHSUUltra)aTile);
 			}
 			case 2: {
-				
 				if (aTile instanceof TileCondenseTower)
 					return new ContainerCondenseTower(player.inventory, (TileCondenseTower)aTile);
 				if (aTile instanceof TileFluidOutputHatch)
 					return new ContainerFluidOutputHatch(player.inventory, (TileFluidOutputHatch)aTile);
 			}
 			case 3: {
-				
+				if (aTile instanceof TileCombustionFurnace)
+					return new ContainerCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
 			}
 			case 4: {
 				
@@ -113,7 +116,8 @@ public class CommonProxy implements IGuiHandler{
 					return new GuiFluidOutputHatch(player.inventory, (TileFluidOutputHatch)aTile);
 			}
 			case 3: {
-				
+				if (aTile instanceof TileCombustionFurnace)
+					return new GuiCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
 			}
 			case 4: {
 				
@@ -132,9 +136,9 @@ public class CommonProxy implements IGuiHandler{
 	
 	public void preInit(FMLPreInitializationEvent event) {
 		try {
-			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/chemistry/PeriodicTable.xml"), false)));
+			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/tritchemlab/PeriodicTable.xml"), false)));
 		} catch (Exception e) {
-			e.printStackTrace();
+			//NOOP
 		}
 		GameRegistry.registerFuelHandler(FUEL_REG);
 		RegFrogItemsBlocks.preInit();
@@ -146,15 +150,15 @@ public class CommonProxy implements IGuiHandler{
 
 	public void init(FMLInitializationEvent event) {
 		RegFrogItemsBlocks.init();
-		
 		FrogAPI.managerACR = new AdvChemReactorRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerTC = new ThermalCrackerRecipeManger();
+		RegFrogRecipes.init();
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogItemsBlocks.postInit();
-		RegFrogRecipes.init();
+		RegFrogRecipes.postInit();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

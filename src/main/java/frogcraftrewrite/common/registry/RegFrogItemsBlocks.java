@@ -1,7 +1,6 @@
 package frogcraftrewrite.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.common.block.*;
 import frogcraftrewrite.common.item.*;
 import frogcraftrewrite.common.lib.FrogBlocks;
@@ -23,25 +22,26 @@ public class RegFrogItemsBlocks {
 	}
 	
 	public static void postInit() {
-		//Register crafting recipe!
-		FrogFuelHandler.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 6), 4800);
-		FrogFuelHandler.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 7), 400);
+		// NOTHING
 	}
 	
 	static void initBlocks() {
 		FrogBlocks.frogOres = new BlockFrogOre();
 		FrogBlocks.acwindmill = new BlockACWindmill();
-		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
+		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
-		//FrogBlocks.mobilePowerStation = new BlockMPS();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
+		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
+		//FrogBlocks.mobilePowerStation = new BlockMPS();
 		
-		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "naturalgasHydrate");
+		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "oreFrog");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
-		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, ItemFrogBlock.class, "frogHSU");//TODO: make the storage block able to store energy
-		//GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMPS.class, "mobilePowerStation");
+		GameRegistry.registerBlock(FrogBlocks.generators, ItemFrogBlock.class, "generator");
 		GameRegistry.registerBlock(FrogBlocks.machines, ItemFrogBlock.class, "machines");
 		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
+		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, ItemFrogBlock.class, "hybridStorageUnit");
+		//GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMPS.class, "mobilePowerStation");
+
 	}
 
 	static void initItems() {
@@ -76,6 +76,7 @@ public class RegFrogItemsBlocks {
 	
 	static void initOreDict() {
 		OreDictionary.registerOre("railgun", FrogItems.railgun);
+		OreDictionary.registerOre("jinkela", FrogItems.jinkela);
 		
 		OreDictionary.registerOre("gemRuby", new ItemStack(FrogItems.itemIngot, 1, 2));
 		OreDictionary.registerOre("gemSapphire", new ItemStack(FrogItems.itemIngot, 1, 3));

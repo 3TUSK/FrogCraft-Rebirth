@@ -14,7 +14,8 @@ public class ContainerAirPump extends ContainerTileFrog<TileAirPump> {
 	public int charge, air;
 	
 	public ContainerAirPump(InventoryPlayer playerInv, TileAirPump tile) {
-		super(playerInv, tile, 0);
+		super(playerInv, tile);
+		this.registerPlayerInventory(playerInv);
 	}
 	
 	public void addCraftingToCrafters(ICrafting crafting) {

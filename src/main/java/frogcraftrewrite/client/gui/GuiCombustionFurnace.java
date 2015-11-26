@@ -7,6 +7,7 @@ import frogcraftrewrite.common.gui.ContainerCombustionFurnace;
 import frogcraftrewrite.common.tile.TileCombustionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.StatCollector;
 
 public class GuiCombustionFurnace extends GuiContainer {
 
@@ -16,6 +17,13 @@ public class GuiCombustionFurnace extends GuiContainer {
 		super(new ContainerCombustionFurnace(playerInv, tile));
 		this.tile = tile;
 	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
+		super.drawGuiContainerForegroundLayer(par1int, par2int);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString("Combustion Furnace", 8, ySize - 155, GuiUtil.GRAY_40);
+	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
@@ -24,6 +32,15 @@ public class GuiCombustionFurnace extends GuiContainer {
 		int k = (this.width - this.xSize) / 2;
 		int l = (this.height - this.ySize) / 2;
 		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		
+		int chargePercent = (int) (24 * tile.charge / tile.maxCharge);
+		this.drawTexturedModalRect(k + 72, l + 55, 176, 97, chargePercent, 17);
+		
+		if (tile.timeMax > 0) {
+			int progressPercent = (int) ((tile.timeMax - tile.time) / tile.timeMax);
+			this.drawTexturedModalRect(k + 25, l + 49 + 14 - progressPercent * 14, 176, 66 + progressPercent * 14, 14, progressPercent * 14);
+			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent * 24, 17);
+		}
 	}
 	
 }

@@ -13,7 +13,7 @@ import net.minecraft.inventory.Slot;
 public class ContainerIndustrialDevice extends ContainerTileFrog<TileFrogInductionalDevice> {
 	
 	public ContainerIndustrialDevice(InventoryPlayer playerInv, TileFrogInductionalDevice tile) {
-		super(playerInv, tile, 13);
+		super(playerInv, tile);
         //Bind input & output start.
         for (int i = 0; i < 2; i++) {
         	for (int j = 0; j < 3; j++) {

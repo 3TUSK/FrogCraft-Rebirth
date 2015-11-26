@@ -15,7 +15,7 @@ public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 	int charge;
 	
 	public ContainerHybridEStorage(InventoryPlayer playerInv, TileHSU tile) {
-		super(playerInv, tile, 2);
+		super(playerInv, tile);
 		this.addSlotToContainer(new Slot(tile, 0, 113, 24));
 		this.addSlotToContainer(new Slot(tile, 1, 113, 42));
 	}

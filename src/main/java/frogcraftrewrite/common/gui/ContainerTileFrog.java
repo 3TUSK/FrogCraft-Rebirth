@@ -13,20 +13,16 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	
 	private int tileInvCount;
 
-	protected ContainerTileFrog(InventoryPlayer playerInv, T tile, int tileInvCount) {
+	protected ContainerTileFrog(InventoryPlayer playerInv, T tile) {
 		this.tile = tile;
-
-		for (int i = 0; i < 3; ++i) {
-			for (int j = 0; j < 9; ++j) {
-				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
-			}
-		}
-
-		for (int i = 0; i < 9; ++i) {
-			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
-		}
+	}
+	
+	@Override
+	public Slot addSlotToContainer(Slot slot) {
+		if (!(slot.inventory instanceof InventoryPlayer))
+			tileInvCount++;
 		
-		this.tileInvCount = tileInvCount;
+		return super.addSlotToContainer(slot);
 	}
 	
 	@Override
@@ -36,6 +32,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int aSlot) {
+		System.out.println("CustomInvSlotCount: " + this.tileInvCount);
 		ItemStack itemstack = null;
 		Slot slot = (Slot) this.inventorySlots.get(aSlot);
 
@@ -43,8 +40,8 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (aSlot < this.inventorySlots.size()) {
-				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size(), 36 + this.tileInvCount, true)) { //question
+			if (aSlot < this.tileInvCount) {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 36 + this.tileInvCount, true)) { //question
 					return null;
 				}
 			} else if (!this.mergeItemStack(itemstack1, 0, this.inventorySlots.size(), false)) {
@@ -65,6 +62,17 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		}
 
 		return itemstack;
+	}
+	
+	protected void registerPlayerInventory(InventoryPlayer playerInv) {
+		for (int i = 0; i < 3; ++i) {
+			for (int j = 0; j < 9; ++j) {
+				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
+			}
+		}
+		for (int i = 0; i < 9; ++i) {
+			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
+		}
 	}
 
 }

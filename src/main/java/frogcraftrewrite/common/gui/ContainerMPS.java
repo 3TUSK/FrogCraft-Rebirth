@@ -7,7 +7,9 @@ import net.minecraft.entity.player.InventoryPlayer;
 public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation>{
 
 	public ContainerMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
-		super(playerInv, tile, 8);
+		super(playerInv, tile);
+		
+		this.registerPlayerInventory(playerInv);
 	}
 
 	@Override

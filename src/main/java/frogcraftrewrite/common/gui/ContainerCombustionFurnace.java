@@ -8,13 +8,19 @@ import frogcraftrewrite.common.tile.TileCombustionFurnace;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.Slot;
 
 public class ContainerCombustionFurnace extends ContainerTileFrog<TileCombustionFurnace> {
 
 	private int charge, time;
 	
 	public ContainerCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
-		super(playerInv, tile, 4);
+		super(playerInv, tile);
+		this.addSlotToContainer(new Slot(tile, 0, 24, 28));
+		this.addSlotToContainer(new Slot(tile, 1, 75, 28));
+		this.addSlotToContainer(new Slot(tile, 2, 113, 21));
+		this.addSlotToContainer(new Slot(tile, 3, 113, 56));
+		this.registerPlayerInventory(playerInv);
 	}
 	
 	public void addCraftingToCrafters(ICrafting crafting) {

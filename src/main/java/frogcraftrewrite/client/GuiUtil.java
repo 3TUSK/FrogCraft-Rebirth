@@ -3,6 +3,7 @@ package frogcraftrewrite.client;
 import org.lwjgl.opengl.GL11;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -16,21 +17,21 @@ public class GuiUtil {
 		return new ResourceLocation("frogcraftrewrite:textures/gui/GUI_" + machineName + ".png");
 	}
 
-	public static void renderFluidTank(int x, int y, int w, int h, Fluid fluid, int percentage) {
+	public static void renderFluidTank(GuiContainer gui, int x, int y, int w, int h, Fluid fluid, int percentage) {
 		if (fluid == null) return;
 		
 		IIcon fluidIcon = fluid.getIcon();
 		
 		if (fluidIcon == null) return;
 		
-		Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.locationBlocksTexture);
+		gui.mc.renderEngine.bindTexture(gui.mc.renderEngine.getResourceLocation(0));
 		
 		double u = fluidIcon.getInterpolatedU(3.0D);
 		double u2 = fluidIcon.getInterpolatedU(13.0D);
 		double v = fluidIcon.getInterpolatedV(1.0D);
 		double v2 = fluidIcon.getInterpolatedV(15.0D);
 
-		int z=h*percentage/100;
+		int z = h * percentage/100;
 
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4d(1.0D, 1.0D, 1.0D, 1.0D);

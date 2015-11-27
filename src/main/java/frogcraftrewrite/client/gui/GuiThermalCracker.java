@@ -6,7 +6,9 @@ import frogcraftrewrite.client.GuiUtil;
 import frogcraftrewrite.common.gui.ContainerThermalCracker;
 import frogcraftrewrite.common.tile.TileThermalCracker;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 public class GuiThermalCracker extends GuiContainer {
@@ -40,6 +42,13 @@ public class GuiThermalCracker extends GuiContainer {
 			this.drawTexturedModalRect(k + 25, l + 49, 176, 66, 14, 14);
 			int progressPercent = (int) (24 * tile.process / tile.processMax);
 			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent, 17);
+		}
+		
+		//GuiUtil.renderFluidTank(this, 143, 23, 16, 47, FluidRegistry.getFluid(((ContainerThermalCracker)inventorySlots).fluidID), (int)(((ContainerThermalCracker)inventorySlots).fluidAmount / 10));
+		if (tile.getTankInfo().fluid != null) {
+			IIcon fluidIcon = tile.getTankInfo().fluid.getFluid().getIcon();
+			this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
+			this.drawTexturedModalRect(k + 143, l + 23, (int)fluidIcon.getMaxU(), (int)fluidIcon.getMaxV(), 16, 16);
 		}
 	}
 

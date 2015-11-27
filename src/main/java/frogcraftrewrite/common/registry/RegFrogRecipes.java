@@ -6,11 +6,13 @@ import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.common.lib.FrogItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
 public class RegFrogRecipes {
 	
 	public static void init() {
-		FrogAPI.managerTC.add(new ThermalCrackerRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.diamond_block), null, 1000));
+		FrogAPI.managerTC.add(new ThermalCrackerRecipe(new ItemStack(Blocks.dirt), new ItemStack(Blocks.diamond_block), new FluidStack(FluidRegistry.LAVA, 1000), 100));
 	}
 	
 	public static void postInit() {

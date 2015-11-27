@@ -1,9 +1,15 @@
 package frogcraftrewrite.common.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogMachine;
+import frogcraftrewrite.common.network.NetworkHandler;
+import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -37,7 +43,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		if (!working) {
 			recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
 			if (recipe != null)
-					if (recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null || canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid().getFluid())) {
+					if (inv[1] == null || recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null || canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid().getFluid())) {
 						this.process = 0;
 						this.processMax = recipe.getTime();
 						this.working = true;
@@ -61,6 +67,8 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 				working = false;
 			}
 		}
+		
+		NetworkHandler.sendToAll(new PacketFrog00TileUpdate(this));
 	}
 	
 	@Override
@@ -70,6 +78,18 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
+	}
+	
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
+		tank.readTankData(input);
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
+		tank.writeTankData(output);
 	}
 	
 	@Override
@@ -145,8 +165,8 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 	
-	public FluidTankInfo[] getTankInfo() {
-		return this.getTankInfo(ForgeDirection.UNKNOWN);
+	public FluidTankInfo getTankInfo() {
+		return this.getTankInfo(ForgeDirection.UNKNOWN)[0];
 	}
 
 }

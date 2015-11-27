@@ -12,7 +12,7 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracker> {
 	
-	private int charge, process, processMax/*, fluidAmount*/;
+	private int charge, process, processMax;
 	private boolean working;
 
 	public ContainerThermalCracker(InventoryPlayer playerInv, TileThermalCracker tile) {
@@ -59,6 +59,5 @@ public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracke
 		if (id == 1) this.tile.process = value;
 		if (id == 2) this.tile.processMax = value;
 		if (id == 3) this.tile.working = value == 0 ? false : true;
-		//if (id == 4) this.fluidAmount = value; TODO: synchronized FluidTank
 	}
 }

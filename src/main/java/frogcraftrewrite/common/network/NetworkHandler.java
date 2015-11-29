@@ -35,7 +35,7 @@ public class NetworkHandler {
 	}
 	
 	public static void init() {
-		FrogCraftRebirth.frogLogger.debug("This is a debug message, please ignore. Thanks.");
+		FrogCraftRebirth.frogLogger.debug("Initializing FrogCraft Network...");
 	}
 	
 	@SubscribeEvent
@@ -57,12 +57,15 @@ public class NetworkHandler {
 			switch(identity) {
 				case 0: {
 					new PacketFrog00TileUpdate().readData(data);
+					break;
 				}
 				case 1: {
 					new PacketFrog01Entity().readData(data);
+					break;
 				}
 				case 2: {
 					new PacketFrog02GuiDataUpdate().readData(data);
+					break;
 				}
 			}
 		} catch (IOException e) {
@@ -81,24 +84,24 @@ public class NetworkHandler {
 		return Unpooled.wrappedBuffer(byteArray.toByteArray());
 	}
 	
-	public static void sendToAll(IFrogPacket packet) {
-		FROG_NETWORK.frogChannel.sendToAll(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
+	public void sendToAll(IFrogPacket packet) {
+		frogChannel.sendToAll(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
 	}
 	
-	public static void sendToAllAround(IFrogPacket packet, int dim, double x, double y, double z, double range) {
-		FROG_NETWORK.frogChannel.sendToAllAround(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), new TargetPoint(dim, x, y, z, range));
+	public void sendToAllAround(IFrogPacket packet, int dim, double x, double y, double z, double range) {
+		frogChannel.sendToAllAround(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), new TargetPoint(dim, x, y, z, range));
 	}
 	
-	public static void sendToDimension(IFrogPacket packet, int dim) {
-		FROG_NETWORK.frogChannel.sendToDimension(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), dim);
+	public void sendToDimension(IFrogPacket packet, int dim) {
+		frogChannel.sendToDimension(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), dim);
 	}
 	
-	public static void sendToPlayer(IFrogPacket packet, EntityPlayerMP player) {
-		FROG_NETWORK.frogChannel.sendTo(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), player);
+	public void sendToPlayer(IFrogPacket packet, EntityPlayerMP player) {
+		frogChannel.sendTo(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID), player);
 	}
 	
-	public static void sendToServer(IFrogPacket packet) {
-		FROG_NETWORK.frogChannel.sendToServer(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
+	public void sendToServer(IFrogPacket packet) {
+		frogChannel.sendToServer(new FMLProxyPacket(asByteBuf(packet), FrogRef.MODID));
 	}
 	
 }

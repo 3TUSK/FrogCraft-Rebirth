@@ -2,7 +2,6 @@ package frogcraftrewrite.common.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrewrite.common.tile.TileAirPump;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -30,9 +29,9 @@ public class ContainerAirPump extends ContainerTileFrog<TileAirPump> {
 		for (int i=0;i<this.crafters.size();++i) {
 			ICrafting crafter = (ICrafting)this.crafters.get(i);
 			if (this.charge != this.tile.charge)
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
 			if (this.air != this.tile.airAmount())
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.airAmount()), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.airAmount()), (EntityPlayerMP)crafter);
 		}
 		this.charge = this.tile.charge;
 		this.air = this.tile.airAmount();

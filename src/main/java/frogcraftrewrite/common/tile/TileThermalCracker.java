@@ -1,5 +1,7 @@
 package frogcraftrewrite.common.tile;
 
+import static frogcraftrewrite.common.network.NetworkHandler.FROG_NETWORK;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -8,7 +10,6 @@ import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
 import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogMachine;
-import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -68,7 +69,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 			}
 		}
 		
-		NetworkHandler.sendToAll(new PacketFrog00TileUpdate(this));
+		FROG_NETWORK.sendToAllAround(new PacketFrog00TileUpdate(this), this.worldObj.provider.terrainType.getWorldTypeID(), xCoord, yCoord, zCoord, 2);
 	}
 	
 	@Override

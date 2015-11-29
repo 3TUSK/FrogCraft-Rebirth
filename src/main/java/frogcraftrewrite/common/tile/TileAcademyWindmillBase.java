@@ -1,7 +1,12 @@
 package frogcraftrewrite.common.tile;
 
+import static frogcraftrewrite.common.network.NetworkHandler.FROG_NETWORK;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
-import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -26,9 +31,8 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 			this.canGenEnergy = ((TileAcademyWindmillTurbine)turbine).canGenEnergy;
 		}
 		
-		NetworkHandler.sendToAll(new PacketFrog00TileUpdate(this));
-		
 		markDirty();
+		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(this));
 	}
 	
 	@Override
@@ -42,7 +46,18 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 		super.writeToNBT(tag);
 		tag.setBoolean("canGenEnergy", canGenEnergy);
 	}
-
+	
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
+		this.canGenEnergy = input.readByte() == 0 ? false : true;
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
+		output.writeByte(canGenEnergy ? 0x01 : 0x00);
+	}
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
 		return direction == ForgeDirection.DOWN;

@@ -99,7 +99,7 @@ public class FrogFluidTank implements IFluidTank {
 		if (fluid != null)
 			this.forceFillTank(new FluidStack(fluid, fluidAmount));
 		else
-			this.fluidInv = null;
+			this.forceFillTank(null);
 	}
 	
 	public int getFluidID() {

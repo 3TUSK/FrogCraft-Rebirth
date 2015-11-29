@@ -2,7 +2,6 @@ package frogcraftrewrite.common.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrewrite.common.tile.TileThermalCracker;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -38,13 +37,13 @@ public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracke
 		for (int i=0;i<this.crafters.size();++i) {
 			ICrafting crafter = (ICrafting)this.crafters.get(i);
 			if (this.charge != this.tile.charge)
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
 			if (this.process != this.tile.process)
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.process), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.process), (EntityPlayerMP)crafter);
 			if (this.processMax != this.tile.processMax)
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.processMax), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.processMax), (EntityPlayerMP)crafter);
 			if (this.working != this.tile.working)
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 3, this.tile.working ? 1 : 0), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 3, this.tile.working ? 1 : 0), (EntityPlayerMP)crafter);
 		}
 		this.charge = this.tile.charge;
 		this.process = this.tile.process;

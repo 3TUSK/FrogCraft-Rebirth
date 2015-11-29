@@ -2,7 +2,6 @@ package frogcraftrewrite.common.gui;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrewrite.common.network.NetworkHandler;
 import frogcraftrewrite.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrewrite.common.tile.TileHSU;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -12,7 +11,7 @@ import net.minecraft.inventory.Slot;
 
 public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 
-	int charge;
+	private int charge;
 	
 	public ContainerHybridEStorage(InventoryPlayer playerInv, TileHSU tile) {
 		super(playerInv, tile);
@@ -31,7 +30,7 @@ public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 		for (int i=0;i<this.crafters.size();++i) {
 			ICrafting crafter = (ICrafting)this.crafters.get(i);
 			if (this.charge != this.tile.storedE) {
-				NetworkHandler.sendToPlayer(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.storedE), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.storedE), (EntityPlayerMP)crafter);
 			}
 		}
 		this.charge = this.tile.storedE;

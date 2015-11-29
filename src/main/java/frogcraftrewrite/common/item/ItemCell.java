@@ -15,7 +15,7 @@ import net.minecraft.util.StatCollector;
 
 public class ItemCell extends ItemFrogCraft{
 
-	private static final String INGOT_ICON = "frogcraftrewrite:cell";
+	private static final String CELL_ICON = "frogcraftrewrite:cell";
 	
 	HashMap<Integer, IIcon> iconMap = new HashMap<Integer, IIcon>();
 	HashMap<Integer, String> nameMap = new HashMap<Integer, String>();
@@ -52,7 +52,7 @@ public class ItemCell extends ItemFrogCraft{
 	@Override
 	public void registerIcons(IIconRegister reg) {
 		for (int n=0;n<nameMap.size();n++) {
-			iconMap.put(n, reg.registerIcon(INGOT_ICON+"/cell_"+nameMap.get(n)));
+			iconMap.put(n, reg.registerIcon(CELL_ICON+"/cell_"+nameMap.get(n)));
 		}
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
+import frogcraftrewrite.common.lib.item.ItemFrogCraft;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.creativetab.CreativeTabs;

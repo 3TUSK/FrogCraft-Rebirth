@@ -1,5 +1,8 @@
-package frogcraftrewrite.common.item;
+package frogcraftrewrite.common.lib.item;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -50,6 +53,14 @@ public abstract class ItemFrogCraft extends Item{
 		for (int i=0;i<getSubItemNumber();i++) {
 			list.add(new ItemStack(item, 1, i));
 		}
+	}
+	
+	public void writeData(DataOutputStream output) throws IOException {
+		
+	}
+	
+	public void readData(DataInputStream input) throws IOException {
+		
 	}
 
 }

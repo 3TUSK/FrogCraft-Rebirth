@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.api.item.ICatalystModule;
+import frogcraftrewrite.common.lib.item.ItemFrogCraft;
 import info.tritusk.tritchemlab.matter.Molecule;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;

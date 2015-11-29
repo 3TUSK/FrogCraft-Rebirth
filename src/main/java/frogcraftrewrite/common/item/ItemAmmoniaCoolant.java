@@ -3,6 +3,7 @@ package frogcraftrewrite.common.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import frogcraftrewrite.common.lib.item.ItemFrogCraft;
 import ic2.api.reactor.IReactor;
 import ic2.api.reactor.IReactorComponent;
 import net.minecraft.entity.player.EntityPlayer;

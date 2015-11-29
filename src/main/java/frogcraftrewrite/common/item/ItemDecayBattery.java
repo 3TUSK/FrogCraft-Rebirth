@@ -10,6 +10,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.item.ItemFrogCraft;
 import ic2.api.item.IElectricItem;
 
 public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {

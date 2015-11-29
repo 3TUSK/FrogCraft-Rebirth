@@ -1,6 +1,7 @@
 package frogcraftrewrite.common.item;
 
 import frogcraftrewrite.common.block.BlockMPS;
+import frogcraftrewrite.common.lib.item.ItemFrogBlock;
 import ic2.api.item.IElectricItem;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;

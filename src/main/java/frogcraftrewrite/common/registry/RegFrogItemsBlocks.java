@@ -5,6 +5,7 @@ import frogcraftrewrite.common.block.*;
 import frogcraftrewrite.common.item.*;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
+import frogcraftrewrite.common.lib.item.ItemFrogBlock;
 import frogcraftrewrite.common.tile.*;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;

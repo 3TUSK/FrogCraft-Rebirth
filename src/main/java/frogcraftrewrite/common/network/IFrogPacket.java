@@ -17,4 +17,6 @@ public interface IFrogPacket {
 	public static final byte PACKET_ENTITY = 0x00000001;
 	
 	public static final byte PACKET_GUI = 0x00000002;
+	
+	public static final byte PACKET_ITEM = 0x00000003;
 }

@@ -78,8 +78,9 @@ public class FrogFluidTank implements IFluidTank {
 		if (this.fluidInv == null) return null;
 		
 		if (maxDrain > capacity || this.fluidInv.amount <= maxDrain) {
+			FluidStack drained = this.fluidInv.copy();
 			this.fluidInv = null;
-			return this.fluidInv;
+			return drained;
 		} else {
 			int isDraining = this.fluidInv.amount - maxDrain;
 			this.fluidInv.amount -= isDraining;

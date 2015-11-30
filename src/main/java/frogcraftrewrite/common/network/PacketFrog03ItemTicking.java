@@ -1,5 +1,5 @@
 /**
- * This file is a part of FrogCraftRebirth, created by 3TUSK at 11:26:34 PM, Nov 28, 2015, 2015 EST
+ * This file is a part of FrogCraftRebirth, created by 3TUSK at 11:26:34 PM, Nov 28, 2015 EST
  * The project, FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for more info
  */

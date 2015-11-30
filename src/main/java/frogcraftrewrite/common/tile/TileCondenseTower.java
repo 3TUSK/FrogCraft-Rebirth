@@ -1,8 +1,8 @@
 package frogcraftrewrite.common.tile;
 
 import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
-import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.block.BlockCondenseTower;
 import frogcraftrewrite.common.event.MultiBlockEvent;
 import frogcraftrewrite.common.lib.tile.TileFrogMachine;

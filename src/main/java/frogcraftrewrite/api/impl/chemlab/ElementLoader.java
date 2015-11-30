@@ -1,4 +1,4 @@
-package frogcraftrewrite.api.chemlabimpl;
+package frogcraftrewrite.api.impl.chemlab;
 
 import java.io.InputStream;
 

@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.tile;
 
-import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

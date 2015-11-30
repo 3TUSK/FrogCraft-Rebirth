@@ -1,4 +1,4 @@
-@API(apiVersion = "0.1", owner = "FrogCraftRebirth", provides = "FrogCraftAPI")
+@API(apiVersion = FrogAPI.API_VER, owner = FrogAPI.MODID, provides = FrogAPI.API)
 package frogcraftrewrite.api;
 
 import cpw.mods.fml.common.API;

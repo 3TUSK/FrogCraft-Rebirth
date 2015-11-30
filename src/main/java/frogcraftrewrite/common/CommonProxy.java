@@ -12,7 +12,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
-import frogcraftrewrite.api.chemlabimpl.ElementLoader;
+import frogcraftrewrite.api.impl.chemlab.ElementLoader;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;

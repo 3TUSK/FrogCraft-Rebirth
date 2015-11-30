@@ -1,26 +1,29 @@
+/**
+ * This file is a part of FrogCraftRebirth, 
+ * created by 3TUSK at 10:56:14 PM, Aug 31, 2015
+ * FrogCraftRebirth, is open-source under MIT license,
+ * check https://github.com/FrogCraft-Rebirth/
+ * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
+ * more information.
+ */
 package frogcraftrewrite.api.world;
 
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-/**
- * @author 3TUSK
- * Created at 10:56:14 PM Aug 31, 2015 EST 2015
- */
 public interface IPollution {
 	
-	/**
-	 * @return Debug information. Will be used?
-	 */
+	// Debug info.
 	String[] info();
 	
-	/**
-	 * @return The range which will be polluted, measured in radius.
-	 */
+	//Effect radius
 	int radius();
 	
-	/**
-	 * @return The core method, which will affect the nearby environment.
-	 */
-	void pollute(World world);
+	PotionEffect effects(EntityLiving entity);
+	
+	//Pollution. The origin of sin.
+	void pollute(World world, Entity operator, int originX, int originY, int originZ);
 
 }

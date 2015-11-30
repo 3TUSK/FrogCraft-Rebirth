@@ -40,22 +40,19 @@ public final class FrogFuelHandler implements IFuelHandler{
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
 	
-	public void regFuelByproduct(@Nonnull Item fuel, @Nonnull Fluid byproduct) {
-		regFuelByproduct(new ItemStack(fuel, 1), byproduct);
-	}
-	
-	public void regFuelByproduct(@Nonnull Item fuel, @Nonnull FluidStack byproduct) {
-		regFuelByproduct(new ItemStack(fuel, 1), byproduct);
-	}
-	
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {
-		fuel2FluidMap.put(fuel, new FluidStack(byproduct, FluidContainerRegistry.BUCKET_VOLUME));
+		regFuelByproduct(fuel, new FluidStack(byproduct, FluidContainerRegistry.BUCKET_VOLUME));
 	}
 	
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull FluidStack byproduct) {
 		fuel2FluidMap.put(fuel, byproduct);
 	}
+	
+	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull ItemStack byproduct) {
+		fuel2ByproductMap.put(fuel, byproduct);
+	}
 
 	private Map<ItemStack, Integer> fuelMap = new HashMap<ItemStack, Integer>();
 	private Map<ItemStack, FluidStack> fuel2FluidMap = new HashMap<ItemStack, FluidStack>();
+	private Map<ItemStack, ItemStack> fuel2ByproductMap = new HashMap<ItemStack, ItemStack>();
 }

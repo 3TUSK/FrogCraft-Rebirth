@@ -7,8 +7,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
-import frogcraftrewrite.api.tile.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.item.ItemStack;

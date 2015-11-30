@@ -3,7 +3,7 @@ package frogcraftrewrite.common.registry;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import net.minecraft.item.ItemStack;
-import net.minecraft.stats.Achievement;
+//import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
 
 public class RegFrogAchievements {
@@ -14,8 +14,7 @@ public class RegFrogAchievements {
 	public static AchievementPage frogPage;
 	
 	public static void init() {
-		frogPage = new AchievementPage("FrogCraftRebirth", FrogAchievement.exportAll());
-		AchievementPage.registerAchievementPage(frogPage);
+		//to be reworked.
 		//pneumatic compressor is an issue.
 	}
 	
@@ -35,11 +34,11 @@ public class RegFrogAchievements {
 		CONDENSE_TOWER("condenseTowerWall", 4, -4, new ItemStack(FrogBlocks.condenseTowerPart), FrogAchievement.valueOf("CONDENSE_TOWER_CORE")),
 		NITRIC_ACID("nitricAcidExplodsion", -2, 2, new ItemStack(FrogBlocks.fluidNitricAcid), FrogAchievement.valueOf("POTASSIUM"));
 		
-		final String internal;
-		final int posX, posY;
-		final ItemStack icon;
-		final FrogAchievement required;
-		final boolean special;
+		protected final String internal;
+		protected final int posX, posY;
+		protected final ItemStack icon;
+		protected final String required;
+		protected final boolean special;
 		
 		private FrogAchievement(String internal, int x, int y, ItemStack icon) {
 			this(internal, x, y, icon, null, false);
@@ -58,23 +57,10 @@ public class RegFrogAchievements {
 			this.posX = x;
 			this.posY = y;
 			this.icon = icon;
-			this.required = required;
+			this.required = required.name();
 			this.special = isSpecial;
 		}
 		
-		public Achievement export() {
-			Achievement result = new Achievement(this.name(), internal, posX, posY, icon, this.required != null ? this.required.export() : null);
-			return special ? result.setSpecial() : result;
-		}
-		
-		public static Achievement[] exportAll() {
-			FrogAchievement[] rawList = FrogAchievement.values();
-			Achievement[] list = new Achievement[rawList.length];
-			for (int n=0;n<list.length;n++) {
-				list[n] = rawList[n].export();
-			}
-			return list;
-		}
 	}
 
 }

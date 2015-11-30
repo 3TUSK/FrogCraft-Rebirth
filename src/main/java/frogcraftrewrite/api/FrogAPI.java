@@ -3,6 +3,8 @@ package frogcraftrewrite.api;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.recipes.IRecipeManager;
@@ -35,6 +37,9 @@ public class FrogAPI {
 	
 	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
 	
+	public static final String API = "FrogAPI", API_VER = "0.2";
+	
+	@Nonnull
 	public static CreativeTabs frogTab;
 	
 	public static IRecipeManager<AdvChemReactorRecipe> managerACR;

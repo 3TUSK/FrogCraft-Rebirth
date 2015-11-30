@@ -2,7 +2,7 @@ package frogcraftrewrite.common.tile;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogFuelHandler;
-import frogcraftrewrite.api.tile.FrogFluidTank;
+import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

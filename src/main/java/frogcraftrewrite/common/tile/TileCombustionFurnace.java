@@ -49,6 +49,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 		if (this.time == 0) {
 			this.timeMax = 0;
 			this.isWorking = false;
+			//inv[1] = FrogFuelHandler.FUEL_REG.
 		}
 		
 		markDirty();

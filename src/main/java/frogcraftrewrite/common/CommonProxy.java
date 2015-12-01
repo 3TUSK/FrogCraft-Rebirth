@@ -36,7 +36,7 @@ import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
 import frogcraftrewrite.common.gui.ContainerThermalCracker;
 import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.registry.RegFluid;
-//import frogcraftrewrite.common.registry.RegFrogAchievements;
+import frogcraftrewrite.common.registry.RegFrogAchievements;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;
 import frogcraftrewrite.common.registry.RegFrogRecipes;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
@@ -54,7 +54,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
-public class CommonProxy implements IGuiHandler{
+public class CommonProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
@@ -137,15 +137,13 @@ public class CommonProxy implements IGuiHandler{
 	public void preInit(FMLPreInitializationEvent event) {
 		try {
 			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/tritchemlab/PeriodicTable.xml"), false)));
-		} catch (Exception e) {
-			//NOOP
-		}
+		} catch (Exception e) {}
 		GameRegistry.registerFuelHandler(FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrewrite.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
-		//RegFrogAchievements.init();
+		RegFrogAchievements.init();
 	}
 
 	public void init(FMLInitializationEvent event) {

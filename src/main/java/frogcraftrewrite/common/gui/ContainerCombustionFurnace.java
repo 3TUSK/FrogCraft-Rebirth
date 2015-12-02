@@ -16,9 +16,9 @@ public class ContainerCombustionFurnace extends ContainerTileFrog<TileCombustion
 	public ContainerCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
 		super(playerInv, tile);
 		this.addSlotToContainer(new Slot(tile, 0, 24, 28));
-		this.addSlotToContainer(new Slot(tile, 1, 75, 28));
+		this.addSlotToContainer(new SlotOutput(tile, 1, 75, 28));
 		this.addSlotToContainer(new Slot(tile, 2, 113, 21));
-		this.addSlotToContainer(new Slot(tile, 3, 113, 56));
+		this.addSlotToContainer(new SlotOutput(tile, 3, 113, 56));
 		this.registerPlayerInventory(playerInv);
 	}
 	

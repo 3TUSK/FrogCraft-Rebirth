@@ -110,15 +110,7 @@ task apiJar(type: Jar, dependsOn: jar) {
     }
 }
 
-task apiJarChem(type: Jar, dependsOn: jar) {
-    classifier 'apiChemLab'
-    from (sourceSets.main.output) {
-        include "**/src/api/**"
-    }
-}
-
 artifacts {
     archives devJar
     archives apiJar
-    archives apiJarChem
 }

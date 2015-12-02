@@ -15,6 +15,8 @@ import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	
+	private static final int MAX_AIR = 1000;
+	
 	public int charge, maxCharge;
 	private int airAmount, tick;
 	private boolean isInENet;
@@ -46,8 +48,8 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 		
 		if (this.charge <= 0 || this.charge < airPumpPowerRate)
 			return;
-		if (airAmount >= 1000) {
-			this.airAmount = 1000;//Remove maxAirAmount, use fixed upper bound
+		if (airAmount >= MAX_AIR) {
+			this.airAmount = MAX_AIR;
 			return;
 		}
 		

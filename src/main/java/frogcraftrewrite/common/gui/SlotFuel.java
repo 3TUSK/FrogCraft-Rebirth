@@ -1,25 +1,25 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 4:14:51 PM, Nov 29, 2015, EST
+ * created by U_Knowledge at 6:26:12 PM, Dec 2, 2015, EST
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information
+ * more information.
  */
 package frogcraftrewrite.common.gui;
 
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 
-public class SlotOutput extends SlotFrog {
+public class SlotFuel extends SlotFrog {
 
-	public SlotOutput(IInventory inv, int index, int x, int y) {
+	public SlotFuel(IInventory inv, int index, int x, int y) {
 		super(inv, index, x, y);
 	}
 	
-	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return false;
+		return GameRegistry.getFuelValue(stack) > 0;
 	}
 
 }

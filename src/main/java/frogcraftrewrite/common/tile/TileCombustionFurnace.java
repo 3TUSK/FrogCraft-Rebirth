@@ -5,11 +5,13 @@ import frogcraftrewrite.api.FrogFuelHandler;
 import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTank {
+public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHandler {
 
 	public boolean isWorking;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
@@ -26,7 +28,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 		super.updateEntity();
 		if (worldObj.isRemote)
 			return;
-		if (this.getFluidAmount() >= this.getCapacity()) {
+		if (this.tank.getFluidAmount() >= this.tank.getCapacity()) {
 			this.isWorking = false;
 			return;
 		}
@@ -49,7 +51,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 		if (this.time == 0) {
 			this.timeMax = 0;
 			this.isWorking = false;
-			//inv[1] = FrogFuelHandler.FUEL_REG.
+			//inv[1] = FrogFuelHandler.FUEL_REG. todo: 
 		}
 		
 		markDirty();
@@ -79,34 +81,37 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidTa
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
 		return side == 0 && slot == 2;
 	}
-
+	
 	@Override
-	public FluidStack getFluid() {
-		return this.tank.getFluid();
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return true;
 	}
 
 	@Override
-	public int getFluidAmount() {
-		return this.tank.getFluidAmount();
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return true;
 	}
 
 	@Override
-	public int getCapacity() {
-		return this.tank.getCapacity();
+	public FluidTankInfo[] getTankInfo(ForgeDirection direction) {
+		return new FluidTankInfo[] {tank.getInfo()};
 	}
 
 	@Override
-	public FluidTankInfo getInfo() {
-		return new FluidTankInfo(this);
-	}
-
-	@Override
-	public int fill(FluidStack resource, boolean doFill) {
+	public int fill(ForgeDirection direction, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
+			return null;
+		}
+		return this.tank.drain(resource.amount, doDrain);
+	}
+	
+	@Override
+	public FluidStack drain(ForgeDirection direction, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 

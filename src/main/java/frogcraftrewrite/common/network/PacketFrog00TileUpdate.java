@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.api.IFrogNetworkObject;
 import frogcraftrewrite.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
@@ -39,8 +40,8 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 		
 		TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(x, y, z);
 		
-		if  (tile instanceof TileFrog)
-			((TileFrog)tile).readPacketData(input);
+		if  (tile instanceof IFrogNetworkObject)
+			((IFrogNetworkObject)tile).readPacketData(input);
 		
 	}
 

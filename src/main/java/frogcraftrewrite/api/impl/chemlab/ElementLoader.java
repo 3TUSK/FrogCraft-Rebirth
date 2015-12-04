@@ -1,5 +1,7 @@
 package frogcraftrewrite.api.impl.chemlab;
 
+import static frogcraftrewrite.FrogCraftRebirth.frogLogger;
+
 import java.io.InputStream;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -13,39 +15,37 @@ import info.tritusk.tritchemlab.matter.Element;
 import info.tritusk.tritchemlab.parser.ElementArrayParser;
 
 public final class ElementLoader implements ElementArrayParser {
-	
+
 	public static final ElementArrayParser FROG_PARSER = new ElementLoader();
-	
+
 	private ElementLoader() {}
-	
-	private volatile boolean parsingFinished = false;
-	
+
+	private boolean parsingFinished = false;
+
 	@Override
 	public synchronized Element[] parseElements(InputStream input, boolean force) {
 		if (parsingFinished && force == false) {
-			//parseLog.info("FrogCraft has finished elements parsing. Call will be denied.");
+			frogLogger.info("FrogCraft has finished elements parsing. Call will be denied.");
 			return null;
-		}	
+		}
 		try {
-			Element[] elements = new Element[103];	
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder construct = factory.newDocumentBuilder();		
+			DocumentBuilder construct = factory.newDocumentBuilder();
 			Document xmlDoc = construct.parse(input);
 			xmlDoc.getDocumentElement().normalize();
-			//parseLog.info("Found target file. Loading...");
 			NodeList array = xmlDoc.getElementsByTagName("elementData");
-			for (int n=0;n<array.getLength();n++) {
+			Element[] elements = new Element[array.getLength()];
+			for (int n = 0; n < array.getLength(); n++) {
 				Node elementEntry = array.item(n);
 				int atoNum = Integer.parseInt(elementEntry.getAttributes().getNamedItem("num").getTextContent());
 				String name = elementEntry.getAttributes().getNamedItem("name").getTextContent();
 				String abbr = elementEntry.getAttributes().getNamedItem("symbol").getTextContent();
-				elements[n] = new FrogElement(atoNum, name, abbr);
+				elements[n] = new FrogElement(atoNum, name, abbr, 0F);//todo
 			}
 			parsingFinished = true;
 			return elements;
 		} catch (Exception e) {
-			//parseLog.error("An error has occurred and loading cannot continue.");
-			e.printStackTrace();
+			frogLogger.error("An error has occurred and loading cannot continue.");
 			return null;
 		}
 	}

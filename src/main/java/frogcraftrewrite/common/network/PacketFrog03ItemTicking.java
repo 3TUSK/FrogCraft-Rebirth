@@ -1,7 +1,9 @@
 /**
- * This file is a part of FrogCraftRebirth, created by 3TUSK at 11:26:34 PM, Nov 28, 2015 EST
- * The project, FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for more info
+ * This file is a part of FrogCraftRebirth, 
+ * created by 3TUSK at 11:26:34 PM, Nov 28, 2015 EST
+ * FrogCraftRebirth, is open-source under MIT license,
+ * check https://github.com/FrogCraft-Rebirth/
+ * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for more info
  */
 package frogcraftrewrite.common.network;
 
@@ -26,12 +28,12 @@ public class PacketFrog03ItemTicking implements IFrogPacket {
 	@Override
 	public void writeData(DataOutputStream output) throws IOException {
 		output.writeByte(PACKET_ITEM);
-		item.writeData(output);
+		item.writePacketData(output);
 	}
 
 	@Override
 	public void readData(DataInputStream input) throws IOException {
-		
+		item.readPacketData(input);
 	}
 
 }

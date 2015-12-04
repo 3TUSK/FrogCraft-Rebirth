@@ -62,12 +62,9 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			if (tick == 0) {
 				this.drain(ForgeDirection.UNKNOWN, recipe.getInput().amount, true);
 				this.tick = recipe.getTime();
-				tick--;
-				charge -= 500;//Should be configurable
-			} else {
-				tick--;
-				charge -= 500;
 			}
+			tick--;
+			charge -= 500;
 		} else if (craftingFinished){
 			java.util.Set<FluidStack> outputs = recipe.getOutput();
 			for (int i=3;i<=6;i++) {
@@ -85,11 +82,13 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
+		this.tick = tag.getInteger("tick");
 	}
 	
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		this.tank.writeToNBT(tag);
+		tag.setInteger("tick", this.tick);
 	}
 	
 	@Override

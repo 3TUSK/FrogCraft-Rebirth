@@ -8,13 +8,14 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.IFrogNetworkObject;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 
-public abstract class ItemFrogCraft extends Item{
+public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 
 	public ItemFrogCraft(boolean hasSubType){
 		this.setCreativeTab(FrogAPI.frogTab);
@@ -55,11 +56,11 @@ public abstract class ItemFrogCraft extends Item{
 		}
 	}
 	
-	public void writeData(DataOutputStream output) throws IOException {
+	public void writePacketData(DataOutputStream output) throws IOException {
 		
 	}
 	
-	public void readData(DataInputStream input) throws IOException {
+	public void readPacketData(DataInputStream input) throws IOException {
 		
 	}
 

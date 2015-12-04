@@ -35,6 +35,22 @@ public class FrogAPI {
 	 * */
 	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
+	public static final int[][] ROTATION_OFFSET_NORTH_4 = 
+		{
+				{0, 1, 2, 3, 4, 5},
+				{0, 1, 2, 3, 4, 5},
+				{0, 1, 2, 3, 4, 5},
+				{0, 1, 3, 2, 5, 4},
+				{0, 1, 4, 5, 3, 2},
+				{0, 1, 5, 4, 2, 3}
+		};
+	
+	@Deprecated //to be continue
+	public static final int[][] ROTATION_OFFSET_NORTH_6 = 
+		{
+				{}
+		};
+	
 	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
 	
 	public static final String API = "FrogAPI", API_VER = "0.2";

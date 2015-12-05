@@ -4,11 +4,11 @@ import info.tritusk.tritchemlab.matter.Element;
 
 public class FrogElement implements Element {
 	
-	private final int atomicNum;
+	private final short atomicNum;
 	private final float relativeMass;
 	private final String name, abbr;
 
-	public FrogElement(int num, String name, String abbr, float relativeAtomMass) {
+	public FrogElement(short num, String name, String abbr, float relativeAtomMass) {
 		this.atomicNum = num;
 		this.relativeMass = relativeAtomMass;
 		this.name = name;
@@ -16,7 +16,7 @@ public class FrogElement implements Element {
 	}
 	
 	@Override
-	public int atomicNumber() {
+	public short atomicNumber() {
 		return this.atomicNum;
 	}
 
@@ -26,7 +26,7 @@ public class FrogElement implements Element {
 	}
 
 	@Override
-	public float relativeAtomicMass() {
+	public float relativeMass() {
 		return relativeMass;
 	}
 

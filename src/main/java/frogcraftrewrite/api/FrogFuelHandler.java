@@ -32,6 +32,22 @@ public final class FrogFuelHandler implements IFuelHandler{
 		return 0;
 	}
 	
+	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {
+		for (ItemStack stack : fuel2FluidMap.keySet()) {
+			if (stack.isItemEqual(aStack))
+				return fuel2FluidMap.get(stack);
+		}
+		return null;
+	}
+	
+	public ItemStack getItemByproduct(@Nonnull ItemStack aStack) {
+		for (ItemStack stack : fuel2FluidMap.keySet()) {
+			if (stack.isItemEqual(aStack))
+				return fuel2ByproductMap.get(stack);
+		}
+		return null;
+	}
+	
 	public void regFuel(@Nonnull Item fuel, int timeInTicks) {
 		regFuel(new ItemStack(fuel, 1), timeInTicks);
 	}

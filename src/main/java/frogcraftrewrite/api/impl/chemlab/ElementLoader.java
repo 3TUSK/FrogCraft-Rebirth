@@ -37,7 +37,7 @@ public final class ElementLoader implements ElementArrayParser {
 			Element[] elements = new Element[array.getLength()];
 			for (int n = 0; n < array.getLength(); n++) {
 				Node elementEntry = array.item(n);
-				int atoNum = Integer.parseInt(elementEntry.getAttributes().getNamedItem("num").getTextContent());
+				short atoNum = Short.parseShort(elementEntry.getAttributes().getNamedItem("num").getTextContent());
 				String name = elementEntry.getAttributes().getNamedItem("name").getTextContent();
 				String abbr = elementEntry.getAttributes().getNamedItem("symbol").getTextContent();
 				elements[n] = new FrogElement(atoNum, name, abbr, 0F);//todo

@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.api.IFrogNetworkObject;
 import ic2.api.tile.IWrenchable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,6 +61,7 @@ public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogN
 		output.writeShort(this.facing);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		this.facing = input.readShort();

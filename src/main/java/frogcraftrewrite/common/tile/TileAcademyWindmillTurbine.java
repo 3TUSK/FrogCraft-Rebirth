@@ -1,74 +1,71 @@
 package frogcraftrewrite.common.tile;
 
-import frogcraftrewrite.common.lib.FrogBlocks;
+import static frogcraftrewrite.common.network.NetworkHandler.FROG_NETWORK;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrewrite.common.lib.tile.TileFrog;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
+import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.nbt.NBTTagCompound;
-//import net.minecraftforge.common.util.ForgeDirection;
 
 public class TileAcademyWindmillTurbine extends TileFrog {
 
 	public boolean canGenEnergy, hasRotor, isBlocked, isHighEnough, isRaining;
-	
+
 	public TileAcademyWindmillTurbine() {
 		this.hasRotor = false;
 	}
-	
-	int count = 0;
+
+	private int count = 0;
+
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (worldObj.isRemote) return;
+		if (worldObj.isRemote)
+			return;
 		this.isRaining = this.worldObj.isRaining();
-		
+
 		this.isHighEnough = this.yCoord > 78;
 
-		for (int a=-5;a<6;a++) 
-			for (int b=-5;b<6;b++) 
-				for (int c=-5;c<6;c++) 
-					if (!worldObj.isAirBlock(xCoord+a, yCoord+b, zCoord+c))
+		for (int a = -5; a < 6; a++)
+			for (int b = -5; b < 6; b++)
+				for (int c = -5; c < 6; c++)
+					if (!worldObj.isAirBlock(xCoord + a, yCoord + b, zCoord + c))
 						++count;
 		this.isBlocked = count < 13;
 		count = 0;
-		
+
 		this.canGenEnergy = hasRotor && !isBlocked && !isRaining;
 		markDirty();
+		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(this));
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
-		//this.dir = ForgeDirection.getOrientation(tag.getInteger("direction"));
 		this.hasRotor = tag.getBoolean("rotor");
 		this.isBlocked = tag.getBoolean("isBlocked");
 		this.isHighEnough = tag.getBoolean("enoughHeight");
 		this.isRaining = tag.getBoolean("raining");
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
-		//tag.setInteger("direction", dir.ordinal());
 		tag.setBoolean("rotor", hasRotor);
 		tag.setBoolean("isBlocked", isBlocked);
 		tag.setBoolean("enoughHeight", isHighEnough);
 		tag.setBoolean("raining", isRaining);
 	}
-	
+
 	@Override
-	public short getFacing() {
-		// TODO Auto-generated method stub
-		return 0;
+	public void readPacketData(DataInputStream input) throws IOException {
+
 	}
 
 	@Override
-	public void setFacing(short facing) {
-		// TODO Auto-generated method stub
-		
+	public void writePacketData(DataOutputStream output) throws IOException {
+
 	}
 
-	@Override
-	public ItemStack getWrenchDrop(EntityPlayer entityPlayer) {
-		return new ItemStack(FrogBlocks.acwindmill, 1, 1);
-	}
-	
 }

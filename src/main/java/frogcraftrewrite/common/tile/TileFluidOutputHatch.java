@@ -14,44 +14,47 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler {
 
 	private FrogFluidTank tank = new FrogFluidTank(8000);
-	
+
 	public TileFluidOutputHatch() {
 		super(2, "TileEntityFluidOutput");
-		//0==input slot, 1==output slot
+		// 0==input slot, 1==output slot
 	}
 
-	int tick = 0;
+	private int tick = 0;
+
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (worldObj.isRemote) return;
+		if (worldObj.isRemote)
+			return;
 		tick++;
-		if (getTankInfo(ForgeDirection.UNKNOWN)[0].fluid == null)
+		if (tank.getFluid() == null)
 			return;
 		if (inv[0] == null)
 			return;
-		
-		//todo: fluid check
-		
+
 		if (FluidContainerRegistry.isEmptyContainer(inv[0]) && tick >= 20) {
 			if (inv[1] == null) {
-				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), 1000), new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
+				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(tank.getFluid(), 1000),
+						new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
 				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
-			if (FluidContainerRegistry.isContainer(inv[1]) && FluidContainerRegistry.getFluidForFilledItem(inv[1]).isFluidEqual(inv[1])) {
+			if (FluidContainerRegistry.isContainer(inv[1])
+					&& FluidContainerRegistry.getFluidForFilledItem(inv[1]).isFluidEqual(inv[1])) {
 				inv[1].stackSize += 1;
 				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
 			tick = 0;
 		}
+		markDirty();
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		tank.readFromNBT(tag);
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
@@ -88,9 +91,9 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[] {this.tank.getInfo()};
+		return new FluidTankInfo[] { this.tank.getInfo() };
 	}
-	
+
 	public FluidTankInfo[] getTankInfo() {
 		return this.getTankInfo(ForgeDirection.UNKNOWN);
 	}

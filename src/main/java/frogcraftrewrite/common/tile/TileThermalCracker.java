@@ -84,13 +84,13 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
-		tank.readTankData(input);
+		tank.readPacketData(input);
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
-		tank.writeTankData(output);
+		tank.writePacketData(output);
 	}
 	
 	@Override

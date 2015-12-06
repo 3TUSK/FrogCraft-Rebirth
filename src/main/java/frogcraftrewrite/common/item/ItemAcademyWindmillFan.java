@@ -28,8 +28,8 @@ public class ItemAcademyWindmillFan extends ItemFrogCraft {
 	public boolean onItemUseFirst(ItemStack s, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ) {
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (tile instanceof TileAcademyWindmillTurbine) {
-			((TileAcademyWindmillTurbine)tile).hasRotor = true;
 			player.inventory.consumeInventoryItem(this);
+			((TileAcademyWindmillTurbine)tile).hasRotor = true;
 			return true;
 		}
 		return false;
@@ -37,7 +37,7 @@ public class ItemAcademyWindmillFan extends ItemFrogCraft {
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return new java.util.ArrayList<String>();
+		return null;
 	}
 
 	@Override

@@ -6,6 +6,7 @@ import java.io.IOException;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.api.IFrogNetworkObject;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -16,7 +17,7 @@ import net.minecraftforge.fluids.IFluidTank;
  * Create a instance of this class will provide a efficient way to manage fluid.
  * @author 3TUSK
  */
-public class FrogFluidTank implements IFluidTank {
+public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 
 	private final int capacity;
 	private FluidStack fluidInv;
@@ -88,12 +89,12 @@ public class FrogFluidTank implements IFluidTank {
 		}
 	}
 	
-	public void writeTankData(DataOutputStream output) throws IOException {
+	public void writePacketData(DataOutputStream output) throws IOException {
 		output.writeInt(fluidInv != null ? fluidInv.getFluidID() : -1);
 		output.writeInt(getFluidAmount());
 	}
 	
-	public void readTankData(DataInputStream input) throws IOException {
+	public void readPacketData(DataInputStream input) throws IOException {
 		int fluidID = input.readInt(), fluidAmount = input.readInt();
 		Fluid fluid = fluidID != -1 ? FluidRegistry.getFluid(fluidID) : null;
 		if (fluid != null)

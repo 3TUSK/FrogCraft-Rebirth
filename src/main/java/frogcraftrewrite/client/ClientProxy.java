@@ -19,6 +19,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
+		FrogCraftRebirth.frogLogger.info("Client side pre-initialization finished");
 	}
 
 	@Override
@@ -34,6 +35,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
+		FrogCraftRebirth.frogLogger.info("Client side post-initialization finished");
 	}
  
 	@SubscribeEvent

@@ -35,7 +35,8 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List aList, boolean adv) {
-		aList.addAll(getToolTip(stack, player, adv));
+		if (getToolTip(stack, player, adv) != null)
+			aList.addAll(getToolTip(stack, player, adv));
 	}
 	
 	@Override

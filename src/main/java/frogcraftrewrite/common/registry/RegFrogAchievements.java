@@ -2,6 +2,7 @@ package frogcraftrewrite.common.registry;
 
 import java.util.LinkedHashMap;
 
+import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import net.minecraft.item.ItemStack;
@@ -10,26 +11,24 @@ import net.minecraftforge.common.AchievementPage;
 
 public class RegFrogAchievements {
 	
-	//Temporary block, mark a achievement has an icon from which block does not exist yet.
-	private final static net.minecraft.block.Block unfinished = null;
-	
 	public static AchievementPage frogPage;
 	
 	static LinkedHashMap<String, Achievement> map = new LinkedHashMap<>();
 	
 	public static void init() {
-		for (FrogAchievement achievement : FrogAchievement.values()) {
-			map.put(achievement.name(), achievement.export());
+		for (int i=0;i<FrogAchievement.values().length;i++) {
+			map.put(FrogAchievement.values()[i].name(), FrogAchievement.values()[i].export());
 		}
-		//not sure if it works.
+		frogPage = new AchievementPage(FrogAPI.MODID, (Achievement[]) map.values().toArray());
+		AchievementPage.registerAchievementPage(frogPage);
 	}
 	
 	public static enum FrogAchievement {
-		EVT("EVT", 0, 0, new ItemStack(unfinished)),
+		//EVT("EVT", 0, 0, new ItemStack(unfinished)),
 		RAILGUN("railgun", 0, -2, new ItemStack(FrogItems.railgun)),
 		POTASSIUM("potassiumExplosion", -2, 0, new ItemStack(FrogItems.itemIngot, 1, 0)),
 		GAS_PUMP("gasPump", 2, 0, new ItemStack(FrogBlocks.machines, 1, 1)),
-		PNEUMATIC_COMPRESSOR("pneumaticCompressor", 2, 2, new ItemStack(unfinished), "GAS_PUMP"),
+		//PNEUMATIC_COMPRESSOR("pneumaticCompressor", 2, 2, new ItemStack(unfinished), "GAS_PUMP"),
 		LIQUIFER("liquifier", 2, -2, new ItemStack(FrogBlocks.machines), "GAS_PUMP"),
 		HSU("HSU", 0, 2, new ItemStack(FrogBlocks.hybridStorageUnit), "EVT"),
 		UHSU("UHSU", 0, 4, new ItemStack(FrogBlocks.hybridStorageUnit, 1, 1), "HSU"),

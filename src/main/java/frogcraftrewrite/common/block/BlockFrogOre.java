@@ -12,52 +12,62 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFrogOre extends BlockFrog {
-	
-	IIcon[] iconArray;
+
+	private IIcon[] iconArray;
 
 	public BlockFrogOre() {
 		super(Material.rock);
 		setBlockName("mineral");
 		setHardness(10.0F);
 		setResistance(15.0f);
-		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH", "oreRuby", "oreSapphire", "oreGreenSapphire");
+		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH",
+				"oreRuby", "oreSapphire", "oreGreenSapphire");
 		this.iconArray = new IIcon[this.nameArray.length];
 	}
-	
+
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
 		switch (world.getBlockMetadata(x, y, z)) {
-			case 0: return 10.0F;
-			case 1: return 10.0F;
-			case 2: return 2.0F;
-			case 3: return 13.0F;
-			case 4: return 20.0F;
-			case 5: return 1.0F;
-			case 6: return 15.0F;
-			case 7: return 15.0F;
-			case 8: return 15.0F;
+		case 0:
+			return 10.0F;
+		case 1:
+			return 10.0F;
+		case 2:
+			return 2.0F;
+		case 3:
+			return 13.0F;
+		case 4:
+			return 20.0F;
+		case 5:
+			return 1.0F;
+		case 6:
+			return 15.0F;
+		case 7:
+			return 15.0F;
+		case 8:
+			return 15.0F;
 		}
 		return super.getBlockHardness(world, x, y, z);
 	}
-	
+
 	public int quantityDropped(Random rand) {
-		return 2*rand.nextInt(5);
+		return 2 * rand.nextInt(5);
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		for (int i=0;i<iconArray.length;i++) {
-			iconArray[i] = r.registerIcon("frogcraftrewrite:ores/"+this.nameArray[i]);
+		for (int i = 0; i < iconArray.length; i++) {
+			iconArray[i] = r.registerIcon("frogcraftrewrite:ores/" + this.nameArray[i]);
 		}
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
 		return iconArray[world.getBlockMetadata(x, y, z)];
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
 		return iconArray[meta];

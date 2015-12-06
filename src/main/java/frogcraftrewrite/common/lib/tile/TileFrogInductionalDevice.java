@@ -14,25 +14,26 @@ import ic2.api.energy.tile.IEnergySink;
 
 public abstract class TileFrogInductionalDevice extends TileFrog implements IEnergySink, ISidedInventory {
 	private final int PROCESS_MAX = 100;
-	
-	/**The inventory.*/
+
+	/** The inventory. */
 	public ItemStack[] inv;
-	/**The amount of energy contained*/
+	/** The amount of energy contained */
 	public int energy, energyMax;
-	/**Processing progress, as well as the max value*/
+	/** Processing progress, as well as the max value */
 	public int process;
 	public int heat;
 	public int tick;
-	
-	boolean needUpdate, isInENet;
-	
+
+	private boolean isInENet;
+
 	public TileFrogInductionalDevice() {
-		this.inv = new ItemStack[13];//[0] is the charger slot, 1-6 are input, 7-12 are output
+		this.inv = new ItemStack[13];
+		// [0] is the charger slot, 1-6 are input, 7-12 are output
 		this.heat = 0;
 		this.process = 0;
 		this.tick = 0;
 	}
-	
+
 	@Override
 	public void invalidate() {
 		if (!worldObj.isRemote && isInENet) {
@@ -41,29 +42,26 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		}
 		super.invalidate();
 	}
-	
+
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
+		if (worldObj.isRemote)
+			return;
+		
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}
-		//1.Check input by calling method checkInput(). 
-		//If machine get a valid input, then machine call method doWork();
+
 		boolean invalidInput = true;
-		for (int a=1;a<=6;a++) {
+		for (int a = 1; a <= 6; a++) {
 			if (canProcess())
 				invalidInput = false;
 		}
-		//2.Starting process by calling doWork() as mentioned above.
-		//At this time the variable PROCESS_MAX will get default value.
-		if(!invalidInput && hasOutputSpace()) {
-			//3.For every tick, ++tick, ++process and check the variable *heat*.
+
+		if (!invalidInput && hasOutputSpace()) {
 			tick++;
-			//Heat is defined as a int with the upper bound of 100 and a lower bound of 0.
-			//Heat will increase as long as there is redstone powered, or keeping working for a while.
-			//Heat can influence porcessMax by decreasing it so that regular player will see the processing arrow go dramatically "fast".
 			if (canProcess()) {
 				process++;
 				if (heat > 30) {
@@ -71,46 +69,40 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 						heat++;
 					}
 					if (heat > 90) {
-						process+=4;
-						energy-=5;
+						process += 4;
+						energy -= 5;
 					} else if (heat > 50) {
-						process+=3;
-						energy-=20;
+						process += 3;
+						energy -= 20;
 					} else {
-						process+=1;
-						energy-=40;
+						process += 1;
+						energy -= 40;
 					}
 				} else {
 					energy -= 50;
 				}
 			}
-			//4.Check if (process == PROCESS_MAX).
-			//If the return is true, then process = 0, as well as call getRecipesOutput(ItemStack input) to get the result
-			//And put the output into the corresponded slot(s)
-			//FrogCraft MV processing machine can process upon 6 items at one time, which is the famous feature.
 			if (process == PROCESS_MAX) {
 				process(hasOutputSpace());
 				process = 0;
 			}
 		}
-		
-		if (invalidInput) {
-			if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
-				if (tick >= 50) {
-					heat += 1;
-					tick = 0;
-				}
-				if (heat > 100)
-					heat = 100;
-			} else {
-				heat -= (Math.sqrt(heat/5))/40+0.009F;
-				if (heat < 0)
-					heat = 0;
+
+		if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+			if (tick >= 50) {
+				heat += 1;
+				tick = 0;
 			}
+			if (heat > 100)
+				heat = 100;
+		} else {
+			heat -= (Math.sqrt(heat / 5)) / 40 + 0.009F;
+			if (heat < 0)
+				heat = 0;
 		}
-		//The only difference among macerator, compressor, extractor, e-furnace is ONLY the recipes.
+
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
@@ -126,7 +118,7 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 			}
 		}
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
@@ -134,18 +126,18 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		tag.setInteger("heat", heat);
 		tag.setInteger("tick", tick);
 		NBTTagList list = new NBTTagList();
-		for(int n = 0; n < inv.length; n++) {
+		for (int n = 0; n < inv.length; n++) {
 			ItemStack stack = inv[n];
 			if (stack != null) {
 				NBTTagCompound itemTag = new NBTTagCompound();
-				itemTag.setByte("Slot", (byte)n);
+				itemTag.setByte("Slot", (byte) n);
 				stack.writeToNBT(itemTag);
 				list.appendTag(itemTag);
 			}
 		}
 		tag.setTag("inventory", list);
 	}
-	
+
 	@Override
 	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
 		return direction != ForgeDirection.UP && direction != ForgeDirection.DOWN;
@@ -177,14 +169,14 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
-        if (stack != null && stack.stackSize > getInventoryStackLimit())
-        	stack.stackSize = getInventoryStackLimit();
+		if (stack != null && stack.stackSize > getInventoryStackLimit())
+			stack.stackSize = getInventoryStackLimit();
 		inv[slot] = stack;
 	}
 
 	@Override
 	public abstract String getInventoryName();
-	
+
 	@Override
 	public boolean hasCustomInventoryName() {
 		return true;
@@ -201,21 +193,21 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 	}
 
 	@Override
-	public void openInventory() {}
+	public void openInventory() {
+	}
 
 	@Override
-	public void closeInventory() {}
+	public void closeInventory() {
+	}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack aStack) {
 		return slot >= 1 && slot <= 6;
 	}
 	
-	//Sided Start
-	
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
-		return side != 5 ? new int[] {1,2,3,4,5,6} : new int[] {7,8,9,10,11,12};
+		return side != 5 ? new int[] { 1, 2, 3, 4, 5, 6 } : new int[] { 7, 8, 9, 10, 11, 12 };
 	}
 
 	@Override
@@ -227,9 +219,6 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 	public boolean canExtractItem(int slot, ItemStack aStack, int side) {
 		return slot >= 7 && slot <= 12;
 	}
-	
-	//Sided end
-	//IC2 start
 
 	@Override
 	public double getDemandedEnergy() {
@@ -246,21 +235,21 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		energy += amount;
 		if (energy > energyMax)
 			energy = energyMax;
-		return 0D;	
+		return 0D;
 	}
-	
+
 	protected abstract boolean canProcess();
-	
+
 	protected abstract ItemStack getOutputFrom(ItemStack input);
-	
+
 	private boolean hasOutputSpace() {
-		for (int n=7;n<12;n++) {
+		for (int n = 7; n < 12; n++) {
 			if (inv[n] == null) {
 				return true;
 			}
 		}
-		
-		for (int n=7;n<12;n++) {
+
+		for (int n = 7; n < 12; n++) {
 			if (inv[n].getItem() == getOutputFrom(inv[n]).getItem()) {
 				if (inv[n].stackSize < inv[n].getMaxStackSize())
 					return true;
@@ -268,22 +257,23 @@ public abstract class TileFrogInductionalDevice extends TileFrog implements IEne
 		}
 		return false;
 	}
-	
+
 	private void process(boolean isSimluate) {
-		if (isSimluate) return;
-		
-		for(int n=1;n<=6;n++) {
+		if (isSimluate)
+			return;
+
+		for (int n = 1; n <= 6; n++) {
 			ItemStack output = getOutputFrom(inv[n]);
-			if (output!=null){
-				if (inv[n+6] == null) {
-					setInventorySlotContents(n+6, output.copy());
-				} else if (inv[n+6].getItem() == output.getItem()) {
-					inv[n+6].stackSize += output.stackSize;
-					if (inv[n+6].stackSize >= inv[n+6].getMaxStackSize()) {
-						inv[n+6].stackSize = inv[n+6].getMaxStackSize();
+			if (output != null) {
+				if (inv[n + 6] == null) {
+					setInventorySlotContents(n + 6, output.copy());
+				} else if (inv[n + 6].getItem() == output.getItem()) {
+					inv[n + 6].stackSize += output.stackSize;
+					if (inv[n + 6].stackSize >= inv[n + 6].getMaxStackSize()) {
+						inv[n + 6].stackSize = inv[n + 6].getMaxStackSize();
 					}
 				} else {
-					
+
 				}
 			}
 		}

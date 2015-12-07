@@ -29,17 +29,15 @@ public class GuiCombustionFurnace extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CombustionFurnace"));
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		int chargePercent = (int) (24 * tile.charge / tile.maxCharge);
-		this.drawTexturedModalRect(k + 72, l + 55, 176, 97, chargePercent, 17);
+		this.drawTexturedModalRect(this.guiLeft + 72, this.guiTop + 55, 176, 97, chargePercent, 17);
 		
 		if (tile.timeMax > 0) {
 			int progressPercent = (int) ((tile.timeMax - tile.time) / tile.timeMax);
-			this.drawTexturedModalRect(k + 25, l + 49 + 14 - progressPercent * 14, 176, 66 + progressPercent * 14, 14, progressPercent * 14);
-			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent * 24, 17);
+			this.drawTexturedModalRect(this.guiLeft + 25, this.guiTop + 49 + 14 - progressPercent * 14, 176, 66 + progressPercent * 14, 14, progressPercent * 14);
+			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent * 24, 17);
 		}
 	}
 	

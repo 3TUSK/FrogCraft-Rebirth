@@ -26,19 +26,17 @@ public class GuiAirPump extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
+	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("AirPump"));
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);
-		this.drawTexturedModalRect(k + 118, l + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
+		this.drawTexturedModalRect(this.guiLeft + 118, this.guiTop + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
 		
 		int airPercentage = (int) (40 * tile.airAmount() / 1000);
-		this.drawTexturedModalRect(k + 145, l + 63 - airPercentage, 176, 0, 12, airPercentage);
-		this.drawTexturedModalRect(k + 145, l + 60 - airPercentage, 176, 41, 12, 4);
+		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 63 - airPercentage, 176, 0, 12, airPercentage);
+		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 60 - airPercentage, 176, 41, 12, 4);
 	}
 
 }

@@ -6,9 +6,8 @@ import net.minecraft.item.ItemStack;
 
 public class TileInductionalMacerator extends TileFrogInductionalDevice{
 
-	@Override
-	public String getInventoryName() {
-		return "TileEntityIndustrialCompressor";
+	public TileInductionalMacerator() {
+		super("TileEntityIndustrialCompressor");
 	}
 
 	@Override

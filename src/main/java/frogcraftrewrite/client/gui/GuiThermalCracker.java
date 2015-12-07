@@ -31,24 +31,22 @@ public class GuiThermalCracker extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("ThermalCracker"));
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);
-		this.drawTexturedModalRect(k + 81, l + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
+		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
 		
 		if (tile.working) {
-			this.drawTexturedModalRect(k + 25, l + 49, 176, 66, 14, 14);
+			this.drawTexturedModalRect(this.guiLeft + 25, this.guiTop + 49, 176, 66, 14, 14);
 			int progressPercent = (int) (24 * tile.process / tile.processMax);
-			this.drawTexturedModalRect(k + 45, l + 29, 176, 80, progressPercent, 17);
+			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
-		
-		//GuiUtil.renderFluidTank(this, 143, 23, 16, 47, FluidRegistry.getFluid(((ContainerThermalCracker)inventorySlots).fluidID), (int)(((ContainerThermalCracker)inventorySlots).fluidAmount / 10));
+
+		//Not working yet.
 		if (tile.getTankInfo().fluid != null) {
 			IIcon fluidIcon = tile.getTankInfo().fluid.getFluid().getIcon();
 			this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-			this.drawTexturedModalRect(k + 143, l + 23, (int)fluidIcon.getMaxU(), (int)fluidIcon.getMaxV(), 16, 16);
+			this.drawTexturedModalRect(this.guiLeft + 143, this.guiTop + 23, (int)fluidIcon.getMaxU(), (int)fluidIcon.getMaxV(), 16, 16);
 		}
 	}
 

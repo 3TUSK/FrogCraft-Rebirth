@@ -16,12 +16,8 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	protected T tile;
 	
 	private int tileInvCount;
-
-	protected ContainerTileFrog(InventoryPlayer playerInv, T tile) {
-		this(playerInv, tile, false);
-	}
 	
-	protected ContainerTileFrog(InventoryPlayer playerInv, T tile, boolean needSynchronizedFluidTank) {
+	public ContainerTileFrog(InventoryPlayer playerInv, T tile) {
 		this.tile = tile;
 	}
 	

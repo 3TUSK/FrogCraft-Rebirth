@@ -34,14 +34,12 @@ public class GuiHybridEStorage extends GuiContainer {
 	protected void drawGuiContainerBackgroundLayer(float par1float, int par2int, int par3int) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("HSU"));
-		int k = (this.width - this.xSize) / 2;
-		int l = (this.height - this.ySize) / 2;
-		this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
+		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 
 		int charge = this.tile.getStored(), max = this.tile.getCapacity();
 		int e = (int) (40 * charge / max);
-		this.drawTexturedModalRect(k + 145, l + 63 - e, 176, 0, 12, e);
-		this.drawTexturedModalRect(k + 145, l + 59 - e, 176, 42, 12, 4);
+		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 63 - e, 176, 0, 12, e);
+		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 59 - e, 176, 42, 12, 4);
 	}
 
 }

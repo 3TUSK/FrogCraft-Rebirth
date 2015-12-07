@@ -5,10 +5,9 @@ import ic2.api.recipe.Recipes;
 import net.minecraft.item.ItemStack;
 
 public class TileInductionalCompressor extends TileFrogInductionalDevice{
-
-	@Override
-	public String getInventoryName() {
-		return "TileEntityIndustrialCompressor";
+	
+	public TileInductionalCompressor() {
+		super("TileEntityIndustrialCompressor");
 	}
 
 	@Override

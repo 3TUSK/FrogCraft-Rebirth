@@ -35,12 +35,11 @@ public class GuiIndustrialDevice extends GuiContainer {
 		int x = (width - xSize) / 2;
 		int y = (height - ySize) / 2;
 		this.drawTexturedModalRect(x, y, 0, 0, xSize, ySize);
-		// Draw string start, switching by meta: 0=E-Furnace, 1=Macerator,
-		// 2=Extractor, 3=Compressor
-		int energyCurrent = 14 * tile.energy / tile.energyMax;
+		//0=E-Furnace, 1=Macerator, 2=Extractor, 3=Compressor
+		int energyCurrent = 14 * tile.charge / tile.maxCharge;
 		int processCurrent = tile.process * 24 / 15;
 
-		if (tile.energy > 0)
+		if (tile.charge > 0)
 			this.drawTexturedModalRect(x + 81, y + 52 + 14 - energyCurrent, 176, 31 - energyCurrent, 14, energyCurrent);
 
 		if (tile instanceof TileInductionalEFurnace)

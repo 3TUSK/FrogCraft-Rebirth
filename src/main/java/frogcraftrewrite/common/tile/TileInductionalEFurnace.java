@@ -6,9 +6,8 @@ import net.minecraft.item.crafting.FurnaceRecipes;
 
 public class TileInductionalEFurnace extends TileFrogInductionalDevice{
 
-	@Override
-	public String getInventoryName() {
-		return "TileEntityIndustrialEFurnace";
+	public TileInductionalEFurnace() {
+		super("TileEntityIndustrialEFurnace");
 	}
 
 	@Override

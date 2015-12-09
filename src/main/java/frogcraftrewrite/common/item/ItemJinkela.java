@@ -4,14 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cpw.mods.fml.common.eventhandler.Event.Result;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
@@ -44,13 +40,6 @@ public class ItemJinkela extends ItemFrogCraft {
 			}
 		}
 		return false;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes") List list) {
-		list.add(new ItemStack(item, 1, 0));
 	}
 
 	@Override

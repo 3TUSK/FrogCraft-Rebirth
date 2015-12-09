@@ -31,7 +31,7 @@ public class GuiCombustionFurnace extends GuiContainer {
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CombustionFurnace"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
-		int chargePercent = (int) (24 * tile.charge / tile.maxCharge);
+		int chargePercent = (int) (24 * tile.charge / 5000);
 		this.drawTexturedModalRect(this.guiLeft + 72, this.guiTop + 55, 176, 97, chargePercent, 17);
 		
 		if (tile.timeMax > 0) {

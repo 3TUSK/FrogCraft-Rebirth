@@ -11,7 +11,7 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	protected ItemStack[] inv;
 	protected String name;
 	
-	protected TileFrogInventory(int invSize, String invName) {
+	protected TileFrogInventory(final int invSize, final String invName) {
 		super();
 		this.inv = new ItemStack[invSize];
 		this.name = invName;

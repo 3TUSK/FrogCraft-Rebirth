@@ -35,7 +35,8 @@ public class FrogAPI {
 	 * */
 	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
 	
-	public static final int[][] ROTATION_OFFSET_NORTH_4 = 
+	// ROT_OFFSET_N_4 stands for "Rotation offset with 4 faces and north-toward by default
+	public static final int[][] ROT_OFFSET_N_4 = 
 		{
 				{0, 1, 2, 3, 4, 5},
 				{0, 1, 2, 3, 4, 5},

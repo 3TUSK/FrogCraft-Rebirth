@@ -1,14 +1,16 @@
 package frogcraftrewrite.common.compat;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public interface ICompatModuleFrog {
+	
+	void preInit();
 	
 	void init();
 	
 	void postInit();
 	
-	public static List<Class<? extends ICompatModuleFrog>> compatList = new ArrayList<Class<? extends ICompatModuleFrog>>();
+	public static Map<String, ICompatModuleFrog> compats = new HashMap<String, ICompatModuleFrog>();
 
 }

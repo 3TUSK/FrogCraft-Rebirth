@@ -16,7 +16,6 @@ public class GuiUtil {
 		return new ResourceLocation("frogcraftrewrite:textures/gui/GUI_" + machineName + ".png");
 	}
 
-	@SuppressWarnings("unused")
 	public static void renderFluidTank(GuiContainer gui, int x, int y, int w, int h, Fluid fluid, int percentage) {
 		if (fluid == null) return;
 		
@@ -26,29 +25,6 @@ public class GuiUtil {
 		
 		gui.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
 		
-		double u = fluidIcon.getInterpolatedU(3.0D);
-		double u2 = fluidIcon.getInterpolatedU(13.0D);
-		double v = fluidIcon.getInterpolatedV(1.0D);
-		double v2 = fluidIcon.getInterpolatedV(15.0D);
-
-		int z = h * percentage/100;
-		/*
-		GL11.glEnable(GL11.GL_TEXTURE_2D);
-		GL11.glColor4d(1.0D, 1.0D, 1.0D, 1.0D);
-
-		GL11.glBegin(7);
-		GL11.glTexCoord2d(u, v);
-		GL11.glVertex2i(x, y + h - z);
-
-		GL11.glTexCoord2d(u, v2);
-		GL11.glVertex2i(x, y + h);
-
-		GL11.glTexCoord2d(u2, v2);
-		GL11.glVertex2i(x + w, y + h);
-
-		GL11.glTexCoord2d(u2, v);
-		GL11.glVertex2i(x + w, y + h -z);
-		GL11.glEnd();
-		*/
+		// to be continued.
 	}
 }

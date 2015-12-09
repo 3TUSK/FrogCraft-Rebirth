@@ -1,10 +1,12 @@
 package frogcraftrewrite.common.event;
 
+import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.Event.HasResult;
 import frogcraftrewrite.api.tile.IPersonal;
 import net.minecraft.entity.player.EntityPlayer;
 
+@Cancelable
 @HasResult
 public class PersonalizationEvent extends Event {
 	

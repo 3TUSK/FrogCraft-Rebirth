@@ -41,11 +41,11 @@ public class ItemCell extends ItemFrogCraft{
 	
 	public ItemCell() {
 		super(true);
-		super.setUnlocalizedName("Item_Cells.cell");
+		super.setUnlocalizedName("Item_Cells");
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName()+"_"+nameMap.get(stack.getItemDamage());
+		return super.getUnlocalizedName()+".cell_"+nameMap.get(stack.getItemDamage());
 	}
 	
 	@SideOnly(Side.CLIENT)

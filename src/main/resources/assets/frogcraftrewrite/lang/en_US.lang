@@ -190,6 +190,7 @@ achievement.suicideExpert.desc=Potassium plus acid equals explosion!
 
 gui.hybridEStorage.current=Power level: 
 gui.hybridEStorage.max=Max power level: 
+gui.thermalCracker.title=Thermal Cracker
 
 #NEI GUI texts
 nei.euTotal=Total Eu

@@ -17,8 +17,8 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileCondenseTower extends TileFrogMachine implements IFluidHandler {
 	
-	private FrogFluidTank tank = new FrogFluidTank(8000);
-	private boolean isCompleted = false, craftingFinished = false;
+	protected FrogFluidTank tank = new FrogFluidTank(8000);
+	private boolean structureCompleted = false, craftingFinished = false;
 	public int tick;
 	
 	public TileCondenseTower() {
@@ -40,19 +40,18 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	}
 	
 	public boolean isCompleted() {
-		return this.isCompleted;
+		return this.structureCompleted;
 	}
 	
 	public void updateEntity() {
 		super.updateEntity();
 		if (worldObj.isRemote) return;
 		
-		if (!isCompleted) {
+		if (!structureCompleted) {
 			if (!checkStructure())
 				return;
 			else {
-				this.isCompleted = true;
-				MinecraftForge.EVENT_BUS.post(new MultiBlockEvent(this));
+				this.structureCompleted = MinecraftForge.EVENT_BUS.post(new MultiBlockEvent(this));
 			}
 		}
 		
@@ -77,6 +76,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		}
 		
 		this.markDirty();
+		this.sendTileUpdatePacket(this);
 	}
 
 	public void readFromNBT(NBTTagCompound tag) {

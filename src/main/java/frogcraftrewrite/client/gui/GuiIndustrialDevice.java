@@ -23,13 +23,14 @@ public class GuiIndustrialDevice extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int what, int whhat) {
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96, 4210752);
 		fontRendererObj.drawString("Inductional Device test", 4, 4, 4210752);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
+	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		mc.renderEngine.bindTexture(new ResourceLocation("frogcraft:textures/gui/Gui_IndustrialDevice.png"));
 		int x = (width - xSize) / 2;

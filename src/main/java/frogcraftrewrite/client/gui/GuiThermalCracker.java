@@ -21,14 +21,14 @@ public class GuiThermalCracker extends GuiContainer {
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString("Thermal Cracker", 8, ySize - 155, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString("Charge: "+tile.charge, 8, ySize - 145, GuiUtil.GRAY_40);
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.thermalCracker.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float p_146976_1_, int p_146976_2_, int p_146976_3_) {
+	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("ThermalCracker"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);

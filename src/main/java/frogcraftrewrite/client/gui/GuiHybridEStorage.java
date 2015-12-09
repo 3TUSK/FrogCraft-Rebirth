@@ -19,19 +19,17 @@ public class GuiHybridEStorage extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2,
-				4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.current"), 8, ySize - 150,
-				4210752);
-		this.fontRendererObj.drawString(Integer.toString((int) tile.getStored()), 8, ySize - 140, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.max"), 8, ySize - 130,
-				4210752);
-		this.fontRendererObj.drawString(Integer.toString(tile.getCapacity()), 8, ySize - 120, 4210752);
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.current"), 8, ySize - 150, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(Integer.toString((int) tile.getStored()), 8, ySize - 140, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.max"), 8, ySize - 130, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(Integer.toString(tile.getCapacity()), 8, ySize - 120, GuiUtil.GRAY_40);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1float, int par2int, int par3int) {
+	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("HSU"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);

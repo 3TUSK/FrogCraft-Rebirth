@@ -1,13 +1,10 @@
 package frogcraftrewrite.common.tile;
 
-import static frogcraftrewrite.common.network.NetworkHandler.FROG_NETWORK;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrewrite.common.lib.tile.TileFrogGenerator;
-import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -28,11 +25,11 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 		
 		TileEntity turbine = worldObj.getTileEntity(xCoord, yCoord+7, zCoord);
 		if (turbine instanceof TileAcademyWindmillTurbine) {
-			this.canGenEnergy = ((TileAcademyWindmillTurbine)turbine).canGenEnergy;
+			this.canGenEnergy = ((TileAcademyWindmillTurbine)turbine).isWorking();
 		}
 		
 		markDirty();
-		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(this));
+		this.sendTileUpdatePacket(this);
 	}
 	
 	@Override
@@ -50,13 +47,13 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
-		this.canGenEnergy = input.readByte() == 0 ? false : true;
+		this.canGenEnergy = input.readBoolean();
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
-		output.writeByte(canGenEnergy ? 0x01 : 0x00);
+		output.writeBoolean(this.canGenEnergy);
 	}
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {

@@ -1,18 +1,17 @@
 package frogcraftrewrite.common.tile;
 
-import static frogcraftrewrite.common.network.NetworkHandler.FROG_NETWORK;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrewrite.common.lib.tile.TileFrog;
-import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import net.minecraft.nbt.NBTTagCompound;
 
 public class TileAcademyWindmillTurbine extends TileFrog {
+	
+	private boolean canGenEnergy;
 
-	public boolean canGenEnergy, hasRotor, isBlocked, isHighEnough, isRaining;
+	public boolean hasRotor, isBlocked, isHighEnough, isRaining;
 
 	public TileAcademyWindmillTurbine() {
 		this.hasRotor = false;
@@ -39,11 +38,12 @@ public class TileAcademyWindmillTurbine extends TileFrog {
 
 		this.canGenEnergy = hasRotor && !isBlocked && !isRaining;
 		markDirty();
-		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(this));
+		this.sendTileUpdatePacket(this);
 	}
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
 		this.hasRotor = tag.getBoolean("rotor");
 		this.isBlocked = tag.getBoolean("isBlocked");
 		this.isHighEnough = tag.getBoolean("enoughHeight");
@@ -52,6 +52,7 @@ public class TileAcademyWindmillTurbine extends TileFrog {
 
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
 		tag.setBoolean("rotor", hasRotor);
 		tag.setBoolean("isBlocked", isBlocked);
 		tag.setBoolean("enoughHeight", isHighEnough);
@@ -60,12 +61,16 @@ public class TileAcademyWindmillTurbine extends TileFrog {
 
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-
+		this.canGenEnergy = input.readBoolean();
 	}
 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-
+		output.writeBoolean(canGenEnergy);
+	}
+	
+	public boolean isWorking() {
+		return this.canGenEnergy;
 	}
 
 }

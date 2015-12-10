@@ -58,11 +58,11 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	}
 	
 	public void writePacketData(DataOutputStream output) throws IOException {
-		
+		//what
 	}
 	
 	public void readPacketData(DataInputStream input) throws IOException {
-		
+		//what
 	}
 
 }

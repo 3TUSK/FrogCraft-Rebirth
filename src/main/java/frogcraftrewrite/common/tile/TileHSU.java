@@ -37,6 +37,8 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			this.loaded = true;
 		}
 		
+		//Discharge and charge. todo.
+		
 		this.markDirty();
 	}
 	

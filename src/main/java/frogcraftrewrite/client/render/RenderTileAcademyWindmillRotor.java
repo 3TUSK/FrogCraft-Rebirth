@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class RenderTileAcademyWindmillRotor extends TileEntitySpecialRenderer{
 	
-	TileAcademyWindmillTurbine tile;
+	private TileAcademyWindmillTurbine tile;
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double relativeX, double relativeY, double relativeZ, float partialTick) {
@@ -23,7 +23,8 @@ public class RenderTileAcademyWindmillRotor extends TileEntitySpecialRenderer{
 		GL11.glPushMatrix();
 		GL11.glTranslatef((float)relativeX, (float)relativeY, (float)relativeZ);
 		
-		//TODO: Actual render. Basically binding the texture to proper side, also wrenching is a big deal
+		//TODO: Actual render. Basically binding the texture to proper side
+		//also wrenching is a big deal
 		
 		GL11.glPopMatrix();
 	}

@@ -95,7 +95,8 @@ public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 	}
 	
 	public void readPacketData(DataInputStream input) throws IOException {
-		int fluidID = input.readInt(), fluidAmount = input.readInt();
+		int fluidID = input.readInt();
+		int fluidAmount = input.readInt();
 		Fluid fluid = fluidID != -1 ? FluidRegistry.getFluid(fluidID) : null;
 		if (fluid != null)
 			this.forceFillTank(new FluidStack(fluid, fluidAmount));

@@ -143,10 +143,11 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		if (tank.getFluidAmount() >= tank.getCapacity())
 			return false;
 		switch (from) {
-			case UNKNOWN:
+			case UNKNOWN: {
 				if (fluid == null)
 					return true;
 				else return false;
+			}
 			default:
 				return true;
 		}

@@ -23,7 +23,7 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 
 	@Override
 	public void writeData(DataOutputStream output) throws IOException {
-		output.writeByte(PACKET_TILE);//packet identity number, will work around it later
+		output.writeByte(PACKET_TILE);
 		output.writeInt(tile.xCoord);
 		output.writeInt(tile.yCoord);
 		output.writeInt(tile.zCoord);

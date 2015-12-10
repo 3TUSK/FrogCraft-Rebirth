@@ -1,5 +1,9 @@
 package frogcraftrewrite.common.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrewrite.api.impl.FrogFluidTank;
 import frogcraftrewrite.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
@@ -35,8 +39,7 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 
 		if (FluidContainerRegistry.isEmptyContainer(inv[0]) && tick >= 20) {
 			if (inv[1] == null) {
-				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(tank.getFluid(), 1000),
-						new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
+				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(tank.getFluid(), 1000), new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
 				this.drain(ForgeDirection.UNKNOWN, 1000, true);
 			}
 			if (FluidContainerRegistry.isContainer(inv[1])
@@ -59,6 +62,18 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
 		tank.writeToNBT(tag);
+	}
+
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
+		tank.readPacketData(input);
+	}
+
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
+		tank.writePacketData(output);
 	}
 
 	@Override

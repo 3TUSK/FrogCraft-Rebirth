@@ -11,6 +11,8 @@ public class ConfigMain {
 	public static int airPumpGenerateSpeed;
 	public static int combustionFurnacePowerRate;
 	
+	public static boolean enableTCAspect;
+	
 	public static void initMainConfig(File file) {
 		Configuration config = new Configuration(file);
 		
@@ -22,6 +24,7 @@ public class ConfigMain {
 		
 		railgunDamageScale = config.getFloat("RailgunDamageScale", "Misc", 100, Double.MIN_EXPONENT, Double.MAX_EXPONENT, null, "frogcraft.config.railgunDamageScale");
 
+		enableTCAspect = config.get("Compatibility", "addAspectIntoItems", true).getBoolean();
 		
 		if (config.hasChanged())
 			config.save();

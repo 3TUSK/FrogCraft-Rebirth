@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 
 public class RenderTileAcademyWindmillRotor extends TileEntitySpecialRenderer{
-	
+	@SuppressWarnings("unused")
 	private TileAcademyWindmillTurbine tile;
 
 	@Override

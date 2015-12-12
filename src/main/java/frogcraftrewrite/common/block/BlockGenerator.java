@@ -56,13 +56,10 @@ public class BlockGenerator extends BlockFrogContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta) {
-			case 0:
-				return new TileCombustionFurnace();
-			default:
-				return null;
-		}
-		
+		if (meta == 0)
+			return new TileCombustionFurnace();
+		else
+			return null;
 	}
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {

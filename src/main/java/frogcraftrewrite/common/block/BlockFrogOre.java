@@ -4,9 +4,11 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -24,6 +26,10 @@ public class BlockFrogOre extends BlockFrog {
 				"oreRuby", "oreSapphire", "oreGreenSapphire");
 		this.iconArray = new IIcon[this.nameArray.length];
 	}
+	
+	public int damageDropped(int meta) {
+		return meta >= 6 ? meta - 4 : meta;
+	}
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
@@ -40,18 +46,18 @@ public class BlockFrogOre extends BlockFrog {
 			return 20.0F;
 		case 5:
 			return 1.0F;
-		case 6:
-			return 15.0F;
-		case 7:
-			return 15.0F;
-		case 8:
-			return 15.0F;
+		default:
+			return super.getBlockHardness(world, x, y, z);
 		}
-		return super.getBlockHardness(world, x, y, z);
+	}
+	
+	public Item getItemDropped(int meta, Random rand, int fortune) {
+		return meta >= 6 ? FrogItems.itemIngot : Item.getItemFromBlock(this);
 	}
 
+	@Override
 	public int quantityDropped(Random rand) {
-		return 2 * rand.nextInt(5);
+		return 1 + rand.nextInt(5);
 	}
 
 	@SideOnly(Side.CLIENT)

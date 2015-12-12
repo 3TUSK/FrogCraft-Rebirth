@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.event;
+package frogcraftrewrite.common.lib.event;
 
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;

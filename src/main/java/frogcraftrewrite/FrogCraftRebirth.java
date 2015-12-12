@@ -15,9 +15,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
-import frogcraftrewrite.common.event.FrogEventListener;
 import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.lib.config.ConfigMain;
+import frogcraftrewrite.common.lib.event.FrogEventListener;
 import frogcraftrewrite.common.network.NetworkHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -40,11 +40,11 @@ public class FrogCraftRebirth {
 		if (!configDir.exists()) configDir.mkdirs();
 		ConfigMain.initMainConfig(new File(configDir, "FrogMain.cfg"));
 		File reactionDir = new File(configDir, "reactions");
-		if (!reactionDir.exists()) reactionDir.mkdirs(); //Prepare for extract xml configuration from jar
+		if (!reactionDir.exists()) reactionDir.mkdirs(); //todo
 		
 		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
-			@SuppressWarnings("unused") private static final String IDENTITY = "0x0000002A"; //42.
-			Item frogLogo;	
+			@SuppressWarnings("unused") private static final String IDENTITY = "0x0000002A";
+			private Item frogLogo;
 			{
 				frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
 				cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");

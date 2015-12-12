@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler {
 
-	private FrogFluidTank tank = new FrogFluidTank(8000);
+	protected FrogFluidTank tank = new FrogFluidTank(8000);
 
 	public TileFluidOutputHatch() {
 		super(2, "TileEntityFluidOutput");

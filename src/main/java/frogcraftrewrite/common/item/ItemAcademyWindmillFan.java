@@ -29,6 +29,7 @@ public class ItemAcademyWindmillFan extends ItemFrogCraft {
 		TileEntity tile = world.getTileEntity(x, y, z);
 		if (tile instanceof TileAcademyWindmillTurbine) {
 			player.inventory.consumeInventoryItem(this);
+			player.inventory.markDirty();
 			((TileAcademyWindmillTurbine)tile).hasRotor = true;
 			return true;
 		}

@@ -21,7 +21,7 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 		setMaxStackSize(1);
 		setNoRepair();
 		setTextureName("frogcraftrewrite:Battery"+name);
-		setUnlocalizedName(name+"Battery.name");
+		setUnlocalizedName(name + "Battery.name");
 	}
 	
 	@Override
@@ -75,11 +75,6 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 				StatCollector.translateToLocal("item.DecayBattery.info.0"),
 				StatCollector.translateToLocal("item.DecayBattery.info.1")
 		});
-	}
-
-	@Override
-	public int getSubItemNumber() {
-		return 1;
 	}
 	
 	@SuppressWarnings("unchecked")

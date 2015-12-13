@@ -19,7 +19,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		FrogCraftRebirth.frogLogger.info("Client side pre-initialization finished");
+		FrogCraftRebirth.FROG_LOG.info("Client side pre-initialization finished");
 	}
 
 	@Override
@@ -29,13 +29,13 @@ public class ClientProxy extends CommonProxy {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
-		FrogCraftRebirth.frogLogger.info("Client side initialization finished");
+		FrogCraftRebirth.FROG_LOG.info("Client side initialization finished");
 	}
 	
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
-		FrogCraftRebirth.frogLogger.info("Client side post-initialization finished");
+		FrogCraftRebirth.FROG_LOG.info("Client side post-initialization finished");
 	}
  
 	@SubscribeEvent

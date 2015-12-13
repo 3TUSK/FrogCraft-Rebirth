@@ -35,7 +35,7 @@ public class NetworkHandler {
 	}
 	
 	public static void init() {
-		FrogCraftRebirth.frogLogger.debug("Initializing FrogCraft Network...");
+		FrogCraftRebirth.FROG_LOG.debug("Initializing FrogCraft Network...");
 	}
 	
 	@SubscribeEvent
@@ -79,7 +79,7 @@ public class NetworkHandler {
 		try {
 			packet.writeData(data);
 		} catch (IOException e) {
-			FrogCraftRebirth.frogLogger.error("Fail to generate packet, please report to author!");
+			FrogCraftRebirth.FROG_LOG.error("Fail to generate packet, please report to author!");
 		}
 		return Unpooled.wrappedBuffer(byteArray.toByteArray());
 	}

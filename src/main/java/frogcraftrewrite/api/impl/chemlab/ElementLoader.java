@@ -1,6 +1,6 @@
 package frogcraftrewrite.api.impl.chemlab;
 
-import static frogcraftrewrite.FrogCraftRebirth.frogLogger;
+import static frogcraftrewrite.FrogCraftRebirth.FROG_LOG;
 
 import java.io.InputStream;
 
@@ -25,7 +25,7 @@ public final class ElementLoader implements ElementArrayParser {
 	@Override
 	public synchronized Element[] parseElements(InputStream input, boolean force) {
 		if (parsingFinished && force == false) {
-			frogLogger.info("FrogCraft has finished elements parsing. Call will be denied.");
+			FROG_LOG.info("FrogCraft has finished elements parsing. Call will be denied.");
 			return null;
 		}
 		try {
@@ -45,7 +45,7 @@ public final class ElementLoader implements ElementArrayParser {
 			parsingFinished = true;
 			return elements;
 		} catch (Exception e) {
-			frogLogger.error("An error has occurred and loading cannot continue.");
+			FROG_LOG.error("An error has occurred and loading cannot continue.");
 			return null;
 		}
 	}

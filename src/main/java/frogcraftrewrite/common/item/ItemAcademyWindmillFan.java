@@ -40,11 +40,6 @@ public class ItemAcademyWindmillFan extends ItemFrogCraft {
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		return null;
 	}
-
-	@Override
-	public int getSubItemNumber() {
-		return 1;
-	}
 	
 	@SuppressWarnings("unchecked")
 	@Override

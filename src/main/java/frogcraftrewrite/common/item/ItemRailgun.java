@@ -163,9 +163,4 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		return this;
 	}
 
-	@Override
-	public int getSubItemNumber() {
-		return 1;
-	}
-
 }

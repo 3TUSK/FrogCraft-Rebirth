@@ -32,7 +32,7 @@ public class FrogCraftRebirth {
 	@SidedProxy(serverSide = "frogcraftrewrite.common.CommonProxy", clientSide = "frogcraftrewrite.client.ClientProxy")
 	public static CommonProxy proxy;
 	
-	public static Logger frogLogger = LogManager.getLogger("FrogCraft-Rebirth");
+	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 	
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {	
@@ -69,7 +69,7 @@ public class FrogCraftRebirth {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-		frogLogger.info("FrogCraft has finished loading. The era of chemsitry will begin!");
+		FROG_LOG.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 	
 }

@@ -91,10 +91,4 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 		return 0;
 	}
 
-	@Override
-	public int getSubItemNumber() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }

@@ -49,9 +49,4 @@ public class ItemJinkela extends ItemFrogCraft {
 		return list;
 	}
 
-	@Override
-	public int getSubItemNumber() {
-		return 1;
-	}
-
 }

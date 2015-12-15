@@ -31,6 +31,7 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
+		FrogBlocks.inductionalMachines = new BlockInductionMachine();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
 		//FrogBlocks.mobilePowerStation = new BlockMPS();
@@ -39,6 +40,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.generators, ItemFrogBlock.class, "generator");
 		GameRegistry.registerBlock(FrogBlocks.machines, ItemFrogBlock.class, "machines");
+		GameRegistry.registerBlock(FrogBlocks.inductionalMachines, ItemFrogBlock.class, "machinesInductional");
 		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
 		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, ItemFrogBlock.class, "hybridStorageUnit");
 		//GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMPS.class, "mobilePowerStation");

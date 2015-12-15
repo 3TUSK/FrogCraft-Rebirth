@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.compat.gregtech;
 
-import frogcraftrewrite.common.compat.ICompatModuleFrog;
+import frogcraftrewrite.api.ICompatModuleFrog;
 
 public class CompatGregTech implements ICompatModuleFrog {
 

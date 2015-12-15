@@ -2,6 +2,7 @@ package frogcraftrewrite.common.compat;
 
 import static frogcraftrewrite.common.lib.config.ConfigMain.*;
 
+import frogcraftrewrite.api.ICompatModuleFrog;
 import net.minecraft.util.ResourceLocation;
 import thaumcraft.api.aspects.Aspect;
 

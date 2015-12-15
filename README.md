@@ -1,6 +1,6 @@
 # FrogCraft: Rebirth
 Everything is about chemistry. Don't abuse it, or the environment will be destoryed.  
-Also, don't pay much attention on this project. *I will do it by myself, no matter how hard it is for me.*  
+I hope FrogCraft will come back soon.
 By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS OF BREAKING CHANGES ON THE WAY! 
 
 ### Table of content:  
@@ -12,20 +12,20 @@ By the way, please DO NOT TRY TO BUILD BY YOURSELF, SINCE THERE ARE STILL LOTS O
 
 #### Progress
 * Item: initially finish
- * Stuff: nothing to say.
- * Railgun: wip and buggy
- * Jinkela: untested
+ * Stuff: Finished
+ * Railgun: should work fine.
+ * Jinkela: not available. Treated as a component
 * Block: wip  
  * Ores: finished  
-   * World genertor: finished with minor issue  
+   * World genertor: Finished 
  * Machines: 75%(estimated)  
     * Advanced Chemical Reactor: finishied but untested  
     * Air Pump: 100% completed
     * Condense Tower: finished but untested  
-    * Thermal Cracker: 90% completed
+    * Thermal Cracker: 90%
  * Generator: 75%(estimated)  
-    * Academy City Windmill: finished but can't work, need investgation   
-    * Combustion Furnace: finished but untested
+    * Academy City Windmill: 90%  
+    * Combustion Furnace: 60%
  * Electricity storage  
     * HSU, UHSU: finished
     * EVT: not yet

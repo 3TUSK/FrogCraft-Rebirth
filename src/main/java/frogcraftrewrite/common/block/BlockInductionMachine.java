@@ -43,7 +43,7 @@ public class BlockInductionMachine extends BlockFrogContainer {
 	public void randomDisplayTick(World world, int x, int y, int z, Random random) {
 		world.func_147479_m(x, y, z);//markBlockForRenderUpdate(x, y, z)
 		
-		if (random.nextInt() > 90) { //TODO specify which block has such a particle effect.
+		if (random.nextInt() > 90) {
 			float var7 = (float)x + 1.0F;
     		float var8 = (float)y + 1.0F;
     		float var9 = (float)z + 1.0F;

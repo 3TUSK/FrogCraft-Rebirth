@@ -1,6 +1,6 @@
 package frogcraftrewrite.common.compat.minetweaker;
 
-import frogcraftrewrite.common.compat.ICompatModuleFrog;
+import frogcraftrewrite.api.ICompatModuleFrog;
 import minetweaker.MineTweakerAPI;
 
 public class CompatMinetweaker implements ICompatModuleFrog {

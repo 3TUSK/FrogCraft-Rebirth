@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.compat;
+package frogcraftrewrite.api;
 
 import java.util.HashMap;
 import java.util.Map;

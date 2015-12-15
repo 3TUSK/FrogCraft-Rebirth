@@ -1,7 +1,6 @@
 package frogcraftrewrite.common;
 
 import static frogcraftrewrite.api.FrogFuelHandler.FUEL_REG;
-import frogcraftrewrite.common.compat.ICompatModuleFrog;
 
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -13,6 +12,7 @@ import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrewrite.api.FrogAPI;
+import frogcraftrewrite.api.ICompatModuleFrog;
 import frogcraftrewrite.api.impl.chemlab.ElementLoader;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;

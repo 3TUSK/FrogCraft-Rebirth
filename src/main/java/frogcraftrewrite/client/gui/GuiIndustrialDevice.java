@@ -3,7 +3,7 @@ package frogcraftrewrite.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
-import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
+import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileInductionalCompressor;
 import frogcraftrewrite.common.tile.TileInductionalEFurnace;
 import frogcraftrewrite.common.tile.TileInductionalExtractor;

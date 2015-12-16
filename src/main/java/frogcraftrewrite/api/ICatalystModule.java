@@ -1,4 +1,4 @@
-package frogcraftrewrite.api.item;
+package frogcraftrewrite.api;
 
 import info.tritusk.tritchemlab.matter.Molecule;
 

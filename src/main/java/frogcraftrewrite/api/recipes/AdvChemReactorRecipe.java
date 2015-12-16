@@ -1,7 +1,8 @@
 package frogcraftrewrite.api.recipes;
 
 import java.util.List;
-import frogcraftrewrite.api.item.ICatalystModule;
+
+import frogcraftrewrite.api.ICatalystModule;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;

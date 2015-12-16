@@ -19,7 +19,7 @@ public class BlockInductionMachine extends BlockFrogContainer {
 	public BlockInductionMachine() {
 		super(Material.iron);
 		setBlockName("inductionalMachine");
-		setSubNameArray("Compressor", "Macerator", "Extractor", "Furnace");
+		setSubNameArray("Furnace", "Extractor", "Macerator", "Compressor");
 	}
 	
 	@Override
@@ -60,7 +60,25 @@ public class BlockInductionMachine extends BlockFrogContainer {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister reg) {
-		
+		for (int i=0;i<nameArray.length;i++) {
+			iconArray[i][0] = reg.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
+			iconArray[i][1] = reg.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+			String path = "";
+			switch (i) {
+			case 0:
+				path = TEXTURE_MAIN + "IndustrialFurnace_Front";
+			case 1:
+				path = TEXTURE_MAIN + "IndustrialMacerator_Front";
+			case 2:
+				path = TEXTURE_MAIN + "IndustrialExtractor_Front";
+			case 3:
+				path = TEXTURE_MAIN + "IndustrialCompressor_Front";
+			}
+			iconArray[i][2] = reg.registerIcon(path);
+			iconArray[i][3] = reg.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+			iconArray[i][4] = reg.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+			iconArray[i][5] = reg.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+		}
 	}
 
 }

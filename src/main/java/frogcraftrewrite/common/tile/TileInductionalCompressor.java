@@ -1,6 +1,5 @@
 package frogcraftrewrite.common.tile;
 
-import frogcraftrewrite.common.lib.tile.TileFrogInductionalDevice;
 import ic2.api.recipe.Recipes;
 import net.minecraft.item.ItemStack;
 

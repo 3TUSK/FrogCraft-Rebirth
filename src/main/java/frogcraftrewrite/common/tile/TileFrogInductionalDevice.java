@@ -1,5 +1,6 @@
-package frogcraftrewrite.common.lib.tile;
+package frogcraftrewrite.common.tile;
 
+import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import net.minecraft.item.ItemStack;

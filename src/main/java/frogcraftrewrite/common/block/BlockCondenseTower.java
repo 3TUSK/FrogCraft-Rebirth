@@ -50,26 +50,26 @@ public class BlockCondenseTower extends BlockFrogContainer {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		iconArray[0][0] = r.registerIcon("frogcraftrewrite:CondenseTower_Front");
-		iconArray[0][1] = r.registerIcon("frogcraftrewrite:CondenseTower_Front");
-		iconArray[0][2] = r.registerIcon("frogcraftrewrite:CondenseTower_Front");
-		iconArray[0][3] = r.registerIcon("frogcraftrewrite:CondenseTower_Back");
-		iconArray[0][4] = r.registerIcon("frogcraftrewrite:CondenseTower_Side");
-		iconArray[0][5] = r.registerIcon("frogcraftrewrite:CondenseTower_Side");
+		iconArray[0][0] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Front");
+		iconArray[0][1] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Front");
+		iconArray[0][2] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Front");
+		iconArray[0][3] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Back");
+		iconArray[0][4] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Side");
+		iconArray[0][5] = r.registerIcon(TEXTURE_MAIN + "CondenseTower_Side");
 		
-		iconArray[1][0] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Top");
-		iconArray[1][1] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Top");
-		iconArray[1][2] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
-		iconArray[1][3] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
-		iconArray[1][4] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
-		iconArray[1][5] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
+		iconArray[1][0] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Top");
+		iconArray[1][1] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Top");
+		iconArray[1][2] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
+		iconArray[1][3] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
+		iconArray[1][4] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
+		iconArray[1][5] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
 		
-		iconArray[2][0] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Top");
-		iconArray[2][1] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Top");
-		iconArray[2][2] = r.registerIcon("frogcraftrewrite:CondenseTowerOutput_Front");
-		iconArray[2][3] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
-		iconArray[2][4] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
-		iconArray[2][5] = r.registerIcon("frogcraftrewrite:CondenseTowerCylinder_Side");
+		iconArray[2][0] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Top");
+		iconArray[2][1] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Top");
+		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerOutput_Front");
+		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
+		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
+		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "CondenseTowerCylinder_Side");
 	}
 
 }

@@ -35,7 +35,6 @@ public class BlockFrogOre extends BlockFrog {
 	public float getBlockHardness(World world, int x, int y, int z) {
 		switch (world.getBlockMetadata(x, y, z)) {
 		case 0:
-			return 10.0F;
 		case 1:
 			return 10.0F;
 		case 2:

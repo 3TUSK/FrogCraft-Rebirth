@@ -1,5 +1,7 @@
 package frogcraftrewrite.api.tile;
 
-public interface ICatalystBlock {
+import frogcraftrewrite.api.ICatalystModule;
+
+public interface ICatalystBlock extends ICatalystModule {
 
 }

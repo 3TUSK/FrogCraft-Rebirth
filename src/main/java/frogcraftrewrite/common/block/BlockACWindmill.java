@@ -26,19 +26,19 @@ public class BlockACWindmill extends BlockFrogContainer {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		this.iconArray[0][0] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Bottom");
-		this.iconArray[0][1] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Top");
-		this.iconArray[0][2] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
-		this.iconArray[0][3] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
-		this.iconArray[0][4] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
-		this.iconArray[0][5] = r.registerIcon("frogcraftrewrite:ACWindMill_Base_Side");
+		this.iconArray[0][0] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Bottom");
+		this.iconArray[0][1] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Top");
+		this.iconArray[0][2] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Side");
+		this.iconArray[0][3] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Side");
+		this.iconArray[0][4] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Side");
+		this.iconArray[0][5] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Base_Side");
 		
-		this.iconArray[1][0] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
-		this.iconArray[1][1] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
-    	this.iconArray[1][2] = r.registerIcon("frogcraftrewrite:ACWindMill_Back");
-    	this.iconArray[1][3] = r.registerIcon("frogcraftrewrite:ACWindMill_Front");    	
-    	this.iconArray[1][4] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
-    	this.iconArray[1][5] = r.registerIcon("frogcraftrewrite:ACWindMill_Side");
+		this.iconArray[1][0] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Side");
+		this.iconArray[1][1] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Side");
+    	this.iconArray[1][2] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Back");
+    	this.iconArray[1][3] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Front");    	
+    	this.iconArray[1][4] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Side");
+    	this.iconArray[1][5] = r.registerIcon(TEXTURE_MAIN + "ACWindMill_Side");
 	}
 
 	@Override

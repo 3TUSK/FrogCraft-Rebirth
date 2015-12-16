@@ -13,7 +13,7 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public interface IPollution {
+public interface IPollutionSource {
 	
 	// Debug info.
 	String[] info();

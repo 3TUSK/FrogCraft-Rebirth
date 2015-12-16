@@ -8,14 +8,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 
-public class WorldGenNGH extends FrogWorldGenerator{
+public class WorldGenNaturalGasField extends FrogWorldGenerator{
 
 	private Block block;
 	private int meta;
 	
 	ArrayList<Block> vaildBlocks;
 	
-	public WorldGenNGH(Block aOre, int meta) {
+	public WorldGenNaturalGasField(Block aOre, int meta) {
 		this.block = aOre;
 		this.meta = meta;
 		vaildBlocks = new ArrayList<Block>();

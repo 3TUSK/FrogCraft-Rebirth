@@ -26,13 +26,13 @@ public class BlockHybridEStorage extends BlockFrogContainer {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		iconArray[0][0] = r.registerIcon("frogcraftrewrite:HSU_Front");
+		iconArray[0][0] = r.registerIcon(TEXTURE_MAIN + "HSU_Front");
 		for (int n=1;n<6;n++) {
-			iconArray[0][n] = r.registerIcon("frogcraftrewrite:HSU_Side");
+			iconArray[0][n] = r.registerIcon(TEXTURE_MAIN + "HSU_Side");
 		}
-		iconArray[1][0] = r.registerIcon("frogcraftrewrite:UHSU_Front");
+		iconArray[1][0] = r.registerIcon(TEXTURE_MAIN + "UHSU_Front");
 		for (int n=1;n<6;n++) {
-			iconArray[1][n] = r.registerIcon("frogcraftrewrite:UHSU_Side");
+			iconArray[1][n] = r.registerIcon(TEXTURE_MAIN + "UHSU_Side");
 		}
 	}
 	

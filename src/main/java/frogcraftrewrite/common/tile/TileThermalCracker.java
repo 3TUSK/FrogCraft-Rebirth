@@ -1,4 +1,5 @@
 package frogcraftrewrite.common.tile;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -16,21 +17,22 @@ import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileThermalCracker extends TileFrogMachine implements IFluidHandler {
-	
+
 	protected FrogFluidTank tank = new FrogFluidTank(16000);
 
 	public int process, processMax;
 	public boolean working;
-	
+
 	public TileThermalCracker() {
 		super(4, "TileThermalCracker", 2, 10000);
-		//0 input 1 output 2 fluidContainer input 3 fluidContainer output
+		// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	}
 
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (this.worldObj.isRemote) return;
+		if (this.worldObj.isRemote)
+			return;
 		if (inv[0] == null) {
 			this.working = false;
 			this.process = 0;
@@ -38,20 +40,21 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		}
 		ThermalCrackerRecipe recipe;
 		if (!working) {
-			recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
+			recipe = FrogAPI.managerTC.<ItemStack> getRecipe(this.inv[0]);
 			if (recipe != null)
-					if (inv[1] == null || recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null || canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid().getFluid())) {
-						this.process = 0;
-						this.processMax = recipe.getTime();
-						this.working = true;
-					}
+				if (inv[1] == null || recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null
+						|| canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid().getFluid())) {
+					this.process = 0;
+					this.processMax = recipe.getTime();
+					this.working = true;
+				}
 		} else {
 			if (this.charge <= 256)
 				return;
 			this.charge -= 256;
 			process++;
 			if (process == processMax) {
-				recipe = FrogAPI.managerTC.<ItemStack>getRecipe(this.inv[0]);
+				recipe = FrogAPI.managerTC.<ItemStack> getRecipe(this.inv[0]);
 				this.decrStackSize(0, recipe.getInput().stackSize);
 				if (this.getStackInSlot(1) == null)
 					this.setInventorySlotContents(1, recipe.getOutput());
@@ -64,10 +67,10 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 				working = false;
 			}
 		}
-		
+
 		this.sendTileUpdatePacket(this);
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
@@ -76,19 +79,19 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
 	}
-	
+
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
 		tank.readPacketData(input);
 	}
-	
+
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
 		tank.writePacketData(output);
 	}
-	
+
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
@@ -97,16 +100,16 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
 	}
-	
+
 	@Override
 	public int[] getAccessibleSlotsFromSide(int side) {
 		switch (side) {
-			case 0: 
-				return new int[] {1};
-			case 1: 
-				return new int[] {0};
-			default: 
-				return null;
+		case 0:
+			return new int[] { 1 };
+		case 1:
+			return new int[] { 0 };
+		default:
+			return null;
 		}
 	}
 
@@ -119,7 +122,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 	public boolean canExtractItem(int slot, ItemStack item, int side) {
 		return side == 1 && slot == 0;
 	}
-	
+
 	@Override
 	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
@@ -143,13 +146,14 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 		if (tank.getFluidAmount() >= tank.getCapacity())
 			return false;
 		switch (from) {
-			case UNKNOWN: {
-				if (fluid == null)
-					return true;
-				else return false;
-			}
-			default:
+		case UNKNOWN: {
+			if (fluid == null)
 				return true;
+			else
+				return false;
+		}
+		default:
+			return true;
 		}
 	}
 
@@ -160,9 +164,9 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-		return new FluidTankInfo[] {this.tank.getInfo()};
+		return new FluidTankInfo[] { this.tank.getInfo() };
 	}
-	
+
 	public FluidTankInfo getTankInfo() {
 		return this.getTankInfo(ForgeDirection.UNKNOWN)[0];
 	}

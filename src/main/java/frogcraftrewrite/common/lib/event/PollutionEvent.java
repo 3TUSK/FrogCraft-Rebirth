@@ -3,7 +3,7 @@ package frogcraftrewrite.common.lib.event;
 import cpw.mods.fml.common.eventhandler.Cancelable;
 import cpw.mods.fml.common.eventhandler.Event;
 import cpw.mods.fml.common.eventhandler.Event.HasResult;
-import frogcraftrewrite.api.tile.IPollutable;
+import frogcraftrewrite.api.world.IPollutionSource;
 import net.minecraft.world.World;
 /**
  * PollutionEvent will be fired when a machine produce pollution 
@@ -15,11 +15,11 @@ import net.minecraft.world.World;
 @HasResult
 public class PollutionEvent extends Event{
 	
-	public final IPollutable source;
+	public final IPollutionSource source;
 	
 	public final World world;
 	
-	public PollutionEvent(World world, IPollutable source) {
+	public PollutionEvent(World world, IPollutionSource source) {
 		this.source = source;
 		this.world = world;
 	}

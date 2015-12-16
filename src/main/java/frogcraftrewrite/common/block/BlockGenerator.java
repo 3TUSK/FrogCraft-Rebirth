@@ -72,12 +72,12 @@ public class BlockGenerator extends BlockFrogContainer {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		iconArray[0][0]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Back");
-		iconArray[0][1]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Back");
-		iconArray[0][2]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Front");
-		iconArray[0][3]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Back");    	
-		iconArray[0][4]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Side");
-		iconArray[0][5]=r.registerIcon("frogcraftrewrite:CombustionFurnace_Side"); 
+		iconArray[0][0]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Back");
+		iconArray[0][1]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Back");
+		iconArray[0][2]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Front");
+		iconArray[0][3]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Back");    	
+		iconArray[0][4]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Side");
+		iconArray[0][5]=r.registerIcon(TEXTURE_MAIN + "CombustionFurnace_Side"); 
 	}
 
 }

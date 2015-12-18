@@ -3,18 +3,18 @@ package frogcraftrewrite.common.gui;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.common.network.PacketFrog02GuiDataUpdate;
-import frogcraftrewrite.common.tile.TileThermalCracker;
+import frogcraftrewrite.common.tile.TilePyrolyzer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 
-public class ContainerThermalCracker extends ContainerTileFrog<TileThermalCracker> {
+public class ContainerPyrolyzer extends ContainerTileFrog<TilePyrolyzer> {
 	
 	private int charge, process, processMax;
 	private boolean working;
 
-	public ContainerThermalCracker(InventoryPlayer playerInv, TileThermalCracker tile) {
+	public ContainerPyrolyzer(InventoryPlayer playerInv, TilePyrolyzer tile) {
 		super(playerInv, tile);
 		this.addSlotToContainer(new Slot(tile, 0, 24, 28));
 		this.addSlotToContainer(new SlotOutput(tile, 1, 75, 28));

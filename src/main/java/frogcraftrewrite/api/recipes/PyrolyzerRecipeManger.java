@@ -5,21 +5,21 @@ import java.util.Collection;
 
 import net.minecraft.item.ItemStack;
 
-public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCrackerRecipe>{
+public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
 
 	@Override
-	public boolean equal(ThermalCrackerRecipe recipe1, ThermalCrackerRecipe recipe2) {
+	public boolean equal(PyrolyzerRecipe recipe1, PyrolyzerRecipe recipe2) {
 		return (recipe1.getInput() == recipe2.getInput());
 	}
 
 	@Override
-	public void add(ThermalCrackerRecipe recipe) {
+	public void add(PyrolyzerRecipe recipe) {
 		recipes.add(recipe);
 	}
 
 	@Override
-	public void remove(ThermalCrackerRecipe recipe) {
-		java.util.Iterator<ThermalCrackerRecipe> iter = recipes.iterator();
+	public void remove(PyrolyzerRecipe recipe) {
+		java.util.Iterator<PyrolyzerRecipe> iter = recipes.iterator();
 		while (iter.hasNext()) {
 			if (iter.next().equals(recipe)) {
 				iter.remove();
@@ -29,17 +29,17 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 	}
 	
 	@Override
-	public Collection<ThermalCrackerRecipe> getRecipes() {
+	public Collection<PyrolyzerRecipe> getRecipes() {
 		return recipes;
 	}
 	
 	@SuppressWarnings("hiding")
 	@Override
-	public <ItemStack> ThermalCrackerRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
+	public <ItemStack> PyrolyzerRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
 		ItemStack input = (ItemStack)inputs[0];
 		if (input == null)
 			return null;
-		for (ThermalCrackerRecipe r : recipes) {
+		for (PyrolyzerRecipe r : recipes) {
 			if (r.getInput().isItemEqual((net.minecraft.item.ItemStack)input) 
 					&& r.getInput().stackSize <= ((net.minecraft.item.ItemStack)input).stackSize)
 				return r;
@@ -47,6 +47,6 @@ public class ThermalCrackerRecipeManger implements IRecipeManager<ThermalCracker
 		return null;
 	}
 	
-	private static ArrayList<ThermalCrackerRecipe> recipes = new ArrayList<ThermalCrackerRecipe>();
+	private static ArrayList<PyrolyzerRecipe> recipes = new ArrayList<PyrolyzerRecipe>();
 
 }

@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.api.impl.FrogFluidTank;
-import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
+import frogcraftrewrite.api.recipes.PyrolyzerRecipe;
 import frogcraftrewrite.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,14 +16,14 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileThermalCracker extends TileFrogMachine implements IFluidHandler {
+public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 
 	protected FrogFluidTank tank = new FrogFluidTank(16000);
 
 	public int process, processMax;
 	public boolean working;
 
-	public TileThermalCracker() {
+	public TilePyrolyzer() {
 		super(4, "TileThermalCracker", 2, 10000);
 		// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	}
@@ -38,9 +38,9 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 			this.process = 0;
 			return;
 		}
-		ThermalCrackerRecipe recipe;
+		PyrolyzerRecipe recipe;
 		if (!working) {
-			recipe = FrogAPI.managerTC.<ItemStack> getRecipe(this.inv[0]);
+			recipe = FrogAPI.managerPyrolyzer.<ItemStack> getRecipe(this.inv[0]);
 			if (recipe != null)
 				if (inv[1] == null || recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null
 						|| canFill(ForgeDirection.UNKNOWN, recipe.getOutputFluid().getFluid())) {
@@ -54,7 +54,7 @@ public class TileThermalCracker extends TileFrogMachine implements IFluidHandler
 			this.charge -= 256;
 			process++;
 			if (process == processMax) {
-				recipe = FrogAPI.managerTC.<ItemStack> getRecipe(this.inv[0]);
+				recipe = FrogAPI.managerPyrolyzer.<ItemStack> getRecipe(this.inv[0]);
 				this.decrStackSize(0, recipe.getInput().stackSize);
 				if (this.getStackInSlot(1) == null)
 					this.setInventorySlotContents(1, recipe.getOutput());

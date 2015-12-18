@@ -145,7 +145,7 @@ tile.PneumaticCompressor.name=气动压缩机
 
 tile.machines.AdvanceChemicalReactor.name=高级化学反应器
 tile.machines.AirPump.name=工业气泵
-tile.machines.ThermalCracker.name=热解裂机
+tile.machines.Pyrolyzer.name=热解裂机
 
 #tile.Machines.AutoWorkBench.name=自动工作台
 
@@ -190,7 +190,7 @@ achievement.suicideExpert.desc=钾加酸等于爆炸
 
 gui.hybridEStorage.current=当前储存电量：
 gui.hybridEStorage.max=最大储存电量：
-gui.thermalCracker.title=热裂解机
+gui.pyrolyzer.title=热裂解机
 
 #NEI GUI texts
 nei.euTotal=总耗电量

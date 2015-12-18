@@ -3,20 +3,20 @@ package frogcraftrewrite.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import frogcraftrewrite.client.GuiUtil;
-import frogcraftrewrite.common.gui.ContainerThermalCracker;
-import frogcraftrewrite.common.tile.TileThermalCracker;
+import frogcraftrewrite.common.gui.ContainerPyrolyzer;
+import frogcraftrewrite.common.tile.TilePyrolyzer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
-public class GuiThermalCracker extends GuiContainer {
+public class GuiPyrolyzer extends GuiContainer {
 
-	TileThermalCracker tile;
+	TilePyrolyzer tile;
 
-	public GuiThermalCracker(InventoryPlayer playerInv, TileThermalCracker tile) {
-		super(new ContainerThermalCracker(playerInv, tile));
+	public GuiPyrolyzer(InventoryPlayer playerInv, TilePyrolyzer tile) {
+		super(new ContainerPyrolyzer(playerInv, tile));
 		this.tile = tile;
 	}
 	
@@ -24,13 +24,13 @@ public class GuiThermalCracker extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.thermalCracker.title"), 8, ySize - 155, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.Pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("ThermalCracker"));
+		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("Pyrolyzer"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
 		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);

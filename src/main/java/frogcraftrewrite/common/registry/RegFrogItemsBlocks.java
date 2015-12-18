@@ -112,7 +112,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerTileEntity(TileCondenseTower.class, "tileCondenseTowerCore");
 		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "tileCondenseTowerFluidOutput");
 		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "tileCombustionFurnace");
-		GameRegistry.registerTileEntity(TileThermalCracker.class, "tileThermalCracker");
+		GameRegistry.registerTileEntity(TilePyrolyzer.class, "tileThermalCracker");
 		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "tileAdvancedChemicalReactor");
 	}
 }

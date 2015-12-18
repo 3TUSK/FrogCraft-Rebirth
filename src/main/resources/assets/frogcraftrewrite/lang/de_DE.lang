@@ -145,7 +145,7 @@ tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 
 tile.machines.AdvChemReactor.name=Fortgeschrittener Chemischer Reaktor
 tile.machines.AirPump.name=Industrielle Pumpe
-tile.machines.ThermalCracker.name=Thermaler Cracker
+tile.machines.Pyrolyzer.name=Pyrolyzer
 
 #tile.Machines.AutoWorkBench.name=Auto-Werkbank
 

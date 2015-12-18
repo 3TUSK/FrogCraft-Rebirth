@@ -3,13 +3,13 @@ package frogcraftrewrite.api.recipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class ThermalCrackerRecipe{
+public class PyrolyzerRecipe{
 
 	private ItemStack input, output;
 	private FluidStack outputFluid;
 	private int time;
 	
-	public ThermalCrackerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time){
+	public PyrolyzerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time){
 		this.input = input;
 		this.output = output;
 		this.outputFluid = outputFluid;
@@ -34,9 +34,9 @@ public class ThermalCrackerRecipe{
 	
 	@Override
 	public boolean equals(Object r) {
-		if (!(r instanceof ThermalCrackerRecipe)) return false;
+		if (!(r instanceof PyrolyzerRecipe)) return false;
 		
-		if (((ThermalCrackerRecipe)r).getInput().isItemEqual(this.input)) 
+		if (((PyrolyzerRecipe)r).getInput().isItemEqual(this.input)) 
 			return true;
 		else
 			return false;

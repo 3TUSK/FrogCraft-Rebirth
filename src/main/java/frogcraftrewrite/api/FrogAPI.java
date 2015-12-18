@@ -8,7 +8,7 @@ import javax.annotation.Nonnull;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipe;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipe;
 import frogcraftrewrite.api.recipes.IRecipeManager;
-import frogcraftrewrite.api.recipes.ThermalCrackerRecipe;
+import frogcraftrewrite.api.recipes.PyrolyzerRecipe;
 import frogcraftrewrite.common.lib.FrogBlocks;
 import frogcraftrewrite.common.lib.FrogItems;
 import frogcraftrewrite.common.lib.FrogRef;
@@ -61,7 +61,7 @@ public class FrogAPI {
 	
 	public static IRecipeManager<AdvChemReactorRecipe> managerACR;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
-	public static IRecipeManager<ThermalCrackerRecipe> managerTC;
+	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 	
 	public static List<Element> elementsList;
 	

@@ -7,7 +7,7 @@ import frogcraftrewrite.common.lib.block.BlockFrogContainer;
 import frogcraftrewrite.common.lib.tile.TileFrog;
 import frogcraftrewrite.common.tile.TileAdvChemReactor;
 import frogcraftrewrite.common.tile.TileAirPump;
-import frogcraftrewrite.common.tile.TileThermalCracker;
+import frogcraftrewrite.common.tile.TilePyrolyzer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +26,7 @@ public class BlockMachine extends BlockFrogContainer {
 		setBlockName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
-		setSubNameArray("AdvChemReactor", "AirPump", "ThermalCracker");
+		setSubNameArray("AdvChemReactor", "AirPump", "Pyrolyzer");
 	}
 	
 	@Override
@@ -62,7 +62,7 @@ public class BlockMachine extends BlockFrogContainer {
 			case 1:
 				return new TileAirPump();
 			case 2:
-				return new TileThermalCracker();
+				return new TilePyrolyzer();
 			default:
 				return null;
 		}
@@ -92,9 +92,9 @@ public class BlockMachine extends BlockFrogContainer {
 		
 		iconArray[2][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
 		iconArray[2][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "ThermalCracker_Front");
-		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "ThermalCracker_Back");
-		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "ThermalCracker_Side");
-		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "ThermalCracker_Side");
+		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Front");
+		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Back");
+		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
+		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
 	}
 }

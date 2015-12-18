@@ -16,7 +16,7 @@ import frogcraftrewrite.api.ICompatModuleFrog;
 import frogcraftrewrite.api.impl.chemlab.ElementLoader;
 import frogcraftrewrite.api.recipes.AdvChemReactorRecipeManager;
 import frogcraftrewrite.api.recipes.CondenseTowerRecipeManager;
-import frogcraftrewrite.api.recipes.ThermalCrackerRecipeManger;
+import frogcraftrewrite.api.recipes.PyrolyzerRecipeManger;
 import frogcraftrewrite.client.gui.GuiAdvChemReactor;
 import frogcraftrewrite.client.gui.GuiAirPump;
 import frogcraftrewrite.client.gui.GuiCombustionFurnace;
@@ -24,7 +24,7 @@ import frogcraftrewrite.client.gui.GuiCondenseTower;
 import frogcraftrewrite.client.gui.GuiFluidOutputHatch;
 import frogcraftrewrite.client.gui.GuiHybridEStorage;
 import frogcraftrewrite.client.gui.GuiIndustrialDevice;
-import frogcraftrewrite.client.gui.GuiThermalCracker;
+import frogcraftrewrite.client.gui.GuiPyrolyzer;
 import frogcraftrewrite.common.entity.EntityRailgunCoin;
 import frogcraftrewrite.common.gui.ContainerAdvChemReactor;
 import frogcraftrewrite.common.gui.ContainerAirPump;
@@ -33,7 +33,7 @@ import frogcraftrewrite.common.gui.ContainerCondenseTower;
 import frogcraftrewrite.common.gui.ContainerFluidOutputHatch;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
-import frogcraftrewrite.common.gui.ContainerThermalCracker;
+import frogcraftrewrite.common.gui.ContainerPyrolyzer;
 import frogcraftrewrite.common.lib.event.FrogEventListener;
 import frogcraftrewrite.common.registry.RegFluid;
 import frogcraftrewrite.common.registry.RegFrogAchievements;
@@ -47,7 +47,7 @@ import frogcraftrewrite.common.tile.TileFluidOutputHatch;
 import frogcraftrewrite.common.tile.TileFrogInductionalDevice;
 import frogcraftrewrite.common.tile.TileHSU;
 import frogcraftrewrite.common.tile.TileHSUUltra;
-import frogcraftrewrite.common.tile.TileThermalCracker;
+import frogcraftrewrite.common.tile.TilePyrolyzer;
 import frogcraftrewrite.common.world.FrogWorldGenerator;
 import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.entity.player.EntityPlayer;
@@ -89,8 +89,8 @@ public class CommonProxy implements IGuiHandler {
 					return new ContainerAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
 				if (aTile instanceof TileAirPump)
 					return new ContainerAirPump(player.inventory, (TileAirPump)aTile);
-				if (aTile instanceof TileThermalCracker)
-					return new ContainerThermalCracker(player.inventory, (TileThermalCracker)aTile);
+				if (aTile instanceof TilePyrolyzer)
+					return new ContainerPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
 			}
 		}
 		return null;
@@ -128,8 +128,8 @@ public class CommonProxy implements IGuiHandler {
 					return new GuiAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
 				if (aTile instanceof TileAirPump)
 					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
-				if (aTile instanceof TileThermalCracker)
-					return new GuiThermalCracker(player.inventory, (TileThermalCracker)aTile);
+				if (aTile instanceof TilePyrolyzer)
+					return new GuiPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
 			}
 		}
 		return null;
@@ -154,7 +154,7 @@ public class CommonProxy implements IGuiHandler {
 		RegFrogItemsBlocks.init();
 		FrogAPI.managerACR = new AdvChemReactorRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
-		FrogAPI.managerTC = new ThermalCrackerRecipeManger();
+		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
 		for (ICompatModuleFrog module : ICompatModuleFrog.compats.values()) {
 			module.init();

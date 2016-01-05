@@ -3,7 +3,7 @@ package frogcraftrewrite.api.recipes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class PyrolyzerRecipe{
+public class PyrolyzerRecipe {
 
 	private ItemStack input, output;
 	private FluidStack outputFluid;

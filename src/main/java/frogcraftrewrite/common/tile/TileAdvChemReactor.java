@@ -54,7 +54,9 @@ public class TileAdvChemReactor extends TileFrogMachine {
 				}
 			}
 			working = recipe == null ? false : true;
-		} else return;
+		} 
+		else 
+			return;
 		List<ItemStack> recipeOutput = recipe.getOutput();
 		int freeOutSlot = 0;
 		for (int i=6;i<11;i++) {

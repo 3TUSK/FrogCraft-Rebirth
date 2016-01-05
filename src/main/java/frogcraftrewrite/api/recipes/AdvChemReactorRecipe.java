@@ -2,7 +2,7 @@ package frogcraftrewrite.api.recipes;
 
 import java.util.List;
 
-import frogcraftrewrite.api.ICatalystModule;
+import frogcraftrewrite.api.item.ICatalystModuleItem;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class AdvChemReactorRecipe{
 	/**The input and output.*/
 	private List<ItemStack> input, output;
 	/**The catalyst. Can be null.*/
-	private ICatalystModule catalyst;
+	private ICatalystModuleItem catalyst;
 	/**Time which will spend on processing*/
 	private int time, energyRate;
 	
@@ -27,7 +27,7 @@ public class AdvChemReactorRecipe{
 	}
 	
 	/**Constructor method.*/
-	public AdvChemReactorRecipe(List<ItemStack> input, List<ItemStack> output, ICatalystModule catalyst, int time, int energyRate) {
+	public AdvChemReactorRecipe(List<ItemStack> input, List<ItemStack> output, ICatalystModuleItem catalyst, int time, int energyRate) {
 		this.input = input;
 		this.output = output;
 		this.catalyst = catalyst;
@@ -35,7 +35,7 @@ public class AdvChemReactorRecipe{
 	}
 	
 	/**Internal usage only, for checking whether a input combination matches a recipe.*/
-	public AdvChemReactorRecipe(List<ItemStack> input, ICatalystModule catalyst) {
+	public AdvChemReactorRecipe(List<ItemStack> input, ICatalystModuleItem catalyst) {
 		this.input = input;
 		this.catalyst = catalyst;
 	}
@@ -48,7 +48,7 @@ public class AdvChemReactorRecipe{
 		return output;
 	}
 	
-	public ICatalystModule getCatalyst() {
+	public ICatalystModuleItem getCatalyst() {
 		return catalyst;
 	}
 	
@@ -65,7 +65,7 @@ public class AdvChemReactorRecipe{
 		return catalyst != null;
 	}
 	
-	public AdvChemReactorRecipe setCatalyst(ICatalystModule catalyst, float accelerate) {
+	public AdvChemReactorRecipe setCatalyst(ICatalystModuleItem catalyst, float accelerate) {
 		this.catalyst = catalyst;
 		return this;
 	}

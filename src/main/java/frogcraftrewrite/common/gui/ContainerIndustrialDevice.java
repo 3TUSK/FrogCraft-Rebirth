@@ -36,12 +36,11 @@ public class ContainerIndustrialDevice extends ContainerTileFrog<TileFrogInducti
     	@SuppressWarnings("rawtypes")
 		Iterator iter = this.crafters.iterator();
     	while (iter.hasNext()) {
-    		ICrafting var2 = (ICrafting)iter.next();
-    		
-    		var2.sendProgressBarUpdate(this, 0, tile.charge);
-    		var2.sendProgressBarUpdate(this, 1, tile.process);
-    		var2.sendProgressBarUpdate(this, 2, tile.tick);
-    		var2.sendProgressBarUpdate(this, 3, tile.heat);
+    		ICrafting crafter = (ICrafting)iter.next();
+    		crafter.sendProgressBarUpdate(this, 0, tile.charge);
+    		crafter.sendProgressBarUpdate(this, 1, tile.process);
+    		crafter.sendProgressBarUpdate(this, 2, tile.tick);
+    		crafter.sendProgressBarUpdate(this, 3, tile.heat);
     	}
     }
 	

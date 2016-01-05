@@ -5,6 +5,7 @@ import java.io.File;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -15,9 +16,9 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import frogcraftrewrite.api.FrogAPI;
 import frogcraftrewrite.common.CommonProxy;
+import frogcraftrewrite.common.lib.FrogEventListener;
 import frogcraftrewrite.common.lib.FrogRef;
 import frogcraftrewrite.common.lib.config.ConfigMain;
-import frogcraftrewrite.common.lib.event.FrogEventListener;
 import frogcraftrewrite.common.network.NetworkHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -48,7 +49,8 @@ public class FrogCraftRebirth {
 			{
 				frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
 				cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");
-				codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
+				if (Loader.isModLoaded("NotEnoughItems"))
+					codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
 			}
 			@Override
 			public Item getTabIconItem() {

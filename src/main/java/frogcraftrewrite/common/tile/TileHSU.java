@@ -4,6 +4,8 @@ import frogcraftrewrite.common.lib.tile.TileFrogEStorage;
 //import frogcraftrewrite.common.network.NetworkHandler;
 //import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
 import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
@@ -37,7 +39,11 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			this.loaded = true;
 		}
 		
-		//Discharge and charge. todo.
+		if (inv[1].getItem() instanceof IElectricItem)
+			this.storedE += ElectricItem.manager.discharge(inv[1], output, getSourceTier(), true, false, false);
+		
+		if (inv[0].getItem() instanceof IElectricItem)
+			ElectricItem.manager.charge(inv[0], this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		
 		this.markDirty();
 	}

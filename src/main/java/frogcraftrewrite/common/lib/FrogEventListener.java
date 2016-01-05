@@ -1,4 +1,4 @@
-package frogcraftrewrite.common.lib.event;
+package frogcraftrewrite.common.lib;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
@@ -8,7 +8,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraftforge.event.world.ExplosionEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import frogcraftrewrite.common.item.ItemIngot;
-import frogcraftrewrite.common.lib.FrogBlocks;
 
 public class FrogEventListener {
 	

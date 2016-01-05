@@ -1,4 +1,4 @@
-package frogcraftrewrite.api;
+package frogcraftrewrite.api.item;
 
 import info.tritusk.tritchemlab.matter.Molecule;
 
@@ -8,7 +8,7 @@ import info.tritusk.tritchemlab.matter.Molecule;
  * @since 12:39 PM Aug 20th (EST) 2015
  * @author 3TUSK
  */
-public interface ICatalystModule {
+public interface ICatalystModuleItem {
 
 	/**
 	 * @return The catalyst represented by this module.

@@ -10,6 +10,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrewrite.api.IFrogNetworkObject;
 import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
+import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyTile;
 import ic2.api.tile.IWrenchable;
@@ -62,6 +63,8 @@ public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogN
 		this.facing = facing;
 		this.sendTileUpdatePacket(this);
 		this.prevFacing = facing;
+		if (this instanceof IEnergyTile)
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent((IEnergyTile)this));
 	}
 
 	@Override

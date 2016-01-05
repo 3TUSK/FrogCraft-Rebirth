@@ -34,7 +34,7 @@ import frogcraftrewrite.common.gui.ContainerFluidOutputHatch;
 import frogcraftrewrite.common.gui.ContainerHybridEStorage;
 import frogcraftrewrite.common.gui.ContainerIndustrialDevice;
 import frogcraftrewrite.common.gui.ContainerPyrolyzer;
-import frogcraftrewrite.common.lib.event.FrogEventListener;
+import frogcraftrewrite.common.lib.FrogEventListener;
 import frogcraftrewrite.common.registry.RegFluid;
 import frogcraftrewrite.common.registry.RegFrogAchievements;
 import frogcraftrewrite.common.registry.RegFrogItemsBlocks;

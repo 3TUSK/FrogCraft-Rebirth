@@ -37,22 +37,23 @@ What you see right now is FrogCraft: Rebirth (under `1710port` branch), *not Fro
 
 #### About _FrogCraft 2: Chemica_
 FrogCraft 2: *Chemica* (latin. chemistry) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage. 
+
 FrogCraft 2: *Chemica* will try to follow [Cult of Kitteh](http://asie.pl/kitteh/). 
+
 Yes, NO GUI. It sounds as if I am insane, but I have my own idea.
 Thanks to asie, otherwise I won't even think about such a design.
 
 #### About _TriTChemLab_
-What? What is it? 
-TriTChemLab is an API library, any implementation of this API should provide a system to read, express and use all kinds of data about chemistry, e.g.: elements and their properties, chemical equation and rough predition, simple calculation. 
-The final goal is to make a universal chem-lab-ish api, providing a convenience way to execute calculation in chemistry (roughly). 
+Click [here][TriTChemLab] for more details.
 
 #### License
-Currently the license is MIT temporarily.
+Currently the license is MIT temporarily.  
 At least I got touch on original author (Rikka) and he permitted the right to use original codes.
 
 #### Credits
-Credits to ueyudiud for his generous consultant.
+Credits to ueyudiud for his generous consultant.  
 Credits to dunge for his design idea and several texture.
 
 [link_origin]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=9458
 [link_164port]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=10447
+[TriTChemLab]: https://github.com/FrogCraft-Rebirth/ChemLab

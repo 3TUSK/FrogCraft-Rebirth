@@ -1,0 +1,48 @@
+package frogcraftrebirth.common.network;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrebirth.api.IFrogNetworkObject;
+import frogcraftrebirth.common.lib.tile.TileFrog;
+import net.minecraft.client.Minecraft;
+import net.minecraft.tileentity.TileEntity;
+
+public class PacketFrog00TileUpdate implements IFrogPacket {
+	
+	private TileFrog tile;
+	
+	PacketFrog00TileUpdate() {}
+	
+	public PacketFrog00TileUpdate(TileFrog tile) {
+		this.tile = tile;
+	}
+
+	@Override
+	public void writeData(DataOutputStream output) throws IOException {
+		output.writeByte(PACKET_TILE);
+		output.writeInt(tile.xCoord);
+		output.writeInt(tile.yCoord);
+		output.writeInt(tile.zCoord);
+		tile.writePacketData(output);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void readData(DataInputStream input) throws IOException {
+		int
+		x = input.readInt(),
+		y = input.readInt(),
+		z = input.readInt();
+		
+		TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(x, y, z);
+		
+		if  (tile instanceof IFrogNetworkObject)
+			((IFrogNetworkObject)tile).readPacketData(input);
+		
+	}
+
+}

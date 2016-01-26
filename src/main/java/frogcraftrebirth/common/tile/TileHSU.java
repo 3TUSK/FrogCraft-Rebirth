@@ -1,0 +1,165 @@
+package frogcraftrebirth.common.tile;
+
+import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
+//import frogcraftrewrite.common.network.NetworkHandler;
+//import frogcraftrewrite.common.network.PacketFrog00TileUpdate;
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ForgeDirection;
+
+public class TileHSU extends TileFrogEStorage implements IInventory {
+	
+	public ItemStack[] inv;
+	
+	public TileHSU() {
+		super(100000000, 2048, ForgeDirection.DOWN, false);
+		this.inv = new ItemStack[2];
+	}
+	
+	protected TileHSU(int maxEnergy, int output, ForgeDirection emitTo, boolean allowTelep) {
+		super(maxEnergy, output, emitTo, allowTelep);
+		this.inv = new ItemStack[2];
+	}
+
+	@Override
+	public void updateEntity() {
+		super.updateEntity();
+		if (worldObj.isRemote)
+			return;
+		
+		if (!worldObj.isRemote && !loaded) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			this.loaded = true;
+		}
+		
+		if (inv[1].getItem() instanceof IElectricItem)
+			this.storedE += ElectricItem.manager.discharge(inv[1], output, getSourceTier(), true, false, false);
+		
+		if (inv[0].getItem() instanceof IElectricItem)
+			ElectricItem.manager.charge(inv[0], this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
+		
+		this.markDirty();
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.storedE = tag.getInteger("charge");
+		this.maxE = tag.getInteger("maxCharge");
+		this.output = tag.getInteger("output");
+		NBTTagList invTag = tag.getTagList("inventory", 10);
+		for (int i=0;i<inv.length;i++) {
+			NBTTagCompound itemTag = invTag.getCompoundTagAt(i);
+			byte slot = itemTag.getByte("Slot");
+			if (slot >= 0 && slot < inv.length) {
+				inv[slot] = ItemStack.loadItemStackFromNBT(itemTag);
+			}
+		}
+	}
+	
+	@Override
+	public void writeToNBT(NBTTagCompound tag) {
+		super.writeToNBT(tag);
+		tag.setInteger("charge", storedE);
+		tag.setInteger("maxCharge", maxE);
+		tag.setInteger("output", output);
+		NBTTagList invTag = new NBTTagList();
+		for (int i=0;i<inv.length;i++) {
+			NBTTagCompound s = new NBTTagCompound();
+			s.setByte("Slot", (byte)i);
+			if (inv[i] != null)
+				inv[i].writeToNBT(s);
+			invTag.appendTag(s);
+		}
+		tag.setTag("inventory", invTag);
+	}
+
+	//IInventory start. Note: all parameter named as "i" means "inventory slot"
+	
+	@Override
+	public int getSizeInventory() {
+		return inv.length;
+	}
+
+	@Override
+	public ItemStack getStackInSlot(int i) {
+		return inv[i];
+	}
+
+	@Override
+	public ItemStack decrStackSize(int i, int num) {
+		if (inv[i] == null) {
+			return null;
+		} else {
+			ItemStack s;
+			if (inv[i].stackSize <= num) {
+				s = inv[i];
+				inv[i] = null;
+				this.markDirty();
+				return s;
+			} else {
+				s = inv[i].splitStack(num);
+				inv[i] = inv[i].stackSize <= 0 ? null : inv[i];
+				this.markDirty();
+				return s;
+			}
+		}
+	}
+
+	@Override
+	public ItemStack getStackInSlotOnClosing(int i) {
+		return null;
+	}
+
+	@Override
+	public void setInventorySlotContents(int i, ItemStack stack) {
+		if (inv[i] == null) {
+			inv[i] = stack;
+			this.markDirty();
+		}
+	}
+
+	@Override
+	public String getInventoryName() {
+		return null;
+	}
+
+	@Override
+	public boolean hasCustomInventoryName() {
+		return false;
+	}
+
+	@Override
+	public int getInventoryStackLimit() {
+		return 64;
+	}
+
+	@Override
+	public boolean isUseableByPlayer(EntityPlayer player) {
+		return true;
+	}
+
+	@Override
+	public void openInventory() {}
+
+	@Override
+	public void closeInventory() {}
+
+	@Override
+	public boolean isItemValidForSlot(int i, ItemStack stack) {
+		return false;
+	}
+	
+	@Override
+	public int getTier() {
+		return 4;
+	}
+
+}

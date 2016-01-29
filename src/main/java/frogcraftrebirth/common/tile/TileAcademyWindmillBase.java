@@ -4,6 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,6 +46,7 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 		tag.setBoolean("canGenEnergy", canGenEnergy);
 	}
 	
+	@SideOnly(Side.CLIENT)
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);

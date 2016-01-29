@@ -12,9 +12,7 @@ import net.minecraft.item.ItemStack;
 
 public interface IInductionalMachine {
 	
-	void heatUp(float factor, boolean redstone);
-	
-	void coolDown(float factor, boolean redstone);
+	void adjustHeat(float factor, boolean redstone);
 	
 	boolean canWork();
 	

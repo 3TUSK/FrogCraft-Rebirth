@@ -4,6 +4,7 @@ import static frogcraftrebirth.common.lib.config.ConfigMain.airPumpGenerateSpeed
 import static frogcraftrebirth.common.lib.config.ConfigMain.airPumpPowerRate;
 
 import frogcraftrebirth.api.tile.IAirPump;
+import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -12,8 +13,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
+import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileAirPump extends TileFrog implements IEnergySink, IAirPump /*, IFluidHandler*/ {
+public class TileAirPump extends TileFrog implements IEnergySink, IAirPump, IFluidHandler {
 	
 	private static final int MAX_AIR = 1000;
 	
@@ -111,6 +116,39 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump /*, I
 	
 	public void setAirAmount(int amount) {
 		this.airAmount = amount;
+	}
+
+	@Override
+	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+		return 0;
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+		if (!(resource.getFluid() == FrogFluids.liquidAir))
+			return null;
+
+		return drain(from, resource.amount, doDrain);
+	}
+
+	@Override
+	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+		return new FluidStack(FrogFluids.liquidAir, maxDrain < airAmount ? maxDrain : airAmount);
+	}
+
+	@Override
+	public boolean canFill(ForgeDirection from, Fluid fluid) {
+		return false;
+	}
+
+	@Override
+	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+		return fluid == FrogFluids.liquidAir;
+	}
+
+	@Override
+	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+		return new FluidTankInfo[] {new FluidTankInfo(new FluidStack(FrogFluids.liquidAir, airAmount), airAmount)};
 	}
 
 }

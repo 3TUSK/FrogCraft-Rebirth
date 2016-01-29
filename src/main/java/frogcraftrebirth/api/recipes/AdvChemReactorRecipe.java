@@ -12,7 +12,8 @@ import java.util.Arrays;
  * Aim to improve recipe system of FrogCraft, preparing for MineTweaker support.
  * @author 3TUSK
  */
-public class AdvChemReactorRecipe{
+@Deprecated
+public class AdvChemReactorRecipe {
 	
 	/**The input and output.*/
 	private List<ItemStack> input, output;

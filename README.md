@@ -48,10 +48,10 @@ Click [here][TriTChemLab] for more details.
 
 #### License
 Currently the license is MIT temporarily.  
-At least I got touch on original author (Rikka) and he permitted the right to use original codes.
+At least I got touch on original author (Rikka) and he permitted the right to use original codes. Textures are still not sure. If necessary I will remove them immediately.
 
 #### Credits
-Credits to ueyudiud for his generous consultant.  
+Credits to ueyudiud for generous consultant.  
 Credits to dunge for his design idea and several texture.
 
 [link_origin]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=9458

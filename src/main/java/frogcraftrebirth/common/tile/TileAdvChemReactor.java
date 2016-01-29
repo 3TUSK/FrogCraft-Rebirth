@@ -42,7 +42,7 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		List<ItemStack> recipeInput;
 		recipeInput = recipe != null ? recipe.getInput() : null;
-		if (!working && recipe!=null && recipeInput!=null) {
+		if (!working && recipe != null && recipeInput != null) {
 			for (ItemStack s : recipeInput) {
 				for (int i=1;i<6;i++) {
 					if (OreDictionary.itemMatches(s, inv[i], false) && inv[i].stackSize >= s.stackSize) {

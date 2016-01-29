@@ -6,6 +6,7 @@ import java.util.Collection;
 import net.minecraft.item.ItemStack;
 import scala.actors.threadpool.Arrays;
 
+@Deprecated
 public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemReactorRecipe> {
 
 	@Override

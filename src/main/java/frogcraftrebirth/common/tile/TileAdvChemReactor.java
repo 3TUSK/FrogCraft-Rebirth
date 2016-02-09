@@ -35,6 +35,7 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		tag.setInteger("processMax", this.processMax);
 	}
 	
+	@Deprecated //WARNING: this will be changed soon or later
 	@Override
 	public void updateEntity() {
 		super.updateEntity();

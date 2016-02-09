@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import frogcraftrebirth.api.recipes.AdvChemReactorRecipe;
+import frogcraftrebirth.api.recipes.AdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
@@ -59,7 +59,7 @@ public class FrogAPI {
 	@Nonnull
 	public static CreativeTabs frogTab;
 	
-	public static IRecipeManager<AdvChemReactorRecipe> managerACR;
+	public static IRecipeManager<AdvChemRecRecipe> managerACR;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 	

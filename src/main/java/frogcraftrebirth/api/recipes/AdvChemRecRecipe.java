@@ -9,16 +9,17 @@
 package frogcraftrebirth.api.recipes;
 
 import java.util.Collection;
+import java.util.Map;
 
 public class AdvChemRecRecipe {
 	
 	//Yes this one will *only* support OreDictionary!
 	
 	private Collection<String> inputs, outputs;
-	private String validCatalyst;
+	private Map<String, Double> validCatalyst;
 	private int time, energyPerTick;
 	
-	public AdvChemRecRecipe(Collection<String> inputs, Collection<String> outputs, String catalyst, int time, int energy) {
+	public AdvChemRecRecipe(Collection<String> inputs, Collection<String> outputs, Map<String, Double> catalyst, int time, int energy) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
@@ -34,8 +35,12 @@ public class AdvChemRecRecipe {
 		return outputs;
 	}
 	
-	public String getCatalyst() {
-		return validCatalyst;
+	public double getRateModifier(String catalyst) {
+		try {
+			return validCatalyst.get(catalyst).doubleValue();
+		} catch (Exception e) {
+			return 0D;
+		}
 	}
 	
 	public int getReactionTime() {

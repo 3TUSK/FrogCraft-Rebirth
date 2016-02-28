@@ -1,10 +1,10 @@
 package frogcraftrebirth.common.tile;
 
 import java.util.Arrays;
-import java.util.List;
+import java.util.Map;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.AdvChemReactorRecipe;
+import frogcraftrebirth.api.recipes.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -12,7 +12,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class TileAdvChemReactor extends TileFrogMachine {
 	public int process, processMax;
-	boolean working, changed = false;
+	boolean working, changed = false, inputsLocked = false, outputLocked = false;
 	
 	public TileAdvChemReactor() {
 		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
@@ -35,73 +35,47 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		tag.setInteger("processMax", this.processMax);
 	}
 	
-	@Deprecated //WARNING: this will be changed soon or later
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
 		if (worldObj.isRemote) return;
-		AdvChemReactorRecipe recipe = (AdvChemReactorRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
-		List<ItemStack> recipeInput;
-		recipeInput = recipe != null ? recipe.getInput() : null;
-		if (!working && recipe != null && recipeInput != null) {
-			for (ItemStack s : recipeInput) {
+		
+		AdvChemRecRecipe recipe = (AdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
+		if (recipe == null)
+			return;
+		
+		Map<String, Integer> recipeInput = recipe.getInputs();
+		
+		if (!working) {
+			for (String s : recipeInput.keySet()) {
 				for (int i=1;i<6;i++) {
-					if (OreDictionary.itemMatches(s, inv[i], false) && inv[i].stackSize >= s.stackSize) {
+					if (OreDictionary.getOres(s).contains(inv[i]) && inv[i].stackSize >= 1) {
 						ItemStack temp = inv[i].copy();
-						temp.stackSize -= s.stackSize;
+						temp.stackSize -= 1;
 						this.setInventorySlotContents(i, temp);
 						break;
 					}
 				}
 			}
-			working = recipe == null ? false : true;
+			working = true;
 		} 
-		else 
-			return;
-		List<ItemStack> recipeOutput = recipe.getOutput();
-		int freeOutSlot = 0;
-		for (int i=6;i<11;i++) {
-			if (this.getStackInSlot(i) == null)
-				++freeOutSlot;
-		}
-		if (working && process == 0 && freeOutSlot < recipeOutput.size()) {
-			working = false; //Not enough output slots, stop working.
-		} else {
-			this.processMax = recipe.getTime();
-		}
 		
-		if (working && charge >= recipe.getEnergyPerTick()) {
-			this.charge -= recipe.getEnergyPerTick();
+		this.processMax = recipe.getReactionTime();
+		
+		if (working && charge >= recipe.getEnergyRate()) {
+			this.charge -= recipe.getEnergyRate();
 			++process;
 		}
 		
 		if (process == processMax) {
-			int outputLength = recipeOutput.size();
-			boolean emptyOutput = true;
-			for (int i=6;i<11;i++) {
-				if (this.getStackInSlot(i) != null) {
-					emptyOutput = false;
-					break;
-				}
-			}
-			if (emptyOutput) {
-				for (int i=0;i<outputLength;i++) {
-					this.setInventorySlotContents(i+5, recipeOutput.get(i));
-				}
-			} else {
-				for (ItemStack s : recipeOutput) {
-					for (int i=6;i<11;i++) {
-						if (OreDictionary.itemMatches(this.getStackInSlot(i), s, false) && this.inv[i].stackSize >= s.stackSize) {
-							ItemStack temp = this.getStackInSlot(i);
-							temp.stackSize -= s.stackSize;
-							this.setInventorySlotContents(i, temp);
-							break;
-						}
-					}
-				}
-			}
+			Map<String, Integer> recipeOutput = recipe.getOutputs();
+			
+			//Overhaul required
+			
 			this.changed = true;
+			this.working = false;
 		}
+		
 		if (changed) {
 			this.markDirty();
 			changed = false;

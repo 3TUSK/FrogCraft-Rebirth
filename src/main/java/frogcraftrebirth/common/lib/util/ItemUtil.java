@@ -22,15 +22,27 @@ public final class ItemUtil {
 		return finalInputs;
 	}
 	
-	/**
-	 * 
-	 * @param oreArray
-	 * @return
-	 */
+	public static String[] asOreDictInputsArray(ItemStack[] rawInputs) {
+		String[] finalInputs = new String[rawInputs.length];
+		for (int i=0;i<rawInputs.length;i++) {
+			String anEntry = OreDictionary.getOreName(OreDictionary.getOreIDs(rawInputs[i])[0]);
+			finalInputs[i] = anEntry;
+		}
+		return finalInputs;
+	}
+	
+	public static ItemStack get1stChoiceFromOre(String entry) {
+		try {
+			return OreDictionary.getOres(entry).get(0);
+		} catch (Exception e) {
+			return null; //fall back
+		}
+	}
+	
 	public static ItemStack[] asItemStackArray(String[] oreArray) {
 		ItemStack[] array = new ItemStack[oreArray.length];
 		for (int i=0;i<oreArray.length;i++) {
-			array[i] = OreDictionary.getOres(oreArray[i]).get(0);
+			array[i] = get1stChoiceFromOre(oreArray[i]);
 		}
 		return array;
 	}

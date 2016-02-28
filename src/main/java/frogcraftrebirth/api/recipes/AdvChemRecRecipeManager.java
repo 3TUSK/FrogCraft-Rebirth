@@ -1,20 +1,21 @@
 package frogcraftrebirth.api.recipes;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
-import scala.actors.threadpool.Arrays;
 
-public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemRecRecipe> {
+public class AdvChemRecRecipeManager implements IRecipeManager<AdvChemRecRecipe> {
 
 	@Override
 	public boolean equal(AdvChemRecRecipe recipe1, AdvChemRecRecipe recipe2) {
 		if (recipe1.getInputs().size() != recipe2.getInputs().size()) 
 			return false;
-		if (!recipe1.getInputs().containsAll(recipe2.getInputs()))
-			return false;
-		return true;
+		if (recipe1.getInputs().keySet().containsAll(recipe2.getInputs().keySet()))
+			return true;
+			else return false;
 	}
 
 	@Override
@@ -36,8 +37,11 @@ public class AdvChemReactorRecipeManager implements IRecipeManager<AdvChemRecRec
 	@Override
 	public <ItemStack> AdvChemRecRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
 		AdvChemRecRecipe aRecipe = null;
+		
+		Collection<String> inputsList = Arrays.asList(ItemUtil.asOreDictInputsArray((net.minecraft.item.ItemStack[])inputs));
+		
 		for (AdvChemRecRecipe recipe : recipes) {
-			if (recipe.getInputs().containsAll(Arrays.asList(inputs))) {
+			if (recipes.containsAll(inputsList)) {
 				aRecipe = recipe;
 				break;
 			}

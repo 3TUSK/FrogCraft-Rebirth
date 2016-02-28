@@ -14,7 +14,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.impl.chemlab.ElementLoader;
-import frogcraftrebirth.api.recipes.AdvChemReactorRecipeManager;
+import frogcraftrebirth.api.recipes.AdvChemRecRecipeManager;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipeManger;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
@@ -151,7 +151,7 @@ public class FrogProxy implements IGuiHandler {
 
 	public void init(FMLInitializationEvent event) {
 		RegFrogItemsBlocks.init();
-		FrogAPI.managerACR = new AdvChemReactorRecipeManager();
+		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();

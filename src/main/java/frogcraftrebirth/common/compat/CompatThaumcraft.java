@@ -23,7 +23,7 @@ public class CompatThaumcraft implements ICompatModuleFrog {
 	@Override
 	public void postInit() {
 		if (enableTCAspect) {
-			//prepare for... aspects registration
+			
 		}
 	}
 

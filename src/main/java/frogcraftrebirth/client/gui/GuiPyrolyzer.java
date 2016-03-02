@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class GuiPyrolyzer extends GuiContainer {
 
@@ -43,8 +44,8 @@ public class GuiPyrolyzer extends GuiContainer {
 		}
 
 		//Not working yet.
-		if (tile.getTankInfo().fluid != null) {
-			IIcon fluidIcon = tile.getTankInfo().fluid.getFluid().getIcon();
+		if (tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) {
+			IIcon fluidIcon = tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid().getIcon();
 			this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
 			this.drawTexturedModalRect(this.guiLeft + 143, this.guiTop + 23, (int)fluidIcon.getMaxU(), (int)fluidIcon.getMaxV(), 16, 16);
 		}

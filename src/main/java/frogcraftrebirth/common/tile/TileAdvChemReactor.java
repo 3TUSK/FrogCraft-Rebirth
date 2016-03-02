@@ -44,20 +44,10 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		if (recipe == null)
 			return;
 		
-		Map<String, Integer> recipeInput = recipe.getInputs();
+		//Map<String, Integer> recipeInput = recipe.getInputs();
 		
 		if (!working) {
-			for (String s : recipeInput.keySet()) {
-				for (int i=1;i<6;i++) {
-					if (OreDictionary.getOres(s).contains(inv[i]) && inv[i].stackSize >= 1) {
-						ItemStack temp = inv[i].copy();
-						temp.stackSize -= 1;
-						this.setInventorySlotContents(i, temp);
-						break;
-					}
-				}
-			}
-			working = true;
+			working = canWork(recipe);
 		} 
 		
 		this.processMax = recipe.getReactionTime();
@@ -80,6 +70,11 @@ public class TileAdvChemReactor extends TileFrogMachine {
 			this.markDirty();
 			changed = false;
 		}
+	}
+	
+	//TODO: COMPLETE THIS METHOD
+	public boolean canWork(AdvChemRecRecipe recipe) {
+		return false;
 	}
 
 	@Override

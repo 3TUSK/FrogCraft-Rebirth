@@ -12,6 +12,7 @@ import frogcraftrebirth.common.tile.TileInductionalMacerator;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockInductionMachine extends BlockFrogContainer {
@@ -20,6 +21,7 @@ public class BlockInductionMachine extends BlockFrogContainer {
 		super(Material.iron);
 		setBlockName("inductionalMachine");
 		setSubNameArray("Furnace", "Extractor", "Macerator", "Compressor");
+		this.iconArray = new IIcon[this.nameArray.length][6];
 	}
 	
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +15,7 @@ import net.minecraft.util.StatCollector;
 
 public class ItemCell extends ItemFrogCraft{
 
-	private static final String CELL_ICON = TEXTURE_MAIN + "cell";
+	private static final String CELL_ICON = TEXTURE_MAIN + "cell/";
 	
 	public ItemCell() {
 		super(true);
@@ -30,7 +31,8 @@ public class ItemCell extends ItemFrogCraft{
 	@Override
 	public void registerIcons(IIconRegister reg) {
 		for (int n=0;n<nameArray.length;n++) {
-			iconArray[n] = reg.registerIcon(CELL_ICON+"/cell_"+this.nameArray[n]);
+			FrogCraftRebirth.FROG_LOG.debug(nameArray[n]);
+			iconArray[n] = reg.registerIcon(CELL_ICON+"cell_"+this.nameArray[n]);
 		}
 	}
 	

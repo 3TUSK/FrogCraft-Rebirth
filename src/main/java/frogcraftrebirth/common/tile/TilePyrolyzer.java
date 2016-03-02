@@ -33,25 +33,24 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		super.updateEntity();
 		if (this.worldObj.isRemote)
 			return;
-		if (inv[0] == null) {
+		
+		if (inv[0] == null || this.charge <= 128) {
 			this.working = false;
 			this.process = 0;
 			return;
 		}
+		
 		PyrolyzerRecipe recipe;
+		
 		if (!working) {
-			recipe = FrogAPI.managerPyrolyzer.<ItemStack> getRecipe(this.inv[0]);
-			if (recipe != null)
-				if (inv[1] == null || recipe.getOutput().isItemEqual(inv[1]) && recipe.getOutputFluid() == null
-						|| canFill(ForgeDirection.UP, recipe.getOutputFluid().getFluid())) {
-					this.process = 0;
-					this.processMax = recipe.getTime();
-					this.working = true;
-				}
+			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(this.inv[0]);
+			if (canWork(recipe)) {
+				this.process = 0;
+				this.processMax = recipe.getTime();
+				this.working = true;
+			}
 		} else {
-			if (this.charge <= 256)
-				return;
-			this.charge -= 256;
+			this.charge -= 128;
 			process++;
 			if (process == processMax) {
 				recipe = FrogAPI.managerPyrolyzer.<ItemStack> getRecipe(this.inv[0]);
@@ -69,6 +68,30 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		}
 
 		this.sendTileUpdatePacket(this);
+	}
+	
+	public boolean canWork(PyrolyzerRecipe recipe) {
+		if (recipe == null)
+			return false;
+		
+		if (!recipe.getOutputFluid().isFluidEqual(tank.getFluid()))
+			return false;
+		
+		if (recipe.getOutputFluid().amount + tank.getFluidAmount() > tank.getCapacity())
+			return false;
+		
+		if (!inv[1].isItemEqual(recipe.getOutput()))
+			return false;
+		
+		int a = recipe.getOutput().stackSize, max = recipe.getOutput().getMaxStackSize();	
+		if (a + inv[1].stackSize > max)
+			return false;
+		
+		return true;
+	}
+	
+	public void pyrolyze() {
+		
 	}
 
 	@Override
@@ -154,10 +177,6 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] { this.tank.getInfo() };
-	}
-
-	public FluidTankInfo getTankInfo() {
-		return this.getTankInfo(ForgeDirection.UNKNOWN)[0];
 	}
 
 }

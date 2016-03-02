@@ -8,6 +8,7 @@ bin
 build
 conf
 config
+logs
 eclipse
 frogcraft_assets
 ui
@@ -16,3 +17,4 @@ xcfStuff
 *.txt
 *.doc
 *.rar
+*.log

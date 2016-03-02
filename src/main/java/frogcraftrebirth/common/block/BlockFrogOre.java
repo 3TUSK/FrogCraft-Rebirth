@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 public class BlockFrogOre extends BlockFrog {
 
-	private IIcon[] iconArray;
+	private IIcon[] iconArraySingle;
 
 	public BlockFrogOre() {
 		super(Material.rock);
@@ -24,7 +24,7 @@ public class BlockFrogOre extends BlockFrog {
 		setResistance(15.0f);
 		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH",
 				"oreRuby", "oreSapphire", "oreGreenSapphire");
-		this.iconArray = new IIcon[this.nameArray.length];
+		this.iconArraySingle = new IIcon[this.nameArray.length];
 	}
 	
 	public int damageDropped(int meta) {
@@ -63,19 +63,19 @@ public class BlockFrogOre extends BlockFrog {
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
 		for (int i = 0; i < iconArray.length; i++) {
-			iconArray[i] = r.registerIcon(TEXTURE_MAIN + "ores/" + this.nameArray[i]);
+			iconArraySingle[i] = r.registerIcon(TEXTURE_MAIN + "ores/" + this.nameArray[i]);
 		}
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return iconArray[world.getBlockMetadata(x, y, z)];
+		return iconArraySingle[world.getBlockMetadata(x, y, z)];
 	}
 
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		return iconArray[meta];
+		return iconArraySingle[meta];
 	}
 
 }

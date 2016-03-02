@@ -34,12 +34,10 @@ public class PyrolyzerRecipe {
 	
 	@Override
 	public boolean equals(Object r) {
-		if (!(r instanceof PyrolyzerRecipe)) return false;
-		
-		if (((PyrolyzerRecipe)r).getInput().isItemEqual(this.input)) 
-			return true;
-		else
+		if (!(r instanceof PyrolyzerRecipe)) 
 			return false;
+		
+		return ((PyrolyzerRecipe)r).getInput().isItemEqual(this.input);
 	}
 
 }

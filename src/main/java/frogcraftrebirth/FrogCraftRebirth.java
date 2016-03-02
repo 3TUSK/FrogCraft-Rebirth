@@ -30,7 +30,7 @@ public class FrogCraftRebirth {
 	@Instance(FrogRef.MODID)
 	public static FrogCraftRebirth instance;
 	
-	@SidedProxy(serverSide = "frogcraftrewrite.common.FrogProxy", clientSide = "frogcraftrewrite.client.FrogProxyClient")
+	@SidedProxy(serverSide = "frogcraftrebirth.common.FrogProxy", clientSide = "frogcraftrebirth.client.FrogProxyClient")
 	public static FrogProxy proxy;
 	
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");

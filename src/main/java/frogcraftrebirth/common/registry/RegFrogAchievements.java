@@ -16,11 +16,11 @@ public class RegFrogAchievements {
 	static LinkedHashMap<String, Achievement> map = new LinkedHashMap<>();
 	
 	public static void init() {
-		for (int i=0;i<FrogAchievement.values().length;i++) {
+		/*for (int i=0;i<FrogAchievement.values().length;i++) {
 			map.put(FrogAchievement.values()[i].name(), FrogAchievement.values()[i].export());
 		}
 		frogPage = new AchievementPage(FrogAPI.MODID, (Achievement[]) map.values().toArray());
-		AchievementPage.registerAchievementPage(frogPage);
+		AchievementPage.registerAchievementPage(frogPage);*/
 	}
 	
 	public static enum FrogAchievement {

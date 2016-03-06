@@ -6,9 +6,7 @@ import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
@@ -43,12 +41,7 @@ public class GuiPyrolyzer extends GuiContainer {
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
 
-		//Not working yet.
-		if (tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) {
-			IIcon fluidIcon = tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid().getIcon();
-			this.mc.getTextureManager().bindTexture(TextureMap.locationBlocksTexture);
-			this.drawTexturedModalRect(this.guiLeft + 143, this.guiTop + 23, (int)fluidIcon.getMaxU(), (int)fluidIcon.getMaxV(), 16, 16);
-		}
+		GuiUtil.renderFluidTank(this, 0, 0, 0, 0, tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), 0);
 	}
 
 }

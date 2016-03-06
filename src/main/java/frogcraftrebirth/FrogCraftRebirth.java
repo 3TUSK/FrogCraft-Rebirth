@@ -11,6 +11,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -65,6 +66,31 @@ public class FrogCraftRebirth {
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);	
 		proxy.init(event);
+	}
+	
+	@EventHandler
+	public void imcInit(FMLInterModComms.IMCEvent event) {
+		for (FMLInterModComms.IMCMessage message : event.getMessages()) {
+			if (message.isNBTMessage()) {
+				String mode = message.getNBTValue().getString("mode");
+				
+				if ("compat".equals(mode)) {
+					try {
+						Class<?> clazz = Class.forName(message.getNBTValue().getString("modulePath"));
+						if (clazz.getInterfaces()[0] == frogcraftrebirth.api.ICompatModuleFrog.class)
+								clazz.getDeclaredMethod("postInit").invoke(new Object());
+					} catch (Exception e) {
+						FROG_LOG.error("Error occured when one FrogCompatModule is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.");
+						e.printStackTrace();
+					}		
+				}
+				
+				if ("recipe".equals(mode)) {
+					//TODO
+				}
+					
+			}
+		}
 	}
 	
 	@EventHandler

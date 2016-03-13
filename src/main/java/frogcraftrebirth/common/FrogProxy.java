@@ -143,10 +143,7 @@ public class FrogProxy implements IGuiHandler {
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
-		RegFrogAchievements.init();
-		for (ICompatModuleFrog module : ICompatModuleFrog.compats.values()) {
-			module.preInit();
-		}
+		//RegFrogAchievements.init();
 	}
 
 	public void init(FMLInitializationEvent event) {
@@ -164,9 +161,6 @@ public class FrogProxy implements IGuiHandler {
 		RegFrogItemsBlocks.postInit();
 		RegFrogRecipes.postInit();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
-		for (ICompatModuleFrog module : ICompatModuleFrog.compats.values()) {
-			module.postInit();
-		}
 	}
 
 }

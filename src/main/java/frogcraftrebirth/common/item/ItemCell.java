@@ -1,11 +1,11 @@
 package frogcraftrebirth.common.item;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,13 +14,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
 public class ItemCell extends ItemFrogCraft{
-
-	private static final String CELL_ICON = TEXTURE_MAIN + "cell/";
 	
 	public ItemCell() {
 		super(true);
 		super.setUnlocalizedName("Item_Cells");
 		setSubNameArray("Ammonia", "Argon", "Benzene", "Bromine", "CO", "CO2", "CoalTar", "Fluorine", "HNO3", "LiquifiedAir", "NH4NO3", "NO", "Oxygen", "SO2", "SO3", "Urea");
+		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {
@@ -30,9 +29,9 @@ public class ItemCell extends ItemFrogCraft{
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister reg) {
+		System.out.println(Arrays.deepToString(nameArray));
 		for (int n=0;n<nameArray.length;n++) {
-			FrogCraftRebirth.FROG_LOG.debug(nameArray[n]);
-			iconArray[n] = reg.registerIcon(CELL_ICON+"cell_"+this.nameArray[n]);
+			iconArray[n] = reg.registerIcon("frogcraftrebirth:cell/cell_"+this.nameArray[n]);
 		}
 	}
 	

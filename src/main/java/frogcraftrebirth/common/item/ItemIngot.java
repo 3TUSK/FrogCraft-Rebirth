@@ -20,6 +20,7 @@ public class ItemIngot extends ItemFrogCraft{
 		super(true);
 		setUnlocalizedName("Item_Ingots");
 		setSubNameArray("K", "P", "Ruby", "Sapphire", "GreenSapphire", "NaturalGasHydrate", "Briquette", "CoalCokeShattered");
+		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	
 	@SideOnly(Side.CLIENT)

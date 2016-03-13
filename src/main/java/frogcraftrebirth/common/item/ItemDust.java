@@ -20,6 +20,7 @@ public class ItemDust extends ItemFrogCraft {
 		super(true);
 		setSubNameArray("Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5");
 		setUnlocalizedName("Item_Dusts");
+		this.iconArray = new IIcon[this.nameArray.length];
 	}
 	
 	@Override

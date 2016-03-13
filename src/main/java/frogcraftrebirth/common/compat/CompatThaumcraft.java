@@ -11,17 +11,8 @@ public class CompatThaumcraft implements ICompatModuleFrog {
 	public static Aspect fertilizer;
 
 	@Override
-	public void preInit() {
-		fertilizer = new Aspect("fertilitati", 0xFFFF00, new Aspect[] {Aspect.GREED, Aspect.CROP}, new ResourceLocation(""/*todo*/), 771);
-	}
-
-	@Override
 	public void init() {
-		//noop
-	}
-
-	@Override
-	public void postInit() {
+		fertilizer = new Aspect("fertilitati", 0xFFFF00, new Aspect[] {Aspect.GREED, Aspect.CROP}, new ResourceLocation(""/*todo*/), 771);
 		if (enableTCAspect) {
 			
 		}

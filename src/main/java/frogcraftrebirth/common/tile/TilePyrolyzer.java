@@ -22,6 +22,8 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 
 	public int process, processMax;
 	public boolean working;
+	
+	private PyrolyzerRecipe recipe;
 
 	public TilePyrolyzer() {
 		super(4, "TileThermalCracker", 2, 10000);
@@ -40,14 +42,13 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 			return;
 		}
 		
-		PyrolyzerRecipe recipe;
-		
 		if (!working) {
 			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(this.inv[0]);
 			if (canWork(recipe)) {
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
+				this.markDirty();
 			}
 		} else {
 			this.charge -= 128;
@@ -63,6 +64,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 				if (recipe.getOutputFluid() != null)
 					this.fill(ForgeDirection.UP, recipe.getOutputFluid(), true);
 				process = 0;
+				this.markDirty();
 				working = false;
 			}
 		}
@@ -74,10 +76,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		if (recipe == null)
 			return false;
 		
-		if (!recipe.getOutputFluid().isFluidEqual(tank.getFluid()))
-			return false;
-		
-		if (recipe.getOutputFluid().amount + tank.getFluidAmount() > tank.getCapacity())
+		if (!canFill(ForgeDirection.UP, recipe.getOutputFluid().getFluid()))
 			return false;
 		
 		if (!inv[1].isItemEqual(recipe.getOutput()))

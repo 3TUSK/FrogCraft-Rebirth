@@ -41,7 +41,7 @@ public class GuiPyrolyzer extends GuiContainer {
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
 
-		GuiUtil.renderFluidTank(this, 0, 0, 0, 0, tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), 0);
+		//GuiUtil.renderFluidTank(this, 0, 0, 0, 0, tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), 0);
 	}
 
 }

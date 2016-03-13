@@ -1,6 +1,7 @@
 package frogcraftrebirth;
 
 import java.io.File;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -47,7 +48,7 @@ public class FrogCraftRebirth {
 		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
 			private Item frogLogo;
 			{
-				frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
+				frogLogo = new Item().setTextureName("frogcraftrebirth:coin").setUnlocalizedName("frogLogo");
 				cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");
 				if (Loader.isModLoaded("NotEnoughItems"))
 					codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
@@ -78,7 +79,7 @@ public class FrogCraftRebirth {
 					try {
 						Class<?> clazz = Class.forName(message.getNBTValue().getString("modulePath"));
 						if (clazz.getInterfaces()[0] == frogcraftrebirth.api.ICompatModuleFrog.class)
-								clazz.getDeclaredMethod("postInit").invoke(new Object());
+								clazz.getDeclaredMethod("init").invoke(new Object());
 					} catch (Exception e) {
 						FROG_LOG.error("Error occured when one FrogCompatModule is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.");
 						e.printStackTrace();
@@ -86,7 +87,14 @@ public class FrogCraftRebirth {
 				}
 				
 				if ("recipe".equals(mode)) {
-					//TODO
+					String machine = message.getNBTValue().getString("machine").toLowerCase(Locale.ENGLISH);
+					switch (machine) {
+					case ("pyrolyzer"):
+						//do what
+						break;
+					default:
+						break;
+					}
 				}
 					
 			}

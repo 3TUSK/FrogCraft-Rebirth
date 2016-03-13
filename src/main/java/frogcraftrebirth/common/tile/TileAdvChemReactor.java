@@ -2,14 +2,13 @@ package frogcraftrebirth.common.tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
-import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
@@ -47,15 +46,12 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		
 		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		
-		if (recipe == null)
-			return;
-		
 		//Map<String, Integer> recipeInput = recipe.getInputs();
 		
 		working = canWork(recipe);
 		
 		if (working) {
-			working = canWork(recipe);
+			
 		} else 
 			return;
 		
@@ -85,8 +81,26 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		}
 	}
 	
-	//TODO: COMPLETE THIS METHOD
 	public boolean canWork(IAdvChemRecRecipe recipe) {
+		if (recipe == null)
+			return false;
+		
+		//TODO
+		Set<Entry<String, Integer>> currentInputs = null;
+		
+		for (Entry<String, Integer> item : recipe.getInputs().entrySet()) {
+			boolean checkPass = false;
+			for (Entry<String, Integer> input : currentInputs) {
+				if (item.equals(input)) {
+					checkPass = true;
+					break;
+				}
+			}
+			if (checkPass)
+				continue;
+			else return false; //means failed on checking
+		}
+		
 		return false;
 	}
 

@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import frogcraftrebirth.api.recipes.AdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
@@ -19,7 +19,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class FrogAPI {
-	/**
+	/*
 	 * FrogCraft (2013-) is a Minecraft Mod authored by Rikka.<br>
 	 * Credits to Rikka for original code and M3gaFrank (original
 	 * author of ExtraCell) for porting to 1.6.4.<br> FrogCraftRebirth 
@@ -32,8 +32,7 @@ public class FrogAPI {
 	 * aiming to reduce the implements of graphic user interface (known 
 	 * for GUI) in order to let players focus on designing a real, useful, 
 	 * effective chemical plant inside of my limitation.
-	 * */
-	static final int MEANING_OF_LIFE_UNIVERSE_EVERYTHING = 42;
+	 */
 	
 	// ROT_OFFSET_N_4 stands for "Rotation offset with 4 faces and north-toward by default
 	public static final int[][] ROT_OFFSET_N_4 = 
@@ -47,7 +46,7 @@ public class FrogAPI {
 		};
 	
 	@Deprecated //to be continue
-	public static final int[][] ROTATION_OFFSET_NORTH_6 = 
+	public static final int[][] ROTATION_OFFSET_N_6 = 
 		{
 				{}
 		};
@@ -59,7 +58,7 @@ public class FrogAPI {
 	@Nonnull
 	public static CreativeTabs frogTab;
 	
-	public static IRecipeManager<AdvChemRecRecipe> managerACR;
+	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 	

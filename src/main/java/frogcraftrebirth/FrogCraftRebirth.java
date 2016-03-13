@@ -1,6 +1,7 @@
 package frogcraftrebirth;
 
 import java.io.File;
+import java.util.Locale;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -11,6 +12,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLInterModComms;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkRegistry;
@@ -46,7 +48,7 @@ public class FrogCraftRebirth {
 		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
 			private Item frogLogo;
 			{
-				frogLogo = new Item().setTextureName("frogcraftrewrite:coin").setUnlocalizedName("frogLogo");
+				frogLogo = new Item().setTextureName("frogcraftrebirth:coin").setUnlocalizedName("frogLogo");
 				cpw.mods.fml.common.registry.GameRegistry.registerItem(frogLogo, "frogLogo");
 				if (Loader.isModLoaded("NotEnoughItems"))
 					codechicken.nei.api.API.hideItem(new net.minecraft.item.ItemStack(frogLogo, 1));
@@ -65,6 +67,38 @@ public class FrogCraftRebirth {
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);	
 		proxy.init(event);
+	}
+	
+	@EventHandler
+	public void imcInit(FMLInterModComms.IMCEvent event) {
+		for (FMLInterModComms.IMCMessage message : event.getMessages()) {
+			if (message.isNBTMessage()) {
+				String mode = message.getNBTValue().getString("mode");
+				
+				if ("compat".equals(mode)) {
+					try {
+						Class<?> clazz = Class.forName(message.getNBTValue().getString("modulePath"));
+						if (clazz.getInterfaces()[0] == frogcraftrebirth.api.ICompatModuleFrog.class)
+								clazz.getDeclaredMethod("init").invoke(new Object());
+					} catch (Exception e) {
+						FROG_LOG.error("Error occured when one FrogCompatModule is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.");
+						e.printStackTrace();
+					}		
+				}
+				
+				if ("recipe".equals(mode)) {
+					String machine = message.getNBTValue().getString("machine").toLowerCase(Locale.ENGLISH);
+					switch (machine) {
+					case ("pyrolyzer"):
+						//do what
+						break;
+					default:
+						break;
+					}
+				}
+					
+			}
+		}
 	}
 	
 	@EventHandler

@@ -39,13 +39,16 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			this.loaded = true;
 		}
 		
-		if (inv[1].getItem() instanceof IElectricItem)
+		if (inv[1] != null && inv[1].getItem() instanceof IElectricItem) {
 			this.storedE += ElectricItem.manager.discharge(inv[1], output, getSourceTier(), true, false, false);
+			this.markDirty();
+		}
 		
-		if (inv[0].getItem() instanceof IElectricItem)
+		if (inv[0] != null && inv[0].getItem() instanceof IElectricItem) {
 			ElectricItem.manager.charge(inv[0], this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
-		
-		this.markDirty();
+			this.markDirty();
+		}
+
 	}
 	
 	@Override

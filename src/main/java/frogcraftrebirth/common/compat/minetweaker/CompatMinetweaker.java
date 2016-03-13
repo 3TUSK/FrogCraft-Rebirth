@@ -6,20 +6,10 @@ import minetweaker.MineTweakerAPI;
 public class CompatMinetweaker implements ICompatModuleFrog {
 	
 	@Override
-	public void preInit() {
-		
-	}
-	
-	@Override
 	public void init() {
 		MineTweakerAPI.registerClass(AdvChemReactor.class);
 		MineTweakerAPI.registerClass(CondenseTower.class);
 		MineTweakerAPI.registerClass(ThermalCracker.class);
-	}
-
-	@Override
-	public void postInit() {
-		
 	}
 
 }

@@ -15,20 +15,21 @@ import net.minecraftforge.fluids.Fluid;
 public class GuiUtil {
 	
 	public static final int GRAY_40 = 0x404040;
+	public static final int GREEN_3E = 0x20EB3E;
 	
 	public static ResourceLocation getGuiBackground(final String machineName) {
 		return new ResourceLocation("frogcraftrebirth:textures/gui/GUI_" + machineName + ".png");
 	}
 
-	public static void renderFluidTank(GuiContainer gui, int x, int y, int w, int h, Fluid fluid, int percentage) {
-		if (fluid == null) return;
+	public static void renderFluidTank(final GuiContainer gui, int x, int y, int w, int h, Fluid fluid, int percentage) {
+		if (fluid == null) 
+			return;
 		
 		IIcon fluidIcon = fluid.getIcon();
-		
-		if (fluidIcon == null) return;
+		if (fluidIcon == null) 
+			return;
 		
 		gui.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		
-		// to be continued.
+		gui.drawTexturedModelRectFromIcon(x, y, fluidIcon, w, h);
 	}
 }

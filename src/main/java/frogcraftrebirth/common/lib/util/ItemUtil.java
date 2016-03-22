@@ -2,6 +2,7 @@ package frogcraftrebirth.common.lib.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Map.Entry;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -31,7 +32,7 @@ public final class ItemUtil {
 		return finalInputs;
 	}
 	
-	public static ItemStack get1stChoiceFromOre(String entry) {
+	public static ItemStack get1stOreChoice(String entry) {
 		try {
 			return OreDictionary.getOres(entry).get(0);
 		} catch (Exception e) {
@@ -42,7 +43,7 @@ public final class ItemUtil {
 	public static ItemStack[] asItemStackArray(String[] oreArray) {
 		ItemStack[] array = new ItemStack[oreArray.length];
 		for (int i=0;i<oreArray.length;i++) {
-			array[i] = get1stChoiceFromOre(oreArray[i]);
+			array[i] = get1stOreChoice(oreArray[i]);
 		}
 		return array;
 	}
@@ -101,6 +102,53 @@ public final class ItemUtil {
 				return true;
 		}
 		return false;
+	}
+	
+	private static Entry<String, Integer>[] stdInvInputs(ItemStack[] inv) {
+		return null;
+	}
+	
+	public static <K, V> Entry<K, V> newEntry(K key, V value) {
+		return new FrogEntry<K, V>(key, value);
+	}
+	
+	//Non-sense implementation.
+	
+	public static class FrogEntry<K, V> implements Entry<K, V> {
+		
+		private K key;
+		private V value;
+
+		private FrogEntry(K key, V value) {
+			this.key = key;
+			this.value = value;
+		}
+		
+		@Override
+		public K getKey() {
+			return key;
+		}
+
+		@Override
+		public V getValue() {
+			return value;
+		}
+
+		@Override
+		public V setValue(V value) {
+			this.value = value;
+			return value;
+		}
+		
+		@SuppressWarnings("rawtypes")
+		@Override
+		public boolean equals(Object obj) {
+			if (obj instanceof Entry) {
+				return ((Entry)obj).getKey().equals(this.getKey()) && ((Entry)obj).getValue().equals(this.getValue());
+			} else
+				return false;
+		}
+		
 	}
 
 }

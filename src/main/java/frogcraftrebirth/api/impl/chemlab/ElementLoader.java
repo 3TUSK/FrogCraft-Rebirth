@@ -45,7 +45,7 @@ public final class ElementLoader implements ElementArrayParser {
 			parsingFinished = true;
 			return elements;
 		} catch (Exception e) {
-			FROG_LOG.error("An error has occurred and loading cannot continue.");
+			FROG_LOG.error("An error has occurred and elements loading cannot continue.");
 			return null;
 		}
 	}

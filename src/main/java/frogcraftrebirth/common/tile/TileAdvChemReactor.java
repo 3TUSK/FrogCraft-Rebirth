@@ -1,10 +1,13 @@
 package frogcraftrebirth.common.tile;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.AdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -13,7 +16,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class TileAdvChemReactor extends TileFrogMachine {
 	public int process, processMax;
 	boolean working, changed = false, inputsLocked = false, outputLocked = false;
-	
+	private IAdvChemRecRecipe recipe;
 	public TileAdvChemReactor() {
 		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
 		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
@@ -38,19 +41,19 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	@Override
 	public void updateEntity() {
 		super.updateEntity();
-		if (worldObj.isRemote) return;
-		
-		AdvChemRecRecipe recipe = (AdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
-		if (recipe == null)
+		if (worldObj.isRemote) 
 			return;
+		
+		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		
 		//Map<String, Integer> recipeInput = recipe.getInputs();
 		
-		if (!working) {
-			working = canWork(recipe);
-		} 
+		working = canWork(recipe);
 		
-		this.processMax = recipe.getReactionTime();
+		if (working) {
+			
+		} else 
+			return;
 		
 		if (working && charge >= recipe.getEnergyRate()) {
 			this.charge -= recipe.getEnergyRate();
@@ -59,8 +62,13 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		
 		if (process == processMax) {
 			Map<String, Integer> recipeOutput = recipe.getOutputs();
-			
+			ArrayList<ItemStack> product = new ArrayList<ItemStack>();
 			//Overhaul required
+			for (Entry<String, Integer> ore : recipeOutput.entrySet()) {
+				ItemStack stack = OreDictionary.getOres(ore.getKey()).get(0);
+				stack.stackSize = ore.getValue();
+				product.add(stack);
+			}
 			
 			this.changed = true;
 			this.working = false;
@@ -68,12 +76,31 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		
 		if (changed) {
 			this.markDirty();
+			this.sendTileUpdatePacket(this);
 			changed = false;
 		}
 	}
 	
-	//TODO: COMPLETE THIS METHOD
-	public boolean canWork(AdvChemRecRecipe recipe) {
+	public boolean canWork(IAdvChemRecRecipe recipe) {
+		if (recipe == null)
+			return false;
+		
+		//TODO
+		Set<Entry<String, Integer>> currentInputs = null;
+		
+		for (Entry<String, Integer> item : recipe.getInputs().entrySet()) {
+			boolean checkPass = false;
+			for (Entry<String, Integer> input : currentInputs) {
+				if (item.equals(input)) {
+					checkPass = true;
+					break;
+				}
+			}
+			if (checkPass)
+				continue;
+			else return false; //means failed on checking
+		}
+		
 		return false;
 	}
 

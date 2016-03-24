@@ -26,12 +26,8 @@ public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogN
 	
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
-		if (worldObj.isRemote)
-			return;
-		facing = 5;
-		
-		prevFacing = facing;
+		//facing = 5;
+		//prevFacing = facing;
 	}
 	
 	@Override

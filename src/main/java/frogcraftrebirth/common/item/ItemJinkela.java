@@ -24,20 +24,36 @@ public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
 		setTextureName(TEXTURE_MAIN + "GoldClod");
 		setUnlocalizedName("Item_Miscs.GoldClod");
 	}
-	
+
 	@Override
 	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ) {
 		Block block = world.getBlock(x, y, z);
-		BonemealEvent evt = new BonemealEvent(player, world, block, x, y, z);
-		MinecraftForge.EVENT_BUS.post(evt);
-		
-		if (evt.getResult() == Result.ALLOW) {
-			if (block instanceof IGrowable) {
-				IGrowable growable = (IGrowable)block;
-				if (growable.func_149851_a(world, x, y, z, world.isRemote) && !world.isRemote && growable.func_149852_a(world, world.rand, x, y, z))
-					growable.func_149853_b(world, itemRand, x, y, z);
+
+		BonemealEvent event = new BonemealEvent(player, world, block, x, y, z);
+		if (MinecraftForge.EVENT_BUS.post(event)) {
+			return false;
+		}
+
+		if (event.getResult() == Result.ALLOW) {
+			if (!world.isRemote) {
+			}
+			return true;
+		}
+
+		if (block instanceof IGrowable) {
+			IGrowable igrowable = (IGrowable) block;
+
+			if (igrowable.func_149851_a(world, x, y, z, world.isRemote)) {
+				if (!world.isRemote) {
+					if (igrowable.func_149852_a(world, world.rand, x, y, z)) {
+						igrowable.func_149853_b(world, world.rand, x, y, z);
+					}
+				}
+
+				return true;
 			}
 		}
+
 		return false;
 	}
 
@@ -50,7 +66,7 @@ public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
 
 	@Override
 	public int getWarp(ItemStack stack, EntityPlayer player) {
-		return 2;
+		return stack.stackSize;
 	}
 
 }

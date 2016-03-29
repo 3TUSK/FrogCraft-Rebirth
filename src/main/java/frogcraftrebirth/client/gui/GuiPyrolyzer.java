@@ -8,7 +8,6 @@ import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class GuiPyrolyzer extends GuiContainer {
 

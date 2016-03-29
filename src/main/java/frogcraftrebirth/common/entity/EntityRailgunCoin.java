@@ -15,6 +15,8 @@ import net.minecraft.world.World;
 public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 
 	private double damageCollision, damageExplosion;
+	private int timer = 0;
+	private Vec3 startPoint;
 
 	public EntityRailgunCoin(World world) {
 		super(world);
@@ -27,11 +29,24 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 		this.damageCollision = 20F * railgunDamageScale;
 		this.damageExplosion = 20F * railgunDamageScale;
 		Vec3 looking = someone.getLookVec();
+		startPoint = looking;
 		this.setThrowableHeading(looking.xCoord, looking.yCoord, looking.zCoord, this.func_70182_d(), 1.0F);
 	}
 
+	@Override
 	protected float getGravityVelocity() {
 		return 0.2F;
+	}
+	
+	@Override
+	public void onUpdate() {
+		super.onUpdate();
+		if (timer % 40 == 0) {
+			Vec3 currentPos = Vec3.createVectorHelper(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ);
+			if (startPoint.distanceTo(currentPos) > 50)
+				this.setDead();
+		} else
+			++timer;	
 	}
 
 	@Override

@@ -14,7 +14,8 @@ import net.minecraft.item.ItemStack;
 public class OreStack {
 	
 	private final String entry;
-	private final int amount;
+	
+	private int amount;
 	
 	public OreStack(String entry) {
 		this(entry, 1);
@@ -23,6 +24,16 @@ public class OreStack {
 	public OreStack(String entry, int amount) {
 		this.entry = entry;
 		this.amount = amount;
+	}
+	
+	public OreStack increaseSize(int quantityChange) {
+		this.amount += quantityChange;
+		return this;
+	}
+	
+	public OreStack decreaseSize(int quantityChange) {
+		this.amount -= quantityChange;
+		return this;
 	}
 	
 	public String getEntry() {
@@ -46,6 +57,20 @@ public class OreStack {
 			stack.stackSize -= this.amount;
 		if (stack.stackSize <= 0)
 			stack = null;
+	}
+	
+	public boolean stackable(ItemStack stack) {
+		return ItemUtil.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
+	}
+	
+	public void stack(ItemStack stack) {
+		if (stack == null) {
+			stack = ItemUtil.get1stChoiceFromOre(this.entry);
+			stack.stackSize = this.amount;
+			return;
+		}
+		
+		stack.stackSize += this.amount;
 	}
 
 }

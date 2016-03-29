@@ -11,6 +11,7 @@ package frogcraftrebirth.api.recipes;
 import java.util.Collection;
 
 import frogcraftrebirth.api.OreStack;
+import net.minecraft.item.ItemStack;
 
 public interface IAdvChemRecRecipe {
 	
@@ -28,6 +29,22 @@ public interface IAdvChemRecRecipe {
 		if (rec.getInputs().equals(getInputs()))
 			return true;
 			else return false;
+	}
+	
+	default boolean matchInputs(ItemStack... stacks) {
+		for (OreStack ore : this.getInputs()) {
+			boolean match = false;
+			for (ItemStack stack : stacks) {
+				if (ore.consumable(stack)) {
+					match = true;
+					break;
+				}
+			}
+			if (!match)
+				return false;
+		}
+		
+		return true;
 	}
 
 }

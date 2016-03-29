@@ -1,10 +1,8 @@
 package frogcraftrebirth.api.recipes;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
-import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {
@@ -33,21 +31,16 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 		return recipes;
 	}
 	
-	@SuppressWarnings("hiding")
+	@SuppressWarnings({ "hiding", "unchecked" })
 	@Override
-	public <ItemStack> IAdvChemRecRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
-		IAdvChemRecRecipe aRecipe = null;
-		
-		Collection<String> inputsList = new ArrayList<String>(); //TODO
-		
+	public <ItemStack> IAdvChemRecRecipe getRecipe(ItemStack... inputs) {
 		for (IAdvChemRecRecipe recipe : recipes) {
-			if (recipes.containsAll(inputsList)) {
-				aRecipe = recipe;
-				break;
+			if (recipe.matchInputs((net.minecraft.item.ItemStack[])inputs)) {
+				return recipe;
 			}
 		}
 		
-		return aRecipe;
+		return null;
 	}
 
 	private static ArrayList<IAdvChemRecRecipe> recipes = new ArrayList<IAdvChemRecRecipe>();

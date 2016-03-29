@@ -2,20 +2,22 @@ package frogcraftrebirth.common.tile;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Set;
+import java.util.Collection;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.OreStack;
+import frogcraftrebirth.api.item.ICatalystModuleItem;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.tile.IAdvChemReactor;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileAdvChemReactor extends TileFrogMachine {
+public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReactor {
 	public int process, processMax;
-	boolean working, changed = false, inputsLocked = false, outputLocked = false;
+	private boolean working;
+	private boolean changed = false;
 	private IAdvChemRecRecipe recipe;
 	public TileAdvChemReactor() {
 		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
@@ -40,33 +42,34 @@ public class TileAdvChemReactor extends TileFrogMachine {
 	
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 		if (worldObj.isRemote) 
 			return;
+		super.updateEntity();
 		
 		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		
 		//Map<String, Integer> recipeInput = recipe.getInputs();
 		
-		working = canWork(recipe);
-		
-		if (working) {
-			
-		} else 
-			return;
+		boolean hasValidRecipe = checkIngredient(recipe);
+		if (hasValidRecipe) {
+			this.consumeIngredient(recipe.getOutputs());
+			this.working = true;
+			this.changed = true;
+		}
 		
 		if (working && charge >= recipe.getEnergyRate()) {
 			this.charge -= recipe.getEnergyRate();
 			++process;
-		}
+		} else
+			return;
 		
 		if (process == processMax) {
-			Map<String, Integer> recipeOutput = recipe.getOutputs();
+			Collection<OreStack> recipeOutput = recipe.getOutputs();
 			ArrayList<ItemStack> product = new ArrayList<ItemStack>();
 			//Overhaul required
-			for (Entry<String, Integer> ore : recipeOutput.entrySet()) {
-				ItemStack stack = OreDictionary.getOres(ore.getKey()).get(0);
-				stack.stackSize = ore.getValue();
+			for (OreStack ore : recipeOutput) {
+				ItemStack stack = OreDictionary.getOres(ore.getEntry()).get(0);
+				stack.stackSize = stack.stackSize + ore.getAmount();
 				product.add(stack);
 			}
 			
@@ -81,17 +84,28 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		}
 	}
 	
-	public boolean canWork(IAdvChemRecRecipe recipe) {
+	public double modifyReactionRate(ICatalystModuleItem... catalyst) {
+		return 0D;
+	}
+	
+	public void produce() {
+		
+	}
+	
+	public boolean checkIngredient(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
 		
-		//TODO
-		Set<Entry<String, Integer>> currentInputs = null;
+		if (inv[1] == null && inv[2] == null && inv[3] == null && inv[4] == null && inv[5] == null) {
+			return false;
+		}
 		
-		for (Entry<String, Integer> item : recipe.getInputs().entrySet()) {
+		ItemStack[] inputs = Arrays.copyOfRange(inv, 1, 5);
+		
+		for (OreStack ore : recipe.getInputs()) {
 			boolean checkPass = false;
-			for (Entry<String, Integer> input : currentInputs) {
-				if (item.equals(input)) {
+			for (ItemStack item : inputs) {
+				if (ore.consumable(item)) {
 					checkPass = true;
 					break;
 				}
@@ -102,6 +116,18 @@ public class TileAdvChemReactor extends TileFrogMachine {
 		}
 		
 		return false;
+	}
+	
+	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
+		ItemStack[] inputs = Arrays.copyOfRange(inv, 1, 5);
+		for (OreStack ore : toBeConsumed) {
+			for (ItemStack item : inputs) {
+				if (ore.consumable(item)) {
+					ore.consume(item);
+					break;
+				}
+			}
+		}
 	}
 
 	@Override

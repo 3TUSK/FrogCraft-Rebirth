@@ -8,13 +8,15 @@
  */
 package frogcraftrebirth.api.recipes;
 
-import java.util.Map;
+import java.util.Collection;
+
+import frogcraftrebirth.api.OreStack;
 
 public interface IAdvChemRecRecipe {
 	
-	Map<String, Integer> getInputs();
+	Collection<OreStack> getInputs();
 	
-	Map<String, Integer> getOutputs();
+	Collection<OreStack> getOutputs();
 	
 	double getRateModifier(String catalyst);
 	

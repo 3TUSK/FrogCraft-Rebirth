@@ -21,7 +21,8 @@ public interface ICatalystModuleItem {
 	boolean match();
 
 	/**
-	 * @return A double which represents the acceleration rate target on the reaction. Return a negative number to deaccelerate the reation.
+	 * @return A double which represents the acceleration rate target on the reaction. <br>
+	 * Return a negative number to decelerate the reaction.
 	 */
 	double accelerate();
 

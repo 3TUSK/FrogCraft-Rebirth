@@ -1,5 +1,7 @@
 package frogcraftrebirth.common.registry;
 
+import java.util.List;
+
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
@@ -7,7 +9,9 @@ import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
+import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import frogcraftrebirth.common.tile.*;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -62,6 +66,14 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemReactionModule = new ItemCatalystModule();
 		FrogItems.acwinmillFan = new ItemAcademyWindmillFan();
 		FrogItems.railgun = new ItemRailgun(1000000);
+		FrogItems.railgunRail = new ItemFrogCraft(false) {
+
+			@Override
+			public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
+				return java.util.Arrays.asList("Unimplement yet");
+			}
+			
+		};
 		FrogItems.jinkela = new ItemJinkela();
 		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid");
 		

@@ -22,15 +22,6 @@ public final class ItemUtil {
 		return finalInputs;
 	}
 	
-	public static String[] asOreDictInputsArray(ItemStack[] rawInputs) {
-		String[] finalInputs = new String[rawInputs.length];
-		for (int i=0;i<rawInputs.length;i++) {
-			String anEntry = OreDictionary.getOreName(OreDictionary.getOreIDs(rawInputs[i])[0]);
-			finalInputs[i] = anEntry;
-		}
-		return finalInputs;
-	}
-	
 	public static ItemStack get1stChoiceFromOre(String entry) {
 		try {
 			return OreDictionary.getOres(entry).get(0);
@@ -45,6 +36,21 @@ public final class ItemUtil {
 			array[i] = get1stChoiceFromOre(oreArray[i]);
 		}
 		return array;
+	}
+	
+	public static boolean stackHasEntry(ItemStack stack, String ore) {
+		if (!OreDictionary.doesOreNameExist(ore))
+			return false;
+		
+		ArrayList<String> entries = new ArrayList<String>();
+		for (int num : OreDictionary.getOreIDs(stack))
+			entries.add(OreDictionary.getOreName(num));
+		
+		return entries.contains(ore);
+	}
+	
+	public static boolean entryHasStack(ItemStack stack, String ore) {
+		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
 	}
 	
 	public static boolean stackContains(ItemStack[] targetArray, ItemStack stack, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {

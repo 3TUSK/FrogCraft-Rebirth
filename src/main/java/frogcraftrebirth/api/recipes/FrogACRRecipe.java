@@ -8,17 +8,20 @@
  */
 package frogcraftrebirth.api.recipes;
 
+import java.util.Collection;
 import java.util.Map;
+
+import frogcraftrebirth.api.OreStack;
 
 public class FrogACRRecipe implements IAdvChemRecRecipe {
 	
 	//Yes this one will *only* support OreDictionary!
 	
-	private Map<String, Integer> inputs, outputs;
+	private Collection<OreStack> inputs, outputs;
 	private Map<String, Double> validCatalyst;
 	private int time, energyPerTick;
 	
-	public FrogACRRecipe(Map<String, Integer> inputs, Map<String, Integer> outputs, Map<String, Double> catalyst, int time, int energy) {
+	public FrogACRRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, Map<String, Double> catalyst, int time, int energy) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
@@ -27,12 +30,12 @@ public class FrogACRRecipe implements IAdvChemRecRecipe {
 	}
 	
 	@Override
-	public Map<String, Integer> getInputs() {
+	public Collection<OreStack> getInputs() {
 		return inputs;
 	}
 	
 	@Override
-	public Map<String, Integer> getOutputs() {
+	public Collection<OreStack> getOutputs() {
 		return outputs;
 	}
 	

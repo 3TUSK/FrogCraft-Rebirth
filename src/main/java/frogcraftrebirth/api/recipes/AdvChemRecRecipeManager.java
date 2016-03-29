@@ -13,7 +13,7 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	public boolean equal(IAdvChemRecRecipe recipe1, IAdvChemRecRecipe recipe2) {
 		if (recipe1.getInputs().size() != recipe2.getInputs().size()) 
 			return false;
-		if (recipe1.getInputs().keySet().containsAll(recipe2.getInputs().keySet()))
+		if (recipe1.getInputs().containsAll(recipe2.getInputs()))
 			return true;
 			else return false;
 	}
@@ -38,7 +38,7 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	public <ItemStack> IAdvChemRecRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
 		IAdvChemRecRecipe aRecipe = null;
 		
-		Collection<String> inputsList = Arrays.asList(ItemUtil.asOreDictInputsArray((net.minecraft.item.ItemStack[])inputs));
+		Collection<String> inputsList = new ArrayList<String>(); //TODO
 		
 		for (IAdvChemRecRecipe recipe : recipes) {
 			if (recipes.containsAll(inputsList)) {

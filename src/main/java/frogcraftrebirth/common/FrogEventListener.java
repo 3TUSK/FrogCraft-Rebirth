@@ -3,6 +3,7 @@ package frogcraftrebirth.common;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraftforge.event.entity.player.FillBucketEvent;
 //import net.minecraft.init.Items;
 //import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.world.ExplosionEvent;
@@ -30,6 +31,11 @@ public class FrogEventListener {
 			}
 			
 		}
+	}
+	
+	@SubscribeEvent
+	public void onFillingBucket(FillBucketEvent event) {
+		//TODO
 	}
 
 }

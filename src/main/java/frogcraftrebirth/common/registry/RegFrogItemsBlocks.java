@@ -1,12 +1,14 @@
 package frogcraftrebirth.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.tile.*;
+import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -61,6 +63,7 @@ public class RegFrogItemsBlocks {
 		FrogItems.acwinmillFan = new ItemAcademyWindmillFan();
 		FrogItems.railgun = new ItemRailgun(1000000);
 		FrogItems.jinkela = new ItemJinkela();
+		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid");
 		
 		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");
@@ -75,6 +78,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.acwinmillFan, "academyWindmillFan");
 		GameRegistry.registerItem(FrogItems.railgun, "railgun");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
+		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
 	}
 	
 	static void initOreDict() {

@@ -21,5 +21,7 @@ public class FrogItems {
 	public static Item acwinmillFan;
 	
 	public static Item jinkela;
+	
+	public static Item bucketNitricAcid;
 
 }

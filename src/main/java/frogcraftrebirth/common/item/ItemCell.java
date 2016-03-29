@@ -1,7 +1,6 @@
 package frogcraftrebirth.common.item;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
@@ -29,7 +28,6 @@ public class ItemCell extends ItemFrogCraft{
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IIconRegister reg) {
-		System.out.println(Arrays.deepToString(nameArray));
 		for (int n=0;n<nameArray.length;n++) {
 			iconArray[n] = reg.registerIcon("frogcraftrebirth:cell/cell_"+this.nameArray[n]);
 		}

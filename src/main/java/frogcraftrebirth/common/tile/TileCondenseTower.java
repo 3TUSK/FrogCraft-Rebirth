@@ -5,11 +5,9 @@ import frogcraftrebirth.api.impl.FrogFluidTank;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
-import frogcraftrebirth.common.lib.event.MultiBlockEvent;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -51,9 +49,6 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		if (!structureCompleted) {
 			if (!checkStructure())
 				return;
-			else {
-				this.structureCompleted = MinecraftForge.EVENT_BUS.post(new MultiBlockEvent(this));
-			}
 		}
 		
 		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());

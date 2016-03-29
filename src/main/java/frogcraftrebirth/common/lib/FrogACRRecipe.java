@@ -6,12 +6,13 @@
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
  * more information.
  */
-package frogcraftrebirth.api.recipes;
+package frogcraftrebirth.common.lib;
 
 import java.util.Collection;
 import java.util.Map;
 
 import frogcraftrebirth.api.OreStack;
+import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 
 public class FrogACRRecipe implements IAdvChemRecRecipe {
 	

@@ -74,7 +74,7 @@ public class RegFluid {
 		FluidContainerRegistry.registerFluidContainer(FrogFluids.oxygen, new ItemStack(FrogItems.itemCell, 1, 12), IC2Items.getItem("cell"));
 		FluidContainerRegistry.registerFluidContainer(FrogFluids.sulfurDioxide, new ItemStack(FrogItems.itemCell, 1, 13), IC2Items.getItem("cell"));
 		FluidContainerRegistry.registerFluidContainer(FrogFluids.sulfurTrioxide, new ItemStack(FrogItems.itemCell, 1, 14), IC2Items.getItem("cell"));
-	
+		
 		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
 		GameRegistry.registerBlock(FrogBlocks.fluidNitricAcid, "nitricAcid");
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
@@ -82,10 +82,8 @@ public class RegFluid {
 	}
 	
 	static void regFluid(Fluid fluid) {
-		if (FluidRegistry.isFluidRegistered(fluid.getName()))
-			fluid = FluidRegistry.getFluid(fluid.getName());
-		
 		FluidRegistry.registerFluid(fluid);
+		fluid = FluidRegistry.getFluid(fluid.getName());
 	}
 
 }

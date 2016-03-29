@@ -62,7 +62,7 @@ public class BlockFrogOre extends BlockFrog {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerBlockIcons(IIconRegister r) {
-		for (int i = 0; i < iconArray.length; i++) {
+		for (int i = 0; i < nameArray.length; i++) {
 			iconArraySingle[i] = r.registerIcon(TEXTURE_MAIN + "ores/" + this.nameArray[i]);
 		}
 	}

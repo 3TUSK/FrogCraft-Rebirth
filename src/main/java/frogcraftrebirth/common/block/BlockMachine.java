@@ -78,22 +78,22 @@ public class BlockMachine extends BlockFrogContainer {
 	public void registerBlockIcons(IIconRegister r) {
 		iconArray[0][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
 		iconArray[0][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[0][2] = r.registerIcon(TEXTURE_MAIN + "AdvanceChemicalReactor_Front");
-		iconArray[0][3] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+		iconArray[0][2] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+		iconArray[0][3] = r.registerIcon(TEXTURE_MAIN + "AdvanceChemicalReactor_Front");
 		iconArray[0][4] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
 		iconArray[0][5] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
 		
 		iconArray[1][0] = r.registerIcon(TEXTURE_MAIN + "AirPump_Top");
 		iconArray[1][1] = r.registerIcon(TEXTURE_MAIN + "AirPump_Top");
-		iconArray[1][2] = r.registerIcon(TEXTURE_MAIN + "AirPump_Front");
-		iconArray[1][3] = r.registerIcon(TEXTURE_MAIN + "AirPump_Back");
+		iconArray[1][2] = r.registerIcon(TEXTURE_MAIN + "AirPump_Back");
+		iconArray[1][3] = r.registerIcon(TEXTURE_MAIN + "AirPump_Front");
 		iconArray[1][4] = r.registerIcon(TEXTURE_MAIN + "AirPump_Side");
 		iconArray[1][5] = r.registerIcon(TEXTURE_MAIN + "AirPump_Side");
 		
 		iconArray[2][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
 		iconArray[2][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Front");
-		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Back");
+		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Back");
+		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Front");
 		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
 		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
 	}

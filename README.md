@@ -18,11 +18,10 @@ FrogCraft will insist on IC2's EU API. Unless there is a proper substitution in 
 #### TODO List
 * Block:
  * Machines: 75%(estimated)  
-    * Condense Tower: finished but untested  
-    * Thermal Cracker: 90%
+    * Condense Tower: finished but untested 
  * Generator: 75%(estimated)  
-    * Academy City Windmill: 90%  
-    * Combustion Furnace: 60%
+    * Academy City Windmill: Pending 
+    * Combustion Furnace: 60% 
  * Electricity storage  
     * EVT: not yet, maybe not
     * Mobile power bank: REWORKING

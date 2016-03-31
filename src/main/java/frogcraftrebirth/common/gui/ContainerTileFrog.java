@@ -47,12 +47,14 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (aSlot < this.tileInvCount) {
-				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 36 + this.tileInvCount, true)) { //question
+			if (aSlot >= 0 && aSlot <= this.tileInvCount) {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) { //question
 					return null;
 				}
-			} else if (!this.mergeItemStack(itemstack1, 0, this.inventorySlots.size(), false)) {
-				return null;
+			} else if (aSlot > this.tileInvCount && aSlot < 27 + this.tileInvCount) {
+				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size() - 9, this.inventorySlots.size(), false)) {
+					return null;
+				}
 			}
 
 			if (itemstack1.stackSize == 0) {

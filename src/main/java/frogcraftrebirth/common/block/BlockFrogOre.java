@@ -20,7 +20,7 @@ public class BlockFrogOre extends BlockFrog {
 	public BlockFrogOre() {
 		super(Material.rock);
 		setBlockName("mineral");
-		setHardness(10.0F);
+		setHardness(5.0F);
 		setResistance(15.0f);
 		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH",
 				"oreRuby", "oreSapphire", "oreGreenSapphire");
@@ -36,13 +36,10 @@ public class BlockFrogOre extends BlockFrog {
 		switch (world.getBlockMetadata(x, y, z)) {
 		case 0:
 		case 1:
-			return 10.0F;
 		case 2:
-			return 2.0F;
 		case 3:
-			return 13.0F;
 		case 4:
-			return 20.0F;
+			return 3.0F;
 		case 5:
 			return 1.0F;
 		default:
@@ -56,7 +53,7 @@ public class BlockFrogOre extends BlockFrog {
 
 	@Override
 	public int quantityDropped(Random rand) {
-		return 1 + rand.nextInt(5);
+		return 1;
 	}
 
 	@SideOnly(Side.CLIENT)

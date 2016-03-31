@@ -9,7 +9,7 @@ public class CompatMinetweaker implements ICompatModuleFrog {
 	public void init() {
 		MineTweakerAPI.registerClass(AdvChemReactor.class);
 		MineTweakerAPI.registerClass(CondenseTower.class);
-		MineTweakerAPI.registerClass(ThermalCracker.class);
+		MineTweakerAPI.registerClass(Pyrolyzer.class);
 	}
 
 }

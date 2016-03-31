@@ -40,9 +40,8 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	}
 	
 	@Override
-	public void updateEntity() {
-		super.updateEntity();	
-		if (!worldObj.isRemote && !isInENet) {
+	public void updateEntity() {	
+		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}

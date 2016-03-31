@@ -22,7 +22,7 @@ public class GuiPyrolyzer extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.Pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override

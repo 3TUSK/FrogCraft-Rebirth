@@ -6,7 +6,7 @@ import java.io.IOException;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogFuelHandler;
-import frogcraftrebirth.api.impl.FrogFluidTank;
+import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -44,7 +44,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 				inv[1] = FrogFuelHandler.FUEL_REG.getItemByproduct(inv[0]);
 			else
 				++inv[1].stackSize;
-			tank.fill(FrogFuelHandler.FUEL_REG.getFluidByproduct(inv[0]), true);
+			tank.fill(FrogFuelHandler.FUEL_REG.getFluidByproduct(inv[0]), !worldObj.isRemote);
 			this.decrStackSize(0, 1);
 			this.timeMax = FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]);
 			this.time = FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]);

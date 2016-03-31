@@ -69,6 +69,7 @@ dependencies {
     compile "codechicken:CodeChickenCore:1.7.10-1.0.6.43+:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.4.107+:dev"
     compile name: "MineTweaker3", version: "1.7.10-3.0.9C", classifier: "Dev"
+    compile 'Azanor:Thaumcraft:4.2.3.5:deobf@jar'
 }
 
 processResources

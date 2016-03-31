@@ -5,8 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.impl.FrogFluidTank;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
+import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -32,13 +32,14 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 		if (this.worldObj.isRemote)
 			return;
-		
+		super.updateEntity();
+
 		if (inv[0] == null || this.charge <= 128) {
 			this.working = false;
 			this.process = 0;
+			this.processMax = 0;
 			return;
 		}
 		
@@ -49,48 +50,53 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 				this.processMax = recipe.getTime();
 				this.working = true;
 				this.markDirty();
-			}
-		} else {
-			this.charge -= 128;
-			process++;
-			if (process == processMax) {
-				recipe = FrogAPI.managerPyrolyzer.<ItemStack> getRecipe(this.inv[0]);
-				this.decrStackSize(0, recipe.getInput().stackSize);
-				if (this.getStackInSlot(1) == null)
-					this.setInventorySlotContents(1, recipe.getOutput());
-				else {
-					inv[1].stackSize += recipe.getOutput().stackSize;
-				}
-				if (recipe.getOutputFluid() != null)
-					this.fill(ForgeDirection.UP, recipe.getOutputFluid(), true);
-				process = 0;
-				this.markDirty();
-				working = false;
+			} else {
+				return;
 			}
 		}
-
-		this.sendTileUpdatePacket(this);
+		
+		this.charge -= 128;
+		process++;
+		
+		if (process == processMax) {
+			pyrolyze();
+			process = 0;
+			this.processMax = 0;
+			this.markDirty();
+			working = false;
+			this.sendTileUpdatePacket(this);
+		}
 	}
 	
 	public boolean canWork(PyrolyzerRecipe recipe) {
 		if (recipe == null)
 			return false;
 		
-		if (!canFill(ForgeDirection.UP, recipe.getOutputFluid().getFluid()))
+		if (tank.getFluid() != null) {
+			if (tank.getFluid().getFluid() != recipe.getOutputFluid().getFluid())
+				return false;
+			else if (tank.getFluidAmount() + recipe.getOutputFluid().amount >= tank.getCapacity())
+				return false;
+		}
+		
+		if (!inv[0].isItemEqual(recipe.getInput()))
 			return false;
 		
-		if (!inv[1].isItemEqual(recipe.getOutput()))
-			return false;
-		
-		int a = recipe.getOutput().stackSize, max = recipe.getOutput().getMaxStackSize();	
-		if (a + inv[1].stackSize > max)
-			return false;
-		
-		return true;
+		return inv[1] == null || inv[1].isItemEqual(recipe.getOutput()) && inv[1].stackSize + recipe.getOutput().stackSize <= inv[1].getMaxStackSize();
 	}
 	
 	public void pyrolyze() {
-		
+		this.decrStackSize(0, recipe.getInput().stackSize);
+		if (this.getStackInSlot(1) == null)
+			this.setInventorySlotContents(1, recipe.getOutput());
+		else {
+			ItemStack newStack = inv[1].copy();
+			int newSize = newStack.stackSize + recipe.getOutput().stackSize;
+			newStack.stackSize = newSize;
+			this.setInventorySlotContents(1, newStack);
+		}
+		if (recipe.getOutputFluid() != null)
+			this.tank.fill(recipe.getOutputFluid(), !this.worldObj.isRemote);
 	}
 
 	@Override
@@ -100,6 +106,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
+		this.recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(ItemStack.loadItemStackFromNBT(tag.getCompoundTag("recipeInput")));
 	}
 
 	@Override
@@ -121,6 +128,8 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
+		NBTTagCompound item = recipe.getInput().writeToNBT(new NBTTagCompound());
+		tag.setTag("recipeInput", item);
 	}
 
 	@Override

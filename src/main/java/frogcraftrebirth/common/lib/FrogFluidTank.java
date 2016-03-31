@@ -1,4 +1,4 @@
-package frogcraftrebirth.api.impl;
+package frogcraftrebirth.common.lib;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;

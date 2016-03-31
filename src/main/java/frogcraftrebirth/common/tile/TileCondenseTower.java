@@ -1,10 +1,10 @@
 package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.impl.FrogFluidTank;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
+import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

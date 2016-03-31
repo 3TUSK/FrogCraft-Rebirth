@@ -25,12 +25,6 @@ public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogN
 	protected short facing, prevFacing = facing;
 	
 	@Override
-	public void updateEntity() {
-		//facing = 5;
-		//prevFacing = facing;
-	}
-	
-	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.facing = tag.getShort("facing");

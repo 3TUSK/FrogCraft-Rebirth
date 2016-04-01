@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>{
 	
@@ -24,7 +25,7 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
         super.addCraftingToCrafters(crafting);
         crafting.sendProgressBarUpdate(this, 0, this.tile.charge);
         crafting.sendProgressBarUpdate(this, 1, this.tile.tick);
-        crafting.sendProgressBarUpdate(this, 2, this.tile.getTankInfo()[0].capacity);
+        crafting.sendProgressBarUpdate(this, 2, this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity);
 	}
 	
 	@Override
@@ -36,12 +37,12 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
 				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
 			if (this.tick != this.tile.tick)
 				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.tick), (EntityPlayerMP)crafter);
-			if (this.fluidAmount != this.tile.getTankInfo()[0].capacity)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.getTankInfo()[0].capacity), (EntityPlayerMP)crafter);
+			if (this.fluidAmount != this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity)
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity), (EntityPlayerMP)crafter);
 		}
 		this.charge = this.tile.charge;
 		this.tick = this.tile.tick;
-		this.fluidAmount = this.tile.getTankInfo()[0].capacity;
+		this.fluidAmount = this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity;
 	}
 	
 	@SideOnly(Side.CLIENT)

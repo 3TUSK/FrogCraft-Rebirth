@@ -8,7 +8,7 @@ import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.util.ForgeDirection;
+//import net.minecraftforge.common.util.ForgeDirection;
 
 public class GuiCombustionFurnace extends GuiContainer {
 
@@ -41,9 +41,9 @@ public class GuiCombustionFurnace extends GuiContainer {
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent * 24, 17);
 		}
 		
-		if (this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) {
+		/*if (this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) {
 			GuiUtil.renderFluidTank(this, 144, 24, 16, 42, this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount / this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity);
-		}
+		}*/
 	}
 	
 }

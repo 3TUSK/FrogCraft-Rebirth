@@ -14,12 +14,12 @@ public class RenderTileAcademyWindmillRotor extends TileEntitySpecialRenderer{
 	@SuppressWarnings("unused")
 	private TileAcademyWindmillTurbine tile;
 	
-	IModelCustom renderRotor = AdvancedModelLoader.loadModel(new ResourceLocation("frogcraftrewrite:model/acwindmillrotor.obj"));
+	IModelCustom renderRotor = AdvancedModelLoader.loadModel(new ResourceLocation("frogcraftrebirth:model/acwindmillrotor.obj"));
 
 	@Override
 	public void renderTileEntityAt(TileEntity tile, double relativeX, double relativeY, double relativeZ, float partialTick) {
 		this.tile = (TileAcademyWindmillTurbine)tile;
-		this.bindTexture(new ResourceLocation("frogcraftrewrite:model/acwindmillrotor.png"));
+		this.bindTexture(new ResourceLocation("frogcraftrebirth:model/acwindmillrotor.png"));
 		
 		//@SuppressWarnings("unused") //Will be used later.
 		//Tessellator t = Tessellator.instance;

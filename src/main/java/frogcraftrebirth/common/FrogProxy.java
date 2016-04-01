@@ -32,7 +32,7 @@ import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
-import frogcraftrebirth.common.gui.ContainerIndustrialDevice;
+//import frogcraftrebirth.common.gui.ContainerIndustrialDevice;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.registry.RegFluid;
 //import frogcraftrebirth.common.registry.RegFrogAchievements;
@@ -60,10 +60,10 @@ public class FrogProxy implements IGuiHandler {
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(x, y, z);
 		switch(id) {
-			case 0: {
+			/*case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)
 					return new ContainerIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
-			}
+			}*/
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
@@ -136,7 +136,7 @@ public class FrogProxy implements IGuiHandler {
 	
 	public void preInit(FMLPreInitializationEvent event) {
 		try {
-			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrewrite/tritchemlab/PeriodicTable.xml"), false)));
+			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
 		} catch (Exception e) {}
 		GameRegistry.registerFuelHandler(FUEL_REG);
 		RegFrogItemsBlocks.preInit();

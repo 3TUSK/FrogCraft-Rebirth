@@ -1,11 +1,12 @@
 package frogcraftrebirth.common.tile;
 
+import static frogcraftrebirth.api.FrogFuelHandler.FUEL_REG;
+import static net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime;
+
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import frogcraftrebirth.api.FrogFuelHandler;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
@@ -18,57 +19,60 @@ import net.minecraftforge.fluids.IFluidHandler;
 
 public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHandler {
 
-	public boolean working;
+	public boolean working = false;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
-	public int time, timeMax;
+	public int time = 0, timeMax = 0;
 	private static final int CHARGE_MAX = 5000;
 
 	public TileCombustionFurnace() {
-		super(4, "TileEntityCombustionFurnace", 1, 32);
+		super(4, "TileEntityCombustionFurnace", 1, 16);
 		// 0 input 1 output 2 fluid container input 3 fluid container output
 	}
 
 	@Override
 	public void updateEntity() {
-		super.updateEntity();
 		if (worldObj.isRemote)
 			return;
-		if (this.tank.getFluidAmount() >= this.tank.getCapacity()) {
-			this.working = false;
-			return;
-		}
-		// Use vanilla furnace standard.
-		if (this.inv[0] != null && GameRegistry.getFuelValue(this.inv[0]) > 0) {
+		super.updateEntity();
+		
+		this.working = this.time >= 0;
+		
+		if (!working && this.inv[0] != null && getItemBurnTime(this.inv[0]) > 0) {
 			this.working = true;
-			if (this.getStackInSlot(1) == null)
-				inv[1] = FrogFuelHandler.FUEL_REG.getItemByproduct(inv[0]);
-			else
-				++inv[1].stackSize;
-			tank.fill(FrogFuelHandler.FUEL_REG.getFluidByproduct(inv[0]), !worldObj.isRemote);
 			this.decrStackSize(0, 1);
-			this.timeMax = FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]);
-			this.time = FrogFuelHandler.FUEL_REG.getBurnTime(this.inv[0]);
-		} else {
-			this.timeMax = 0;
-			this.working = false;
+			this.bonus(FUEL_REG.getItemByproduct(inv[0]));
+			this.timeMax = getItemBurnTime(this.inv[0]);
+			this.time = getItemBurnTime(this.inv[0]);
+			this.markDirty();
 		}
 
 		if (this.working) {
 			this.charge += 10;
 			this.time--;
 		}
+		
+		if (this.charge > CHARGE_MAX)
+			this.charge = CHARGE_MAX;
 
 		if (this.time == 0) {
 			this.timeMax = 0;
 			this.working = false;
 		}
 		
-		if (this.charge >= CHARGE_MAX)
-			this.charge = CHARGE_MAX;
-
-		markDirty();
-		
 		this.sendTileUpdatePacket(this);
+	}
+	
+	private void bonus(ItemStack bonus) {
+		if (bonus == null)
+			return;
+		if (this.getStackInSlot(1) == null)
+			this.setInventorySlotContents(1, bonus);
+		else if (inv[1].isItemEqual(bonus)) {
+			this.setInventorySlotContents(1, new ItemStack(inv[1].getItem(), inv[1].stackSize + bonus.stackSize, inv[1].getItemDamage()));
+		}
+		
+		if (FUEL_REG.getFluidByproduct(inv[0]) != null)
+			this.tank.fill(FUEL_REG.getFluidByproduct(inv[0]), !worldObj.isRemote);
 	}
 	
 	@Override
@@ -84,12 +88,18 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
 		tank.readPacketData(input);
+		this.time = input.readInt();
+		this.timeMax = input.readInt();
+		this.working = input.readBoolean();
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
 		tank.writePacketData(output);
+		output.writeInt(time);
+		output.writeInt(timeMax);
+		output.writeBoolean(working);
 	}
 	
 	@Override
@@ -123,7 +133,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return true;
+		return false;
 	}
 
 	@Override

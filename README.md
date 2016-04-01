@@ -13,7 +13,8 @@ FrogCraft is an add-on Mod (i.e. add-on, plugin, modification on Minecraft) for 
 Although the author said that he won't continue on FrogCraft due to the fact that GregTech now has implemented lots of his ideas, I still decided to carry this torch, because I remember how much happiness it has brought to me, and also many players I probably don't know.  
 What you see right now is FrogCraft: Rebirth (under `1710port` branch), *not FrogCraft 2* (for more info please see below). However, part of these codes are prepared for the FrogCraft 2.  
 
-FrogCraft will insist on IC2's EU API. Unless there is a proper substitution in 1.8+, FrogCraft will be unlikely to update to 1.8.
+FrogCraft will insist on being an IC2 addon. 
+Regarding to 1.8/1.9: depends. EU is dropped but the key is that a mod shall have *soul*.
 
 #### TODO List
 * Block:

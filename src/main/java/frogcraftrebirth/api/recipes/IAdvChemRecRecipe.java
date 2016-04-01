@@ -25,6 +25,14 @@ public interface IAdvChemRecRecipe {
 	
 	int getEnergyRate();
 	
+	default int getRequiredCellAmount() {
+		return 0;
+	}
+	
+	default int getProducedCellAmount() {
+		return 0;
+	}
+	
 	default boolean equals(IAdvChemRecRecipe rec) {
 		if (rec.getInputs().equals(getInputs()))
 			return true;

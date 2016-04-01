@@ -5,10 +5,10 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
-import frogcraftrebirth.common.tile.TileInductionalCompressor;
+/*import frogcraftrebirth.common.tile.TileInductionalCompressor;
 import frogcraftrebirth.common.tile.TileInductionalEFurnace;
 import frogcraftrebirth.common.tile.TileInductionalExtractor;
-import frogcraftrebirth.common.tile.TileInductionalMacerator;
+import frogcraftrebirth.common.tile.TileInductionalMacerator;*/
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
@@ -26,7 +26,7 @@ public class BlockInductionMachine extends BlockFrogContainer {
 	
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch(meta) {
+		/*switch(meta) {
 			case 0:
 				return new TileInductionalEFurnace();
 			case 1:
@@ -35,9 +35,9 @@ public class BlockInductionMachine extends BlockFrogContainer {
 				return new TileInductionalExtractor();
 			case 3:
 				return new TileInductionalCompressor();
-			default:
+			default:*/
 				return null;
-		}
+		//}
 	}
 	
 	@SideOnly(Side.CLIENT)

@@ -2,7 +2,6 @@ package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
-import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
@@ -19,6 +18,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean structureCompleted = false, craftingFinished = false;
 	public int tick;
+	private CondenseTowerRecipe recipe;
 	
 	public TileCondenseTower() {
 		super(2, "TileCondenseTower", 2, 10000);
@@ -49,9 +49,11 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		if (!structureCompleted) {
 			if (!checkStructure())
 				return;
+			else
+				structureCompleted = true;
 		}
 		
-		CondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
 		
 		if (recipe != null && !craftingFinished) {
 			if (tick == 0) {
@@ -65,7 +67,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 			for (int i=3;i<=6;i++) {
 				for (FluidStack fluid : outputs) {
 					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid())) {
-						((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).drain(ForgeDirection.UNKNOWN, fluid, true);
+						((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).fill(ForgeDirection.UNKNOWN, fluid, true);
 					}
 				}
 			}
@@ -126,7 +128,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 
 	@Override
 	public boolean canFill(ForgeDirection from, Fluid fluid) {
-		return fluid == FrogFluids.liquidAir;
+		return true;
 	}
 
 	@Override
@@ -137,9 +139,5 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
-	}
-
-	public FluidTankInfo[] getTankInfo() {
-		return this.getTankInfo(ForgeDirection.UNKNOWN);
 	}
 }

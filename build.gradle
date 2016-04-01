@@ -41,8 +41,8 @@ repositories {
 apply plugin: 'forge'
 apply plugin: 'maven'
 
-version = "0.3 Beta"
-group= "frogcraftrebirth"
+version = "0.4.0.0 Beta"
+group = "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
 sourceCompatibility = 1.8
@@ -56,8 +56,10 @@ minecraft {
 sourceSets {
     main {
         java {
-            srcDir 'src/api'
             srcDir 'ChemLab/src'
+        }
+        resources {
+            srcDir "src/main/resources"
         }
     }
 }
@@ -72,10 +74,7 @@ dependencies {
     compile 'Azanor:Thaumcraft:4.2.3.5:deobf@jar'
 }
 
-processResources
-{
-    include 'ChemLab/src'
-
+processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version
 

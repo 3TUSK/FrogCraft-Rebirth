@@ -52,8 +52,16 @@ public class BlockFrogOre extends BlockFrog {
 	}
 
 	@Override
-	public int quantityDropped(Random rand) {
-		return 1;
+	public int quantityDropped(int meta, int fortune, Random rand) {
+		if (meta >= 6)
+			return 1;
+		
+		int i = 1;
+		for (int n = 0; n < fortune; n++) {
+			if (rand.nextInt(3) == 1)
+				++i;
+		}
+		return i;
 	}
 
 	@SideOnly(Side.CLIENT)

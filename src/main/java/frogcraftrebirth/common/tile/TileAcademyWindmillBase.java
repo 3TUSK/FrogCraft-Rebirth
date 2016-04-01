@@ -58,6 +58,7 @@ public class TileAcademyWindmillBase extends TileFrogGenerator {
 		super.writePacketData(output);
 		output.writeBoolean(this.canGenEnergy);
 	}
+	
 	@Override
 	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
 		return direction == ForgeDirection.DOWN;

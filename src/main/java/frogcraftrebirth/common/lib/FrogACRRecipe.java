@@ -21,13 +21,16 @@ public class FrogACRRecipe implements IAdvChemRecRecipe {
 	private Collection<OreStack> inputs, outputs;
 	private Map<String, Double> validCatalyst;
 	private int time, energyPerTick;
+	private int cellReq, cellProduce;
 	
-	public FrogACRRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, Map<String, Double> catalyst, int time, int energy) {
+	public FrogACRRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, Map<String, Double> catalyst, int time, int energy, int cellReq, int cellProduce) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
 		this.time = time;
 		this.energyPerTick = energy;
+		this.cellReq = cellReq;
+		this.cellProduce = cellProduce;
 	}
 	
 	@Override
@@ -57,6 +60,16 @@ public class FrogACRRecipe implements IAdvChemRecRecipe {
 	@Override
 	public int getEnergyRate() {
 		return energyPerTick;
+	}
+	
+	@Override
+	public int getRequiredCellAmount() {
+		return this.cellReq;
+	}
+	
+	@Override
+	public int getProducedCellAmount() {
+		return this.cellProduce;
 	}
 
 }

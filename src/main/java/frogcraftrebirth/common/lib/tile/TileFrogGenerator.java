@@ -64,7 +64,6 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	@Override
 	public void drawEnergy(double amount) {
 		this.charge -= amount;
-		this.charge = charge < 0 ? 0 : charge;
 	}
 
 	@Override

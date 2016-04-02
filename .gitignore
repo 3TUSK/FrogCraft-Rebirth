@@ -18,3 +18,7 @@ xcfStuff
 *.doc
 *.rar
 *.log
+
+# Because unknown reason I have to add this
+GregTech.cfg
+GregTech.lang

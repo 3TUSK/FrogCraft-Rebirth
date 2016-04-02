@@ -1,12 +1,15 @@
 package frogcraftrebirth.common.registry;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.BlockNitricAcid;
 import ic2.api.item.IC2Items;
+import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -15,7 +18,6 @@ import net.minecraftforge.fluids.FluidRegistry;
 public class RegFluid {
 	
 	public static void init() {
-		//TODO Add missing fluid info. Basically according to wikipedia.
 		FrogFluids.ammonia = new Fluid("ammonia")
 				.setDensity(694).setRarity(EnumRarity.epic).setGaseous(true);
 		FrogFluids.argon = new Fluid("argon")
@@ -78,7 +80,8 @@ public class RegFluid {
 		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
 		GameRegistry.registerBlock(FrogBlocks.fluidNitricAcid, "nitricAcid");
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
-		
+		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid").setUnlocalizedName("bucketNitricAcid");
+		FluidContainerRegistry.registerFluidContainer(FrogFluids.nitricAcid, new ItemStack(FrogItems.bucketNitricAcid, 1), new ItemStack(Items.bucket, 1));
 	}
 	
 	static void regFluid(Fluid fluid) {

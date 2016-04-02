@@ -26,7 +26,7 @@ public final class FrogFuelHandler implements IFuelHandler{
 	public int getBurnTime(ItemStack fuel) {
 		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
 			if (fuel.isItemEqual(entry.getKey()))
-				return fuelMap.get(entry.getValue().intValue());
+				return entry.getValue().intValue();
 		}
 		return 0;
 	}

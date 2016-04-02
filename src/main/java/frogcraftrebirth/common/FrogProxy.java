@@ -141,8 +141,8 @@ public class FrogProxy implements IGuiHandler {
 			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
 		} catch (Exception e) {}
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
-		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
+		RegFrogItemsBlocks.preInit();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 		//RegFrogAchievements.init();

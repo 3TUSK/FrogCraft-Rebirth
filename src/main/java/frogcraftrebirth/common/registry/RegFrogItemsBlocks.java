@@ -12,7 +12,6 @@ import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemBucket;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -75,7 +74,6 @@ public class RegFrogItemsBlocks {
 			
 		}.setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1);
 		FrogItems.jinkela = new ItemJinkela();
-		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid").setUnlocalizedName("bucketNitricAcid");
 		
 		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");

@@ -1,10 +1,14 @@
 package frogcraftrebirth.common.tile;
 
+import com.mojang.authlib.GameProfile;
+
+import frogcraftrebirth.api.tile.IMobilePowerStation;
+import frogcraftrebirth.api.tile.IPersonal;
 import frogcraftrebirth.common.lib.tile.TileFrogInventory;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
-
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -12,7 +16,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileMobilePowerStation extends TileFrogInventory implements IEnergySource {
+public class TileMobilePowerStation extends TileFrogInventory implements IEnergySource, IMobilePowerStation {
 	
 	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
 	public ItemStack[] inv;
@@ -23,7 +27,7 @@ public class TileMobilePowerStation extends TileFrogInventory implements IEnergy
 
 	public TileMobilePowerStation() {
 		super(12, "TileEntityMPS");
-		this.inv = new ItemStack[12]; //Will get a increase upon 10 more, due to the further usage extension.
+		//Will get a increase upon 10 more, due to the further usage extension.
 	}
 	
 	@Override
@@ -101,6 +105,36 @@ public class TileMobilePowerStation extends TileFrogInventory implements IEnergy
 	@Override
 	public int getSourceTier() {
 		return 1; //LV is 32EU/t.
+	}
+
+	@Override
+	public GameProfile getOwnerProfile() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getOwnerName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public IPersonal setOwnerProfile(GameProfile profile) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean match(GameProfile beingChecked) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public String getWaringInfo(EntityPlayer player) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

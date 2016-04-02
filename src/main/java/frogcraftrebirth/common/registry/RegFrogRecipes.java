@@ -1,5 +1,6 @@
 package frogcraftrebirth.common.registry;
 
+import cpw.mods.fml.common.Loader;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
 import frogcraftrebirth.common.FrogFluids;
@@ -14,6 +15,15 @@ public class RegFrogRecipes {
 	public static void init() {
 		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Items.coal), new ItemStack(FrogItems.itemIngot, 1, 7), new FluidStack(FrogFluids.coalTar, 50), 100));
 		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.cobblestone), new ItemStack(FrogItems.itemDust, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100));
+	
+		if (Loader.isModLoaded("gregtech")) {
+			gregtechRecipe();
+		} else if (Loader.isModLoaded("")) {
+			ic2classicRecipe();
+		} else {
+			defaultRecipe();
+		}
+	
 	}
 	
 	public static void postInit() {

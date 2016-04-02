@@ -2,7 +2,7 @@ package frogcraftrebirth.client.gui;
 
 import org.lwjgl.opengl.GL11;
 
-import frogcraftrebirth.common.gui.ContainerIndustrialDevice;
+import frogcraftrebirth.common.gui.ContainerInductionalDevice;
 import frogcraftrebirth.common.tile.TileFrogInductionalDevice;
 import frogcraftrebirth.common.tile.TileInductionalCompressor;
 import frogcraftrebirth.common.tile.TileInductionalEFurnace;
@@ -13,12 +13,12 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
 
-public class GuiIndustrialDevice extends GuiContainer {
+public class GuiInductionalDevice extends GuiContainer {
 
 	public TileFrogInductionalDevice tile;
 
-	public GuiIndustrialDevice(InventoryPlayer invPlayer, TileFrogInductionalDevice tileEntity) {
-		super(new ContainerIndustrialDevice(invPlayer, tileEntity));
+	public GuiInductionalDevice(InventoryPlayer invPlayer, TileFrogInductionalDevice tileEntity) {
+		super(new ContainerInductionalDevice(invPlayer, tileEntity));
 		this.tile = tileEntity;
 	}
 

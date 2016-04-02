@@ -73,9 +73,9 @@ public class RegFrogItemsBlocks {
 				return java.util.Arrays.asList("Unimplement yet");
 			}
 			
-		};
+		}.setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1);
 		FrogItems.jinkela = new ItemJinkela();
-		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid");
+		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid").setUnlocalizedName("bucketNitricAcid");
 		
 		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");
@@ -89,6 +89,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.itemReactionModule, "frogModule");
 		GameRegistry.registerItem(FrogItems.acwinmillFan, "academyWindmillFan");
 		GameRegistry.registerItem(FrogItems.railgun, "railgun");
+		GameRegistry.registerItem(FrogItems.railgunRail, "railgunRail");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
 		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
 	}

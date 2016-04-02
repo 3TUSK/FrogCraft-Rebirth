@@ -1,6 +1,6 @@
 package frogcraftrebirth.common.tile;
 
-import static frogcraftrebirth.api.FrogFuelHandler.FUEL_REG;
+import static frogcraftrebirth.api.FrogAPI.FUEL_REG;
 import static net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime;
 
 import java.io.DataInputStream;

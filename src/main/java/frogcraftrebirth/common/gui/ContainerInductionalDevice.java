@@ -9,9 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.ICrafting;
 
-public class ContainerIndustrialDevice extends ContainerTileFrog<TileFrogInductionalDevice> {
+public class ContainerInductionalDevice extends ContainerTileFrog<TileFrogInductionalDevice> {
 	
-	public ContainerIndustrialDevice(InventoryPlayer playerInv, TileFrogInductionalDevice tile) {
+	public ContainerInductionalDevice(InventoryPlayer playerInv, TileFrogInductionalDevice tile) {
 		super(playerInv, tile);
         this.registerPlayerInventory(playerInv);
 	}

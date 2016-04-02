@@ -1,16 +1,17 @@
 package frogcraftrebirth.common;
 
-import static frogcraftrebirth.api.FrogFuelHandler.FUEL_REG;
-
 import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Map.Entry;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.impl.chemlab.ElementLoader;
@@ -23,8 +24,9 @@ import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
-import frogcraftrebirth.client.gui.GuiIndustrialDevice;
+import frogcraftrebirth.client.gui.GuiInductionalDevice;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
+import frogcraftrebirth.common.compat.gregtech.CompatGregTech;
 import frogcraftrebirth.common.entity.EntityRailgunCoin;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerAirPump;
@@ -32,7 +34,7 @@ import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
-//import frogcraftrebirth.common.gui.ContainerIndustrialDevice;
+//import frogcraftrebirth.common.gui.ContainerInductionalDevice;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.registry.RegFluid;
 //import frogcraftrebirth.common.registry.RegFrogAchievements;
@@ -101,7 +103,7 @@ public class FrogProxy implements IGuiHandler {
 		switch (ID) {
 			case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)
-					return new GuiIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
+					return new GuiInductionalDevice(player.inventory, (TileFrogInductionalDevice)aTile);
 			}
 			case 1: {
 				if (aTile instanceof TileHSU)
@@ -138,12 +140,13 @@ public class FrogProxy implements IGuiHandler {
 		try {
 			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
 		} catch (Exception e) {}
-		GameRegistry.registerFuelHandler(FUEL_REG);
+		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 		//RegFrogAchievements.init();
+		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
 	}
 
 	public void init(FMLInitializationEvent event) {
@@ -152,8 +155,11 @@ public class FrogProxy implements IGuiHandler {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
-		for (ICompatModuleFrog module : ICompatModuleFrog.compats.values()) {
-			module.init();
+		for (Entry<String, ICompatModuleFrog> module : FrogAPI.compats.entrySet()) {
+			if (Loader.isModLoaded(module.getKey()))
+				module.getValue().init();
+			else
+				FrogCraftRebirth.FROG_LOG.info("The compat module '" + module.getKey() + "' is not loaded because the mod is not present. It may be a typo, but who knows?");
 		}
 	}
 

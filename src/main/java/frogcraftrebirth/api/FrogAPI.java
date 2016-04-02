@@ -1,38 +1,31 @@
 package frogcraftrebirth.api;
 
 import java.lang.reflect.Field;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Nonnull;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.lib.FrogRef;
+import gregtech.api.util.GT_Recipe;
 import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public class FrogAPI {
-	/*
-	 * FrogCraft (2013-) is a Minecraft Mod authored by Rikka.<br>
-	 * Credits to Rikka for original code and M3gaFrank (original
-	 * author of ExtraCell) for porting to 1.6.4.<br> FrogCraftRebirth 
-	 * is a Minecraft Mod, porting 1.6.2 FrogCraft to 1.7.10, authored 
-	 * by 3TUSK.<br> Code are based on original code, may adjusted in 
-	 * order to improve player performance.
-	 * <p>
-	 * This mod is my response to asie's Cult of Kitteh since 11:15 PM,
-	 * Aug 31st, EST, 2015. As response, the resurrection of FrogCraft is 
-	 * aiming to reduce the implements of graphic user interface (known 
-	 * for GUI) in order to let players focus on designing a real, useful, 
-	 * effective chemical plant inside of my limitation.
-	 */
+public final class FrogAPI {
+
+	//Why you want an instance of this?
+	private FrogAPI() {}
 	
 	// ROT_OFFSET_N_4 stands for "Rotation offset with 4 faces and north-toward by default
 	public static final int[][] ROT_OFFSET_N_4 = 
@@ -51,9 +44,13 @@ public class FrogAPI {
 				{}
 		};
 	
-	public static final String MODID = FrogRef.MODID, NAME = FrogRef.NAME;
+	public static final String 
+		MODID = FrogRef.MODID, 
+		NAME = FrogRef.NAME,
+		API = "FrogAPI", 
+		API_VER = "0.2";
 	
-	public static final String API = "FrogAPI", API_VER = "0.2";
+	public static List<Element> elementsList;
 	
 	@Nonnull
 	public static CreativeTabs frogTab;
@@ -62,10 +59,34 @@ public class FrogAPI {
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 	
-	public static List<Element> elementsList;
+	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
-	//Plan: This method need document
-	public static ItemStack findFrogStuff(String name, int damage) {
+	public static final Map<String, ICompatModuleFrog> compats = new HashMap<String, ICompatModuleFrog>();
+	
+	//Yes this is unfinished, and will be finished soon.
+	public static GT_Recipe.GT_Recipe_Map sImplosionRecipes_No_ITNT_Version;
+	
+	/**
+	 * @param modid
+	 * @param module instance of compat module
+	 * @return true if successfully added
+	 */
+	public static boolean registerFrogCompatModule(String modid, ICompatModuleFrog module) {
+		if (compats.containsKey(modid)) {
+			FrogCraftRebirth.FROG_LOG.error("The following compat module id has been occupied: " + modid);
+			return false;
+		}
+		
+		compats.put(modid, module);
+		return true;
+	}
+	
+	/**
+	 * @param name internal name. 
+	 * @param damage
+	 * @return Your itemstack with amount of 1
+	 */
+	public static ItemStack findFrogItem(String name, int damage) {
 		Field stuff;
 		
 		try {
@@ -79,5 +100,9 @@ public class FrogAPI {
 		} catch (Exception e) {}
 		
 		return null;
+	}
+	
+	public static void loadNoITNTImplosionRecipe() {
+		//TODO
 	}
 }

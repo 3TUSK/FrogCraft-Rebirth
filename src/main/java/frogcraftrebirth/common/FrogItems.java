@@ -1,6 +1,7 @@
 package frogcraftrebirth.common;
 
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class FrogItems {
 	
@@ -25,5 +26,7 @@ public class FrogItems {
 	public static Item jinkela;
 	
 	public static Item bucketNitricAcid;
+	
+	public static ItemStack pneumaticCompressor;
 
 }

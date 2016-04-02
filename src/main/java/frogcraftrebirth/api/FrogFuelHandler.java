@@ -2,6 +2,7 @@ package frogcraftrebirth.api;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 
@@ -19,31 +20,29 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public final class FrogFuelHandler implements IFuelHandler{
 	
-	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
-
-	private FrogFuelHandler() {}
+	FrogFuelHandler() {}
 	
 	@Override
 	public int getBurnTime(ItemStack fuel) {
-		for (ItemStack stack : fuelMap.keySet()) {
-			if (stack.isItemEqual(fuel))
-				return fuelMap.get(stack);
+		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
+			if (fuel.isItemEqual(entry.getKey()))
+				return fuelMap.get(entry.getValue().intValue());
 		}
 		return 0;
 	}
 	
 	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {
-		for (ItemStack stack : fuel2FluidMap.keySet()) {
-			if (stack.isItemEqual(aStack))
-				return fuel2FluidMap.get(stack);
+		for (Entry<ItemStack, FluidStack> entry : fuel2FluidMap.entrySet()) {
+			if (aStack.isItemEqual(entry.getKey()))
+				return entry.getValue();
 		}
 		return null;
 	}
 	
 	public ItemStack getItemByproduct(@Nonnull ItemStack aStack) {
-		for (ItemStack stack : fuel2FluidMap.keySet()) {
-			if (stack.isItemEqual(aStack))
-				return fuel2ByproductMap.get(stack);
+		for (Entry<ItemStack, ItemStack> entry : fuel2ByproductMap.entrySet()) {
+			if (aStack.isItemEqual(entry.getKey()))
+				return entry.getValue();
 		}
 		return null;
 	}

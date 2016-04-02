@@ -20,9 +20,10 @@ public class CompatGregTech implements ICompatModuleFrog {
 		GT_ModHandler.RecipeBits.NOT_REMOVABLE | 
 		GT_ModHandler.RecipeBits.REVERSIBLE | 
 		GT_ModHandler.RecipeBits.BUFFERED, 
-		new Object[] {"OOO", "CMC", "WCW", 
+		new Object[] {"OOO", "PMP", "WCW", 
 				Character.valueOf('M'), ItemList.Casing_StableTitanium, 
-				Character.valueOf('O'), OrePrefixes.stone.get(Materials.Obsidian), 
+				Character.valueOf('O'), OrePrefixes.stone.get(Materials.GraniteBlack), 
+				Character.valueOf('P'), ItemList.Electric_Pump_MV,
 				Character.valueOf('C'), OrePrefixes.circuit.get(Materials.Advanced), 
 				Character.valueOf('W'), OrePrefixes.cableGt01.get(Materials.Electrum)});
 		

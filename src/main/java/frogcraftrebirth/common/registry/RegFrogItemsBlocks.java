@@ -33,6 +33,7 @@ public class RegFrogItemsBlocks {
 	
 	static void initBlocks() {
 		FrogBlocks.frogOres = new BlockFrogOre();
+		FrogBlocks.tiberium = new BlockTiberium();
 		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
@@ -42,6 +43,7 @@ public class RegFrogItemsBlocks {
 		//FrogBlocks.mobilePowerStation = new BlockMPS();
 		
 		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "oreFrog");
+		GameRegistry.registerBlock(FrogBlocks.tiberium, ItemFrogBlock.class, "tiberiumCrystal");
 		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.generators, ItemFrogBlock.class, "generator");
 		GameRegistry.registerBlock(FrogBlocks.machines, ItemFrogBlock.class, "machines");
@@ -74,6 +76,7 @@ public class RegFrogItemsBlocks {
 			
 		}.setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1);
 		FrogItems.jinkela = new ItemJinkela();
+		FrogItems.tiberium = new ItemTiberium();
 		
 		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");
@@ -89,6 +92,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.railgun, "railgun");
 		GameRegistry.registerItem(FrogItems.railgunRail, "railgunRail");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
+		GameRegistry.registerItem(FrogItems.tiberium, "tiberium");
 	}
 	
 	static void initOreDict() {

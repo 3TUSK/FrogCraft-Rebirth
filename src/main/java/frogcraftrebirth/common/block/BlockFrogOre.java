@@ -4,7 +4,6 @@ import java.util.Random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -22,8 +21,7 @@ public class BlockFrogOre extends BlockFrog {
 		setBlockName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);
-		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH",
-				"oreRuby", "oreSapphire", "oreGreenSapphire");
+		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH");
 		this.iconArraySingle = new IIcon[this.nameArray.length];
 	}
 	
@@ -33,35 +31,28 @@ public class BlockFrogOre extends BlockFrog {
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		switch (world.getBlockMetadata(x, y, z)) {
-		case 0:
-		case 1:
-		case 2:
-		case 3:
-		case 4:
-			return 3.0F;
-		case 5:
+		if (world.getBlockMetadata(x, y, z) == 5)
 			return 1.0F;
-		default:
-			return super.getBlockHardness(world, x, y, z);
-		}
+		else
+			return 3.0F;
 	}
 	
 	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return meta >= 6 ? FrogItems.itemIngot : Item.getItemFromBlock(this);
+		return Item.getItemFromBlock(this);
 	}
 
 	@Override
 	public int quantityDropped(int meta, int fortune, Random rand) {
-		if (meta >= 6)
-			return 1;
-		
-		int i = 1;
-		for (int n = 0; n < fortune; n++) {
+		if (meta ==5) {
+			int i = 1;
+			for (int n = 0; n < fortune; n++) {
 			if (rand.nextInt(3) == 1)
 				++i;
+			}
+			return i;
 		}
-		return i;
+		
+		return 1;
 	}
 
 	@SideOnly(Side.CLIENT)

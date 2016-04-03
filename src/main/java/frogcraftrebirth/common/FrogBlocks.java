@@ -14,6 +14,7 @@ public class FrogBlocks {
 	public static Block inductionalMachines;
 
 	public static Block frogOres;
+	public static Block tiberium;
 	
 	public static Block fluidNitricAcid;
 

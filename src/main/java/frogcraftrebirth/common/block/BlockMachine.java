@@ -7,6 +7,7 @@ import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
+import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -22,11 +23,11 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockFrogContainer {
 
 	public BlockMachine() {
-		super(Material.iron, 2);
+		super(Material.iron, 3);
 		setBlockName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
-		setSubNameArray("AdvChemReactor", "AirPump", "Pyrolyzer");
+		setSubNameArray("AdvChemReactor", "AirPump", "Pyrolyzer", "Liquifier");
 	}
 	
 	@Override
@@ -63,6 +64,8 @@ public class BlockMachine extends BlockFrogContainer {
 				return new TileAirPump();
 			case 2:
 				return new TilePyrolyzer();
+			case 3:
+				return new TileLiquifier();
 			default:
 				return null;
 		}
@@ -96,5 +99,12 @@ public class BlockMachine extends BlockFrogContainer {
 		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Front");
 		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
 		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
+		
+		iconArray[3][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
+		iconArray[3][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
+		iconArray[3][2] = r.registerIcon(TEXTURE_MAIN + "Liquifier_Back");
+		iconArray[3][3] = r.registerIcon(TEXTURE_MAIN + "Liquifier_Front");
+		iconArray[3][4] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
+		iconArray[3][5] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
 	}
 }

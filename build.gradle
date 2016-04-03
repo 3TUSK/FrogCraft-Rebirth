@@ -51,6 +51,8 @@ targetCompatibility = 1.8
 minecraft {
     version = "1.7.10-10.13.4.1566-1.7.10"
     runDir = "eclipse"
+
+    replace "@VERSION", project.version
 }
 
 sourceSets {

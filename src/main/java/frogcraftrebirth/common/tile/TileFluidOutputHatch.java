@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler {
+public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler, ICondenseTowerOutputHatch {
 
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 
@@ -40,12 +41,12 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 		if (FluidContainerRegistry.isEmptyContainer(inv[0]) && tick >= 20) {
 			if (inv[1] == null) {
 				inv[1] = FluidContainerRegistry.fillFluidContainer(new FluidStack(tank.getFluid(), 1000), new ItemStack(inv[0].getItem(), 1, inv[0].getItemDamage()));
-				this.drain(ForgeDirection.UNKNOWN, 1000, true);
+				this.tank.drain(1000, true);
 			}
 			if (FluidContainerRegistry.isContainer(inv[1])
 					&& FluidContainerRegistry.getFluidForFilledItem(inv[1]).isFluidEqual(inv[1])) {
 				inv[1].stackSize += 1;
-				this.drain(ForgeDirection.UNKNOWN, 1000, true);
+				this.tank.drain(1000, true);
 			}
 			tick = 0;
 		}
@@ -111,6 +112,17 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 
 	public FluidTankInfo[] getTankInfo() {
 		return this.getTankInfo(ForgeDirection.UNKNOWN);
+	}
+
+	@Override
+	public boolean canInject(FluidStack stack) {
+		return stack != null ? this.canFill(ForgeDirection.UNKNOWN, stack.getFluid()) : false;
+		//How can one fill within non-existed fluid?
+	}
+
+	@Override
+	public void inject(FluidStack stack, boolean simluated) {
+		this.tank.fill(stack, simluated);
 	}
 
 }

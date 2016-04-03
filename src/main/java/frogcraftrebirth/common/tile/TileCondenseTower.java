@@ -1,12 +1,16 @@
 package frogcraftrebirth.common.tile;
 
+import java.util.ArrayList;
+
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
-import frogcraftrebirth.common.block.BlockCondenseTower;
+import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
+import frogcraftrebirth.api.tile.ICondenseTowerStructure;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -16,9 +20,11 @@ import net.minecraftforge.fluids.IFluidHandler;
 public class TileCondenseTower extends TileFrogMachine implements IFluidHandler {
 	
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
-	private boolean structureCompleted = false, craftingFinished = false;
+	private boolean structureCompleted = false;
 	public int tick;
 	private CondenseTowerRecipe recipe;
+	private ArrayList<ICondenseTowerOutputHatch> outputs = new ArrayList<ICondenseTowerOutputHatch>();
+	private ArrayList<ICondenseTowerStructure> structures = new ArrayList<ICondenseTowerStructure>();
 	
 	public TileCondenseTower() {
 		super(2, "TileCondenseTower", 2, 10000);
@@ -26,14 +32,16 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	}
 	
 	private boolean checkStructure() {
-		for (int i=1;i<7;i++) {
-			if (i == 1 || i == 2) {
-				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 1))
-					return false;
-			} else {
-				if (!(worldObj.getBlock(xCoord, yCoord+i, zCoord) instanceof BlockCondenseTower) && !(worldObj.getBlockMetadata(xCoord, yCoord+i, zCoord) == 2))
-					return false;
-			}
+		for (int i = 1; i < 7; i++) {
+			TileEntity tile = worldObj.getTileEntity(xCoord, yCoord + i, zCoord);
+			if (i < 3 && tile instanceof ICondenseTowerStructure) {
+				this.registerSturcture((ICondenseTowerStructure)tile);
+				continue;
+			} else if (tile instanceof ICondenseTowerOutputHatch) {
+				this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
+				continue;
+			} else
+				return false;
 		}
 		return true;
 	}
@@ -43,38 +51,65 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	}
 	
 	public void updateEntity() {
+		if (worldObj.isRemote) 
+			return;
+		
 		super.updateEntity();
-		if (worldObj.isRemote) return;
 		
 		if (!structureCompleted) {
-			if (!checkStructure())
+			if (!checkStructure()) {
+				this.outputs.clear();
+				this.structures.clear();
 				return;
+			}
 			else
 				structureCompleted = true;
 		}
 		
-		recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		if (recipe == null)
+			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
 		
-		if (recipe != null && !craftingFinished) {
-			if (tick == 0) {
-				this.drain(ForgeDirection.UNKNOWN, recipe.getInput().amount, true);
-				this.tick = recipe.getTime();
-			}
-			tick--;
-			charge -= 500;
-		} else if (craftingFinished){
+		if (checkRecipe(this.recipe)) {
+			this.tank.drain(recipe.getInput().amount, !worldObj.isRemote);
+			this.tick = recipe.getTime();
+		} else 
+			return;
+		
+		--tick;
+		charge -= 500;
+		
+		if (tick <= 0) { 
+			// Theoretically tick cannot less than 0, but this is prevent bad things happening
 			java.util.Set<FluidStack> outputs = recipe.getOutput();
-			for (int i=3;i<=6;i++) {
-				for (FluidStack fluid : outputs) {
-					if (((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).canDrain(ForgeDirection.UNKNOWN, fluid.getFluid())) {
-						((TileFluidOutputHatch)worldObj.getTileEntity(xCoord, yCoord+i, zCoord)).fill(ForgeDirection.UNKNOWN, fluid, true);
+			for (FluidStack fluid : outputs) {
+				for (ICondenseTowerOutputHatch output : this.outputs) {
+					if (output.canInject(fluid)) {
+						output.inject(fluid, !worldObj.isRemote);
+						break;
 					}
 				}
 			}
+			this.tick = 0;
+			this.recipe = null;
 		}
 		
 		this.markDirty();
 		this.sendTileUpdatePacket(this);
+	}
+
+	private boolean checkRecipe(CondenseTowerRecipe aRecipe) {
+		for (FluidStack fluid : aRecipe.getOutput()) {
+			boolean checkPass = false;
+			for (ICondenseTowerOutputHatch output : outputs) {
+				if (output.canInject(fluid)) {
+					checkPass = true;
+					break;
+				}
+			}
+			if (!checkPass)
+				return false;
+		}
+		return true;
 	}
 
 	public void readFromNBT(NBTTagCompound tag) {
@@ -139,5 +174,13 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	@Override
 	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
+	}
+	
+	public boolean registerOutputHatch(ICondenseTowerOutputHatch output) {
+		return output != null ? outputs.add(output) : false;
+	}
+	
+	public boolean registerSturcture(ICondenseTowerStructure structure) {
+		return structure != null ? structures.add(structure) : false;
 	}
 }

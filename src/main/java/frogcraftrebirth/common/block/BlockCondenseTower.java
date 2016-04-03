@@ -6,6 +6,7 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
+import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -28,6 +29,8 @@ public class BlockCondenseTower extends BlockFrogContainer {
 		switch (meta) {
 		case 0:
 			return new TileCondenseTower();
+		case 1:
+			return new TileCondenseTowerStructure();
 		case 2:
 			return new TileFluidOutputHatch();
 		}

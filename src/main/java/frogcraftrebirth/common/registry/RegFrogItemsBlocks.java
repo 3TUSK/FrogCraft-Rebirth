@@ -89,7 +89,6 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.railgun, "railgun");
 		GameRegistry.registerItem(FrogItems.railgunRail, "railgunRail");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
-		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
 	}
 	
 	static void initOreDict() {

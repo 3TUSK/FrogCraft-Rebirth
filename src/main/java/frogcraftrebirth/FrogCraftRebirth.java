@@ -90,7 +90,12 @@ public class FrogCraftRebirth {
 					String machine = message.getNBTValue().getString("machine").toLowerCase(Locale.ENGLISH);
 					switch (machine) {
 					case ("pyrolyzer"):
-						//do what
+						break;
+					case ("advchemreactor"):
+						break;
+					case ("condensetower"):
+						break;
+					case ("liquidier"):
 						break;
 					default:
 						break;

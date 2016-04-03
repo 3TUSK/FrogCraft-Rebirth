@@ -81,6 +81,7 @@ public class RegFluid {
 		GameRegistry.registerBlock(FrogBlocks.fluidNitricAcid, "nitricAcid");
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
 		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid").setUnlocalizedName("bucketNitricAcid");
+		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
 		FluidContainerRegistry.registerFluidContainer(FrogFluids.nitricAcid, new ItemStack(FrogItems.bucketNitricAcid, 1), new ItemStack(Items.bucket, 1));
 	}
 	

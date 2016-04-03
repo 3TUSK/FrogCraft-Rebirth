@@ -9,10 +9,7 @@ import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
-/**
- * ACWindmill stands for "Academy Windmill", the major generator 
- * in the story settings of animation A Certain Scientific Railgun.
- * */
+
 public class BlockACWindmill extends BlockFrogContainer {
 	
 	public BlockACWindmill() {

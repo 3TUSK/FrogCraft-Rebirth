@@ -8,13 +8,9 @@ import java.util.Map;
 import javax.annotation.Nonnull;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
-import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
-import frogcraftrebirth.common.FrogBlocks;
-import frogcraftrebirth.common.FrogItems;
-import frogcraftrebirth.common.lib.FrogRef;
 import gregtech.api.util.GT_Recipe;
 import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;
@@ -45,8 +41,8 @@ public final class FrogAPI {
 		};
 	
 	public static final String 
-		MODID = FrogRef.MODID, 
-		NAME = FrogRef.NAME,
+		MODID = "FrogCraftRebirth",
+		NAME = "FrogCraft: Rebirth",
 		API = "FrogAPI", 
 		API_VER = "0.2";
 	
@@ -73,7 +69,7 @@ public final class FrogAPI {
 	 */
 	public static boolean registerFrogCompatModule(String modid, ICompatModuleFrog module) {
 		if (compats.containsKey(modid)) {
-			FrogCraftRebirth.FROG_LOG.error("The following compat module id has been occupied: " + modid);
+			/*FrogCraftRebirth.FROG_LOG.error("The following compat module id has been occupied: " + modid);*/
 			return false;
 		}
 		
@@ -90,19 +86,16 @@ public final class FrogAPI {
 		Field stuff;
 		
 		try {
-			stuff = FrogItems.class.getField(name);
-			return new ItemStack((Item)stuff.get(Item.class), 1, damage);
+			stuff = Class.forName("frogcraftrebirth.common.FrogItems").getField(name);
+			return new ItemStack((Item)stuff.get(null), 1, damage);
 		} catch (Exception e) {}
 		
 		try {
-			stuff = FrogBlocks.class.getField(name);
-			return new ItemStack((Block)stuff.get(Block.class), 1, damage);
+			stuff = Class.forName("frogcraftrebirth.common.FrogBlocks").getField(name);
+			return new ItemStack((Block)stuff.get(null), 1, damage);
 		} catch (Exception e) {}
 		
 		return null;
 	}
 	
-	public static void loadNoITNTImplosionRecipe() {
-		//TODO
-	}
 }

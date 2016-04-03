@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 
-public class ItemIngot extends ItemFrogCraft{
+public class ItemIngot extends ItemFrogCraft {
 	
 	private static final String INGOT_ICON = TEXTURE_MAIN + "ingot/";
 	

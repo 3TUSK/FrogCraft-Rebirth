@@ -3,7 +3,7 @@ package frogcraftrebirth.common.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.common.Optional.Interface;
+import cpw.mods.fml.common.Optional;
 import cpw.mods.fml.common.eventhandler.Event.Result;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.Block;
@@ -16,7 +16,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import thaumcraft.api.IWarpingGear;
 
-@Interface(iface = "thaumcraft.api.IWarpingGear", modid = "thaumcraft")
+@Optional.Interface(iface = "thaumcraft.api.IWarpingGear", modid = "thaumcraft")
 public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
 
 	public ItemJinkela() {
@@ -64,6 +64,7 @@ public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
 		return list;
 	}
 
+	@Optional.Method(modid = "thaumcraft")
 	@Override
 	public int getWarp(ItemStack stack, EntityPlayer player) {
 		return stack.stackSize;

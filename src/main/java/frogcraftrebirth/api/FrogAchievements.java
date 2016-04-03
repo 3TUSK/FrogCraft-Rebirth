@@ -10,7 +10,6 @@ package frogcraftrebirth.api;
 
 import java.lang.reflect.Field;
 
-import frogcraftrebirth.common.registry.RegFrogAchievements;
 import net.minecraft.stats.Achievement;
 
 public enum FrogAchievements {
@@ -32,7 +31,7 @@ public enum FrogAchievements {
 	public Achievement get() {
 		Field achievement;
 		try {
-			achievement = RegFrogAchievements.class.getDeclaredField(this.name());
+			achievement = Class.forName("frogcraftrebirth.common.registry.RegFrogAchievements").getDeclaredField(this.name());
 			return (Achievement)achievement.get(null);
 		} catch (Exception e) {
 			return null;

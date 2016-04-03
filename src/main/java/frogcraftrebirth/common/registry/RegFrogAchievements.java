@@ -2,6 +2,7 @@ package frogcraftrebirth.common.registry;
 
 import java.util.LinkedHashMap;
 
+import cpw.mods.fml.common.Loader;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
@@ -19,7 +20,6 @@ public class RegFrogAchievements {
 		map.put("RAILGUN", RAILGUN);
 		map.put("POTASSIUM", POTASSIUM);
 		map.put("GAS_PUMP", GAS_PUMP);
-		map.put("PNEUMATIC_COMPRESSOR", PNEUMATIC_COMPRESSOR);
 		map.put("LIQUIFIER ", LIQUIFIER);
 		map.put("HSU", HSU);
 		map.put("UHSU", UHSU);
@@ -29,6 +29,9 @@ public class RegFrogAchievements {
 		map.put("CONDENSE_TOWER", CONDENSE_TOWER);
 		map.put("NITRIC_ACID", NITRIC_ACID);
 		
+		if (Loader.isModLoaded("gregtech"))
+			map.put("PNEUMATIC_COMPRESSOR", PNEUMATIC_COMPRESSOR);
+		
 		frogPage = new AchievementPage(FrogAPI.MODID, (Achievement[]) map.values().toArray());
 		AchievementPage.registerAchievementPage(frogPage);
 	}
@@ -37,7 +40,7 @@ public class RegFrogAchievements {
 	static Achievement RAILGUN = new Achievement("RAILGUN", "railgun", 0, -2, new ItemStack(FrogItems.railgun), null);
 	static Achievement POTASSIUM = new Achievement("POTASSIUM", "potassiumExplosion", -2, 0, new ItemStack(FrogItems.itemIngot, 1, 0), null);
 	static Achievement GAS_PUMP = new Achievement("GAS_PUMP", "gasPump", 2, 0, new ItemStack(FrogBlocks.machines, 1, 1), null);
-	static Achievement PNEUMATIC_COMPRESSOR = new Achievement("PNEUMATIC_COMPRESSOR", "pneumaticCompressor", 2, 2, (ItemStack)null, GAS_PUMP);
+	static Achievement PNEUMATIC_COMPRESSOR = new Achievement("PNEUMATIC_COMPRESSOR", "pneumaticCompressor", 2, 2, FrogItems.pneumaticCompressor, GAS_PUMP);
 	static Achievement LIQUIFIER = new Achievement("LIQUIFER", "liquifier", 2, -2, new ItemStack(FrogBlocks.machines), GAS_PUMP);
 	static Achievement HSU = new Achievement("HSU", "HSU", 0, 2, new ItemStack(FrogBlocks.hybridStorageUnit), EVT);
 	static Achievement UHSU = new Achievement("UHSU", "UHSU", 0, 4, new ItemStack(FrogBlocks.hybridStorageUnit, 1, 1), HSU);

@@ -64,7 +64,7 @@ public final class FrogAPI {
 	public static final Map<String, ICompatModuleFrog> compats = new HashMap<String, ICompatModuleFrog>();
 	
 	//Yes this is unfinished, and will be finished soon.
-	public static GT_Recipe.GT_Recipe_Map sImplosionRecipes_No_ITNT_Version;
+	public static GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes;
 	
 	/**
 	 * @param modid

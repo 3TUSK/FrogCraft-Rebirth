@@ -38,21 +38,6 @@ public final class ItemUtil {
 		return array;
 	}
 	
-	public static boolean stackHasEntry(ItemStack stack, String ore) {
-		if (!OreDictionary.doesOreNameExist(ore))
-			return false;
-		
-		ArrayList<String> entries = new ArrayList<String>();
-		for (int num : OreDictionary.getOreIDs(stack))
-			entries.add(OreDictionary.getOreName(num));
-		
-		return entries.contains(ore);
-	}
-	
-	public static boolean entryHasStack(ItemStack stack, String ore) {
-		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
-	}
-	
 	public static boolean stackContains(ItemStack[] targetArray, ItemStack stack, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {
 		for (ItemStack aStack : targetArray) {
 			if (oreDict) {

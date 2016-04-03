@@ -8,8 +8,10 @@
  */
 package frogcraftrebirth.api;
 
-import frogcraftrebirth.common.lib.util.ItemUtil;
+import java.util.ArrayList;
+
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class OreStack {
 	
@@ -49,7 +51,7 @@ public class OreStack {
 	}
 	
 	public boolean consumable(ItemStack stack) {
-		return ItemUtil.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
+		return OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
 	}
 	
 	public void consume(ItemStack stack) {
@@ -60,17 +62,32 @@ public class OreStack {
 	}
 	
 	public boolean stackable(ItemStack stack) {
-		return ItemUtil.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
+		return OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
 	}
 	
 	public void stack(ItemStack stack) {
 		if (stack == null) {
-			stack = ItemUtil.get1stChoiceFromOre(this.entry);
+			stack = OreDictionary.getOres(this.entry).get(0);
 			stack.stackSize = this.amount;
 			return;
 		}
 		
 		stack.stackSize += this.amount;
+	}
+
+	public static boolean stackHasEntry(ItemStack stack, String ore) {
+		if (!OreDictionary.doesOreNameExist(ore))
+			return false;
+		
+		ArrayList<String> entries = new ArrayList<String>();
+		for (int num : OreDictionary.getOreIDs(stack))
+			entries.add(OreDictionary.getOreName(num));
+		
+		return entries.contains(ore);
+	}
+
+	public static boolean entryHasStack(ItemStack stack, String ore) {
+		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
 	}
 
 }

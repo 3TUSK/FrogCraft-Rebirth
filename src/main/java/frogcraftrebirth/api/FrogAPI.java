@@ -1,11 +1,17 @@
 package frogcraftrebirth.api;
 
+import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
+
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
@@ -23,6 +29,15 @@ public final class FrogAPI {
 	//Why you want an instance of this?
 	private FrogAPI() {}
 	
+	public static final String 
+		MODID = "FrogCraftRebirth",
+		NAME = "FrogCraft: Rebirth",
+		API = "FrogAPI", 
+		API_VER = "0.2",
+		DEPENDING = "required-after:IC2;after:gregtech;after:thaumcraft;after:minetweaker3;";
+	
+	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
+	
 	// ROT_OFFSET_N_4 stands for "Rotation offset with 4 faces and north-toward by default
 	public static final int[][] ROT_OFFSET_N_4 = 
 		{
@@ -35,16 +50,10 @@ public final class FrogAPI {
 		};
 	
 	@Deprecated //to be continue
-	public static final int[][] ROTATION_OFFSET_N_6 = 
+	public static final int[][] ROT_OFFSET_N_6 = 
 		{
 				{}
 		};
-	
-	public static final String 
-		MODID = "FrogCraftRebirth",
-		NAME = "FrogCraft: Rebirth",
-		API = "FrogAPI", 
-		API_VER = "0.2";
 	
 	public static List<Element> elementsList;
 	
@@ -59,8 +68,7 @@ public final class FrogAPI {
 	
 	public static final Map<String, ICompatModuleFrog> compats = new HashMap<String, ICompatModuleFrog>();
 	
-	//Yes this is unfinished, and will be finished soon.
-	public static GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes;
+	public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, RES_PATH_GUI + "basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
 	
 	/**
 	 * @param modid

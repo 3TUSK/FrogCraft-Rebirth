@@ -6,7 +6,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import frogcraftrebirth.FrogCraftRebirth;
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.client.render.RenderEntityRailgunCoin;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogProxy;
@@ -19,7 +19,7 @@ public class FrogProxyClient extends FrogProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		FrogCraftRebirth.FROG_LOG.info("Client side pre-initialization finished");
+		FrogAPI.FROG_LOG.info("Client side pre-initialization finished");
 	}
 
 	@Override
@@ -29,13 +29,13 @@ public class FrogProxyClient extends FrogProxy {
 
 		MinecraftForge.EVENT_BUS.register(this);
 		FMLCommonHandler.instance().bus().register(this);
-		FrogCraftRebirth.FROG_LOG.info("Client side initialization finished");
+		FrogAPI.FROG_LOG.info("Client side initialization finished");
 	}
 	
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
-		FrogCraftRebirth.FROG_LOG.info("Client side post-initialization finished");
+		FrogAPI.FROG_LOG.info("Client side post-initialization finished");
 	}
  
 	@SubscribeEvent

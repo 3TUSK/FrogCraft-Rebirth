@@ -1,6 +1,6 @@
 package frogcraftrebirth.api.impl.chemlab;
 
-import static frogcraftrebirth.FrogCraftRebirth.FROG_LOG;
+import static frogcraftrebirth.api.FrogAPI.FROG_LOG;
 
 import java.io.InputStream;
 

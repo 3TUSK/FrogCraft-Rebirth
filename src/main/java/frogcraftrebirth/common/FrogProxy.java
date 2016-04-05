@@ -11,7 +11,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.IGuiHandler;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
-import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.impl.chemlab.ElementLoader;
@@ -159,7 +158,7 @@ public class FrogProxy implements IGuiHandler {
 			if (Loader.isModLoaded(module.getKey()))
 				module.getValue().init();
 			else
-				FrogCraftRebirth.FROG_LOG.info("The compat module '" + module.getKey() + "' is not loaded because the mod is not present. It may be a typo, but who knows?");
+				FrogAPI.FROG_LOG.info("The compat module '" + module.getKey() + "' is not loaded because the mod is not present. It may be a typo, but who knows?");
 		}
 	}
 

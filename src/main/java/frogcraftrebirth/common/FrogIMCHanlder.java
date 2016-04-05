@@ -8,7 +8,7 @@
  */
 package frogcraftrebirth.common;
 
-import static frogcraftrebirth.FrogCraftRebirth.FROG_LOG;
+import static frogcraftrebirth.api.FrogAPI.FROG_LOG;
 
 import java.util.Collection;
 import java.util.Locale;

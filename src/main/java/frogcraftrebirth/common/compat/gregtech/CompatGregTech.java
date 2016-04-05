@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.compat.gregtech;
 
-import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.common.FrogItems;
 import gregtech.api.enums.ItemList;
@@ -26,8 +25,6 @@ public class CompatGregTech implements ICompatModuleFrog {
 				Character.valueOf('P'), ItemList.Electric_Pump_MV,
 				Character.valueOf('C'), OrePrefixes.circuit.get(Materials.Advanced), 
 				Character.valueOf('W'), OrePrefixes.cableGt01.get(Materials.Electrum)});
-		
-		FrogCraftRebirth.FROG_LOG.debug("Loaded GregTech compat module.");
 	}
 
 }

@@ -38,8 +38,11 @@ public final class FrogAPI {
 	
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 	
-	// ROT_OFFSET_N_4 stands for "Rotation offset with 4 faces and north-toward by default
-	public static final int[][] ROT_OFFSET_N_4 = 
+	/**
+	 * Use for your own risk
+	 */
+	public static final int[][] 
+		ROT_OFFSET_N_4 = 
 		{
 				{0, 1, 2, 3, 4, 5},
 				{0, 1, 2, 3, 4, 5},
@@ -47,12 +50,15 @@ public final class FrogAPI {
 				{0, 1, 3, 2, 5, 4},
 				{0, 1, 4, 5, 3, 2},
 				{0, 1, 5, 4, 2, 3}
-		};
-	
-	@Deprecated //to be continue
-	public static final int[][] ROT_OFFSET_N_6 = 
+		},
+		ROT_OFFSET_S_6 = 
 		{
-				{}
+				{3, 2, 1, 0, 4, 5}, 
+				{2, 3, 0, 1, 4, 5},
+				{0, 1, 2, 3, 4, 5},
+				{0, 1, 3, 2, 5, 4},
+				{0, 1, 4, 5, 3, 2},
+				{0, 1, 5, 4, 2, 3}
 		};
 	
 	public static List<Element> elementsList;

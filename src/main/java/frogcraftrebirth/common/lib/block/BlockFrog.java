@@ -5,6 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,7 +41,12 @@ public abstract class BlockFrog extends Block {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return iconArray[world.getBlockMetadata(x, y, z)][side];
+		try {
+			TileFrog tile = (TileFrog)world.getTileEntity(x, y, z);
+			return iconArray[world.getBlockMetadata(x, y, z)][FrogAPI.ROT_OFFSET_S_6[tile.getFacing()][side]];
+		} catch (Exception e) {
+			return this.getIcon(side, world.getBlockMetadata(x, y, z));
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)

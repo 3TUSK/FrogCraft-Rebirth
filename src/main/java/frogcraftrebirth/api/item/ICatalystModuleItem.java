@@ -1,6 +1,6 @@
 package frogcraftrebirth.api.item;
 
-import info.tritusk.tritchemlab.matter.Molecule;
+import info.tritusk.tritchemlab.matter.micro.Molecule;
 
 /**
  * Modulized cataylst provides a flexible way to extends your advanced chemical reactor.

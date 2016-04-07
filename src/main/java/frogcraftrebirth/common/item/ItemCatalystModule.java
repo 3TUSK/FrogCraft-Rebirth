@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.item.ICatalystModuleItem;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
-import info.tritusk.tritchemlab.matter.Molecule;
+import info.tritusk.tritchemlab.matter.micro.Molecule;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

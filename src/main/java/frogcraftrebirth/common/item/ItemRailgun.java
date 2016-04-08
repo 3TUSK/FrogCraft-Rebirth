@@ -6,6 +6,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.entity.EntityRailgunCoin;
+import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
@@ -30,7 +31,6 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 			setProjectile();
 	
 	public int energyMax;
-	private boolean active;
 	
 	public ItemRailgun(int maxEnergy) {
 		super(false);
@@ -38,9 +38,8 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		setMaxStackSize(1);
 		setMaxDamage(100);
 		setNoRepair();
-		setStatus(false);
 		setTextureName(TEXTURE_MAIN + "RailGun");
-		setUnlocalizedName("ItemRailgun.name");
+		setUnlocalizedName(ConfigMain.isAcademyCraftLoaded ? "ItemMiniIonCannon.name" : "ItemRailgun.name");
 		this.energyMax = maxEnergy;
 	}
 	
@@ -77,9 +76,9 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(StatCollector.translateToLocal("item.ItemRailgun.info"));
+		list.add(StatCollector.translateToLocal(ConfigMain.isAcademyCraftLoaded ? "item.ItemMiniIonCannon.info" : "item.ItemRailgun.info"));
 		if (ElectricItem.manager.getCharge(stack) <= 100000) {
-			list.add(StatCollector.translateToLocal("item.ItemRailgun.tooTired"));
+			list.add(StatCollector.translateToLocal(ConfigMain.isAcademyCraftLoaded ? "item.ItemMiniIonCannon.coolingDown" : "item.ItemRailgun.tooTired"));
 		}
 		return list;
 	}
@@ -96,7 +95,7 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		if (stack.hasTagCompound() && !stack.stackTagCompound.hasKey("RailgunID")) {
 			NBTTagCompound info = new NBTTagCompound();
 			info.setString("OwnerUUID", player.getUniqueID().toString());
-			stack.stackTagCompound.setTag("RailgunID", info);
+			stack.stackTagCompound.setTag("railgunID", info);
 		}
 	}
 	
@@ -105,10 +104,18 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		if (world.isRemote)
 			return stack;
 
+		if (ConfigMain.isAcademyCraftLoaded)
+			return this.railgunLogic(stack, world, player);
+		else
+			return this.ionCannonLogic(stack, world, player);
+    }
+	
+	private ItemStack railgunLogic(ItemStack stack, World world, EntityPlayer player) {
+		boolean active = stack.stackTagCompound.getBoolean("active");
 		if (!world.isRemote && player.isSneaking()) {
-			this.active = !active ? true : false;
+			active = !active ? true : false;
 			player.addChatComponentMessage(new net.minecraft.util.ChatComponentText("Debug: isRailgunActive="+Boolean.toString(active)));
-			stack.stackTagCompound.setBoolean("RailgunActive", active);
+			this.setStatus(stack, active);
 			return stack;
 		}
 		
@@ -121,9 +128,14 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		}
 		
 		return stack;
-    }
+	}
 	
-	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean holding) {
+	private ItemStack ionCannonLogic(ItemStack stack, World world, EntityPlayer player) {
+		//TODO
+		return stack;
+	}
+	
+	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean isHolding) {
 		if (world.isRemote)
 			return;
 	}
@@ -158,9 +170,9 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		return 1000;
 	}
 	
-	public ItemRailgun setStatus(boolean status) {
-		this.active = status;
-		return this;
+	public ItemStack setStatus(ItemStack stack, boolean status) {
+		stack.stackTagCompound.setBoolean("active", status);
+		return stack;
 	}
 
 }

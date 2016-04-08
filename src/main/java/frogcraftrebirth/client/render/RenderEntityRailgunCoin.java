@@ -7,7 +7,7 @@ import net.minecraft.util.ResourceLocation;
 public class RenderEntityRailgunCoin extends Render {
 
 	@Override
-	public void doRender(Entity e, double d1, double d2, double d3, float f1, float f2) {
+	public void doRender(Entity entity, double d1, double d2, double d3, float f1, float f2) {
 		// TODO 
 	}
 

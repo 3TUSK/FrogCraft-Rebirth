@@ -27,10 +27,10 @@ Regarding to 1.8/1.9: depends. EU is dropped but the key is that a mod shall hav
     * EVT: not yet, maybe not
     * Mobile power bank: REWORKING
 
-#### About _FrogCraft 2: Chemica_
-FrogCraft 2: *Chemica* (latin. chemistry) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage. 
+#### About _FrogCraft 2: Chemia_
+*FrogCraft 2: Chemia* (a.k.a. Laboratorium Chemiae) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage. 
 
-FrogCraft 2: *Chemica* will try to follow [Cult of Kitteh](http://asie.pl/kitteh/). 
+*FrogCraft 2: Chemia* will try to follow [Cult of Kitteh](http://asie.pl/kitteh/). 
 
 Yes, NO GUI. It sounds as if I am insane, but I have my own idea. 
 Thanks to asie, otherwise I won't even think about such a design.
@@ -39,8 +39,8 @@ Thanks to asie, otherwise I won't even think about such a design.
 Click [here][TriTChemLab] for more details.
 
 #### License
-Currently the license is MIT temporarily.  
-At least I got touch on original author (Rikka) and he permitted the right to use original codes. Textures are still not sure. If necessary I will remove them immediately.
+FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebirth)
+Textures are still not sure. If necessary I will remove them immediately.
 
 #### Credits
 Credits to ueyudiud for generous consultant.  

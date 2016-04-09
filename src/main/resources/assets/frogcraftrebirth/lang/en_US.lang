@@ -1,9 +1,12 @@
-﻿#Master Language File, 2013.5.3
+﻿#Master Language File
 
 #Items
 item.ItemRailgun.name=Only my railgun!!!
 item.ItemRailgun.info=PiliPili~~~
 item.ItemRailgun.tooTired=No enough power QAQ
+item.ItemMiniIonCannon.name=Portable Ion Cannon
+item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
+item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
 tile.BlockMobilePS.name=Mobile Power Supply
 tile.BlockMobilePS.info=The best camping gear
 item.CoolantAmmonia60K=60K ammonia coolant cell

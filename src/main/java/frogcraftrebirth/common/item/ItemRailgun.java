@@ -5,6 +5,7 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.entity.EntityRailgunCoin;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -131,7 +132,10 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	}
 	
 	private ItemStack ionCannonLogic(ItemStack stack, World world, EntityPlayer player) {
-		//TODO
+		boolean active = stack.stackTagCompound.getBoolean("active");
+		if (active && ElectricItem.manager.canUse(stack, 5000000)) {
+			world.spawnEntityInWorld(new EntityIonCannonBeam(world, player));
+		}
 		return stack;
 	}
 	

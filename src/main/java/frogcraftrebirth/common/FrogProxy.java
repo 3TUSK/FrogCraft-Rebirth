@@ -1,7 +1,5 @@
 package frogcraftrebirth.common;
 
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Map.Entry;
 
 import cpw.mods.fml.common.Loader;
@@ -13,7 +11,6 @@ import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
-import frogcraftrebirth.api.impl.chemlab.ElementLoader;
 import frogcraftrebirth.api.recipes.AdvChemRecRecipeManager;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipeManger;
@@ -36,7 +33,7 @@ import frogcraftrebirth.common.gui.ContainerHybridEStorage;
 //import frogcraftrebirth.common.gui.ContainerInductionalDevice;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.registry.RegFluid;
-//import frogcraftrebirth.common.registry.RegFrogAchievements;
+import frogcraftrebirth.common.registry.RegFrogAchievements;
 import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import frogcraftrebirth.common.registry.RegFrogRecipes;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
@@ -49,7 +46,6 @@ import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
-import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
@@ -136,16 +132,16 @@ public class FrogProxy implements IGuiHandler {
 	}
 	
 	public void preInit(FMLPreInitializationEvent event) {
-		try {
-			FrogAPI.elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(this.getClass().getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
-		} catch (Exception e) {}
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
-		//RegFrogAchievements.init();
+		RegFrogAchievements.init();
 		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
+		FrogAPI.registerFrogCompatModule("academy-craft", () -> {
+			FrogAPI.FROG_LOG.warn("AcademyCraft has been detected, hence Frog's railgun will be disabled.");
+		});
 	}
 
 	public void init(FMLInitializationEvent event) {

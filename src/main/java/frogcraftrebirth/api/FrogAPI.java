@@ -3,9 +3,11 @@ package frogcraftrebirth.api;
 import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
 
 import java.lang.reflect.Field;
+//import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.List;
+//import java.util.LinkedList;
+//import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -14,11 +16,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+//import frogcraftrebirth.api.impl.chemlab.ElementLoader;
 import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
 import gregtech.api.util.GT_Recipe;
-import info.tritusk.tritchemlab.matter.Element;
+//import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -61,14 +64,15 @@ public final class FrogAPI {
 				{0, 1, 5, 4, 2, 3}
 		};
 	
-	public static List<Element> elementsList;
-	
 	@Nonnull
 	public static CreativeTabs frogTab;
 	
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
+	
+	//Disable ChemLab thing for a while
+	//public static final List<Element> elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(FrogAPI.class.getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	

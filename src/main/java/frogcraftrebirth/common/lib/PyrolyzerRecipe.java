@@ -1,9 +1,10 @@
-package frogcraftrebirth.api.recipes;
+package frogcraftrebirth.common.lib;
 
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class PyrolyzerRecipe {
+public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 
 	private ItemStack input, output;
 	private FluidStack outputFluid;

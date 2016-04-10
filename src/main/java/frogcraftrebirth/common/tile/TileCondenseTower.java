@@ -3,9 +3,9 @@ package frogcraftrebirth.common.tile;
 import java.util.ArrayList;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerStructure;
+import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;

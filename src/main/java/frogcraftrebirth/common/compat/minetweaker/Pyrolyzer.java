@@ -9,7 +9,7 @@
 package frogcraftrebirth.common.compat.minetweaker;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
+import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import minetweaker.IUndoableAction;
 import minetweaker.MineTweakerAPI;
 import minetweaker.api.item.IItemStack;

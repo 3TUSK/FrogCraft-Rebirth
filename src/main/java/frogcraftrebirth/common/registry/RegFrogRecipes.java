@@ -2,9 +2,9 @@ package frogcraftrebirth.common.registry;
 
 import cpw.mods.fml.common.Loader;
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;

@@ -1,7 +1,7 @@
 package frogcraftrebirth.common.compat.minetweaker;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
+import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import minetweaker.MineTweakerAPI;
 import minetweaker.OneWayAction;
 import minetweaker.api.liquid.ILiquidStack;

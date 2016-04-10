@@ -1,9 +1,10 @@
-package frogcraftrebirth.api.recipes;
+package frogcraftrebirth.common.lib;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraftforge.fluids.FluidStack;
 
 public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe> {

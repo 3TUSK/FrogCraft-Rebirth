@@ -1,8 +1,10 @@
-package frogcraftrebirth.api.recipes;
+package frogcraftrebirth.common.lib;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {

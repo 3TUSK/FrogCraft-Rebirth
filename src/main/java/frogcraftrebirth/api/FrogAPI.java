@@ -16,10 +16,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
-//import frogcraftrebirth.api.impl.chemlab.ElementLoader;
-import frogcraftrebirth.api.recipes.CondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import frogcraftrebirth.api.recipes.PyrolyzerRecipe;
+import frogcraftrebirth.common.lib.CondenseTowerRecipe;
+import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import gregtech.api.util.GT_Recipe;
 //import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;

@@ -1,8 +1,10 @@
 package frogcraftrebirth.common.lib.tile;
 
+import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySource;
+import ic2.api.energy.tile.IEnergySourceInfo;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +12,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource {
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySourceInfo", modid="IC2-Classic-Spmod")
+public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource, IEnergySourceInfo {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
@@ -69,6 +72,12 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	@Override
 	public int getSourceTier() {
 		return sourceTier;
+	}
+	
+	@Optional.Method(modid = "IC2-Classic-Spmod")
+	@Override
+	public int getMaxEnergyAmount() {
+		return this.output;
 	}
 
 	@Override

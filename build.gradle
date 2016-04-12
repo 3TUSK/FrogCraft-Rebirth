@@ -68,7 +68,7 @@ sourceSets {
 
 
 dependencies {
-    compile 'net.industrial-craft:industrialcraft-2:2.2.815-experimental:dev'
+    compile 'net.industrial-craft:industrialcraft-2:2.2.820-experimental:dev'
     compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
     compile "codechicken:CodeChickenCore:1.7.10-1.0.6.43+:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.4.107+:dev"

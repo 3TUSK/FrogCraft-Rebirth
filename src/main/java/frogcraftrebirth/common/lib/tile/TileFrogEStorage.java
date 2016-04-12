@@ -1,14 +1,17 @@
 package frogcraftrebirth.common.lib.tile;
 
+import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
+import ic2.api.energy.tile.IEnergySourceInfo;
 import ic2.api.tile.IEnergyStorage;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage {
+@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySourceInfo", modid="IC2-Classic-Spmod")
+public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage, IEnergySourceInfo {
 
 	public ForgeDirection emitDir;
 	public int storedE, maxE, output;
@@ -112,6 +115,12 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 		this.storedE += amount;
 		if (storedE >= maxE) storedE = maxE;
 		return 0;
+	}
+
+	@Optional.Method(modid = "IC2-Classic-Spmod")
+	@Override
+	public int getMaxEnergyAmount() {
+		return this.output;
 	}
 
 }

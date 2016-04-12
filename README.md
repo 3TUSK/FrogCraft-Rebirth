@@ -26,6 +26,8 @@ Regarding to 1.8/1.9: depends. EU is dropped but the key is that a mod shall hav
  * Electricity storage  
     * EVT: not yet, maybe not
     * Mobile power bank: REWORKING
+* Compatibility 
+ * NEI: Still in beginning
 
 #### About _FrogCraft 2: Chemia_
 *FrogCraft 2: Chemia* (a.k.a. Laboratorium Chemiae) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage. 
@@ -39,7 +41,7 @@ Thanks to asie, otherwise I won't even think about such a design.
 Click [here][TriTChemLab] for more details.
 
 #### License
-FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebirth)
+FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebirth).  
 Textures are still not sure. If necessary I will remove them immediately.
 
 #### Credits

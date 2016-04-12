@@ -15,6 +15,8 @@ import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions("frogcraftrebirth.common.asm")
 public class FrogASMPlugin implements IFMLLoadingPlugin {
+	
+	public static boolean ic2ClassicDetected = false;
 
 	@Override
 	public String[] getASMTransformerClass() {

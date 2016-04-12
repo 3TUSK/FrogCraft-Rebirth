@@ -18,14 +18,22 @@ public class FrogASMTransformer implements IClassTransformer {
 
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
+		try {
+			Class.forName("ic2.api.energy.tile.IEnergySourceInfo");
+			return basicClass; //If no exception is thrown, then there is no need to use this transformer.
+		} catch (Exception e) {}
+		
 		if (transformedName.equals("frogcraftrebirth/lib/tile/TileFrogEStorage") || transformedName.equals("frogcraftrebirth/lib/tile/TileFrogGenerator")) {
 			ClassReader reader = new ClassReader(basicClass);
 			ClassNode node = new ClassNode();
 			reader.accept(node, 0);
-			node.interfaces.remove("ic2/api/energy/tile/IEnergySourceInfo");
-			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-			node.accept(writer);
-			return writer.toByteArray();
+			boolean attemptRemoving = node.interfaces.remove("ic2/api/energy/tile/IEnergySourceInfo");
+			if (attemptRemoving) {
+				ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+				node.accept(writer);
+				FrogASMPlugin.ic2ClassicDetected = true;
+				return writer.toByteArray();
+			}
 		}
 		return basicClass;
 	}

@@ -20,9 +20,9 @@ public class FrogWorldGenerator implements IWorldGenerator{
 		new WorldGenMinable(FrogBlocks.frogOres, 3, 15, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
 		new WorldGenMinable(FrogBlocks.frogOres, 4, 15, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
 		//new WorldGenNGH(FrogBlocks.frogOres, 5).genOre(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
-		new WorldGenMinable(FrogBlocks.frogOres, 6, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
-		new WorldGenMinable(FrogBlocks.frogOres, 7, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
-		new WorldGenMinable(FrogBlocks.frogOres, 8, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
+		new WorldGenMinable(FrogBlocks.tiberium, 0, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
+		new WorldGenMinable(FrogBlocks.tiberium, 1, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
+		new WorldGenMinable(FrogBlocks.tiberium, 2, 5, Blocks.stone).generate(world, random, xCor, world.getTopSolidOrLiquidBlock(xCor, zCor), zCor);
 	} 
 
 }

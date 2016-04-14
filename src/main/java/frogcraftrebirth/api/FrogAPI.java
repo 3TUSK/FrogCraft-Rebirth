@@ -36,7 +36,8 @@ public final class FrogAPI {
 		NAME = "FrogCraft: Rebirth",
 		API = "FrogAPI", 
 		API_VER = "0.2",
-		DEPENDING = "required-after:IC2;after:gregtech;after:thaumcraft;after:minetweaker3;";
+		DEPENDING = "required-after:IC2;after:gregtech;after:Uncomplicated;after:IC2-Classic-Spmod;"
+				+ "after:thaumcraft;after:minetweaker3;";
 	
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 	
@@ -75,7 +76,7 @@ public final class FrogAPI {
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
-	public static final Map<String, ICompatModuleFrog> compats = new HashMap<String, ICompatModuleFrog>();
+	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
 	
 	public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, RES_PATH_GUI + "basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
 	
@@ -84,13 +85,13 @@ public final class FrogAPI {
 	 * @param module instance of compat module
 	 * @return true if successfully added
 	 */
-	public static boolean registerFrogCompatModule(String modid, ICompatModuleFrog module) {
-		if (compats.containsKey(modid)) {
-			/*FrogCraftRebirth.FROG_LOG.error("The following compat module id has been occupied: " + modid);*/
+	public static boolean registerFrogCompatModule(final String modid, final ICompatModuleFrog module) {
+		if (COMPATS.containsKey(modid)) {
+			FROG_LOG.error("Failed when registering compat module: " + modid + ", because the id has been occupied");
 			return false;
 		}
 		
-		compats.put(modid, module);
+		COMPATS.put(modid, module);
 		return true;
 	}
 	
@@ -99,7 +100,7 @@ public final class FrogAPI {
 	 * @param damage
 	 * @return Your itemstack with amount of 1
 	 */
-	public static ItemStack findFrogItem(String name, int damage) {
+	public static ItemStack findFrogItem(final String name, final int damage) {
 		Field stuff;
 		
 		try {
@@ -112,6 +113,7 @@ public final class FrogAPI {
 			return new ItemStack((Block)stuff.get(null), 1, damage);
 		} catch (Exception e) {}
 		
+		FROG_LOG.error("Failed to find FrogCraft: Rebirth item: " + name + "@" + Integer.toString(damage));
 		return null;
 	}
 	

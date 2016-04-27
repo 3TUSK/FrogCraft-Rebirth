@@ -24,12 +24,12 @@ import net.minecraft.world.World;
 
 public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	
-	public static DamageSource railgun = new DamageSource("FrogRailgun").
-			setDamageBypassesArmor().
-			setExplosion().
-			setFireDamage().
-			setMagicDamage().
-			setProjectile();
+	public static DamageSource railgun = new DamageSource("FrogRailgun")
+			.setDamageBypassesArmor()
+			.setExplosion()
+			.setFireDamage()
+			.setMagicDamage()
+			.setProjectile();
 	
 	public int energyMax;
 	
@@ -114,8 +114,6 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	private ItemStack railgunLogic(ItemStack stack, World world, EntityPlayer player) {
 		boolean active = stack.stackTagCompound.getBoolean("active");
 		if (!world.isRemote && player.isSneaking()) {
-			active = !active ? true : false;
-			player.addChatComponentMessage(new net.minecraft.util.ChatComponentText("Debug: isRailgunActive="+Boolean.toString(active)));
 			this.setStatus(stack, active);
 			return stack;
 		}
@@ -133,8 +131,14 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	
 	private ItemStack ionCannonLogic(ItemStack stack, World world, EntityPlayer player) {
 		boolean active = stack.stackTagCompound.getBoolean("active");
+		if (!world.isRemote && player.isSneaking()) {
+			this.setStatus(stack, active);
+			return stack;
+		}
+		
 		if (active && ElectricItem.manager.canUse(stack, 5000000)) {
 			world.spawnEntityInWorld(new EntityIonCannonBeam(world, player));
+			player.addChatMessage(new net.minecraft.util.ChatComponentText(StatCollector.translateToLocal("item.ItemMiniIonCannon.warning")));
 		}
 		return stack;
 	}

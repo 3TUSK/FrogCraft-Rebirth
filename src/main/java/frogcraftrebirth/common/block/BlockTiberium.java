@@ -39,4 +39,8 @@ public class BlockTiberium extends BlockFrog {
 		return dropList;
 	}
 
+	public void exlposion(World world, int x, int y, int z) {
+		
+	}
+
 }

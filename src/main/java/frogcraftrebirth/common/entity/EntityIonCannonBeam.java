@@ -9,6 +9,8 @@
 package frogcraftrebirth.common.entity;
 
 import frogcraftrebirth.api.IonCannonImpactEvent;
+import frogcraftrebirth.common.block.BlockTiberium;
+import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.util.MovingObjectPosition;
@@ -34,6 +36,12 @@ public class EntityIonCannonBeam extends EntityThrowable {
 	protected void onImpact(MovingObjectPosition objPos) {
 		if (!this.worldObj.isRemote)
 			MinecraftForge.EVENT_BUS.post(new IonCannonImpactEvent(this, objPos));
+		
+		Block blockImpacted = worldObj.getBlock(objPos.blockX, objPos.blockY, objPos.blockZ);
+		
+		if (blockImpacted instanceof BlockTiberium) {
+			((BlockTiberium)blockImpacted).exlposion(this.worldObj, objPos.blockX, objPos.blockY, objPos.blockZ);
+		}
 	}
 
 }

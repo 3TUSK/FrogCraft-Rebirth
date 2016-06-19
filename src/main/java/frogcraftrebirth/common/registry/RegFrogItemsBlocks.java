@@ -34,7 +34,6 @@ public class RegFrogItemsBlocks {
 	static void initBlocks() {
 		FrogBlocks.frogOres = new BlockFrogOre();
 		FrogBlocks.tiberium = new BlockTiberium();
-		FrogBlocks.acwindmill = new BlockACWindmill();
 		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
 		FrogBlocks.inductionalMachines = new BlockInductionMachine();
@@ -44,7 +43,6 @@ public class RegFrogItemsBlocks {
 		
 		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "oreFrog");
 		GameRegistry.registerBlock(FrogBlocks.tiberium, ItemFrogBlock.class, "tiberiumCrystal");
-		GameRegistry.registerBlock(FrogBlocks.acwindmill, ItemFrogBlock.class, "academyWindmill");
 		GameRegistry.registerBlock(FrogBlocks.generators, ItemFrogBlock.class, "generator");
 		GameRegistry.registerBlock(FrogBlocks.machines, ItemFrogBlock.class, "machines");
 		GameRegistry.registerBlock(FrogBlocks.inductionalMachines, ItemFrogBlock.class, "machinesInductional");
@@ -65,7 +63,6 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemIngot = new ItemIngot();
 		FrogItems.itemDust = new ItemDust();
 		FrogItems.itemReactionModule = new ItemCatalystModule();
-		FrogItems.acwinmillFan = new ItemAcademyWindmillFan();
 		FrogItems.railgun = new ItemRailgun(1000000);
 		FrogItems.railgunRail = new ItemFrogCraft(false) {
 
@@ -88,7 +85,6 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.itemIngot, "frogIngots");
 		GameRegistry.registerItem(FrogItems.itemDust, "frogDusts");
 		GameRegistry.registerItem(FrogItems.itemReactionModule, "frogModule");
-		GameRegistry.registerItem(FrogItems.acwinmillFan, "academyWindmillFan");
 		GameRegistry.registerItem(FrogItems.railgun, "railgun");
 		GameRegistry.registerItem(FrogItems.railgunRail, "railgunRail");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
@@ -121,8 +117,6 @@ public class RegFrogItemsBlocks {
 		//GameRegistry.registerTileEntity(TileInductionalMacerator.class, "tileInductionalMacerator");
 		//GameRegistry.registerTileEntity(TileInductionalExtractor.class, "tileInductionalExtractor");
 		//GameRegistry.registerTileEntity(TileInductionalCompressor.class, "tileInductionalCompressor");
-		//GameRegistry.registerTileEntity(TileAcademyWindmillBase.class, "tileFrogAcademyWindmill");
-		//GameRegistry.registerTileEntity(TileAcademyWindmillTurbine.class, "tileFrogAcademyTurbine");
 		//GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileHSUUltra.class, "tileUltraHybridStorageUnit");

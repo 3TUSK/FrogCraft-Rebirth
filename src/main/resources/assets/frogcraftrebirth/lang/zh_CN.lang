@@ -152,11 +152,6 @@ tile.machines.Pyrolyzer.name=热解裂机
 tile.mineral.oreCarnallite.name=光卤石
 tile.mineral.oreFluorapatite.name=氟磷灰石
 tile.mineral.oreDewalquite.name=铝矾土矿
-tile.mineral.oreRuby.name=红宝石矿石
-tile.mineral.oreSapphire.name=蓝宝石矿石
-tile.mineral.oreGreenSapphire.name=绿宝石矿石
-tile.mineral.stoneMarble.name=大理石
-tile.mineral.stoneBasalt.name=玄武岩
 
 tile.nitricAcid.name=硝酸
 

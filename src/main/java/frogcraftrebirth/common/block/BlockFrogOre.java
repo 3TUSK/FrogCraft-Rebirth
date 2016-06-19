@@ -21,20 +21,20 @@ public class BlockFrogOre extends BlockFrog {
 		setBlockName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);
-		setSubNameArray("stoneBasalt", "stoneMarble", "oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH");
+		setSubNameArray("oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH");
 		this.iconArraySingle = new IIcon[this.nameArray.length];
 	}
 	
 	public int damageDropped(int meta) {
-		return meta >= 6 ? meta - 4 : meta;
+		return meta == 3 ? 0 : meta;
 	}
 
 	@Override
 	public float getBlockHardness(World world, int x, int y, int z) {
-		if (world.getBlockMetadata(x, y, z) == 5)
+		if (world.getBlockMetadata(x, y, z) == 3)
 			return 1.0F;
 		else
-			return 3.0F;
+			return super.getBlockHardness(world, x, y, z);
 	}
 	
 	public Item getItemDropped(int meta, Random rand, int fortune) {

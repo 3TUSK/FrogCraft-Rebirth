@@ -155,11 +155,6 @@ tile.machines.Pyrolyzer.name=Pyrolyzer
 tile.mineral.oreCarnallite.name=Carnallite Ore
 tile.mineral.oreFluorapatite.name=Fluorapatite Ore
 tile.mineral.oreDewalquite.name=Dewalquite Ore
-tile.mineral.oreRuby.name=Ruby Ore
-tile.mineral.oreSapphire.name=Sapphire Ore
-tile.mineral.oreGreenSapphire.name=Green Sapphire Ore
-tile.mineral.stoneMarble.name=Marble
-tile.mineral.stoneBasalt.name=Basalt
 
 tile.nitricAcid.name=Nitric Acid
 

@@ -8,14 +8,14 @@
  */
 package frogcraftrebirth.api.tile;
 
-import frogcraftrebirth.api.item.ICatalystModuleItem;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import net.minecraft.item.ItemStack;
 
 public interface IAdvChemReactor {
 	
 	boolean checkIngredient(IAdvChemRecRecipe recipe);
 	
-	double modifyReactionRate(ICatalystModuleItem... catalyst);
+	double modifyReactionRate(ItemStack... catalyst);
 	
 	void produce();
 

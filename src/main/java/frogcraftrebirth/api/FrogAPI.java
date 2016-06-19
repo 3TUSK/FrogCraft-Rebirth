@@ -3,11 +3,8 @@ package frogcraftrebirth.api;
 import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
 
 import java.lang.reflect.Field;
-//import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
-//import java.util.LinkedList;
-//import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -20,7 +17,6 @@ import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import gregtech.api.util.GT_Recipe;
-//import info.tritusk.tritchemlab.matter.Element;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -29,7 +25,7 @@ import net.minecraft.item.ItemStack;
 public final class FrogAPI {
 
 	//Why you want an instance of this?
-	private FrogAPI() {}
+	private FrogAPI() { throw new UnsupportedOperationException(); }
 	
 	public static final String 
 		MODID = "FrogCraftRebirth",
@@ -71,9 +67,6 @@ public final class FrogAPI {
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 	
-	//Disable ChemLab thing for a while
-	//public static final List<Element> elementsList = new LinkedList<Element>(Arrays.asList(ElementLoader.FROG_PARSER.parseElements(FrogAPI.class.getResourceAsStream("assets/frogcraftrebirth/tritchemlab/PeriodicTable.xml"), false)));
-	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
 	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
@@ -81,7 +74,7 @@ public final class FrogAPI {
 	public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, RES_PATH_GUI + "basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
 	
 	/**
-	 * @param modid
+	 * @param modid the mod id.
 	 * @param module instance of compat module
 	 * @return true if successfully added
 	 */
@@ -97,20 +90,21 @@ public final class FrogAPI {
 	
 	/**
 	 * @param name internal name. 
+	 * @param amount quantity of stack
 	 * @param damage
 	 * @return Your itemstack with amount of 1
 	 */
-	public static ItemStack findFrogItem(final String name, final int damage) {
+	public static ItemStack findFrogItem(final String name, final int amount, final int damage) {
 		Field stuff;
 		
 		try {
 			stuff = Class.forName("frogcraftrebirth.common.FrogItems").getField(name);
-			return new ItemStack((Item)stuff.get(null), 1, damage);
+			return new ItemStack((Item)stuff.get(null), amount, damage);
 		} catch (Exception e) {}
 		
 		try {
 			stuff = Class.forName("frogcraftrebirth.common.FrogBlocks").getField(name);
-			return new ItemStack((Block)stuff.get(null), 1, damage);
+			return new ItemStack((Block)stuff.get(null), amount, damage);
 		} catch (Exception e) {}
 		
 		FROG_LOG.error("Failed to find FrogCraft: Rebirth item: " + name + "@" + Integer.toString(damage));

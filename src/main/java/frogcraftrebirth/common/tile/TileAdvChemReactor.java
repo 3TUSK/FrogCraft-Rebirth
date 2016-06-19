@@ -5,7 +5,6 @@ import java.util.Collection;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
-import frogcraftrebirth.api.item.ICatalystModuleItem;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.tile.IAdvChemReactor;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
@@ -44,7 +43,7 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 			return;
 		super.updateEntity();
 		
-		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack[]>getRecipe(Arrays.copyOfRange(inv, 1, 5));
+		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		
 		if (checkIngredient(recipe)) {
 			this.consumeIngredient(recipe.getOutputs());
@@ -71,10 +70,12 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 		}
 	}
 	
-	public double modifyReactionRate(ICatalystModuleItem... catalyst) {
+	@Override
+	public double modifyReactionRate(ItemStack... catalyst) {
 		return 1D;
 	}
 	
+	@Override
 	public boolean checkIngredient(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;

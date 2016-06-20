@@ -21,8 +21,6 @@ public class FrogItems {
 	public static Item decayBatteryThorium;
 	public static Item decayBatteryPlutoium;
 	
-	public static Item acwinmillFan;
-	
 	public static Item jinkela;
 	public static Item tiberium;
 	

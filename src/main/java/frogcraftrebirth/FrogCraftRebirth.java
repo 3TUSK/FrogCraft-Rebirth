@@ -44,7 +44,7 @@ public class FrogCraftRebirth {
 		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
 			@Override
 			public Item getTabIconItem() {
-				return FrogItems.acwinmillFan;
+				return FrogItems.jinkela;
 			}
 		};
 		NetworkHandler.init();

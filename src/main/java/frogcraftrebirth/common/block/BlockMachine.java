@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockFrogContainer {
 
 	public BlockMachine() {
-		super(Material.iron, 3);
+		super(Material.IRON, 3);
 		setBlockName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);

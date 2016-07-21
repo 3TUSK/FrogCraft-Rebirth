@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 public class BlockFrogOre extends BlockFrog {
 
 	public BlockFrogOre() {
-		super(Material.rock);
+		super(Material.ROCK);
 		setBlockName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);

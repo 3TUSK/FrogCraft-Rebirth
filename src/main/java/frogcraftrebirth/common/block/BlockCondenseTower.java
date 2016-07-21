@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 public class BlockCondenseTower extends BlockFrogContainer {
 
 	public BlockCondenseTower() {
-		super(Material.iron, 2);
+		super(Material.IRON, 2);
 		setBlockName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);

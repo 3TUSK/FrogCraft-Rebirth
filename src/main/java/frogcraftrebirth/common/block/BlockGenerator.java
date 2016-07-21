@@ -22,7 +22,7 @@ import net.minecraft.world.World;
 public class BlockGenerator extends BlockFrogContainer {
 
 	public BlockGenerator() {
-		super(Material.iron, 0);
+		super(Material.IRON, 0);
 		setBlockName("generator");
 		setHardness(5.0F);
 		setResistance(10.0F);

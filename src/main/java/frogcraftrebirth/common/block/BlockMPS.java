@@ -19,19 +19,9 @@ import net.minecraftforge.common.util.ForgeDirection;
 public class BlockMPS extends BlockFrogContainer {
 	
 	public BlockMPS() {
-		super(Material.piston);
+		super(Material.PISTON);
 		setHardness(1.0F);
 		setResistance(100.0F);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister reg) {
-		iconArray[0][0] = reg.registerIcon(TEXTURE_MAIN + "MobilePS_Top");
-		iconArray[0][1] = reg.registerIcon(TEXTURE_MAIN + "MobilePS_Bottom");
-		for (int a=2;a<6;a++) {
-			iconArray[0][a] = reg.registerIcon(TEXTURE_MAIN + "MobilePS_Side");
-		}
 	}
 	
 	@Override
@@ -53,7 +43,7 @@ public class BlockMPS extends BlockFrogContainer {
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemstack) {
 		if (world.isRemote) return;
 		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation){		
-			if (itemstack.stackTagCompound != null) {
+			if (itemstack.getTagCompound() != null) {
 				TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
 				/*tile.charge = itemstack.stackTagCompound.getDouble("storedEnergy");
 				tile.maxCharge = itemstack.stackTagCompound.getDouble("maxEnergy");
@@ -66,7 +56,7 @@ public class BlockMPS extends BlockFrogContainer {
 						tile.inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
 					}
 				}*/
-				tile.readFromNBT(itemstack.stackTagCompound);
+				tile.readFromNBT(itemstack.getTagCompound());
 			}
 		}
 	}

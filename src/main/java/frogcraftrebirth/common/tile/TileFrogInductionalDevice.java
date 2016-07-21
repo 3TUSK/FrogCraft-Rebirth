@@ -5,6 +5,7 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
 /**
@@ -40,8 +41,8 @@ public abstract class TileFrogInductionalDevice extends TileFrogMachine {
 	}
 
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
+	public void update() {
+		super.update();
 		if (worldObj.isRemote)
 			return;
 		
@@ -84,7 +85,7 @@ public abstract class TileFrogInductionalDevice extends TileFrogMachine {
 			}
 		}
 
-		if (worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord)) {
+		if (worldObj.isBlockIndirectlyGettingPowered(getPos()) != 0) {
 			if (tick >= 50) {
 				heat += 1;
 				tick = 0;
@@ -108,11 +109,11 @@ public abstract class TileFrogInductionalDevice extends TileFrogMachine {
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("process", process);
 		tag.setInteger("heat", heat);
 		tag.setInteger("tick", tick);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
@@ -121,18 +122,18 @@ public abstract class TileFrogInductionalDevice extends TileFrogMachine {
 	}
 	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return side != 5 ? new int[] { 1, 2, 3, 4, 5, 6 } : new int[] { 7, 8, 9, 10, 11, 12 };
+	public int[] getSlotsForFace(EnumFacing side) {
+		return side == EnumFacing.UP ? new int[] { 1, 2, 3, 4, 5, 6 } : new int[] { 7, 8, 9, 10, 11, 12 };
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack aStack, int side) {
-		return slot >= 1 && slot <= 6;
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		return index >= 1 && index <= 6;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack aStack, int side) {
-		return slot >= 7 && slot <= 12;
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		return index >= 7 && index <= 12;
 	}
 
 	protected abstract boolean canProcess();

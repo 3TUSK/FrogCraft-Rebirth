@@ -12,7 +12,7 @@ public class TileInductionalEFurnace extends TileFrogInductionalDevice{
 	@Override
 	protected boolean canProcess() {
 		for (ItemStack input : inv) {
-			ItemStack output = FurnaceRecipes.smelting().getSmeltingResult(input);
+			ItemStack output = FurnaceRecipes.instance().getSmeltingResult(input);
 			if (output != null) {
 				return true;
 			}
@@ -22,7 +22,7 @@ public class TileInductionalEFurnace extends TileFrogInductionalDevice{
 
 	@Override
 	protected ItemStack getOutputFrom(ItemStack input) {
-		return FurnaceRecipes.smelting().getSmeltingResult(input).copy();
+		return FurnaceRecipes.instance().getSmeltingResult(input).copy();
 	}
 
 }

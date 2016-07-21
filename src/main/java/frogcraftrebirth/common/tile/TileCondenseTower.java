@@ -11,7 +11,7 @@ import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -50,12 +50,11 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		return this.structureCompleted;
 	}
 	
-	public void updateEntity() {
+	@Override
+	public void update() {
 		if (worldObj.isRemote) 
 			return;
-		
-		super.updateEntity();
-		
+		super.update();
 		if (!structureCompleted) {
 			if (!checkStructure()) {
 				this.outputs.clear();
@@ -118,38 +117,38 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 		this.tick = tag.getInteger("tick");
 	}
 	
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setInteger("tick", this.tick);
+		return super.writeToNBT(tag);
 	}
 	
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		switch (side) {
-			case 0: return new int[] {1};
-			case 1: return new int[] {0};
+	public int[] getSlotsForFace(EnumFacing direction) {
+		switch (direction) {
+			case DOWN: return new int[] {1};
+			case UP: return new int[] {0};
 			default: return (int[])null;
 		}
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		return side == 1 && slot == 0;
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.UP && index == 0;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		return side == 0 && slot == 1;
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.DOWN && index == 1;
 	}
 
 	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+	public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
 		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
 			return null;
 		}
@@ -157,22 +156,22 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 
 	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
+	public boolean canFill(EnumFacing from, Fluid fluid) {
 		return true;
 	}
 
 	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+	public boolean canDrain(EnumFacing from, Fluid fluid) {
 		return true;
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+	public FluidTankInfo[] getTankInfo(EnumFacing from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 	

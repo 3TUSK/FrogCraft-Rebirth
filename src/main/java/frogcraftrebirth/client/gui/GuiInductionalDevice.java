@@ -9,10 +9,11 @@ import frogcraftrebirth.common.tile.TileInductionalEFurnace;
 import frogcraftrebirth.common.tile.TileInductionalExtractor;
 import frogcraftrebirth.common.tile.TileInductionalMacerator;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.StatCollector;
 
+@Deprecated
 public class GuiInductionalDevice extends GuiContainer {
 
 	public TileFrogInductionalDevice tile;
@@ -25,7 +26,7 @@ public class GuiInductionalDevice extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96, 4210752);
+		fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96, 4210752);
 		fontRendererObj.drawString("Inductional Device test", 4, 4, 4210752);
 	}
 

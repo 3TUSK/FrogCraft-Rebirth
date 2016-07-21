@@ -6,9 +6,8 @@ import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
-//import net.minecraftforge.common.util.ForgeDirection;
 
 public class GuiCombustionFurnace extends GuiContainer {
 
@@ -22,7 +21,7 @@ public class GuiCombustionFurnace extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
 		super.drawGuiContainerForegroundLayer(par1int, par2int);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString("Combustion Furnace", 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 

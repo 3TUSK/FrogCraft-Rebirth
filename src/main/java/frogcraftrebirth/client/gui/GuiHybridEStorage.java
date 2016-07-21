@@ -6,8 +6,8 @@ import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
 
 public class GuiHybridEStorage extends GuiContainer {
 
@@ -21,10 +21,10 @@ public class GuiHybridEStorage extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.current"), 8, ySize - 150, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("gui.hybridEStorage.current"), 8, ySize - 150, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString(Integer.toString((int) tile.getStored()), 8, ySize - 140, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.hybridEStorage.max"), 8, ySize - 130, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("gui.hybridEStorage.max"), 8, ySize - 130, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString(Integer.toString(tile.getCapacity()), 8, ySize - 120, GuiUtil.GRAY_40);
 	}
 

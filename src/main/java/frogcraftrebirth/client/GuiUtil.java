@@ -1,11 +1,9 @@
 package frogcraftrebirth.client;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -20,16 +18,6 @@ public class GuiUtil {
 	}
 
 	public static void renderFluidTank(final GuiContainer gui, int x, int y, int tankWidth, int tankHeight, FluidStack fluid, int capacity) {
-		if (fluid == null) 
-			return;
-
-		IIcon fluidIcon = fluid.getFluid().getIcon();
-		if (fluidIcon == null) 
-			return;
-		
-		gui.mc.renderEngine.bindTexture(TextureMap.locationBlocksTexture);
-		
-		int scaledHeight = fluid.amount / capacity * tankHeight;
-		gui.drawTexturedModelRectFromIcon(x, y, fluidIcon, tankWidth, scaledHeight);
+		//No, this is not working yet
 	}
 }

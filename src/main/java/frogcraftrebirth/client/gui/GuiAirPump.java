@@ -6,8 +6,8 @@ import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.tile.TileAirPump;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
 
 public class GuiAirPump extends GuiContainer {
 
@@ -22,7 +22,7 @@ public class GuiAirPump extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		this.fontRendererObj.drawString("Industrial Air Pump", 8, ySize - 155, 4210752);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 	}
 
 	@Override

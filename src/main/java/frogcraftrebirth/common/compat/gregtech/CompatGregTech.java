@@ -1,17 +1,17 @@
 package frogcraftrebirth.common.compat.gregtech;
 
 import frogcraftrebirth.api.ICompatModuleFrog;
-import frogcraftrebirth.common.FrogItems;
+/*import frogcraftrebirth.common.FrogItems;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_ModHandler;
+import gregtech.api.util.GT_ModHandler;*/
 
 public class CompatGregTech implements ICompatModuleFrog {
 
 	@Override
 	public void init() {
-		FrogItems.pneumaticCompressor = new GT_MetaTileEntity_PneumaticCompressor(11504, "multimachine.pneumaticcompressor", "Pneumatic Compressor").getStackForm(1L);
+		/*FrogItems.pneumaticCompressor = new GT_MetaTileEntity_PneumaticCompressor(11504, "multimachine.pneumaticcompressor", "Pneumatic Compressor").getStackForm(1L);
 
 		GT_ModHandler.addCraftingRecipe(
 		FrogItems.pneumaticCompressor, 
@@ -24,7 +24,7 @@ public class CompatGregTech implements ICompatModuleFrog {
 				Character.valueOf('O'), OrePrefixes.stone.get(Materials.GraniteBlack), 
 				Character.valueOf('P'), ItemList.Electric_Pump_MV,
 				Character.valueOf('C'), OrePrefixes.circuit.get(Materials.Advanced), 
-				Character.valueOf('W'), OrePrefixes.cableGt01.get(Materials.Electrum)});
+				Character.valueOf('W'), OrePrefixes.cableGt01.get(Materials.Electrum)});*/
 	}
 
 }

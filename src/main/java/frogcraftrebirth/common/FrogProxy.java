@@ -143,9 +143,6 @@ public class FrogProxy implements IGuiHandler {
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 		RegFrogAchievements.init();
 		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
-		FrogAPI.registerFrogCompatModule("academy-craft", () -> {
-			FrogAPI.FROG_LOG.warn("AcademyCraft has been detected, Frog's railgun will be disabled.");
-		});
 	}
 
 	public void init(FMLInitializationEvent event) {

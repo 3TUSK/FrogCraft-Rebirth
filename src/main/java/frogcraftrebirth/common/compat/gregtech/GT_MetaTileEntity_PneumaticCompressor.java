@@ -1,5 +1,5 @@
 package frogcraftrebirth.common.compat.gregtech;
-
+/*
 import java.util.ArrayList;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -17,11 +17,11 @@ import net.minecraft.block.Block;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;*/
 
 public class GT_MetaTileEntity_PneumaticCompressor 
-	extends GT_MetaTileEntity_MultiBlockBase {
-	
+	/*extends GT_MetaTileEntity_MultiBlockBase*/ {
+	/*
 	public ArrayList<GT_MetaTileEntity_AirPumpHatch> mAirPumpHatches = new ArrayList<GT_MetaTileEntity_AirPumpHatch>();
 
 	public GT_MetaTileEntity_PneumaticCompressor(int aID, String aName, String aNameRegional) {
@@ -188,6 +188,6 @@ public class GT_MetaTileEntity_PneumaticCompressor
 		
 		return false;
 	}
-
+*/
 
 }

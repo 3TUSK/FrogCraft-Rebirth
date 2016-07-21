@@ -7,16 +7,16 @@
  * more information.
  */
 package frogcraftrebirth.common.compat.gregtech;
-
+/*
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
-
-public class GT_MetaTileEntity_AirPumpHatch extends GT_MetaTileEntity_Hatch{
+*/
+public class GT_MetaTileEntity_AirPumpHatch /*extends GT_MetaTileEntity_Hatch*/{
 	
 	//skeleton.
-	
+	/*
 	public GT_MetaTileEntity_AirPumpHatch(int aID, String aName, String aNameRegional, int aTier, int aInvSlotCount, String aDescription, ITexture[] aTextures) {
 		super(aID, aName, aNameRegional, aTier, aInvSlotCount, "External compressing module for Pneumatic Compressor", aTextures);
 	}
@@ -35,5 +35,5 @@ public class GT_MetaTileEntity_AirPumpHatch extends GT_MetaTileEntity_Hatch{
 	public ITexture[] getTexturesInactive(ITexture arg0) {
 		return new ITexture[] {};
 	}
-
+*/
 }

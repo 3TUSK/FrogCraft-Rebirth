@@ -3,8 +3,8 @@ package frogcraftrebirth.common.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import cpw.mods.fml.common.Optional;
-import cpw.mods.fml.common.eventhandler.Event.Result;
+//import net.minecraftforge.fml.common.Optional;
+import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -14,10 +14,10 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import thaumcraft.api.IWarpingGear;
+//import thaumcraft.api.IWarpingGear;
 
-@Optional.Interface(iface = "thaumcraft.api.IWarpingGear", modid = "thaumcraft")
-public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
+//@Optional.Interface(iface = "thaumcraft.api.IWarpingGear", modid = "thaumcraft")
+public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
 		super(false);
@@ -64,10 +64,10 @@ public class ItemJinkela extends ItemFrogCraft implements IWarpingGear {
 		return list;
 	}
 
-	@Optional.Method(modid = "thaumcraft")
-	@Override
-	public int getWarp(ItemStack stack, EntityPlayer player) {
-		return stack.stackSize;
-	}
+	//@Optional.Method(modid = "thaumcraft")
+	//@Override
+	//public int getWarp(ItemStack stack, EntityPlayer player) {
+	//	return stack.stackSize;
+	//}
 
 }

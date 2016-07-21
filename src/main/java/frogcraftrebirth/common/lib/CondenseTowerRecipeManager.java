@@ -33,9 +33,9 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 	}
 	
 	//This method will only read the first parameter.
-	@SuppressWarnings("hiding")
+	@SuppressWarnings("unchecked")
 	@Override
-	public <FluidStack> CondenseTowerRecipe getRecipe(@SuppressWarnings("unchecked")FluidStack... input) {
+	public <FluidStack> CondenseTowerRecipe getRecipe(FluidStack... input) {
 		if (input[0] == null) 
 			return null;
 		for (CondenseTowerRecipe recipe : recipes) {

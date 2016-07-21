@@ -32,7 +32,7 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 		return recipes;
 	}
 	
-	@SuppressWarnings({ "hiding", "unchecked" })
+	@SuppressWarnings("unchecked")
 	@Override
 	public <ItemStack> IAdvChemRecRecipe getRecipe(ItemStack... inputs) {
 		for (IAdvChemRecRecipe recipe : recipes) {

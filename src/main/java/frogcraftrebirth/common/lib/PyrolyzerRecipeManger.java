@@ -33,9 +33,9 @@ public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
 		return recipes;
 	}
 	
-	@SuppressWarnings("hiding")
+	@SuppressWarnings("unchecked")
 	@Override
-	public <ItemStack> PyrolyzerRecipe getRecipe(@SuppressWarnings("unchecked")ItemStack... inputs) {
+	public <ItemStack> PyrolyzerRecipe getRecipe(ItemStack... inputs) {
 		ItemStack input = (ItemStack)inputs[0];
 		if (input == null)
 			return null;

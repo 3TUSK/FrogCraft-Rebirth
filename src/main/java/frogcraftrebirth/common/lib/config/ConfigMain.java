@@ -2,16 +2,9 @@ package frogcraftrebirth.common.lib.config;
 
 import java.io.File;
 
-import cpw.mods.fml.common.Loader;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigMain {
-	
-	public static final boolean isAcademyCraftLoaded;
-	
-	static {
-		isAcademyCraftLoaded = Loader.isModLoaded("academy-craft");
-	}
 
 	public static double railgunDamageScale;
 	public static int airPumpPowerRate;

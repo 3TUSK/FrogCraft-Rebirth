@@ -1,10 +1,10 @@
 package frogcraftrebirth.api;
 
-import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
+//import static gregtech.api.enums.GT_Values.RES_PATH_GUI;
+//import gregtech.api.util.GT_Recipe;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -14,9 +14,9 @@ import org.apache.logging.log4j.Logger;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
-import gregtech.api.util.GT_Recipe;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -61,7 +61,12 @@ public final class FrogAPI {
 		};
 	
 	@Nonnull
-	public static CreativeTabs frogTab;
+	public static final CreativeTabs frogTab = new CreativeTabs("FrogCraft") {
+		@Override
+		public Item getTabIconItem() {
+			return FrogItems.jinkela;
+		}
+	};;
 	
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	public static IRecipeManager<CondenseTowerRecipe> managerCT;
@@ -71,7 +76,8 @@ public final class FrogAPI {
 	
 	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
 	
-	public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, RES_PATH_GUI + "basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
+	//Awaitng GregTech
+	//public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, RES_PATH_GUI + "basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
 	
 	/**
 	 * @param modid the mod id.

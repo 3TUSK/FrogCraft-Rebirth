@@ -13,12 +13,11 @@ import static frogcraftrebirth.api.FrogAPI.FROG_LOG;
 import java.util.Collection;
 import java.util.Locale;
 
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLInterModComms.IMCMessage;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public final class FrogIMCHanlder {
 	
-	public static void resolveIMCMessage(Collection<IMCMessage> messages) {
+	public static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
 		for (FMLInterModComms.IMCMessage message : messages) {
 			if (message.isNBTMessage()) {
 				String mode = message.getNBTValue().getString("mode");

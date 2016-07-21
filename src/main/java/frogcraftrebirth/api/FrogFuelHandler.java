@@ -6,11 +6,10 @@ import java.util.Map.Entry;
 
 import javax.annotation.Nonnull;
 
-import cpw.mods.fml.common.IFuelHandler;
+import net.minecraftforge.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 /**
  * This FuelHanlder implementation will handle both vanilla fuel registration
@@ -19,6 +18,9 @@ import net.minecraftforge.fluids.FluidStack;
  * @author 3TUSK
  */
 public final class FrogFuelHandler implements IFuelHandler{
+	
+	//Though deprecated, one bucket = 1000 milli-bucket is still a common-agreed standard.
+	public static final int BUCKET_VOLUME = 1000;
 	
 	FrogFuelHandler() {}
 	
@@ -56,7 +58,7 @@ public final class FrogFuelHandler implements IFuelHandler{
 	}
 	
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {
-		regFuelByproduct(fuel, new FluidStack(byproduct, FluidContainerRegistry.BUCKET_VOLUME));
+		regFuelByproduct(fuel, new FluidStack(byproduct, BUCKET_VOLUME));
 	}
 	
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull FluidStack byproduct) {

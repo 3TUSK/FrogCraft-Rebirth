@@ -2,13 +2,13 @@ package frogcraftrebirth.common;
 
 import java.util.Map.Entry;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.IGuiHandler;
-import cpw.mods.fml.common.registry.EntityRegistry;
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.IGuiHandler;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
@@ -48,6 +48,7 @@ import frogcraftrebirth.common.tile.TilePyrolyzer;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -55,7 +56,7 @@ public class FrogProxy implements IGuiHandler {
 
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity aTile = world.getTileEntity(x, y, z);
+		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch(id) {
 			/*case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)
@@ -96,7 +97,7 @@ public class FrogProxy implements IGuiHandler {
 
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
-		TileEntity aTile = world.getTileEntity(x, y, z);
+		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch (ID) {
 			case 0: {
 				if (aTile instanceof TileFrogInductionalDevice)

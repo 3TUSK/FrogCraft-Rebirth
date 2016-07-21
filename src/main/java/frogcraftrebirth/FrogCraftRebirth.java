@@ -1,69 +1,53 @@
 package frogcraftrebirth;
 
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLInterModComms;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogEventListener;
 import frogcraftrebirth.common.FrogIMCHanlder;
-import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.FrogProxy;
-import frogcraftrebirth.common.asm.FrogASMPlugin;
 import frogcraftrebirth.common.network.NetworkHandler;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = FrogAPI.MODID, name = FrogAPI.NAME, version = "@VERSION@", dependencies = FrogAPI.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 
-	@Instance(FrogAPI.MODID)
+	@Mod.Instance(FrogAPI.MODID)
 	public static FrogCraftRebirth instance;
 
 	@SidedProxy(serverSide = "frogcraftrebirth.common.FrogProxy", clientSide = "frogcraftrebirth.client.FrogProxyClient")
 	public static FrogProxy proxy;
 	
 	public FrogCraftRebirth() {
-		if (!FrogASMPlugin.ic2ClassicDetected) {
-			FrogAPI.FROG_LOG.debug("FrogCraft: Rebirth has detected that IC2Classic/Uncomplicated is not loaded.");
-			FrogAPI.FROG_LOG.debug("An automatic ASM transformer has removed IC2Classic compability in FrogCraft: Rebirth, to prevent further issue.");
-		}
+		instance = this;
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		FrogConfig.initConfig(event);
-
-		FrogAPI.frogTab = new CreativeTabs("FrogCraft") {
-			@Override
-			public Item getTabIconItem() {
-				return FrogItems.jinkela;
-			}
-		};
 		NetworkHandler.init();
 		proxy.preInit(event);
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 		proxy.init(event);
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void imcInit(FMLInterModComms.IMCEvent event) {
 		FrogIMCHanlder.resolveIMCMessage(event.getMessages());
 	}
 
-	@EventHandler
+	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
 		FrogAPI.FROG_LOG.info("FrogCraft has finished loading. The era of chemsitry will begin!");

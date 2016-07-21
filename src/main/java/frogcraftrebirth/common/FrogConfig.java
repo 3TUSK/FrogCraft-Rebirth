@@ -10,7 +10,7 @@ package frogcraftrebirth.common;
 
 import java.io.File;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 

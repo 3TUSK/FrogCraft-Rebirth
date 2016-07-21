@@ -12,6 +12,7 @@ import net.minecraft.util.MovingObjectPosition.MovingObjectType;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
+@Deprecated
 public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 
 	private double damageCollision, damageExplosion;

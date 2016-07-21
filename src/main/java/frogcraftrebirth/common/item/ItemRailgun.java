@@ -21,7 +21,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-
+@Deprecated
 public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 	
 	public static DamageSource railgun = new DamageSource("FrogRailgun")

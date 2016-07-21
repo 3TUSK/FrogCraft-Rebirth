@@ -6,18 +6,18 @@
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
  * more information.
  */
-package frogcraftrebirth.api;
+package frogcraftrebirth.api.event;
 
-import cpw.mods.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
-import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.util.math.RayTraceResult;
 
 public class IonCannonImpactEvent extends Event {
 	
 	public final EntityIonCannonBeam ionCannonBeam;
-	public final MovingObjectPosition impactPosition;
+	public final RayTraceResult impactPosition;
 	
-	public IonCannonImpactEvent(EntityIonCannonBeam entity, MovingObjectPosition position) {
+	public IonCannonImpactEvent(EntityIonCannonBeam entity, RayTraceResult position) {
 		this.ionCannonBeam = entity;
 		this.impactPosition = position;
 	}

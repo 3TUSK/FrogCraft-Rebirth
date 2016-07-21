@@ -5,9 +5,10 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.BiomeGenBase;
-
+//import net.minecraft.world.biome.Biome;
+@SuppressWarnings("unused")
 public class WorldGenNaturalGasField extends FrogWorldGenerator{
 
 	private Block block;
@@ -19,18 +20,19 @@ public class WorldGenNaturalGasField extends FrogWorldGenerator{
 		this.block = aOre;
 		this.meta = meta;
 		vaildBlocks = new ArrayList<Block>();
-		vaildBlocks.add(Blocks.stone);
-		vaildBlocks.add(Blocks.dirt);
+		vaildBlocks.add(Blocks.STONE);
+		vaildBlocks.add(Blocks.DIRT);
 	}
 	
 	//I gave up! Generated as a "cube".
 	public boolean genOre(World world, Random rand, int x, int y, int z) {
-		if (world.getBiomeGenForCoords(x, z) == BiomeGenBase.deepOcean) {
-			if (world.getBlock(x, y, z) == Blocks.gravel && y < 50) {
+		if (world.getBiome(new BlockPos(x, y, z)).getBiomeName().equals("deep_ocean")) {
+			if (world.getBlockState(new BlockPos(x, y, z)).getBlock() == Blocks.GRAVEL && y < 50) {
 				int m = rand.nextInt(100);
 				Size size = m > 98 ? Size.LARGE : m > 95 ? Size.MEDIUM : m > 90 ? Size.SMALL : null;
 				if (size != null){
 					for (int n = -1; n > -9; n--) {
+						/* TODO Fix generator
 						if (vaildBlocks.contains(world.getBlock(x,y+n,z))) {
 							world.setBlock(x, y+n, z, block, meta, 3);
 						}
@@ -38,7 +40,7 @@ public class WorldGenNaturalGasField extends FrogWorldGenerator{
 							if (vaildBlocks.contains(world.getBlock(x+o, y+n, z+o))) {
 								world.setBlock(x+o, y+n, z+o, block);
 							}
-						}
+						}*/
 					}
 				}
 			}

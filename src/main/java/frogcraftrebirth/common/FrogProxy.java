@@ -17,17 +17,15 @@ import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
-import frogcraftrebirth.client.gui.GuiInductionalDevice;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.common.compat.gregtech.CompatGregTech;
-import frogcraftrebirth.common.entity.EntityRailgunCoin;
+import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
-//import frogcraftrebirth.common.gui.ContainerInductionalDevice;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
@@ -41,11 +39,10 @@ import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
-import frogcraftrebirth.common.tile.TileFrogInductionalDevice;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
-import frogcraftrebirth.common.world.FrogWorldGenerator;
+//import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -58,10 +55,6 @@ public class FrogProxy implements IGuiHandler {
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch(id) {
-			/*case 0: {
-				if (aTile instanceof TileFrogInductionalDevice)
-					return new ContainerIndustrialDevice(player.inventory, (TileFrogInductionalDevice)aTile);
-			}*/
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
@@ -77,9 +70,6 @@ public class FrogProxy implements IGuiHandler {
 			case 3: {
 				if (aTile instanceof TileCombustionFurnace)
 					return new ContainerCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
-			}
-			case 4: {
-				
 			}
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
@@ -99,10 +89,6 @@ public class FrogProxy implements IGuiHandler {
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch (ID) {
-			case 0: {
-				if (aTile instanceof TileFrogInductionalDevice)
-					return new GuiInductionalDevice(player.inventory, (TileFrogInductionalDevice)aTile);
-			}
 			case 1: {
 				if (aTile instanceof TileHSU)
 					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
@@ -118,9 +104,6 @@ public class FrogProxy implements IGuiHandler {
 			case 3: {
 				if (aTile instanceof TileCombustionFurnace)
 					return new GuiCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
-			}
-			case 4: {
-				
 			}
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
@@ -140,8 +123,8 @@ public class FrogProxy implements IGuiHandler {
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();
-		EntityRegistry.registerModEntity(EntityRailgunCoin.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
-		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
+		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
+		//GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 		RegFrogAchievements.init();
 		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
 	}

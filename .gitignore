@@ -1,24 +1,3 @@
-.classpath
-.DS_Store
-.gradle
-.project
-.settings
-
-bin
-build
-conf
-config
-logs
-eclipse
 frogcraft_assets
-ui
 xcfStuff
 
-*.txt
-*.doc
-*.rar
-*.log
-
-# Because unknown reason I have to add this
-GregTech.cfg
-GregTech.lang

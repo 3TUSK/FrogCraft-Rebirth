@@ -7,9 +7,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.IProjectile;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.MovingObjectPosition;
-import net.minecraft.util.MovingObjectPosition.MovingObjectType;
-import net.minecraft.util.Vec3;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 
 @Deprecated
@@ -17,7 +16,7 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 
 	private double damageCollision, damageExplosion;
 	private int timer = 0;
-	private Vec3 startPoint;
+	private Vec3d startPoint;
 
 	public EntityRailgunCoin(World world) {
 		super(world);
@@ -29,9 +28,9 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 		setSize(0.5F, 0.5F);
 		this.damageCollision = 20F * railgunDamageScale;
 		this.damageExplosion = 20F * railgunDamageScale;
-		Vec3 looking = someone.getLookVec();
+		Vec3d looking = someone.getLookVec();
 		startPoint = looking;
-		this.setThrowableHeading(looking.xCoord, looking.yCoord, looking.zCoord, this.func_70182_d(), 1.0F);
+		this.setThrowableHeading(looking.xCoord, looking.yCoord, looking.zCoord, this.getGravityVelocity(), 1.0F);
 	}
 
 	@Override
@@ -43,7 +42,7 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 	public void onUpdate() {
 		super.onUpdate();
 		if (timer % 40 == 0) {
-			Vec3 currentPos = Vec3.createVectorHelper(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ);
+			Vec3d currentPos = new Vec3d(this.lastTickPosX, this.lastTickPosY, this.lastTickPosZ);
 			if (startPoint.distanceTo(currentPos) > 50)
 				this.setDead();
 		} else
@@ -65,15 +64,15 @@ public class EntityRailgunCoin extends EntityThrowable implements IProjectile {
 	}
 
 	@Override
-	protected void onImpact(MovingObjectPosition objPos) {
-		Vec3 aVec3 = objPos.hitVec;
+	protected void onImpact(RayTraceResult objPos) {
+		Vec3d aVec3 = objPos.hitVec;
 		double hitX = aVec3.xCoord, hitY = aVec3.yCoord, hitZ = aVec3.zCoord;
 
-		if (objPos.typeOfHit == MovingObjectType.ENTITY) {
+		if (objPos.typeOfHit == RayTraceResult.Type.ENTITY) {
 			objPos.entityHit.attackEntityFrom(railgun, (float) damageCollision);
 			setDead();
 		}
-		if (objPos.typeOfHit == MovingObjectType.BLOCK) {
+		if (objPos.typeOfHit == RayTraceResult.Type.BLOCK) {
 			worldObj.createExplosion(this, hitX, hitY, hitZ, (float) this.damageExplosion, false);
 			setDead();
 		}

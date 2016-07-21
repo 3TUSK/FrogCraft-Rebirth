@@ -2,12 +2,12 @@ package frogcraftrebirth.common.gui;
 
 import java.util.Iterator;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.tile.TileFrogInductionalDevice;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 @Deprecated
 public class ContainerInductionalDevice extends ContainerTileFrog<TileFrogInductionalDevice> {
 	

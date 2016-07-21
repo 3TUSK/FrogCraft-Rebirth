@@ -1,12 +1,12 @@
 package frogcraftrebirth.common.gui;
 
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerFluidOutputHatch extends ContainerTileFrog<TileFluidOutputHatch> {
 	

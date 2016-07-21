@@ -8,9 +8,9 @@
  */
 package frogcraftrebirth.api.event;
 
-import net.minecraftforge.fml.common.eventhandler.Event;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import net.minecraft.util.math.RayTraceResult;
+import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class IonCannonImpactEvent extends Event {
 	

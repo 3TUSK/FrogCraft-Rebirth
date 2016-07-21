@@ -1,8 +1,8 @@
 package frogcraftrebirth.api.tile;
 
-import net.minecraft.entity.player.EntityPlayer;
-
 import com.mojang.authlib.GameProfile;
+
+import net.minecraft.entity.player.EntityPlayer;
 
 /**
  * Usage is still unclear. Implementation of this interface will mark a 

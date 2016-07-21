@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.registry;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
@@ -10,8 +9,8 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBucket;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RegFluid {
 	
@@ -38,8 +37,6 @@ public class RegFluid {
 				.setDensity(1696).setRarity(EnumRarity.EPIC).setGaseous(true);
 		FrogFluids.nitricAcid = new Fluid("nitricAcid", getTexture("HNO3", false), getTexture("HNO3", true))
 				.setDensity(1420).setRarity(EnumRarity.RARE);
-		/*FrogFluids.liquidAir = new Fluid("liquifiedAir", getTexture("liquifiedAir", false), getTexture("liquifidAir", true))
-				.setRarity(EnumRarity.EPIC);*/
 		FrogFluids.nitrogenOxide = new Fluid("nitrogenOxide", getTexture("NO", false), getTexture("NO", true))
 				.setDensity(1340).setRarity(EnumRarity.RARE).setGaseous(true);
 		FrogFluids.oxygen = new Fluid("oxygen", getTexture("Oxygen", false), getTexture("Oxygen", true))
@@ -58,7 +55,6 @@ public class RegFluid {
 		regFluid(FrogFluids.coalTar);
 		regFluid(FrogFluids.fluorine);
 		regFluid(FrogFluids.nitricAcid);
-		//regFluid(FrogFluids.liquidAir);
 		regFluid(FrogFluids.nitrogenOxide);
 		regFluid(FrogFluids.oxygen);
 		regFluid(FrogFluids.sulfurDioxide);

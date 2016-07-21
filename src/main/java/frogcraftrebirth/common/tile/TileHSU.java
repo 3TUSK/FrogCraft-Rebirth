@@ -11,7 +11,6 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
 
 public class TileHSU extends TileFrogEStorage implements ITickable, IInventory {

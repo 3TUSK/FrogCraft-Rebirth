@@ -1,12 +1,5 @@
 package frogcraftrebirth;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLInterModComms;
-import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogEventListener;
@@ -14,6 +7,13 @@ import frogcraftrebirth.common.FrogIMCHanlder;
 import frogcraftrebirth.common.FrogProxy;
 import frogcraftrebirth.common.network.NetworkHandler;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
+import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = FrogAPI.MODID, name = FrogAPI.NAME, version = "@VERSION@", dependencies = FrogAPI.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {

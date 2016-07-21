@@ -13,9 +13,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraftforge.common.MinecraftForge;
 
 public class TileMobilePowerStation extends TileFrogInventory implements ITickable, IEnergySource, IMobilePowerStation {
 	

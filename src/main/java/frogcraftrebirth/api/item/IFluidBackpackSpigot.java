@@ -8,8 +8,8 @@
  */
 package frogcraftrebirth.api.item;
 
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidStack;
 
 public interface IFluidBackpackSpigot {
 	

@@ -10,9 +10,9 @@ import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraft.util.EnumFacing;
 
 public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAirPump {
 	

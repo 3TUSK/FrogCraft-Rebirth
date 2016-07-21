@@ -4,8 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import net.minecraftforge.fml.client.FMLClientHandler;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 	

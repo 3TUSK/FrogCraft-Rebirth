@@ -5,7 +5,6 @@ import java.util.Collection;
 import java.util.List;
 
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraftforge.fluids.FluidStack;
 
 public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerRecipe> {
 	

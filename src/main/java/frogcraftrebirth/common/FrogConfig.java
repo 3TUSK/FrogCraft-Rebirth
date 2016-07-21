@@ -10,9 +10,9 @@ package frogcraftrebirth.common;
 
 import java.io.File;
 
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.config.ConfigMain;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 public final class FrogConfig {
 	

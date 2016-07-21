@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraft.item.ItemStack;
 
 public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
 

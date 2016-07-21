@@ -1,12 +1,12 @@
 package frogcraftrebirth.common.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 
 public class ContainerPyrolyzer extends ContainerTileFrog<TilePyrolyzer> {
@@ -23,8 +23,8 @@ public class ContainerPyrolyzer extends ContainerTileFrog<TilePyrolyzer> {
 		this.registerPlayerInventory(playerInv);
 	}
 
-	public void addCraftingToCrafters(ICrafting crafting) {
-        super.addCraftingToCrafters(crafting);
+	public void addListener(IContainerListener crafting) {
+        super.addListener(crafting);
         crafting.sendProgressBarUpdate(this, 0, this.tile.charge);
         crafting.sendProgressBarUpdate(this, 1, this.tile.process);
         crafting.sendProgressBarUpdate(this, 2, this.tile.processMax);
@@ -34,16 +34,16 @@ public class ContainerPyrolyzer extends ContainerTileFrog<TilePyrolyzer> {
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		for (int i=0;i<this.crafters.size();++i) {
-			ICrafting crafter = (ICrafting)this.crafters.get(i);
+		for (int i=0;i<this.listeners.size();++i) {
+			IContainerListener listeners = (IContainerListener)this.listeners.get(i);
 			if (this.charge != this.tile.charge)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)listeners);
 			if (this.process != this.tile.process)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.process), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.process), (EntityPlayerMP)listeners);
 			if (this.processMax != this.tile.processMax)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.processMax), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.processMax), (EntityPlayerMP)listeners);
 			if (this.working != this.tile.working)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 3, this.tile.working ? 1 : 0), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 3, this.tile.working ? 1 : 0), (EntityPlayerMP)listeners);
 		}
 		this.charge = this.tile.charge;
 		this.process = this.tile.process;

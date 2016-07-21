@@ -8,13 +8,13 @@
  */
 package frogcraftrebirth.common.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
 import frogcraftrebirth.common.tile.TileLiquifier;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.inventory.ICrafting;
+import net.minecraft.inventory.IContainerListener;
 
 public class ContainerLiquifier extends ContainerTileFrog<TileLiquifier> {
 
@@ -27,18 +27,18 @@ public class ContainerLiquifier extends ContainerTileFrog<TileLiquifier> {
 	}
 	
 	@Override
-	public void addCraftingToCrafters(ICrafting crafting) {
-		super.addCraftingToCrafters(crafting);
-		crafting.sendProgressBarUpdate(this, 0, this.tile.process);
+	public void addListener(IContainerListener listener) {
+		super.addListener(listener);
+		listener.sendProgressBarUpdate(this, 0, this.tile.process);
 	}
 	
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
-		for (int i=0;i<this.crafters.size();++i) {
-			ICrafting crafter = (ICrafting)this.crafters.get(i);
+		for (int i=0;i<this.listeners.size();++i) {
+			IContainerListener listener = (IContainerListener)this.listeners.get(i);
 			if (this.process != this.tile.process)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.process), (EntityPlayerMP)crafter);
+				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.process), (EntityPlayerMP)listener);
 		}
 		this.process = this.tile.process;
 	}

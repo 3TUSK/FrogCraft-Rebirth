@@ -9,7 +9,6 @@ import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockFrogOre;
 import frogcraftrebirth.common.block.BlockGenerator;
 import frogcraftrebirth.common.block.BlockHybridEStorage;
-import frogcraftrebirth.common.block.BlockInductionMachine;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
@@ -57,7 +56,6 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.tiberium = new BlockTiberium();
 		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
-		FrogBlocks.inductionalMachines = new BlockInductionMachine();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
 		//FrogBlocks.mobilePowerStation = new BlockMPS();

@@ -1,19 +1,25 @@
 package frogcraftrebirth.client.render;
 
+import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import net.minecraft.client.renderer.entity.Render;
-import net.minecraft.entity.Entity;
+import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderEntityRailgunCoin extends Render {
+public class RenderEntityIonCannonBeam extends Render<EntityIonCannonBeam> {
+
+	protected RenderEntityIonCannonBeam(RenderManager renderManager) {
+		super(renderManager);
+	}
 
 	@Override
-	public void doRender(Entity entity, double d1, double d2, double d3, float f1, float f2) {
+	public void doRender(EntityIonCannonBeam entity, double d1, double d2, double d3, float f1, float f2) {
 		// TODO 
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(Entity entity) {
-		return new ResourceLocation("");//TODO put something between quoation mark
+	protected ResourceLocation getEntityTexture(EntityIonCannonBeam entity) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

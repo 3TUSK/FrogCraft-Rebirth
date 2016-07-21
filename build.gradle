@@ -49,7 +49,7 @@ sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 minecraft {
-    version = "1.7.10-10.13.4.1566-1.7.10"
+    version = "1.7.10-10.13.4.1614-1.7.10"
     runDir = "eclipse"
 
     replace "@VERSION", project.version
@@ -68,7 +68,7 @@ sourceSets {
 
 
 dependencies {
-    compile 'net.industrial-craft:industrialcraft-2:2.2.820-experimental:dev'
+    compile 'net.industrial-craft:industrialcraft-2:2.2.823-experimental:dev'
     compile "codechicken:CodeChickenLib:1.7.10-1.1.3.136:dev"
     compile "codechicken:CodeChickenCore:1.7.10-1.0.6.43+:dev"
     compile "codechicken:NotEnoughItems:1.7.10-1.0.4.107+:dev"

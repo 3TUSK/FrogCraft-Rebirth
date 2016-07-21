@@ -84,7 +84,7 @@ public abstract class TileFrog extends TileEntity implements IWrenchable, IFrogN
 	}
 	
 	protected void sendTileUpdatePacket(TileFrog tile) {
-		FROG_NETWORK.sendToAllAround(new PacketFrog00TileUpdate(tile), this.worldObj.provider.terrainType.getWorldTypeID(), xCoord, yCoord, zCoord, 5);
+		FROG_NETWORK.sendToAllAround(new PacketFrog00TileUpdate(tile), this.worldObj.provider.terrainType.getWorldTypeID(), xCoord, yCoord, zCoord, 3);
 	}
 
 }

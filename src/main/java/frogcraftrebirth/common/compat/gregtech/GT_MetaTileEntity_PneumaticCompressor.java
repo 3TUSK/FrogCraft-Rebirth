@@ -14,6 +14,7 @@ import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_MultiBlockB
 import gregtech.api.objects.GT_RenderedTexture;
 import gregtech.api.util.GT_Recipe;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -38,20 +39,20 @@ public class GT_MetaTileEntity_PneumaticCompressor
 	@Override
 	public String[] getDescription() {
 		return new String[] {
-				"Controller Block for the Pneumatic Compressor",
-				"Size: 3x3x3 (Hollow)",
-				"Controller (front centered)",
-				"1x Input (anywhere)", 
-				"1x Output (anywhere)", 
-				"1x Energy Hatch (anywhere)", 
-				"1x Maintenance Hatch (anywhere)", 
-				"1x Muffler Hatch (top centered)", 
-				"At most 4x Air Pump Hatch (side or bottom centerd)",
-				"Stable Titanium Casings for the rest (12 at least!)",
-				"Powered by FrogCraft (TM)",
-				"If you need user manual, or you are wondering any other questions",
-				"Please contact FrogCraft: Rebirth Dev Team directly",
-				"DO NOT REPORT ANY BUG(s) ABOUT THIS MACHINE TO GREGORIUST!"
+				I18n.format("tooltip.pncompressor.1"), //"Controller Block for the Pneumatic Compressor",
+				I18n.format("tooltip.pncompressor.2"), //"Size: 3x3x3 (Hollow)",
+				I18n.format("tooltip.pncompressor.3"), //"Controller (front centered)",
+				I18n.format("tooltip.pncompressor.4"), //"1x Input (anywhere)", 
+				I18n.format("tooltip.pncompressor.5"), //"1x Output (anywhere)", 
+				I18n.format("tooltip.pncompressor.6"), //"1x Energy Hatch (anywhere)", 
+				I18n.format("tooltip.pncompressor.7"), //"1x Maintenance Hatch (anywhere)", 
+				I18n.format("tooltip.pncompressor.8"), //"1x Muffler Hatch (top centered)", 
+				I18n.format("tooltip.pncompressor.9"), //"At most 4x Air Pump Hatch (side or bottom centerd)",
+				I18n.format("tooltip.pncompressor.10"),//"Stable Titanium Casings for the rest (12 at least!)",
+				I18n.format("tooltip.pncompressor.11"),//"Powered by FrogCraft (TM)",
+				I18n.format("tooltip.pncompressor.12"),//"If you need user manual, or you are wondering any other questions",
+				I18n.format("tooltip.pncompressor.13"),//"Please contact FrogCraft: Rebirth Dev Team directly",
+				I18n.format("tooltip.pncompressor.14") //"DO NOT REPORT ANY BUG(s) ABOUT THIS MACHINE TO GREGORIUST!"
 		};
 	}
 	

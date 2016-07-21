@@ -68,7 +68,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		}
 	}
 	
-	public boolean canWork(PyrolyzerRecipe recipe) {
+	private boolean canWork(PyrolyzerRecipe recipe) {
 		if (recipe == null)
 			return false;
 		
@@ -85,7 +85,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		return inv[1] == null || inv[1].isItemEqual(recipe.getOutput()) && inv[1].stackSize + recipe.getOutput().stackSize <= inv[1].getMaxStackSize();
 	}
 	
-	public void pyrolyze() {
+	private void pyrolyze() {
 		this.decrStackSize(0, recipe.getInput().stackSize);
 		if (this.getStackInSlot(1) == null)
 			this.setInventorySlotContents(1, recipe.getOutput());
@@ -128,8 +128,10 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
-		NBTTagCompound item = recipe.getInput().writeToNBT(new NBTTagCompound());
-		tag.setTag("recipeInput", item);
+		if (recipe != null) {
+			NBTTagCompound item = recipe.getInput().writeToNBT(new NBTTagCompound());
+			tag.setTag("recipeInput", item);
+		}
 	}
 
 	@Override

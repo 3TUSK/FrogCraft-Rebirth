@@ -65,8 +65,13 @@ public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 		
 		if (this.fluidInv.getFluid() == resource.getFluid()) {
 			int newAmount = this.fluidInv.amount + resource.amount;
-			newAmount = newAmount > capacity ? capacity : newAmount;
-			return newAmount > capacity ? resource.amount : capacity - this.fluidInv.amount;
+			if (newAmount > capacity) {
+				fluidInv.amount = capacity;
+				return newAmount - capacity;
+			} else {
+				fluidInv.amount += resource.amount;
+				return resource.amount;
+			}
 		}
 		
 		return 0;
@@ -94,6 +99,7 @@ public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 		output.writeInt(getFluidAmount());
 	}
 	
+	@SideOnly(Side.CLIENT)
 	public void readPacketData(DataInputStream input) throws IOException {
 		int fluidID = input.readInt();
 		int fluidAmount = input.readInt();

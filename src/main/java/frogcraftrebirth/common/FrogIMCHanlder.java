@@ -26,7 +26,7 @@ public final class FrogIMCHanlder {
 				if ("compat".equals(mode)) {
 					try {
 						Class<?> clazz = Class.forName(message.getNBTValue().getString("modulePath"));
-						if (clazz.getInterfaces()[0] == frogcraftrebirth.api.ICompatModuleFrog.class)
+						if (frogcraftrebirth.api.ICompatModuleFrog.class.isAssignableFrom(clazz) )
 							clazz.getDeclaredMethod("init").invoke(new Object());
 					} catch (Exception e) {
 						FROG_LOG.error(

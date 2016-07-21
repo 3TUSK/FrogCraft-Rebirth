@@ -88,8 +88,10 @@ public class FrogProxy implements IGuiHandler {
 				if (aTile instanceof TilePyrolyzer)
 					return new ContainerPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
 			}
+			default : {
+				return null;
+			}
 		}
-		return null;
 	}
 
 	@Override
@@ -127,8 +129,10 @@ public class FrogProxy implements IGuiHandler {
 				if (aTile instanceof TilePyrolyzer)
 					return new GuiPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
 			}
+			default : {
+				return null;
+			}
 		}
-		return null;
 	}
 	
 	public void preInit(FMLPreInitializationEvent event) {
@@ -140,7 +144,7 @@ public class FrogProxy implements IGuiHandler {
 		RegFrogAchievements.init();
 		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
 		FrogAPI.registerFrogCompatModule("academy-craft", () -> {
-			FrogAPI.FROG_LOG.warn("AcademyCraft has been detected, hence Frog's railgun will be disabled.");
+			FrogAPI.FROG_LOG.warn("AcademyCraft has been detected, Frog's railgun will be disabled.");
 		});
 	}
 
@@ -150,7 +154,7 @@ public class FrogProxy implements IGuiHandler {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
-		for (Entry<String, ICompatModuleFrog> module : FrogAPI.compats.entrySet()) {
+		for (Entry<String, ICompatModuleFrog> module : FrogAPI.COMPATS.entrySet()) {
 			if (Loader.isModLoaded(module.getKey()))
 				module.getValue().init();
 			else

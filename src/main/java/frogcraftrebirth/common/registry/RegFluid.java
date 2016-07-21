@@ -59,7 +59,7 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurTrioxide);
 		
 		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
-		GameRegistry.<Block>register(FrogBlocks.fluidNitricAcid);
+		GameRegistry.<Block>register(FrogBlocks.fluidNitricAcid.setRegistryName("nitric_acid"));
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
 	}
 	

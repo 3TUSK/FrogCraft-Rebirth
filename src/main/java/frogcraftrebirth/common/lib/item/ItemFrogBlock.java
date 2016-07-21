@@ -11,8 +11,7 @@ public /*abstract*/ class ItemFrogBlock extends ItemBlock {
 	
 	static {
 		Item.registerItemBlock(FrogBlocks.condenseTowerPart, new ItemFrogBlock(FrogBlocks.condenseTowerPart));
-		Item.registerItemBlock(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.generators));
-		
+		Item.registerItemBlock(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.frogOres));
 	}
 
 	public ItemFrogBlock(Block block) {

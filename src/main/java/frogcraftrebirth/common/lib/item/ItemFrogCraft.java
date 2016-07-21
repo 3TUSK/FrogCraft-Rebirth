@@ -5,23 +5,21 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.IFrogNetworkObject;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.util.StatCollector;
 
 public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	
 	public static final String TEXTURE_MAIN = "frogcraftrebirth:";
 	
 	protected String[] nameArray;
-	protected IIcon[] iconArray;
 
 	public ItemFrogCraft(boolean hasSubType){
 		this.setCreativeTab(FrogAPI.frogTab);
@@ -45,7 +43,7 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return StatCollector.translateToLocal(getUnlocalizedName(stack));
+		return I18n.format(getUnlocalizedName(stack));
 	}
 	
 	@SuppressWarnings("unchecked")

@@ -6,15 +6,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockFrogOre extends BlockFrog {
-
-	private IIcon[] iconArraySingle;
 
 	public BlockFrogOre() {
 		super(Material.rock);
@@ -22,7 +18,6 @@ public class BlockFrogOre extends BlockFrog {
 		setHardness(5.0F);
 		setResistance(15.0f);
 		setSubNameArray("oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH");
-		this.iconArraySingle = new IIcon[this.nameArray.length];
 	}
 	
 	public int damageDropped(int meta) {
@@ -53,25 +48,6 @@ public class BlockFrogOre extends BlockFrog {
 		}
 		
 		return 1;
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister r) {
-		for (int i = 0; i < nameArray.length; i++) {
-			iconArraySingle[i] = r.registerIcon(TEXTURE_MAIN + "ores/" + this.nameArray[i]);
-		}
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(IBlockAccess world, int x, int y, int z, int side) {
-		return iconArraySingle[world.getBlockMetadata(x, y, z)];
-	}
-
-	@SideOnly(Side.CLIENT)
-	public IIcon getIcon(int side, int meta) {
-		return iconArraySingle[meta];
 	}
 
 }

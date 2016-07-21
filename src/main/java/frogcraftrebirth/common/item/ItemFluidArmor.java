@@ -10,6 +10,7 @@ import com.google.common.collect.Multimap;
 import frogcraftrebirth.api.FrogAPI;
 import ic2.api.item.IMetalArmor;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -28,13 +29,13 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	public static final ArmorMaterial FLUID_ARMOR;
 	
 	static {
-		FLUID_ARMOR = EnumHelper.addArmorMaterial("fluidArmor", 1000, new int[] {1,1,1,1}, 5);
+		FLUID_ARMOR = EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 100);
 	}
 	
 	protected int capacity;
 	
 	public ItemFluidArmor(int capacity) {
-		super(FLUID_ARMOR, 0, 2);//2->chestplate; 0->cloth(leather) renderer; render stuff is WIP
+		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);//0->cloth(leather) renderer; render stuff is WIP
 		setMaxStackSize(1);
 		setCreativeTab(FrogAPI.frogTab);
 		this.capacity = capacity;
@@ -58,10 +59,10 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 
 	@Override
 	public FluidStack getFluid(ItemStack container) {
-		if (container.stackTagCompound == null) return null;
-		if (!container.stackTagCompound.hasKey("Fluid")) return null;
+		if (container.getTagCompound() == null) return null;
+		if (!container.getTagCompound().hasKey("Fluid")) return null;
 		
-		return FluidStack.loadFluidStackFromNBT(container.stackTagCompound.getCompoundTag("Fluid"));
+		return FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("Fluid"));
 	}
 
 	@Override
@@ -75,11 +76,11 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		
 		NBTTagCompound fluidTag;
 		try {
-			fluidTag = container.stackTagCompound.getCompoundTag("Fluid");
+			fluidTag = container.getTagCompound().getCompoundTag("Fluid");
 		} catch (Exception e) {
 			fluidTag = new NBTTagCompound();
 			resource.writeToNBT(fluidTag);
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return resource.amount;
 		}
 		
@@ -87,14 +88,14 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		
 		if (current == null) {
 			resource.writeToNBT(fluidTag);
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return resource.amount;
 		}
 		
 		if (current.getFluid() == resource.getFluid()) {
 			int newAmount = current.amount + resource.amount;
 			fluidTag.setInteger("Amount", newAmount);
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return newAmount > capacity ? resource.amount : capacity - current.amount;
 		}
 		
@@ -107,10 +108,10 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		
 		NBTTagCompound fluidTag;
 		try {
-			fluidTag = container.stackTagCompound.getCompoundTag("Fluid");
+			fluidTag = container.getTagCompound().getCompoundTag("Fluid");
 		} catch (Exception e) {
 			fluidTag = new NBTTagCompound();
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return null;
 		}
 		
@@ -119,13 +120,13 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 		if (current == null) return null;
 		
 		if (maxDrain > capacity || current.amount <= maxDrain) {
-			container.stackTagCompound.setTag("Fluid", new NBTTagCompound());
+			container.getTagCompound().setTag("Fluid", new NBTTagCompound());
 			return current;
 		} else {
 			int isDraining = current.amount - maxDrain;
 			current.amount -= isDraining;
 			current.writeToNBT(fluidTag);
-			container.stackTagCompound.setTag("Fluid", fluidTag);
+			container.getTagCompound().setTag("Fluid", fluidTag);
 			return new FluidStack(current.getFluid(), isDraining);
 		}
 	}
@@ -133,7 +134,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	@SuppressWarnings("unchecked")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List info, boolean adv) {
-		FluidStack fluid = FluidStack.loadFluidStackFromNBT(stack.stackTagCompound.getCompoundTag("Fluid"));
+		FluidStack fluid = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag("Fluid"));
 		info.add("Name:" + fluid.getLocalizedName());
 		info.add("Amount" + fluid.amount);
 	}

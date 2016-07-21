@@ -4,16 +4,20 @@ import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import ic2.api.item.IElectricItem;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	public ItemMPS(Block block) {
 		super(block);
-		if (!(this.field_150939_a instanceof BlockMPS))
+		if (!(this.getBlock() instanceof BlockMPS))
 			throw new IllegalArgumentException("Failure on initialize MPS block, please report this crash ASAP!");
 	}
 	
@@ -22,14 +26,17 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 		return "tile.BlockMobilePS";
 	}
 	
-	public boolean onItemUse(ItemStack item, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ) {
-		if (world.isRemote) 
-			return false;
-		Block aBlock = world.getBlock(x, y, z);
+	@Override
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) 
+			return EnumActionResult.PASS;
+		
+		IBlockState state = worldIn.getBlockState(pos);
 		@SuppressWarnings("unused")
-		int flag = aBlock.onBlockPlaced(world, y, y, z, side, clickX, clickY, clickZ, world.getBlockMetadata(x, y, z));
+		//World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer
+		IBlockState placed = state.getBlock().onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, state.getBlock().getMetaFromState(state), playerIn);
 		//to be continued.
-		return false;
+		return EnumActionResult.SUCCESS;
 	}
 
 	@Override
@@ -38,18 +45,8 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	}
 
 	@Override
-	public Item getChargedItem(ItemStack itemStack) {
-		return this;
-	}
-
-	@Override
-	public Item getEmptyItem(ItemStack itemStack) {
-		return this;
-	}
-
-	@Override
 	public double getMaxCharge(ItemStack itemStack) {
-		return itemStack.stackTagCompound.getDouble("maxCharge");
+		return itemStack.getTagCompound().getDouble("maxCharge");
 	}
 
 	@Override

@@ -1,15 +1,15 @@
 package frogcraftrebirth.common.item;
 
+import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.IElectricItem;
 
@@ -20,7 +20,6 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 		setMaxDamage(0);
 		setMaxStackSize(1);
 		setNoRepair();
-		setTextureName(TEXTURE_MAIN + "Battery"+name);
 		setUnlocalizedName(name + "Battery.name");
 	}
 	
@@ -28,18 +27,6 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	public boolean canProvideEnergy(ItemStack itemStack) {
 		setCharge(itemStack);
 		return true;
-	}
-
-	@Override
-	public Item getChargedItem(ItemStack itemStack) {
-		setCharge(itemStack);
-		return this;
-	}
-
-	@Override
-	public Item getEmptyItem(ItemStack itemStack) {
-		setCharge(itemStack);
-		return this;
 	}
 
 	@Override
@@ -62,18 +49,18 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	
 	private void setCharge(ItemStack stack) {
 		if (stack.hasTagCompound())
-			stack.stackTagCompound.setInteger("charge", 1);
+			stack.getTagCompound().setInteger("charge", 1);
 		else {
-			stack.stackTagCompound = new net.minecraft.nbt.NBTTagCompound();
-			stack.stackTagCompound.setInteger("charge", 1);
+			stack.setTagCompound(new net.minecraft.nbt.NBTTagCompound());
+			stack.getTagCompound().setInteger("charge", 1);
 		}
 	}
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		return java.util.Arrays.asList(new String[] {
-				StatCollector.translateToLocal("item.DecayBattery.info.0"),
-				StatCollector.translateToLocal("item.DecayBattery.info.1")
+				I18n.format("item.DecayBattery.info.0"),
+				I18n.format("item.DecayBattery.info.1")
 		});
 	}
 	

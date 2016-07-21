@@ -9,7 +9,7 @@ public /*abstract*/ class ItemFrogBlock extends ItemBlock {
 
 	public ItemFrogBlock(Block block) {
 		super(block);
-		if (!(this.field_150939_a instanceof BlockFrog))
+		if (!(this.getBlock() instanceof BlockFrog))
 			throw new IllegalArgumentException("ItemBlockFrog can only be used internally for only FrogCraft!!!");
 		setHasSubtypes(true);
 	}
@@ -20,7 +20,7 @@ public /*abstract*/ class ItemFrogBlock extends ItemBlock {
 	}
 	
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + ((BlockFrog)this.field_150939_a).getSubNamesArray()[stack.getItemDamage()];
+		return super.getUnlocalizedName(stack) + "." + ((BlockFrog)this.getBlock()).getSubNamesArray()[stack.getItemDamage()];
 	}
 
 }

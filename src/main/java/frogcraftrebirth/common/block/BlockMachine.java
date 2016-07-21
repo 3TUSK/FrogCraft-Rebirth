@@ -11,7 +11,6 @@ import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -75,36 +74,5 @@ public class BlockMachine extends BlockFrogContainer {
 		if (world.isRemote) return false;
 		player.openGui(FrogCraftRebirth.instance, 5, world, x, y, z);
 		return false;
-	}
-	
-	@Override
-	public void registerBlockIcons(IIconRegister r) {
-		iconArray[0][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[0][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[0][2] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
-		iconArray[0][3] = r.registerIcon(TEXTURE_MAIN + "AdvanceChemicalReactor_Front");
-		iconArray[0][4] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
-		iconArray[0][5] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
-		
-		iconArray[1][0] = r.registerIcon(TEXTURE_MAIN + "AirPump_Top");
-		iconArray[1][1] = r.registerIcon(TEXTURE_MAIN + "AirPump_Top");
-		iconArray[1][2] = r.registerIcon(TEXTURE_MAIN + "AirPump_Back");
-		iconArray[1][3] = r.registerIcon(TEXTURE_MAIN + "AirPump_Front");
-		iconArray[1][4] = r.registerIcon(TEXTURE_MAIN + "AirPump_Side");
-		iconArray[1][5] = r.registerIcon(TEXTURE_MAIN + "AirPump_Side");
-		
-		iconArray[2][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[2][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[2][2] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Back");
-		iconArray[2][3] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Front");
-		iconArray[2][4] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
-		iconArray[2][5] = r.registerIcon(TEXTURE_MAIN + "Pyrolyzer_Side");
-		
-		iconArray[3][0] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[3][1] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Top");
-		iconArray[3][2] = r.registerIcon(TEXTURE_MAIN + "Liquifier_Back");
-		iconArray[3][3] = r.registerIcon(TEXTURE_MAIN + "Liquifier_Front");
-		iconArray[3][4] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
-		iconArray[3][5] = r.registerIcon(TEXTURE_MAIN + "IndustrialDevice_Side");
 	}
 }

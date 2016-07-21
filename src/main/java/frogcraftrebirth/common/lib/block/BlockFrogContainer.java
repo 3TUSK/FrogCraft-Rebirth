@@ -1,9 +1,10 @@
 package frogcraftrebirth.common.lib.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 /**
  * Identical to BlockContainer, but inherit from BlockFrog.
@@ -22,15 +23,15 @@ public abstract class BlockFrogContainer extends BlockFrog implements ITileEntit
 	public abstract TileEntity createNewTileEntity(World world, int meta);
 	
 	@Override
-	public void breakBlock(World world, int x, int y, int z, Block block, int par6Int) {
-		super.breakBlock(world, x, y, z, block, par6Int);
-		world.removeTileEntity(x, y, z);
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		super.breakBlock(worldIn, pos, state);
+		worldIn.removeTileEntity(pos);
 	}
 	
-	public boolean onBlockEventReceived(World world, int x, int y, int z, int eventID, int eventParameter) {
-		super.onBlockEventReceived(world, x, y, z, eventID, eventParameter);
-		TileEntity tile = world.getTileEntity(x, y, z);
-		return tile != null ? tile.receiveClientEvent(eventID, eventParameter) : false;
+	public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int id, int param) {
+		super.eventReceived(state, worldIn, pos, id, param);
+        TileEntity tileentity = worldIn.getTileEntity(pos);
+        return tileentity == null ? false : tileentity.receiveClientEvent(id, param);
 	}
 
 }

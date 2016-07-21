@@ -3,64 +3,63 @@ package frogcraftrebirth.common.item;
 import java.util.ArrayList;
 import java.util.List;
 
-//import net.minecraftforge.fml.common.Optional;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
-import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.StatCollector;
+import net.minecraft.util.EnumActionResult;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-//import thaumcraft.api.IWarpingGear;
 
-//@Optional.Interface(iface = "thaumcraft.api.IWarpingGear", modid = "thaumcraft")
 public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
 		super(false);
-		setTextureName(TEXTURE_MAIN + "GoldClod");
 		setUnlocalizedName("Item_Miscs.GoldClod");
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float clickX, float clickY, float clickZ) {
-		Block block = world.getBlock(x, y, z);
+	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		IBlockState block = worldIn.getBlockState(pos);
 
-		BonemealEvent event = new BonemealEvent(player, world, block, x, y, z);
+		BonemealEvent event = new BonemealEvent(playerIn, worldIn, pos, block);
 		if (MinecraftForge.EVENT_BUS.post(event)) {
-			return false;
+			return EnumActionResult.FAIL;
 		}
 
 		if (event.getResult() == Result.ALLOW) {
-			if (!world.isRemote) {
+			if (!worldIn.isRemote) {
 			}
-			return true;
+			return EnumActionResult.FAIL;
 		}
 
 		if (block instanceof IGrowable) {
 			IGrowable igrowable = (IGrowable) block;
 
-			if (igrowable.func_149851_a(world, x, y, z, world.isRemote)) {
-				if (!world.isRemote) {
-					if (igrowable.func_149852_a(world, world.rand, x, y, z)) {
-						igrowable.func_149853_b(world, world.rand, x, y, z);
+			if (igrowable.canGrow(worldIn, pos, block, worldIn.isRemote)) {
+				if (!worldIn.isRemote) {
+					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos, block)) {
+						igrowable.grow(worldIn, worldIn.rand, pos, block);
+						return EnumActionResult.SUCCESS;
 					}
 				}
-
-				return true;
 			}
 		}
 
-		return false;
+		return EnumActionResult.PASS;
 	}
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		List<String> list = new ArrayList<String>();
-		list.add(StatCollector.translateToLocal("item.Item_Miscs.GoldClod.info"));
+		list.add(I18n.format("item.Item_Miscs.GoldClod.info"));
 		return list;
 	}
 

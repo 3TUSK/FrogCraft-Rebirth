@@ -21,8 +21,6 @@ import net.minecraftforge.fluids.Fluid;
 
 public class BlockNitricAcid extends BlockFluidClassic {
 	
-	IIcon[] icons;
-	
 	public BlockNitricAcid(Fluid fluid) {
 		super(fluid, Material.water);
 		this.setBlockName("nitricAcid");
@@ -46,22 +44,8 @@ public class BlockNitricAcid extends BlockFluidClassic {
 		}
 		return super.displaceIfPossible(world, x, y, z);
 	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public IIcon getIcon(int side, int meta) {
-		return side > 1 ? icons[1] : icons[0];
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerBlockIcons(IIconRegister r) {
-		icons = new IIcon[2];
-		icons[0] = r.registerIcon("frogcraftrebirth:fluids/HNO3");
-		icons[1] = r.registerIcon("frogcraftrebirth:fluids/HNO3_flow");
-	}
 
-	int corrosion;
+	private int corrosion;
 	@Override
 	public void updateTick(World world, int x, int y, int z, Random rand) {
 		super.updateTick(world, x, y, z, rand);

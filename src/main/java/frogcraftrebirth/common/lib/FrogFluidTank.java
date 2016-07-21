@@ -11,13 +11,16 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
+import net.minecraftforge.fluids.capability.FluidTankProperties;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidTankProperties;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Create a instance of this class will provide a efficient way to manage fluid.
  * @author 3TUSK
  */
-public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
+public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObject {
 
 	private final int capacity;
 	private FluidStack fluidInv;
@@ -123,6 +126,24 @@ public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 	@SideOnly(Side.CLIENT)
 	public void forceDrainTank() {
 		this.fluidInv = null;
+	}
+
+	@Override
+	public IFluidTankProperties[] getTankProperties() {
+		return FluidTankProperties.convert(new FluidTankInfo[] { getInfo() });
+	}
+
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		if (resource.isFluidEqual(fluidInv)) {
+			return drain(resource.amount, doDrain);
+		}
+		
+		return null;
+	}
+
+	public boolean canFill(Fluid fluid) {
+		return fluidInv.getFluid().equals(fluid);
 	}
 
 }

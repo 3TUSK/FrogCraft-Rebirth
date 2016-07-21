@@ -7,7 +7,7 @@ import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-
+@Deprecated
 public class ItemCell extends ItemFrogCraft{
 	
 	public ItemCell() {

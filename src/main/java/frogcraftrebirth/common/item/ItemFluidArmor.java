@@ -16,23 +16,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
+
 /**
  * @author 3TUSK
  * Created at 7:46:59 PM Sep 6, 2015 EST 2015
  */
-public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidContainerItem {
+public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 
-	public static final ArmorMaterial FLUID_ARMOR;
+	public static final ArmorMaterial FLUID_ARMOR = 
+		EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 100);
 	
-	static {
-		FLUID_ARMOR = EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 100);
-	}
-	
-	protected int capacity;
+	protected final int capacity;
 	
 	public ItemFluidArmor(int capacity) {
 		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);//0->cloth(leather) renderer; render stuff is WIP
@@ -50,101 +50,37 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, IFluidCont
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		if (world.isRemote) return;
 		
-		Collection<PotionEffect> effectList = fluidSideEffect.get(this.getFluid(itemStack).getFluid());
+		Fluid currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents().getFluid();
+		
+		Collection<PotionEffect> effectList = fluidSideEffect.get(currentFluid);
 		Iterator<PotionEffect> iter = effectList.iterator();
 		while (iter.hasNext()) {
 			player.addPotionEffect(iter.next());
 		}
 	}
-
+	
 	@Override
-	public FluidStack getFluid(ItemStack container) {
-		if (container.getTagCompound() == null) return null;
-		if (!container.getTagCompound().hasKey("Fluid")) return null;
-		
-		return FluidStack.loadFluidStackFromNBT(container.getTagCompound().getCompoundTag("Fluid"));
-	}
-
-	@Override
-	public int getCapacity(ItemStack container) {
-		return capacity;
-	}
-
-	@Override
-	public int fill(ItemStack container, FluidStack resource, boolean doFill) {
-		if (!doFill) return 0;
-		
-		NBTTagCompound fluidTag;
-		try {
-			fluidTag = container.getTagCompound().getCompoundTag("Fluid");
-		} catch (Exception e) {
-			fluidTag = new NBTTagCompound();
-			resource.writeToNBT(fluidTag);
-			container.getTagCompound().setTag("Fluid", fluidTag);
-			return resource.amount;
-		}
-		
-		FluidStack current = FluidStack.loadFluidStackFromNBT(fluidTag);
-		
-		if (current == null) {
-			resource.writeToNBT(fluidTag);
-			container.getTagCompound().setTag("Fluid", fluidTag);
-			return resource.amount;
-		}
-		
-		if (current.getFluid() == resource.getFluid()) {
-			int newAmount = current.amount + resource.amount;
-			fluidTag.setInteger("Amount", newAmount);
-			container.getTagCompound().setTag("Fluid", fluidTag);
-			return newAmount > capacity ? resource.amount : capacity - current.amount;
-		}
-		
-		return 0;
-	}
-
-	@Override
-	public FluidStack drain(ItemStack container, int maxDrain, boolean doDrain) {
-		if (!doDrain) return null;
-		
-		NBTTagCompound fluidTag;
-		try {
-			fluidTag = container.getTagCompound().getCompoundTag("Fluid");
-		} catch (Exception e) {
-			fluidTag = new NBTTagCompound();
-			container.getTagCompound().setTag("Fluid", fluidTag);
-			return null;
-		}
-		
-		FluidStack current = FluidStack.loadFluidStackFromNBT(fluidTag);
-		
-		if (current == null) return null;
-		
-		if (maxDrain > capacity || current.amount <= maxDrain) {
-			container.getTagCompound().setTag("Fluid", new NBTTagCompound());
-			return current;
-		} else {
-			int isDraining = current.amount - maxDrain;
-			current.amount -= isDraining;
-			current.writeToNBT(fluidTag);
-			container.getTagCompound().setTag("Fluid", fluidTag);
-			return new FluidStack(current.getFluid(), isDraining);
-		}
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound tag) {
+		return new FluidHandlerItemStack(stack, capacity);
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List info, boolean adv) {
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> info, boolean adv) {
 		FluidStack fluid = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag("Fluid"));
 		info.add("Name:" + fluid.getLocalizedName());
 		info.add("Amount" + fluid.amount);
 	}
 
-	//Fluid armor side-effect system start, TODO: finish this system
+	//Fluid armor side-effect system start, TODO: finish this system, move to api pkg
 	
 	private static Multimap<Fluid, PotionEffect> fluidSideEffect = ArrayListMultimap.<Fluid, PotionEffect>create();
 	
 	public static boolean registerFluidArmorSideEffect(Fluid fluid, PotionEffect potion) {
 		return fluidSideEffect.put(fluid, potion);
+	}
+	
+	public static Collection<PotionEffect> getEffect(Fluid fluid) {
+		return fluidSideEffect.get(fluid);
 	}
 	
 }

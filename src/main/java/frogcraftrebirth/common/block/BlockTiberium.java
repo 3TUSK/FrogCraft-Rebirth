@@ -12,26 +12,30 @@ import java.util.ArrayList;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockTiberium extends BlockFrog {
 
 	public BlockTiberium() {
-		super(Material.glass, 2);
-		this.setBlockName("tiberium");
+		super(Material.GLASS, 2);
+		this.setUnlocalizedName("tiberium");
 		this.setHardness(10.0F);
 		this.setResistance(41.0F);
 		this.setSubNameArray("red", "blue", "green");
 	}
 	
 	@Override
-	public void onEntityWalking(World world, int x, int y, int z, Entity entity) {
-		entity.setFire(60);
+	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+		entityIn.setFire(60);
 	}
 	
-	public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+	@Override
+	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> dropList = new ArrayList<ItemStack>();
 
 		//quantityDropped(metadata, fortune, world.rand);
@@ -39,8 +43,8 @@ public class BlockTiberium extends BlockFrog {
 		return dropList;
 	}
 
-	public void exlposion(World world, int x, int y, int z) {
-		
+	public void explode(World world, BlockPos pos, float strength, boolean smoke) {
+		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), strength, smoke);
 	}
 
 }

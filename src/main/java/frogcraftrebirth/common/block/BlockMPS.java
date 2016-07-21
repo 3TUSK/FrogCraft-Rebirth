@@ -1,20 +1,18 @@
 package frogcraftrebirth.common.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 //import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
 public class BlockMPS extends BlockFrogContainer {
 	
@@ -25,12 +23,12 @@ public class BlockMPS extends BlockFrogContainer {
 	}
 	
 	@Override
-	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
+	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;
 	}
 
 	@Override
-	public boolean isFlammable(IBlockAccess world, int x, int y, int z, ForgeDirection face) {
+	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
         return false;
     }
 
@@ -40,11 +38,11 @@ public class BlockMPS extends BlockFrogContainer {
 	}
 	
 	@Override
-	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack itemstack) {
-		if (world.isRemote) return;
-		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation){		
-			if (itemstack.getTagCompound() != null) {
-				TileMobilePowerStation tile = (TileMobilePowerStation) world.getTileEntity(x, y, z);
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		if (worldIn.isRemote) return;
+		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation){		
+			if (stack.getTagCompound() != null) {
+				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
 				/*tile.charge = itemstack.stackTagCompound.getDouble("storedEnergy");
 				tile.maxCharge = itemstack.stackTagCompound.getDouble("maxEnergy");
 				
@@ -56,18 +54,19 @@ public class BlockMPS extends BlockFrogContainer {
 						tile.inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
 					}
 				}*/
-				tile.readFromNBT(itemstack.getTagCompound());
+				tile.readFromNBT(stack.getTagCompound());
 			}
 		}
 	}
 	
 	@Override
-	public void breakBlock(World world, int x, int y, int z, Block block, int what) {
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		ItemStack mps = new ItemStack(this, 1);
 		
-		if (world.getTileEntity(x, y, z) instanceof TileMobilePowerStation) {
-			TileMobilePowerStation tile = (TileMobilePowerStation)world.getTileEntity(x, y, z);
-			if (mps.stackTagCompound == null) mps.stackTagCompound = new NBTTagCompound();
+		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation) {
+			TileMobilePowerStation tile = (TileMobilePowerStation)worldIn.getTileEntity(pos);
+			if (mps.getTagCompound() == null) 
+				mps.setTagCompound(new NBTTagCompound());
 			/*mps.stackTagCompound.setDouble("storedEnergy", tile.charge);
 			mps.stackTagCompound.setDouble("maxEnergy", tile.maxCharge);
 			NBTTagList invList = new NBTTagList();
@@ -81,11 +80,11 @@ public class BlockMPS extends BlockFrogContainer {
 				}
 			}
 			mps.stackTagCompound.setTag("inventory", invList);*/
-			tile.writeToNBT(mps.stackTagCompound);
+			tile.writeToNBT(mps.getTagCompound());
 		}
 		
-		dropBlockAsItem(world, x, y, z, mps);
-		super.breakBlock(world, x, y, z, block, what);
+		spawnAsEntity(worldIn, pos, mps);
+		super.breakBlock(worldIn, pos, state);
 	}
 
 }

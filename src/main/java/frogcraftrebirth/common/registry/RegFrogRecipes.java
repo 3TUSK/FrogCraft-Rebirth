@@ -27,10 +27,4 @@ public class RegFrogRecipes {
 	private static void defaultRecipe() {
 		
 	}
-	
-	@Deprecated
-	private static void gregtechRecipe() { throw new UnsupportedOperationException(); }
-	@Deprecated
-	private static void ic2classicRecipe() { throw new UnsupportedOperationException(); }
-
 }

@@ -9,26 +9,27 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
-public class TileHSU extends TileFrogEStorage implements IInventory {
+public class TileHSU extends TileFrogEStorage implements ITickable, IInventory {
 	
 	public ItemStack[] inv;
 	
 	public TileHSU() {
-		super(100000000, 2048, ForgeDirection.DOWN, false);
+		super(100000000, 2048, EnumFacing.DOWN, false);
 		this.inv = new ItemStack[2];
 	}
 	
-	protected TileHSU(int maxEnergy, int output, ForgeDirection emitTo, boolean allowTelep) {
+	protected TileHSU(int maxEnergy, int output, EnumFacing emitTo, boolean allowTelep) {
 		super(maxEnergy, output, emitTo, allowTelep);
 		this.inv = new ItemStack[2];
 	}
 
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
+	public void update() {
 		if (worldObj.isRemote)
 			return;
 		
@@ -66,8 +67,7 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", storedE);
 		tag.setInteger("maxCharge", maxE);
 		tag.setInteger("output", output);
@@ -80,6 +80,7 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 			invTag.appendTag(s);
 		}
 		tag.setTag("inventory", invTag);
+		return super.writeToNBT(tag);
 	}
 
 	//IInventory start. Note: all parameter named as "i" means "inventory slot"
@@ -115,11 +116,6 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 	}
 
 	@Override
-	public ItemStack getStackInSlotOnClosing(int i) {
-		return null;
-	}
-
-	@Override
 	public void setInventorySlotContents(int i, ItemStack stack) {
 		if (inv[i] == null) {
 			inv[i] = stack;
@@ -128,12 +124,12 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 	}
 
 	@Override
-	public String getInventoryName() {
-		return null;
+	public String getName() {
+		return "";
 	}
 
 	@Override
-	public boolean hasCustomInventoryName() {
+	public boolean hasCustomName() {
 		return false;
 	}
 
@@ -148,10 +144,10 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 	}
 
 	@Override
-	public void openInventory() {}
+	public void openInventory(EntityPlayer player) {}
 
 	@Override
-	public void closeInventory() {}
+	public void closeInventory(EntityPlayer player) {}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack stack) {
@@ -161,6 +157,33 @@ public class TileHSU extends TileFrogEStorage implements IInventory {
 	@Override
 	public int getTier() {
 		return 4;
+	}
+
+	// TODO implementation of followings
+	
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		return null;
+	}
+
+	@Override
+	public int getField(int id) {
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		
 	}
 
 }

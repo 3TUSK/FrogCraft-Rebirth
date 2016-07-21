@@ -7,16 +7,17 @@ import frogcraftrebirth.api.tile.IPersonal;
 import frogcraftrebirth.common.lib.tile.TileFrogInventory;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 
-public class TileMobilePowerStation extends TileFrogInventory implements IEnergySource, IMobilePowerStation {
+public class TileMobilePowerStation extends TileFrogInventory implements ITickable, IEnergySource, IMobilePowerStation {
 	
 	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
 	public ItemStack[] inv;
@@ -40,8 +41,7 @@ public class TileMobilePowerStation extends TileFrogInventory implements IEnergy
 	}
 	
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
+	public void update() {
 		if (!worldObj.isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
@@ -65,8 +65,7 @@ public class TileMobilePowerStation extends TileFrogInventory implements IEnergy
 		}
 	}
 	
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setDouble("charge", charge);
 		tag.setDouble("maxCharge", maxCharge);
 		
@@ -81,12 +80,13 @@ public class TileMobilePowerStation extends TileFrogInventory implements IEnergy
 			}
 		}
 		tag.setTag("inventory", invList);
+		return super.writeToNBT(tag);
 	}
 
 	/**Determine whether this tile emit energy to a certain direction.*/
 	@Override
-	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
-		return direction != ForgeDirection.UP;
+	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing direction) {
+		return direction != EnumFacing.UP;
 	}
 
 	/**Called when it is going to emit energy to somewhere.*/

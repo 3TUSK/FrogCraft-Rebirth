@@ -9,14 +9,15 @@ import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHandler, ICondenseTowerOutputHatch {
+public class TileFluidOutputHatch extends TileFrogInventory implements ITickable, IFluidHandler, ICondenseTowerOutputHatch {
 
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 
@@ -28,8 +29,7 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	private int tick = 0;
 
 	@Override
-	public void updateEntity() {
-		super.updateEntity();
+	public void update() {
 		if (worldObj.isRemote)
 			return;
 		tick++;
@@ -60,9 +60,9 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tank.writeToNBT(tag);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
@@ -78,12 +78,12 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	}
 
 	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+	public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
 		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
 			return null;
 		}
@@ -91,32 +91,32 @@ public class TileFluidOutputHatch extends TileFrogInventory implements IFluidHan
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 
 	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
+	public boolean canFill(EnumFacing from, Fluid fluid) {
 		return true;
 	}
 
 	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+	public boolean canDrain(EnumFacing from, Fluid fluid) {
 		return true;
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+	public FluidTankInfo[] getTankInfo(EnumFacing from) {
 		return new FluidTankInfo[] { this.tank.getInfo() };
 	}
 
 	public FluidTankInfo[] getTankInfo() {
-		return this.getTankInfo(ForgeDirection.UNKNOWN);
+		return this.getTankInfo(null);
 	}
 
 	@Override
 	public boolean canInject(FluidStack stack) {
-		return stack != null ? this.canFill(ForgeDirection.UNKNOWN, stack.getFluid()) : false;
+		return stack != null ? this.canFill(null, stack.getFluid()) : false;
 		//How can one fill within non-existed fluid?
 	}
 

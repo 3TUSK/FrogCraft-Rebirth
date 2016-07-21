@@ -10,7 +10,7 @@ package frogcraftrebirth.common.asm;
 
 import java.util.Map;
 
-import cpw.mods.fml.relauncher.IFMLLoadingPlugin;
+import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.7.10")
 @IFMLLoadingPlugin.TransformerExclusions("frogcraftrebirth.common.asm")
@@ -21,7 +21,8 @@ public class FrogASMPlugin implements IFMLLoadingPlugin {
 	@Override
 	public String[] getASMTransformerClass() {
 		return new String[] {
-			//"frogcraftrebirth.common.asm.FrogASMTransformer"	
+			//"frogcraftrebirth.common.asm.FrogASMTransformer"
+			//Will be enabled as soon as there is necessity
 		};
 	}
 

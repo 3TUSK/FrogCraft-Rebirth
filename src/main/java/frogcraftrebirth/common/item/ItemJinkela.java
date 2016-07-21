@@ -22,7 +22,7 @@ public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
 		super(false);
-		setUnlocalizedName("Item_Miscs.GoldClod");
+		setUnlocalizedName("goldClod");
 	}
 
 	@Override

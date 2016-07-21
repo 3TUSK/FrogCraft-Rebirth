@@ -12,7 +12,7 @@ import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
@@ -28,10 +28,11 @@ public class TileLiquifier extends TileFrogMachine implements IFluidHandler {
 		super(4, "liquifier", 2, 10000);
 	}
 	
-	public void updateEntity() {
+	@Override
+	public void update() {
 		if (worldObj.isRemote)
 			return;
-		super.updateEntity();
+		super.update();
 		//TODO
 	}
 	
@@ -43,18 +44,18 @@ public class TileLiquifier extends TileFrogMachine implements IFluidHandler {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setInteger("process", this.process);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
+	public int[] getSlotsForFace(EnumFacing side) {
 		switch (side) {
-			case 0:
+			case UP:
 				return new int[] {0};
-			case 1:
+			case DOWN:
 				return new int[] {3};
 			default:
 				return (int[])null;
@@ -62,42 +63,42 @@ public class TileLiquifier extends TileFrogMachine implements IFluidHandler {
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		return slot == 0;
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		return index == 0;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		return slot == 3;
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		return index == 3;
 	}
 
 	@Override
-	public int fill(ForgeDirection from, FluidStack resource, boolean doFill) {
+	public int fill(EnumFacing from, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
 		return this.tank.drain(resource.amount, doDrain);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, int maxDrain, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 
 	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
+	public boolean canFill(EnumFacing from, Fluid fluid) {
 		return false;
 	}
 
 	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+	public boolean canDrain(EnumFacing from, Fluid fluid) {
 		return this.tank.getFluid().getFluid() != null ? false : this.tank.getFluid().getFluid() == fluid;
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection from) {
+	public FluidTankInfo[] getTankInfo(EnumFacing from) {
 		return new FluidTankInfo[] {this.tank.getInfo()};
 	}
 

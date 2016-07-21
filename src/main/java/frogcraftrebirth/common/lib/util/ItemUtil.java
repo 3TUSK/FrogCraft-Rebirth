@@ -61,7 +61,7 @@ public final class ItemUtil {
 			if (strictSize)
 				hasStack = aStack.stackSize == stack.stackSize;
 			if (strictNBT)
-				hasStack = aStack.getTagCompound().equals(stack.stackTagCompound);
+				hasStack = aStack.getTagCompound().equals(stack.getTagCompound());
 			
 			if (hasStack)
 				return true;

@@ -1,8 +1,8 @@
-package frogcraftrebirth.common.lib.event;
+package frogcraftrebirth.api.event;
 
-import cpw.mods.fml.common.eventhandler.Cancelable;
-import cpw.mods.fml.common.eventhandler.Event;
-import cpw.mods.fml.common.eventhandler.Event.HasResult;
+import net.minecraftforge.fml.common.eventhandler.Cancelable;
+import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.Event.HasResult;
 import frogcraftrebirth.api.tile.IPersonal;
 import net.minecraft.entity.player.EntityPlayer;
 

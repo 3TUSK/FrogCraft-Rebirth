@@ -31,10 +31,10 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 	}
 
 	@Override
-	public void updateEntity() {
+	public void update() {
 		if (this.worldObj.isRemote)
 			return;
-		super.updateEntity();
+		super.update();
 
 		if (inv[0] == null || this.charge <= 128) {
 			this.working = false;
@@ -122,8 +122,7 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 	}
 
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
@@ -132,28 +131,29 @@ public class TilePyrolyzer extends TileFrogMachine implements IFluidHandler {
 			NBTTagCompound item = recipe.getInput().writeToNBT(new NBTTagCompound());
 			tag.setTag("recipeInput", item);
 		}
+		return super.writeToNBT(tag);
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
+	public int[] getSlotsForFace(EnumFacing side) {
 		switch (side) {
-		case 0:
-			return new int[] { 1 };
-		case 1:
+		case UP:
 			return new int[] { 0 };
+		case DOWN:
+			return new int[] { 1 };
 		default:
 			return null;
 		}
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		return side == 0 && slot == 1;
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.UP && index == 0;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		return side == 1 && slot == 0;
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.DOWN && index == 1;
 	}
 
 	@Override

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>{
 	
-	private int charge, tick, fluidAmount;
+	private int charge, tick;
 
 	public ContainerCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
 		super(playerInv, tile);
@@ -22,10 +22,9 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
 
 	@Override
 	public void addListener(IContainerListener listener) {
-        super.addListener(listener);
-        listener.sendProgressBarUpdate(this, 0, this.tile.charge);
+		super.addListener(listener);
+		listener.sendProgressBarUpdate(this, 0, this.tile.charge);
         listener.sendProgressBarUpdate(this, 1, this.tile.tick);
-        listener.sendProgressBarUpdate(this, 2, this.tile.getTankInfo(null)[0].capacity);
 	}
 	
 	@Override
@@ -37,12 +36,9 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
 				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 0, this.tile.charge), (EntityPlayerMP)crafter);
 			if (this.tick != this.tile.tick)
 				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 1, this.tile.tick), (EntityPlayerMP)crafter);
-			if (this.fluidAmount != this.tile.getTankInfo(null)[0].capacity)
-				sendDataToClientSide(new PacketFrog02GuiDataUpdate(this.windowId, 2, this.tile.getTankInfo(null)[0].capacity), (EntityPlayerMP)crafter);
 		}
 		this.charge = this.tile.charge;
 		this.tick = this.tile.tick;
-		this.fluidAmount = this.tile.getTankInfo(null)[0].capacity;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -50,6 +46,5 @@ public class ContainerCondenseTower extends ContainerTileFrog<TileCondenseTower>
 	public void updateProgressBar(int id, int value) {
 		if (id == 0) this.tile.charge = value;
 		if (id == 1) this.tile.tick = value;
-		//if (id == 2) this.tile. TODO: synchronized FluidTank
 	}
 }

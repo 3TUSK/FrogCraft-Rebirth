@@ -8,7 +8,6 @@ import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraftforge.fluids.FluidTankInfo;
 
 public class GuiPyrolyzer extends GuiContainer {
 
@@ -40,8 +39,8 @@ public class GuiPyrolyzer extends GuiContainer {
 			int progressPercent = (int) (24 * tile.process / tile.processMax);
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
-		FluidTankInfo info = tile.getTankInfo(null)[0];
-		GuiUtil.renderFluidTank(this, this.guiLeft + 143, this.guiTop + 23, 16, 47, info.fluid, info.capacity);
+		//FluidTankInfo info = tile.getTankInfo(null)[0];
+		GuiUtil.renderFluidTank(this, this.guiLeft + 143, this.guiTop + 23, 16, 47, null, 0);
 	}
 
 }

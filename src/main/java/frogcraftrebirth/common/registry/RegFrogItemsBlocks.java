@@ -13,14 +13,12 @@ import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
 import frogcraftrebirth.common.item.ItemCatalystModule;
-import frogcraftrebirth.common.item.ItemCell;
 import frogcraftrebirth.common.item.ItemDecayBattery;
 import frogcraftrebirth.common.item.ItemDust;
 import frogcraftrebirth.common.item.ItemIngot;
 import frogcraftrebirth.common.item.ItemIonCannon;
 import frogcraftrebirth.common.item.ItemJinkela;
 import frogcraftrebirth.common.item.ItemTiberium;
-import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
@@ -30,7 +28,9 @@ import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -60,14 +60,14 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
 		//FrogBlocks.mobilePowerStation = new BlockMPS();
 		
-		GameRegistry.registerBlock(FrogBlocks.frogOres, ItemFrogBlock.class, "oreFrog");
-		GameRegistry.registerBlock(FrogBlocks.tiberium, ItemFrogBlock.class, "tiberiumCrystal");
-		GameRegistry.registerBlock(FrogBlocks.generators, ItemFrogBlock.class, "generator");
-		GameRegistry.registerBlock(FrogBlocks.machines, ItemFrogBlock.class, "machines");
-		GameRegistry.registerBlock(FrogBlocks.inductionalMachines, ItemFrogBlock.class, "machinesInductional");
-		GameRegistry.registerBlock(FrogBlocks.condenseTowerPart, ItemFrogBlock.class, "condenseTower");
-		GameRegistry.registerBlock(FrogBlocks.hybridStorageUnit, ItemFrogBlock.class, "hybridStorageUnit");
-		//GameRegistry.registerBlock(FrogBlocks.mobilePowerStation, ItemMPS.class, "mobilePowerStation");
+		GameRegistry.<Block>register(FrogBlocks.frogOres);
+		GameRegistry.<Block>register(FrogBlocks.tiberium);
+		GameRegistry.<Block>register(FrogBlocks.generators);
+		GameRegistry.<Block>register(FrogBlocks.machines);
+		GameRegistry.<Block>register(FrogBlocks.inductionalMachines);
+		GameRegistry.<Block>register(FrogBlocks.condenseTowerPart);
+		GameRegistry.<Block>register(FrogBlocks.hybridStorageUnit);
+		//GameRegistry.<Block>register(FrogBlocks.mobilePowerStation);
 
 	}
 
@@ -78,7 +78,6 @@ public class RegFrogItemsBlocks {
 		FrogItems.coolantAmmonia60K = new ItemAmmoniaCoolant("60K", 6000);
 		FrogItems.coolantAmmonia180K = new ItemAmmoniaCoolant("180K", 18000);
 		FrogItems.coolantAmmonia360K = new ItemAmmoniaCoolant("360K", 36000);
-		FrogItems.itemCell = new ItemCell();
 		FrogItems.itemIngot = new ItemIngot();
 		FrogItems.itemDust = new ItemDust();
 		FrogItems.itemReactionModule = new ItemCatalystModule();
@@ -94,20 +93,19 @@ public class RegFrogItemsBlocks {
 		FrogItems.jinkela = new ItemJinkela();
 		FrogItems.tiberium = new ItemTiberium();
 		
-		GameRegistry.registerItem(FrogItems.decayBatteryUranium, "decayBatteryUranium");
-		GameRegistry.registerItem(FrogItems.decayBatteryThorium, "decayBatteryThorium");
-		GameRegistry.registerItem(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
-		GameRegistry.registerItem(FrogItems.coolantAmmonia60K, "coolantAmmonia60K");
-		GameRegistry.registerItem(FrogItems.coolantAmmonia180K, "coolantAmmonia180K");
-		GameRegistry.registerItem(FrogItems.coolantAmmonia360K, "coolantAmmonia360K");
-		GameRegistry.registerItem(FrogItems.itemCell, "frogCells");
-		GameRegistry.registerItem(FrogItems.itemIngot, "frogIngots");
-		GameRegistry.registerItem(FrogItems.itemDust, "frogDusts");
-		GameRegistry.registerItem(FrogItems.itemReactionModule, "frogModule");
-		GameRegistry.registerItem(FrogItems.ionCannon, "railgun");
-		GameRegistry.registerItem(FrogItems.ionCannonFrame, "railgunRail");
-		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
-		GameRegistry.registerItem(FrogItems.tiberium, "tiberium");
+		GameRegistry.<Item>register(FrogItems.decayBatteryUranium);
+		GameRegistry.<Item>register(FrogItems.decayBatteryThorium);
+		GameRegistry.<Item>register(FrogItems.decayBatteryPlutoium);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia60K);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia180K);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia360K);
+		GameRegistry.<Item>register(FrogItems.itemIngot);
+		GameRegistry.<Item>register(FrogItems.itemDust);
+		GameRegistry.<Item>register(FrogItems.itemReactionModule);
+		GameRegistry.<Item>register(FrogItems.ionCannon);
+		GameRegistry.<Item>register(FrogItems.ionCannonFrame);
+		GameRegistry.<Item>register(FrogItems.jinkela);
+		GameRegistry.<Item>register(FrogItems.tiberium);
 	}
 	
 	static void initOreDict() {
@@ -118,16 +116,9 @@ public class RegFrogItemsBlocks {
 		OreDictionary.registerOre("gemSapphire", new ItemStack(FrogItems.itemIngot, 1, 3));
 		OreDictionary.registerOre("gemGreenSapphire", new ItemStack(FrogItems.itemIngot, 1, 4));
 		
-		OreDictionary.registerOre("cellAmmonia", new ItemStack(FrogItems.itemCell, 1, 0));
-		
-		OreDictionary.registerOre("stoneBasalt", new ItemStack(FrogBlocks.frogOres, 1, 0));
-		OreDictionary.registerOre("stoneMarble", new ItemStack(FrogBlocks.frogOres, 1, 1));
-		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 2));
-		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 3));
-		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogBlocks.frogOres, 1, 4));
-		OreDictionary.registerOre("oreRuby", new ItemStack(FrogBlocks.frogOres, 1, 6));
-		OreDictionary.registerOre("oreSapphire", new ItemStack(FrogBlocks.frogOres, 1, 7));
-		OreDictionary.registerOre("oreGreenSapphire", new ItemStack(FrogBlocks.frogOres, 1, 8));
+		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 0));
+		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 1));
+		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogBlocks.frogOres, 1, 2));
 		
 	}
 	

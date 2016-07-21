@@ -13,12 +13,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class TileCombustionFurnace extends TileFrogGenerator implements ITickable, IFluidHandler {
+public class TileCombustionFurnace extends TileFrogGenerator implements ITickable {
 
 	public boolean working = false;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
@@ -132,36 +130,18 @@ public class TileCombustionFurnace extends TileFrogGenerator implements ITickabl
 	}
 
 	@Override
-	public boolean canFill(EnumFacing from, Fluid fluid) {
-		return false;
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return true;
+		else return super.hasCapability(capability, facing);
 	}
-
+	
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean canDrain(EnumFacing from, Fluid fluid) {
-		return true;
-	}
-
-	@Override
-	public FluidTankInfo[] getTankInfo(EnumFacing direction) {
-		return new FluidTankInfo[] { tank.getInfo() };
-	}
-
-	@Override
-	public int fill(EnumFacing direction, FluidStack resource, boolean doFill) {
-		return this.tank.fill(resource, doFill);
-	}
-
-	@Override
-	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
-		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
-			return null;
-		}
-		return this.tank.drain(resource.amount, doDrain);
-	}
-
-	@Override
-	public FluidStack drain(EnumFacing direction, int maxDrain, boolean doDrain) {
-		return this.tank.drain(maxDrain, doDrain);
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return (T)tank;
+		else return super.getCapability(capability, facing);
 	}
 
 }

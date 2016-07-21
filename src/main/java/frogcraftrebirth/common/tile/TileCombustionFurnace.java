@@ -11,13 +11,14 @@ import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrogGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
 
-public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHandler {
+public class TileCombustionFurnace extends TileFrogGenerator implements ITickable, IFluidHandler {
 
 	public boolean working = false;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
@@ -30,10 +31,9 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 	}
 
 	@Override
-	public void updateEntity() {
+	public void update() {
 		if (worldObj.isRemote)
 			return;
-		super.updateEntity();
 		
 		this.working = this.time >= 0;
 		
@@ -103,12 +103,12 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setBoolean("working", this.working);
 		tag.setInteger("time", this.time);
 		tag.setInteger("timeMax", this.timeMax);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
@@ -117,42 +117,42 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
-		return side == 1 ? new int[] { 0 } : null; // fuel slot
+	public int[] getSlotsForFace(EnumFacing direction) {
+		return direction == EnumFacing.UP ? new int[] { 0 } : null; // fuel slot
 	}
 
 	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		return side == 1;
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.UP;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		return side == 0 && slot == 2;
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		return direction == EnumFacing.DOWN;
 	}
 
 	@Override
-	public boolean canFill(ForgeDirection from, Fluid fluid) {
+	public boolean canFill(EnumFacing from, Fluid fluid) {
 		return false;
 	}
 
 	@Override
-	public boolean canDrain(ForgeDirection from, Fluid fluid) {
+	public boolean canDrain(EnumFacing from, Fluid fluid) {
 		return true;
 	}
 
 	@Override
-	public FluidTankInfo[] getTankInfo(ForgeDirection direction) {
+	public FluidTankInfo[] getTankInfo(EnumFacing direction) {
 		return new FluidTankInfo[] { tank.getInfo() };
 	}
 
 	@Override
-	public int fill(ForgeDirection direction, FluidStack resource, boolean doFill) {
+	public int fill(EnumFacing direction, FluidStack resource, boolean doFill) {
 		return this.tank.fill(resource, doFill);
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection from, FluidStack resource, boolean doDrain) {
+	public FluidStack drain(EnumFacing from, FluidStack resource, boolean doDrain) {
 		if (resource == null || !resource.isFluidEqual(tank.getFluid())) {
 			return null;
 		}
@@ -160,7 +160,7 @@ public class TileCombustionFurnace extends TileFrogGenerator implements IFluidHa
 	}
 
 	@Override
-	public FluidStack drain(ForgeDirection direction, int maxDrain, boolean doDrain) {
+	public FluidStack drain(EnumFacing direction, int maxDrain, boolean doDrain) {
 		return this.tank.drain(maxDrain, doDrain);
 	}
 

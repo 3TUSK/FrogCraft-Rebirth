@@ -7,13 +7,14 @@ import frogcraftrebirth.api.tile.IAirPump;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
-public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
+public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAirPump {
 	
 	private static final int MAX_AIR = 1000;
 	
@@ -33,15 +34,15 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 		super.invalidate();
 	}
 	
-	public void updateEntity() {
-		super.updateEntity();
+	@Override
+	public void update() {
 		if (worldObj.isRemote) return;
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}
 		
-		if (this.worldObj.isBlockIndirectlyGettingPowered(xCoord, yCoord, zCoord))
+		if (this.worldObj.isBlockIndirectlyGettingPowered(this.pos) != 0)
 			return;
 		
 		if (this.charge <= 0 || this.charge < airPumpPowerRate)
@@ -67,16 +68,16 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 		this.tick = tag.getInteger("tick");
 	}
 	
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);
 		tag.setInteger("air", this.airAmount);
 		tag.setInteger("tick", this.tick);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
-	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
-		return direction != ForgeDirection.UP;
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
+		return direction != EnumFacing.UP;
 	}
 
 	@Override
@@ -90,7 +91,7 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	}
 
 	@Override
-	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.charge += amount;
 		if (this.charge >= maxCharge)
 			this.charge = maxCharge;
@@ -103,7 +104,7 @@ public class TileAirPump extends TileFrog implements IEnergySink, IAirPump {
 	}
 
 	@Override
-	public void extractAir(ForgeDirection from, int amount, boolean simluated) {
+	public void extractAir(EnumFacing from, int amount, boolean simluated) {
 		if (simluated) return;
 		this.airAmount -= amount;
 		if (airAmount < 0) this.airAmount = 0;

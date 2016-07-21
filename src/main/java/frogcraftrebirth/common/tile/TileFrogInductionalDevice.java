@@ -7,6 +7,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 
+/**
+ * Will be separated into a new mod, hopefully...
+ */
+@Deprecated
 public abstract class TileFrogInductionalDevice extends TileFrogMachine {
 	
 	private static final int PROCESS_MAX = 100;

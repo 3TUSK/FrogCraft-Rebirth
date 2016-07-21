@@ -9,6 +9,7 @@ import net.minecraft.nbt.NBTTagList;
 public abstract class TileFrogInventory extends TileFrog implements IInventory {
 
 	protected ItemStack[] inv;
+	protected String name;
 	
 	protected TileFrogInventory(final int invSize) {
 		this(invSize, "DummyInvName");
@@ -17,6 +18,7 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	protected TileFrogInventory(final int invSize, final String invName) {
 		super();
 		this.inv = new ItemStack[invSize];
+		this.name = invName;
 	}
 	
 	@Override
@@ -77,6 +79,13 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
             return null;
         }
 	}
+	
+	@Override
+	public ItemStack removeStackFromSlot(int index) {
+		ItemStack copy = inv[index].copy();
+		inv[index] = null;
+		return copy;
+	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
@@ -96,6 +105,16 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	public boolean isUseableByPlayer(EntityPlayer player) {
 		return true;
 	}
+	
+	@Override
+	public String getName() {
+		return this.name;
+	}
+
+	@Override
+	public boolean hasCustomName() {
+		return name != null && !name.equals("");
+	}
 
 	@Override
 	public void openInventory(EntityPlayer player) {}
@@ -106,6 +125,31 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {
 		return true;
+	}
+	
+	@Override
+	public int getField(int id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void setField(int id, int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public int getFieldCount() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void clear() {
+		for (int i = 0; i < inv.length; ++i) {
+			inv[i] = null;
+		}
 	}
 
 }

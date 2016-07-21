@@ -10,6 +10,7 @@ import frogcraftrebirth.api.tile.IAdvChemReactor;
 import frogcraftrebirth.common.lib.tile.TileFrogMachine;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
 
 public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReactor {
 	public int process, processMax;
@@ -134,34 +135,34 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 	}
 
 	@Override
-	public int[] getAccessibleSlotsFromSide(int side) {
+	public int[] getSlotsForFace(EnumFacing side) {
 		switch (side) {
-			case 0: //Bottom
-				return new int[] {6,7,8,9,10,12};
-			case 1: //Top
-				return new int[] {1,2,3,4,5,11};
-			default: //Disallow auto-insert module
-				return null;
+		case DOWN: //Bottom
+			return new int[] {6,7,8,9,10,12};
+		case UP: //Top
+			return new int[] {1,2,3,4,5,11};
+		default: //Disallow auto-insert module
+			return null;
 		}
 	}
-	
+
 	@Override
-	public boolean canInsertItem(int slot, ItemStack item, int side) {
-		if (side != 1)
+	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
+		if (direction != EnumFacing.UP)
 			return false;
-		if (slot == 11 || (slot <=5 && slot >=1)) 
-			if (inv[slot].isItemEqual(item) && inv[slot].stackSize + item.stackSize <= inv[slot].getMaxStackSize()) 
+		if (index == 11 || (index <=5 && index >=1)) 
+			if (inv[index].isItemEqual(item) && inv[index].stackSize + item.stackSize <= inv[index].getMaxStackSize()) 
 				return true;
 		
 		return false;
 	}
 
 	@Override
-	public boolean canExtractItem(int slot, ItemStack item, int side) {
-		if (side != 0)
+	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
+		if (direction != EnumFacing.DOWN)
 			return false;
-		if (slot == 12 || (slot <=10 && slot >=6))
-			if (inv[slot].isItemEqual(item) && inv[slot].stackSize >= item.stackSize) 
+		if (index == 12 || (index <=10 && index >=6))
+			if (inv[index].isItemEqual(item) && inv[index].stackSize >= item.stackSize) 
 				return true;
 		
 		return false;

@@ -33,7 +33,7 @@ public class TileCondenseTower extends TileFrogMachine implements IFluidHandler 
 	
 	private boolean checkStructure() {
 		for (int i = 1; i < 7; i++) {
-			TileEntity tile = worldObj.getTileEntity(xCoord, yCoord + i, zCoord);
+			TileEntity tile = worldObj.getTileEntity(this.getPos().up(i));
 			if (i < 3 && tile instanceof ICondenseTowerStructure) {
 				this.registerSturcture((ICondenseTowerStructure)tile);
 				continue;

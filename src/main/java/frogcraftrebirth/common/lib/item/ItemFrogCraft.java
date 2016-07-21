@@ -1,23 +1,17 @@
 package frogcraftrebirth.common.lib.item;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.List;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.IFrogNetworkObject;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
-	
-	public static final String TEXTURE_MAIN = "frogcraftrebirth:";
+public abstract class ItemFrogCraft extends Item {
 	
 	protected String[] nameArray;
 
@@ -34,9 +28,8 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	 */
 	public abstract List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv);
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, @SuppressWarnings("rawtypes") List aList, boolean adv) {
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> aList, boolean adv) {
 		if (getToolTip(stack, player, adv) != null)
 			aList.addAll(getToolTip(stack, player, adv));
 	}
@@ -61,14 +54,6 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 	protected ItemFrogCraft setSubNameArray(String... names) {
 		this.nameArray = names;
 		return this;
-	}
-	
-	public void writePacketData(DataOutputStream output) throws IOException {
-		//what
-	}
-	
-	public void readPacketData(DataInputStream input) throws IOException {
-		//what
 	}
 
 }

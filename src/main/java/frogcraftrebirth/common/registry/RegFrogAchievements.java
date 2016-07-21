@@ -16,7 +16,7 @@ public class RegFrogAchievements {
 	}
 	
 	static final Achievement EVT = new Achievement("EVT", "get_EVT", 0, 0, new ItemStack(FrogBlocks.hybridStorageUnit), null);
-	static final Achievement RAILGUN = new Achievement("RAILGUN", "get_railgun", 0, -2, new ItemStack(FrogItems.railgun), null);
+	static final Achievement RAILGUN = new Achievement("RAILGUN", "get_railgun", 0, -2, new ItemStack(FrogItems.ionCannon), null);
 	static final Achievement POTASSIUM = new Achievement("POTASSIUM", "killed_by_Potassium", -2, 0, new ItemStack(FrogItems.itemIngot, 1, 0), null);
 	static final Achievement GAS_PUMP = new Achievement("GAS_PUMP", "gaspump", 2, 0, new ItemStack(FrogBlocks.machines, 1, 1), null);
 	static final Achievement PNEUMATIC_COMPRESSOR = new Achievement("PNEUMATIC_COMPRESSOR", "pneumaticCompressor", 2, 2, FrogItems.pneumaticCompressor, GAS_PUMP);

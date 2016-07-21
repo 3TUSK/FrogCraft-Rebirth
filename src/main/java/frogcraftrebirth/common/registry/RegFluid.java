@@ -58,7 +58,7 @@ public class RegFluid {
 		regFluid(FrogFluids.coalTar);
 		regFluid(FrogFluids.fluorine);
 		regFluid(FrogFluids.nitricAcid);
-		regFluid(FrogFluids.liquidAir);
+		//regFluid(FrogFluids.liquidAir);
 		regFluid(FrogFluids.nitrogenOxide);
 		regFluid(FrogFluids.oxygen);
 		regFluid(FrogFluids.sulfurDioxide);

@@ -2,15 +2,16 @@ package frogcraftrebirth.common.lib.tile;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
-public abstract class TileFrogMachine extends TileFrogInventory implements ISidedInventory, IEnergySink {
+public abstract class TileFrogMachine extends TileFrogInventory implements ITickable, ISidedInventory, IEnergySink {
 	
 	public int charge, maxCharge, sinkTier;
 	protected boolean isInENet;
@@ -22,13 +23,13 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	}
 	
 	@Override
-	public abstract int[] getAccessibleSlotsFromSide(int side);
+	public abstract int[] getSlotsForFace(EnumFacing side);
 
 	@Override
-	public abstract boolean canInsertItem(int slot, ItemStack item, int side);
+	public abstract boolean canInsertItem(int index, ItemStack item, EnumFacing direction);
 	
 	@Override
-	public abstract boolean canExtractItem(int slot, ItemStack item, int side);
+	public abstract boolean canExtractItem(int index, ItemStack item, EnumFacing direction);
 	
 	@Override
 	public void invalidate() {
@@ -40,7 +41,7 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	}
 	
 	@Override
-	public void updateEntity() {	
+	public void update() {	
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
@@ -55,14 +56,14 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);
 		tag.setInteger("maxCharge", maxCharge);
+		return super.writeToNBT(tag);
 	}
 
 	@Override
-	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
 		return true;
 	}
 
@@ -77,7 +78,7 @@ public abstract class TileFrogMachine extends TileFrogInventory implements ISide
 	}
 
 	@Override
-	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.charge += amount;
 		this.charge = charge > maxCharge ? maxCharge : charge;
 		return 0;

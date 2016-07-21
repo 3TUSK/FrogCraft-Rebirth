@@ -4,12 +4,13 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.IFrogNetworkObject;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
 
 public class PacketFrog00TileUpdate implements IFrogPacket {
 	
@@ -24,9 +25,9 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 	@Override
 	public void writeData(DataOutputStream output) throws IOException {
 		output.writeByte(PACKET_TILE);
-		output.writeInt(tile.xCoord);
-		output.writeInt(tile.yCoord);
-		output.writeInt(tile.zCoord);
+		output.writeInt(tile.getPos().getX());
+		output.writeInt(tile.getPos().getY());
+		output.writeInt(tile.getPos().getZ());
 		tile.writePacketData(output);
 	}
 
@@ -38,7 +39,7 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 		y = input.readInt(),
 		z = input.readInt();
 		
-		TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(x, y, z);
+		TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(new BlockPos(x, y, z));
 		
 		if  (tile instanceof IFrogNetworkObject)
 			((IFrogNetworkObject)tile).readPacketData(input);

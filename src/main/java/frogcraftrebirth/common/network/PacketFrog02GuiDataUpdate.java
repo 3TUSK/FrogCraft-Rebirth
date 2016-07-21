@@ -4,8 +4,8 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import cpw.mods.fml.client.FMLClientHandler;
-import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraftforge.fml.client.FMLClientHandler;
+import net.minecraft.client.entity.EntityPlayerSP;
 
 public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 	
@@ -32,7 +32,7 @@ public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 		int gui = input.readInt();
 		int data = input.readInt();
 		int value = input.readInt();
-		EntityClientPlayerMP player = FMLClientHandler.instance().getClient().thePlayer;
+		EntityPlayerSP player = FMLClientHandler.instance().getClient().thePlayer;
 		if (player.openContainer != null && player.openContainer.windowId == gui)
 			player.openContainer.updateProgressBar(data, value);
 	}

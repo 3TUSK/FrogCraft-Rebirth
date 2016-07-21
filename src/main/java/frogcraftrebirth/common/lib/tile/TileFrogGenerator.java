@@ -1,19 +1,15 @@
 package frogcraftrebirth.common.lib.tile;
 
-import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
-import ic2.api.energy.tile.IEnergySourceInfo;
 import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
 
-@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySourceInfo", modid="IC2-Classic-Spmod")
-public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource, IEnergySourceInfo {
+public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
@@ -34,8 +30,8 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	}
 	
 	@Override
-	public void updateEntity() {
-		super.updateEntity();	
+	public void validate() {
+		super.validate();	
 		if (!worldObj.isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
@@ -49,13 +45,13 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);
+		return super.writeToNBT(tag);
 	}
 	
 	@Override
-	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing direction) {
 		return true;
 	}
 
@@ -73,20 +69,5 @@ public abstract class TileFrogGenerator extends TileFrogInventory implements ISi
 	public int getSourceTier() {
 		return sourceTier;
 	}
-	
-	@Optional.Method(modid = "IC2-Classic-Spmod")
-	@Override
-	public int getMaxEnergyAmount() {
-		return this.output;
-	}
-
-	@Override
-	public abstract int[] getAccessibleSlotsFromSide(int side);
-
-	@Override
-	public abstract boolean canInsertItem(int slot, ItemStack item, int side);
-
-	@Override
-	public abstract boolean canExtractItem(int slot, ItemStack item, int side);
 
 }

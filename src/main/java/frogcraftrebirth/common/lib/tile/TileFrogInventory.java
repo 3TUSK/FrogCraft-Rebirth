@@ -9,12 +9,14 @@ import net.minecraft.nbt.NBTTagList;
 public abstract class TileFrogInventory extends TileFrog implements IInventory {
 
 	protected ItemStack[] inv;
-	protected String name;
+	
+	protected TileFrogInventory(final int invSize) {
+		this(invSize, "DummyInvName");
+	}
 	
 	protected TileFrogInventory(final int invSize, final String invName) {
 		super();
 		this.inv = new ItemStack[invSize];
-		this.name = invName;
 	}
 	
 	@Override
@@ -31,8 +33,7 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		NBTTagList invList = new NBTTagList();
 		for (int n = 0; n < inv.length; n++) {
 			ItemStack stack = inv[n];
@@ -44,6 +45,7 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 			}
 		}
 		tag.setTag("inventory", invList);
+		return super.writeToNBT(tag);
 	}
 	
 	@Override
@@ -75,16 +77,6 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
             return null;
         }
 	}
-	
-	@Override
-	public ItemStack getStackInSlotOnClosing(int slot) {
-		if (inv[slot] != null) {
-			ItemStack stack = inv[slot];
-			inv[slot] = null;
-			return stack;
-		}
-		return null;
-	}
 
 	@Override
 	public void setInventorySlotContents(int slot, ItemStack stack) {
@@ -93,16 +85,6 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 			stack.stackSize = this.getInventoryStackLimit();
 		}
 		this.markDirty();
-	}
-	
-	@Override
-	public String getInventoryName() {
-		return this.name;
-	}
-
-	@Override
-	public boolean hasCustomInventoryName() {
-		return false; //we will have it later, we need to figure out how it work
 	}
 
 	@Override
@@ -116,10 +98,10 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 
 	@Override
-	public void openInventory() {}
+	public void openInventory(EntityPlayer player) {}
 
 	@Override
-	public void closeInventory() {}
+	public void closeInventory(EntityPlayer player) {}
 
 	@Override
 	public boolean isItemValidForSlot(int slot, ItemStack stack) {

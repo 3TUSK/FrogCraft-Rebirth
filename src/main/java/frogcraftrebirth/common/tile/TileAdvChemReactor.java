@@ -30,18 +30,18 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 	}
 	
 	@Override
-	public void writeToNBT(NBTTagCompound tag) {
-		super.writeToNBT(tag);
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
+		return super.writeToNBT(tag);
 	}
 	
 	@Override
-	public void updateEntity() {
+	public void update() {
 		if (worldObj.isRemote) 
 			return;
-		super.updateEntity();
+		super.update();
 		
 		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(Arrays.copyOfRange(inv, 1, 5));
 		

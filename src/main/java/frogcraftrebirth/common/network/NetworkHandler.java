@@ -6,13 +6,13 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.FMLEventChannel;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.network.FMLEventChannel;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
+import net.minecraftforge.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 import frogcraftrebirth.api.FrogAPI;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
@@ -21,6 +21,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
+import net.minecraft.network.PacketBuffer;
 
 public class NetworkHandler {
 	
@@ -39,13 +40,13 @@ public class NetworkHandler {
 	
 	@SubscribeEvent
 	public void serverPacket(ServerCustomPacketEvent event) {
-		ByteBufInputStream input = new ByteBufInputStream(event.packet.payload());
-		decodeData(input, ((NetHandlerPlayServer)event.handler).playerEntity);
+		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
+		decodeData(input, ((NetHandlerPlayServer)event.getHandler()).playerEntity);
 	}
 	
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
-		ByteBufInputStream input = new ByteBufInputStream(event.packet.payload());
+		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
 		decodeData(input, Minecraft.getMinecraft().thePlayer);
 	}
 	
@@ -84,23 +85,23 @@ public class NetworkHandler {
 	}
 	
 	public void sendToAll(IFrogPacket packet) {
-		frogChannel.sendToAll(new FMLProxyPacket(asByteBuf(packet), FrogAPI.MODID));
+		frogChannel.sendToAll(new FMLProxyPacket(new PacketBuffer(asByteBuf(packet)), FrogAPI.MODID));
 	}
 	
 	public void sendToAllAround(IFrogPacket packet, int dim, double x, double y, double z, double range) {
-		frogChannel.sendToAllAround(new FMLProxyPacket(asByteBuf(packet), FrogAPI.MODID), new TargetPoint(dim, x, y, z, range));
+		frogChannel.sendToAllAround(new FMLProxyPacket(new PacketBuffer(asByteBuf(packet)), FrogAPI.MODID), new TargetPoint(dim, x, y, z, range));
 	}
 	
 	public void sendToDimension(IFrogPacket packet, int dim) {
-		frogChannel.sendToDimension(new FMLProxyPacket(asByteBuf(packet), FrogAPI.MODID), dim);
+		frogChannel.sendToDimension(new FMLProxyPacket(new PacketBuffer(asByteBuf(packet)), FrogAPI.MODID), dim);
 	}
 	
 	public void sendToPlayer(IFrogPacket packet, EntityPlayerMP player) {
-		frogChannel.sendTo(new FMLProxyPacket(asByteBuf(packet), FrogAPI.MODID), player);
+		frogChannel.sendTo(new FMLProxyPacket(new PacketBuffer(asByteBuf(packet)), FrogAPI.MODID), player);
 	}
 	
 	public void sendToServer(IFrogPacket packet) {
-		frogChannel.sendToServer(new FMLProxyPacket(asByteBuf(packet), FrogAPI.MODID));
+		frogChannel.sendToServer(new FMLProxyPacket(new PacketBuffer(asByteBuf(packet)), FrogAPI.MODID));
 	}
 	
 }

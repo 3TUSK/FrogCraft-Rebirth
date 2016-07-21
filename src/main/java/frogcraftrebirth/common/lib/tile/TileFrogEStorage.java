@@ -1,24 +1,22 @@
 package frogcraftrebirth.common.lib.tile;
 
-import cpw.mods.fml.common.Optional;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
+import ic2.api.energy.tile.IEnergyAcceptor;
+import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
-import ic2.api.energy.tile.IEnergySourceInfo;
 import ic2.api.tile.IEnergyStorage;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
-@Optional.Interface(iface = "ic2.api.energy.tile.IEnergySourceInfo", modid="IC2-Classic-Spmod")
-public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage, IEnergySourceInfo {
+public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage {
 
-	public ForgeDirection emitDir;
+	public EnumFacing emitDir;
 	public int storedE, maxE, output;
 	protected boolean loaded = false;
 	boolean usableForTp;
 	
-	public TileFrogEStorage(int maxEnergy, int output, ForgeDirection emitTo, boolean allowTelep) {
+	public TileFrogEStorage(int maxEnergy, int output, EnumFacing emitTo, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;
@@ -38,12 +36,12 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	}
 	
 	@Override
-	public boolean acceptsEnergyFrom(TileEntity emitter, ForgeDirection direction) {
+	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
 		return direction != this.emitDir;
 	}
 
 	@Override
-	public boolean emitsEnergyTo(TileEntity receiver, ForgeDirection direction) {
+	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing direction) {
 		return direction == this.emitDir;
 	}
 
@@ -80,7 +78,7 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	}
 
 	@Override
-	public boolean isTeleporterCompatible(ForgeDirection side) {
+	public boolean isTeleporterCompatible(EnumFacing direction) {
 		return usableForTp;
 	}
 
@@ -111,16 +109,10 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	}
 
 	@Override
-	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
+	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.storedE += amount;
 		if (storedE >= maxE) storedE = maxE;
 		return 0;
-	}
-
-	@Optional.Method(modid = "IC2-Classic-Spmod")
-	@Override
-	public int getMaxEnergyAmount() {
-		return this.output;
 	}
 
 }

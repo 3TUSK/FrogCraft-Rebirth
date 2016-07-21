@@ -1,51 +1,53 @@
 package frogcraftrebirth.common.registry;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.BlockNitricAcid;
-import ic2.api.item.IC2Items;
-import net.minecraft.init.Items;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBucket;
-import net.minecraft.item.ItemStack;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidRegistry;
 
 public class RegFluid {
 	
+	private static ResourceLocation getTexture(String name, boolean flow) {
+		return new ResourceLocation("frogcraftrebirth:textures/blocks/fluids/"+name+".png");
+	}
+	
 	public static void init() {
-		FrogFluids.ammonia = new Fluid("ammonia")
-				.setDensity(694).setRarity(EnumRarity.epic).setGaseous(true);
-		FrogFluids.argon = new Fluid("argon")
-				.setDensity(1784).setRarity(EnumRarity.rare).setGaseous(true);
-		FrogFluids.benzene = new Fluid("benzene")
-				.setDensity(877).setRarity(EnumRarity.epic).setGaseous(true);
-		FrogFluids.bromine = new Fluid("bromine")
-				.setDensity(3103).setRarity(EnumRarity.uncommon);
-		FrogFluids.carbonOxide = new Fluid("carbonOxide")
-				.setDensity(1250).setRarity(EnumRarity.uncommon).setGaseous(true);
-		FrogFluids.carbonDioxide = new Fluid("carbonDioxide")
-				.setDensity(1980).setRarity(EnumRarity.common).setGaseous(true);
-		FrogFluids.coalTar = new Fluid("coalTar")
-				.setRarity(EnumRarity.rare).setViscosity(2000);
-		FrogFluids.fluorine = new Fluid("flourine")
-				.setDensity(1696).setRarity(EnumRarity.epic).setGaseous(true);
-		FrogFluids.nitricAcid = new Fluid("nitricAcid")
-				.setDensity(1420).setRarity(EnumRarity.rare);
-		FrogFluids.liquidAir = new Fluid("liquifiedAir")
-				.setRarity(EnumRarity.epic);
-		FrogFluids.nitrogenOxide = new Fluid("nitrogenOxide")
-				.setDensity(1340).setRarity(EnumRarity.rare).setGaseous(true);
-		FrogFluids.oxygen = new Fluid("oxygen")
-				.setDensity(1429).setRarity(EnumRarity.common).setGaseous(true);
-		FrogFluids.sulfurDioxide = new Fluid("sulfurDioxide")
-				.setRarity(EnumRarity.uncommon).setGaseous(true);
-		FrogFluids.sulfurTrioxide = new Fluid("sulfurTrioxide")
-				.setRarity(EnumRarity.rare).setGaseous(true);
+		FrogFluids.ammonia = new Fluid("ammonia", getTexture("Ammonia", false), getTexture("Ammonia", true))
+				.setDensity(694).setRarity(EnumRarity.EPIC).setGaseous(true);
+		FrogFluids.argon = new Fluid("argon", getTexture("Argon", false), getTexture("Argon", true))
+				.setDensity(1784).setRarity(EnumRarity.RARE).setGaseous(true);
+		FrogFluids.benzene = new Fluid("benzene", getTexture("Benzene", false), getTexture("Benzene", true))
+				.setDensity(877).setRarity(EnumRarity.EPIC).setGaseous(true);
+		FrogFluids.bromine = new Fluid("bromine", getTexture("Bromine", false), getTexture("Bromine", true))
+				.setDensity(3103).setRarity(EnumRarity.UNCOMMON);
+		FrogFluids.carbonOxide = new Fluid("carbonOxide", getTexture("CO", false), getTexture("CO", true))
+				.setDensity(1250).setRarity(EnumRarity.UNCOMMON).setGaseous(true);
+		FrogFluids.carbonDioxide = new Fluid("carbonDioxide", getTexture("CO2", false), getTexture("CO2", true))
+				.setDensity(1980).setRarity(EnumRarity.COMMON).setGaseous(true);
+		FrogFluids.coalTar = new Fluid("coalTar", getTexture("CoalTar", false), getTexture("CoalTar", true))
+				.setRarity(EnumRarity.RARE).setViscosity(2000);
+		FrogFluids.fluorine = new Fluid("flourine", getTexture("Fluorine", false), getTexture("Fluorine", true))
+				.setDensity(1696).setRarity(EnumRarity.EPIC).setGaseous(true);
+		FrogFluids.nitricAcid = new Fluid("nitricAcid", getTexture("HNO3", false), getTexture("HNO3", true))
+				.setDensity(1420).setRarity(EnumRarity.RARE);
+		/*FrogFluids.liquidAir = new Fluid("liquifiedAir", getTexture("liquifiedAir", false), getTexture("liquifidAir", true))
+				.setRarity(EnumRarity.EPIC);*/
+		FrogFluids.nitrogenOxide = new Fluid("nitrogenOxide", getTexture("NO", false), getTexture("NO", true))
+				.setDensity(1340).setRarity(EnumRarity.RARE).setGaseous(true);
+		FrogFluids.oxygen = new Fluid("oxygen", getTexture("Oxygen", false), getTexture("Oxygen", true))
+				.setDensity(1429).setRarity(EnumRarity.COMMON).setGaseous(true);
+		FrogFluids.sulfurDioxide = new Fluid("sulfurDioxide", getTexture("SO2", false), getTexture("SO2", true))
+				.setRarity(EnumRarity.UNCOMMON).setGaseous(true);
+		FrogFluids.sulfurTrioxide = new Fluid("sulfurTrioxide", getTexture("SO3", false), getTexture("SO3", true))
+				.setRarity(EnumRarity.RARE).setGaseous(true);
 		
 		regFluid(FrogFluids.ammonia);
 		regFluid(FrogFluids.argon);
@@ -62,32 +64,16 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurDioxide);
 		regFluid(FrogFluids.sulfurTrioxide);
 		
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.ammonia, new ItemStack(FrogItems.itemCell, 1, 0), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.argon, new ItemStack(FrogItems.itemCell, 1, 1), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.benzene, new ItemStack(FrogItems.itemCell, 1, 2), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.bromine, new ItemStack(FrogItems.itemCell, 1, 3), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.carbonOxide, new ItemStack(FrogItems.itemCell, 1, 4), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.carbonDioxide, new ItemStack(FrogItems.itemCell, 1, 5), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.coalTar, new ItemStack(FrogItems.itemCell, 1, 6), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.fluorine, new ItemStack(FrogItems.itemCell, 1, 7), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.nitricAcid, new ItemStack(FrogItems.itemCell, 1, 8), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.liquidAir, new ItemStack(FrogItems.itemCell, 1, 9), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.nitrogenOxide, new ItemStack(FrogItems.itemCell, 1, 11), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.oxygen, new ItemStack(FrogItems.itemCell, 1, 12), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.sulfurDioxide, new ItemStack(FrogItems.itemCell, 1, 13), IC2Items.getItem("cell"));
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.sulfurTrioxide, new ItemStack(FrogItems.itemCell, 1, 14), IC2Items.getItem("cell"));
-		
 		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
 		GameRegistry.registerBlock(FrogBlocks.fluidNitricAcid, "nitricAcid");
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
-		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setTextureName("frogcraftrebirth:bucketNitricAcid").setUnlocalizedName("bucketNitricAcid");
+		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setUnlocalizedName("bucketNitricAcid");
 		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
-		FluidContainerRegistry.registerFluidContainer(FrogFluids.nitricAcid, new ItemStack(FrogItems.bucketNitricAcid, 1), new ItemStack(Items.bucket, 1));
 	}
 	
-	static void regFluid(Fluid fluid) {
-		FluidRegistry.registerFluid(fluid);
-		fluid = FluidRegistry.getFluid(fluid.getName());
+	private static void regFluid(Fluid fluid) {
+		if (!FluidRegistry.registerFluid(fluid))
+			fluid = FluidRegistry.getFluid(fluid.getName());
 	}
 
 }

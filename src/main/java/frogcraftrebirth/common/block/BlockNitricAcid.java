@@ -6,12 +6,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import frogcraftrebirth.common.item.ItemIngot;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.BlockFluidClassic;
@@ -99,16 +101,16 @@ public class BlockNitricAcid extends BlockFluidClassic {
 	
 	private void checkCorrosion(World world, int x, int y, int z) {
 		if (corrosion > 20)
-			world.setBlock(x, y, z, Blocks.air);
+			world.setBlockToAir(new BlockPos(x, y, z));
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World world, int x, int y, int z, Entity entity) {
-		super.onEntityCollidedWithBlock(world, x, y, z, entity);
+	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
+		super.onEntityCollidedWithBlock(world, pos, state, entity);
 		if (entity instanceof EntityItem) {
 			ItemStack stack = ((EntityItem)entity).getEntityItem();
 			if (stack.getItem() instanceof ItemIngot && stack.getItemDamage() == 0) {
-				world.createExplosion(entity, x, y, z, 15F, true);
+				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
 				//TODO: modify explosion scale
 			}
 		}

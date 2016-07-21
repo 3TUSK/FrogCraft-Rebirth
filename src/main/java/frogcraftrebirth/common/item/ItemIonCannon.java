@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
-import frogcraftrebirth.common.entity.EntityRailgunCoin;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
@@ -23,19 +22,18 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-@Deprecated
-public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
+
+public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	
-	public static DamageSource railgun = new DamageSource("FrogRailgun")
+	public static DamageSource railgun = new DamageSource("IonCannon")
 			.setDamageBypassesArmor()
 			.setExplosion()
 			.setFireDamage()
-			.setMagicDamage()
 			.setProjectile();
 	
-	public int energyMax;
+	public final int energyMax;
 	
-	public ItemRailgun(int maxEnergy) {
+	public ItemIonCannon(int maxEnergy) {
 		super(false);
 		setFull3D();
 		setMaxStackSize(1);
@@ -56,10 +54,9 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 		return EnumRarity.RARE;
 	}
 	
-	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs aTab, @SuppressWarnings("rawtypes")List subItems) {
+	public void getSubItems(Item item, CreativeTabs aTab, List<ItemStack> subItems) {
 		ItemStack stack = new ItemStack(item, 1);
 		subItems.add(stack);
 
@@ -104,26 +101,6 @@ public class ItemRailgun extends ItemFrogCraft implements IElectricItem {
 			return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
 		return new ActionResult<ItemStack>(EnumActionResult.PASS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
     }
-	
-	@Deprecated
-	@SuppressWarnings("unused")
-	private ItemStack railgunLogic(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
-		boolean active = itemStackIn.getTagCompound().getBoolean("active");
-		if (!worldIn.isRemote && playerIn.isSneaking()) {
-			this.setStatus(itemStackIn, active);
-			return itemStackIn;
-		}
-		
-		if (active && ElectricItem.manager.canUse(itemStackIn, 100000)) {
-			if (playerIn.inventory.clearMatchingItems(ic2.api.item.IC2Items.getItem("coin").getItem(), 0, 1, null) != 0) {
-				worldIn.spawnEntityInWorld(new EntityRailgunCoin(worldIn, playerIn));
-				ElectricItem.manager.use(itemStackIn, 100000, playerIn);
-			}
-			return itemStackIn;
-		}
-		
-		return itemStackIn;
-	}
 	
 	private ItemStack ionCannonLogic(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		boolean active = itemStackIn.getTagCompound().getBoolean("active");

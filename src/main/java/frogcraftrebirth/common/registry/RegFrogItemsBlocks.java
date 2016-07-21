@@ -63,8 +63,8 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemIngot = new ItemIngot();
 		FrogItems.itemDust = new ItemDust();
 		FrogItems.itemReactionModule = new ItemCatalystModule();
-		FrogItems.railgun = new ItemRailgun(1000000);
-		FrogItems.railgunRail = new ItemFrogCraft(false) {
+		FrogItems.ionCannon = new ItemIonCannon(1000000);
+		FrogItems.ionCannonFrame = new ItemFrogCraft(false) {
 
 			@Override
 			public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
@@ -85,14 +85,14 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerItem(FrogItems.itemIngot, "frogIngots");
 		GameRegistry.registerItem(FrogItems.itemDust, "frogDusts");
 		GameRegistry.registerItem(FrogItems.itemReactionModule, "frogModule");
-		GameRegistry.registerItem(FrogItems.railgun, "railgun");
-		GameRegistry.registerItem(FrogItems.railgunRail, "railgunRail");
+		GameRegistry.registerItem(FrogItems.ionCannon, "railgun");
+		GameRegistry.registerItem(FrogItems.ionCannonFrame, "railgunRail");
 		GameRegistry.registerItem(FrogItems.jinkela, "jinkela");
 		GameRegistry.registerItem(FrogItems.tiberium, "tiberium");
 	}
 	
 	static void initOreDict() {
-		OreDictionary.registerOre("railgun", FrogItems.railgun);
+		OreDictionary.registerOre("railgun", FrogItems.ionCannon);
 		OreDictionary.registerOre("jinkela", FrogItems.jinkela);
 		
 		OreDictionary.registerOre("gemRuby", new ItemStack(FrogItems.itemIngot, 1, 2));

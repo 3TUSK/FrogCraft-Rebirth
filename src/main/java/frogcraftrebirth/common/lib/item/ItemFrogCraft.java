@@ -46,10 +46,9 @@ public abstract class ItemFrogCraft extends Item implements IFrogNetworkObject {
 		return I18n.format(getUnlocalizedName(stack));
 	}
 	
-	@SuppressWarnings("unchecked")
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tabs, @SuppressWarnings("rawtypes")List list) {
+	public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
 		if (!getHasSubtypes()) {
 			super.getSubItems(item, tabs, list);
 			return;

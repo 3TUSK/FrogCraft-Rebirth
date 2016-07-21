@@ -14,8 +14,8 @@ public class FrogItems {
 	public static Item itemDust;
 	public static Item itemReactionModule;
 
-	public static Item railgun;
-	public static Item railgunRail;
+	public static Item ionCannon;
+	public static Item ionCannonFrame;
 	
 	public static Item decayBatteryUranium;
 	public static Item decayBatteryThorium;

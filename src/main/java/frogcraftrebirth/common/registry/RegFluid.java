@@ -1,12 +1,10 @@
 package frogcraftrebirth.common.registry;
 
-import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
-import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.BlockNitricAcid;
+import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemBucket;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -61,15 +59,14 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurTrioxide);
 		
 		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
-		GameRegistry.registerBlock(FrogBlocks.fluidNitricAcid, "nitricAcid");
+		GameRegistry.<Block>register(FrogBlocks.fluidNitricAcid);
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
-		FrogItems.bucketNitricAcid = new ItemBucket(FrogBlocks.fluidNitricAcid).setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setUnlocalizedName("bucketNitricAcid");
-		GameRegistry.registerItem(FrogItems.bucketNitricAcid, "bucketNitricAcid");
 	}
 	
 	private static void regFluid(Fluid fluid) {
 		if (!FluidRegistry.registerFluid(fluid))
 			fluid = FluidRegistry.getFluid(fluid.getName());
+		FluidRegistry.addBucketForFluid(fluid);
 	}
 
 }

@@ -95,23 +95,23 @@ public class FrogFluidTank implements IFluidTank, IFrogNetworkObject {
 	}
 	
 	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeInt(fluidInv != null ? fluidInv.getFluidID() : -1);
+		output.writeChars(fluidInv != null ? FluidRegistry.getFluidName(fluidInv) : "UNKNOWN");
 		output.writeInt(getFluidAmount());
 	}
 	
 	@SideOnly(Side.CLIENT)
 	public void readPacketData(DataInputStream input) throws IOException {
-		int fluidID = input.readInt();
+		String fluidID = input.readUTF();
 		int fluidAmount = input.readInt();
-		Fluid fluid = fluidID != -1 ? FluidRegistry.getFluid(fluidID) : null;
+		Fluid fluid = FluidRegistry.getFluid(fluidID);
 		if (fluid != null)
 			this.forceFillTank(new FluidStack(fluid, fluidAmount));
 		else
 			this.forceFillTank(null);
 	}
 	
-	public int getFluidID() {
-		return this.fluidInv.getFluidID();
+	public String getFluidID() {
+		return FluidRegistry.getFluidName(fluidInv);
 	}
 	
 	@SideOnly(Side.CLIENT)

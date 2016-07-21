@@ -1,11 +1,11 @@
 package frogcraftrebirth.api.tile;
 
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 
 public interface IAirPump {
 	
 	int airAmount();
 	
-	void extractAir(ForgeDirection from, int amount, boolean simluated);
+	void extractAir(EnumFacing from, int amount, boolean simluated);
 
 }

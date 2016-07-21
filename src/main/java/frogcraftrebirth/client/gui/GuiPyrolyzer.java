@@ -6,9 +6,9 @@ import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.StatCollector;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.EnumFacing;
 import net.minecraftforge.fluids.FluidTankInfo;
 
 public class GuiPyrolyzer extends GuiContainer {
@@ -23,8 +23,8 @@ public class GuiPyrolyzer extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString(StatCollector.translateToLocal("gui.pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("gui.pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override
@@ -41,7 +41,7 @@ public class GuiPyrolyzer extends GuiContainer {
 			int progressPercent = (int) (24 * tile.process / tile.processMax);
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
-		FluidTankInfo info = tile.getTankInfo(ForgeDirection.UNKNOWN)[0];
+		FluidTankInfo info = tile.getTankInfo(null)[0];
 		GuiUtil.renderFluidTank(this, this.guiLeft + 143, this.guiTop + 23, 16, 47, info.fluid, info.capacity);
 	}
 

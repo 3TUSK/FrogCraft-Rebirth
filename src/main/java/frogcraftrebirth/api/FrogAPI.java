@@ -28,7 +28,7 @@ public final class FrogAPI {
 	private FrogAPI() { throw new UnsupportedOperationException(); }
 	
 	public static final String 
-		MODID = "FrogCraftRebirth",
+		MODID = "frogcraftrebirth",
 		NAME = "FrogCraft: Rebirth",
 		API = "FrogAPI", 
 		API_VER = "0.2",

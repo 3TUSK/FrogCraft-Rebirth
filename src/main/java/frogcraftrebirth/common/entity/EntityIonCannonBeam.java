@@ -40,7 +40,7 @@ public class EntityIonCannonBeam extends EntityThrowable {
 		IBlockState blockImpacted = worldObj.getBlockState(objPos.getBlockPos());
 		
 		if (blockImpacted.getBlock() instanceof BlockTiberium) {
-			((BlockTiberium)blockImpacted).exlposion(this.worldObj, objPos.getBlockPos().getX(), objPos.getBlockPos().getY(), objPos.getBlockPos().getZ());
+			((BlockTiberium)blockImpacted).explode(this.worldObj, objPos.getBlockPos(), 50F, false);
 		}
 	}
 

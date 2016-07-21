@@ -2,7 +2,7 @@ package frogcraftrebirth.common.registry;
 
 import java.util.List;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
@@ -113,10 +113,6 @@ public class RegFrogItemsBlocks {
 	}
 	
 	static void initTileEntity() {
-		//GameRegistry.registerTileEntity(TileInductionalEFurnace.class, "tileInductionalElectricalFurnace");
-		//GameRegistry.registerTileEntity(TileInductionalMacerator.class, "tileInductionalMacerator");
-		//GameRegistry.registerTileEntity(TileInductionalExtractor.class, "tileInductionalExtractor");
-		//GameRegistry.registerTileEntity(TileInductionalCompressor.class, "tileInductionalCompressor");
 		//GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileHSUUltra.class, "tileUltraHybridStorageUnit");

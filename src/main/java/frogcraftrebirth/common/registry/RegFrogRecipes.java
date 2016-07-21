@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.registry;
 
-import cpw.mods.fml.common.Loader;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogItems;
@@ -13,17 +12,10 @@ import net.minecraftforge.fluids.FluidStack;
 public class RegFrogRecipes {
 	
 	public static void init() {
-		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Items.coal), new ItemStack(FrogItems.itemIngot, 1, 7), new FluidStack(FrogFluids.coalTar, 50), 100));
-		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.cobblestone), new ItemStack(FrogItems.itemDust, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100));
+		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Items.COAL), new ItemStack(FrogItems.itemIngot, 1, 7), new FluidStack(FrogFluids.coalTar, 50), 100));
+		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogItems.itemDust, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100));
 	
-		if (Loader.isModLoaded("gregtech")) {
-			gregtechRecipe();
-		} else if (Loader.isModLoaded("")) {
-			ic2classicRecipe();
-		} else {
-			defaultRecipe();
-		}
-	
+		defaultRecipe();
 	}
 	
 	public static void postInit() {
@@ -36,12 +28,9 @@ public class RegFrogRecipes {
 		
 	}
 	
-	private static void gregtechRecipe() {
-		
-	}
-	
-	private static void ic2classicRecipe() {
-		
-	}
+	@Deprecated
+	private static void gregtechRecipe() { throw new UnsupportedOperationException(); }
+	@Deprecated
+	private static void ic2classicRecipe() { throw new UnsupportedOperationException(); }
 
 }

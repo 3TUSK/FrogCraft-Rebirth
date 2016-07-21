@@ -9,12 +9,14 @@
 package frogcraftrebirth.api.item;
 
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.IFluidContainerItem;
+import net.minecraft.item.ItemStack;
 
 public interface IFluidBackpackSpigot {
 	
-	//NOT IMPLEMENTED YET, MAY CHANGE IN FUTURE
-	//Called when a launch action was executed, return the fluid being launched.
-	FluidStack extractFrom(IFluidContainerItem backpack);
+	/**Called when a launch action was executed.
+	 * @param backpack The backpack item. Use capability system to access fluid tank.
+	 * @return The FluidStack being launched.
+	 */
+	FluidStack extractFrom(ItemStack backpack);
 
 }

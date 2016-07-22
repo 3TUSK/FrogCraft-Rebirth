@@ -6,6 +6,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -15,6 +16,10 @@ import net.minecraft.item.ItemStack;
 public abstract class BlockFrog extends Block {
 	
 	public static final String TEXTURE_MAIN = "frogcraftrebirth:";
+	
+	public static final Material ORE = new Material(MapColor.STONE).setRequiresTool();
+	public static final Material MACHINE = new Material(MapColor.SILVER).setBurning().setImmovableMobility();
+	public static final Material TIBERIUM = new Material(MapColor.BLUE).setNoPushMobility();
 	
 	protected String[] nameArray;
 	

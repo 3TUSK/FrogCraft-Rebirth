@@ -7,7 +7,6 @@ import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockFrogContainer {
 
 	public BlockMachine() {
-		super(Material.IRON, 3);
+		super(MACHINE, 3);
 		setUnlocalizedName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);

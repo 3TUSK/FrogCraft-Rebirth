@@ -2,7 +2,6 @@ package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -17,7 +16,7 @@ import net.minecraft.world.World;
 public class BlockMPS extends BlockFrogContainer {
 	
 	public BlockMPS() {
-		super(Material.PISTON);
+		super(MACHINE);
 		setHardness(1.0F);
 		setResistance(100.0F);
 	}

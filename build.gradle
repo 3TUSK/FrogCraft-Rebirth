@@ -62,6 +62,12 @@ dependencies {
     
 }
 
+jar {
+    manifest {
+        attributes 'FMLAT': 'fcr_at.cfg'
+    }
+}
+
 processResources {
     inputs.property "version", project.version
     inputs.property "mcversion", project.minecraft.version

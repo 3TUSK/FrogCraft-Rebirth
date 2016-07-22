@@ -3,7 +3,6 @@ package frogcraftrebirth.common.block;
 import java.util.Random;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +11,7 @@ import net.minecraft.world.World;
 public class BlockFrogOre extends BlockFrog {
 
 	public BlockFrogOre() {
-		super(Material.ROCK);
+		super(ORE);
 		setUnlocalizedName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);

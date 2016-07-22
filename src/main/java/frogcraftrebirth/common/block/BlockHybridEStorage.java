@@ -7,7 +7,6 @@ import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -20,7 +19,7 @@ import net.minecraft.world.World;
 public class BlockHybridEStorage extends BlockFrogContainer {
 	
 	public BlockHybridEStorage() {
-		super(Material.IRON, 1);
+		super(MACHINE, 1);
 		setUnlocalizedName("hybridStorageUnit");
 		setSubNameArray("HSU", "UHSU");
 	}

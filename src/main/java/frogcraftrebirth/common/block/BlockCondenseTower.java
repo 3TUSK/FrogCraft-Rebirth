@@ -8,7 +8,6 @@ import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -21,7 +20,7 @@ import net.minecraft.world.World;
 public class BlockCondenseTower extends BlockFrogContainer {
 
 	public BlockCondenseTower() {
-		super(Material.IRON, 2);
+		super(MACHINE, 2);
 		setUnlocalizedName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);

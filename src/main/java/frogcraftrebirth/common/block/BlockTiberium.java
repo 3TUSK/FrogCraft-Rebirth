@@ -11,7 +11,6 @@ package frogcraftrebirth.common.block;
 import java.util.ArrayList;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -22,7 +21,7 @@ import net.minecraft.world.World;
 public class BlockTiberium extends BlockFrog {
 
 	public BlockTiberium() {
-		super(Material.GLASS, 2);
+		super(TIBERIUM, 2);
 		this.setUnlocalizedName("tiberium");
 		this.setHardness(10.0F);
 		this.setResistance(41.0F);

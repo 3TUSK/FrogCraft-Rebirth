@@ -13,24 +13,17 @@ import java.util.List;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
 public class ItemTiberium extends ItemFrogCraft {
 
 	public ItemTiberium() {
 		super(true);
 		this.setCreativeTab(FrogAPI.frogTab);
-		this.setMaxStackSize(32);
+		this.setMaxStackSize(16);
 		this.setUnlocalizedName("tiberium");
 		this.setSubNameArray("red", "blue", "green");
-	}
-	
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isHolding) {
-		
 	}
 
 	@Override

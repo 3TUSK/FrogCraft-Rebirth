@@ -17,7 +17,10 @@ public abstract class ItemFrogCraft extends Item {
 
 	public ItemFrogCraft(boolean hasSubType){
 		this.setCreativeTab(FrogAPI.frogTab);
-		this.setHasSubtypes(hasSubType);
+		if (hasSubType) {
+			this.setMaxDamage(0);
+			this.setHasSubtypes(true);
+		}
 	}
 	
 	/**

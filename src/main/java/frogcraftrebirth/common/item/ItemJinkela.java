@@ -14,45 +14,34 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.BonemealEvent;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 
 public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
 		super(false);
-		setUnlocalizedName("goldClod");
+		setUnlocalizedName("Item_Miscs.GoldClod");
 	}
 
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		IBlockState block = worldIn.getBlockState(pos);
-
-		BonemealEvent event = new BonemealEvent(playerIn, worldIn, pos, block);
-		if (MinecraftForge.EVENT_BUS.post(event)) {
+		if (!playerIn.canPlayerEdit(pos, facing, stack))
 			return EnumActionResult.FAIL;
-		}
-
-		if (event.getResult() == Result.ALLOW) {
-			if (!worldIn.isRemote) {
-			}
-			return EnumActionResult.FAIL;
-		}
-
-		if (block instanceof IGrowable) {
-			IGrowable igrowable = (IGrowable) block;
-
-			if (igrowable.canGrow(worldIn, pos, block, worldIn.isRemote)) {
+		
+		IBlockState state = worldIn.getBlockState(pos);
+		
+		if (state.getBlock() instanceof IGrowable) {
+			IGrowable igrowable = (IGrowable)state.getBlock();
+			if (igrowable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
 				if (!worldIn.isRemote) {
-					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos, block)) {
-						igrowable.grow(worldIn, worldIn.rand, pos, block);
+					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
+						igrowable.grow(worldIn, worldIn.rand, pos, state);
+						worldIn.playEvent(2005, pos, 0);
 						return EnumActionResult.SUCCESS;
 					}
 				}
 			}
-		}
-
+		} 
+		
 		return EnumActionResult.PASS;
 	}
 

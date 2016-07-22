@@ -8,7 +8,6 @@
  */
 package frogcraftrebirth.client;
 
-import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogItems;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -20,25 +19,25 @@ public class FrogTextures {
 	
 	@SideOnly(Side.CLIENT)
 	public static void initFrogItemsTexture() {
-		regItemTexture(FrogItems.coolantAmmonia60K);
-		regItemTexture(FrogItems.coolantAmmonia180K);
-		regItemTexture(FrogItems.coolantAmmonia360K);
-		regItemTexture(FrogItems.decayBatteryPlutoium);
-		regItemTexture(FrogItems.decayBatteryThorium);
-		regItemTexture(FrogItems.decayBatteryUranium);
+		regItemTexture(FrogItems.coolantAmmonia60K, "ammoniaCoolant60K");
+		regItemTexture(FrogItems.coolantAmmonia180K, "ammoniaCoolant180K");
+		regItemTexture(FrogItems.coolantAmmonia360K, "ammoniaCoolant360K");
+		regItemTexture(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
+		regItemTexture(FrogItems.decayBatteryThorium, "decayBatteryThorium");
+		regItemTexture(FrogItems.decayBatteryUranium, "decayBatteryUranium");
 		regItemTexture(FrogItems.ionCannon);
 		regItemTexture(FrogItems.ionCannonFrame);
-		regItemTexture(FrogItems.jinkela);
+		regItemTexture(FrogItems.jinkela, "goldClod");
 		
 		int index;
 		for (index = 0; index < 16; ++index) {
 			regItemTexture(FrogItems.itemDust, index);
 		}
 		for (index = 0; index < 5; ++index) {
-			regItemTexture(FrogItems.itemReactionModule);
+			regItemTexture(FrogItems.itemReactionModule, index);
 		}
 		for (index = 0; index < 4; ++index) {
-			regItemTexture(FrogItems.tiberium);
+			regItemTexture(FrogItems.tiberium, index);
 		}
 	}
 	
@@ -54,8 +53,17 @@ public class FrogTextures {
 	
 	@SideOnly(Side.CLIENT)
 	static void regItemTexture(Item item, int metadata) {
-		String uniqueID = FrogAPI.MODID + ":" + item.getUnlocalizedName();
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(uniqueID, "inventory"));
+		regItemTexture(item, metadata, Item.REGISTRY.getNameForObject(item).toString());
+	}
+	
+	@SideOnly(Side.CLIENT)
+	static void regItemTexture(Item item, String newResLoc) {
+		regItemTexture(item, 0, "frogcraftrebirth:"+newResLoc);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	static void regItemTexture(Item item, int metadata, String newResLoc) {
+		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(newResLoc, "inventory"));
 	}
 
 }

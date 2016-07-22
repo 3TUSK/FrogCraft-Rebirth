@@ -9,7 +9,6 @@ import frogcraftrebirth.common.network.NetworkHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.FMLConstructionEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -19,6 +18,10 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 @Mod(modid = FrogAPI.MODID, name = FrogAPI.NAME, version = "@VERSION@", dependencies = FrogAPI.DEPENDING, useMetadata = true)
 public class FrogCraftRebirth {
 
+	static {
+		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
+	}
+	
 	@Mod.Instance(FrogAPI.MODID)
 	public static FrogCraftRebirth instance;
 
@@ -27,11 +30,6 @@ public class FrogCraftRebirth {
 	
 	public FrogCraftRebirth() {
 		instance = this;
-	}
-	
-	@Mod.EventHandler
-	public void construct(FMLConstructionEvent event) {
-		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
 	}
 
 	@Mod.EventHandler

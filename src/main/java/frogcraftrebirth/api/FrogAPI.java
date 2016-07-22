@@ -34,7 +34,7 @@ public final class FrogAPI {
 		NAME = "FrogCraft: Rebirth", 
 		API = "FrogAPI",
 		API_VER = "0.2", 
-		DEPENDING = "required-after:IC2;";
+		DEPENDING = "required-after:Forge@[12.18.1.2014,);required-after:IC2;";
 
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 

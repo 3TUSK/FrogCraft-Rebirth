@@ -10,6 +10,8 @@ package frogcraftrebirth.common.asm;
 
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.tree.ClassNode;
 
 import net.minecraft.launchwrapper.IClassTransformer;
@@ -18,22 +20,30 @@ public class FrogASMTransformer implements IClassTransformer {
 
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
-		try {
-			Class.forName("ic2.api.energy.tile.IEnergySourceInfo");
-			return basicClass; //If no exception is thrown, then there is no need to use this transformer.
-		} catch (Exception e) {}
-		
-		if (transformedName.equals("frogcraftrebirth/lib/tile/TileFrogEStorage") || transformedName.equals("frogcraftrebirth/lib/tile/TileFrogGenerator")) {
+		if (transformedName.equals("net.minecraft.world.biome.BiomeProvider")) {
 			ClassReader reader = new ClassReader(basicClass);
 			ClassNode node = new ClassNode();
 			reader.accept(node, 0);
-			boolean attemptRemoving = node.interfaces.remove("ic2/api/energy/tile/IEnergySourceInfo");
-			if (attemptRemoving) {
-				ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
-				node.accept(writer);
-				FrogASMPlugin.ic2ClassicDetected = true;
-				return writer.toByteArray();
-			}
+
+			MethodVisitor meth = /*new MethodNode*/node.visitMethod(
+					Opcodes.ACC_PUBLIC, "getBiomeGenerator", 
+					"(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;",
+					null, null);
+			meth.visitVarInsn(Opcodes.ALOAD, 0);
+			meth.visitFieldInsn(Opcodes.GETFIELD, "net/minecraft/world/biome/BiomeProvider", "biomeCache", "Lnet/minecraft/world/biome/BiomeCache;");
+			meth.visitVarInsn(Opcodes.ALOAD, 1);
+			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/util/math/BlockPos", "getX", "()I", false);
+			meth.visitVarInsn(Opcodes.ALOAD, 1);
+			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/util/math/BlockPos", "getZ", "()I", false);
+			meth.visitVarInsn(Opcodes.ALOAD, 2);
+			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, 
+					"net/minecraft/world/biome/BiomeCache", 
+					"getBiome", "(IILnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;", false);
+			meth.visitInsn(Opcodes.ARETURN);
+			node.visitEnd();
+			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+			node.accept(writer);
+			return writer.toByteArray();
 		}
 		return basicClass;
 	}

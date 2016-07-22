@@ -21,9 +21,9 @@ public class FrogCoremodContainer extends DummyModContainer {
 		ModMetadata meta = this.getMetadata();
 		meta.name = "FrogCraft Coremod Plugin";
 		meta.modId = "FrogCraftCore";
-		meta.version = "0.0.1";
+		meta.version = "1.0.0";
 		meta.authorList = java.util.Arrays.asList("3TUSK");
-		meta.description = "Coremod used by FrogCraft: Rebirth. Dont worry - it only modifies FrogCraft: Rebirth itself.";
+		meta.description = "Coremod used by FrogCraft: Rebirth.";
 	}
 	
 	@Override

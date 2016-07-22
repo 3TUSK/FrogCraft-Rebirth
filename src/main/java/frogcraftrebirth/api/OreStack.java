@@ -14,75 +14,75 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OreStack {
-	
+
 	private final String entry;
-	
+
 	private int amount;
-	
+
 	public OreStack(String entry) {
 		this(entry, 1);
 	}
-	
+
 	public OreStack(String entry, int amount) {
 		this.entry = entry;
 		this.amount = amount;
 	}
-	
+
 	public OreStack increaseSize(int quantityChange) {
 		this.amount += quantityChange;
 		return this;
 	}
-	
+
 	public OreStack decreaseSize(int quantityChange) {
 		this.amount -= quantityChange;
 		return this;
 	}
-	
+
 	public String getEntry() {
 		return this.entry;
 	}
-	
+
 	public int getAmount() {
 		return this.amount;
 	}
-	
+
 	public boolean equals(OreStack stack) {
 		return stack.getEntry().equals(this.entry) && stack.getAmount() == this.getAmount();
 	}
-	
+
 	public boolean consumable(ItemStack stack) {
 		return OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
 	}
-	
+
 	public void consume(ItemStack stack) {
 		if (this.consumable(stack))
 			stack.stackSize -= this.amount;
 		if (stack.stackSize <= 0)
 			stack = null;
 	}
-	
+
 	public boolean stackable(ItemStack stack) {
 		return OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
 	}
-	
+
 	public void stack(ItemStack stack) {
 		if (stack == null) {
 			stack = OreDictionary.getOres(this.entry).get(0);
 			stack.stackSize = this.amount;
 			return;
 		}
-		
+
 		stack.stackSize += this.amount;
 	}
 
 	public static boolean stackHasEntry(ItemStack stack, String ore) {
 		if (!OreDictionary.doesOreNameExist(ore))
 			return false;
-		
+
 		ArrayList<String> entries = new ArrayList<String>();
 		for (int num : OreDictionary.getOreIDs(stack))
 			entries.add(OreDictionary.getOreName(num));
-		
+
 		return entries.contains(ore);
 	}
 

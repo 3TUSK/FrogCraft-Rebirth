@@ -14,16 +14,16 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
 public interface IPollutionSource {
-	
+
 	// Debug info.
 	String[] info();
-	
-	//Effect radius
+
+	// Effect radius
 	int radius();
-	
+
 	PotionEffect effects(EntityLiving entity);
-	
-	//Pollution. The origin of sin.
+
+	// Pollution. The origin of sin.
 	void pollute(World world, Entity operator, int originX, int originY, int originZ);
 
 }

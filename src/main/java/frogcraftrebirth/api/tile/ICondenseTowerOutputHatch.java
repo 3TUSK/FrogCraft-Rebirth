@@ -11,9 +11,9 @@ package frogcraftrebirth.api.tile;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface ICondenseTowerOutputHatch {
-	
+
 	boolean canInject(FluidStack stack);
-	
+
 	void inject(FluidStack stack, boolean simluated);
 
 }

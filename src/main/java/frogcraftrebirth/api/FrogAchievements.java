@@ -13,30 +13,18 @@ import java.lang.reflect.Field;
 import net.minecraft.stats.Achievement;
 
 public enum FrogAchievements {
-	
-	EVT,
-	RAILGUN,
-	POTASSIUM,
-	GAS_PUMP,
-	PNEUMATIC_COMPRESSOR,
-	LIQUIFER,
-	HSU,
-	UHSU,
-	ADV_CHEM_REACTOR,
-	JINKELA,
-	CONDENSE_TOWER_CORE,
-	CONDENSE_TOWER,
-	NITRIC_ACID;
-	
+
+	EVT, RAILGUN, POTASSIUM, GAS_PUMP, LIQUIFER, HSU, UHSU, ADV_CHEM_REACTOR, JINKELA, CONDENSE_TOWER_CORE, CONDENSE_TOWER, NITRIC_ACID;
+
 	public Achievement get() {
 		Field achievement;
 		try {
 			achievement = Class.forName("frogcraftrebirth.common.registry.RegFrogAchievements").getDeclaredField(this.name());
-			return (Achievement)achievement.get(null);
+			return (Achievement) achievement.get(null);
 		} catch (Exception e) {
 			return null;
 		}
-		
+
 	}
 
 }

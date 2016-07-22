@@ -11,7 +11,6 @@ import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
-import frogcraftrebirth.common.compat.gregtech.CompatGregTech;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerAirPump;
@@ -126,7 +125,6 @@ public class FrogProxy implements IGuiHandler {
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		//GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
 		RegFrogAchievements.init();
-		FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
 	}
 
 	public void init(FMLInitializationEvent event) {

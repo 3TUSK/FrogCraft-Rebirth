@@ -13,13 +13,13 @@ import java.util.Set;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface ICondenseTowerRecipe {
-	
+
 	FluidStack getInput();
-	
+
 	Set<FluidStack> getOutput();
-	
+
 	int getTime();
-	
+
 	ICondenseTowerRecipe appendOutput(FluidStack... fluid);
 
 }

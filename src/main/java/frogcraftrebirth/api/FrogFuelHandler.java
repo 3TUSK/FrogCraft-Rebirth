@@ -11,19 +11,23 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.IFuelHandler;
+
 /**
- * This FuelHanlder implementation will handle both vanilla fuel registration
- * as well as combustion furnace fuel and byproducts registration.
+ * This FuelHanlder implementation will handle both vanilla fuel registration as
+ * well as combustion furnace fuel and byproducts registration.
+ * 
  * @see frogcraftrebirth.common.tile.TileCombustionFurnace
  * @author 3TUSK
  */
-public final class FrogFuelHandler implements IFuelHandler{
-	
-	//Though deprecated, one bucket = 1000 milli-bucket is still a common-agreed standard.
+public final class FrogFuelHandler implements IFuelHandler {
+
+	// Though deprecated, one bucket = 1000 milli-bucket is still a
+	// common-agreed standard.
 	public static final int BUCKET_VOLUME = 1000;
-	
-	FrogFuelHandler() {}
-	
+
+	FrogFuelHandler() {
+	}
+
 	@Override
 	public int getBurnTime(ItemStack fuel) {
 		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
@@ -32,7 +36,7 @@ public final class FrogFuelHandler implements IFuelHandler{
 		}
 		return 0;
 	}
-	
+
 	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {
 		for (Entry<ItemStack, FluidStack> entry : fuel2FluidMap.entrySet()) {
 			if (aStack.isItemEqual(entry.getKey()))
@@ -40,7 +44,7 @@ public final class FrogFuelHandler implements IFuelHandler{
 		}
 		return null;
 	}
-	
+
 	public ItemStack getItemByproduct(@Nonnull ItemStack aStack) {
 		for (Entry<ItemStack, ItemStack> entry : fuel2ByproductMap.entrySet()) {
 			if (aStack.isItemEqual(entry.getKey()))
@@ -48,23 +52,23 @@ public final class FrogFuelHandler implements IFuelHandler{
 		}
 		return null;
 	}
-	
+
 	public void regFuel(@Nonnull Item fuel, int timeInTicks) {
 		regFuel(new ItemStack(fuel, 1), timeInTicks);
 	}
-	
-	public void regFuel(@Nonnull ItemStack fuel, int timeInTicks){
+
+	public void regFuel(@Nonnull ItemStack fuel, int timeInTicks) {
 		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
 	}
-	
+
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {
 		regFuelByproduct(fuel, new FluidStack(byproduct, BUCKET_VOLUME));
 	}
-	
+
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull FluidStack byproduct) {
 		fuel2FluidMap.put(fuel, byproduct);
 	}
-	
+
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull ItemStack byproduct) {
 		fuel2ByproductMap.put(fuel, byproduct);
 	}

@@ -9,7 +9,7 @@
 package frogcraftrebirth.api.tile;
 
 public interface ICondenseTowerStructure {
-	
+
 	void behave();
 
 }

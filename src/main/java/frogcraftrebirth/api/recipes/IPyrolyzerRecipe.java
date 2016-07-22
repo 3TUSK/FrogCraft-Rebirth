@@ -12,13 +12,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public interface IPyrolyzerRecipe {
-	
+
 	ItemStack getInput();
-	
+
 	ItemStack getOutput();
-	
+
 	FluidStack getOutputFluid();
-	
+
 	int getTime();
 
 }

@@ -13,10 +13,10 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraftforge.fml.common.eventhandler.Event;
 
 public class IonCannonImpactEvent extends Event {
-	
+
 	public final EntityIonCannonBeam ionCannonBeam;
 	public final RayTraceResult impactPosition;
-	
+
 	public IonCannonImpactEvent(EntityIonCannonBeam entity, RayTraceResult position) {
 		this.ionCannonBeam = entity;
 		this.impactPosition = position;

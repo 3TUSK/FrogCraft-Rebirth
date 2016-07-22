@@ -14,31 +14,32 @@ import frogcraftrebirth.api.OreStack;
 import net.minecraft.item.ItemStack;
 
 public interface IAdvChemRecRecipe {
-	
+
 	Collection<OreStack> getInputs();
-	
+
 	Collection<OreStack> getOutputs();
-	
+
 	double getRateModifier(String catalyst);
-	
+
 	int getTime();
-	
+
 	int getEnergyRate();
-	
+
 	default int getRequiredCellAmount() {
 		return 0;
 	}
-	
+
 	default int getProducedCellAmount() {
 		return 0;
 	}
-	
+
 	default boolean equals(IAdvChemRecRecipe rec) {
 		if (rec.getInputs().equals(getInputs()))
 			return true;
-			else return false;
+		else
+			return false;
 	}
-	
+
 	default boolean matchInputs(ItemStack... stacks) {
 		for (OreStack ore : this.getInputs()) {
 			boolean match = false;
@@ -51,7 +52,7 @@ public interface IAdvChemRecRecipe {
 			if (!match)
 				return false;
 		}
-		
+
 		return true;
 	}
 

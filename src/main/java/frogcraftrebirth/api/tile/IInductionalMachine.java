@@ -11,13 +11,13 @@ package frogcraftrebirth.api.tile;
 import net.minecraft.item.ItemStack;
 
 public interface IInductionalMachine {
-	
+
 	void adjustHeat(float factor, boolean redstone);
-	
+
 	boolean canWork();
-	
+
 	void produce(ItemStack[] inputs);
-	
+
 	ItemStack getOutputFrom(ItemStack input);
 
 }

@@ -13,7 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-@Deprecated
+@Deprecated //Will switch to individual ItemHandler, instead of implementing on TileEntity
 public abstract class TileFrogInv extends TileFrog implements IItemHandler {
 
 	protected ItemStack[] inv;

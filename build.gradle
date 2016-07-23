@@ -23,7 +23,7 @@ apply plugin: 'net.minecraftforge.gradle.forge'
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
-version = "0.5.0.0"
+version = "${FCR_Ver_Major}.${FCR_Ver_Minor}.${FCR_Ver_Patch}"
 group = "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
@@ -38,17 +38,16 @@ repositories {
 }
 
 minecraft {
-    version = "1.10.2-12.18.1.2014"
+    version = "${Minecraft_Ver}-${MinecraftFogre_Ver}"
     runDir = "run"
 
-    mappings = "snapshot_20160718"
+    mappings = Mapping_Ver
+    
+    replace "@VERSION", project.version
 }
 
 sourceSets {
     main {
-        java {
-            //srcDir 'ChemLab/src'
-        }
         resources {
             srcDir "src/main/resources"
         }
@@ -57,8 +56,8 @@ sourceSets {
 
 
 dependencies {
-    compile 'net.industrial-craft:industrialcraft-2:2.6.15-ex110:dev'
-    compile 'mezz.jei:jei_1.10.2:3.7.3.221:api'
+    compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
+    compile "mezz.jei:jei_1.10.2:${JEI_Ver}:api"
     
 }
 

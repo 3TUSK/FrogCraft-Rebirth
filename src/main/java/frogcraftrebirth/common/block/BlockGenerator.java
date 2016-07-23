@@ -59,7 +59,7 @@ public class BlockGenerator extends BlockFrogContainer {
 
 		@Override
 		public String getName() {
-			return this.name();
+			return this.name().toLowerCase();
 		}
 	}
 

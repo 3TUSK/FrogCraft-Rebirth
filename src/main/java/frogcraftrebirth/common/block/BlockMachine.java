@@ -10,8 +10,10 @@ import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -84,12 +86,17 @@ public class BlockMachine extends BlockFrogContainer {
 		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
 	}
 	
+	@Override
+	protected BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, new IProperty[] {FACING, TYPE});
+	}
+	
 	public static enum Type implements IStringSerializable {
 		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUIFIER;
 
 		@Override
 		public String getName() {
-			return this.name();
+			return this.name().toLowerCase();
 		}
 	}
 }

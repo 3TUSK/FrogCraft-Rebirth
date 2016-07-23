@@ -54,7 +54,7 @@ public class BlockFrogOre extends BlockFrog {
 
 		@Override
 		public String getName() {
-			return this.name();
+			return this.name().toLowerCase();
 		}
 	}
 

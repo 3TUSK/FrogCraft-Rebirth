@@ -14,6 +14,7 @@ import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -44,8 +45,13 @@ public class BlockTiberium extends BlockFrog {
 		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), strength, smoke);
 	}
 	
-	public static enum Color {
+	public static enum Color implements IStringSerializable {
 		RED, BLUE, GREEN;
+
+		@Override
+		public String getName() {
+			return this.name().toLowerCase();
+		}
 	}
 
 }

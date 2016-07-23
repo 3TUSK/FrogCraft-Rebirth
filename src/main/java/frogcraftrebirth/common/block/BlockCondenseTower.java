@@ -65,7 +65,7 @@ public class BlockCondenseTower extends BlockFrogContainer {
 
 		@Override
 		public String getName() {
-			return this.name();
+			return this.name().toLowerCase();
 		}
 	}
 

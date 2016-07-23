@@ -19,37 +19,33 @@ item.DecayBattery.info.1=超高造价,无限电力！
 item.Item_NitricAcidBucket.name=硝酸桶
 item.Item_NitricAcidBucket.info=注意：超级腐蚀性液体！
 
-#Cells
-item.Item_Cells.cell_Ammonia=氨槽
-item.Item_Cells.cell_Ammonia.info=NH3
-item.Item_Cells.cell_CoalTar=煤焦油槽
-item.Item_Cells.cell_CoalTar.info=这特么究竟含有什么?!
-item.Item_Cells.cell_Oxygen=氧气槽
-item.Item_Cells.cell_Oxygen.info=O2
-item.Item_Cells.cell_LiquifiedAir=液化空气槽
-item.Item_Cells.cell_LiquifiedAir.info=N2.O2.CO2.Ar
-item.Item_Cells.cell_CO2=二氧化碳槽
-item.Item_Cells.cell_CO2.info=CO2
-item.Item_Cells.cell_Argon=氩槽
-item.Item_Cells.cell_Argon.info=Ar
-item.Item_Cells.cell_HNO3=硝酸槽
-item.Item_Cells.cell_HNO3.info=HNO3
-item.Item_Cells.cell_NO=一氧化氮槽
-item.Item_Cells.cell_NO.info=NO
-item.Item_Cells.cell_CO=一氧化碳槽
-item.Item_Cells.cell_CO.info=CO
-item.Item_Cells.cell_Benzene=苯槽
-item.Item_Cells.cell_Benzene.info=C6H6
-item.Item_Cells.cell_Bromine=溴槽
-item.Item_Cells.cell_Bromine.info=Br2
-item.Item_Cells.cell_Fluorine=氟槽
-item.Item_Cells.cell_Fluorine.info=F2
-item.Item_Cells.cell_SO2=二氧化硫槽
-item.Item_Cells.cell_SO2.info=SO2
-item.Item_Cells.cell_SO3=三氧化硫槽
-item.Item_Cells.cell_SO3.info=SO3
-item.Item_Dusts.V2O5=五氧化二钒
-item.Item_Dusts.V2O5.info=V2O5
+#Fluid
+fluid.ammonia=氨
+fluid.ammonia.info=NH3
+fluid.argon=氩
+fluid.argon.info=Ar
+fluid.benzene=苯
+fluid.benzene.info=C6H6
+fluid.bromine=溴
+fluid.bromine.info=Br2
+fluid.carbonDioxide=二氧化碳
+fluid.carbonDioxide.info=CO2
+fluid.carbonOxide=一氧化碳
+fluid.carbonOxide.info=CO
+fluid.coalTar=煤焦油
+fluid.coalTar.info=这特么究竟含有什么？！
+fluid.fluorine=氟
+fluid.fluorine.info=F2
+fluid.nitricAcid=硝酸
+fluid.nitricAcid=HNO3
+fluid.nitrogenOxide=一氧化氮
+fluid.nitrogenOxide.info=NO
+fluid.oxygen=氧气
+fluid.oxygen.info=O2
+fluid.sulfurDioxide=二氧化硫
+fluid.sulfurDioxide.info=SO2
+fluid.sulfurTrioxide=三氧化硫
+fluid.sulfurTrioxide.info=SO3
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
@@ -96,6 +92,8 @@ item.Item_Dusts.TiO2=二氧化钛粉
 item.Item_Dusts.TiO2.info=TiO2
 item.Item_Dusts.Al2O3=三氧化二铝粉
 item.Item_Dusts.Al2O3.info=Al2O3
+item.Item_Dusts.V2O5=五氧化二钒
+item.Item_Dusts.V2O5.info=V2O5
 
 #Ingots
 #To translators: for briquette, see the following links:

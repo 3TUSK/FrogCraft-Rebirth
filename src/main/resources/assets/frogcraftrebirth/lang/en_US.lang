@@ -22,35 +22,33 @@ item.DecayBattery.info.1=Provide you with infinity electricity with high cost!
 item.Item_NitricAcidBucket.name=Nitric Acid Bucket
 item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
 
-#Cells
-item.Item_Cells.cell_Ammonia=Ammonia Cell
-item.Item_Cells.cell_Ammonia.info=NH3
-item.Item_Cells.cell_CoalTar=Coal Tar Cell
-item.Item_Cells.cell_CoalTar.info=What the hell does it contain?!
-item.Item_Cells.cell_Oxygen=Oxygen Cell
-item.Item_Cells.cell_Oxygen.info=O2
-item.Item_Cells.cell_LiquifiedAir=Liquefied Air Cell
-item.Item_Cells.cell_LiquifiedAir.info=N2.O2.CO2.Ar
-item.Item_Cells.cell_CO2=Carbon Dioxide Cell
-item.Item_Cells.cell_CO2.info=CO2
-item.Item_Cells.cell_Argon=Argon Cell
-item.Item_Cells.cell_Argon.info=Ar
-item.Item_Cells.cell_HNO3=Nitric Acid Cell
-item.Item_Cells.cell_HNO3.info=HNO3
-item.Item_Cells.cell_NO=Nitrogen Monoxide Cell
-item.Item_Cells.cell_NO.info=NO
-item.Item_Cells.cell_CO=Carbon Monoxide Cell
-item.Item_Cells.cell_CO.info=CO
-item.Item_Cells.cell_Benzene=Benzene Cell
-item.Item_Cells.cell_Benzene.info=C6H6
-item.Item_Cells.cell_Bromine=Bromine Cell
-item.Item_Cells.cell_Bromine.info=Br2
-item.Item_Cells.cell_Fluorine=Fluorine Cell
-item.Item_Cells.cell_Fluorine.info=F2
-item.Item_Cells.cell_SO2=Sulfur Dioxide Cell
-item.Item_Cells.cell_SO2.info=SO2
-item.Item_Cells.cell_SO3=Sulfur Trioxide Cell
-item.Item_Cells.cell_SO3.info=SO3
+#Fluid
+fluid.ammonia=Ammonia
+fluid.ammonia.info=NH3
+fluid.argon=Argon
+fluid.argon.info=Ar
+fluid.benzene=Benzene
+fluid.benzene.info=C6H6
+fluid.bromine=Bromine
+fluid.bromine.info=Br2
+fluid.carbonDioxide=Carbon Dioxide
+fluid.carbonDioxide.info=CO2
+fluid.carbonOxide=Carbon Monoxide
+fluid.carbonOxide.info=CO
+fluid.coalTar=Coal Tar
+fluid.coalTar.info=What the hell does it contain?!
+fluid.fluorine=Fluorine
+fluid.fluorine.info=F2
+fluid.nitricAcid=Nitric Acid
+fluid.nitricAcid.info=HNO3
+fluid.nitrogenOxide=Nitrogen Monoxide
+fluid.nitrogenOxide.info=NO
+fluid.oxygen=Oxygen
+fluid.oxygen.info=O2
+fluid.sulfurDioxide=Sulfur Dioxide
+fluid.sulfurDioxide.info=SO2
+fluid.sulfurTrioxide=Sulfur Trioxide
+fluid.sulfurTrioxide.info=SO3
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela

@@ -9,6 +9,7 @@ import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockFrogOre;
 import frogcraftrebirth.common.block.BlockGenerator;
 import frogcraftrebirth.common.block.BlockHybridEStorage;
+import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
@@ -27,6 +28,7 @@ import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
+import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -58,29 +60,28 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.machines = new BlockMachine();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
-		//FrogBlocks.mobilePowerStation = new BlockMPS();
+		FrogBlocks.mobilePowerStation = new BlockMPS();
 		
-		GameRegistry.<Block>register(FrogBlocks.frogOres.setRegistryName("ores"));
-		GameRegistry.<Block>register(FrogBlocks.tiberium.setRegistryName("tiberium"));
-		GameRegistry.<Block>register(FrogBlocks.generators.setRegistryName("generator"));
-		GameRegistry.<Block>register(FrogBlocks.machines.setRegistryName("machine"));
-		GameRegistry.<Block>register(FrogBlocks.condenseTowerPart.setRegistryName("condense_tower"));
-		GameRegistry.<Block>register(FrogBlocks.hybridStorageUnit.setRegistryName("hybrid_storage_unit"));
-		//GameRegistry.<Block>register(FrogBlocks.mobilePowerStation.setRegistryName("mobile_power_station"));
-
+		GameRegistry.<Block>register(FrogBlocks.frogOres);
+		GameRegistry.<Block>register(FrogBlocks.tiberium);
+		GameRegistry.<Block>register(FrogBlocks.generators);
+		GameRegistry.<Block>register(FrogBlocks.machines);
+		GameRegistry.<Block>register(FrogBlocks.condenseTowerPart);
+		GameRegistry.<Block>register(FrogBlocks.hybridStorageUnit);
+		GameRegistry.<Block>register(FrogBlocks.mobilePowerStation);
 	}
 
 	static void initItems() {
-		FrogItems.decayBatteryUranium = new ItemDecayBattery("U");
-		FrogItems.decayBatteryThorium = new ItemDecayBattery("Th");
-		FrogItems.decayBatteryPlutoium = new ItemDecayBattery("Pu");
-		FrogItems.coolantAmmonia60K = new ItemAmmoniaCoolant("60K", 6000);
-		FrogItems.coolantAmmonia180K = new ItemAmmoniaCoolant("180K", 18000);
-		FrogItems.coolantAmmonia360K = new ItemAmmoniaCoolant("360K", 36000);
-		FrogItems.itemIngot = new ItemIngot();
-		FrogItems.itemDust = new ItemDust();
-		FrogItems.itemReactionModule = new ItemCatalystModule();
-		FrogItems.ionCannon = new ItemIonCannon(1000000);
+		FrogItems.decayBatteryUranium = new ItemDecayBattery("U").setRegistryName("uranium_decay_battery");
+		FrogItems.decayBatteryThorium = new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery");
+		FrogItems.decayBatteryPlutoium = new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery");
+		FrogItems.coolantAmmonia60K = new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k");
+		FrogItems.coolantAmmonia180K = new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k");
+		FrogItems.coolantAmmonia360K = new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k");
+		FrogItems.itemIngot = new ItemIngot().setRegistryName("ingots");
+		FrogItems.itemDust = new ItemDust().setRegistryName("dusts");
+		FrogItems.itemReactionModule = new ItemCatalystModule().setRegistryName("catalyst_module");
+		FrogItems.ionCannon = new ItemIonCannon(1000000).setRegistryName("ion_cannon");
 		FrogItems.ionCannonFrame = new ItemFrogCraft(false) {
 
 			@Override
@@ -88,23 +89,23 @@ public class RegFrogItemsBlocks {
 				return java.util.Arrays.asList("Unimplement yet");
 			}
 			
-		}.setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1);
-		FrogItems.jinkela = new ItemJinkela();
-		FrogItems.tiberium = new ItemTiberium();
+		}.setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setRegistryName("ion_cannon_frame");
+		FrogItems.jinkela = new ItemJinkela().setRegistryName("jinkela");
+		FrogItems.tiberium = new ItemTiberium().setRegistryName("tiberium");
 		
-		GameRegistry.<Item>register(FrogItems.decayBatteryUranium.setRegistryName("uranium_decay_battery"));
-		GameRegistry.<Item>register(FrogItems.decayBatteryThorium.setRegistryName("thorium_decay_battery"));
-		GameRegistry.<Item>register(FrogItems.decayBatteryPlutoium.setRegistryName("plutoium_decay_battery"));
-		GameRegistry.<Item>register(FrogItems.coolantAmmonia60K.setRegistryName("ammonia_coolant_60k"));
-		GameRegistry.<Item>register(FrogItems.coolantAmmonia180K.setRegistryName("ammonia_coolant_180k"));
-		GameRegistry.<Item>register(FrogItems.coolantAmmonia360K.setRegistryName("ammonia_coolant_360k"));
-		GameRegistry.<Item>register(FrogItems.itemIngot.setRegistryName("ingots"));
-		GameRegistry.<Item>register(FrogItems.itemDust.setRegistryName("dusts"));
-		GameRegistry.<Item>register(FrogItems.itemReactionModule.setRegistryName("catalyst_module"));
-		GameRegistry.<Item>register(FrogItems.ionCannon.setRegistryName("ion_cannon"));
-		GameRegistry.<Item>register(FrogItems.ionCannonFrame.setRegistryName("ion_cannon_frame"));
-		GameRegistry.<Item>register(FrogItems.jinkela.setRegistryName("jinkela"));
-		GameRegistry.<Item>register(FrogItems.tiberium.setRegistryName("tiberium"));
+		GameRegistry.<Item>register(FrogItems.decayBatteryUranium);
+		GameRegistry.<Item>register(FrogItems.decayBatteryThorium);
+		GameRegistry.<Item>register(FrogItems.decayBatteryPlutoium);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia60K);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia180K);
+		GameRegistry.<Item>register(FrogItems.coolantAmmonia360K);
+		GameRegistry.<Item>register(FrogItems.itemIngot);
+		GameRegistry.<Item>register(FrogItems.itemDust);
+		GameRegistry.<Item>register(FrogItems.itemReactionModule);
+		GameRegistry.<Item>register(FrogItems.ionCannon);
+		GameRegistry.<Item>register(FrogItems.ionCannonFrame);
+		GameRegistry.<Item>register(FrogItems.jinkela);
+		GameRegistry.<Item>register(FrogItems.tiberium);
 	}
 	
 	static void initOreDict() {
@@ -122,7 +123,7 @@ public class RegFrogItemsBlocks {
 	}
 	
 	static void initTileEntity() {
-		//GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
+		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "tileMobilePowerStation");
 		GameRegistry.registerTileEntity(TileHSU.class, "tileHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileHSUUltra.class, "tileUltraHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileAirPump.class, "tileAirPump");

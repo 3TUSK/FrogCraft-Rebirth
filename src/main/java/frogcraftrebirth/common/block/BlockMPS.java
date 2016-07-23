@@ -19,7 +19,7 @@ public class BlockMPS extends BlockFrogContainer {
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
-		super(MACHINE);
+		super(MACHINE, "mobile_power_station");
 		setHardness(1.0F);
 		setResistance(100.0F);
 	}

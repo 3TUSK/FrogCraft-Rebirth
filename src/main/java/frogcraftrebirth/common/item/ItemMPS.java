@@ -3,7 +3,6 @@ package frogcraftrebirth.common.item;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import ic2.api.item.IElectricItem;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -15,10 +14,8 @@ import net.minecraft.world.World;
 
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
-	public ItemMPS(Block block) {
+	public ItemMPS(BlockMPS block) {
 		super(block);
-		if (!(this.getBlock() instanceof BlockMPS))
-			throw new IllegalArgumentException("Failure on initialize MPS block, please report this crash ASAP!");
 	}
 	
 	@Override
@@ -33,7 +30,6 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 		
 		IBlockState state = worldIn.getBlockState(pos);
 		@SuppressWarnings("unused")
-		//World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer
 		IBlockState placed = state.getBlock().onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, state.getBlock().getMetaFromState(state), playerIn);
 		//to be continued.
 		return EnumActionResult.SUCCESS;

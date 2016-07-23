@@ -1,21 +1,22 @@
 package frogcraftrebirth.common;
 
-import net.minecraft.block.Block;
+import frogcraftrebirth.common.lib.block.BlockFrog;
 
 public class FrogBlocks {
-	public static Block acwindmill;
+	public static BlockFrog acwindmill;
 	
-	public static Block hybridStorageUnit;
-	public static Block mobilePowerStation;
+	public static BlockFrog hybridStorageUnit;
+	public static BlockFrog mobilePowerStation;
 	
-	public static Block condenseTowerPart;
-	public static Block generators;
-	public static Block machines;
-	public static Block inductionalMachines;
+	public static BlockFrog condenseTowerPart;
+	public static BlockFrog generators;
+	public static BlockFrog machines;
+	public static BlockFrog inductionalMachines;
 
-	public static Block frogOres;
-	public static Block tiberium;
+	public static BlockFrog frogOres;
+	public static BlockFrog tiberium;
 	
-	public static Block fluidNitricAcid;
+	//Well...
+	public static net.minecraft.block.Block fluidNitricAcid;
 
 }

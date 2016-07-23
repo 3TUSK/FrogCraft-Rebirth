@@ -8,19 +8,26 @@ import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockCondenseTower extends BlockFrogContainer {
+	
+	public static final PropertyEnum<Part> TYPE = PropertyEnum.<Part>create("part", Part.class);
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public BlockCondenseTower() {
-		super(MACHINE);
+		super(MACHINE, "condense_tower");
 		setUnlocalizedName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);
@@ -53,8 +60,13 @@ public class BlockCondenseTower extends BlockFrogContainer {
 		return false;
 	}
 	
-	public static enum Part {
+	public static enum Part implements IStringSerializable {
 		CORE, CYLINDER, OUTPUT;
+
+		@Override
+		public String getName() {
+			return this.name();
+		}
 	}
 
 }

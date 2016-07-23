@@ -21,7 +21,7 @@ import net.minecraft.world.World;
 public class BlockTiberium extends BlockFrog {
 
 	public BlockTiberium() {
-		super(TIBERIUM);
+		super(TIBERIUM, "tiberium");
 		this.setUnlocalizedName("tiberium");
 		this.setHardness(10.0F);
 		this.setResistance(42.0F);

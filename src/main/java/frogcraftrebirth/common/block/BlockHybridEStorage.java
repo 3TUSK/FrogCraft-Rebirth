@@ -7,19 +7,25 @@ import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockHybridEStorage extends BlockFrogContainer {
 	
+	public static final PropertyEnum<Level> LEVEL = PropertyEnum.<Level>create("level", Level.class);
+	public static final PropertyDirection FACING = PropertyDirection.create("facing");
+	
 	public BlockHybridEStorage() {
-		super(MACHINE);
+		super(MACHINE, "hybrid_storage_unit");
 		setUnlocalizedName("hybridStorageUnit");
 	}
 	
@@ -43,15 +49,20 @@ public class BlockHybridEStorage extends BlockFrogContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta) {
+		switch ((int)(meta / 6)) {
 			case 0: return new TileHSU();
 			case 1: return new TileHSUUltra();
 			default: return null;
 		}
 	}
 	
-	public static enum Level {
+	public static enum Level implements IStringSerializable {
 		NORMAL, ULTRA;
+
+		@Override
+		public String getName() {
+			return this.name().toLowerCase();
+		}
 	}
 
 }

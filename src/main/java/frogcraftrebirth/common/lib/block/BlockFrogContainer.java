@@ -11,8 +11,8 @@ import net.minecraft.world.World;
  */
 public abstract class BlockFrogContainer extends BlockFrog implements ITileEntityProvider {
 	
-	protected BlockFrogContainer(Material material) {
-		super(material);
+	protected BlockFrogContainer(Material material, String registryName) {
+		super(material, registryName);
 		this.isBlockContainer = true;
 	}
 	

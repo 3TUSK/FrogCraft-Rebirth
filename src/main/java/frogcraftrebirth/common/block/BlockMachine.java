@@ -1,5 +1,7 @@
 package frogcraftrebirth.common.block;
 
+import javax.annotation.Nullable;
+
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -7,18 +9,28 @@ import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockMachine extends BlockFrogContainer {
+	
+	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("machine", Type.class);
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public BlockMachine() {
-		super(MACHINE);
+		super(MACHINE, "machine");
 		setUnlocalizedName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
@@ -39,7 +51,7 @@ public class BlockMachine extends BlockFrogContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta) {
+		switch (meta & 0b11) {
 			case 0:
 				return new TileAdvChemReactor();
 			case 1:
@@ -53,13 +65,31 @@ public class BlockMachine extends BlockFrogContainer {
 		}
 	}
 	
-	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {
-		if (world.isRemote) return false;
-			player.openGui(FrogCraftRebirth.instance, 5, world, x, y, z);
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (worldIn.isRemote) return false;
+			playerIn.openGui(FrogCraftRebirth.instance, 5, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return false;
 	}
 	
-	public static enum Type {
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		int facing = state.getValue(FACING).getIndex();
+		return facing << 2 + state.getValue(TYPE).ordinal() - 2;
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		int facing = meta >> 2, type = meta & 0b11;
+		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
+	}
+	
+	public static enum Type implements IStringSerializable {
 		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUIFIER;
+
+		@Override
+		public String getName() {
+			return this.name();
+		}
 	}
 }

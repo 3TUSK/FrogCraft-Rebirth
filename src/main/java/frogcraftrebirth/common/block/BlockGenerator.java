@@ -4,18 +4,23 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class BlockGenerator extends BlockFrogContainer {
+	
+	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public BlockGenerator() {
-		super(MACHINE);
+		super(MACHINE, "generator");
 		setUnlocalizedName("generator");
 		setHardness(5.0F);
 		setResistance(10.0F);
@@ -49,8 +54,13 @@ public class BlockGenerator extends BlockFrogContainer {
 		return false;
 	}
 	
-	public static enum Type {
+	public static enum Type implements IStringSerializable {
 		COMBUSTION/*, ???*/;
+
+		@Override
+		public String getName() {
+			return this.name();
+		}
 	}
 
 }

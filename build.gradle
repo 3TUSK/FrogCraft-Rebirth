@@ -11,13 +11,6 @@ buildscript {
     }
 }
 
-/*
-// for people who want stable - not yet functional for MC 1.8.8 - we require the forgegradle 2.1 snapshot
-plugins {
-    id "net.minecraftforge.gradle.forge" version "2.0.2"
-}
-*/
-
 apply plugin: 'net.minecraftforge.gradle.forge'
 
 sourceCompatibility = 1.8
@@ -54,11 +47,9 @@ sourceSets {
     }
 }
 
-
 dependencies {
     compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
-    compile "mezz.jei:jei_1.10.2:${JEI_Ver}:api"
-    
+    compile "mezz.jei:jei_1.10.2:${JEI_Ver}:api" 
 }
 
 jar {

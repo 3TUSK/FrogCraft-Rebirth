@@ -10,13 +10,16 @@ package frogcraftrebirth.common.asm;
 
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
 
 @IFMLLoadingPlugin.MCVersion("1.10.2")
 @IFMLLoadingPlugin.TransformerExclusions("frogcraftrebirth.common.asm")
 public class FrogASMPlugin implements IFMLLoadingPlugin {
 	
-	public static boolean ic2ClassicDetected = false;
+	public static final Logger LOGGER = LogManager.getLogger("FrogASMPlugin");
 
 	@Override
 	public String[] getASMTransformerClass() {

@@ -8,26 +8,24 @@ import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public abstract class BlockFrog extends Block {
-	
-	public static final String TEXTURE_MAIN = "frogcraftrebirth:";
-	
+		
 	public static final Material ORE = new Material(MapColor.STONE).setRequiresTool();
 	public static final Material MACHINE = new Material(MapColor.SILVER).setBurning().setImmovableMobility();
 	public static final Material TIBERIUM = new Material(MapColor.BLUE).setNoPushMobility();
 	
+	@Deprecated //Use the PropertyEnum below instead
 	protected String[] nameArray;
 	
-	protected BlockFrog(Material material) {
-		this(material, 0);
-	}
+	protected PropertyEnum<?> type;
 
-	protected BlockFrog(Material material, int damageValueUpperBound) {
+	protected BlockFrog(Material material) {
 		super(material);
 		setCreativeTab(FrogAPI.frogTab);
 	}
@@ -38,9 +36,8 @@ public abstract class BlockFrog extends Block {
 	}
 	
 	@SideOnly(Side.CLIENT)
-	@SuppressWarnings("unchecked")
 	@Override
-	public void getSubBlocks(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes")List list) {
+	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
 		for (int i=0;i<nameArray.length;i++) {
 			list.add(new ItemStack(item, 1, i));
 		}

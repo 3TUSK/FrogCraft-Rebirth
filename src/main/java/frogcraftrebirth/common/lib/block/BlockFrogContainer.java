@@ -10,13 +10,9 @@ import net.minecraft.world.World;
  * Identical to BlockContainer, but inherit from BlockFrog.
  */
 public abstract class BlockFrogContainer extends BlockFrog implements ITileEntityProvider {
-
-	protected BlockFrogContainer(Material material) {
-		this(material, 0);
-	}
 	
-	protected BlockFrogContainer(Material material, int damageValueUpperBound) {
-		super(material, damageValueUpperBound);
+	protected BlockFrogContainer(Material material) {
+		super(material);
 		this.isBlockContainer = true;
 	}
 	

@@ -19,9 +19,8 @@ import net.minecraft.world.World;
 public class BlockHybridEStorage extends BlockFrogContainer {
 	
 	public BlockHybridEStorage() {
-		super(MACHINE, 1);
+		super(MACHINE);
 		setUnlocalizedName("hybridStorageUnit");
-		setSubNameArray("HSU", "UHSU");
 	}
 	
 	@Override
@@ -49,6 +48,10 @@ public class BlockHybridEStorage extends BlockFrogContainer {
 			case 1: return new TileHSUUltra();
 			default: return null;
 		}
+	}
+	
+	public static enum Level {
+		NORMAL, ULTRA;
 	}
 
 }

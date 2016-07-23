@@ -15,11 +15,10 @@ import net.minecraft.world.World;
 public class BlockGenerator extends BlockFrogContainer {
 
 	public BlockGenerator() {
-		super(MACHINE, 0);
+		super(MACHINE);
 		setUnlocalizedName("generator");
 		setHardness(5.0F);
 		setResistance(10.0F);
-		setSubNameArray("CombustionFurnace");
 	}
 	
 	@Override
@@ -48,6 +47,10 @@ public class BlockGenerator extends BlockFrogContainer {
 			return false;
 		player.openGui(FrogCraftRebirth.instance, 3, world, x, y, z);
 		return false;
+	}
+	
+	public static enum Type {
+		COMBUSTION/*, ???*/;
 	}
 
 }

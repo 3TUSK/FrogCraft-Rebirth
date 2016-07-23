@@ -5,13 +5,13 @@ import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
 
-public /*abstract*/ class ItemFrogBlock extends ItemBlock {
+public class ItemFrogBlock extends ItemBlock {
 	
-	static {
-		Item.registerItemBlock(FrogBlocks.condenseTowerPart, new ItemFrogBlock(FrogBlocks.condenseTowerPart));
-		Item.registerItemBlock(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.frogOres));
+	public static void initItemBlock() {
+		//Item.registerItemBlock(FrogBlocks.condenseTowerPart, new ItemFrogBlock(FrogBlocks.condenseTowerPart));
+		//Item.registerItemBlock(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.frogOres));
+		Item.registerItemBlock(FrogBlocks.fluidNitricAcid, new ItemBlock(FrogBlocks.fluidNitricAcid).setRegistryName("nitric_acid_block"));
 	}
 
 	public ItemFrogBlock(Block block) {
@@ -24,10 +24,6 @@ public /*abstract*/ class ItemFrogBlock extends ItemBlock {
 	@Override
 	public int getMetadata(int meta) {
 		return meta;
-	}
-	
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + ((BlockFrog)this.getBlock()).getSubNamesArray()[stack.getItemDamage()];
 	}
 
 }

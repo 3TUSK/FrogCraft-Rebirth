@@ -2,6 +2,7 @@ package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.block.BlockFrogContainer;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
@@ -14,6 +15,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMPS extends BlockFrogContainer {
+	
+	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
 		super(MACHINE);

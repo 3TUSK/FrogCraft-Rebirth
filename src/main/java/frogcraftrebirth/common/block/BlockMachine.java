@@ -18,11 +18,10 @@ import net.minecraft.world.World;
 public class BlockMachine extends BlockFrogContainer {
 
 	public BlockMachine() {
-		super(MACHINE, 3);
+		super(MACHINE);
 		setUnlocalizedName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
-		setSubNameArray("AdvChemReactor", "AirPump", "Pyrolyzer", "Liquifier");
 	}
 	
 	@Override
@@ -56,7 +55,11 @@ public class BlockMachine extends BlockFrogContainer {
 	
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int p_149727_6_, float hitX, float hitY, float hitZ) {
 		if (world.isRemote) return false;
-		player.openGui(FrogCraftRebirth.instance, 5, world, x, y, z);
+			player.openGui(FrogCraftRebirth.instance, 5, world, x, y, z);
 		return false;
+	}
+	
+	public static enum Type {
+		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUIFIER;
 	}
 }

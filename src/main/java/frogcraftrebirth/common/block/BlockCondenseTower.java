@@ -20,11 +20,10 @@ import net.minecraft.world.World;
 public class BlockCondenseTower extends BlockFrogContainer {
 
 	public BlockCondenseTower() {
-		super(MACHINE, 2);
+		super(MACHINE);
 		setUnlocalizedName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);
-		setSubNameArray("Core", "Cylinder", "FluidOutput");
 	}
 
 	@Override
@@ -52,6 +51,10 @@ public class BlockCondenseTower extends BlockFrogContainer {
 			}
 		}
 		return false;
+	}
+	
+	public static enum Part {
+		CORE, CYLINDER, OUTPUT;
 	}
 
 }

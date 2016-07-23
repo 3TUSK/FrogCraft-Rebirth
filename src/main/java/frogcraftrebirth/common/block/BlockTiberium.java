@@ -21,11 +21,10 @@ import net.minecraft.world.World;
 public class BlockTiberium extends BlockFrog {
 
 	public BlockTiberium() {
-		super(TIBERIUM, 2);
+		super(TIBERIUM);
 		this.setUnlocalizedName("tiberium");
 		this.setHardness(10.0F);
-		this.setResistance(41.0F);
-		this.setSubNameArray("red", "blue", "green");
+		this.setResistance(42.0F);
 	}
 	
 	@Override
@@ -37,13 +36,16 @@ public class BlockTiberium extends BlockFrog {
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> dropList = new ArrayList<ItemStack>();
 
-		//quantityDropped(metadata, fortune, world.rand);
-		
+		//quantityDropped(metadata, fortune, world.rand);	
 		return dropList;
 	}
 
 	public void explode(World world, BlockPos pos, float strength, boolean smoke) {
 		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), strength, smoke);
+	}
+	
+	public static enum Color {
+		RED, BLUE, GREEN;
 	}
 
 }

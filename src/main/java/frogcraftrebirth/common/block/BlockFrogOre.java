@@ -15,7 +15,6 @@ public class BlockFrogOre extends BlockFrog {
 		setUnlocalizedName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);
-		setSubNameArray("oreCarnallite", "oreDewalquite", "oreFluorapatite", "oreNGH");
 	}
 	
 	public int damageDropped(int meta) {
@@ -47,6 +46,10 @@ public class BlockFrogOre extends BlockFrog {
 		}
 		
 		return 1;
+	}
+	
+	public static enum Type {
+		CARNALLITE, DEWALQUITE, FLUORAPATITE, NGH;
 	}
 
 }

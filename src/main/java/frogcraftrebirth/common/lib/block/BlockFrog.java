@@ -20,9 +20,6 @@ public abstract class BlockFrog extends Block {
 	public static final Material MACHINE = new Material(MapColor.SILVER).setBurning().setImmovableMobility();
 	public static final Material TIBERIUM = new Material(MapColor.BLUE).setNoPushMobility();
 	
-	@Deprecated //Use the PropertyEnum below instead
-	protected String[] nameArray;
-	
 	protected PropertyEnum<?> type;
 
 	protected BlockFrog(Material material) {
@@ -38,18 +35,7 @@ public abstract class BlockFrog extends Block {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
-		for (int i=0;i<nameArray.length;i++) {
-			list.add(new ItemStack(item, 1, i));
-		}
-	}
-
-	public String[] getSubNamesArray() {
-		return this.nameArray;
-	}
-	
-	protected BlockFrog setSubNameArray(String... subNames) {
-		this.nameArray = subNames;
-		return this;
+		
 	}
 
 }

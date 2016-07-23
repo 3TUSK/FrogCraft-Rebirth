@@ -5,7 +5,7 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-
+@Deprecated
 public abstract class TileFrogInventory extends TileFrog implements IInventory {
 
 	protected ItemStack[] inv;

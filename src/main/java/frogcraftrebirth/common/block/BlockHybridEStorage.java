@@ -3,11 +3,11 @@ package frogcraftrebirth.common.block;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.common.lib.block.BlockFrogContainer;
+import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,13 +19,12 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockHybridEStorage extends BlockFrogContainer {
+public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEntityProvider {
 	
 	public static final PropertyEnum<Level> LEVEL = PropertyEnum.<Level>create("level", Level.class);
-	public static final PropertyDirection FACING = PropertyDirection.create("facing");
 	
 	public BlockHybridEStorage() {
-		super(MACHINE, "hybrid_storage_unit");
+		super(MACHINE, "hybrid_storage_unit", true);
 		setUnlocalizedName("hybridStorageUnit");
 	}
 	

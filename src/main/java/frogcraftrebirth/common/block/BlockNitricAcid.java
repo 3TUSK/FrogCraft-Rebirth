@@ -19,6 +19,7 @@ public class BlockNitricAcid extends BlockFluidClassic {
 	
 	public BlockNitricAcid(Fluid fluid) {
 		super(fluid, Material.WATER);
+		this.setRegistryName("nitric_acid_block");
 		this.setUnlocalizedName("nitricAcid");
 		this.setDensity(fluid.getDensity());
 		this.setQuantaPerBlock(8);

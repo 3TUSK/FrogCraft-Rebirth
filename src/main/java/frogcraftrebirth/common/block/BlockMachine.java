@@ -3,15 +3,14 @@ package frogcraftrebirth.common.block;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.common.lib.block.BlockFrogContainer;
+import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquifier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
-import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -26,13 +25,12 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockMachine extends BlockFrogContainer {
+public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProvider {
 	
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("machine", Type.class);
-	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public BlockMachine() {
-		super(MACHINE, "machine");
+		super(MACHINE, "machine", false);
 		setUnlocalizedName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
@@ -76,19 +74,19 @@ public class BlockMachine extends BlockFrogContainer {
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int facing = state.getValue(FACING).getIndex();
+		int facing = state.getValue(FACING_HORIZONTAL).getIndex();
 		return facing << 2 + state.getValue(TYPE).ordinal() - 2;
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
-		return this.getDefaultState().withProperty(FACING, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
+		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
 	}
 	
 	@Override
 	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {FACING, TYPE});
+		return new BlockStateContainer(this, new IProperty[] {FACING_HORIZONTAL, TYPE});
 	}
 	
 	public static enum Type implements IStringSerializable {

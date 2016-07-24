@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,40 +39,21 @@ public final class FrogAPI {
 
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 
-	/**
-	 * Use for your own risk
-	 */
-	public static final int[][] 
-			ROT_OFFSET_N_4 = { 
-					{ 0, 1, 2, 3, 4, 5 }, 
-					{ 0, 1, 2, 3, 4, 5 }, 
-					{ 0, 1, 2, 3, 4, 5 },
-					{ 0, 1, 3, 2, 5, 4 }, 
-					{ 0, 1, 4, 5, 3, 2 }, 
-					{ 0, 1, 5, 4, 2, 3 } 
-					},
-			ROT_OFFSET_S_6 = { 
-					{ 3, 2, 1, 0, 4, 5 }, 
-					{ 2, 3, 0, 1, 4, 5 }, 
-					{ 0, 1, 2, 3, 4, 5 }, 
-					{ 0, 1, 3, 2, 5, 4 },
-					{ 0, 1, 4, 5, 3, 2 }, 
-					{ 0, 1, 5, 4, 2, 3 } 
-					};
-
-	@Nonnull
 	public static final CreativeTabs frogTab = new CreativeTabs("FrogCraft") {
 		@Override
 		public Item getTabIconItem() {
 			return FrogItems.jinkela;
 		}
-	};;
-
-	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
-	public static IRecipeManager<CondenseTowerRecipe> managerCT;
-	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
-
+	};
+	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
+
+	@Nonnull
+	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
+	@Nonnull
+	public static IRecipeManager<CondenseTowerRecipe> managerCT;
+	@Nonnull
+	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 
 	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
 
@@ -107,22 +89,23 @@ public final class FrogAPI {
 	 * @param damage
 	 * @return Your itemstack
 	 */
-	public static ItemStack findFrogItem(final String name, final int amount, final int damage) {
+	@Nullable
+	public static ItemStack findFrogItem(final String name, final int amount, final int meta) {
 		Field stuff;
 
 		try {
 			stuff = Class.forName("frogcraftrebirth.common.FrogItems").getField(name);
-			return new ItemStack((Item) stuff.get(null), amount, damage);
+			return new ItemStack((Item) stuff.get(null), amount, meta);
 		} catch (Exception e) {
 		}
 
 		try {
 			stuff = Class.forName("frogcraftrebirth.common.FrogBlocks").getField(name);
-			return new ItemStack((Block) stuff.get(null), amount, damage);
+			return new ItemStack((Block) stuff.get(null), amount, meta);
 		} catch (Exception e) {
 		}
 
-		FROG_LOG.error("Failed to find FrogCraft: Rebirth item: " + name + "@" + Integer.toString(damage));
+		FROG_LOG.error("Failed to find FrogCraft: Rebirth item: " + name + "@" + meta);
 		return null;
 	}
 

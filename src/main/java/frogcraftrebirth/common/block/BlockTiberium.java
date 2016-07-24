@@ -11,6 +11,7 @@ package frogcraftrebirth.common.block;
 import java.util.ArrayList;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
+import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.item.ItemStack;
@@ -20,6 +21,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockTiberium extends BlockFrog {
+	
+	public static final PropertyEnum<BlockTiberium.Color> TYPE = PropertyEnum.<BlockTiberium.Color>create("machine", BlockTiberium.Color.class);
 
 	public BlockTiberium() {
 		super(TIBERIUM, "tiberium");

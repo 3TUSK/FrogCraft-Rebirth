@@ -3,13 +3,12 @@ package frogcraftrebirth.common.block;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.common.lib.block.BlockFrogContainer;
+import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,13 +20,12 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockCondenseTower extends BlockFrogContainer {
+public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEntityProvider {
 	
 	public static final PropertyEnum<Part> TYPE = PropertyEnum.<Part>create("part", Part.class);
-	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 
 	public BlockCondenseTower() {
-		super(MACHINE, "condense_tower");
+		super(MACHINE, "condense_tower", false);
 		setUnlocalizedName("multiBlockMachine.CondenseTower");
 		setHardness(15.0F);
 		setResistance(20.0f);

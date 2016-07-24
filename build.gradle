@@ -39,14 +39,6 @@ minecraft {
     replace "@VERSION", project.version
 }
 
-sourceSets {
-    main {
-        resources {
-            srcDir "src/main/resources"
-        }
-    }
-}
-
 dependencies {
     compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
     compile "mezz.jei:jei_1.10.2:${JEI_Ver}:api" 
@@ -54,6 +46,7 @@ dependencies {
 
 jar {
     manifest {
+        attributes 'FMLCorePlugin': 'frogcraftrebirth.common.asm.FrogASMPlugin'
         attributes 'FMLAT': 'fcr_at.cfg'
     }
 }

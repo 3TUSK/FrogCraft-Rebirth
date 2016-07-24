@@ -23,7 +23,6 @@ public class FrogASMPlugin implements IFMLLoadingPlugin {
 
 	@Override
 	public String[] getASMTransformerClass() {
-		System.out.println("Well, FrogASMPlugin detcted.");
 		return new String[] {
 			"frogcraftrebirth.common.asm.FrogASMTransformer"
 			//Will be enabled as soon as there is necessity

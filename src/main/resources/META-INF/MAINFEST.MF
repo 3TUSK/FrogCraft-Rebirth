@@ -1,2 +1,0 @@
-Mainfest-Version: 1.0
-FMLCorePlugin: frogcraftrebirth.common.asm.FrogASMPlugin

@@ -4,18 +4,17 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
-import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileFrogGenerator extends TileFrogInventory implements ISidedInventory, IEnergySource {
+public abstract class TileFrogGenerator extends TileFrog implements IEnergySource {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
 	
-	public TileFrogGenerator (int invSize, String name, int sourceTier, int output) {
-		super(invSize, name);
+	public TileFrogGenerator (String name, int sourceTier, int output) {
+		super();
 		this.sourceTier = sourceTier;
 		this.output = output;
 	}

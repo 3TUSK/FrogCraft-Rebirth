@@ -5,9 +5,9 @@ import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.Slot;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerCombustionFurnace extends ContainerTileFrog<TileCombustionFurnace> {
 
@@ -15,10 +15,10 @@ public class ContainerCombustionFurnace extends ContainerTileFrog<TileCombustion
 	
 	public ContainerCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
 		super(playerInv, tile);
-		this.addSlotToContainer(new Slot(tile, 0, 24, 28));
-		this.addSlotToContainer(new SlotOutput(tile, 1, 75, 28));
-		this.addSlotToContainer(new Slot(tile, 2, 113, 21));
-		this.addSlotToContainer(new SlotOutput(tile, 3, 113, 56));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 24, 28));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 75, 28));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 2, 113, 21));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 3, 113, 56));
 		this.registerPlayerInventory(playerInv);
 	}
 	

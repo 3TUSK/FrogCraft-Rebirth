@@ -5,9 +5,9 @@ import frogcraftrebirth.common.tile.TileHSU;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
-import net.minecraft.inventory.Slot;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 
@@ -15,8 +15,8 @@ public class ContainerHybridEStorage extends ContainerTileFrog<TileHSU> {
 	
 	public ContainerHybridEStorage(InventoryPlayer playerInv, TileHSU tile) {
 		super(playerInv, tile);
-		this.addSlotToContainer(new Slot(tile, 0, 113, 24));
-		this.addSlotToContainer(new Slot(tile, 1, 113, 42));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 113, 24));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 113, 42));
 	}
 	
 	@Override

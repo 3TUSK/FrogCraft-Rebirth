@@ -3,6 +3,7 @@ package frogcraftrebirth.common.block;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -20,9 +21,14 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
-		super(MACHINE, "mobile_power_station", false);
+		super(MACHINE, "mobile_power_station", false, 0, 5);
 		setHardness(1.0F);
 		setResistance(100.0F);
+	}
+	
+	@Override
+	protected IProperty<?>[] getPropertyArray() {
+		return new IProperty[] { LEVEL };
 	}
 	
 	@Override
@@ -88,6 +94,16 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 		
 		spawnAsEntity(worldIn, pos, mps);
 		super.breakBlock(worldIn, pos, state);
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(LEVEL);
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(LEVEL, meta);
 	}
 
 }

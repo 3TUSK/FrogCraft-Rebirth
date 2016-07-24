@@ -8,62 +8,43 @@
  */
 package frogcraftrebirth.client;
 
+import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.Item;
-import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@SideOnly(Side.CLIENT)
 public class FrogTextures {
 	
-	@SideOnly(Side.CLIENT)
 	public static void initFrogItemsTexture() {
-		regItemTexture(FrogItems.coolantAmmonia60K, "ammoniaCoolant60K");
-		regItemTexture(FrogItems.coolantAmmonia180K, "ammoniaCoolant180K");
-		regItemTexture(FrogItems.coolantAmmonia360K, "ammoniaCoolant360K");
-		regItemTexture(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
-		regItemTexture(FrogItems.decayBatteryThorium, "decayBatteryThorium");
-		regItemTexture(FrogItems.decayBatteryUranium, "decayBatteryUranium");
-		regItemTexture(FrogItems.ionCannon);
-		regItemTexture(FrogItems.ionCannonFrame);
-		regItemTexture(FrogItems.jinkela, "goldClod");
+		RegHelper.regTextureFor(FrogItems.coolantAmmonia60K, "ammoniaCoolant60K");
+		RegHelper.regTextureFor(FrogItems.coolantAmmonia180K, "ammoniaCoolant180K");
+		RegHelper.regTextureFor(FrogItems.coolantAmmonia360K, "ammoniaCoolant360K");
+		RegHelper.regTextureFor(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
+		RegHelper.regTextureFor(FrogItems.decayBatteryThorium, "decayBatteryThorium");
+		RegHelper.regTextureFor(FrogItems.decayBatteryUranium, "decayBatteryUranium");
+		RegHelper.regTextureFor(FrogItems.ionCannon);
+		RegHelper.regTextureFor(FrogItems.ionCannonFrame);
+		RegHelper.regTextureFor(FrogItems.jinkela, "goldClod");
 		
 		int index;
 		for (index = 0; index < 16; ++index) {
-			regItemTexture(FrogItems.itemDust, index);
+			RegHelper.regTextureFor(FrogItems.itemDust, index);
 		}
 		for (index = 0; index < 5; ++index) {
-			regItemTexture(FrogItems.itemReactionModule, index);
+			RegHelper.regTextureFor(FrogItems.itemReactionModule, index);
 		}
 		for (index = 0; index < 4; ++index) {
-			regItemTexture(FrogItems.tiberium, index);
+			RegHelper.regTextureFor(FrogItems.tiberium, index);
 		}
 	}
 	
-	@SideOnly(Side.CLIENT)
 	public static void initFrogBlocksTexture() {
+		RegHelper.regTextureFor(FrogBlocks.frogOres, 0, "carnallite");
+		RegHelper.regTextureFor(FrogBlocks.frogOres, 1, "dewalquite");
+		RegHelper.regTextureFor(FrogBlocks.frogOres, 2, "fluorapatite");
 		
-	}
-	
-	@SideOnly(Side.CLIENT)
-	static void regItemTexture(Item item) {
-		regItemTexture(item, 0);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	static void regItemTexture(Item item, int metadata) {
-		regItemTexture(item, metadata, Item.REGISTRY.getNameForObject(item).toString());
-	}
-	
-	@SideOnly(Side.CLIENT)
-	static void regItemTexture(Item item, String newResLoc) {
-		regItemTexture(item, 0, "frogcraftrebirth:"+newResLoc);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	static void regItemTexture(Item item, int metadata, String newResLoc) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(newResLoc, "inventory"));
+		//RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitricAcid");
 	}
 
 }

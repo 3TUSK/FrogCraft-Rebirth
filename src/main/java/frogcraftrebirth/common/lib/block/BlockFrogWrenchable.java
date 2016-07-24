@@ -24,15 +24,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockFrogWrenchable extends BlockFrog implements IWrenchable {
+public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchable {
 	
 	public static final PropertyDirection FACING_ALL = BlockDirectional.FACING;
 	public static final PropertyDirection FACING_HORIZONTAL = BlockHorizontal.FACING;
 	
 	protected final boolean allowVerticalRotation;
 
-	protected BlockFrogWrenchable(Material material, String registryName, boolean allowVerticalRotation) {
-		super(material, registryName);
+	protected BlockFrogWrenchable(Material material, String registryName, boolean allowVerticalRotation, int... metaForDisplay) {
+		super(material, registryName, metaForDisplay);
 		this.allowVerticalRotation = allowVerticalRotation;
 	}
 

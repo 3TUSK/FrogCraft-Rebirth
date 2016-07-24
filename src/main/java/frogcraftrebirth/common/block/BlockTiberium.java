@@ -11,6 +11,7 @@ package frogcraftrebirth.common.block;
 import java.util.ArrayList;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -25,10 +26,15 @@ public class BlockTiberium extends BlockFrog {
 	public static final PropertyEnum<BlockTiberium.Color> TYPE = PropertyEnum.<BlockTiberium.Color>create("machine", BlockTiberium.Color.class);
 
 	public BlockTiberium() {
-		super(TIBERIUM, "tiberium");
-		this.setUnlocalizedName("tiberium");
+		super(TIBERIUM, "tiberium_crystal", 0, 1, 2);
+		this.setUnlocalizedName("tiberium_crystal");
 		this.setHardness(10.0F);
 		this.setResistance(42.0F);
+	}
+	
+	@Override
+	protected IProperty<?>[] getPropertyArray() {
+		return new IProperty[] { TYPE };
 	}
 	
 	@Override
@@ -42,6 +48,16 @@ public class BlockTiberium extends BlockFrog {
 
 		//quantityDropped(metadata, fortune, world.rand);	
 		return dropList;
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(TYPE).ordinal();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(TYPE, Color.values()[meta]);
 	}
 
 	public void explode(World world, BlockPos pos, float strength, boolean smoke) {

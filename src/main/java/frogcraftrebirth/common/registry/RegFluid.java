@@ -3,9 +3,10 @@ package frogcraftrebirth.common.registry;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockNitricAcid;
-//import frogcraftrebirth.common.lib.item.ItemFrogBlock;
+import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -55,10 +56,10 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurDioxide);
 		regFluid(FrogFluids.sulfurTrioxide);
 		
-		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid).setRegistryName("nitric_acid");
+		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
 		GameRegistry.<Block>register(FrogBlocks.fluidNitricAcid);
 		FrogFluids.nitricAcid.setBlock(FrogBlocks.fluidNitricAcid);
-		//ItemFrogBlock.initItemBlock();
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.fluidNitricAcid, new ItemBlock(FrogBlocks.fluidNitricAcid));
 	}
 	
 	private static ResourceLocation getTexture(String name, boolean flow) {

@@ -12,7 +12,6 @@ import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -30,10 +29,15 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("machine", Type.class);
 
 	public BlockMachine() {
-		super(MACHINE, "machine", false);
+		super(MACHINE, "machine", false, 0, 1, 2, 3);
 		setUnlocalizedName("machines");
 		setHardness(5.0F);
 		setResistance(10.0F);
+	}
+	
+	@Override
+	protected IProperty<?>[] getPropertyArray() {
+		return new IProperty[] { TYPE, FACING_HORIZONTAL };
 	}
 	
 	@Override
@@ -82,11 +86,6 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
-	}
-	
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, new IProperty[] {FACING_HORIZONTAL, TYPE});
 	}
 	
 	public static enum Type implements IStringSerializable {

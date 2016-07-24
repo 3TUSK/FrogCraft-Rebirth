@@ -1,33 +1,41 @@
 package frogcraftrebirth.common.lib.item;
 
+import java.util.function.Function;
+
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.lib.block.BlockFrog;
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
 
 public class ItemFrogBlock extends ItemBlock {
 	
-	public static void initItemBlock() {
-		Item.registerItemBlock(FrogBlocks.condenseTowerPart, new ItemFrogBlock(FrogBlocks.condenseTowerPart));
-		Item.registerItemBlock(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.frogOres));
-		Item.registerItemBlock(FrogBlocks.generators, new ItemFrogBlock(FrogBlocks.generators));
-		Item.registerItemBlock(FrogBlocks.hybridStorageUnit, new ItemFrogBlock(FrogBlocks.hybridStorageUnit));
-		Item.registerItemBlock(FrogBlocks.machines, new ItemFrogBlock(FrogBlocks.machines));
-		Item.registerItemBlock(FrogBlocks.mobilePowerStation, new ItemFrogBlock(FrogBlocks.mobilePowerStation));
-		Item.registerItemBlock(FrogBlocks.tiberium, new ItemFrogBlock(FrogBlocks.tiberium));
-		
+	public static void initFluidItemBlock() {
 		Item.registerItemBlock(FrogBlocks.fluidNitricAcid, new ItemBlock(FrogBlocks.fluidNitricAcid));
 	}
-
-	public ItemFrogBlock(BlockFrog block) {
+	
+	private final Function<ItemStack, String> subName;
+	
+	public ItemFrogBlock(BlockFrog block, Function<ItemStack, String> subNameGetter) {
 		super(block);
 		setHasSubtypes(true);
 		setMaxDamage(0);
+		this.subName = subNameGetter;
 	}
 	
 	@Override
 	public int getMetadata(int meta) {
 		return meta;
+	}
+	
+	@Override
+	public String getUnlocalizedName(ItemStack stack) {
+		return super.getUnlocalizedName(stack) + "." + subName.apply(stack);
+	}
+	
+	public static void registerItemBlockFor(Block blockIn, Item itemIn) {
+		registerItemBlock(blockIn, itemIn);
 	}
 
 }

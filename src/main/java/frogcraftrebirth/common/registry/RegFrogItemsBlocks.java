@@ -9,7 +9,7 @@ import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockFrogOre;
 import frogcraftrebirth.common.block.BlockGenerator;
 import frogcraftrebirth.common.block.BlockHybridEStorage;
-import frogcraftrebirth.common.block.BlockMPS;
+//import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
@@ -20,6 +20,7 @@ import frogcraftrebirth.common.item.ItemIngot;
 import frogcraftrebirth.common.item.ItemIonCannon;
 import frogcraftrebirth.common.item.ItemJinkela;
 import frogcraftrebirth.common.item.ItemTiberium;
+import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
@@ -60,7 +61,7 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.machines = new BlockMachine();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
 		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
-		FrogBlocks.mobilePowerStation = new BlockMPS();
+		//FrogBlocks.mobilePowerStation = new BlockMPS();
 		
 		GameRegistry.<Block>register(FrogBlocks.frogOres);
 		GameRegistry.<Block>register(FrogBlocks.tiberium);
@@ -68,7 +69,26 @@ public class RegFrogItemsBlocks {
 		GameRegistry.<Block>register(FrogBlocks.machines);
 		GameRegistry.<Block>register(FrogBlocks.condenseTowerPart);
 		GameRegistry.<Block>register(FrogBlocks.hybridStorageUnit);
-		GameRegistry.<Block>register(FrogBlocks.mobilePowerStation);
+		//GameRegistry.<Block>register(FrogBlocks.mobilePowerStation);
+		
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.condenseTowerPart, new ItemFrogBlock(FrogBlocks.condenseTowerPart, (ItemStack aStack) -> {
+			return BlockCondenseTower.Part.values()[aStack.getMetadata()].getName();
+		}));
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.frogOres, new ItemFrogBlock(FrogBlocks.frogOres, (ItemStack aStack) -> {
+			return BlockFrogOre.Type.values()[aStack.getMetadata()].getName();
+		}));
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.generators, new ItemFrogBlock(FrogBlocks.generators, (ItemStack aStack) -> {
+			return "combustionFurnace";
+		}));
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.hybridStorageUnit, new ItemFrogBlock(FrogBlocks.hybridStorageUnit, (ItemStack aStack) -> {
+			return BlockHybridEStorage.Level.values()[aStack.getMetadata()].getName();
+		}));
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.machines, new ItemFrogBlock(FrogBlocks.machines, (ItemStack aStack) -> {
+			return BlockMachine.Type.values()[aStack.getMetadata()].getName();
+		}));
+		ItemFrogBlock.registerItemBlockFor(FrogBlocks.tiberium, new ItemFrogBlock(FrogBlocks.tiberium, (ItemStack aStack) -> {
+			return BlockTiberium.Color.values()[aStack.getMetadata()].getName();
+		}));
 	}
 
 	static void initItems() {

@@ -15,14 +15,11 @@ import net.minecraft.world.World;
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	public ItemMPS(BlockMPS block) {
-		super(block);
+		super(block, (ItemStack aStack) -> {
+			return "normal";
+		});
 	}
-	
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return "tile.BlockMobilePS";
-	}
-	
+
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote) 

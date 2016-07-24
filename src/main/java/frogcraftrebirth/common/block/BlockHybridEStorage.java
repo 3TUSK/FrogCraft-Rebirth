@@ -8,6 +8,7 @@ import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -24,8 +25,13 @@ public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEnt
 	public static final PropertyEnum<Level> LEVEL = PropertyEnum.<Level>create("level", Level.class);
 	
 	public BlockHybridEStorage() {
-		super(MACHINE, "hybrid_storage_unit", true);
+		super(MACHINE, "hybrid_storage_unit", true, 0, 1);
 		setUnlocalizedName("hybridStorageUnit");
+	}
+	
+	@Override
+	protected IProperty<?>[] getPropertyArray() {
+		return new IProperty[] { LEVEL, FACING_ALL };
 	}
 	
 	@Override
@@ -53,6 +59,16 @@ public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEnt
 			case 1: return new TileHSUUltra();
 			default: return null;
 		}
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FACING_ALL).getIndex() * 2 + state.getValue(LEVEL).ordinal();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta/2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta/6]);
 	}
 	
 	public static enum Level implements IStringSerializable {

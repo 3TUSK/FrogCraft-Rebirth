@@ -11,9 +11,9 @@ public class FrogProxyClient extends FrogProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		FrogAPI.FROG_LOG.info("Client side pre-initialization finished");
 		FrogTextures.initFrogItemsTexture();
 		FrogTextures.initFrogBlocksTexture();
+		FrogAPI.FROG_LOG.info("Client side pre-initialization finished");
 	}
 
 	@Override

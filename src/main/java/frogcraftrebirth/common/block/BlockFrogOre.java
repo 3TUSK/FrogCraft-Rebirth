@@ -3,6 +3,7 @@ package frogcraftrebirth.common.block;
 import java.util.Random;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
@@ -15,10 +16,16 @@ public class BlockFrogOre extends BlockFrog {
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("type", Type.class);
 
 	public BlockFrogOre() {
-		super(ORE, "ore");
+		super(ORE, "ore", 0, 1, 2);
 		setUnlocalizedName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);
+		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
+	}
+
+	@Override
+	protected IProperty<?>[] getPropertyArray() {
+		return new IProperty[] { TYPE };
 	}
 
 	@Deprecated
@@ -46,6 +53,16 @@ public class BlockFrogOre extends BlockFrog {
 		}
 		
 		return 1;
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(TYPE).ordinal();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.blockState.getBaseState().withProperty(TYPE, Type.values()[meta]);
 	}
 	
 	public static enum Type implements IStringSerializable {

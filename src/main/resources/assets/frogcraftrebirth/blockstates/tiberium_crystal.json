@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"color": {
+			"red": { "model": "tiberium_crystal_red.obj" },
+			"blue": { "model": "tiberium_crystal_blue.obj" },
+			"green": { "model": "tiberium_crystal_green.obj" }
+		}
+	}
+}

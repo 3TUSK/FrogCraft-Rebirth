@@ -1,0 +1,24 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "orientable",
+		"textures": {
+			"top": "frogcraftrebirth:blocks/machine_top",
+			"side": "frogcraftrebirth:blocks/machine_side"
+		}
+	},
+	"variants": {
+		"facing": {
+			"east": { "y": 90, "uvlock": true },
+			"north": {},
+			"south": { "y": 180, "uvlock": true },
+			"west": { "y": 270, "uvlock": true }
+		},
+		"machine": {
+			"advchemreactor": { "textures": { "front": "frogcraftrebirth:blocks/AdvanceChemicalReactor_Front" } }, 
+			"airpump": { "textures": { "front": "frogcraftrebirth:blocks/AirPump_Front" } }, 
+			"pyrolyzer": { "textures": { "front": "frogcraftrebirth:blocks/Pyrolyzer_Front" } }, 
+			"liquifier": { "textures": { "front": "frogcraftrebirth:blocks/Liquefier" } }
+		}
+	}
+}

@@ -7,6 +7,7 @@ item.ItemRailgun.tooTired=No enough power QAQ
 item.ItemMiniIonCannon.name=Portable Ion Cannon
 item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
 item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
+item.ionCannonFrame=Ion Cannon Frame
 tile.BlockMobilePS.name=Mobile Power Supply
 tile.BlockMobilePS.info=The best camping gear
 item.CoolantAmmonia60K=60K ammonia coolant cell
@@ -100,8 +101,7 @@ item.Item_Dusts.Al2O3.info=Al2O3
 
 #Ingots
 #To translators: for briquette, see the following links:
-#https://en.wikipedia.org/wiki/Briquette
-#https://en.wikipedia.org/wiki/Yeontan
+#https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
 item.Item_Ingots.K=Potassium
 item.Item_Ingots.K.info=K
 item.Item_Ingots.P=Phosphor
@@ -122,37 +122,33 @@ item.Item_Ingots.gemDesc=YES these stuff are from RedPower actually
 item.Item_Ingots.ingotDesc=But it's not always real ingot
 item.Item_Ingots.nghDesc=It is believed as useful fuel...
 
-#Blocks
-tile.inductionalMachine.Compressor.name=Industrial Compressor
-tile.inductionalMachine.Macerator.name=Industrial Macerator
-tile.inductionalMachine.Extractor.name=Industrial Extractor
-tile.inductionalMachine.Furnance.name=Industrial Furnace
+item.tiberium.red=Tiberium (Red)
+item.tiberium.blue=Tiberium (Blue)
+item.tiberium.green=Tiberium (Green)
 
-tile.multiBlockMachine.CondenseTower.Core.name=Condense Tower
-tile.multiBlockMachine.CondenseTower.FluidOutput.name=Liquid Outlet
-tile.multiBlockMachine.CondenseTower.Cylinder.name=Condense Tower Wall
-tile.multiBlockMachine.Liquifier.name=Liquefier
+#Blocks
+tile.tiberium_crystal.red.name=Tiberium (Red)
+tile.tiberium_crystal.blue.name=Tiberium (Blue)
+tile.tiberium_crystal.green.name=Tiberium (Green)
+
+tile.condenseTower.core.name=Condense Tower
+tile.condenseTower.output.name=Liquid Outlet
+tile.condenseTower.Conden.cylinder.name=Condense Tower Wall
 
 tile.hybridStorageUnit.HSU.name=Hybrid Storage Unit
 tile.hybridStorageUnit.UHSU.name=Ultimate Hybrid Storage Unit
 tile.hybridStorageUnit.EVT.name=EV Transformer
 
-tile.academyWindmill.Turbine.name=Academic City Windmill Generator
-tile.academyWindmill.Base.name=Academic City Windmill Base
-tile.academyWindmill.Cylinder.name=Academic City Windmill Wall
 tile.generator.CombustionFurnace.name=Combustion Furnace
 
-tile.PneumaticCompressor.name=Pneumatic Compressor
+tile.machines.advchemreactor.name=Advanced Chemical Reactor
+tile.machines.airpump.name=Industrial Air Pump
+tile.machines.pyrolyzer.name=Pyrolyzer
+tile.machines.liquifier.name=Liquefier
 
-tile.machines.AdvChemReactor.name=Advanced Chemical Reactor
-tile.machines.AirPump.name=Industrial Air Pump
-tile.machines.Pyrolyzer.name=Pyrolyzer
-
-#tile.Machines.AutoWorkBench.name=Auto WorkBench
-
-tile.mineral.oreCarnallite.name=Carnallite Ore
-tile.mineral.oreFluorapatite.name=Fluorapatite Ore
-tile.mineral.oreDewalquite.name=Dewalquite Ore
+tile.mineral.carnallite.name=Carnallite Ore
+tile.mineral.dewalquite.name=Dewalquite Ore
+tile.mineral.fluorapatite.name=Fluorapatite Ore
 
 tile.nitricAcid.name=Nitric Acid
 

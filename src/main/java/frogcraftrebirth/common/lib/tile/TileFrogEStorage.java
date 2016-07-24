@@ -14,17 +14,17 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	public EnumFacing emitDir;
 	public int storedE, maxE, output;
 	protected boolean loaded = false;
-	boolean usableForTp;
+	protected final boolean usableForTp;
+	protected final int tier;
 	
-	public TileFrogEStorage(int maxEnergy, int output, EnumFacing emitTo, boolean allowTelep) {
+	public TileFrogEStorage(int maxEnergy, int output, int tier, EnumFacing emitTo, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;
+		this.tier = tier;
 		this.emitDir = emitTo;
 		this.usableForTp = allowTelep;
 	}
-	
-	public abstract int getTier();
 	
 	@Override
 	public void invalidate() {
@@ -95,7 +95,7 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 
 	@Override
 	public int getSourceTier() {
-		return this.getTier();
+		return this.tier;
 	}
 
 	@Override
@@ -105,7 +105,7 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 
 	@Override
 	public int getSinkTier() {
-		return this.getTier();
+		return this.tier;
 	}
 
 	@Override

@@ -30,28 +30,27 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	@Override
 	public double getMaxCharge(ItemStack itemStack) {
+		normalize(itemStack);
 		return itemStack.getTagCompound().getInteger("maxCharge");
 	}
 
 	@Override
 	public int getTier(ItemStack itemStack) {
+		normalize(itemStack);
 		return itemStack.getTagCompound().getInteger("tier");
 	}
 
 	@Override
 	public double getTransferLimit(ItemStack itemStack) {
+		normalize(itemStack);
 		return itemStack.getTagCompound().getInteger("tier") * 32;
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-		ItemStack discharged = new ItemStack(item, 1, 0);
 		// Add necessary NBT data so that we won't get NPE.
-		discharged.setTagCompound(new NBTTagCompound());
-		discharged.getTagCompound().setInteger("charge", 0);
-		discharged.getTagCompound().setInteger("maxCharge", 60000);
-		discharged.getTagCompound().setInteger("tier", 1);
+		ItemStack discharged = normalize(new ItemStack(item, 1, 0));
 		list.add(discharged.copy());
 		ElectricItem.manager.charge(discharged, 60000, 1, true, false);
 		list.add(discharged.copy());
@@ -61,6 +60,21 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> aList, boolean adv) {
 		aList.add(I18n.format("tile.mobilePowerStation.info"));
+	}
+	
+	public static ItemStack normalize(ItemStack stack) {
+		if (stack.getItem() instanceof ItemMPS) {
+			if (!stack.hasTagCompound())
+				stack.setTagCompound(new NBTTagCompound());
+			if (!stack.getTagCompound().hasKey("charge"))
+				stack.getTagCompound().setInteger("charge", 0);
+			if (!stack.getTagCompound().hasKey("maxCharge"))
+				stack.getTagCompound().setInteger("maxCharge", 60000);
+			if (!stack.getTagCompound().hasKey("tier"))
+				stack.getTagCompound().setInteger("tier", 1);
+			return stack;
+		} else 
+			return stack; // Prevent attaching unecessary data to other item
 	}
 
 }

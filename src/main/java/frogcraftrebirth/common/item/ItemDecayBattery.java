@@ -63,10 +63,9 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 		});
 	}
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, @SuppressWarnings("rawtypes") List list) {
+	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
 		list.add(new ItemStack(item, 1, 0));
 	}
 

@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"partical": "frogcraftrebirth:blocks/IndustrialDevice_Side",
+		"down": "frogcraftrebirth:blocks/IndustrialDevice_Top",
+		"up": "frogcraftrebirth:blocks/IndustrialDevice_Top",
+		"north": "frogcraftrebirth:blocks/Liquefier",
+		"east": "frogcraftrebirth:blocks/IndustrialDevice_Side",
+		"south": "frogcraftrebirth:blocks/IndustrialDevice_Side",
+		"west": "frogcraftrebirth:blocks/IndustrialDevice_Side"
+	}
+}

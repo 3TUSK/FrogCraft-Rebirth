@@ -17,32 +17,25 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class FrogTextures {
 	
 	public static void initFrogItemsTexture() {
-		RegHelper.regTextureFor(FrogItems.coolantAmmonia60K, "ammoniaCoolant60K");
-		RegHelper.regTextureFor(FrogItems.coolantAmmonia180K, "ammoniaCoolant180K");
-		RegHelper.regTextureFor(FrogItems.coolantAmmonia360K, "ammoniaCoolant360K");
-		RegHelper.regTextureFor(FrogItems.decayBatteryPlutoium, "decayBatteryPlutoium");
-		RegHelper.regTextureFor(FrogItems.decayBatteryThorium, "decayBatteryThorium");
-		RegHelper.regTextureFor(FrogItems.decayBatteryUranium, "decayBatteryUranium");
-		RegHelper.regTextureFor(FrogItems.ionCannon);
-		RegHelper.regTextureFor(FrogItems.ionCannonFrame);
-		RegHelper.regTextureFor(FrogItems.jinkela, "goldClod");
+		RegHelper.registerModel(FrogItems.coolantAmmonia60K, "AmmoniaCoolant60K");
+		RegHelper.registerModel(FrogItems.coolantAmmonia180K, "AmmoniaCoolant180K");
+		RegHelper.registerModel(FrogItems.coolantAmmonia360K, "AmmoniaCoolant360K");
+		RegHelper.registerModel(FrogItems.decayBatteryPlutoium, "DecayBatteryPlutoium");
+		RegHelper.registerModel(FrogItems.decayBatteryThorium, "DecayBatteryThorium");
+		RegHelper.registerModel(FrogItems.decayBatteryUranium, "DecayBatteryUranium");
+		RegHelper.registerModel(FrogItems.ionCannon);
+		RegHelper.registerModel(FrogItems.ionCannonFrame);
+		RegHelper.registerModel(FrogItems.jinkela, "GoldClod");
 		
-		int index;
-		for (index = 0; index < 16; ++index) {
-			RegHelper.regTextureFor(FrogItems.itemDust, index);
-		}
-		for (index = 0; index < 5; ++index) {
-			RegHelper.regTextureFor(FrogItems.itemReactionModule, index);
-		}
-		for (index = 0; index < 4; ++index) {
-			RegHelper.regTextureFor(FrogItems.tiberium, index);
-		}
+		RegHelper.registerModel(FrogItems.tiberium, 0, "TiberiumRed");
+		RegHelper.registerModel(FrogItems.tiberium, 1, "TiberiumBlue");
+		RegHelper.registerModel(FrogItems.tiberium, 2, "TiberiumGreen");
 	}
 	
 	public static void initFrogBlocksTexture() {
-		RegHelper.regTextureFor(FrogBlocks.frogOres, 0, "carnallite");
-		RegHelper.regTextureFor(FrogBlocks.frogOres, 1, "dewalquite");
-		RegHelper.regTextureFor(FrogBlocks.frogOres, 2, "fluorapatite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 0, "Carnallite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 1, "Dewalquite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 2, "Fluorapatite");
 		
 		//RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitricAcid");
 	}

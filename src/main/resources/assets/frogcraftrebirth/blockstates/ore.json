@@ -1,7 +1,7 @@
 {
 	"variants": {
-		"type=carnallite": { "model":"frogcraftrebirth:carnallite" },
-		"type=dewalquite": { "model":"frogcraftrebirth:dewalquite" },
-		"type=fluorapatite": { "model":"frogcraftrebirth:fluorapatite" }
+		"type=carnallite": { "model":"frogcraftrebirth:Carnallite" },
+		"type=dewalquite": { "model":"frogcraftrebirth:Dewalquite" },
+		"type=fluorapatite": { "model":"frogcraftrebirth:Fluorapatite" }
 	}
 }

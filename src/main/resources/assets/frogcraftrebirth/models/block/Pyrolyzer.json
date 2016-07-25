@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"partical": "frogcraftrebirth:blocks/Pyrolyzer_Front",
+		"down": "frogcraftrebirth:blocks/Pyrolyzer_Bottom",
+		"up": "frogcraftrebirth:blocks/Pyrolyzer_Top",
+		"north": "frogcraftrebirth:blocks/Pyrolyzer_Front",
+		"east": "frogcraftrebirth:blocks/Pyrolyzer_Side",
+		"south": "frogcraftrebirth:blocks/Pyrolyzer_Back",
+		"west": "frogcraftrebirth:blocks/Pyrolyzer_Side"
+	}
+}

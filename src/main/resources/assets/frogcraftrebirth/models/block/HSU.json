@@ -1,0 +1,12 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"partical": "frogcraftrebirth:blocks/HSU_Side",
+		"down": "frogcraftrebirth:blocks/HSU_Side",
+		"up": "frogcraftrebirth:blocks/HSU_Side",
+		"north": "frogcraftrebirth:blocks/HSU_Front",
+		"east": "frogcraftrebirth:blocks/HSU_Side",
+		"south": "frogcraftrebirth:blocks/HSU_Side",
+		"west": "frogcraftrebirth:blocks/HSU_Side"
+	}
+}

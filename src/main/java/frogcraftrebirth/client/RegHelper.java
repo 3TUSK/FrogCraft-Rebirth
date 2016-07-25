@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 3:44:59 PM, Jul 24, 2016, 
+ * created by 3TUSK at 3:44:59 PM, Jul 24, 2016, 
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -23,39 +23,40 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 class RegHelper {
 	
-	static void regTextureFor(Item item) {
-		regTextureFor(item, 0);
+	static void registerModel(Item item) {
+		registerModel(item, 0);
 	}
 	
-	static void regTextureFor(Block block) {
-		regTextureFor(block, 0);
+	static void registerModel(Block block) {
+		registerModel(block, 0);
 	}
 	
-	static void regTextureFor(Item item, int metadata) {
-		regTextureFor(item, metadata, Item.REGISTRY.getNameForObject(item).toString());
+	static void registerModel(Item item, String newResLoc) {
+		registerModel(item, 0, newResLoc);
 	}
 	
-	static void regTextureFor(Block block, int metadata) {
-		regTextureFor(block, metadata, Block.REGISTRY.getNameForObject(block).toString());
+	static void registerModel(Block block, String newResLoc) {
+		registerModel(block, 0, newResLoc);
 	}
 	
-	static void regTextureFor(Item item, String newResLoc) {
-		regTextureFor(item, 0, "frogcraftrebirth:" + newResLoc);
+	static void registerModel(Item item, int metadata) {
+		registerModel0(item, metadata, Item.REGISTRY.getNameForObject(item).toString());
 	}
 	
-	static void regTextureFor(Block block, String newResLoc) {
-		regTextureFor(block, 0, "frogcraftrebirth:" + newResLoc);
+	static void registerModel(Block block, int metadata) {
+		registerModel0(Item.getItemFromBlock(block), metadata, Block.REGISTRY.getNameForObject(block).toString());
 	}
 	
-	static void regTextureFor(Block block, int metadata, String newResLoc) {
-		regTextureFor(Item.getItemFromBlock(block), metadata, "frogcraftrebirth:" + newResLoc);
+	static void registerModel(Item item, int metadata, String newResLoc) {
+		registerModel0(item, metadata, "frogcraftrebirth:" + newResLoc);
 	}
 	
-	/**
-	 * @param newResLoc The custom model location, modid inclusive.
-	 */
-	static void regTextureFor(Item item, int metadata, String newResLoc) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(newResLoc, "inventory"));
+	static void registerModel(Block block, int metadata, String newResLoc) {
+		registerModel0(Item.getItemFromBlock(block), metadata, "frogcraftrebirth:" + newResLoc);
+	}
+	
+	private static void registerModel0(Item item, int metadata, String resourceLocation) {
+		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, "inventory"));
 	}
 	
 	static void regFluidBlockTexture(BlockFluidBase fluidBlock, final String name) {

@@ -1,0 +1,18 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}],
+		"facing": {
+			"north": {},
+			"east": { "y": 90, "uvlock": true },
+			"south": { "y": 180, "uvlock": true },
+			"west": { "y": 270, "uvlock": true }
+		},
+		"part": {
+			"core": { "model": "frogcraftrebirth:CondenseTower_Core" },
+			"cylinder": { "model": "frogcraftrebirth:CondenseTower_Cylinder" },
+			"output": { "model": "frogcraftrebirth:CondenseTower_Output" }
+		}
+	}
+}

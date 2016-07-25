@@ -1,0 +1,11 @@
+{
+	"parent": "block/cube",
+	"textures": {
+		"top": "frogcraftrebirth:blocks/MobilePS_Top",
+		"bottom": "frogcraftrebirth:blocks/MobilePS_Bottom",
+		"north": "frogcraftrebirth:blocks/MobilePS_Side",
+		"east": "frogcraftrebirth:blocks/MobilePS_Side",
+		"south": "frogcraftrebirth:blocks/MobilePS_Side",
+		"west": "frogcraftrebirth:blocks/MobilePS_Side"
+	}
+}

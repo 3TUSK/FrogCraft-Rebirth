@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 4:27:29 PM, Apr 3, 2016, EST
+ * created by 3TUSK at 4:27:29 PM, Apr 3, 2016, EST
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -33,7 +33,7 @@ public class ItemTiberium extends ItemFrogCraft {
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName()+"."+nameArray[stack.getItemDamage()];
+		return super.getUnlocalizedName()+"."+nameArray[stack.getMetadata()];
 	}
 
 }

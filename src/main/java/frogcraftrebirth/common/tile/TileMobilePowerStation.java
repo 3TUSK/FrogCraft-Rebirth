@@ -1,140 +1,156 @@
 package frogcraftrebirth.common.tile;
 
-import com.mojang.authlib.GameProfile;
+import java.util.UUID;
 
-import frogcraftrebirth.api.tile.IMobilePowerStation;
+import frogcraftrebirth.api.mps.IMobilePowerStation;
+import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.api.tile.IPersonal;
-import frogcraftrebirth.common.lib.tile.TileFrogInventory;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
+import ic2.api.item.ElectricItem;
+import ic2.api.item.IElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class TileMobilePowerStation extends TileFrogInventory implements ITickable, IEnergySource, IMobilePowerStation {
-	
-	/**The inventory of MPS. It should be defined in constructor. Also, some certain slots need to be specified.*/
-	public ItemStack[] inv;
-	/**Energy amount and its maximum.*/
-	public double charge, maxCharge;
-	
-	public boolean isInENet;
+public class TileMobilePowerStation extends TileFrog implements ITickable, IEnergySource, IMobilePowerStation {
 
-	public TileMobilePowerStation() {
-		super(12, "TileEntityMPS");
-		//Will get a increase upon 10 more, due to the further usage extension.
-	}
+	private static final int 
+	UPGRADE_SOLAR = 0, UPGRADE_VOLTAGE = 1, UPGRADE_STORAGE = 2, 
+	CHAGRE_IN = 3, CHARGE_OUT = 4; 
+	
+	public final ItemStackHandler inv = new ItemStackHandler(5);
+
+	public int energy;
+	
+	protected int energyMax = 60000;
+	protected int tier;
+	
+	private UUID owner;
+	
+	private boolean isInENet;
 	
 	@Override
 	public void invalidate() {
-		super.invalidate();
 		if (!worldObj.isRemote && isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
+		}
+		super.invalidate();
+	}
+	
+	@Override
+	public void validate() {
+		super.validate();
+		if (!worldObj.isRemote && !isInENet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			isInENet = true;
 		}
 	}
 	
 	@Override
 	public void update() {
-		if (!worldObj.isRemote && !isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
+		if (worldObj.isRemote)
+			return;
+		//Check storage upgrade, if pass, increase energy capacity
+		if (inv.getStackInSlot(UPGRADE_STORAGE) != null) {
+			energyMax += MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
+		} else {
+			energyMax = 60000;
 		}
-		//TODO
+		//Check transformer upgrade, if pass, increase voltage level
+		if (inv.getStackInSlot(UPGRADE_VOLTAGE) != null) {
+			tier += MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
+		} else {
+			tier = 1;
+		}
+		//Check solar upgrade, if pass, generate energy from sunlight
+		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && worldObj.isDaytime() && worldObj.canBlockSeeSky(getPos())) {
+			energy += 1;
+		}
+		// For each tick, there is 10% probability that overflowed energy disappears
+		if (energy > energyMax && worldObj.rand.nextInt(10) == 1)
+			energy = energyMax;
+		//Extract energy from charge-in slot
+		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
+			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), tier * 32, getSourceTier(), true, false, false);
+		}
+		//Offer energy to item that is in charge-out slot
+		if (inv.getStackInSlot(CHARGE_OUT) != null && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
+			ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
+		}
+		
+		this.markDirty();
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		charge = tag.getDouble("charge");
-		maxCharge = tag.getDouble("maxCharge");
-		
-		NBTTagList invList = tag.getTagList("inventory", 10);
-		for (int n = 0; n < invList.tagCount(); n++) {
-			NBTTagCompound aItem = invList.getCompoundTagAt(n);
-			byte slot = aItem.getByte("slot");
-			if (slot >= 0 && slot < inv.length) {
-				inv[slot] = ItemStack.loadItemStackFromNBT(aItem);
-			}
-		}
+		loadDataFrom(tag);
 	}
 	
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		tag.setDouble("charge", charge);
-		tag.setDouble("maxCharge", maxCharge);
-		
-		NBTTagList invList = new NBTTagList();
-		for (int n = 0; n < inv.length; n++) {
-			ItemStack stack = inv[n];
-			if (stack != null) {
-				NBTTagCompound tagStack = new NBTTagCompound();
-				tagStack.setByte("slot", (byte) n);
-				stack.writeToNBT(tagStack);
-				invList.appendTag(tagStack);
-			}
-		}
-		tag.setTag("inventory", invList);
+		saveDataTo(tag);
 		return super.writeToNBT(tag);
 	}
+	
+	public void loadDataFrom(NBTTagCompound tag) {
+		energy = tag.getInteger("charge");
+		energyMax = tag.getInteger("maxCharge");
+		inv.deserializeNBT(tag.getCompoundTag("inv"));
+	}
+	
+	public void saveDataTo(NBTTagCompound tag) {
+		tag.setInteger("charge", energy);
+		tag.setInteger("maxCharge", energyMax);
+		tag.setTag("inv", inv.serializeNBT());
+	}
 
-	/**Determine whether this tile emit energy to a certain direction.*/
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing direction) {
 		return direction != EnumFacing.UP;
 	}
 
-	/**Called when it is going to emit energy to somewhere.*/
 	@Override
 	public double getOfferedEnergy() {
-		return Math.min(charge, getSourceTier()*32);
+		return Math.min(energy, getSourceTier() * 32);
 	}
 
 	@Override
 	public void drawEnergy(double amount) {
-		if (this.maxCharge > (charge + amount))
-				charge += amount ;
-		else charge = maxCharge;
+		//No op
 	}
 
 	@Override
 	public int getSourceTier() {
-		return 1; //LV is 32EU/t.
+		return tier;
 	}
 
 	@Override
-	public GameProfile getOwnerProfile() {
-		// TODO Auto-generated method stub
-		return null;
+	public UUID getOwnerUUID() {
+		return owner;
 	}
 
 	@Override
-	public String getOwnerName() {
-		// TODO Auto-generated method stub
-		return null;
+	public IPersonal setOwner(UUID owner) {
+		this.owner = owner;
+		return this;
 	}
 
 	@Override
-	public IPersonal setOwnerProfile(GameProfile profile) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean match(GameProfile beingChecked) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean match(UUID beingChecked) {
+		return owner.equals(beingChecked);
 	}
 
 	@Override
 	public String getWaringInfo(EntityPlayer player) {
-		// TODO Auto-generated method stub
-		return null;
+		return "ACCESS DENIED";
 	}
 
 }

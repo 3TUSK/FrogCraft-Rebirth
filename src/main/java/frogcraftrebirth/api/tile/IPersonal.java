@@ -1,6 +1,6 @@
 package frogcraftrebirth.api.tile;
 
-import com.mojang.authlib.GameProfile;
+import java.util.UUID;
 
 import net.minecraft.entity.player.EntityPlayer;
 
@@ -11,13 +11,11 @@ import net.minecraft.entity.player.EntityPlayer;
  */
 public interface IPersonal {
 
-	GameProfile getOwnerProfile();
+	UUID getOwnerUUID();
 
-	String getOwnerName();
+	IPersonal setOwner(UUID owner);
 
-	IPersonal setOwnerProfile(GameProfile profile);
-
-	boolean match(GameProfile beingChecked);
+	boolean match(UUID beingChecked);
 
 	String getWaringInfo(EntityPlayer player);
 

@@ -12,7 +12,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileHSU extends TileFrogEStorage implements ITickable {
 	
-	public final ItemStackHandler inv = new ItemStackHandler();
+	public final ItemStackHandler inv = new ItemStackHandler(2);
 	
 	public TileHSU() {
 		super(100000000, 2048, 4, EnumFacing.DOWN, false);

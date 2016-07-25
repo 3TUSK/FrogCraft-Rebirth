@@ -10,6 +10,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
 
+import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -46,10 +47,15 @@ public class BlockTiberium extends BlockFrog {
 	}
 	
 	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getValue(TYPE).ordinal();
+	}
+	
+	@Override
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> dropList = new ArrayList<ItemStack>();
-
-		//quantityDropped(metadata, fortune, world.rand);	
+		int quantityDropped = 1 + RANDOM.nextInt(fortune * 2);
+		dropList.add(new ItemStack(FrogItems.tiberium, quantityDropped, this.damageDropped(state)));
 		return dropList;
 	}
 	

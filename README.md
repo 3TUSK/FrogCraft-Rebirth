@@ -20,15 +20,14 @@ FrogCraft: Rebirth is spiritual successor of FrogCraft, an addon Mod for Industr
  * Ammonia Coolant
  * Eastern Eggs and more!
 
-**This mod requires Java 8 to run**. 
-Due to GregTech is still in 1.7.10, compability for GregTech is disabled for now. 
+**This mod requires Java 8 to run**.  
+Due to GregTech is still in 1.7.10, compability for GregTech is disabled for now.  
 If you wonder where are Railgun and Academy Windmill, I suggest you to take a look at [AcademyCraft][link_ACMOD]. 
 
 #### Future plan: _FrogCraft 2: Chemia_
 *FrogCraft 2: Chemia* (aka Laboratorium Chemiae) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage. 
 
-*FrogCraft 2: Chemia* will try to follow [Cult of Kitteh][link_CultOfKitteh]. 
-
+*FrogCraft 2: Chemia* will follow [Cult of Kitteh][link_CultOfKitteh].  
 Yes, NO GUI. It sounds like insane, but it *will* be.
 
 #### License
@@ -36,8 +35,9 @@ FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebir
 Textures are still not sure. If necessary I will remove them immediately.
 
 #### Credits
-Credits to ueyudiud for generous consultant.  
-Credits to dunge for his design idea and several texture.
+Credits to [ueyudiud](https://github.com/ueyudiud) for generous consultant.  
+Credits to dunge for his design idea and several texture.  
+Credits to [Glease](https://github.com/Glease) for his consultant.
 
 [link_ACMOD]: https://github.com/LambdaInnovation/AcademyCraft
 [link_CultOfKitteh]: http://asie.pl/kitteh/

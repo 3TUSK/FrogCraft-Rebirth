@@ -25,7 +25,13 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 
 	@Override
 	public void register(IModRegistry registry) {
+		//registry.addRecipeHandlers(new HandlerAdvChemReactor());
+		//registry.addRecipeHandlers(new HandlerCondenseTower());
 		//registry.addRecipeHandlers(new HandlerPyrolyzer());
+		
+		//registry.addRecipeCategories(new CategoryChemReaction());
+		//registry.addRecipeCategories(new CategoryCondensation());
+		//registry.addRecipeCategories(new CategoryPyrolyzation());
 	}
 
 	@Override

@@ -3,23 +3,28 @@ package frogcraftrebirth.common.lib.util;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemUtil {
 	
 	/**
-	 * Convert itemstack array to itemstack + String (ore dictionary) hybrid array
-	 * @param rawInputs An ItemStack array
-	 * @return An hybrid array containing itemstack and String (in term of ore dictionary)
+	 * Identical to {@link InventoryHelper}, except this one is designed for {@link IItemHandler}.
+	 * @param worldIn The world that block is in
+	 * @param pos The position of block
+	 * @param inv An array of IItemHandler implementation. Note: all IItemHandler here are assumed to start index from zero.
 	 */
-	public static Object[] asFrogInputsArray(ItemStack[] rawInputs) {
-		Object[] finalInputs = new Object[rawInputs.length];
-		for (int i=0;i<rawInputs.length;i++) {
-			String anEntry = OreDictionary.getOreName(OreDictionary.getOreIDs(rawInputs[i])[0]);
-			finalInputs[i] = anEntry == null || anEntry == "" ? rawInputs[i] : anEntry; 
+	public static void dropInventroyItems(World worldIn, BlockPos pos, IItemHandler... inv) {
+		for (IItemHandler invSingle : inv) {
+			final int slots = invSingle.getSlots();
+			for (int index = 0; index < slots; index++) {
+				InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), invSingle.getStackInSlot(index));
+			}
 		}
-		return finalInputs;
 	}
 	
 	public static ItemStack get1stChoiceFromOre(String entry) {

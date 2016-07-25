@@ -5,6 +5,8 @@ import java.io.File;
 import net.minecraftforge.common.config.Configuration;
 
 public class ConfigMain {
+	
+	static Configuration config;
 
 	public static double railgunDamageScale;
 	public static int airPumpPowerRate;
@@ -14,7 +16,7 @@ public class ConfigMain {
 	public static boolean enableTCAspect;
 	
 	public static void initMainConfig(File file) {
-		Configuration config = new Configuration(file);
+		config = new Configuration(file);
 		
 		config.load();
 		

@@ -6,7 +6,7 @@
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
  * more information.
  */
-package frogcraftrebirth.api.world;
+package frogcraftrebirth.common.tile;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;

@@ -15,7 +15,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
-@Mod(modid = FrogAPI.MODID, name = FrogAPI.NAME, version = "@VERSION@", dependencies = FrogAPI.DEPENDING, useMetadata = true)
+@Mod(
+		modid = FrogAPI.MODID, 
+		name = FrogAPI.NAME, 
+		version = "@VERSION@", 
+		dependencies = FrogAPI.DEPENDING, 
+		guiFactory = "frogcraftrebirth.common.lib.config.ConfigGuiFactory", 
+		useMetadata = true)
 public class FrogCraftRebirth {
 
 	static {

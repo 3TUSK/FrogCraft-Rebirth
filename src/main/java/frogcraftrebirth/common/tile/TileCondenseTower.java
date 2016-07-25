@@ -3,31 +3,31 @@ package frogcraftrebirth.common.tile;
 import java.util.ArrayList;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerStructure;
-import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.tile.TileFrogMachine;
-import net.minecraft.item.ItemStack;
+import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCondenseTower extends TileFrogMachine {
+public class TileCondenseTower extends TileFrogEnergySink {
 	
+	public final ItemStackHandler inv = new ItemStackHandler(2);
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean structureCompleted = false;
 	public int tick;
-	private CondenseTowerRecipe recipe;
+	private ICondenseTowerRecipe recipe;
 	private ArrayList<ICondenseTowerOutputHatch> outputs = new ArrayList<ICondenseTowerOutputHatch>();
 	private ArrayList<ICondenseTowerStructure> structures = new ArrayList<ICondenseTowerStructure>();
 	
 	public TileCondenseTower() {
-		super(2, "TileCondenseTower", 2, 10000);
-		//0 for input; 1 for output
+		super(2, 10000);
 	}
 	
 	private boolean checkStructure() {
@@ -95,7 +95,7 @@ public class TileCondenseTower extends TileFrogMachine {
 		this.sendTileUpdatePacket(this);
 	}
 
-	private boolean checkRecipe(CondenseTowerRecipe aRecipe) {
+	private boolean checkRecipe(ICondenseTowerRecipe aRecipe) {
 		for (FluidStack fluid : aRecipe.getOutput()) {
 			boolean checkPass = false;
 			for (ICondenseTowerOutputHatch output : outputs) {
@@ -113,34 +113,18 @@ public class TileCondenseTower extends TileFrogMachine {
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
+		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
 		this.tick = tag.getInteger("tick");
 	}
 	
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
+		tag.setTag("inv", inv.serializeNBT());
 		tag.setInteger("tick", this.tick);
 		return super.writeToNBT(tag);
 	}
-	
-	@Override
-	public int[] getSlotsForFace(EnumFacing direction) {
-		switch (direction) {
-			case DOWN: return new int[] {1};
-			case UP: return new int[] {0};
-			default: return (int[])null;
-		}
-	}
 
-	@Override
-	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
-		return direction == EnumFacing.UP && index == 0;
-	}
-
-	@Override
-	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
-		return direction == EnumFacing.DOWN && index == 1;
-	}
-
+	//TODO: ItemHandler
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)

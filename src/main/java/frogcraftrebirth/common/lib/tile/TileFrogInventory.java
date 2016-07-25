@@ -1,57 +1,29 @@
+/**
+ * This file is a part of FrogCraftRebirth, 
+ * created by 3TUSK at 11:57:09 AM, Jul 22, 2016, CST
+ * FrogCraftRebirth, is open-source under MIT license,
+ * check https://github.com/FrogCraft-Rebirth/
+ * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
+ * more information.
+ */
 package frogcraftrebirth.common.lib.tile;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-@Deprecated //Will switch to ItemHandler
-public abstract class TileFrogInventory extends TileFrog implements IInventory {
+import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+@Deprecated //Will switch to individual ItemHandler, instead of implementing on TileEntity
+public abstract class TileFrogInventory extends TileFrog implements IItemHandler {
 
 	protected ItemStack[] inv;
-	protected String name;
 	
-	protected TileFrogInventory(final int invSize) {
-		this(invSize, "DummyInvName");
-	}
-	
-	protected TileFrogInventory(final int invSize, final String invName) {
-		super();
-		this.inv = new ItemStack[invSize];
-		this.name = invName;
+	protected TileFrogInventory(int slotsCount) {
+		this.inv = new ItemStack[slotsCount];
 	}
 	
 	@Override
-	public void readFromNBT(NBTTagCompound tag) {
-		super.readFromNBT(tag);
-		NBTTagList invList = tag.getTagList("inventory", 10);
-		for (int n = 0; n < invList.tagCount(); n++) {
-			NBTTagCompound anItem = invList.getCompoundTagAt(n);
-			byte slot = anItem.getByte("slot");
-			if (slot >= 0 && slot < inv.length) {
-				inv[slot] = ItemStack.loadItemStackFromNBT(anItem);
-			}
-		}
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		NBTTagList invList = new NBTTagList();
-		for (int n = 0; n < inv.length; n++) {
-			ItemStack stack = inv[n];
-			if (stack != null) {
-				NBTTagCompound tagStack = new NBTTagCompound();
-				tagStack.setByte("slot", (byte) n);
-				stack.writeToNBT(tagStack);
-				invList.appendTag(tagStack);
-			}
-		}
-		tag.setTag("inventory", invList);
-		return super.writeToNBT(tag);
-	}
-	
-	@Override
-	public int getSizeInventory() {
+	public int getSlots() {
 		return inv.length;
 	}
 
@@ -61,95 +33,52 @@ public abstract class TileFrogInventory extends TileFrog implements IInventory {
 	}
 
 	@Override
-	public ItemStack decrStackSize(int slot, int decrNum) {
-		if (this.inv[slot] != null) {
-            ItemStack itemstack;
-            if (this.inv[slot].stackSize <= decrNum) {
-                itemstack = this.inv[slot];
-                this.inv[slot] = null;
-                return itemstack;
-            } else {
-                itemstack = this.inv[slot].splitStack(decrNum);
-                if (this.inv[slot].stackSize == 0) {
-                    this.inv[slot] = null;
-                }
-                return itemstack;
-            }
-        } else {
-            return null;
-        }
-	}
-	
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		ItemStack copy = inv[index].copy();
-		inv[index] = null;
-		return copy;
+	public ItemStack insertItem(int slot, final ItemStack stack, boolean simulate) {
+		if (inv[slot].isItemEqual(stack)) {
+			int num = inv[slot].stackSize + stack.stackSize;
+			if (num > inv[slot].getMaxStackSize()) {
+				ItemStack newStack = stack.copy();
+				newStack.stackSize = num - stack.stackSize;
+				if (!simulate) 
+					inv[slot].stackSize = inv[slot].getMaxStackSize();
+				return stack;
+			} else {
+				if (!simulate) 
+					inv[slot].stackSize = num;
+				return null;
+			}
+		} else 
+			return stack;
 	}
 
 	@Override
-	public void setInventorySlotContents(int slot, ItemStack stack) {
-		this.inv[slot] = stack;
-		if (stack != null && stack.stackSize > getInventoryStackLimit()) {
-			stack.stackSize = this.getInventoryStackLimit();
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
+		ItemStack toReturn = null;
+		if (inv[slot].stackSize < amount)
+			return toReturn;
+		else if (inv[slot].stackSize == amount) {
+			toReturn = inv[slot].copy();
+			if (!simulate)
+				inv[slot] = null;
+			return toReturn;
+		} else {
+			toReturn = inv[slot].copy();
+			toReturn.stackSize = amount;
+			if (!simulate)
+				inv[slot].stackSize = inv[slot].stackSize - amount;
+			return toReturn;
 		}
-		this.markDirty();
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public boolean isUseableByPlayer(EntityPlayer player) {
-		return true;
 	}
 	
 	@Override
-	public String getName() {
-		return this.name;
-	}
-
-	@Override
-	public boolean hasCustomName() {
-		return name != null && !name.equals("");
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player) {}
-
-	@Override
-	public void closeInventory(EntityPlayer player) {}
-
-	@Override
-	public boolean isItemValidForSlot(int slot, ItemStack stack) {
-		return true;
+	public boolean hasCapability(Capability<?> capability, EnumFacing direction) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public int getField(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public int getFieldCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void clear() {
-		for (int i = 0; i < inv.length; ++i) {
-			inv[i] = null;
-		}
+	public <T> T getCapability(Capability<T> capability, EnumFacing direction) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)this : super.getCapability(capability, direction);
 	}
 
 }

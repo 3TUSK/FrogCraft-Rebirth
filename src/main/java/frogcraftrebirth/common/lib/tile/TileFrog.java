@@ -13,16 +13,16 @@ import frogcraftrebirth.common.network.PacketFrog00TileUpdate;
 import net.minecraft.tileentity.TileEntity;
 
 public abstract class TileFrog extends TileEntity implements IFrogNetworkObject {
-
+	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		
+		//Nothing yet
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		
+		//Nothing yet
 	}
 	
 	protected void sendTileUpdatePacket(TileFrog tile) {

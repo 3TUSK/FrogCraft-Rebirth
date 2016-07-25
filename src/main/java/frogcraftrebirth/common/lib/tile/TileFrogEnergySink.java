@@ -4,32 +4,20 @@ import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
-import net.minecraft.inventory.ISidedInventory;
-import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileFrogMachine extends TileFrogInventory implements ITickable, ISidedInventory, IEnergySink {
+public abstract class TileFrogEnergySink extends TileFrog implements ITickable, IEnergySink {
 	
 	public int charge, maxCharge, sinkTier;
 	protected boolean isInENet;
 	
-	protected TileFrogMachine(int invSize, String invName, int sinkTier, int maxEnergy) {
-		super(invSize, invName);
+	protected TileFrogEnergySink(int sinkTier, int maxEnergy) {
 		this.sinkTier = sinkTier;
 		this.maxCharge = maxEnergy;
 	}
-	
-	@Override
-	public abstract int[] getSlotsForFace(EnumFacing side);
-
-	@Override
-	public abstract boolean canInsertItem(int index, ItemStack item, EnumFacing direction);
-	
-	@Override
-	public abstract boolean canExtractItem(int index, ItemStack item, EnumFacing direction);
 	
 	@Override
 	public void invalidate() {

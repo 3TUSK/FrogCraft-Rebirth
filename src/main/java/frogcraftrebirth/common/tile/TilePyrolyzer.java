@@ -7,24 +7,31 @@ import java.io.IOException;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
-import frogcraftrebirth.common.lib.tile.TileFrogMachine;
+import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class TilePyrolyzer extends TileFrogMachine {
+public class TilePyrolyzer extends TileFrogEnergySink {
 
+	private final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
+	
+	public final ItemStackHandler inv = new ItemStackHandler(4);
 	protected FrogFluidTank tank = new FrogFluidTank(16000);
 
 	public int process, processMax;
 	public boolean working;
 	
+	public int charge;
+	
 	private PyrolyzerRecipe recipe;
 
 	public TilePyrolyzer() {
-		super(4, "TileThermalCracker", 2, 10000);
+		super(2, 10000);
 		// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	}
 
@@ -32,9 +39,8 @@ public class TilePyrolyzer extends TileFrogMachine {
 	public void update() {
 		if (this.worldObj.isRemote)
 			return;
-		super.update();
 
-		if (inv[0] == null || this.charge <= 128) {
+		if (inv.getStackInSlot(INPUT) == null || this.charge <= 128) {
 			this.working = false;
 			this.process = 0;
 			this.processMax = 0;
@@ -42,7 +48,7 @@ public class TilePyrolyzer extends TileFrogMachine {
 		}
 		
 		if (!working) {
-			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(this.inv[0]);
+			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(inv.getStackInSlot(INPUT));
 			if (canWork(recipe)) {
 				this.process = 0;
 				this.processMax = recipe.getTime();
@@ -77,22 +83,15 @@ public class TilePyrolyzer extends TileFrogMachine {
 				return false;
 		}
 		
-		if (!inv[0].isItemEqual(recipe.getInput()))
+		if (!inv.getStackInSlot(INPUT).isItemEqual(recipe.getInput()))
 			return false;
 		
-		return inv[1] == null || inv[1].isItemEqual(recipe.getOutput()) && inv[1].stackSize + recipe.getOutput().stackSize <= inv[1].getMaxStackSize();
+		return inv.extractItem(INPUT, 1, true) != null;
 	}
 	
 	private void pyrolyze() {
-		this.decrStackSize(0, recipe.getInput().stackSize);
-		if (this.getStackInSlot(1) == null)
-			this.setInventorySlotContents(1, recipe.getOutput());
-		else {
-			ItemStack newStack = inv[1].copy();
-			int newSize = newStack.stackSize + recipe.getOutput().stackSize;
-			newStack.stackSize = newSize;
-			this.setInventorySlotContents(1, newStack);
-		}
+		inv.extractItem(INPUT, 1, false);
+		inv.insertItem(OUTPUT, recipe.getOutput(), false);
 		if (recipe.getOutputFluid() != null)
 			this.tank.fill(recipe.getOutputFluid(), !this.worldObj.isRemote);
 	}
@@ -101,6 +100,7 @@ public class TilePyrolyzer extends TileFrogMachine {
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
+		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
@@ -122,6 +122,7 @@ public class TilePyrolyzer extends TileFrogMachine {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
+		tag.setTag("inv", inv.serializeNBT());
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
@@ -133,40 +134,26 @@ public class TilePyrolyzer extends TileFrogMachine {
 	}
 
 	@Override
-	public int[] getSlotsForFace(EnumFacing side) {
-		switch (side) {
-		case UP:
-			return new int[] { 0 };
-		case DOWN:
-			return new int[] { 1 };
-		default:
-			return null;
-		}
-	}
-
-	@Override
-	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
-		return direction == EnumFacing.UP && index == 0;
-	}
-
-	@Override
-	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
-		return direction == EnumFacing.DOWN && index == 1;
-	}
-
-	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return true;
-		else return super.hasCapability(capability, facing);
+		switch (facing) {
+		case UP:
+		case DOWN:
+			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+		default:
+			return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
+		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)tank;
-		else return super.getCapability(capability, facing);
+		switch (facing) {
+		case UP:
+		case DOWN:
+			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
+		default:
+			return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)tank : super.getCapability(capability, facing);
+		}
 	}
 
 }

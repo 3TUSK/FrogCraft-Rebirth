@@ -1,24 +1,30 @@
 package frogcraftrebirth.common.tile;
 
-import java.util.Arrays;
 import java.util.Collection;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.tile.IAdvChemReactor;
-import frogcraftrebirth.common.lib.tile.TileFrogMachine;
+import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReactor {
+public class TileAdvChemReactor extends TileFrogEnergySink implements IAdvChemReactor {
+	
+	public final ItemStackHandler inv = new ItemStackHandler(13);
+	
 	public int process, processMax;
 	private boolean working;
 	private boolean changed = false;
 	private IAdvChemRecRecipe recipe;
+	
 	public TileAdvChemReactor() {
-		super(13, "TileEntityAdvancedChemicalReactor", 2, 100000);
+		super(2, 100000);
 		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
 	}
 	
@@ -44,7 +50,9 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 			return;
 		super.update();
 		
-		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(Arrays.copyOfRange(inv, 1, 5));
+		ItemStack[] inputs = null;
+		
+		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
 		
 		if (checkIngredient(recipe)) {
 			this.consumeIngredient(recipe.getOutputs());
@@ -81,91 +89,46 @@ public class TileAdvChemReactor extends TileFrogMachine implements IAdvChemReact
 		if (recipe == null)
 			return false;
 		
-		if (inv[1] == null && inv[2] == null && inv[3] == null && inv[4] == null && inv[5] == null) {
-			return false;
-		}
-		
-		for (OreStack ore : recipe.getInputs()) {
-			boolean checkPass = false;
-			for (int i = 1; i <= 5 ;i++) {
-				if (ore.consumable(inv[i])) {
-					checkPass = true;
-					break;
-				}
-			}
-			if (checkPass)
-				continue;
-			else return false; //means failed on checking
-		}
-		
 		return false;
 	}
 	
+	@SuppressWarnings("unused")
 	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
 		for (OreStack ore : toBeConsumed) {
 			for (int i = 1; i <= 5 ;i++) {
-				if (ore.consumable(inv[i])) {
-					ore.consume(inv[i]);
-					break;
-				}
+				//if (ore.consumable(inv[i])) {
+				//	ore.consume(inv[i]);
+				//	break;
+				//}
 			}
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	public void produce() {
 		for (OreStack ore : recipe.getOutputs()) {
 			boolean match = false;
 			for (int i = 6; i <= 10; i++) {
-				if (ore.stackable(inv[i])) {
-					ore.stack(inv[i]);
-					match = true;
-					break;
-				}
+				//if (ore.stackable(inv[i])) {
+				//	ore.stack(inv[i]);
+				//	match = true;
+				//	break;
+				//}
 			}
 			
 			if (!match) {
-				for (int i = 6; i <= 10; i++) {
-					if (inv[i] == null) {
-						ore.stack(inv[i]);
-						break;
-					}
-				}
+				//for (int i = 6; i <= 10; i++) 
+				//	if (inv[i] == null) {
+				//		ore.stack(inv[i]);
+				//		break;
+				//	}
 			}
 		}
 	}
-
+	
 	@Override
-	public int[] getSlotsForFace(EnumFacing side) {
-		switch (side) {
-		case DOWN: //Bottom
-			return new int[] {6,7,8,9,10,12};
-		case UP: //Top
-			return new int[] {1,2,3,4,5,11};
-		default: //Disallow auto-insert module
-			return null;
-		}
-	}
-
-	@Override
-	public boolean canInsertItem(int index, ItemStack item, EnumFacing direction) {
-		if (direction != EnumFacing.UP)
-			return false;
-		if (index == 11 || (index <=5 && index >=1)) 
-			if (inv[index].isItemEqual(item) && inv[index].stackSize + item.stackSize <= inv[index].getMaxStackSize()) 
-				return true;
-		
-		return false;
-	}
-
-	@Override
-	public boolean canExtractItem(int index, ItemStack item, EnumFacing direction) {
-		if (direction != EnumFacing.DOWN)
-			return false;
-		if (index == 12 || (index <=10 && index >=6))
-			if (inv[index].isItemEqual(item) && inv[index].stackSize >= item.stackSize) 
-				return true;
-		
-		return false;
+	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
 	}
 
 }

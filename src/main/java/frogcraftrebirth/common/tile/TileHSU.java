@@ -1,13 +1,11 @@
 package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
-import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -29,20 +27,15 @@ public class TileHSU extends TileFrogEStorage implements ITickable {
 		if (worldObj.isRemote)
 			return;
 		
-		if (!worldObj.isRemote && !loaded) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			this.loaded = true;
-		}
-		
 		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);
-			this.markDirty();
 		}
 		
 		if (inv.getStackInSlot(0) != null && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
 			ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
-			this.markDirty();
 		}
+		
+		this.markDirty();
 	}
 	
 	@Override

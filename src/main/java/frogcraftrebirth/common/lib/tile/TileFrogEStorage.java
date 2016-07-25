@@ -1,5 +1,6 @@
 package frogcraftrebirth.common.lib.tile;
 
+import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -33,6 +34,15 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 			this.loaded = false;
 		}
 		super.invalidate();
+	}
+	
+	@Override
+	public void validate() {
+		super.validate();
+		if (!worldObj.isRemote && !loaded) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			this.loaded = true;
+		}
 	}
 	
 	@Override

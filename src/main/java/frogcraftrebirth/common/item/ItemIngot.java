@@ -13,7 +13,7 @@ public class ItemIngot extends ItemFrogCraft {
 	public ItemIngot() {
 		super(true);
 		setUnlocalizedName("Item_Ingots");
-		setSubNameArray("K", "P", "Ruby", "Sapphire", "GreenSapphire", "NaturalGasHydrate", "Briquette", "CoalCokeShattered");
+		setSubNameArray("K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered");
 	}
 
 	@Override
@@ -32,16 +32,7 @@ public class ItemIngot extends ItemFrogCraft {
 			case 1:
 				list.add(I18n.format("item.Item_Ingots.ingotDesc"));
 				break;
-			case 2:
-				list.add(I18n.format("item.Item_Ingots.gemDesc"));
-				break;
-			case 3:
-				list.add(I18n.format("item.Item_Ingots.gemDesc"));
-				break;
-			case 4:
-				list.add(I18n.format("item.Item_Ingots.gemDesc"));
-				break;
-			case 5: {
+			case 2: {
 				list.add(I18n.format("item.Item_Ingots.nghDesc"));
 				break;
 			}

@@ -135,9 +135,12 @@ public class RegFrogItemsBlocks {
 		OreDictionary.registerOre("railgun", FrogItems.ionCannon);
 		OreDictionary.registerOre("jinkela", FrogItems.jinkela);
 		
-		OreDictionary.registerOre("gemRuby", new ItemStack(FrogItems.itemIngot, 1, 2));
-		OreDictionary.registerOre("gemSapphire", new ItemStack(FrogItems.itemIngot, 1, 3));
-		OreDictionary.registerOre("gemGreenSapphire", new ItemStack(FrogItems.itemIngot, 1, 4));
+		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 0));
+		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 1));
+		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 2));
+		OreDictionary.registerOre("crystalTiberiumRed", new ItemStack(FrogItems.tiberium, 1, 0));
+		OreDictionary.registerOre("crystalTiberiumBlue", new ItemStack(FrogItems.tiberium, 1, 1));
+		OreDictionary.registerOre("crystalTiberiumGreen", new ItemStack(FrogItems.tiberium, 1, 2));
 		
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 1));

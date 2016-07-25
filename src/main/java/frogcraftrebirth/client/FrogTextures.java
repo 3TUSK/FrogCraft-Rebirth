@@ -30,14 +30,47 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogItems.tiberium, 0, "TiberiumRed");
 		RegHelper.registerModel(FrogItems.tiberium, 1, "TiberiumBlue");
 		RegHelper.registerModel(FrogItems.tiberium, 2, "TiberiumGreen");
+		
+		RegHelper.registerModel(FrogItems.itemReactionModule, 0, "ModuleHeating");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 1, "ModuleElectrolyze");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 2, "ModuleAmmonia");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 3, "ModuleSulfuricAcid");
+		
+		RegHelper.registerModel(FrogItems.itemIngot, 0, "Potassium");
+		RegHelper.registerModel(FrogItems.itemIngot, 1, "Phosphorus");
+		RegHelper.registerModel(FrogItems.itemIngot, 2, "NaturalGasHydrate");
+		RegHelper.registerModel(FrogItems.itemIngot, 3, "Briquette");
+		RegHelper.registerModel(FrogItems.itemIngot, 4, "ShatteredCoalCoke");
+		
+		final String[] damnitSubNames = {"Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5"};
+		for (int index = 0; index < damnitSubNames.length; index++) {
+			RegHelper.registerModel(FrogItems.itemDust, index, "dust/" + damnitSubNames[index]);
+		}
 	}
 	
 	public static void initFrogBlocksTexture() {
 		RegHelper.registerModel(FrogBlocks.frogOres, 0, "Carnallite");
 		RegHelper.registerModel(FrogBlocks.frogOres, 1, "Dewalquite");
 		RegHelper.registerModel(FrogBlocks.frogOres, 2, "Fluorapatite");
+		RegHelper.registerModel(FrogBlocks.tiberium, 0);
+		RegHelper.registerModel(FrogBlocks.tiberium, 1);
+		RegHelper.registerModel(FrogBlocks.tiberium, 2);
 		
 		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "MPS");
+		
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 0, "condensetower/Core");
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 1, "condensetower/Cylinder");
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 2, "condensetower/Output");
+		
+		RegHelper.registerModel(FrogBlocks.machines, 0, "AdvancedChemicalReactor");
+		RegHelper.registerModel(FrogBlocks.machines, 1, "AirPump");
+		RegHelper.registerModel(FrogBlocks.machines, 2, "Liquefier");
+		RegHelper.registerModel(FrogBlocks.machines, 3, "Pyrolyzer");
+		
+		RegHelper.registerModel(FrogBlocks.generators, "CombustionGenerator");
+		
+		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 0, "HSU");
+		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 1, "UHSU");
 		
 		//RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitricAcid");
 	}

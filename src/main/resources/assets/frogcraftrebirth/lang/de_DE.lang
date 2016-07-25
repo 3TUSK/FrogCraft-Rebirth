@@ -4,8 +4,8 @@
 item.ItemRailgun.name=Only my railgun!!!
 item.ItemRailgun.info=PiliPili~~~
 item.ItemRailgun.tooTired=Nicht genug Energie QAQ
-tile.BlockMobilePS.name=Mobile Energieversorgung
-tile.BlockMobilePS.info=The best camping gear
+tile.mobilePowerStation.normal.name=Mobile Energieversorgung
+#tile.mobilePowerStation.info=§oThe best camping gear
 item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
 item.CoolantAmmonia180K=180K Ammoniak-Kühlzelle
 item.CoolantAmmonia360K=360K Ammoniak-Kühlzelle

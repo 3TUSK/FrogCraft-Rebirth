@@ -34,7 +34,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	
 	private UUID owner;
 	
-	private boolean isInENet;
+	private boolean isInENet = false;
 	
 	@Override
 	public void invalidate() {
@@ -48,16 +48,16 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	@Override
 	public void validate() {
 		super.validate();
-		if (!worldObj.isRemote && !isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
-		}
 	}
 	
 	@Override
 	public void update() {
 		if (worldObj.isRemote)
-			return;
+			return;	
+		if (!isInENet) {
+			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+			isInENet = true;
+		}
 		//Check storage upgrade, if pass, increase energy capacity
 		if (inv.getStackInSlot(UPGRADE_STORAGE) != null) {
 			energyMax += MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
@@ -100,21 +100,25 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		return super.writeToNBT(tag);
 	}
 	
+	@Override
 	public void loadDataFrom(NBTTagCompound tag) {
 		energy = tag.getInteger("charge");
 		energyMax = tag.getInteger("maxCharge");
+		tier = tag.getInteger("tier");
 		inv.deserializeNBT(tag.getCompoundTag("inv"));
 	}
 	
+	@Override
 	public void saveDataTo(NBTTagCompound tag) {
 		tag.setInteger("charge", energy);
 		tag.setInteger("maxCharge", energyMax);
+		tag.setInteger("tier", tier);
 		tag.setTag("inv", inv.serializeNBT());
 	}
 
 	@Override
 	public boolean emitsEnergyTo(IEnergyAcceptor receiver, EnumFacing direction) {
-		return direction != EnumFacing.UP;
+		return true;
 	}
 
 	@Override
@@ -124,7 +128,9 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 
 	@Override
 	public void drawEnergy(double amount) {
-		//No op
+		energy -= (int)amount;
+		if (energy < 0)
+			energy = 0;
 	}
 
 	@Override

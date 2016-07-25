@@ -1,9 +1,19 @@
 package frogcraftrebirth.common.item;
 
+import java.util.List;
+
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
+import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
@@ -20,7 +30,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	@Override
 	public double getMaxCharge(ItemStack itemStack) {
-		return itemStack.getTagCompound().getInteger("energyMax");
+		return itemStack.getTagCompound().getInteger("maxCharge");
 	}
 
 	@Override
@@ -31,6 +41,26 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	@Override
 	public double getTransferLimit(ItemStack itemStack) {
 		return itemStack.getTagCompound().getInteger("tier") * 32;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
+		ItemStack discharged = new ItemStack(item, 1, 0);
+		// Add necessary NBT data so that we won't get NPE.
+		discharged.setTagCompound(new NBTTagCompound());
+		discharged.getTagCompound().setInteger("charge", 0);
+		discharged.getTagCompound().setInteger("maxCharge", 60000);
+		discharged.getTagCompound().setInteger("tier", 1);
+		list.add(discharged.copy());
+		ElectricItem.manager.charge(discharged, 60000, 1, true, false);
+		list.add(discharged.copy());
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> aList, boolean adv) {
+		aList.add(I18n.format("tile.mobilePowerStation.info"));
 	}
 
 }

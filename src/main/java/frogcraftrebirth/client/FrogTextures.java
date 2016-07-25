@@ -37,6 +37,8 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogBlocks.frogOres, 1, "Dewalquite");
 		RegHelper.registerModel(FrogBlocks.frogOres, 2, "Fluorapatite");
 		
+		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "MPS");
+		
 		//RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitricAcid");
 	}
 

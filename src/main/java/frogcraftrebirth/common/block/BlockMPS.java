@@ -1,5 +1,7 @@
 package frogcraftrebirth.common.block;
 
+import javax.annotation.Nullable;
+
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.ITileEntityProvider;
@@ -7,10 +9,13 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -20,8 +25,9 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	
 	public BlockMPS() {
 		super(MACHINE, "mobile_power_station", false, 0, 5);
+		setUnlocalizedName("mobilePowerStation");
 		setHardness(1.0F);
-		setResistance(100.0F);
+		setResistance(1.0F);	
 	}
 	
 	@Override
@@ -57,15 +63,16 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 	
 	@Override
-	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		ItemStack mps = new ItemStack(this, 1);	
-		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation) {
-			TileMobilePowerStation tile = (TileMobilePowerStation)worldIn.getTileEntity(pos);
-			tile.saveDataTo(mps.getTagCompound());
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tile, @Nullable ItemStack stack) {
+		if (tile instanceof TileMobilePowerStation) {
+			ItemStack mps = new ItemStack(this, 1);
+			if (!mps.hasTagCompound())
+				mps.setTagCompound(new NBTTagCompound());
+			((TileMobilePowerStation)tile).saveDataTo(mps.getTagCompound());
+			spawnAsEntity(worldIn, pos, mps);
+		} else {
+			super.harvestBlock(worldIn, player, pos, state, tile, stack);
 		}
-		
-		spawnAsEntity(worldIn, pos, mps);
-		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override
@@ -76,6 +83,22 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(LEVEL, meta);
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		ItemStack stack = new ItemStack(this, 1, 0);
+		if (!stack.hasTagCompound())
+			stack.setTagCompound(new NBTTagCompound());
+		if (world.getTileEntity(pos) instanceof TileMobilePowerStation) {
+			((TileMobilePowerStation)world.getTileEntity(pos)).saveDataTo(stack.getTagCompound());
+			return stack;
+		} else {
+			stack.getTagCompound().setInteger("charge", 0);
+			stack.getTagCompound().setInteger("maxCharge", 60000);
+			stack.getTagCompound().setInteger("tier", 1);
+			return stack;
+		}
 	}
 
 }

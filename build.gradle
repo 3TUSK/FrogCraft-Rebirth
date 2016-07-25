@@ -41,7 +41,9 @@ minecraft {
 
 dependencies {
     compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
-    compile "mezz.jei:jei_1.10.2:${JEI_Ver}:api" 
+    compile "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
+
+    runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }
 
 jar {

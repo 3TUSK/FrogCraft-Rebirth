@@ -25,7 +25,7 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 
 	@Override
 	public void register(IModRegistry registry) {
-		
+		//registry.addRecipeHandlers(new HandlerPyrolyzer());
 	}
 
 	@Override

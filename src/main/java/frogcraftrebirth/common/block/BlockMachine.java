@@ -7,7 +7,7 @@ import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
-import frogcraftrebirth.common.tile.TileLiquifier;
+import frogcraftrebirth.common.tile.TileLiquefier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
@@ -47,9 +47,8 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 			if (tile instanceof IInventory) {
 				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tile);
 			}
-			//world.func_147453_f(x, y, z, block);
 		}
-		
+		//Don't use BlockContainer, so that this call can remove tile entity.
 		super.breakBlock(worldIn, pos, state);
 	}
 
@@ -63,7 +62,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 			case 2:
 				return new TilePyrolyzer();
 			case 3:
-				return new TileLiquifier();
+				return new TileLiquefier();
 			default:
 				return null;
 		}
@@ -71,25 +70,27 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote) return false;
-			playerIn.openGui(FrogCraftRebirth.instance, 5, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return false;
+		if (worldIn.isRemote)
+			return true;
+
+		playerIn.openGui(FrogCraftRebirth.instance, 5, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true;
 	}
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int facing = state.getValue(FACING_HORIZONTAL).getIndex();
-		return facing << 2 + state.getValue(TYPE).ordinal() - 2;
+		return (facing << 2) + state.getValue(TYPE).ordinal();
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
-		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getFront(facing + 2)).withProperty(TYPE, Type.values()[type]);
+		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(facing)).withProperty(TYPE, Type.values()[type]);
 	}
 	
 	public static enum Type implements IStringSerializable {
-		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUIFIER;
+		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUEFIER;
 
 		@Override
 		public String getName() {

@@ -144,7 +144,7 @@ tile.generator.CombustionFurnace.name=Combustion Furnace
 tile.machines.advchemreactor.name=Advanced Chemical Reactor
 tile.machines.airpump.name=Industrial Air Pump
 tile.machines.pyrolyzer.name=Pyrolyzer
-tile.machines.liquifier.name=Liquefier
+tile.machines.liquefier.name=Liquefier
 
 tile.mineral.carnallite.name=Carnallite Ore
 tile.mineral.dewalquite.name=Dewalquite Ore

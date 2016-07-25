@@ -9,18 +9,18 @@
 package frogcraftrebirth.common.gui;
 
 import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
-import frogcraftrebirth.common.tile.TileLiquifier;
+import frogcraftrebirth.common.tile.TileLiquefier;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ContainerLiquifier extends ContainerTileFrog<TileLiquifier> {
+public class ContainerLiquefier extends ContainerTileFrog<TileLiquefier> {
 
 	private int process;
 	
-	public ContainerLiquifier(InventoryPlayer playerInv, TileLiquifier tile) {
+	public ContainerLiquefier(InventoryPlayer playerInv, TileLiquefier tile) {
 		super(playerInv, tile);
 		
 		this.registerPlayerInventory(playerInv);

@@ -16,13 +16,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class TileLiquifier extends TileFrogMachine {
+public class TileLiquefier extends TileFrogMachine {
 	
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
 
-	public TileLiquifier() {
+	public TileLiquefier() {
 		super(4, "liquifier", 2, 10000);
 	}
 	

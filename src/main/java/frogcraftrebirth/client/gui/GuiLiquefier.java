@@ -11,17 +11,17 @@ package frogcraftrebirth.client.gui;
 import org.lwjgl.opengl.GL11;
 
 import frogcraftrebirth.client.GuiUtil;
-import frogcraftrebirth.common.gui.ContainerLiquifier;
-import frogcraftrebirth.common.tile.TileLiquifier;
+import frogcraftrebirth.common.gui.ContainerLiquefier;
+import frogcraftrebirth.common.tile.TileLiquefier;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class GuiLiquifier extends GuiContainer {
+public class GuiLiquefier extends GuiContainer {
 	
-	TileLiquifier tile;
+	TileLiquefier tile;
 	
-	public GuiLiquifier(InventoryPlayer playerInv, TileLiquifier tile) {
-		super(new ContainerLiquifier(playerInv, tile));
+	public GuiLiquefier(InventoryPlayer playerInv, TileLiquefier tile) {
+		super(new ContainerLiquefier(playerInv, tile));
 		this.tile = tile;
 	}
 

@@ -6,7 +6,7 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.tile.IAdvChemReactor;
-import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
+import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -14,7 +14,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileFrogEnergySink implements IAdvChemReactor {
+public class TileAdvChemReactor extends TileEnergySink implements IAdvChemReactor {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(13);
 	

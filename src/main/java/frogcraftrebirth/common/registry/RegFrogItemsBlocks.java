@@ -8,7 +8,7 @@ import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockFrogOre;
 import frogcraftrebirth.common.block.BlockGenerator;
-import frogcraftrebirth.common.block.BlockHybridEStorage;
+import frogcraftrebirth.common.block.BlockHSU;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
@@ -62,7 +62,7 @@ public class RegFrogItemsBlocks {
 		FrogBlocks.generators = new BlockGenerator();
 		FrogBlocks.machines = new BlockMachine();
 		FrogBlocks.condenseTowerPart = new BlockCondenseTower();
-		FrogBlocks.hybridStorageUnit = new BlockHybridEStorage();
+		FrogBlocks.hybridStorageUnit = new BlockHSU();
 		FrogBlocks.mobilePowerStation = new BlockMPS();
 		
 		GameRegistry.<Block>register(FrogBlocks.frogOres);
@@ -83,7 +83,7 @@ public class RegFrogItemsBlocks {
 			return "combustionFurnace";
 		}));
 		ItemFrogBlock.registerItemBlockFor(FrogBlocks.hybridStorageUnit, new ItemFrogBlock(FrogBlocks.hybridStorageUnit, (ItemStack aStack) -> {
-			return BlockHybridEStorage.Level.values()[aStack.getMetadata() / 6].getName();
+			return BlockHSU.Level.values()[aStack.getMetadata() / 6].getName();
 		}));
 		ItemFrogBlock.registerItemBlockFor(FrogBlocks.machines, new ItemFrogBlock(FrogBlocks.machines, (ItemStack aStack) -> {
 			return BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName();

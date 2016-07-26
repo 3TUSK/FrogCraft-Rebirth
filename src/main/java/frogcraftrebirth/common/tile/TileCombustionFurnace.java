@@ -8,7 +8,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.tile.TileFrogGenerator;
+import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCombustionFurnace extends TileFrogGenerator implements ITickable {
+public class TileCombustionFurnace extends TileEnergyGenerator implements ITickable {
 
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/

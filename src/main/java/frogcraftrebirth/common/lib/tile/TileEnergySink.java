@@ -9,12 +9,12 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileFrogEnergySink extends TileFrog implements ITickable, IEnergySink {
+public abstract class TileEnergySink extends TileFrog implements ITickable, IEnergySink {
 	
 	public int charge, maxCharge, sinkTier;
 	protected boolean isInENet;
 	
-	protected TileFrogEnergySink(int sinkTier, int maxEnergy) {
+	protected TileEnergySink(int sinkTier, int maxEnergy) {
 		this.sinkTier = sinkTier;
 		this.maxCharge = maxEnergy;
 	}

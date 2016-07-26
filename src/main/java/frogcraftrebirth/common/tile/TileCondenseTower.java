@@ -7,7 +7,7 @@ import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerStructure;
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
+import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCondenseTower extends TileFrogEnergySink {
+public class TileCondenseTower extends TileEnergySink {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	protected FrogFluidTank tank = new FrogFluidTank(8000);

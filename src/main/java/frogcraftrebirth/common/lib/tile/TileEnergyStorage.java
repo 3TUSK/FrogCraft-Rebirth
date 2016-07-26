@@ -9,8 +9,9 @@ import ic2.api.energy.tile.IEnergySource;
 import ic2.api.tile.IEnergyStorage;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 
-public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, IEnergySource, IEnergyStorage {
+public abstract class TileEnergyStorage extends TileFrog implements ITickable, IEnergySink, IEnergySource, IEnergyStorage {
 
 	public EnumFacing emitDir;
 	public int storedE, maxE, output;
@@ -18,7 +19,7 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	protected final boolean usableForTp;
 	protected final int tier;
 	
-	public TileFrogEStorage(int maxEnergy, int output, int tier, EnumFacing emitTo, boolean allowTelep) {
+	public TileEnergyStorage(int maxEnergy, int output, int tier, EnumFacing emitTo, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;
@@ -37,8 +38,7 @@ public abstract class TileFrogEStorage extends TileFrog implements IEnergySink, 
 	}
 	
 	@Override
-	public void validate() {
-		super.validate();
+	public void update() {
 		if (!worldObj.isRemote && !loaded) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.loaded = true;

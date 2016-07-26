@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
-import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
+import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import net.minecraft.block.ITileEntityProvider;
@@ -20,11 +20,11 @@ import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider {
 	
 	public static final PropertyEnum<Level> LEVEL = PropertyEnum.<Level>create("level", Level.class);
 	
-	public BlockHybridEStorage() {
+	public BlockHSU() {
 		super(MACHINE, "hybrid_storage_unit", true, 0, 1);
 		setUnlocalizedName("hybridStorageUnit");
 	}
@@ -40,10 +40,8 @@ public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEnt
 			return true;
 		} else {
 			TileEntity tile = worldIn.getTileEntity(pos);
-			if (tile instanceof TileFrogEStorage) {
-				if (playerIn.isSneaking()) {
-					playerIn.addChatComponentMessage(new net.minecraft.util.text.TextComponentString(((TileFrogEStorage)tile).storedE+";"+((TileFrogEStorage)tile).maxE));
-				} else if (tile instanceof TileFrogEStorage) {
+			if (tile instanceof TileEnergyStorage) {
+				if (tile instanceof TileHSU) {
 					playerIn.openGui(FrogCraftRebirth.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 				}
 				return true;
@@ -55,8 +53,10 @@ public class BlockHybridEStorage extends BlockFrogWrenchable implements ITileEnt
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		switch ((int)(meta / 6)) {
-			case 0: return new TileHSU();
-			case 1: return new TileHSUUltra();
+			case 0: 
+				return new TileHSU();
+			case 1: 
+				return new TileHSUUltra();
 			default: return null;
 		}
 	}

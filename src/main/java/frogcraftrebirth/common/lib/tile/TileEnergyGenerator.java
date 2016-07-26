@@ -8,12 +8,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileFrogGenerator extends TileFrog implements IEnergySource {
+public abstract class TileEnergyGenerator extends TileFrog implements IEnergySource {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
 	
-	public TileFrogGenerator (String name, int sourceTier, int output) {
+	public TileEnergyGenerator (String name, int sourceTier, int output) {
 		super();
 		this.sourceTier = sourceTier;
 		this.output = output;

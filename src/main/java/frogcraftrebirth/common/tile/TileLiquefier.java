@@ -9,13 +9,13 @@
 package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
+import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
-public class TileLiquefier extends TileFrogEnergySink {
+public class TileLiquefier extends TileEnergySink {
 	
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	

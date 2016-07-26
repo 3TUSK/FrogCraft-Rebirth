@@ -7,7 +7,7 @@ import java.io.IOException;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
-import frogcraftrebirth.common.lib.tile.TileFrogEnergySink;
+import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TilePyrolyzer extends TileFrogEnergySink {
+public class TilePyrolyzer extends TileEnergySink {
 
 	private final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
 	
@@ -68,8 +68,9 @@ public class TilePyrolyzer extends TileFrogEnergySink {
 			this.processMax = 0;
 			this.markDirty();
 			working = false;
-			this.sendTileUpdatePacket(this);
 		}
+		
+		this.sendTileUpdatePacket(this);
 	}
 	
 	private boolean canWork(PyrolyzerRecipe recipe) {

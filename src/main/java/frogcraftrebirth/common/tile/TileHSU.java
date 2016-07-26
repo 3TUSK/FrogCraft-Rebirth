@@ -1,6 +1,6 @@
 package frogcraftrebirth.common.tile;
 
-import frogcraftrebirth.common.lib.tile.TileFrogEStorage;
+import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.nbt.NBTTagCompound;
@@ -10,7 +10,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileHSU extends TileFrogEStorage implements ITickable {
+public class TileHSU extends TileEnergyStorage implements ITickable {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	

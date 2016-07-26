@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"partical": "frogcraftrebirth:blocks/CondenseTower_Side",
-		"down": "frogcraftrebirth:blocks/CondenseTowerCylinder_Top",
-		"up": "frogcraftrebirth:blocks/CondenseTowerCylinder_Top",
-		"north": "frogcraftrebirth:blocks/CondenseTower_Front",
-		"east": "frogcraftrebirth:blocks/CondenseTower_Side",
-		"south": "frogcraftrebirth:blocks/CondenseTower_Back",
-		"west": "frogcraftrebirth:blocks/CondenseTower_Side"
+		"particle": "frogcraftrebirth:blocks/condensetower/Core_Side",
+		"down": "frogcraftrebirth:blocks/condensetower/Cylinder_Top",
+		"up": "frogcraftrebirth:blocks/condensetower/Cylinder_Top",
+		"north": "frogcraftrebirth:blocks/condensetower/Core_Front",
+		"east": "frogcraftrebirth:blocks/condensetower/Core_Side",
+		"south": "frogcraftrebirth:blocks/condensetower/Core_Back",
+		"west": "frogcraftrebirth:blocks/condensetower/Core_Side"
 	}
 }

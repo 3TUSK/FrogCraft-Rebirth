@@ -1,10 +1,10 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"partical": "frogcraftrebirth:blocks/IndustrialDevice_Side",
+		"particle": "frogcraftrebirth:blocks/IndustrialDevice_Side",
 		"down": "frogcraftrebirth:blocks/IndustrialDevice_Top",
 		"up": "frogcraftrebirth:blocks/IndustrialDevice_Top",
-		"north": "frogcraftrebirth:blocks/AdvanceChemicalReactor_Front",
+		"north": "frogcraftrebirth:blocks/machines/AdvanceChemicalReactor_Front",
 		"east": "frogcraftrebirth:blocks/IndustrialDevice_Side",
 		"south": "frogcraftrebirth:blocks/IndustrialDevice_Side",
 		"west": "frogcraftrebirth:blocks/IndustrialDevice_Side"

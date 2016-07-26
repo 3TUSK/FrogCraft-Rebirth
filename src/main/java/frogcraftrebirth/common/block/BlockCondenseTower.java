@@ -40,15 +40,20 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		switch (meta) {
-		case 0:
-			return new TileCondenseTower();
-		case 1:
-			return new TileCondenseTowerStructure();
-		case 2:
-			return new TileFluidOutputHatch();
+			case 0:
+				return new TileCondenseTower();
+			case 1:
+				return new TileCondenseTowerStructure();
+			case 2:
+				return new TileFluidOutputHatch();
+			default:
+				return null;
 		}
-		
-		return null;
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getValue(TYPE).ordinal();
 	}
 	
 	@Override
@@ -67,13 +72,13 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int facing = state.getValue(FACING_HORIZONTAL).getIndex();
-		return facing << 2 + state.getValue(TYPE).ordinal() - 2;
+		return facing << 2 + state.getValue(TYPE).ordinal();
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
-		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getFront(facing)).withProperty(TYPE, Part.values()[type]);
+		return this.getDefaultState().withProperty(FACING_HORIZONTAL,  EnumFacing.getHorizontal(facing)).withProperty(TYPE, Part.values()[type]);
 	}
 	
 	public static enum Part implements IStringSerializable {

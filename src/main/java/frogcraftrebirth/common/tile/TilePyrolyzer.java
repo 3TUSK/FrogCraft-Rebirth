@@ -8,16 +8,19 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TilePyrolyzer extends TileEnergySink {
 
+	// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	private final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
 	
 	public final ItemStackHandler inv = new ItemStackHandler(4);
@@ -32,13 +35,13 @@ public class TilePyrolyzer extends TileEnergySink {
 
 	public TilePyrolyzer() {
 		super(2, 10000);
-		// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
 	}
 
 	@Override
 	public void update() {
 		if (this.worldObj.isRemote)
 			return;
+		super.update();
 
 		if (inv.getStackInSlot(INPUT) == null || this.charge <= 128) {
 			this.working = false;
@@ -68,6 +71,18 @@ public class TilePyrolyzer extends TileEnergySink {
 			this.processMax = 0;
 			this.markDirty();
 			working = false;
+		}
+		
+		if (inv.getStackInSlot(0) == null)
+			return;
+		
+		if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+			ItemStack result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, false), tank, 1000, null, true);
+			if (result != null && result.stackSize > 0) {
+				ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
+				if (remainder != null && remainder.stackSize > 0)
+					ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+			}
 		}
 		
 		this.sendTileUpdatePacket(this);

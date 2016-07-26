@@ -40,17 +40,16 @@ public class TileLiquefier extends TileEnergySink {
 		if (inv.getStackInSlot(0) == null)
 			return;
 		
-		ItemStack result = null;
 		if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-			result = FluidUtil.tryEmptyContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+			ItemStack result = FluidUtil.tryEmptyContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+			if (result != null && result.stackSize > 0) {
+				ItemStack remainder = inv.insertItem(1, result, false);
+				if (remainder != null && remainder.stackSize > 0)
+					ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+			}
 		}
 		
-		if (result != null && result.stackSize > 0) {
-			ItemStack remainder = inv.insertItem(1, result, false);
-			if (remainder != null && remainder.stackSize > 0)
-				ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
-		}
-
+		this.sendTileUpdatePacket(this);
 	}
 	
 	@Override

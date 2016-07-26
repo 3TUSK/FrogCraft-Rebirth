@@ -1,6 +1,7 @@
 package frogcraftrebirth.common;
 
 import frogcraftrebirth.api.FrogAchievements;
+import frogcraftrebirth.api.event.PersonalizationEvent;
 import frogcraftrebirth.common.item.ItemIngot;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -36,6 +37,12 @@ public class FrogEventListener {
 		if (event.crafting.getItem() instanceof ItemBlock) {
 			//TODO
 		}
+	}
+	
+	@SubscribeEvent
+	public void onPersonalize(PersonalizationEvent event) {
+		if (event.tile.getOwnerUUID() == null)
+			event.tile.setOwner(event.player.getUniqueID());
 	}
 
 }

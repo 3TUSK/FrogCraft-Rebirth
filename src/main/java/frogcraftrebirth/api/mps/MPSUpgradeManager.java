@@ -59,6 +59,7 @@ public enum MPSUpgradeManager {
 		try {
 			return validSolarUpgrades.add(stack);
 		} catch (Exception e) {
+			FrogAPI.FROG_LOG.error("Failed to register " + stack.toString() + " as valid MPS solar upgrade");
 			e.printStackTrace();
 			return false;
 		}
@@ -84,7 +85,7 @@ public enum MPSUpgradeManager {
 	 * @param stack The upgrade item being registered
 	 * @param incrQuantity The quantity increased of voltage level. 1 is LV, 2 is MV, 3 is HV, and so on.
 	 * @return true if succeed, false if fail
-	 * @See {@link ic2.api.energy.tile.IEnergySource}
+	 * @See {@link ic2.api.energy.tile.IEnergySource#getSourceTier()}
 	 */
 	public boolean registerVoltageUpgrades(ItemStack stack, int incrQuantity) {
 		try {
@@ -99,7 +100,7 @@ public enum MPSUpgradeManager {
 	
 	/**
 	 * Clear all existed registry info.
-	 * @return
+	 * @return true if all registration info is cleared.
 	 */
 	public boolean resetRegistry() {
 		validSolarUpgrades.clear();

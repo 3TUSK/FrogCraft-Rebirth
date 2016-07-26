@@ -62,13 +62,18 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 	
 	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getValue(LEVEL).ordinal();
+	}
+	
+	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(FACING_ALL).getIndex() * 2 + state.getValue(LEVEL).ordinal();
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta/2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta/6]);
+		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta % 2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta % 6]);
 	}
 	
 	public static enum Level implements IStringSerializable {

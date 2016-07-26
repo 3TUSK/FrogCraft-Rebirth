@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 9:40:01 AM, Jul 24, 2016, 
+ * created 3TUSK at 9:40:01 AM, Jul 24, 2016, 
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -45,12 +45,12 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
 		if (!allowVerticalRotation) {
 			switch (newDirection) {
-			case UP: return false;
-			case DOWN: return false;
-			default: {
-				world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_HORIZONTAL, newDirection), 2);
-				return true;
-			}
+				case UP: return false;
+				case DOWN: return false;
+				default: {
+					world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_HORIZONTAL, newDirection), 2);
+					return true;
+				}
 			}
 		} else {
 			world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_ALL, newDirection), 2);
@@ -65,7 +65,7 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		return Arrays.asList(new ItemStack(state.getBlock(), 1, state.getBlock().getMetaFromState(state)));
+		return Arrays.asList(new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
 	}
 
 }

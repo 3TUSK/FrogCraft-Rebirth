@@ -1,5 +1,6 @@
 package frogcraftrebirth.common.lib.tile;
 
+import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
@@ -19,12 +20,11 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 	protected final boolean usableForTp;
 	protected final int tier;
 	
-	public TileEnergyStorage(int maxEnergy, int output, int tier, EnumFacing emitTo, boolean allowTelep) {
+	public TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;
 		this.tier = tier;
-		this.emitDir = emitTo;
 		this.usableForTp = allowTelep;
 	}
 	
@@ -43,6 +43,7 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.loaded = true;
 		}
+		this.emitDir = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_ALL);
 	}
 	
 	@Override
@@ -68,7 +69,8 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 	@Override
 	public int addEnergy(int amount) {
 		this.storedE += amount;
-		if (storedE > maxE) storedE = maxE;
+		if (storedE > maxE) 
+			storedE = maxE;
 		return storedE;
 	}
 
@@ -121,7 +123,8 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.storedE += amount;
-		if (storedE >= maxE) storedE = maxE;
+		if (storedE >= maxE) 
+			storedE = maxE;
 		return 0;
 	}
 

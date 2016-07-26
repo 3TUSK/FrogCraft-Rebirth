@@ -15,17 +15,18 @@ public class TileHSU extends TileEnergyStorage implements ITickable {
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	
 	public TileHSU() {
-		super(100000000, 2048, 4, EnumFacing.DOWN, false);
+		super(100000000, 2048, 5, true);
 	}
 	
-	protected TileHSU(int maxEnergy, int output, int tier, EnumFacing emitTo, boolean allowTelep) {
-		super(maxEnergy, output, tier, emitTo, allowTelep);
+	protected TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
+		super(maxEnergy, output, tier, allowTelep);
 	}
 
 	@Override
 	public void update() {
 		if (worldObj.isRemote)
 			return;
+		super.update();
 		
 		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);

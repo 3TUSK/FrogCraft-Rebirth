@@ -10,16 +10,22 @@ package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class TileLiquefier extends TileEnergySink {
 	
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
+
+	public final ItemStackHandler inv = new ItemStackHandler(2);
 
 	public TileLiquefier() {
 		super(2, 10000);
@@ -30,7 +36,21 @@ public class TileLiquefier extends TileEnergySink {
 		if (worldObj.isRemote)
 			return;
 		super.update();
-		//TODO
+		//Null check, if fail then end update immediately
+		if (inv.getStackInSlot(0) == null)
+			return;
+		
+		ItemStack result = null;
+		if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+			result = FluidUtil.tryEmptyContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+		}
+		
+		if (result != null && result.stackSize > 0) {
+			ItemStack remainder = inv.insertItem(1, result, false);
+			if (remainder != null && remainder.stackSize > 0)
+				ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+		}
+
 	}
 	
 	@Override

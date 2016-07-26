@@ -2,7 +2,11 @@ package frogcraftrebirth.common.lib.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 
+import javax.annotation.Nonnull;
+
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
@@ -12,8 +16,10 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemUtil {
 	
+	public static final Random RAND = new Random();
+	
 	/**
-	 * Identical to {@link InventoryHelper}, except this one is designed for {@link IItemHandler}.
+	 * Identical to {@link InventoryHelper#dropInventoryItems}, except this one is designed for {@link IItemHandler}.
 	 * @param worldIn The world that block is in
 	 * @param pos The position of block
 	 * @param inv An array of IItemHandler implementation. Note: all IItemHandler here are assumed to start index from zero.
@@ -22,9 +28,26 @@ public final class ItemUtil {
 		for (IItemHandler invSingle : inv) {
 			final int slots = invSingle.getSlots();
 			for (int index = 0; index < slots; index++) {
-				InventoryHelper.spawnItemStack(worldIn, pos.getX(), pos.getY(), pos.getZ(), invSingle.getStackInSlot(index));
+				ItemStack stack = invSingle.getStackInSlot(index);
+				if (stack != null)
+					dropItemStackAsEntityInsanely(worldIn, pos, stack);
 			}
 		}
+	}
+	
+	/**
+	 * Identical to {@link InventoryHelper#spawnItemStack}, except this one has insane implementation.
+	 * @param worldIn The world that item stack will drop.
+	 * @param pos The position reference.
+	 * @param toDrop The item stack to drop.
+	 */
+	public static void dropItemStackAsEntityInsanely(World worldIn, BlockPos pos, @Nonnull ItemStack toDrop) {
+		EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), toDrop.copy());
+		entityItem.motionX = RAND.nextGaussian() * 0.05D;
+		entityItem.motionY = RAND.nextGaussian() * 0.05D + 0.2D;
+		entityItem.motionZ = RAND.nextGaussian() * 0.05D;
+		toDrop.stackSize = 0;
+		worldIn.spawnEntityInWorld(entityItem);
 	}
 	
 	public static ItemStack get1stChoiceFromOre(String entry) {

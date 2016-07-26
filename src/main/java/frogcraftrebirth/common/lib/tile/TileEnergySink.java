@@ -30,7 +30,7 @@ public abstract class TileEnergySink extends TileFrog implements ITickable, IEne
 	
 	@Override
 	public void update() {	
-		if (!isInENet) {
+		if (!worldObj.isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}

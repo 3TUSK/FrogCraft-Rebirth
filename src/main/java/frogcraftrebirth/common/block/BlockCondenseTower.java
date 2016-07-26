@@ -73,7 +73,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
-		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(facing)).withProperty(TYPE, Part.values()[type]);
+		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getFront(facing)).withProperty(TYPE, Part.values()[type]);
 	}
 	
 	public static enum Part implements IStringSerializable {

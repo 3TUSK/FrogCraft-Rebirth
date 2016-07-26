@@ -4,7 +4,7 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
-import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquefier;
@@ -14,8 +14,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -42,13 +40,20 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
-		TileFrog tile = (TileFrog)worldIn.getTileEntity(pos);
-		if (tile != null) {
-			if (tile instanceof IInventory) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tile);
+		int meta = state.getBlock().getMetaFromState(state);
+		switch (meta & 0b11) { //AirPump has no item storage capability, so meta & 3 = 1 is omitted here
+			case 0: {
+				ItemUtil.dropInventroyItems(worldIn, pos, ((TileAdvChemReactor)worldIn.getTileEntity(pos)).inv);
 			}
-		}
-		//Don't use BlockContainer, so that this call can remove tile entity.
+			case 2: {
+				ItemUtil.dropInventroyItems(worldIn, pos, ((TilePyrolyzer)worldIn.getTileEntity(pos)).inv);
+			}
+			case 3: {
+				ItemUtil.dropInventroyItems(worldIn, pos, ((TileLiquefier)worldIn.getTileEntity(pos)).inv);
+			}
+			default: 
+				break;
+		}	//Don't use BlockContainer, so that this call can remove tile entity.
 		super.breakBlock(worldIn, pos, state);
 	}
 
@@ -66,6 +71,11 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 			default:
 				return null;
 		}
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getBlock().getMetaFromState(state) & 0b11;
 	}
 	
 	@Override

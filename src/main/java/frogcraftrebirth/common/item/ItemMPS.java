@@ -21,6 +21,8 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 		super(block, (ItemStack aStack) -> {
 			return "normal";
 		});
+		setHasSubtypes(false);
+		setMaxStackSize(1);
 	}
 
 	@Override
@@ -63,18 +65,11 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	}
 	
 	public static ItemStack normalize(ItemStack stack) {
-		if (stack.getItem() instanceof ItemMPS) {
-			if (!stack.hasTagCompound()) {
-				stack.setTagCompound(new NBTTagCompound());
-			} else {
-				return stack;
-			}
-			if (!stack.getTagCompound().hasKey("charge"))
-				stack.getTagCompound().setInteger("charge", 0);
-			if (!stack.getTagCompound().hasKey("maxCharge"))
-				stack.getTagCompound().setInteger("maxCharge", 60000);
-			if (!stack.getTagCompound().hasKey("tier"))
-				stack.getTagCompound().setInteger("tier", 1);
+		if (stack.getItem() instanceof ItemMPS && !stack.hasTagCompound()) {
+			stack.setTagCompound(new NBTTagCompound());
+			stack.getTagCompound().setInteger("charge", 0);
+			stack.getTagCompound().setInteger("maxCharge", 60000);
+			stack.getTagCompound().setInteger("tier", 1);
 			return stack;
 		} else 
 			return stack; // Prevent attaching unecessary data to other item

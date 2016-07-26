@@ -1,5 +1,7 @@
 package frogcraftrebirth.common.block;
 
+import java.util.List;
+
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
@@ -24,8 +26,9 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
-		super(MACHINE, "mobile_power_station", false, 0, 5);
+		super(MACHINE, "mobile_power_station", false);
 		setUnlocalizedName("mobilePowerStation");
+		setDefaultState(this.getBlockState().getBaseState().withProperty(LEVEL, 0));
 		setHardness(1.0F);
 		setResistance(1.0F);	
 	}
@@ -42,7 +45,7 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 
 	@Override
 	public boolean isFlammable(IBlockAccess world, BlockPos pos, EnumFacing face) {
-        return false;
+        return true;
     }
 
 	@Override
@@ -51,9 +54,28 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 	
 	@Override
+	public int damageDropped(IBlockState state) {
+		return 0;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		IBlockState finalState = this.getDefaultState();
+		if (tile instanceof TileMobilePowerStation) {
+			float ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
+			finalState.withProperty(LEVEL, ratio > 5 ? 5 : (int)ratio);
+		}
+		return finalState;
+	}
+	
+	@Override
+	public int getLightValue(IBlockState state) {
+		return state.getValue(LEVEL);
+	}
+	
+	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		if (worldIn.isRemote)
-			return;
 		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation){		
 			if (stack.getTagCompound() != null) {
 				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
@@ -99,6 +121,11 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 			stack.getTagCompound().setInteger("tier", 1);
 			return stack;
 		}
+	}
+	
+	@Override
+	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
+		return new java.util.ArrayList<ItemStack>();
 	}
 
 }

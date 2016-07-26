@@ -16,5 +16,9 @@ public interface IMobilePowerStation extends IPersonal {
 	void loadDataFrom(NBTTagCompound tag);
 	
 	void saveDataTo(NBTTagCompound tag);
+	
+	int getCurrentEnergy();
+	
+	int getCurrentEnergyCapacity();
 
 }

@@ -10,6 +10,9 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.common.block.BlockMPS;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -57,6 +60,7 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogBlocks.tiberium, 1);
 		RegHelper.registerModel(FrogBlocks.tiberium, 2);
 		
+		ModelLoader.setCustomStateMapper(FrogBlocks.mobilePowerStation, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
 		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "MPS");
 		
 		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 0, "condensetower/Core");

@@ -11,6 +11,7 @@ package frogcraftrebirth.client;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
+import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
@@ -60,18 +61,20 @@ class RegHelper {
 	}
 	
 	static void regFluidBlockTexture(BlockFluidBase fluidBlock, final String name) {
-		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), new ItemMeshDefinition() {
-			@Override
-			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				return new ModelResourceLocation("frogcraftrebirth:" + name, "fluid");
-			}	
-		});
+		ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", name);
 		ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return new ModelResourceLocation("frogcraftrebirth:" + name, "fluid");
+				return aResource;
 			}		
 		});
+		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), new ItemMeshDefinition() {
+			@Override
+			public ModelResourceLocation getModelLocation(ItemStack stack) {
+				return aResource;
+			}	
+		});
+		ModelBakery.registerItemVariants(Item.getItemFromBlock(fluidBlock), aResource);
 	}
 
 }

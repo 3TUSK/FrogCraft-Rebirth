@@ -10,6 +10,7 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -72,7 +73,19 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 0, "HSU");
 		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 1, "UHSU");
 		
-		//RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitricAcid");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidAmmonia, "ammonia");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidArgon, "argon");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidBenzene, "benzene");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidBromine, "bromine");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCarbonDioxide, "carbon_dioxide");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCarbonOxide, "carbon_oxide");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCoalTar, "coal_tar");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidFluorine, "fluorine");	
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitric_acid");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitrogenOxide, "nitrogen_oxide");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidOxygen, "oxygen");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidSulfurDioxide, "sulfur_dioxide");
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidSulfurTrioxide, "sulfur_trioxide");
 	}
 
 }

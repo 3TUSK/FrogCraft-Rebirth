@@ -12,14 +12,12 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
-public class BlockNitricAcid extends BlockFluidClassic {
+public class BlockNitricAcid extends BlockFluidFrog {
 	
 	public BlockNitricAcid(Fluid fluid) {
-		super(fluid, Material.WATER);
-		this.setRegistryName("nitric_acid_block");
+		super(fluid, "fluid.nitricAcid", Material.WATER);
 		this.setUnlocalizedName("nitricAcid");
 		this.setDensity(fluid.getDensity());
 		this.setQuantaPerBlock(8);

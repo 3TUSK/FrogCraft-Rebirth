@@ -1,5 +1,6 @@
 package frogcraftrebirth.common;
 
+import frogcraftrebirth.common.block.BlockFluidFrog;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 
 public class FrogBlocks {	
@@ -14,6 +15,18 @@ public class FrogBlocks {
 	public static BlockFrog tiberium;
 	
 	//Well...
-	public static net.minecraft.block.Block fluidNitricAcid;
+	public static BlockFluidFrog fluidAmmonia;
+	public static BlockFluidFrog fluidArgon;
+	public static BlockFluidFrog fluidBenzene;
+	public static BlockFluidFrog fluidBromine;
+	public static BlockFluidFrog fluidCarbonDioxide;
+	public static BlockFluidFrog fluidCarbonOxide;
+	public static BlockFluidFrog fluidCoalTar;
+	public static BlockFluidFrog fluidFluorine;
+	public static BlockFluidFrog fluidNitricAcid;
+	public static BlockFluidFrog fluidNitrogenOxide;
+	public static BlockFluidFrog fluidOxygen;
+	public static BlockFluidFrog fluidSulfurDioxide;
+	public static BlockFluidFrog fluidSulfurTrioxide;
 
 }

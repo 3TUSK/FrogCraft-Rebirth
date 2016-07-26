@@ -65,8 +65,8 @@ public class FrogTextures {
 		
 		RegHelper.registerModel(FrogBlocks.machines, 0, "AdvancedChemicalReactor");
 		RegHelper.registerModel(FrogBlocks.machines, 1, "AirPump");
-		RegHelper.registerModel(FrogBlocks.machines, 2, "Liquefier");
-		RegHelper.registerModel(FrogBlocks.machines, 3, "Pyrolyzer");
+		RegHelper.registerModel(FrogBlocks.machines, 2, "Pyrolyzer");
+		RegHelper.registerModel(FrogBlocks.machines, 3, "Liquefier");
 		
 		RegHelper.registerModel(FrogBlocks.generators, "CombustionGenerator");
 		

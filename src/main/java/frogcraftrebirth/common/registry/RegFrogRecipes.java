@@ -20,8 +20,8 @@ public class RegFrogRecipes {
 	
 	public static void postInit() {
 		//Register crafting recipe!
-		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 6), 4800);
-		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 7), 400);
+		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 3), 16000);
+		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 4), 1800);
 	}
 	
 	private static void defaultRecipe() {

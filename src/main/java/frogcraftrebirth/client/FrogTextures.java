@@ -80,7 +80,7 @@ public class FrogTextures {
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCarbonDioxide, "carbon_dioxide");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCarbonOxide, "carbon_oxide");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidCoalTar, "coal_tar");
-		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidFluorine, "fluorine");	
+		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidFluorine, "fluorine");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitricAcid, "nitric_acid");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidNitrogenOxide, "nitrogen_oxide");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidOxygen, "oxygen");

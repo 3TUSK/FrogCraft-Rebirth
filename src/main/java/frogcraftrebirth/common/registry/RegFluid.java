@@ -40,20 +40,19 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurDioxide);
 		regFluid(FrogFluids.sulfurTrioxide);
 		
+		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
 		FrogBlocks.fluidAmmonia = new BlockFluidFrog(FrogFluids.ammonia, "fluid.ammonia");
 		FrogBlocks.fluidArgon = new BlockFluidFrog(FrogFluids.argon, "fluid.argon");
 		FrogBlocks.fluidBenzene = new BlockFluidFrog(FrogFluids.benzene, "fluid.benzene");
-		FrogBlocks.fluidBromine = new BlockFluidFrog(FrogFluids.benzene, "fluid.bromine");
-		FrogBlocks.fluidCarbonDioxide = new BlockFluidFrog(FrogFluids.benzene, "fluid.carbonDioxide");
-		FrogBlocks.fluidCarbonOxide = new BlockFluidFrog(FrogFluids.benzene, "fluid.carbonOxide");
-		FrogBlocks.fluidCoalTar = new BlockFluidFrog(FrogFluids.benzene, "fluid.coalTar");
-		FrogBlocks.fluidFluorine = new BlockFluidFrog(FrogFluids.benzene, "fluid.Fluorine");
-		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
-		FrogBlocks.fluidNitrogenOxide = new BlockFluidFrog(FrogFluids.benzene, "fluid.nitrogenOxide");
-		FrogBlocks.fluidOxygen = new BlockFluidFrog(FrogFluids.benzene, "fluid.Oxygen");
-		FrogBlocks.fluidSulfurDioxide = new BlockFluidFrog(FrogFluids.benzene, "fluid.sulfurDioxide");
-		FrogBlocks.fluidSulfurTrioxide = new BlockFluidFrog(FrogFluids.benzene, "fluid.sulfurTrioxide");
-
+		FrogBlocks.fluidBromine = new BlockFluidFrog(FrogFluids.bromine, "fluid.bromine");
+		FrogBlocks.fluidCarbonDioxide = new BlockFluidFrog(FrogFluids.carbonDioxide, "fluid.carbonDioxide");
+		FrogBlocks.fluidCarbonOxide = new BlockFluidFrog(FrogFluids.carbonOxide, "fluid.carbonOxide");
+		FrogBlocks.fluidCoalTar = new BlockFluidFrog(FrogFluids.coalTar, "fluid.coalTar");
+		FrogBlocks.fluidFluorine = new BlockFluidFrog(FrogFluids.fluorine, "fluid.Fluorine");
+		FrogBlocks.fluidNitrogenOxide = new BlockFluidFrog(FrogFluids.nitrogenOxide, "fluid.nitrogenOxide");
+		FrogBlocks.fluidOxygen = new BlockFluidFrog(FrogFluids.oxygen, "fluid.Oxygen");
+		FrogBlocks.fluidSulfurDioxide = new BlockFluidFrog(FrogFluids.sulfurDioxide, "fluid.sulfurDioxide");
+		FrogBlocks.fluidSulfurTrioxide = new BlockFluidFrog(FrogFluids.sulfurTrioxide, "fluid.sulfurTrioxide");
 	}
 	
 	private static void regFluid(Fluid fluid) {

@@ -24,17 +24,28 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 
 	private final int capacity;
 	private FluidStack fluidInv;
+	/** The name used for NBT tag. It is existed to prevent tag conflict.*/
+	private final String tankName;
 	
 	public FrogFluidTank (int capacity) {
 		this.capacity = capacity;
+		this.tankName = "tank";
+	}
+	
+	public FrogFluidTank (int capacity, String tagName) {
+		this.capacity = capacity;
+		this.tankName = tagName;
 	}
 	
 	public void readFromNBT(NBTTagCompound tag) {
-		this.fluidInv = FluidStack.loadFluidStackFromNBT(tag);
+		this.fluidInv = FluidStack.loadFluidStackFromNBT(tag.getCompoundTag(tankName));
 	}
 	
-	public void writeToNBT(NBTTagCompound tag) {	
-		if (fluidInv != null) fluidInv.writeToNBT(tag);
+	public void writeToNBT(NBTTagCompound tag) {
+		NBTTagCompound newTag = new NBTTagCompound();
+		if (fluidInv != null) 
+			fluidInv.writeToNBT(newTag);
+		tag.setTag(tankName, tag);
 	}
 	
 	@Override
@@ -55,6 +66,11 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	@Override
 	public FluidTankInfo getInfo() {
 		return new FluidTankInfo(this);
+	}
+	
+	@Override
+	public IFluidTankProperties[] getTankProperties() {
+		return FluidTankProperties.convert(new FluidTankInfo[] { getInfo() });
 	}
 
 	@Override
@@ -97,8 +113,17 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 		}
 	}
 	
+	@Override
+	public FluidStack drain(FluidStack resource, boolean doDrain) {
+		if (resource.isFluidEqual(fluidInv)) {
+			return drain(resource.amount, doDrain);
+		}
+		
+		return null;
+	}
+	
 	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeChars(fluidInv != null ? FluidRegistry.getFluidName(fluidInv) : "UNKNOWN");
+		output.writeUTF(fluidInv != null ? FluidRegistry.getFluidName(fluidInv) : "EmptyTank");
 		output.writeInt(getFluidAmount());
 	}
 	
@@ -113,37 +138,20 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 			this.forceFillTank(null);
 	}
 	
-	public String getFluidID() {
-		return FluidRegistry.getFluidName(fluidInv);
-	}
-	
+	/**
+	 * Only use it on client side for forcing update.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void forceFillTank(FluidStack stack) {
-		this.forceDrainTank();
-		this.fluidInv = stack;
+		this.fluidInv = stack.copy();
 	}
 	
+	/**
+	 * Only use it on client side for forcing update.
+	 */
 	@SideOnly(Side.CLIENT)
 	public void forceDrainTank() {
 		this.fluidInv = null;
-	}
-
-	@Override
-	public IFluidTankProperties[] getTankProperties() {
-		return FluidTankProperties.convert(new FluidTankInfo[] { getInfo() });
-	}
-
-	@Override
-	public FluidStack drain(FluidStack resource, boolean doDrain) {
-		if (resource.isFluidEqual(fluidInv)) {
-			return drain(resource.amount, doDrain);
-		}
-		
-		return null;
-	}
-
-	public boolean canFill(Fluid fluid) {
-		return fluidInv.getFluid().equals(fluid);
 	}
 
 }

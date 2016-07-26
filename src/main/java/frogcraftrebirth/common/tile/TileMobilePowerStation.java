@@ -136,8 +136,12 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		energy = tag.getInteger("charge");
 		energyMax = tag.getInteger("maxCharge");
 		tier = tag.getInteger("tier");
-		owner = UUID.fromString(tag.getString("owner"));
 		inv.deserializeNBT(tag.getCompoundTag("inv"));
+		try {
+			owner = UUID.fromString(tag.getString("owner"));
+		} catch (IllegalArgumentException e) {
+			owner = null;
+		}
 	}
 	
 	@Override
@@ -146,7 +150,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		tag.setInteger("maxCharge", energyMax);
 		tag.setInteger("tier", tier);
 		tag.setTag("inv", inv.serializeNBT());
-		tag.setString("owner", owner.toString());
+		tag.setString("owner", owner != null ? owner.toString() : "NULL");
 	}
 
 	@Override

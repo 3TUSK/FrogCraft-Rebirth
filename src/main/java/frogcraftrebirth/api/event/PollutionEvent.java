@@ -1,6 +1,6 @@
 package frogcraftrebirth.api.event;
 
-import frogcraftrebirth.common.tile.IPollutionSource;
+import frogcraftrebirth.api.pollution.IPollutionSource;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.Event;

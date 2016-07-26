@@ -1,5 +1,8 @@
 package frogcraftrebirth.common.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.UUID;
 
 import frogcraftrebirth.api.mps.IMobilePowerStation;
@@ -17,6 +20,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileMobilePowerStation extends TileFrog implements ITickable, IEnergySource, IMobilePowerStation {
@@ -86,6 +91,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 			ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
 		}
 		
+		this.sendTileUpdatePacket(this);
 		this.markDirty();
 	}
 	
@@ -98,6 +104,31 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		saveDataTo(tag);
 		return super.writeToNBT(tag);
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		output.writeInt(energy);
+		output.writeInt(energyMax);
+		output.writeInt(tier);
+	}
+
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		energy = input.readInt();
+		energyMax = input.readInt();
+		tier = input.readInt();
+	}
+	
+	
+	public int getCurrentEnergy() {
+		return this.energy;
+	}
+	
+	public int getCurrentEnergyCapacity() {
+		return this.energyMax;
 	}
 	
 	@Override

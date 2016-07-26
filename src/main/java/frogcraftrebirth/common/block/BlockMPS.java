@@ -61,22 +61,16 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		IBlockState finalState = this.getDefaultState();
+		float ratio = 0F;
 		if (tile instanceof TileMobilePowerStation) {
-			float ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
-			finalState.withProperty(LEVEL, ratio > 5 ? 5 : (int)ratio);
+			ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
 		}
-		return finalState;
-	}
-	
-	@Override
-	public int getLightValue(IBlockState state) {
-		return state.getValue(LEVEL);
+		return state.withProperty(LEVEL, ratio >= 5F ? 5 : (int)ratio);
 	}
 	
 	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation){		
+		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation) {		
 			if (stack.getTagCompound() != null) {
 				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
 				tile.loadDataFrom(stack.getTagCompound());

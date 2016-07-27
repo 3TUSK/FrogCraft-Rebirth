@@ -13,8 +13,8 @@ public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation> {
 		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 20, 20));
 		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 38, 20));
 		this.addSlotToContainer(new SlotItemHandler(tile.inv, 2, 56, 20));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 3, 113, 24));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 4, 113, 42));
+		this.addSlotToContainer(new SlotCharger(tile.inv, 3, 113, 24));
+		this.addSlotToContainer(new SlotDischarger(tile.inv, 4, 113, 42));
 		this.registerPlayerInventory(playerInv);
 	}
 

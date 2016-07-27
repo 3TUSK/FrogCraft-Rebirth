@@ -20,8 +20,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TilePyrolyzer extends TileEnergySink {
 
-	// 0 input 1 output 2 fluidContainer input 3 fluidContainer output
-	private final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
+	private static final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
 	
 	public final ItemStackHandler inv = new ItemStackHandler(4);
 	protected FrogFluidTank tank = new FrogFluidTank(16000);
@@ -56,7 +55,6 @@ public class TilePyrolyzer extends TileEnergySink {
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
-				this.markDirty();
 			} else {
 				return;
 			}
@@ -69,11 +67,10 @@ public class TilePyrolyzer extends TileEnergySink {
 			pyrolyze();
 			process = 0;
 			this.processMax = 0;
-			this.markDirty();
 			working = false;
 		}
 		
-		if (inv.getStackInSlot(0) == null)
+		if (inv.getStackInSlot(INPUT_F) == null)
 			return;
 		
 		if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
@@ -86,6 +83,7 @@ public class TilePyrolyzer extends TileEnergySink {
 		}
 		
 		this.sendTileUpdatePacket(this);
+		this.markDirty();
 	}
 	
 	private boolean canWork(PyrolyzerRecipe recipe) {
@@ -127,12 +125,20 @@ public class TilePyrolyzer extends TileEnergySink {
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
 		tank.readPacketData(input);
+		working = input.readBoolean();
+		charge = input.readInt();
+		process = input.readInt();
+		processMax = input.readInt();
 	}
 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
 		tank.writePacketData(output);
+		output.writeBoolean(working);
+		output.writeInt(charge);
+		output.writeInt(process);
+		output.writeInt(processMax);
 	}
 
 	@Override
@@ -142,10 +148,8 @@ public class TilePyrolyzer extends TileEnergySink {
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
-		if (recipe != null) {
-			NBTTagCompound item = recipe.getInput().writeToNBT(new NBTTagCompound());
-			tag.setTag("recipeInput", item);
-		}
+		if (recipe != null)
+			tag.setTag("recipeInput", recipe.getInput().writeToNBT(new NBTTagCompound()));
 		return super.writeToNBT(tag);
 	}
 

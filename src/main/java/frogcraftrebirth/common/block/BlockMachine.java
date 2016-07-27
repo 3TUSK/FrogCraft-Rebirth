@@ -44,12 +44,15 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 		switch (meta & 0b11) { //AirPump has no item storage capability, so meta & 3 = 1 is omitted here
 			case 0: {
 				ItemUtil.dropInventroyItems(worldIn, pos, ((TileAdvChemReactor)worldIn.getTileEntity(pos)).inv);
+				break;
 			}
 			case 2: {
 				ItemUtil.dropInventroyItems(worldIn, pos, ((TilePyrolyzer)worldIn.getTileEntity(pos)).inv);
+				break;
 			}
 			case 3: {
 				ItemUtil.dropInventroyItems(worldIn, pos, ((TileLiquefier)worldIn.getTileEntity(pos)).inv);
+				break;
 			}
 			default: 
 				break;

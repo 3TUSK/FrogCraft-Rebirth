@@ -14,6 +14,7 @@ import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
+import frogcraftrebirth.client.gui.GuiLiquefier;
 import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
@@ -22,6 +23,7 @@ import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
+import frogcraftrebirth.common.gui.ContainerLiquefier;
 import frogcraftrebirth.common.gui.ContainerMPS;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
@@ -31,6 +33,7 @@ import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
+import frogcraftrebirth.common.tile.TileLiquefier;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.entity.player.EntityPlayer;
@@ -72,6 +75,8 @@ public class FrogGuiHandler implements IGuiHandler {
 					return new ContainerAirPump(player.inventory, (TileAirPump)aTile);
 				if (aTile instanceof TilePyrolyzer)
 					return new ContainerPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
+				if (aTile instanceof TileLiquefier)
+					return new ContainerLiquefier(player.inventory, (TileLiquefier)aTile);
 			}
 			default : {
 				return null;
@@ -110,6 +115,8 @@ public class FrogGuiHandler implements IGuiHandler {
 					return new GuiAirPump(player.inventory, (TileAirPump)aTile);
 				if (aTile instanceof TilePyrolyzer)
 					return new GuiPyrolyzer(player.inventory, (TilePyrolyzer)aTile);
+				if (aTile instanceof TileLiquefier)
+					return new GuiLiquefier(player.inventory, (TileLiquefier)aTile);
 			}
 			default : {
 				return null;

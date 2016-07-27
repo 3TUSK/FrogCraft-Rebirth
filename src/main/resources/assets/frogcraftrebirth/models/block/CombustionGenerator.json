@@ -2,8 +2,8 @@
 	"parent": "block/cube",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/CombustionFurnace_Front",
-		"down": "frogcraftrebirth:blocks/CombustionFurnace_Top",
-		"up": "frogcraftrebirth:blocks/CombustionFurnace_Top",
+		"down": "frogcraftrebirth:blocks/IndustrialDevice_Top",
+		"up": "frogcraftrebirth:blocks/IndustrialDevice_Top",
 		"north": "frogcraftrebirth:blocks/CombustionFurnace_Front",
 		"east": "frogcraftrebirth:blocks/CombustionFurnace_Side",
 		"south": "frogcraftrebirth:blocks/CombustionFurnace_Back",

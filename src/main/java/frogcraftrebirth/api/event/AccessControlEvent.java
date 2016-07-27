@@ -8,23 +8,28 @@ import net.minecraftforge.fml.common.eventhandler.Event.HasResult;
 
 @Cancelable
 @HasResult
-public class PersonalizationEvent extends Event {
+public class AccessControlEvent extends Event {
 
 	public final IPersonal tile;
 	public final EntityPlayer player;
 
-	public PersonalizationEvent(IPersonal tile, EntityPlayer player) {
+	public AccessControlEvent(IPersonal tile, EntityPlayer player) {
 		this.tile = tile;
 		this.player = player;
 	}
+	
+	@HasResult
+	public static class Activate extends AccessControlEvent {
+		public Activate(IPersonal tile, EntityPlayer player) {
+			super(tile, player);
+		}	
+	}
 
 	@HasResult
-	public class DispersonalizationEvent extends PersonalizationEvent {
-
-		public DispersonalizationEvent(IPersonal tile, EntityPlayer player) {
+	public static class Deactivate extends AccessControlEvent {
+		public Deactivate(IPersonal tile, EntityPlayer player) {
 			super(tile, player);
 		}
-
 	}
 
 }

@@ -5,7 +5,7 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.api.event.PersonalizationEvent;
+import frogcraftrebirth.api.event.AccessControlEvent;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.ITileEntityProvider;
@@ -79,7 +79,7 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
 				tile.loadDataFrom(stack.getTagCompound());
 				if (tile.getOwnerUUID() == null && placer instanceof EntityPlayer)
-					MinecraftForge.EVENT_BUS.post(new PersonalizationEvent(tile, (EntityPlayer)placer));
+					MinecraftForge.EVENT_BUS.post(new AccessControlEvent.Activate(tile, (EntityPlayer)placer));
 			}
 		}
 	}

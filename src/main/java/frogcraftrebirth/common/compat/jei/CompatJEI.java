@@ -10,10 +10,12 @@ package frogcraftrebirth.common.compat.jei;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
+import frogcraftrebirth.client.gui.GuiMPS;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 
 @JEIPlugin
 public class CompatJEI implements IModPlugin, ICompatModuleFrog {
@@ -32,6 +34,8 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 		//registry.addRecipeCategories(new CategoryChemReaction());
 		//registry.addRecipeCategories(new CategoryCondensation());
 		//registry.addRecipeCategories(new CategoryPyrolyzation());
+		
+		registry.addRecipeClickArea(GuiMPS.class, 39, 47, 24, 16, VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
 	}
 
 	@Override

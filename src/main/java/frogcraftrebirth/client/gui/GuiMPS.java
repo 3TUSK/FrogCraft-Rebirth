@@ -21,7 +21,7 @@ public class GuiMPS extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRendererObj.drawString(I18n.format("gui.MPS.title"), 8, ySize - 170, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("gui.MPS.title"), 8, ySize - 160, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
 	}
 

@@ -1,7 +1,7 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"partical": "frogcraftrebirth:blocks/UHSU_Side",
+		"particle": "frogcraftrebirth:blocks/UHSU_Side",
 		"down": "frogcraftrebirth:blocks/UHSU_Side",
 		"up": "frogcraftrebirth:blocks/UHSU_Side",
 		"north": "frogcraftrebirth:blocks/UHSU_Front",

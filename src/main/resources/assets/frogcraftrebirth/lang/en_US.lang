@@ -132,8 +132,8 @@ tile.condenseTower.core.name=Condense Tower
 tile.condenseTower.output.name=Liquid Outlet
 tile.condenseTower.cylinder.name=Condense Tower Wall
 
-tile.hybridStorageUnit.HSU.name=Hybrid Storage Unit
-tile.hybridStorageUnit.UHSU.name=Ultimate Hybrid Storage Unit
+tile.hybridStorageUnit.normal.name=Hybrid Storage Unit (HSU)
+tile.hybridStorageUnit.ultra.name=Ultimate Hybrid Storage Unit (UHSU)
 
 tile.hybridStorageUnit.EVT.name=EV Transformer
 
@@ -174,8 +174,13 @@ achievement.condensetower2.desc=You have learnt how to seperate liquid mixtures
 achievement.suicideExpert=Suicide Expert
 achievement.suicideExpert.desc=Potassium plus acid equals explosion!
 
-gui.hybridEStorage.current=Power level: 
-gui.hybridEStorage.max=Max power level: 
+gui.HSU.normal.title=HSU
+gui.HSU.ultra.title=UHSU
+gui.HSU.percent=Percentage: %.2f%%
+gui.HSU.store=EU: %d 
+gui.HSU.max=Max. EU: %d  
+gui.HSU.output=Output: %d EU/tick
+
 gui.pyrolyzer.title=Pyrolyzer
 gui.MPS.title=Mobile Power Supply
 

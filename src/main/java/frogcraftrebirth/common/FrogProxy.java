@@ -60,10 +60,10 @@ public class FrogProxy implements IGuiHandler {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch(id) {
 			case 1: {
-				if (aTile instanceof TileHSU)
-					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
 				if (aTile instanceof TileHSUUltra)
 					return new ContainerHybridEStorage(player.inventory, (TileHSUUltra)aTile);
+				if (aTile instanceof TileHSU)
+					return new ContainerHybridEStorage(player.inventory, (TileHSU)aTile);
 			}
 			case 2: {
 				if (aTile instanceof TileCondenseTower)
@@ -98,10 +98,10 @@ public class FrogProxy implements IGuiHandler {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
 		switch (ID) {
 			case 1: {
-				if (aTile instanceof TileHSU)
-					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
 				if (aTile instanceof TileHSUUltra)
 					return new GuiHybridEStorage(player.inventory, (TileHSUUltra)aTile);
+				if (aTile instanceof TileHSU)
+					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
 			}
 			case 2: {
 				if (aTile instanceof TileCondenseTower)

@@ -33,26 +33,21 @@ public class TileHSU extends TileEnergyStorage implements ITickable {
 		}
 		
 		if (inv.getStackInSlot(0) != null && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
-			ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
+			this.storedE -= ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		}
 		
-		this.markDirty();
+		sendTileUpdatePacket(this);	
+		markDirty();
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		this.storedE = tag.getInteger("charge");
-		this.maxE = tag.getInteger("maxCharge");
-		this.output = tag.getInteger("output");
 		inv.deserializeNBT(tag.getCompoundTag("inv"));
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		tag.setInteger("charge", storedE);
-		tag.setInteger("maxCharge", maxE);
-		tag.setInteger("output", output);
 		tag.setTag("inv", inv.serializeNBT());
 		return super.writeToNBT(tag);
 	}

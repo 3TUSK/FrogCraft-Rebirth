@@ -1,5 +1,9 @@
 package frogcraftrebirth.common.lib.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -9,16 +13,18 @@ import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.tile.IEnergyStorage;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
 public abstract class TileEnergyStorage extends TileFrog implements ITickable, IEnergySink, IEnergySource, IEnergyStorage {
 
 	public EnumFacing emitDir;
-	public int storedE, maxE, output;
+	public int storedE, maxE, output, tier;
 	protected boolean loaded = false;
 	protected final boolean usableForTp;
-	protected final int tier;
 	
 	public TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
 		this.storedE = 0;
@@ -44,6 +50,39 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 			this.loaded = true;
 		}
 		this.emitDir = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_ALL);
+	}
+	
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		this.storedE = tag.getInteger("charge");
+		this.maxE = tag.getInteger("maxCharge");
+		this.output = tag.getInteger("output");
+	}
+	
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		tag.setInteger("charge", storedE);
+		tag.setInteger("maxCharge", maxE);
+		tag.setInteger("output", output);
+		return super.writeToNBT(tag);
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		output.writeInt(this.storedE);
+		output.writeInt(this.maxE);
+		output.writeInt(this.output); //not the OutputStream, but the EU output per tick.
+		output.writeInt(this.tier);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		this.storedE = input.readInt();
+		this.maxE = input.readInt();
+		this.output = input.readInt();
+		this.tier = input.readInt();
 	}
 	
 	@Override

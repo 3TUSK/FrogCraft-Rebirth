@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.event.AccessControlEvent;
+import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.ITileEntityProvider;
@@ -64,12 +65,16 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		TileEntity tile = worldIn.getTileEntity(pos);
-		float ratio = 0F;
-		if (tile instanceof TileMobilePowerStation) {
-			ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
+		try {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			float ratio = 0F;
+			if (tile instanceof TileMobilePowerStation) {
+				ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
+			}
+			return state.withProperty(LEVEL, ratio >= 5F ? 5 : (int)ratio);
+		} catch (Exception e) {
+			return state.withProperty(LEVEL, 0);
 		}
-		return state.withProperty(LEVEL, ratio >= 5F ? 5 : (int)ratio);
 	}
 	
 	@Override
@@ -107,12 +112,12 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(LEVEL);
+		return 0;
 	}
 	
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(LEVEL, meta);
+		return this.getDefaultState();
 	}
 	
 	@Override
@@ -132,8 +137,24 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 	
 	@Override
+	public EnumFacing getFacing(World world, BlockPos pos) {
+		return EnumFacing.UP;
+	}
+	
+	@Override
+	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
+		return false;
+	}
+	
+	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		return new java.util.ArrayList<ItemStack>();
+		ItemStack stack = new ItemStack(this, 1, 0);
+		stack.setTagCompound(new NBTTagCompound());
+		if (te instanceof TileMobilePowerStation)
+			((TileMobilePowerStation)te).saveDataTo(stack.getTagCompound());
+		else
+			ItemMPS.normalize(stack);
+		return java.util.Arrays.<ItemStack>asList(stack);
 	}
 
 }

@@ -37,11 +37,12 @@ public class FrogEventListener {
 	@SubscribeEvent
 	public void onCrafting(ItemCraftedEvent event) {
 		ItemStack crafted = event.crafting;
+		int meta = crafted.getMetadata();
 		if (crafted.getItem() instanceof ItemBlock) {
 			Block block = ((ItemBlock)crafted.getItem()).block;
 			
 			if (block == FrogBlocks.machines)
-				switch (block.getMetaFromState(block.getBlockState().getBaseState()) & 0b11) {
+				switch (meta & 0b11) {
 					case 0: {
 						event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
 						return;
@@ -57,12 +58,12 @@ public class FrogEventListener {
 				}
 			
 			if (block == FrogBlocks.condenseTowerPart)
-				if ((block.getMetaFromState(block.getBlockState().getBaseState()) & 0b11) == 0) {
+				if ((meta & 0b11) == 0) {
 					event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
 					return;
 				}
 			if (block == FrogBlocks.hybridStorageUnit)
-				switch (block.getMetaFromState(block.getBlockState().getBaseState()) % 2) {
+				switch (meta % 2) {
 					case 0: {
 						event.player.addStat(FrogAchievements.HSU.get());
 						return;

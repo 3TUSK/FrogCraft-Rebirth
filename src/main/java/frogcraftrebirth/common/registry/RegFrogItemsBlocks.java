@@ -41,18 +41,10 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RegFrogItemsBlocks {
 	
-	public static void preInit() {
+	public static void init() {
 		initBlocks();
 		initItems();
 		initTileEntity();
-	}
-	
-	public static void init() {
-		//NOTHING
-	}
-	
-	public static void postInit() {
-		// NOTHING
 	}
 	
 	static void initBlocks() {

@@ -1,7 +1,10 @@
 package frogcraftrebirth.common.tile;
 
-import static frogcraftrebirth.common.lib.config.ConfigMain.airPumpGenerateSpeed;
-import static frogcraftrebirth.common.lib.config.ConfigMain.airPumpPowerRate;
+import frogcraftrebirth.common.lib.config.ConfigMain;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 import frogcraftrebirth.api.tile.IAirPump;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -13,17 +16,20 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAirPump {
 	
 	private static final int MAX_AIR = 1000;
+	private static final int MAX_CHARGE = 10000;
 	
-	public int charge, maxCharge;
+	public int charge;
 	private int airAmount, tick;
 	private boolean isInENet;
 	
 	public TileAirPump() {
-		this.maxCharge = 10000;
+
 	}
 	
 	public void invalidate() {
@@ -36,7 +42,8 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) return;
+		if (worldObj.isRemote)
+			return;
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
@@ -45,19 +52,21 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 		if (this.worldObj.isBlockIndirectlyGettingPowered(this.pos) != 0)
 			return;
 		
-		if (this.charge <= 0 || this.charge < airPumpPowerRate)
+		if (this.charge < ConfigMain.airPumpPowerRate)
 			return;
+		
 		if (airAmount >= MAX_AIR) {
 			this.airAmount = MAX_AIR;
 			return;
 		}
 		
-		this.charge-=airPumpPowerRate;
+		this.charge -= ConfigMain.airPumpPowerRate;
 		this.tick++;
 		if (tick == 4) {
-			this.airAmount+=airPumpGenerateSpeed;
+			this.airAmount += ConfigMain.airPumpGenerateSpeed;
 			tick = 0;
 		}
+		this.sendTileUpdatePacket(this);
 		this.markDirty();
 	}
 	
@@ -74,6 +83,21 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 		tag.setInteger("tick", this.tick);
 		return super.writeToNBT(tag);
 	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		output.writeInt(charge);
+		output.writeInt(airAmount);
+		output.writeInt(tick);
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		this.charge = input.readInt();
+		this.airAmount = input.readInt();
+		this.tick = input.readInt();
+	}
 
 	@Override
 	public boolean acceptsEnergyFrom(IEnergyEmitter emitter, EnumFacing direction) {
@@ -82,19 +106,19 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 
 	@Override
 	public double getDemandedEnergy() {
-		return this.maxCharge - this.charge;
+		return MAX_CHARGE - this.charge;
 	}
 
 	@Override
 	public int getSinkTier() {
-		return 2;
+		return 1;
 	}
 
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.charge += amount;
-		if (this.charge >= maxCharge)
-			this.charge = maxCharge;
+		if (this.charge >= MAX_CHARGE)
+			this.charge = MAX_CHARGE;
 		return 0;	
 	}
 
@@ -104,10 +128,17 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	}
 
 	@Override
-	public void extractAir(EnumFacing from, int amount, boolean simluated) {
-		if (simluated) return;
-		this.airAmount -= amount;
-		if (airAmount < 0) this.airAmount = 0;
+	public int extractAir(EnumFacing from, int amount, boolean simluated) {
+		if (amount > this.airAmount) {
+			int toReturn = this.airAmount;
+			if (!simluated)
+				this.airAmount = 0;
+			return toReturn;
+		} else {
+			if (!simluated)
+				this.airAmount -= amount;
+			return amount;
+		}
 	}
 	
 	public void setAirAmount(int amount) {

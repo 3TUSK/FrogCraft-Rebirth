@@ -6,6 +6,6 @@ public interface IAirPump {
 
 	int airAmount();
 
-	void extractAir(EnumFacing from, int amount, boolean simluated);
+	int extractAir(EnumFacing from, int amount, boolean simluated);
 
 }

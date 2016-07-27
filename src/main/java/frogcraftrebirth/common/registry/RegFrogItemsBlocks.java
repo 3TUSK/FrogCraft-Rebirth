@@ -82,7 +82,7 @@ public class RegFrogItemsBlocks {
 			return "combustionFurnace";
 		}));
 		ItemFrogBlock.registerItemBlockFor(FrogBlocks.hybridStorageUnit, new ItemFrogBlock(FrogBlocks.hybridStorageUnit, (ItemStack aStack) -> {
-			return BlockHSU.Level.values()[aStack.getMetadata() / 6].getName();
+			return BlockHSU.Level.values()[aStack.getMetadata() % 2].getName();
 		}));
 		ItemFrogBlock.registerItemBlockFor(FrogBlocks.machines, new ItemFrogBlock(FrogBlocks.machines, (ItemStack aStack) -> {
 			return BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName();

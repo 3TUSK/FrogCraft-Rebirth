@@ -109,23 +109,26 @@ item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
 item.Item_Ingots.CoalCokeShattered=Kokskohlefragmente
 item.Item_Ingots.CoalCokeShattered.info=Effizienter Treibstoff~
 item.Item_Ingots.Briquette=Brikett
-item.Item_Ingots.Briquette.info=Chinese style
+#item.Item_Ingots.Briquette.info=Chinese style
 #item.Item_Ingots.ingotDesc=But it's not always real ingot
 #item.Item_Ingots.nghDesc=It is believed as useful fuel...
 
 #Blocks
-tile.inductionalMachine.Compressor.name=Industrieller Kompressor
-tile.inductionalMachine.Macerator.name=Industrieller Zerkleinerer
-tile.inductionalMachine.Extractor.name=Industrieller Extraktor
-tile.inductionalMachine.Furnance.name=Industrieller Ofen
+tile.mineral.carnallite.name=Carnallit
+tile.mineral.fluorapatite.name=Fluorapatit
+#tile.mineral.dewalquite.name=Dewalquite Ore
 
-tile.multiBlockMachine.CondenseTower.Core.name=Kondensationsturm
-tile.multiBlockMachine.CondenseTower.FluidOutput.name=Flüssigkeitsabfluss
-tile.multiBlockMachine.CondenseTower.Cylinder.name=Kondensationsturmwand
-tile.multiBlockMachine.Liquifier.name=Verflüssiger
+#tile.tiberium_crystal.red.name=Tiberium (Red)
+#tile.tiberium_crystal.blue.name=Tiberium (Blue)
+#tile.tiberium_crystal.green.name=Tiberium (Green)
 
-tile.hybridStorageUnit.HSU.name=Hybrid-Speichereinheit
-tile.hybridStorageUnit.UHSU.name=Ultimative Hybrid-Speichereinheit
+tile.condenseTower.core.name=Kondensationsturm
+tile.condenseTower.output.name=Flüssigkeitsabfluss
+tile.condenseTower.cylinder.name=Kondensationsturmwand
+
+tile.hybridStorageUnit.normal.name=Hybrid-Speichereinheit
+tile.hybridStorageUnit.ultra.name=Ultimative Hybrid-Speichereinheit
+
 tile.hybridStorageUnit.EVT.name=ES-Transformator
 
 tile.academyWindmill.Turbine.name=Academic City Windmühlgenerator
@@ -135,15 +138,12 @@ tile.generator.CombustionFurnace.name=Verbrennungsofen
 
 tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 
-tile.machines.AdvChemReactor.name=Fortgeschrittener Chemischer Reaktor
-tile.machines.AirPump.name=Industrielle Pumpe
-tile.machines.Pyrolyzer.name=Pyrolyzer
+tile.machines.advchemreactor.name=Fortgeschrittener Chemischer Reaktor
+tile.machines.airpump.name=Industrielle Pumpe
+tile.machines.pyrolyzer.name=Pyrolyzer
+tile.machines.liquefier.name=Verflüssiger
 
 #tile.Machines.AutoWorkBench.name=Auto-Werkbank
-
-tile.mineral.oreCarnallite.name=Carnallit
-tile.mineral.oreFluorapatite.name=Fluorapatit
-tile.mineral.oreDewalquite.name=Dewalquite Ore
 
 tile.nitricAcid.name=Nitric Acid
 

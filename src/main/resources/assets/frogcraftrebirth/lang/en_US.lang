@@ -120,28 +120,29 @@ item.tiberium.blue=Tiberium (Blue)
 item.tiberium.green=Tiberium (Green)
 
 #Blocks
+tile.mineral.carnallite.name=Carnallite Ore
+tile.mineral.dewalquite.name=Dewalquite Ore
+tile.mineral.fluorapatite.name=Fluorapatite Ore
+
 tile.tiberium_crystal.red.name=Tiberium (Red)
 tile.tiberium_crystal.blue.name=Tiberium (Blue)
 tile.tiberium_crystal.green.name=Tiberium (Green)
 
 tile.condenseTower.core.name=Condense Tower
 tile.condenseTower.output.name=Liquid Outlet
-tile.condenseTower.Conden.cylinder.name=Condense Tower Wall
+tile.condenseTower.cylinder.name=Condense Tower Wall
 
 tile.hybridStorageUnit.HSU.name=Hybrid Storage Unit
 tile.hybridStorageUnit.UHSU.name=Ultimate Hybrid Storage Unit
+
 tile.hybridStorageUnit.EVT.name=EV Transformer
 
-tile.generator.CombustionFurnace.name=Combustion Furnace
+tile.generator.combustionFurnace.name=Combustion Furnace
 
 tile.machines.advchemreactor.name=Advanced Chemical Reactor
 tile.machines.airpump.name=Industrial Air Pump
 tile.machines.pyrolyzer.name=Pyrolyzer
 tile.machines.liquefier.name=Liquefier
-
-tile.mineral.carnallite.name=Carnallite Ore
-tile.mineral.dewalquite.name=Dewalquite Ore
-tile.mineral.fluorapatite.name=Fluorapatite Ore
 
 tile.nitricAcid.name=Nitric Acid
 

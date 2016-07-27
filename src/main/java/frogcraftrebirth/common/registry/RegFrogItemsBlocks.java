@@ -38,7 +38,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class RegFrogItemsBlocks {
 	
@@ -49,7 +48,7 @@ public class RegFrogItemsBlocks {
 	}
 	
 	public static void init() {
-		initOreDict();
+		//NOTHING
 	}
 	
 	public static void postInit() {
@@ -129,23 +128,6 @@ public class RegFrogItemsBlocks {
 		GameRegistry.<Item>register(FrogItems.ionCannonFrame);
 		GameRegistry.<Item>register(FrogItems.jinkela);
 		GameRegistry.<Item>register(FrogItems.tiberium);
-	}
-	
-	static void initOreDict() {
-		OreDictionary.registerOre("railgun", FrogItems.ionCannon);
-		OreDictionary.registerOre("jinkela", FrogItems.jinkela);
-		
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 0));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 1));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogItems.tiberium, 1, 2));
-		OreDictionary.registerOre("crystalTiberiumRed", new ItemStack(FrogItems.tiberium, 1, 0));
-		OreDictionary.registerOre("crystalTiberiumBlue", new ItemStack(FrogItems.tiberium, 1, 1));
-		OreDictionary.registerOre("crystalTiberiumGreen", new ItemStack(FrogItems.tiberium, 1, 2));
-		
-		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 0));
-		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 1));
-		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogBlocks.frogOres, 1, 2));
-		
 	}
 	
 	static void initTileEntity() {

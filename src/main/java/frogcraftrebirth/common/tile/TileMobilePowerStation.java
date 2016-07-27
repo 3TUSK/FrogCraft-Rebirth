@@ -35,7 +35,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	public int energy;
 	
 	protected int energyMax = 60000;
-	protected int tier;
+	protected int tier = 1;
 	
 	private UUID owner;
 	
@@ -65,13 +65,13 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		}
 		//Check storage upgrade, if pass, increase energy capacity
 		if (inv.getStackInSlot(UPGRADE_STORAGE) != null) {
-			energyMax += MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
+			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
 		} else {
 			energyMax = 60000;
 		}
 		//Check transformer upgrade, if pass, increase voltage level
 		if (inv.getStackInSlot(UPGRADE_VOLTAGE) != null) {
-			tier += MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
+			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
 		} else {
 			tier = 1;
 		}
@@ -83,11 +83,11 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		if (energy > energyMax && worldObj.rand.nextInt(10) == 1)
 			energy = energyMax;
 		//Extract energy from charge-in slot
-		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
+		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {
 			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), tier * 32, getSourceTier(), true, false, false);
 		}
 		//Offer energy to item that is in charge-out slot
-		if (inv.getStackInSlot(CHARGE_OUT) != null && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
+		if (inv.getStackInSlot(CHARGE_OUT) != null && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
 			ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
 		}
 		
@@ -111,6 +111,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		output.writeInt(energy);
 		output.writeInt(energyMax);
 		output.writeInt(tier);
+		output.writeUTF(owner.toString());
 	}
 
 
@@ -120,6 +121,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		energy = input.readInt();
 		energyMax = input.readInt();
 		tier = input.readInt();
+		owner = UUID.fromString(input.readUTF());
 	}
 	
 	
@@ -138,7 +140,8 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 		tier = tag.getInteger("tier");
 		inv.deserializeNBT(tag.getCompoundTag("inv"));
 		try {
-			owner = UUID.fromString(tag.getString("owner"));
+			String uuid = tag.getString("owner");
+			owner = UUID.fromString(uuid);
 		} catch (IllegalArgumentException e) {
 			owner = null;
 		}

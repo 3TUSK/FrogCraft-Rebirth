@@ -8,8 +8,8 @@
  */
 package frogcraftrebirth.api.mps;
 
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,22 +20,25 @@ public enum MPSUpgradeManager {
 	
 	INSTANCE;
 	
-	private Set<ItemStack> validSolarUpgrades = new HashSet<ItemStack>();
+	private Set<ItemStack> validSolarUpgrades = new LinkedHashSet<ItemStack>();
 	
-	private Map<ItemStack, Integer> validStorageUpgrades = new HashMap<ItemStack, Integer>();
+	private Map<ItemStack, Integer> validStorageUpgrades = new LinkedHashMap<ItemStack, Integer>();
 	
-	private Map<ItemStack, Integer> validVoltageUpgrades = new HashMap<ItemStack, Integer>();
+	private Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<ItemStack, Integer>();
 	
 	public boolean isSolarUpgradeValid(ItemStack stack) { 
+		if (stack == null || stack.stackSize == 0)
+			return false;
 		for (ItemStack aStack : validSolarUpgrades) {
 			if (aStack.isItemEqual(stack))
 				return true;
 		}
-		
 		return false;
 	}
 	
 	public int getEnergyStoreIncreasementFrom(ItemStack stack) {
+		if (stack == null || stack.stackSize == 0)
+			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validStorageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack))
 				return entry.getValue();
@@ -44,6 +47,8 @@ public enum MPSUpgradeManager {
 	}
 	
 	public int getVoltageIncreasementFrom(ItemStack stack) {
+		if (stack == null || stack.stackSize == 0)
+			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validVoltageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack))
 				return entry.getValue();

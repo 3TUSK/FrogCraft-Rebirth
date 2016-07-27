@@ -9,12 +9,11 @@ public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation>{
 
 	public ContainerMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
 		super(playerInv, tile);
-		// TODO add x, y coordinate
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 0, 0));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 0, 0));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 2, 0, 0));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 3, 0, 0));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 4, 0, 0));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 20, 20));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 38, 20));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 2, 56, 20));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 3, 113, 24));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 4, 113, 42));
 		this.registerPlayerInventory(playerInv);
 	}
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.event.PersonalizationEvent;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
@@ -17,6 +18,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
@@ -80,6 +82,14 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 					MinecraftForge.EVENT_BUS.post(new PersonalizationEvent(tile, (EntityPlayer)placer));
 			}
 		}
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote) {
+			playerIn.openGui(FrogCraftRebirth.instance, 4, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
 	}
 	
 	@Override

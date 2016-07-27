@@ -4,12 +4,14 @@ import java.util.Map.Entry;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
+import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiAirPump;
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
+import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
@@ -18,6 +20,7 @@ import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerHybridEStorage;
+import frogcraftrebirth.common.gui.ContainerMPS;
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
@@ -33,7 +36,9 @@ import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
+import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
+import ic2.api.item.IC2Items;
 //import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -70,6 +75,10 @@ public class FrogProxy implements IGuiHandler {
 				if (aTile instanceof TileCombustionFurnace)
 					return new ContainerCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
 			}
+			case 4: {
+				if (aTile instanceof TileMobilePowerStation)
+					return new ContainerMPS(player.inventory, (TileMobilePowerStation)aTile);
+			}
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
 					return new ContainerAdvChemReactor(player.inventory, (TileAdvChemReactor)aTile);
@@ -103,6 +112,10 @@ public class FrogProxy implements IGuiHandler {
 			case 3: {
 				if (aTile instanceof TileCombustionFurnace)
 					return new GuiCombustionFurnace(player.inventory, (TileCombustionFurnace)aTile);
+			}
+			case 4: {
+				if (aTile instanceof TileMobilePowerStation)
+					return new GuiMPS(player.inventory, (TileMobilePowerStation)aTile);
 			}
 			case 5: {
 				if (aTile instanceof TileAdvChemReactor)
@@ -144,6 +157,9 @@ public class FrogProxy implements IGuiHandler {
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogItemsBlocks.postInit();
 		RegFrogRecipes.postInit();
+		
+		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
+		
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

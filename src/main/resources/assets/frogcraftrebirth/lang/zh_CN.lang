@@ -176,6 +176,7 @@ achievement.suicideExpert.desc=钾加酸等于爆炸
 gui.hybridEStorage.current=当前储存电量：
 gui.hybridEStorage.max=最大储存电量：
 gui.pyrolyzer.title=热裂解机
+gui.MPS.title=移动电源
 
 #NEI GUI texts
 nei.euTotal=总耗电量

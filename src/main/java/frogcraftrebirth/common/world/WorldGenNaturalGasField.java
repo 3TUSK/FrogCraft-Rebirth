@@ -8,6 +8,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 //import net.minecraft.world.biome.Biome;
+@Deprecated
 @SuppressWarnings("unused")
 public class WorldGenNaturalGasField extends FrogWorldGenerator{
 
@@ -32,7 +33,7 @@ public class WorldGenNaturalGasField extends FrogWorldGenerator{
 				Size size = m > 98 ? Size.LARGE : m > 95 ? Size.MEDIUM : m > 90 ? Size.SMALL : null;
 				if (size != null){
 					for (int n = -1; n > -9; n--) {
-						/* TODO Fix generator
+						/* Fix generator
 						if (vaildBlocks.contains(world.getBlock(x,y+n,z))) {
 							world.setBlock(x, y+n, z, block, meta, 3);
 						}
@@ -49,7 +50,6 @@ public class WorldGenNaturalGasField extends FrogWorldGenerator{
 		return true;
 	}
 	
-	//What.
 	private enum Size {
 		SMALL(12), MEDIUM(32), LARGE(72);
 		

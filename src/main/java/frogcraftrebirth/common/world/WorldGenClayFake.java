@@ -4,6 +4,7 @@ import java.util.Random;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -15,12 +16,10 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 
 	final int numberOfBlocks;
 
-	final Block block;
-	final int meta;
+	final IBlockState blockstate;
 
-	public WorldGenClayFake(Block block, int meta, int numberOfBlocks) {
-		this.block = block;
-		this.meta = meta;
+	public WorldGenClayFake(IBlockState blockstate, int numberOfBlocks) {
+		this.blockstate = blockstate;
 		this.numberOfBlocks = numberOfBlocks;
 	}
 
@@ -39,10 +38,9 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 					if (i1 * i1 + j1 * j1 <= i * i) {
 						for (int k1 = position.getY() - 1; k1 <= position.getY() + 1; ++k1) {
 							BlockPos blockpos = new BlockPos(k, k1, l);
-							Block block = worldIn.getBlockState(blockpos).getBlock();
-
-							if (block == Blocks.DIRT || block == Blocks.CLAY) {
-								worldIn.setBlockState(blockpos, this.block.getDefaultState(), 2);
+							Block target = worldIn.getBlockState(blockpos).getBlock();
+							if (target == Blocks.DIRT|| target == Blocks.CLAY) {
+								worldIn.setBlockState(blockpos, blockstate, 2);
 							}
 						}
 					}

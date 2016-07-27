@@ -16,6 +16,7 @@ import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.registry.RegFrogAchievements;
 import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import frogcraftrebirth.common.registry.RegFrogRecipes;
+import frogcraftrebirth.common.world.FrogWorldGenerator;
 import ic2.api.item.IC2Items;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
@@ -34,7 +35,7 @@ public class FrogProxy {
 		RegFrogItemsBlocks.init();
 		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
-		//GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 1);
+		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 3);
 		RegFrogAchievements.init();
 	}
 

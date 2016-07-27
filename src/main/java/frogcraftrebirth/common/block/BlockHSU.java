@@ -4,7 +4,6 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
-import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
 import net.minecraft.block.ITileEntityProvider;
@@ -39,12 +38,8 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 		if (worldIn.isRemote) {
 			return true;
 		} else {
-			TileEntity tile = worldIn.getTileEntity(pos);
-			if (tile instanceof TileEnergyStorage) {
-				if (tile instanceof TileHSU) {
-					playerIn.openGui(FrogCraftRebirth.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
-				}
-				return true;
+			if (worldIn.getTileEntity(pos) instanceof TileHSU) {
+				playerIn.openGui(FrogCraftRebirth.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			}
 		}
 		return false;
@@ -52,12 +47,13 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch ((int)(meta / 6)) {
+		switch (meta % 2) {
 			case 0: 
 				return new TileHSU();
 			case 1: 
 				return new TileHSUUltra();
-			default: return null;
+			default: 
+				return null;
 		}
 	}
 	

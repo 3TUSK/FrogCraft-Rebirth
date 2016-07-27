@@ -100,9 +100,9 @@ public class FrogProxy implements IGuiHandler {
 		switch (ID) {
 			case 1: {
 				if (aTile instanceof TileHSUUltra)
-					return new GuiHybridEStorage(player.inventory, (TileHSUUltra)aTile);
+					return new GuiHybridEStorage(player.inventory, (TileHSUUltra)aTile, true);
 				if (aTile instanceof TileHSU)
-					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile);
+					return new GuiHybridEStorage(player.inventory, (TileHSU)aTile, false);
 			}
 			case 2: {
 				if (aTile instanceof TileCondenseTower)

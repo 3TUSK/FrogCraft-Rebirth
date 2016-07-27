@@ -1,7 +1,6 @@
 package frogcraftrebirth;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogEventListener;
 import frogcraftrebirth.common.FrogIMCHanlder;
 import frogcraftrebirth.common.FrogProxy;
@@ -40,7 +39,6 @@ public class FrogCraftRebirth {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		FrogConfig.initConfig(event);
 		NetworkHandler.init();
 		proxy.preInit(event);
 	}

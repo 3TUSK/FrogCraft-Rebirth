@@ -25,6 +25,7 @@ import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
 import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
+import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.registry.RegFrogAchievements;
 import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
@@ -132,6 +133,7 @@ public class FrogProxy implements IGuiHandler {
 	}
 	
 	public void preInit(FMLPreInitializationEvent event) {
+		ConfigMain.init(event);
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
 		RegFrogItemsBlocks.preInit();
 		RegFluid.init();

@@ -20,7 +20,7 @@ public class ItemTiberium extends ItemFrogCraft {
 
 	public ItemTiberium() {
 		super(true);
-		this.setCreativeTab(FrogAPI.frogTab);
+		this.setCreativeTab(FrogAPI.TAB);
 		this.setMaxStackSize(16);
 		this.setUnlocalizedName("tiberium");
 		this.setSubNameArray("red", "blue", "green");

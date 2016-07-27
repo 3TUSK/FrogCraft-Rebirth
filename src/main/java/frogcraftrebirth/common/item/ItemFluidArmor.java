@@ -37,7 +37,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 	public ItemFluidArmor(int capacity) {
 		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);//0->cloth(leather) renderer; render stuff is WIP
 		setMaxStackSize(1);
-		setCreativeTab(FrogAPI.frogTab);
+		setCreativeTab(FrogAPI.TAB);
 		this.capacity = capacity;
 	}
 

@@ -29,7 +29,7 @@ public class BlockFluidFrog extends BlockFluidClassic {
 		this.setRegistryName(registryName);
 		GameRegistry.<Block>register(this);
 		fluid.setBlock(this);
-		ItemFrogBlock.registerItemBlockFor(this, new ItemBlock(this).setCreativeTab(FrogAPI.frogTab));
+		ItemFrogBlock.registerItemBlockFor(this, new ItemBlock(this).setCreativeTab(FrogAPI.TAB));
 	}
 
 }

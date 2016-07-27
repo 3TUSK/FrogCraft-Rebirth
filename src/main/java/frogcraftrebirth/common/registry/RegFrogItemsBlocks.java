@@ -103,7 +103,7 @@ public class RegFrogItemsBlocks {
 				return java.util.Arrays.asList("Unimplement yet");
 			}
 			
-		}.setUnlocalizedName("ionCannonFrame").setCreativeTab(FrogAPI.frogTab).setMaxStackSize(1).setRegistryName("ion_cannon_frame");
+		}.setUnlocalizedName("ionCannonFrame").setCreativeTab(FrogAPI.TAB).setMaxStackSize(1).setRegistryName("ion_cannon_frame");
 		FrogItems.jinkela = new ItemJinkela().setRegistryName("jinkela");
 		FrogItems.tiberium = new ItemTiberium().setRegistryName("tiberium");
 		

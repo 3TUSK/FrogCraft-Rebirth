@@ -39,7 +39,7 @@ public final class FrogAPI {
 
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 
-	public static final CreativeTabs frogTab = new CreativeTabs("FrogCraft") {
+	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public Item getTabIconItem() {
 			return FrogItems.jinkela;
@@ -47,6 +47,8 @@ public final class FrogAPI {
 	};
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
+	
+	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
 
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
@@ -55,9 +57,7 @@ public final class FrogAPI {
 	@Nonnull
 	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
 
-	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
-
-	// Awaitng GregTech
+	// Awaiting GregTech
 	// public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes =
 	// new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50),
 	// "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null,
@@ -87,7 +87,7 @@ public final class FrogAPI {
 	 * @param amount
 	 *            quantity of stack
 	 * @param damage
-	 * @return Your itemstack
+	 * @return Your item stack, maybe null.
 	 */
 	@Nullable
 	public static ItemStack findFrogItem(final String name, final int amount, final int meta) {

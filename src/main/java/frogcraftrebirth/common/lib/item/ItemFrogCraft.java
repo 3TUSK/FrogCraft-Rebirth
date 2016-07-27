@@ -16,7 +16,7 @@ public abstract class ItemFrogCraft extends Item {
 	protected String[] nameArray;
 
 	public ItemFrogCraft(boolean hasSubType){
-		this.setCreativeTab(FrogAPI.frogTab);
+		this.setCreativeTab(FrogAPI.TAB);
 		if (hasSubType) {
 			this.setMaxDamage(0);
 			this.setHasSubtypes(true);

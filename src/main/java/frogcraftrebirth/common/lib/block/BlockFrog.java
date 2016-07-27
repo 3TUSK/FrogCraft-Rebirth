@@ -31,7 +31,7 @@ public abstract class BlockFrog extends Block {
 	protected BlockFrog(Material material, String registryName, int... metaForDisplay) {
 		super(material);
 		setRegistryName(registryName);
-		setCreativeTab(FrogAPI.frogTab);
+		setCreativeTab(FrogAPI.TAB);
 		this.metaArrayForCreativeTab = metaForDisplay;
 	}
 	

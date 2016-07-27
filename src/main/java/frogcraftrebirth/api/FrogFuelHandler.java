@@ -34,7 +34,9 @@ public final class FrogFuelHandler implements IFuelHandler {
 	}
 
 	@Override
-	public int getBurnTime(ItemStack fuel) {
+	public int getBurnTime(@Nullable ItemStack fuel) {
+		if (fuel == null)
+			return 0;
 		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
 			if (fuel.isItemEqual(entry.getKey()))
 				return entry.getValue().intValue();

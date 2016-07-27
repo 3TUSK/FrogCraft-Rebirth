@@ -1,8 +1,13 @@
 package frogcraftrebirth.common.gui;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.network.IFrogPacket;
 import frogcraftrebirth.common.network.NetworkHandler;
+import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -40,19 +45,28 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	}
 	
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer player, int aSlot) {
+	public void detectAndSendChanges() {
+		super.detectAndSendChanges();
+		for (IContainerListener listener : listeners) {
+			if (listener instanceof EntityPlayerMP)
+				sendDataToClientSide(this, (EntityPlayerMP)listener);
+		}
+	}
+	
+	@Override
+	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
 		ItemStack itemstack = null;
-		Slot slot = (Slot) this.inventorySlots.get(aSlot);
+		Slot slot = this.inventorySlots.get(index);
 
 		if (slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (aSlot >= 0 && aSlot <= this.tileInvCount) {
-				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) { //question
+			if (index >= 0 && index <= this.tileInvCount) {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) {
 					return null;
 				}
-			} else if (aSlot > this.tileInvCount && aSlot < 27 + this.tileInvCount) {
+			} else if (index > this.tileInvCount && index < 27 + this.tileInvCount) {
 				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size() - 9, this.inventorySlots.size(), false)) {
 					return null;
 				}
@@ -85,7 +99,17 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		}
 	}
 
-	protected void sendDataToClientSide(IFrogPacket packet, EntityPlayerMP player) {
-		NetworkHandler.FROG_NETWORK.sendToPlayer(packet, player);
+	protected void sendDataToClientSide(ContainerTileFrog<?> container, EntityPlayerMP player) {
+		IFrogPacket pkt = new PacketFrog02GuiDataUpdate(container);
+		NetworkHandler.FROG_NETWORK.sendToPlayer(pkt, player);
 	}
+	
+	public void writeDataForSync(DataOutputStream output) throws IOException {
+		tile.writePacketData(output);
+	}
+
+	public void updateContainer(DataInputStream input) throws IOException {
+		tile.readPacketData(input);
+	}
+
 }

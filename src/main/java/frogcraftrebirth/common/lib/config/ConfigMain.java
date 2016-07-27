@@ -14,6 +14,8 @@ public class ConfigMain {
 	public static int combustionFurnacePowerRate;
 	
 	public static boolean enableTCAspect;
+
+	public static boolean enableAccessControl;
 	
 	public static void initMainConfig(File file) {
 		config = new Configuration(file);

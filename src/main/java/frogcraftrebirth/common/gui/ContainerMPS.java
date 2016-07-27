@@ -1,11 +1,12 @@
 package frogcraftrebirth.common.gui;
 
+import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation>{
+public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation> {
 
 	public ContainerMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
 		super(playerInv, tile);
@@ -19,7 +20,10 @@ public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation>{
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return true;
+		if (ConfigMain.enableAccessControl && tile instanceof TileMobilePowerStation)
+			return ((TileMobilePowerStation)tile).match(player.getUniqueID());
+		else
+			return true;
 	}
 
 }

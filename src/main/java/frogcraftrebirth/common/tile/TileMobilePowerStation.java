@@ -84,11 +84,11 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 			energy = energyMax;
 		//Extract energy from charge-in slot
 		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {
-			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), tier * 32, getSourceTier(), true, false, false);
+			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), 32, getSourceTier(), true, true, false);
 		}
 		//Offer energy to item that is in charge-out slot
 		if (inv.getStackInSlot(CHARGE_OUT) != null && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
-			ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
+			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
 		}
 		
 		this.sendTileUpdatePacket(this);

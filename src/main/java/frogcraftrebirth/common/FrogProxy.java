@@ -50,7 +50,9 @@ public class FrogProxy {
 
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogRecipes.postInit();
+		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
+		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		for (Entry<String, ICompatModuleFrog> module : FrogAPI.COMPATS.entrySet()) {
 			if (Loader.isModLoaded(module.getKey()))

@@ -8,14 +8,33 @@
  */
 package frogcraftrebirth.common.tile;
 
-import frogcraftrebirth.api.tile.ICondenseTowerStructure;
+import frogcraftrebirth.api.tile.ICondenseTowerCore;
+import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 
-public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerStructure {
+public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
 
+	private ICondenseTowerCore mainBlock;
+	
 	@Override
 	public void behave() {
 		
+	}
+
+	@Override
+	public void onConstruct(ICondenseTowerCore core) {
+		this.mainBlock = core;
+	}
+
+	@Override
+	public void onDestruct(ICondenseTowerCore core) {
+		this.mainBlock = null;
+		core.checkStructure();
+	}
+	
+	@Override
+	public ICondenseTowerCore getMainBlock() {
+		return mainBlock;
 	}
 
 }

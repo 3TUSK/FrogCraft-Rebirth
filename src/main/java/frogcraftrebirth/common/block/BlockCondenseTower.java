@@ -3,6 +3,7 @@ package frogcraftrebirth.common.block;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
+import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
@@ -39,7 +40,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta) {
+		switch (meta & 0b11) {
 			case 0:
 				return new TileCondenseTower();
 			case 1:
@@ -58,15 +59,20 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote)
-			return false;
-		else {
-			if (worldIn.getTileEntity(pos) instanceof TileFrog) {
-				playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
-				return true;
-			}
+		if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileFrog) {
+			playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			return true;
 		}
-		return false;
+		
+		return true;
+	}
+	
+	@Override
+	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof ICondenseTowerPart)
+			((ICondenseTowerPart)tile).onDestruct(((ICondenseTowerPart)tile).getMainBlock());
+		super.breakBlock(worldIn, pos, state);
 	}
 	
 	@Override

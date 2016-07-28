@@ -4,6 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -15,6 +16,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 
 public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch {
 
+	private ICondenseTowerCore mainBlock;
+	
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 
 	@Override
@@ -39,6 +42,26 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
 		tank.writePacketData(output);
+	}
+	
+	@Override
+	public void behave() {
+		
+	}
+	
+	@Override
+	public void onConstruct(ICondenseTowerCore core) {
+		this.mainBlock = core;
+	}
+
+	@Override
+	public void onDestruct(ICondenseTowerCore core) {
+		this.mainBlock = null;
+		core.checkStructure();
+	}
+	
+	public ICondenseTowerCore getMainBlock() {
+		return mainBlock;
 	}
 
 	@Override

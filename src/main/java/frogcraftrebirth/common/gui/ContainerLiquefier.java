@@ -10,12 +10,14 @@ package frogcraftrebirth.common.gui;
 
 import frogcraftrebirth.common.tile.TileLiquefier;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerLiquefier extends ContainerTileFrog<TileLiquefier> {
 
 	public ContainerLiquefier(InventoryPlayer playerInv, TileLiquefier tile) {
 		super(playerInv, tile);
-
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 113, 21));
+		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 113, 56));
 		this.registerPlayerInventory(playerInv);
 	}
 

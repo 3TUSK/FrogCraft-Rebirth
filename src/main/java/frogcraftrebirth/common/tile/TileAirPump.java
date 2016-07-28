@@ -1,12 +1,12 @@
 package frogcraftrebirth.common.tile;
 
+import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.api.tile.IAirPump;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;

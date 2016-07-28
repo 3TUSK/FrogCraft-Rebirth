@@ -1,5 +1,8 @@
 package frogcraftrebirth.common.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -15,46 +18,54 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
-	protected FrogFluidTank tank = new FrogFluidTank(8000);
-	private boolean structureCompleted = false;
-	public int tick;
-	private ICondenseTowerRecipe recipe;
+	public final FrogFluidTank tank = new FrogFluidTank(8000);
+	private boolean structureCompletedOnLastTick = false;
 	private ArrayList<ICondenseTowerOutputHatch> outputs = new ArrayList<ICondenseTowerOutputHatch>();
 	private ArrayList<ICondenseTowerPart> structures = new ArrayList<ICondenseTowerPart>();
 	
 	public TileCondenseTower() {
-		super(2, 10000);
+		super(3, 10000);
 	}
 	
 	@Override
 	public boolean checkStructure() {
-		for (int i = 1; i < 7; i++) {
-			TileEntity tile = worldObj.getTileEntity(this.getPos().up(i));
-			if (i > 2 && tile instanceof ICondenseTowerOutputHatch) {
+		TileEntity tile;
+		tile = worldObj.getTileEntity(getPos().up(1));
+		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
+			((ICondenseTowerPart)tile).onConstruct(this);
+			this.registerSturcture((ICondenseTowerPart)tile);
+		} else {
+			return false;
+		}
+		tile = worldObj.getTileEntity(getPos().up(2));
+		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
+			((ICondenseTowerPart)tile).onConstruct(this);
+			this.registerSturcture((ICondenseTowerPart)tile);
+		} else {
+			return false;
+		}
+		for (int i = 3; i < 7; i++) {
+			tile = worldObj.getTileEntity(this.getPos().up(i));
+			if (tile instanceof ICondenseTowerOutputHatch) {
 				((ICondenseTowerOutputHatch)tile).onConstruct(this);
 				this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
 				continue;
-			} else if (tile instanceof ICondenseTowerOutputHatch) {
-				((ICondenseTowerPart)tile).onConstruct(this);
-				this.registerSturcture((ICondenseTowerPart)tile);
-				continue;
-			} else {
-				structureCompleted = false;
+			} else
 				return false;
-			}
 		}
-		structureCompleted = true;
 		return true;
 	}
 	
 	@Override
 	public boolean isCompleted() {
-		return this.structureCompleted;
+		return this.structureCompletedOnLastTick;
 	}
 	
 	@Override
@@ -62,40 +73,36 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		if (worldObj.isRemote) 
 			return;
 		super.update();
-		if (!structureCompleted) {
-			if (!checkStructure()) {
-				onDestruct(this);
-				return;
-			}
-			else
-				onConstruct(this);
+		
+		boolean check = checkStructure();
+		if (structureCompletedOnLastTick && !check) {
+			onDestruct(this);
+			structureCompletedOnLastTick = false;
+			return;
+		} else if (check) {
+			onConstruct(this);
+			structureCompletedOnLastTick = true;
 		}
+			
+		if (tank.getFluid() == null)
+			return;
 		
-		if (recipe == null)
-			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
-		
-		if (checkRecipe(this.recipe)) {
+		ICondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		if (checkRecipe(recipe)) {
 			this.tank.drain(recipe.getInput().amount, !worldObj.isRemote);
-			this.tick = recipe.getTime();
 		} else 
 			return;
 		
-		--tick;
 		charge -= 500;
 		
-		if (tick <= 0) { 
-			// Theoretically tick cannot less than 0, but this is prevent bad things happening
-			java.util.Set<FluidStack> outputs = recipe.getOutput();
-			for (FluidStack fluid : outputs) {
-				for (ICondenseTowerOutputHatch output : this.outputs) {
-					if (output.canInject(fluid)) {
-						output.inject(fluid, !worldObj.isRemote);
-						break;
-					}
+		java.util.Set<FluidStack> outputs = recipe.getOutput();
+		for (FluidStack fluid : outputs) {
+			for (ICondenseTowerOutputHatch output : this.outputs) {
+				if (output.canInject(fluid)) {
+					output.inject(fluid, !worldObj.isRemote);
+					break;
 				}
 			}
-			this.tick = 0;
-			this.recipe = null;
 		}
 		
 		this.markDirty();
@@ -117,6 +124,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		for (ICondenseTowerOutputHatch output : outputs) {
 			output.onDestruct(core);
 		}
+	
 		for (ICondenseTowerPart part : structures) {
 			part.onDestruct(core);
 		}
@@ -130,6 +138,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 
 	private boolean checkRecipe(ICondenseTowerRecipe aRecipe) {
+		if (aRecipe == null)
+			return false;
 		for (FluidStack fluid : aRecipe.getOutput()) {
 			boolean checkPass = false;
 			for (ICondenseTowerOutputHatch output : outputs) {
@@ -143,18 +153,33 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		return true;
 	}
-
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		tank.readPacketData(input);
+		this.charge = input.readInt();
+		this.structureCompletedOnLastTick = input.readBoolean();
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		tank.writePacketData(output);
+		output.writeInt(charge);
+		output.writeBoolean(structureCompletedOnLastTick);
+	}
+	
+	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
-		this.tick = tag.getInteger("tick");
 	}
 	
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setTag("inv", inv.serializeNBT());
-		tag.setInteger("tick", this.tick);
 		return super.writeToNBT(tag);
 	}
 

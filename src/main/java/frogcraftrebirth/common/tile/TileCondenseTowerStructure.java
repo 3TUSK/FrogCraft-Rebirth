@@ -29,12 +29,16 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	@Override
 	public void onDestruct(ICondenseTowerCore core) {
 		this.mainBlock = null;
-		core.checkStructure();
 	}
 	
 	@Override
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;
+	}
+	
+	@Override
+	public boolean isFunctional() {
+		return false;
 	}
 
 }

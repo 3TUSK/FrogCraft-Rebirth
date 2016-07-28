@@ -19,9 +19,11 @@ public interface ICondenseTowerPart {
 	
 	void onConstruct(ICondenseTowerCore core);
 	
-	void onDestruct(ICondenseTowerCore core);
+	void onDestruct(@Nullable ICondenseTowerCore core);
 	
 	@Nullable
 	ICondenseTowerCore getMainBlock();
+	
+	boolean isFunctional();
 
 }

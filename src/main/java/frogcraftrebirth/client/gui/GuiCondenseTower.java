@@ -16,6 +16,12 @@ public class GuiCondenseTower extends GuiContainer {
 		super(new ContainerCondenseTower(playerInv, tile));
 		this.tile = tile;
 	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		if (!tile.isCompleted())
+			this.fontRendererObj.drawString("Incomplete", 10, 10, GuiUtil.GRAY_40);
+	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {

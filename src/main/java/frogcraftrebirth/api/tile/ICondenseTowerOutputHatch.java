@@ -15,5 +15,10 @@ public interface ICondenseTowerOutputHatch extends ICondenseTowerPart {
 	boolean canInject(FluidStack stack);
 
 	void inject(FluidStack stack, boolean simluated);
+	
+	@Override
+	default boolean isFunctional() {
+		return true;
+	}
 
 }

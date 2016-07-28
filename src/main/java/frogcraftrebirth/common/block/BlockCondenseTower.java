@@ -5,7 +5,6 @@ import javax.annotation.Nullable;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
-import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
@@ -54,16 +53,15 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	
 	@Override
 	public int damageDropped(IBlockState state) {
-		return state.getValue(TYPE).ordinal();
+		return state.getBlock().getMetaFromState(state) & 0b11;
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof TileFrog) {
+		if (!worldIn.isRemote) {
 			playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			return true;
-		}
-		
+		}	
 		return true;
 	}
 	
@@ -78,7 +76,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int facing = state.getValue(FACING_HORIZONTAL).getIndex();
-		return facing << 2 + state.getValue(TYPE).ordinal();
+		return (facing << 2) + state.getValue(TYPE).ordinal();
 	}
 	
 	@Override

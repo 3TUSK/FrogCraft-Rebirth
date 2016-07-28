@@ -13,5 +13,10 @@ public interface ICondenseTowerCore extends ICondenseTowerPart {
 	boolean checkStructure();
 	
 	boolean isCompleted();
+	
+	@Override
+	default boolean isFunctional() {
+		return true;
+	}
 
 }

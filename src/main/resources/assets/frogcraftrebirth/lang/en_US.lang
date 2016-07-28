@@ -184,7 +184,9 @@ gui.HSU.output=Output: %d EU/tick
 gui.pyrolyzer.title=Pyrolyzer
 gui.MPS.title=Mobile Power Supply
 
-#NEI GUI texts
+#JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
+gui.jei.category.condensation=Condensation
+
 nei.euTotal=Total Eu
 nei.euTick=Eu per tick
 nei.euTotalGen=Total generated

@@ -27,6 +27,7 @@ import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import frogcraftrebirth.common.tile.TileCondenseTower;
+import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
@@ -128,6 +129,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerTileEntity(TileHSUUltra.class, "FrogCraft_UltraHybridStorageUnit");
 		GameRegistry.registerTileEntity(TileAirPump.class, "FrogCraft_AirPump");
 		GameRegistry.registerTileEntity(TileCondenseTower.class, "FrogCraft_CondenseTowerCore");
+		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "FrogCraft_CondenseTowerCylinder");
 		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "FrogCraft_CondenseTowerFluidOutput");
 		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "FrogCraft_CombustionFurnace");
 		GameRegistry.registerTileEntity(TilePyrolyzer.class, "FrogCraft_ThermalCracker");

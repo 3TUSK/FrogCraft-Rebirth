@@ -47,6 +47,8 @@ public class FrogGuiHandler implements IGuiHandler {
 	@Override
 	public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
+		if (aTile == null)
+			return null;
 		switch(id) {
 			case 1: {
 				if (aTile instanceof TileHSUUltra)
@@ -87,6 +89,8 @@ public class FrogGuiHandler implements IGuiHandler {
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z) {
 		TileEntity aTile = world.getTileEntity(new BlockPos(x, y, z));
+		if (aTile == null)
+			return null;
 		switch (ID) {
 			case 1: {
 				if (aTile instanceof TileHSUUltra)

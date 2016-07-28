@@ -45,6 +45,6 @@ public class CondenseTowerRecipeManager implements IRecipeManager<CondenseTowerR
 		return null;
 	}
 	
-	private static List<CondenseTowerRecipe> recipes;
+	private List<CondenseTowerRecipe> recipes;
 
 }

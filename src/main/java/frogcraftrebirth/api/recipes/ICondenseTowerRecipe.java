@@ -19,7 +19,5 @@ public interface ICondenseTowerRecipe {
 	Set<FluidStack> getOutput();
 
 	int getTime();
-
-	ICondenseTowerRecipe appendOutput(FluidStack... fluid);
-
+	
 }

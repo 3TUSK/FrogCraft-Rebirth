@@ -2,18 +2,12 @@ package frogcraftrebirth.common.lib;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Set;
 
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import net.minecraftforge.fluids.FluidStack;
 
-/**
- * Created at 3:24 P.M. (UTC+8) June 23nd 2015
- * <p>
- * Aim to improve recipe system of FrogCraft, preparing for MineTweaker support.
- * 
- * @author 3TUSK
- */
 public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	
 	private final FluidStack input;
@@ -25,9 +19,8 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	}
 
 	public CondenseTowerRecipe(int time, FluidStack input, Collection<FluidStack> output) {
-		this.output = new java.util.HashSet<FluidStack>();
+		this.output = new HashSet<FluidStack>(output);
 		this.input = input;
-		this.output.addAll(output);
 		this.time = time;
 	}
 
@@ -44,12 +37,6 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	@Override
 	public int getTime() {
 		return time;
-	}
-
-	@Override
-	public ICondenseTowerRecipe appendOutput(FluidStack... fluids) {
-		output.addAll(Arrays.asList(fluids));
-		return this;
 	}
 
 }

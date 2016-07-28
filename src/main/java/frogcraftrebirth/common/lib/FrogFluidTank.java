@@ -44,8 +44,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	public void writeToNBT(NBTTagCompound tag) {
 		NBTTagCompound newTag = new NBTTagCompound();
 		if (fluidInv != null) 
-			fluidInv.writeToNBT(newTag);
-		tag.setTag(tankName, tag);
+			tag.setTag(tankName, fluidInv.writeToNBT(newTag));
 	}
 	
 	@Override
@@ -143,7 +142,8 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	 */
 	@SideOnly(Side.CLIENT)
 	public void forceFillTank(FluidStack stack) {
-		this.fluidInv = stack.copy();
+		if (stack != null)
+			this.fluidInv = stack.copy();
 	}
 	
 	/**

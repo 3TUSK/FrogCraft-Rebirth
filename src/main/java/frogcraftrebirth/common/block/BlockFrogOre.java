@@ -8,8 +8,6 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 
 public class BlockFrogOre extends BlockFrog {
 	
@@ -26,15 +24,6 @@ public class BlockFrogOre extends BlockFrog {
 	@Override
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { TYPE };
-	}
-
-	@Deprecated
-	@Override
-	public float getBlockHardness(IBlockState blockState, World worldIn, BlockPos pos) {
-		if (blockState.getBlock().getMetaFromState(blockState) == 3)
-			return 1.0F;
-		else
-			return super.getBlockHardness(blockState, worldIn, pos);
 	}
 	
 	public Item getItemDropped(int meta, Random rand, int fortune) {

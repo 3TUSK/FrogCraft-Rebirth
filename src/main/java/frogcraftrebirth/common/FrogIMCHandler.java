@@ -8,11 +8,15 @@
  */
 package frogcraftrebirth.common;
 
-import static frogcraftrebirth.api.FrogAPI.FROG_LOG;
-
 import java.util.Collection;
 import java.util.Locale;
 
+import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.lib.PyrolyzerRecipe;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 
 public final class FrogIMCHandler {
@@ -24,33 +28,63 @@ public final class FrogIMCHandler {
 	public static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
 		for (FMLInterModComms.IMCMessage message : messages) {
 			if (message.isNBTMessage()) {
-				String mode = message.getNBTValue().getString("mode");
+				NBTTagCompound theTag = message.getNBTValue();
+				String mode = theTag.getString("mode");
 
-				if ("compat".equals(mode)) {
+				if ("compat".equalsIgnoreCase(mode)) {
+					String path = theTag.getString("modulePath");
 					try {
-						Class<?> clazz = Class.forName(message.getNBTValue().getString("modulePath"));
+						Class<?> clazz = Class.forName(path);
 						if (frogcraftrebirth.api.ICompatModuleFrog.class.isAssignableFrom(clazz) )
 							clazz.getDeclaredMethod("init").invoke(new Object());
 					} catch (Exception e) {
-						FROG_LOG.error(
-								"Error occured when one FrogCompatModule is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.");
+						FrogAPI.FROG_LOG.error("Error occured when FrogCompatModule '%s' is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.", path);
 						e.printStackTrace();
 					}
 				}
 
-				if ("recipe".equals(mode)) {
-					String machine = message.getNBTValue().getString("machine").toLowerCase(Locale.ENGLISH);
-					switch (machine) {
-					case ("pyrolyzer"):
-						break;
-					case ("advchemreactor"):
-						break;
-					case ("condensetower"):
-						break;
-					case ("liquidier"):
-						break;
-					default:
-						break;
+				if ("recipe".equalsIgnoreCase(mode)) {
+					String machine = theTag.getString("machine").toLowerCase(Locale.ENGLISH);
+						switch (machine) {
+						case ("pyrolyzer"): {
+							ItemStack input = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("input"));
+							ItemStack output = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("output"));
+							FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
+							int time = theTag.getInteger("time");
+							FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time));
+							break;
+						}
+						case ("advchemreactor"):
+							break;
+						case ("condensetower"):
+							break;
+						default:
+							break;
+					}
+				}
+				
+				if ("mps".equalsIgnoreCase(mode)) {
+					String type = theTag.getString("type");
+					ItemStack item = ItemStack.loadItemStackFromNBT((NBTTagCompound) theTag.getTag("item"));
+					int value = theTag.getInteger("value");
+					if (item != null) {
+						switch (type.toLowerCase()) {
+							case ("solar"): {
+								MPSUpgradeManager.INSTANCE.registerSolarUpgrade(item);
+								break;
+							}
+							case ("voltage"):
+							case ("transformer"): {
+								MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(item, value);
+								break;
+							}
+							case ("storage"): {
+								MPSUpgradeManager.INSTANCE.registerStorageUpgrade(item, value);
+								break;
+							}
+						}
+					} else {
+						FrogAPI.FROG_LOG.warn("'%s' is trying to register Mobile Power Station with NULL ItemStack, which is not alloed to happed.", message.getSender());
 					}
 				}
 

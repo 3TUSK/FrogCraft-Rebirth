@@ -74,40 +74,37 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
-		if (!doFill) return 0;
-		
 		if (this.fluidInv == null) {
-			this.fluidInv = resource;
-			return this.fluidInv.amount;
+			if (doFill)
+				this.fluidInv = resource;
+			
+			return resource.amount;
 		}
 		
-		if (this.fluidInv.getFluid() == resource.getFluid()) {
+		if (this.fluidInv.isFluidEqual(resource)) {
 			int newAmount = this.fluidInv.amount + resource.amount;
-			if (newAmount > capacity) {
+			if (doFill && newAmount > capacity)
 				fluidInv.amount = capacity;
-				return newAmount - capacity;
-			} else {
-				fluidInv.amount += resource.amount;
-				return resource.amount;
-			}
-		}
-		
-		return 0;
+				
+			return resource.amount - newAmount + capacity;
+		} else 	
+			return 0;
 	}
 
 	@Override
-	public FluidStack drain(int maxDrain, boolean doDrain) {
-		if (!doDrain) return null;
-		
-		if (this.fluidInv == null) return null;
+	public FluidStack drain(int maxDrain, boolean doDrain) {	
+		if (this.fluidInv == null) 
+			return null;
 		
 		if (maxDrain > capacity || this.fluidInv.amount <= maxDrain) {
 			FluidStack drained = this.fluidInv.copy();
-			this.fluidInv = null;
+			if (doDrain)
+				this.fluidInv = null;
 			return drained;
 		} else {
 			int isDraining = this.fluidInv.amount - maxDrain;
-			this.fluidInv.amount -= isDraining;
+			if (doDrain)
+				this.fluidInv.amount -= isDraining;
 			return new FluidStack(this.fluidInv.getFluid(), isDraining);
 		}
 	}

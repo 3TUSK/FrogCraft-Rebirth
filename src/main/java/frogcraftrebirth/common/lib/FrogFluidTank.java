@@ -134,6 +134,10 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 			this.forceFillTank(null);
 	}
 	
+	public boolean isFull() {
+		return fluidInv.amount >= this.capacity;
+	}
+	
 	/**
 	 * Only use it on client side for forcing update.
 	 */

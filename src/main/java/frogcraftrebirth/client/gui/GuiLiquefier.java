@@ -34,7 +34,7 @@ public class GuiLiquefier extends GuiContainer {
 		int chargeIcon = (int) (14 * tile.charge / 10000); // TileLiquefier has max charge of 10000;
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 27 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 14, chargeIcon);
 	
-		int progress = (int) (24 * tile.process / 100);
+		int progress = (int) (24 * tile.process / 200);
 		this.drawTexturedModalRect(this.guiLeft + 77, this.guiTop + 56, 176, 70, progress, 17);
 	}
 	

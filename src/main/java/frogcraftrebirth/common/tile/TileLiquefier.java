@@ -29,7 +29,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 	
-	protected FrogFluidTank tank = new FrogFluidTank(8000);
+	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
 
@@ -45,18 +45,23 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 			return;
 		super.update();
 		
-		TileEntity tile = worldObj.getTileEntity(getPos().up());
-		if (!(tile instanceof IAirPump))
+		TileEntity tile = worldObj.getTileEntity(getPos().down());
+		if (!(tile instanceof IAirPump) && tank.isFull()) {
+			this.sendTileUpdatePacket(this);
+			this.markDirty();
 			return;
+		}
 		
-		if (++process != 100) {
+		if (++process < 200) {
 			charge -= 128;
 		} else {
 			if (((IAirPump)tile).airAmount() >= 1000) {
 				((IAirPump)tile).extractAir(EnumFacing.DOWN, 1000, false);	
 				tank.fill(FluidRegistry.getFluidStack("ic2air", 10), true);
-				process = 0;
 			}
+			
+			process = 0;
+			
 			//Null check, if fail then end update immediately
 			if (inv.getStackInSlot(0) != null) {
 				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {

@@ -1,9 +1,6 @@
 #Master Language File, 2013.5.3
 
 #Items
-item.ItemRailgun.name=超电磁炮
-item.ItemRailgun.info=吡哩吡哩~~~
-item.ItemRailgun.tooTired=乃太累了,回家充电吧
 item.ItemMiniIonCannon.name=便携式离子炮
 item.ItemMiniIonCannon.info=全球防御组织监制
 item.ItemMiniIonCannon.coolingDown=很抱歉通知您，指挥官，离子炮仍在冷却中，请等待冷却结束。

@@ -1,9 +1,6 @@
 ﻿#Master Language File
 
 #Items
-item.ItemRailgun.name=Only my railgun!!!
-item.ItemRailgun.info=PiliPili~~~
-item.ItemRailgun.tooTired=No enough power QAQ
 item.ItemMiniIonCannon.name=Portable Ion Cannon
 item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
 item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.

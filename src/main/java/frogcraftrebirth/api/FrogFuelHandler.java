@@ -58,7 +58,9 @@ public final class FrogFuelHandler implements IFuelHandler {
 	
 	@Nullable
 	public FluidStack getFluidByproduct(@Nullable String ore) {
-		return null;
+		if (ore == null)
+			return null;
+		return ore2FluidMap.get(ore);
 	}
 
 	@Nullable

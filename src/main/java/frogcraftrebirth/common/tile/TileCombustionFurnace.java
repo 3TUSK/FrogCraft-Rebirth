@@ -9,10 +9,12 @@ import java.io.IOException;
 
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -27,6 +29,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	public boolean working = false;
 	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	public int time = 0, timeMax = 0;
+	private ItemStack burning;
 
 	public TileCombustionFurnace() {
 		super(1, 16);
@@ -38,33 +41,44 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 			return;
 		super.update();
 		
-		this.working = this.time > 0;
 		//Don't stuck the inventory
-		if (inv.getStackInSlot(2).stackSize >= inv.getStackInSlot(2).getMaxStackSize()) {
+		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).stackSize >= inv.getStackInSlot(1).getMaxStackSize()) {
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			return;
 		}
 		
-		if (!working && inv.extractItem(0, 1, true) != null && getItemBurnTime(inv.getStackInSlot(0)) > 0) {
-			this.working = true;
-			this.bonus(inv.extractItem(0, 1, false));
-			this.timeMax = getItemBurnTime(inv.getStackInSlot(0));
-			this.time = getItemBurnTime(inv.getStackInSlot(0));
-			this.markDirty();
-		}
-
-		if (this.working) {
+		if (working) {
 			this.charge += 10;
 			this.time--;
+		} else if (inv.extractItem(0, 1, true) != null && getItemBurnTime(inv.getStackInSlot(0)) > 0) {	
+			this.working = true;
+			this.burning = inv.extractItem(0, 1, false);
+			this.timeMax = getItemBurnTime(burning) / 4;
+			this.time = getItemBurnTime(burning) / 4;
 		}
 		//Overflowed power will be voided 
 		if (this.charge > CHARGE_MAX)
 			this.charge = CHARGE_MAX;
 
-		if (this.time == 0) {
+		if (this.time <= 0) {
 			this.timeMax = 0;
+			if (working && burning != null)
+				bonus(burning);
+			burning = null;
 			this.working = false;
+		}
+		
+		if (tank.getFluidAmount() != 0 && inv.getStackInSlot(2) != null) {
+			if (inv.getStackInSlot(2).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(2, 1, true), tank, 1000, null, true);
+				if (result != null && result.stackSize > 0) {
+					inv.extractItem(2, 1, false);
+					ItemStack remainder = inv.insertItem(3, result, false);
+					if (remainder != null && remainder.stackSize > 0)
+						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+				}
+			}
 		}
 		
 		this.sendTileUpdatePacket(this);
@@ -72,13 +86,16 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	}
 	
 	private void bonus(ItemStack input) {
+		if (input == null)
+			return;
+		
 		int[] oreIDs = OreDictionary.getOreIDs(input);
 		if (oreIDs.length != 0) {
 			for (int oreID : oreIDs) {
 				String oreName = OreDictionary.getOreName(oreID);
 				if (!oreName.equals("Unknown")) {
 					//Feature: if there is no space for byproduct, they just go disappear
-					inv.insertItem(2, FUEL_REG.getItemByproduct(oreName), false);
+					inv.insertItem(1, FUEL_REG.getItemByproduct(oreName), false);
 					tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
 				}
 			} 
@@ -96,6 +113,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 		this.time = tag.getInteger("time");
 		this.timeMax = tag.getInteger("timeMax");
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
+		this.burning = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("burning"));
 	}
 	
 	@Override
@@ -123,12 +141,8 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 		tag.setInteger("time", this.time);
 		tag.setInteger("timeMax", this.timeMax);
 		tag.setTag("inv", this.inv.serializeNBT());
+		tag.setTag("burning", this.burning != null ? burning.writeToNBT(new NBTTagCompound()) : new NBTTagCompound());
 		return super.writeToNBT(tag);
-	}
-
-	@Override
-	public double getOfferedEnergy() {
-		return working ? super.getOfferedEnergy() : 0;
 	}
 
 	@Override

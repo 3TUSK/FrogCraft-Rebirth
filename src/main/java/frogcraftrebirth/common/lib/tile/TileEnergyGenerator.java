@@ -60,7 +60,10 @@ public abstract class TileEnergyGenerator extends TileFrog implements ITickable,
 
 	@Override
 	public void drawEnergy(double amount) {
-		this.charge -= amount;
+		if (charge <= amount)
+			charge = 0;
+		else
+			this.charge -= (int)amount;
 	}
 
 	@Override

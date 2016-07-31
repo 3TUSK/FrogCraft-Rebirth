@@ -18,6 +18,8 @@ public class ConfigMain {
 	public static boolean enableTCAspect;
 
 	public static boolean enableAccessControl;
+
+	public static boolean enableClassicMode;
 	
 	public static void init(FMLPreInitializationEvent event) {
 		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);
@@ -35,6 +37,8 @@ public class ConfigMain {
 		config = new Configuration(file);
 		
 		config.load();
+		
+		enableClassicMode = config.get("General", "EnableClassicMode", false).getBoolean();
 		
 		airPumpPowerRate = config.get("Machine", "AirPumpPowerRate", 120).getInt();
 		airPumpGenerateSpeed = config.get("Machine", "AirPumpGenerateSpeed", 50).getInt();

@@ -49,18 +49,15 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
-		if (meta == 0)
-			return new TileCombustionFurnace();
-		else
-			return null;
+		return new TileCombustionFurnace(); //For now it is the possibility
 	}
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote)
-			return false;
+			return true;
 		playerIn.openGui(FrogCraftRebirth.instance, 3, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		return false;
+		return true;
 	}
 	
 	@Override

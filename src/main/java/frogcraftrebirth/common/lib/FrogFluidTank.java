@@ -74,6 +74,9 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 
 	@Override
 	public int fill(FluidStack resource, boolean doFill) {
+		if (resource == null)
+			return 0;
+		
 		if (this.fluidInv == null) {
 			if (doFill)
 				this.fluidInv = resource;

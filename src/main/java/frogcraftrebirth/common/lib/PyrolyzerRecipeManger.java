@@ -3,23 +3,24 @@ package frogcraftrebirth.common.lib;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 
-public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
+public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 
 	@Override
-	public boolean equal(PyrolyzerRecipe recipe1, PyrolyzerRecipe recipe2) {
+	public boolean equal(IPyrolyzerRecipe recipe1, IPyrolyzerRecipe recipe2) {
 		return (recipe1.getInput() == recipe2.getInput());
 	}
 
 	@Override
-	public void add(PyrolyzerRecipe recipe) {
+	public void add(IPyrolyzerRecipe recipe) {
 		recipes.add(recipe);
 	}
 
 	@Override
-	public void remove(PyrolyzerRecipe recipe) {
-		java.util.Iterator<PyrolyzerRecipe> iter = recipes.iterator();
+	public void remove(IPyrolyzerRecipe recipe) {
+		java.util.Iterator<IPyrolyzerRecipe> iter = recipes.iterator();
 		while (iter.hasNext()) {
 			if (iter.next().equals(recipe)) {
 				iter.remove();
@@ -29,17 +30,17 @@ public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
 	}
 	
 	@Override
-	public Collection<PyrolyzerRecipe> getRecipes() {
+	public Collection<IPyrolyzerRecipe> getRecipes() {
 		return recipes;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <ItemStack> PyrolyzerRecipe getRecipe(ItemStack... inputs) {
+	public <ItemStack> IPyrolyzerRecipe getRecipe(ItemStack... inputs) {
 		ItemStack input = (ItemStack)inputs[0];
 		if (input == null)
 			return null;
-		for (PyrolyzerRecipe r : recipes) {
+		for (IPyrolyzerRecipe r : recipes) {
 			if (r.getInput().isItemEqual((net.minecraft.item.ItemStack)input) 
 					&& r.getInput().stackSize <= ((net.minecraft.item.ItemStack)input).stackSize)
 				return r;
@@ -47,6 +48,6 @@ public class PyrolyzerRecipeManger implements IRecipeManager<PyrolyzerRecipe>{
 		return null;
 	}
 	
-	private static ArrayList<PyrolyzerRecipe> recipes = new ArrayList<PyrolyzerRecipe>();
+	private static ArrayList<IPyrolyzerRecipe> recipes = new ArrayList<IPyrolyzerRecipe>();
 
 }

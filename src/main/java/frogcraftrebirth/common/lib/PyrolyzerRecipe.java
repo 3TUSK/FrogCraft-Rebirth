@@ -6,9 +6,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 
-	private ItemStack input, output;
-	private FluidStack outputFluid;
-	private int time;
+	private final ItemStack input, output;
+	private final FluidStack outputFluid;
+	private final int time;
 	
 	public PyrolyzerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time){
 		this.input = input;
@@ -18,15 +18,15 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 	}
 	
 	public ItemStack getInput() {
-		return input;
+		return input.copy();
 	}
 	
 	public ItemStack getOutput() {
-		return output;
+		return output.copy();
 	}
 	
 	public FluidStack getOutputFluid() {
-		return outputFluid != null ? outputFluid : null;
+		return outputFluid != null ? outputFluid.copy() : null;
 	}
 	
 	public int getTime() {

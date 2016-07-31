@@ -14,10 +14,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import frogcraftrebirth.common.FrogItems;
-import frogcraftrebirth.common.lib.CondenseTowerRecipe;
-import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -53,9 +53,9 @@ public final class FrogAPI {
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	@Nonnull
-	public static IRecipeManager<CondenseTowerRecipe> managerCT;
+	public static IRecipeManager<ICondenseTowerRecipe> managerCT;
 	@Nonnull
-	public static IRecipeManager<PyrolyzerRecipe> managerPyrolyzer;
+	public static IRecipeManager<IPyrolyzerRecipe> managerPyrolyzer;
 
 	// Awaiting GregTech
 	// public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes =

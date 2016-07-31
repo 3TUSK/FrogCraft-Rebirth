@@ -22,31 +22,31 @@ item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
 
 #Fluid
 fluid.ammonia=Ammonia
-fluid.ammonia.info=NH3
+fluid.ammonia.info=NH₃
 fluid.argon=Argon
 fluid.argon.info=Ar
 fluid.benzene=Benzene
-fluid.benzene.info=C6H6
+fluid.benzene.info=C₆H₆
 fluid.bromine=Bromine
-fluid.bromine.info=Br2
+fluid.bromine.info=Br₂
 fluid.carbonDioxide=Carbon Dioxide
-fluid.carbonDioxide.info=CO2
+fluid.carbonDioxide.info=CO₂
 fluid.carbonOxide=Carbon Monoxide
 fluid.carbonOxide.info=CO
 fluid.coalTar=Coal Tar
 fluid.coalTar.info=What the hell does it contain?!
 fluid.fluorine=Fluorine
-fluid.fluorine.info=F2
+fluid.fluorine.info=F₂
 fluid.nitricAcid=Nitric Acid
-fluid.nitricAcid.info=HNO3
+fluid.nitricAcid.info=HNO₃
 fluid.nitrogenOxide=Nitrogen Monoxide
 fluid.nitrogenOxide.info=NO
 fluid.oxygen=Oxygen
-fluid.oxygen.info=O2
+fluid.oxygen.info=O₂
 fluid.sulfurDioxide=Sulfur Dioxide
-fluid.sulfurDioxide.info=SO2
+fluid.sulfurDioxide.info=SO₂
 fluid.sulfurTrioxide=Sulfur Trioxide
-fluid.sulfurTrioxide.info=SO3
+fluid.sulfurTrioxide.info=SO₃
 
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
@@ -62,39 +62,39 @@ item.Item_Miscs.HeatingModule.info=Provide heat to a endothermic reaction
 item.Item_Miscs.AmmoniaModule=Ammonia catalyst
 item.Item_Miscs.AmmoniaModule.info=Necessary for ammonia manufactoring
 item.Item_Miscs.V2O5Module=Vanadium Pentoxide Catalyst
-item.Item_Miscs.V2O5Module.info=Necessary for SO3 manufactoring
+item.Item_Miscs.V2O5Module.info=Necessary for SO₃ manufactoring
 
 #Dusts
 item.Item_Dusts.CaO=Calcium Oxide Dust
 item.Item_Dusts.CaO.info=CaO
 item.Item_Dusts.Urea=Urea Dust
-item.Item_Dusts.Urea.info=CO(NH2)2
+item.Item_Dusts.Urea.info=CO(NH₂)₂
 item.Item_Dusts.NH4NO3=Ammonia nitrate Dust
-item.Item_Dusts.NH4NO3.info=NH4NO3
+item.Item_Dusts.NH4NO3.info=NH₄NO₃
 item.Item_Dusts.CaSiO3=Calcium silicate Dust
-item.Item_Dusts.CaSiO3.info=CaSiO3
+item.Item_Dusts.CaSiO3.info=CaSiO₃
 item.Item_Dusts.CaOH2=Calcium hydroxide Dust
-item.Item_Dusts.CaOH2.info=Ca(OH)2
+item.Item_Dusts.CaOH2.info=Ca(OH)₂
 item.Item_Dusts.Magnalium=Magnalium Dust
-item.Item_Dusts.Magnalium.info=Mg.Al2
+item.Item_Dusts.Magnalium.info=Mg.Al₂
 item.Item_Dusts.Carnallite=Carnallite Dust
-item.Item_Dusts.Carnallite.info=4KCl.MgBr2.8H2O
+item.Item_Dusts.Carnallite.info=4KCl.MgBr₂.8H₂O
 item.Item_Dusts.KCl=Potassium Chloride Dust
 item.Item_Dusts.KCl.info=KCl
 item.Item_Dusts.MgBr2=Magnesium Bromied  Dust
-item.Item_Dusts.MgBr2.info=MgBr2
+item.Item_Dusts.MgBr2.info=MgBr₂
 item.Item_Dusts.Fluorapatite=Fluorapatite Dust
-item.Item_Dusts.Fluorapatite.info=Ca5F(PO4)3
+item.Item_Dusts.Fluorapatite.info=Ca₅F(PO₄)₃
 item.Item_Dusts.CaF2=Calcium Fluoride Dust
-item.Item_Dusts.CaF2.info=CaF2
+item.Item_Dusts.CaF2.info=CaF₂
 item.Item_Dusts.V2O5=Vanadium Pentoxide Dust
-item.Item_Dusts.V2O5.info=V2O5
+item.Item_Dusts.V2O5.info=V₂O₅
 item.Item_Dusts.Dewalquite=Dewalquite Dust
-item.Item_Dusts.Dewalquite.info=25Al2O3.TiO2.V2O5
+item.Item_Dusts.Dewalquite.info=25Al₂O₃.TiO₂.V₂O₅
 item.Item_Dusts.TiO2=Titanium Dioxide Dust
-item.Item_Dusts.TiO2.info=TiO2
+item.Item_Dusts.TiO2.info=TiO₂
 item.Item_Dusts.Al2O3=Aluminum Oxide Dust
-item.Item_Dusts.Al2O3.info=Al2O3
+item.Item_Dusts.Al2O3.info=Al₂O₃
 
 #Ingots
 #To translators: for briquette, see the following links:
@@ -104,7 +104,7 @@ item.Item_Ingots.K.info=K
 item.Item_Ingots.P=Phosphor
 item.Item_Ingots.P.info=P
 item.Item_Ingots.NaturalGasHydrate=Methane clathrate
-item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
+item.Item_Ingots.NaturalGasHydrate.info=CH₄·H₂O
 item.Item_Ingots.CoalCokeShattered=Coking coal fragments
 item.Item_Ingots.CoalCokeShattered.info=Efficient fuel~
 item.Item_Ingots.Briquette=Briquette

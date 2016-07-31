@@ -6,15 +6,15 @@ import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileEnergyGenerator extends TileFrog implements IEnergySource {
+public abstract class TileEnergyGenerator extends TileFrog implements ITickable, IEnergySource {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
 	
-	public TileEnergyGenerator (String name, int sourceTier, int output) {
-		super();
+	public TileEnergyGenerator (int sourceTier, int output) {
 		this.sourceTier = sourceTier;
 		this.output = output;
 	}
@@ -29,8 +29,7 @@ public abstract class TileEnergyGenerator extends TileFrog implements IEnergySou
 	}
 	
 	@Override
-	public void validate() {
-		super.validate();	
+	public void update() {
 		if (!worldObj.isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;

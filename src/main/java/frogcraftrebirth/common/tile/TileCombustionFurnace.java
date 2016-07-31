@@ -12,13 +12,13 @@ import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import net.minecraftforge.oredict.OreDictionary;
 
-public class TileCombustionFurnace extends TileEnergyGenerator implements ITickable {
+public class TileCombustionFurnace extends TileEnergyGenerator {
 
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
@@ -29,20 +29,26 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements ITicka
 	public int time = 0, timeMax = 0;
 
 	public TileCombustionFurnace() {
-		super("TileEntityCombustionFurnace", 1, 16);
+		super(1, 16);
 	}
 
 	@Override
 	public void update() {
 		if (worldObj.isRemote)
 			return;
+		super.update();
 		
-		this.working = this.time >= 0;
+		this.working = this.time > 0;
+		//Don't stuck the inventory
+		if (inv.getStackInSlot(2).stackSize >= inv.getStackInSlot(2).getMaxStackSize()) {
+			this.sendTileUpdatePacket(this);
+			this.markDirty();
+			return;
+		}
 		
 		if (!working && inv.extractItem(0, 1, true) != null && getItemBurnTime(inv.getStackInSlot(0)) > 0) {
 			this.working = true;
-			inv.extractItem(0, 1, false);
-			this.bonus(FUEL_REG.getItemByproduct(inv.getStackInSlot(0)));
+			this.bonus(inv.extractItem(0, 1, false));
 			this.timeMax = getItemBurnTime(inv.getStackInSlot(0));
 			this.time = getItemBurnTime(inv.getStackInSlot(0));
 			this.markDirty();
@@ -52,7 +58,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements ITicka
 			this.charge += 10;
 			this.time--;
 		}
-		
+		//Overflowed power will be voided 
 		if (this.charge > CHARGE_MAX)
 			this.charge = CHARGE_MAX;
 
@@ -62,10 +68,24 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements ITicka
 		}
 		
 		this.sendTileUpdatePacket(this);
+		this.markDirty();
 	}
 	
-	private void bonus(ItemStack bonus) {
-		//To be rewrited
+	private void bonus(ItemStack input) {
+		int[] oreIDs = OreDictionary.getOreIDs(input);
+		if (oreIDs.length != 0) {
+			for (int oreID : oreIDs) {
+				String oreName = OreDictionary.getOreName(oreID);
+				if (!oreName.equals("Unknown")) {
+					//Feature: if there is no space for byproduct, they just go disappear
+					inv.insertItem(2, FUEL_REG.getItemByproduct(oreName), false);
+					tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
+				}
+			} 
+		} else {
+			inv.insertItem(2, FUEL_REG.getItemByproduct(input), false);
+			tank.fill(FUEL_REG.getFluidByproduct(input), true);
+		}	
 	}
 	
 	@Override

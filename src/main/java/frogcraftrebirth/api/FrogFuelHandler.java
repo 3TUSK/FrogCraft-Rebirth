@@ -1,5 +1,6 @@
 package frogcraftrebirth.api;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -54,6 +55,11 @@ public final class FrogFuelHandler implements IFuelHandler {
 		}
 		return null;
 	}
+	
+	@Nullable
+	public FluidStack getFluidByproduct(@Nullable String ore) {
+		return null;
+	}
 
 	@Nullable
 	public ItemStack getItemByproduct(@Nullable ItemStack aStack) {
@@ -63,6 +69,11 @@ public final class FrogFuelHandler implements IFuelHandler {
 			if (aStack.isItemEqual(entry.getKey()))
 				return entry.getValue();
 		}
+		return null;
+	}
+	
+	@Nullable
+	public ItemStack getItemByproduct(@Nullable String ore) {
 		return null;
 	}
 
@@ -85,8 +96,22 @@ public final class FrogFuelHandler implements IFuelHandler {
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull ItemStack byproduct) {
 		fuel2ByproductMap.put(fuel, byproduct);
 	}
+	
+	public void regFuelByproduct(@Nonnull String ore, @Nonnull Fluid byproduct) {
+		regFuelByproduct(ore, new FluidStack(byproduct, BUCKET_VOLUME));
+	}
+	
+	public void regFuelByproduct(@Nonnull String ore, @Nonnull FluidStack byproduct) {
+		ore2FluidMap.put(ore, byproduct);
+	}
+	
+	public void regFuelByProduct(@Nonnull String ore, @Nonnull ItemStack byproduct) {
+		ore2ByproductMap.put(ore, byproduct);
+	}
 
 	private final Map<ItemStack, Integer> fuelMap = new LinkedHashMap<ItemStack, Integer>();
 	private final Map<ItemStack, FluidStack> fuel2FluidMap = new LinkedHashMap<ItemStack, FluidStack>();
 	private final Map<ItemStack, ItemStack> fuel2ByproductMap = new LinkedHashMap<ItemStack, ItemStack>();
+	private final Map<String, FluidStack> ore2FluidMap = new HashMap<String, FluidStack>();
+	private final Map<String, ItemStack> ore2ByproductMap = new HashMap<String, ItemStack>();
 }

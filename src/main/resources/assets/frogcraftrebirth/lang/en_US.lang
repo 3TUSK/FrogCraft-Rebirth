@@ -182,6 +182,9 @@ gui.HSU.max=Max. EU: %d
 gui.HSU.output=Output: %d EU/tick
 
 gui.pyrolyzer.title=Pyrolyzer
+
+gui.combustionFurnace.title=Combustion Furnace
+
 gui.MPS.title=Mobile Power Supply
 
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.

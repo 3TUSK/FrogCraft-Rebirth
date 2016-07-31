@@ -19,14 +19,14 @@ public class GuiCombustionFurnace extends GuiContainer {
 	}
 	
 	@Override
-	protected void drawGuiContainerForegroundLayer(int par1int, int par2int) {
-		super.drawGuiContainerForegroundLayer(par1int, par2int);
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
-		this.fontRendererObj.drawString("Combustion Furnace", 8, ySize - 155, GuiUtil.GRAY_40);
+		this.fontRendererObj.drawString(I18n.format("gui.combustionFurnace.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
+	protected void drawGuiContainerBackgroundLayer(float particalTick, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CombustionFurnace"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -34,13 +34,14 @@ public class GuiCombustionFurnace extends GuiContainer {
 		int chargePercent = (int) (24 * tile.charge / 5000);
 		this.drawTexturedModalRect(this.guiLeft + 72, this.guiTop + 55, 176, 97, chargePercent, 17);
 		
-		if (tile.timeMax > 0) {
-			int progressPercent = (int) ((tile.timeMax - tile.time) / tile.timeMax);
-			this.drawTexturedModalRect(this.guiLeft + 25, this.guiTop + 49 + 14 - progressPercent * 14, 176, 66 + progressPercent * 14, 14, progressPercent * 14);
-			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent * 24, 17);
+		if (tile.working) {
+			float progress = (float)tile.time / (float)tile.timeMax;
+			float flame = 14 * progress, arrow = 24 * progress;
+			this.drawTexturedModalRect(this.guiLeft + 25, this.guiTop + 50 + 14 - (int)flame, 176, 66 + 14 - (int)flame, 14, (int)flame);
+			this.drawTexturedModalRect(this.guiLeft + 46, this.guiTop + 29, 176, 80, 24 - (int)arrow, 17);
 		}
 		
-		/*if (this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) {
+		/*if (this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) { TODO fix this weird thing
 			GuiUtil.renderFluidTank(this, 144, 24, 16, 42, this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount / this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity);
 		}*/
 	}

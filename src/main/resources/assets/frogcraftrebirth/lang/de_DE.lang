@@ -140,7 +140,7 @@ tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 
 tile.machines.advchemreactor.name=Fortgeschrittener Chemischer Reaktor
 tile.machines.airpump.name=Industrielle Pumpe
-tile.machines.pyrolyzer.name=Pyrolyzer
+#tile.machines.pyrolyzer.name=Pyrolyzer
 tile.machines.liquefier.name=Verflüssiger
 
 #tile.Machines.AutoWorkBench.name=Auto-Werkbank
@@ -175,8 +175,18 @@ achievement.condensetower2.desc=Du hast gelernt, wie man flüssige Gemische sepe
 achievement.suicideExpert=Suicide Expert
 achievement.suicideExpert.desc=Potassium plus acid equals explosion!
 
-gui.hybridEStorage.current=Energy Level: 
-gui.hybridEStorage.max=Maximum energy level: 
+#gui.HSU.normal.title=HSU
+#gui.HSU.ultra.title=UHSU
+#gui.HSU.percent=Percentage: %.2f%%
+#gui.HSU.store=EU: %d 
+#gui.HSU.max=Max. EU: %d  
+#gui.HSU.output=Output: %d EU/tick
+#
+#gui.pyrolyzer.title=Pyrolyzer
+#
+#gui.combustionFurnace.title=Verbrennungsofen
+#
+#gui.MPS.title=Mobile Energieversorgung
 
 #NEI GUI texts
 nei.euTotal=Gesamte EU

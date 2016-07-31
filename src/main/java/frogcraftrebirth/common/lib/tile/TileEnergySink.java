@@ -1,5 +1,9 @@
 package frogcraftrebirth.common.lib.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -44,6 +48,20 @@ public abstract class TileEnergySink extends TileFrog implements ITickable, IEne
 	}
 	
 	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
+		charge = input.readInt();
+		maxCharge = input.readInt();
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
+		output.writeInt(charge);
+		output.writeInt(maxCharge);
+	}
+	
+	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);
 		tag.setInteger("maxCharge", maxCharge);
@@ -68,7 +86,8 @@ public abstract class TileEnergySink extends TileFrog implements ITickable, IEne
 	@Override
 	public double injectEnergy(EnumFacing directionFrom, double amount, double voltage) {
 		this.charge += amount;
-		this.charge = charge > maxCharge ? maxCharge : charge;
+		if (charge >= maxCharge)
+			charge = maxCharge;
 		return 0;
 	}
 

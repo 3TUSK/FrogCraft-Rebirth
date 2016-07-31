@@ -81,16 +81,16 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 	
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
 		this.tank.readPacketData(input);
 		this.process = input.readInt();
-		this.charge = input.readInt();
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
 		this.tank.writePacketData(output);
 		output.writeInt(process);
-		output.writeInt(charge);
 	}
 	
 	@Override
@@ -98,14 +98,12 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.process = tag.getInteger("process");
-		this.charge = tag.getInteger("charge");
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setInteger("process", this.process);
-		tag.setInteger("charge", charge);
 		return super.writeToNBT(tag);
 	}
 

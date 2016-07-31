@@ -5,8 +5,8 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
@@ -23,30 +23,40 @@ public class TilePyrolyzer extends TileEnergySink {
 	private static final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
 	
 	public final ItemStackHandler inv = new ItemStackHandler(4);
-	protected FrogFluidTank tank = new FrogFluidTank(16000);
+	public final FrogFluidTank tank = new FrogFluidTank(16000);
 
 	public int process, processMax;
 	public boolean working;
 	
-	public int charge;
-	
-	private PyrolyzerRecipe recipe;
+	private IPyrolyzerRecipe recipe;
 
 	public TilePyrolyzer() {
-		super(2, 10000);
+		super(2, 20000);
 	}
 
+	int count = 0;
 	@Override
 	public void update() {
 		if (this.worldObj.isRemote)
 			return;
 		super.update();
+		
+		if (inv.getStackInSlot(INPUT_F) != null) {
+			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
+				if (result != null && result.stackSize > 0) {
+					inv.extractItem(INPUT_F, 1, false);
+					ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
+					if (remainder != null && remainder.stackSize > 0)
+						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+				}
+			}
+		}
 
 		if (inv.getStackInSlot(INPUT) == null || this.charge <= 128) {
 			this.working = false;
 			this.process = 0;
 			this.processMax = 0;
-			return;
 		}
 		
 		if (!working) {
@@ -56,29 +66,20 @@ public class TilePyrolyzer extends TileEnergySink {
 				this.processMax = recipe.getTime();
 				this.working = true;
 			} else {
+				this.sendTileUpdatePacket(this);
+				this.markDirty();
 				return;
 			}
-		}
-		
-		this.charge -= 128;
-		process++;
-		
-		if (process == processMax) {
-			pyrolyze();
-			process = 0;
-			this.processMax = 0;
-			working = false;
-		}
-		
-		if (inv.getStackInSlot(INPUT_F) == null)
-			return;
-		
-		if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-			ItemStack result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, false), tank, 1000, null, true);
-			if (result != null && result.stackSize > 0) {
-				ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
-				if (remainder != null && remainder.stackSize > 0)
-					ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+		} else {
+			this.charge -= 128;
+			process++;
+			
+			if (process == processMax) {
+				pyrolyze();
+				process = 0;
+				processMax = 0;
+				recipe = null;
+				working = false;
 			}
 		}
 		
@@ -86,12 +87,12 @@ public class TilePyrolyzer extends TileEnergySink {
 		this.markDirty();
 	}
 	
-	private boolean canWork(PyrolyzerRecipe recipe) {
+	private boolean canWork(IPyrolyzerRecipe recipe) {
 		if (recipe == null)
 			return false;
 		
 		if (tank.getFluid() != null) {
-			if (tank.getFluid().getFluid() != recipe.getOutputFluid().getFluid())
+			if (!tank.getFluid().equals(recipe.getOutputFluid()))
 				return false;
 			else if (tank.getFluidAmount() + recipe.getOutputFluid().amount >= tank.getCapacity())
 				return false;
@@ -99,15 +100,18 @@ public class TilePyrolyzer extends TileEnergySink {
 		
 		if (!inv.getStackInSlot(INPUT).isItemEqual(recipe.getInput()))
 			return false;
-		
-		return inv.extractItem(INPUT, 1, true) != null;
+		else
+			return inv.extractItem(INPUT, recipe.getInput().stackSize, true) != null;
 	}
 	
 	private void pyrolyze() {
-		inv.extractItem(INPUT, 1, false);
-		inv.insertItem(OUTPUT, recipe.getOutput(), false);
-		if (recipe.getOutputFluid() != null)
-			this.tank.fill(recipe.getOutputFluid(), !this.worldObj.isRemote);
+		inv.extractItem(INPUT, recipe.getInput().stackSize, false);
+		ItemStack remainder = inv.insertItem(OUTPUT, recipe.getOutput(), false);
+		if (remainder != null && remainder.stackSize > 0)
+			ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+		if (recipe.getOutputFluid() != null) {
+			tank.fill(recipe.getOutputFluid(), true);
+		}
 	}
 
 	@Override
@@ -126,7 +130,6 @@ public class TilePyrolyzer extends TileEnergySink {
 		super.readPacketData(input);
 		tank.readPacketData(input);
 		working = input.readBoolean();
-		charge = input.readInt();
 		process = input.readInt();
 		processMax = input.readInt();
 	}
@@ -136,7 +139,6 @@ public class TilePyrolyzer extends TileEnergySink {
 		super.writePacketData(output);
 		tank.writePacketData(output);
 		output.writeBoolean(working);
-		output.writeInt(charge);
 		output.writeInt(process);
 		output.writeInt(processMax);
 	}

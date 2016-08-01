@@ -19,7 +19,7 @@ public interface IAdvChemRecRecipe {
 
 	Collection<OreStack> getOutputs();
 
-	double getRateModifier(String catalyst);
+	String getCatalyst();
 
 	int getTime();
 

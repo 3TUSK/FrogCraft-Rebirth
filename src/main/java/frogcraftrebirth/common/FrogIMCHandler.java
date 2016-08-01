@@ -8,11 +8,14 @@
  */
 package frogcraftrebirth.common;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import net.minecraft.item.ItemStack;
@@ -55,8 +58,28 @@ public final class FrogIMCHandler {
 							FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time));
 							break;
 						}
-						case ("advchemreactor"):
+						case ("advchemreactor"): {
+							NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
+							ArrayList<OreStack> inputsArray = new ArrayList<OreStack>(), outputsArray = new ArrayList<OreStack>();
+							for (int n = 0; n < 5; n++) {
+								int index = n + 1;
+								inputsArray.add(OreStack.loadFromNBT(inputs.getCompoundTag("input" + index)));
+								outputsArray.add(OreStack.loadFromNBT(outputs.getCompoundTag("output" + index)));
+							}
+							inputsArray.removeIf((OreStack stack) -> {
+								return stack == null;
+							});
+							outputsArray.removeIf((OreStack stack) -> {
+								return stack == null;
+							});
+							int time = theTag.getInteger("time");
+							int energyPerTick = theTag.getInteger("energyPerTick");
+							String catalyst = theTag.getString("catalyst");
+							int cellReq = theTag.getInteger("cellReq");
+							int cellProduce = theTag.getInteger("cellProduce");
+							FrogAPI.managerACR.add(new AdvChemRecRecipe(inputsArray, outputsArray, catalyst, time, energyPerTick, cellReq, cellProduce));
 							break;
+						}
 						case ("condensetower"): {
 							FluidStack input = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("input"));
 							NBTTagCompound outputs = theTag.getCompoundTag("outputs");
@@ -66,6 +89,26 @@ public final class FrogIMCHandler {
 							}
 							int time = theTag.getInteger("time");
 							FrogAPI.managerCT.add(new CondenseTowerRecipe(time, input, outputArray));
+							break;
+						}
+						case ("combustionfurnace"): {
+							ItemStack input = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("input"));
+							ItemStack output = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("output"));
+							FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
+							String ore = theTag.getString("ore");
+							if (input != null) {
+								if (output != null)
+									FrogAPI.FUEL_REG.regFuelByproduct(input, output);
+								if (outputFluid != null)
+									FrogAPI.FUEL_REG.regFuelByproduct(input, outputFluid);
+							} else if (ore != null && (!ore.equals(""))) {
+								if (output != null)
+									FrogAPI.FUEL_REG.regFuelByproduct(ore, output);
+								if (outputFluid != null)
+									FrogAPI.FUEL_REG.regFuelByproduct(ore, outputFluid);
+							} else {
+								FrogAPI.FROG_LOG.warn("A broken Combustion Furnace sent by %s byproduct registry is detected. Please double check the code, or report to FrogCraftRebirth immediately!", message.getSender());
+							}
 							break;
 						}
 						default:

@@ -11,6 +11,7 @@ package frogcraftrebirth.api;
 import java.util.ArrayList;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class OreStack {
@@ -74,6 +75,12 @@ public class OreStack {
 
 		stack.stackSize += this.amount;
 	}
+	
+	public NBTTagCompound saveToNBT(NBTTagCompound tag) {
+		tag.setString("oreName", entry);
+		tag.setInteger("amount", amount);
+		return tag;
+	}
 
 	public static boolean stackHasEntry(ItemStack stack, String ore) {
 		if (!OreDictionary.doesOreNameExist(ore))
@@ -88,6 +95,12 @@ public class OreStack {
 
 	public static boolean entryHasStack(ItemStack stack, String ore) {
 		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
+	}
+	
+	public static OreStack loadFromNBT(NBTTagCompound tag) {
+		String name = tag.getString("oreName");
+		int quantity = tag.getInteger("amount");
+		return name != null && (!"".equals(name)) ? new OreStack(name, quantity) : null;
 	}
 
 }

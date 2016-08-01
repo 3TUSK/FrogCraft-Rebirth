@@ -9,26 +9,25 @@
 package frogcraftrebirth.common.lib;
 
 import java.util.Collection;
-import java.util.Map;
 
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 
-public class FrogACRRecipe implements IAdvChemRecRecipe {
+public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	
 	//Yes this one will *only* support OreDictionary!
 	
 	private Collection<OreStack> inputs, outputs;
-	private Map<String, Double> validCatalyst;
+	private String validCatalyst;
 	private int time, energyPerTick;
 	private int cellReq, cellProduce;
 	
-	public FrogACRRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, Map<String, Double> catalyst, int time, int energy, int cellReq, int cellProduce) {
+	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, String catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
 		this.time = time;
-		this.energyPerTick = energy;
+		this.energyPerTick = energyPerTick;
 		this.cellReq = cellReq;
 		this.cellProduce = cellProduce;
 	}
@@ -44,12 +43,8 @@ public class FrogACRRecipe implements IAdvChemRecRecipe {
 	}
 	
 	@Override
-	public double getRateModifier(String catalyst) {
-		try {
-			return validCatalyst.get(catalyst).doubleValue();
-		} catch (Exception e) {
-			return 0D;
-		}
+	public String getCatalyst() {
+		return validCatalyst;
 	}
 	
 	@Override

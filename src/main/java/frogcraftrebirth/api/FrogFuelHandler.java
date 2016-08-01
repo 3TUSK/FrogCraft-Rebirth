@@ -107,7 +107,7 @@ public final class FrogFuelHandler implements IFuelHandler {
 		ore2FluidMap.put(ore, byproduct);
 	}
 	
-	public void regFuelByProduct(@Nonnull String ore, @Nonnull ItemStack byproduct) {
+	public void regFuelByproduct(@Nonnull String ore, @Nonnull ItemStack byproduct) {
 		ore2ByproductMap.put(ore, byproduct);
 	}
 

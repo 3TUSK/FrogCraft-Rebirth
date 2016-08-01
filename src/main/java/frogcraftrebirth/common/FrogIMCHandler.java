@@ -13,6 +13,7 @@ import java.util.Locale;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,7 +37,7 @@ public final class FrogIMCHandler {
 					try {
 						Class<?> clazz = Class.forName(path);
 						if (frogcraftrebirth.api.ICompatModuleFrog.class.isAssignableFrom(clazz) )
-							clazz.getDeclaredMethod("init").invoke(new Object());
+							clazz.getDeclaredMethod("init").invoke(clazz.newInstance());
 					} catch (Exception e) {
 						FrogAPI.FROG_LOG.error("Error occured when FrogCompatModule '%s' is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.", path);
 						e.printStackTrace();
@@ -56,8 +57,17 @@ public final class FrogIMCHandler {
 						}
 						case ("advchemreactor"):
 							break;
-						case ("condensetower"):
+						case ("condensetower"): {
+							FluidStack input = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("input"));
+							NBTTagCompound outputs = theTag.getCompoundTag("outputs");
+							FluidStack[] outputArray = new FluidStack[5];
+							for (int index = 0; index < 5; index++) {
+								outputArray[index] = FluidStack.loadFluidStackFromNBT(outputs.getCompoundTag("output" + index));
+							}
+							int time = theTag.getInteger("time");
+							FrogAPI.managerCT.add(new CondenseTowerRecipe(time, input, outputArray));
 							break;
+						}
 						default:
 							break;
 					}
@@ -84,7 +94,7 @@ public final class FrogIMCHandler {
 							}
 						}
 					} else {
-						FrogAPI.FROG_LOG.warn("'%s' is trying to register Mobile Power Station with NULL ItemStack, which is not alloed to happed.", message.getSender());
+						FrogAPI.FROG_LOG.warn("'%s' is trying to register Mobile Power Station with NULL ItemStack, which is not allowed.", message.getSender());
 					}
 				}
 

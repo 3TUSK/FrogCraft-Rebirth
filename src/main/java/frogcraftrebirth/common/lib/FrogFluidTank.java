@@ -86,9 +86,12 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 		
 		if (this.fluidInv.isFluidEqual(resource)) {
 			int newAmount = this.fluidInv.amount + resource.amount;
-			if (doFill && newAmount > capacity)
-				fluidInv.amount = capacity;
-				
+			if (doFill) {
+				if (newAmount > capacity)
+					fluidInv.amount = capacity;
+				else
+					fluidInv.amount = newAmount;
+			}		
 			return resource.amount - newAmount + capacity;
 		} else 	
 			return 0;
@@ -99,16 +102,18 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 		if (this.fluidInv == null) 
 			return null;
 		
-		if (maxDrain > capacity || this.fluidInv.amount <= maxDrain) {
+		if (this.fluidInv.amount <= maxDrain) {
 			FluidStack drained = this.fluidInv.copy();
 			if (doDrain)
 				this.fluidInv = null;
 			return drained;
 		} else {
-			int isDraining = this.fluidInv.amount - maxDrain;
-			if (doDrain)
-				this.fluidInv.amount -= isDraining;
-			return new FluidStack(this.fluidInv.getFluid(), isDraining);
+			if (doDrain) {
+				this.fluidInv.amount -= maxDrain;
+				if (fluidInv.amount <= 0)
+					fluidInv = null;
+			}
+			return new FluidStack(this.fluidInv.getFluid(), maxDrain);
 		}
 	}
 	
@@ -116,9 +121,9 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	public FluidStack drain(FluidStack resource, boolean doDrain) {
 		if (resource.isFluidEqual(fluidInv)) {
 			return drain(resource.amount, doDrain);
+		} else {
+			return null;
 		}
-		
-		return null;
 	}
 	
 	public void writePacketData(DataOutputStream output) throws IOException {
@@ -138,7 +143,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	}
 	
 	public boolean isFull() {
-		return fluidInv.amount >= this.capacity;
+		return fluidInv == null ? false : fluidInv.amount >= this.capacity;
 	}
 	
 	/**

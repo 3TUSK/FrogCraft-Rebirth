@@ -31,7 +31,7 @@ public class GuiUtil {
 	public static void renderFluidTank(final GuiContainer gui, final IFluidTank tank, int x, int y, int tankWidth, int tankHeight) {
 		if (gui == null)
 			throw new IllegalArgumentException("Someone is trying to draw GUI with null GuiContainer reference!!!");
-		if (tank.getFluid() == null)
+		if (tank == null || tank.getFluid() == null)
 			return;
 		
 		TextureAtlasSprite fluidSprite = gui.mc.getTextureMapBlocks().getAtlasSprite(tank.getFluid().getFluid().getStill().toString());

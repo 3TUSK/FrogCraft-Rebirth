@@ -29,11 +29,10 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 	
+	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
-
-	public final ItemStackHandler inv = new ItemStackHandler(2);
 
 	public TileLiquefier() {
 		super(2, 10000);
@@ -45,8 +44,19 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 			return;
 		super.update();
 		
+		if (inv.getStackInSlot(0) != null) {
+			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+				if (result != null && result.stackSize > 0) {
+					ItemStack remainder = inv.insertItem(1, result, false);
+					if (remainder != null && remainder.stackSize > 0)
+						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+				}
+			}
+		}
+		
 		TileEntity tile = worldObj.getTileEntity(getPos().down());
-		if (!(tile instanceof IAirPump) && tank.isFull()) {
+		if (tile == null || !(tile instanceof IAirPump) || tank.isFull()) {
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			return;
@@ -61,18 +71,6 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 			}
 			
 			process = 0;
-			
-			//Null check, if fail then end update immediately
-			if (inv.getStackInSlot(0) != null) {
-				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-					ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
-					if (result != null && result.stackSize > 0) {
-						ItemStack remainder = inv.insertItem(1, result, false);
-						if (remainder != null && remainder.stackSize > 0)
-							ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
-					}
-				}
-			}
 		}
 		
 		this.sendTileUpdatePacket(this);

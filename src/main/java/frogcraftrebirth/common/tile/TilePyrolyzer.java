@@ -94,7 +94,7 @@ public class TilePyrolyzer extends TileEnergySink {
 		if (tank.getFluid() != null) {
 			if (!tank.getFluid().equals(recipe.getOutputFluid()))
 				return false;
-			else if (tank.getFluidAmount() + recipe.getOutputFluid().amount >= tank.getCapacity())
+			else if (tank.getFluidAmount() + recipe.getOutputFluid().amount > tank.getCapacity())
 				return false;
 		}
 		

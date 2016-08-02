@@ -21,12 +21,15 @@ public class GuiPyrolyzer extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("Pyrolyzer"));
+		this.drawTexturedModalRect(143, 23, 176, 0, 16, 47);
+		
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString(I18n.format("gui.pyrolyzer.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
+	protected void drawGuiContainerBackgroundLayer(float particalTick, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("Pyrolyzer"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
@@ -40,9 +43,7 @@ public class GuiPyrolyzer extends GuiContainer {
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
 		
-		if (tile.tank.getFluid() != null) {
-			GuiUtil.renderFluidTank(this, tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);
-		}
+		GuiUtil.renderFluidTank(this, tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);
 	}
 
 }

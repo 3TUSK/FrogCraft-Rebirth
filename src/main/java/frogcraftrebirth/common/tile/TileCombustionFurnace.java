@@ -25,9 +25,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
 	public final ItemStackHandler inv = new ItemStackHandler(4);
+	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public boolean working = false;
-	protected FrogFluidTank tank = new FrogFluidTank(8000);
 	public int time = 0, timeMax = 0;
 	private ItemStack burning;
 
@@ -90,15 +90,13 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 			return;
 		
 		int[] oreIDs = OreDictionary.getOreIDs(input);
-		if (oreIDs.length != 0) {
-			for (int oreID : oreIDs) {
-				String oreName = OreDictionary.getOreName(oreID);
-				if (!oreName.equals("Unknown")) {
-					//Feature: if there is no space for byproduct, they just go disappear
-					inv.insertItem(1, FUEL_REG.getItemByproduct(oreName), false);
-					tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
-				}
-			} 
+		if (oreIDs.length != 0) { //Why is 0? According to my experience, having more than one ore dict entry is very very rare.
+			String oreName = OreDictionary.getOreName(oreIDs[0]);
+			if (!oreName.equals("Unknown")) {
+				//Feature: if there is no space for byproduct, they just go disappear
+				inv.insertItem(1, FUEL_REG.getItemByproduct(oreName), false);
+				tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
+			}
 		} else {
 			inv.insertItem(2, FUEL_REG.getItemByproduct(input), false);
 			tank.fill(FUEL_REG.getFluidByproduct(input), true);

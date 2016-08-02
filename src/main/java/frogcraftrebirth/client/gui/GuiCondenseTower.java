@@ -19,8 +19,11 @@ public class GuiCondenseTower extends GuiContainer {
 	
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
-		if (!tile.isCompleted())
-			this.fontRendererObj.drawString("Incomplete", 10, 10, GuiUtil.GRAY_40);
+		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CondenseTower_Core"));
+		this.drawTexturedModalRect(143, 23, 176, 0, 16, 47);
+		
+		if (!tile.isCompleted()) //This string does support localization due to a legacy reason.
+			this.fontRendererObj.drawString("Incomplete Machine Casing!", 8, ySize - 96, GuiUtil.GRAY_40);
 	}
 
 	@Override
@@ -28,6 +31,8 @@ public class GuiCondenseTower extends GuiContainer {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CondenseTower_Core"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+		
+		GuiUtil.renderFluidTank(this, tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);
 	}
 	
 }

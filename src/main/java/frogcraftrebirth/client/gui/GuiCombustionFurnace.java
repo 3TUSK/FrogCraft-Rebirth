@@ -21,6 +21,9 @@ public class GuiCombustionFurnace extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
+		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("CombustionFurnace"));
+		this.drawTexturedModalRect(143, 23, 176, 0, 16, 47);
+		
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GuiUtil.GRAY_40);
 		this.fontRendererObj.drawString(I18n.format("gui.combustionFurnace.title"), 8, ySize - 155, GuiUtil.GRAY_40);
 	}
@@ -41,9 +44,7 @@ public class GuiCombustionFurnace extends GuiContainer {
 			this.drawTexturedModalRect(this.guiLeft + 46, this.guiTop + 29, 176, 80, 24 - (int)arrow, 17);
 		}
 		
-		/*if (this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid != null) { TODO fix this weird thing
-			GuiUtil.renderFluidTank(this, 144, 24, 16, 42, this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.getFluid(), this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].fluid.amount / this.tile.getTankInfo(ForgeDirection.UNKNOWN)[0].capacity);
-		}*/
+		GuiUtil.renderFluidTank(this, tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);
 	}
 	
 }

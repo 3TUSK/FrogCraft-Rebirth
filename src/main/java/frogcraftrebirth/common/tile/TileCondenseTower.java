@@ -183,12 +183,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		return super.writeToNBT(tag);
 	}
 
-	//TODO: ItemHandler
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
 			return true;
-		else return super.hasCapability(capability, facing);
+		else 
+			return super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -196,7 +196,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
 			return (T)tank;
-		else return super.getCapability(capability, facing);
+		else 
+			return super.getCapability(capability, facing);
 	}
 	
 	public boolean registerOutputHatch(ICondenseTowerOutputHatch output) {

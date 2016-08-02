@@ -17,7 +17,7 @@ import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.common.FrogBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -42,7 +42,7 @@ public final class FrogAPI {
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public Item getTabIconItem() {
-			return FrogItems.jinkela;
+			return Item.getItemFromBlock(FrogBlocks.hybridStorageUnit);
 		}
 	};
 	

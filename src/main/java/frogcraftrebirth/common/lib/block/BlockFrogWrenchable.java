@@ -17,6 +17,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -34,6 +35,11 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 	protected BlockFrogWrenchable(Material material, String registryName, boolean allowVerticalRotation, int... metaForDisplay) {
 		super(material, registryName, metaForDisplay);
 		this.allowVerticalRotation = allowVerticalRotation;
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		worldIn.setBlockState(pos, state.withProperty(allowVerticalRotation ? FACING_ALL : FACING_HORIZONTAL, placer.getHorizontalFacing().getOpposite()));
 	}
 
 	@Override

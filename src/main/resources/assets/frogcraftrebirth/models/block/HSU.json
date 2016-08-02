@@ -3,7 +3,7 @@
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/HSU_Side",
 		"down": "frogcraftrebirth:blocks/HSU_Side",
-		"up": "frogcraftrebirth:blocks/HSU_Side",
+		"up": "frogcraftrebirth:blocks/HSU_Top",
 		"north": "frogcraftrebirth:blocks/HSU_Front",
 		"east": "frogcraftrebirth:blocks/HSU_Side",
 		"south": "frogcraftrebirth:blocks/HSU_Side",

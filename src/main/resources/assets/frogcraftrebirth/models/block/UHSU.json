@@ -3,7 +3,7 @@
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/UHSU_Side",
 		"down": "frogcraftrebirth:blocks/UHSU_Side",
-		"up": "frogcraftrebirth:blocks/UHSU_Side",
+		"up": "frogcraftrebirth:blocks/UHSU_Top",
 		"north": "frogcraftrebirth:blocks/UHSU_Front",
 		"east": "frogcraftrebirth:blocks/UHSU_Side",
 		"south": "frogcraftrebirth:blocks/UHSU_Side",

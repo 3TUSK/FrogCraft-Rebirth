@@ -42,9 +42,11 @@ FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebir
 Textures are still not sure. If necessary I will remove them immediately.
 
 ### Credits
-Credits to [ueyudiud](https://github.com/ueyudiud) for generous consultant.  
-Credits to dunge for his design idea and several texture.  
-Credits to [Glease](https://github.com/Glease) for his consultant.
+The progress of FrogCraft: Rebirth will not come true without the following folks' support:  
+ * Credits to [ueyudiud](https://github.com/ueyudiud) for his generous consultant.  
+ * Credits to dunge for his design idea and several texture.  
+ * Credits to [Glease](https://github.com/Glease) for his consultant.
+ * Credits to [huangziye](http://tieba.baidu.com/home/main?un=huangziye812) for his new textures.
 
 [link_FrogCraft_original]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=9458
 [link_FrogCraft_ported]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=10447

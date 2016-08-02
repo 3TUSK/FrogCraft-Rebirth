@@ -2,11 +2,11 @@
 	"parent": "block/cube",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front",
-		"down": "frogcraftrebirth:blocks/IndustrialDevice_Top",
-		"up": "frogcraftrebirth:blocks/IndustrialDevice_Top",
+		"down": "ic2:blocks/resource/advanced_machine",
+		"up": "ic2:blocks/resource/advanced_machine",
 		"north": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front",
-		"east": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side",
+		"east": "ic2:blocks/machine/processing/advanced/induction_furnace_leftright",
 		"south": "frogcraftrebirth:blocks/machines/Pyrolyzer_Back",
-		"west": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side"
+		"west": "ic2:blocks/machine/processing/advanced/induction_furnace_leftright"
 	}
 }

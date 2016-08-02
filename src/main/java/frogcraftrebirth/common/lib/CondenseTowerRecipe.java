@@ -12,16 +12,17 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	
 	private final FluidStack input;
 	private Set<FluidStack> output;
-	private final int time;
+	private final int time, energyPerTick;
 
-	public CondenseTowerRecipe(int time, FluidStack input, FluidStack[] output) {
-		this(time, input, Arrays.asList(output));
+	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, FluidStack[] output) {
+		this(time, energyPerTick, input, Arrays.asList(output));
 	}
 
-	public CondenseTowerRecipe(int time, FluidStack input, Collection<FluidStack> output) {
+	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Collection<FluidStack> output) {
 		this.output = new HashSet<FluidStack>(output);
 		this.input = input;
 		this.time = time;
+		this.energyPerTick = energyPerTick;
 	}
 
 	@Override
@@ -37,6 +38,11 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	@Override
 	public int getTime() {
 		return time;
+	}
+	
+	@Override
+	public int getEnergyPerTick() {
+		return energyPerTick;
 	}
 
 }

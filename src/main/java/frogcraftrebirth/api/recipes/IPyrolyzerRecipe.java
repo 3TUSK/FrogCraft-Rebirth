@@ -20,5 +20,7 @@ public interface IPyrolyzerRecipe {
 	FluidStack getOutputFluid();
 
 	int getTime();
+	
+	int getEnergyPerTick();
 
 }

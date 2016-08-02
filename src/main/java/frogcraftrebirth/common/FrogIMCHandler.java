@@ -55,7 +55,8 @@ public final class FrogIMCHandler {
 							ItemStack output = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("output"));
 							FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
 							int time = theTag.getInteger("time");
-							FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time));
+							int energyPerTick = theTag.getInteger("energyPerTick");
+							FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time, energyPerTick));
 							break;
 						}
 						case ("advchemreactor"): {
@@ -89,7 +90,8 @@ public final class FrogIMCHandler {
 								outputArray[index] = FluidStack.loadFluidStackFromNBT(outputs.getCompoundTag("output" + index));
 							}
 							int time = theTag.getInteger("time");
-							FrogAPI.managerCT.add(new CondenseTowerRecipe(time, input, outputArray));
+							int energyPerTick = theTag.getInteger("energyPerTick");
+							FrogAPI.managerCT.add(new CondenseTowerRecipe(time, energyPerTick, input, outputArray));
 							break;
 						}
 						case ("combustionfurnace"): {

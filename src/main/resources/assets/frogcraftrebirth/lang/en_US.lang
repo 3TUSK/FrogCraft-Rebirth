@@ -188,8 +188,8 @@ gui.MPS.title=Mobile Power Supply
 gui.jei.category.condensation=Condensation
 gui.jei.category.pyrolyzation=Pyrolysis
 
-jei.euTotal=Total EU: %d
-jei.euTick=EU per tick: %d
+jei.euTotal=Total: %d EU
+jei.euTick=Power: %d EU/t
 jei.tick=Time in ticks: %d
 
 nei.tickWithCatalyst=Reaction tick under catalyst

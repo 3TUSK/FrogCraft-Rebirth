@@ -8,13 +8,14 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 
 	private final ItemStack input, output;
 	private final FluidStack outputFluid;
-	private final int time;
+	private final int time, energyPerTick;
 	
-	public PyrolyzerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time){
+	public PyrolyzerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time, int energyPerTick){
 		this.input = input;
 		this.output = output;
 		this.outputFluid = outputFluid;
 		this.time = time;
+		this.energyPerTick = energyPerTick;
 	}
 	
 	public ItemStack getInput() {
@@ -31,6 +32,10 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 	
 	public int getTime() {
 		return time;
+	}
+	
+	public int getEnergyPerTick() {
+		return energyPerTick;
 	}
 	
 	@Override

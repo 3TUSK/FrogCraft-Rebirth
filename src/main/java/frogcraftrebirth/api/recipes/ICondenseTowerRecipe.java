@@ -20,4 +20,6 @@ public interface ICondenseTowerRecipe {
 
 	int getTime();
 	
+	int getEnergyPerTick();
+	
 }

@@ -71,7 +71,7 @@ public class TilePyrolyzer extends TileEnergySink {
 				return;
 			}
 		} else {
-			this.charge -= 128;
+			this.charge -= recipe.getEnergyPerTick();
 			process++;
 			
 			if (process == processMax) {

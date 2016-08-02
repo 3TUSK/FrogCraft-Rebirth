@@ -29,6 +29,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	private boolean structureCompletedOnLastTick = false;
 	private ArrayList<ICondenseTowerOutputHatch> outputs = new ArrayList<ICondenseTowerOutputHatch>();
 	private ArrayList<ICondenseTowerPart> structures = new ArrayList<ICondenseTowerPart>();
+	private ICondenseTowerRecipe recipe;
+	public int process, processMax;
 	
 	public TileCondenseTower() {
 		super(3, 10000);
@@ -87,24 +89,34 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		if (tank.getFluid() == null)
 			return;
 		
-		ICondenseTowerRecipe recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+		recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
 		if (checkRecipe(recipe)) {
 			this.tank.drain(recipe.getInput().amount, !worldObj.isRemote);
-		} else 
+			processMax = recipe.getTime();
+			process = 0;
+		} else {
+			this.markDirty();
+			this.sendTileUpdatePacket(this);
 			return;
-		
-		charge -= 500;
-		
-		java.util.Set<FluidStack> outputs = recipe.getOutput();
-		for (FluidStack fluid : outputs) {
-			for (ICondenseTowerOutputHatch output : this.outputs) {
-				if (output.canInject(fluid)) {
-					output.inject(fluid, !worldObj.isRemote);
-					break;
-				}
-			}
 		}
 		
+		charge -= recipe.getEnergyPerTick();
+		process++;
+		
+		if (process == processMax) {
+			java.util.Set<FluidStack> outputs = recipe.getOutput();
+			for (FluidStack fluid : outputs) {
+				for (ICondenseTowerOutputHatch output : this.outputs) {
+					if (output.canInject(fluid)) {
+						output.inject(fluid, !worldObj.isRemote);
+						break;
+					}
+				}
+			}
+			process = 0;
+			processMax = 0;
+			recipe = null;
+		}
 		this.markDirty();
 		this.sendTileUpdatePacket(this);
 	}
@@ -157,16 +169,20 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
 		tank.readPacketData(input);
-		this.charge = input.readInt();
 		this.structureCompletedOnLastTick = input.readBoolean();
+		this.process = input.readInt();
+		this.processMax = input.readInt();
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
 		tank.writePacketData(output);
-		output.writeInt(charge);
 		output.writeBoolean(structureCompletedOnLastTick);
+		output.writeInt(process);
+		output.writeInt(processMax);
 	}
 	
 	@Override

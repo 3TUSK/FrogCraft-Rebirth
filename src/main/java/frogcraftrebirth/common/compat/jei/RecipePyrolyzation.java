@@ -60,7 +60,9 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		minecraft.fontRendererObj.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 80, 0x404040);
+		minecraft.fontRendererObj.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 80, 0x404040);
+		minecraft.fontRendererObj.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
+		minecraft.fontRendererObj.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 60, 0x404040);
 	}
 
 	@Override

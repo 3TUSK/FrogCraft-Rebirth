@@ -3,9 +3,10 @@ A Minecraft mod, IC2 addon, with theme of chemistry and fun things.
 
 ### Table of content:  
  1. Intro of FrogCraft: Rebirth
- 2. Future Plan
- 3. License
- 4. Credits
+ 2. What's changed in this new port?
+ 3. Future Plan
+ 4. License
+ 5. Credits
  
 ### Introduction
 FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original] (and also the [ported one][link_FrogCraft_ported]), an addon Mod for IndustrialCraft2/GregTech, majorly about chemical industry, featured with following:
@@ -22,6 +23,8 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  
 ### What's changed in this version?
  * Due to GregTech is still in 1.7.10, compatibilities for GregTech, including Pnuematic Compressor, are disabled for now. 
+ * Thermal Cracker is renamed to Pyrolyzer.
+ * Cells are removed. Use IC2 Universal Fluid Cell instead.
  * Railgun and Academy Windmill are removed. The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements.
  * As a replacement, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
  * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents, e.g. Chisel.

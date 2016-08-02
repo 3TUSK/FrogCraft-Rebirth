@@ -60,16 +60,17 @@ public final class FrogIMCHandler {
 						}
 						case ("advchemreactor"): {
 							NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
-							ArrayList<OreStack> inputsArray = new ArrayList<OreStack>(), outputsArray = new ArrayList<OreStack>();
+							ArrayList<OreStack> inputsArray = new ArrayList<OreStack>();
+							ArrayList<ItemStack> outputsArray = new ArrayList<ItemStack>();
 							for (int n = 0; n < 5; n++) {
 								int index = n + 1;
 								inputsArray.add(OreStack.loadFromNBT(inputs.getCompoundTag("input" + index)));
-								outputsArray.add(OreStack.loadFromNBT(outputs.getCompoundTag("output" + index)));
+								outputsArray.add(ItemStack.loadItemStackFromNBT(outputs.getCompoundTag("output" + index)));
 							}
 							inputsArray.removeIf((OreStack stack) -> {
 								return stack == null;
 							});
-							outputsArray.removeIf((OreStack stack) -> {
+							outputsArray.removeIf((ItemStack stack) -> {
 								return stack == null;
 							});
 							int time = theTag.getInteger("time");

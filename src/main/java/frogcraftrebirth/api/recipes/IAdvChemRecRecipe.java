@@ -17,7 +17,7 @@ public interface IAdvChemRecRecipe {
 
 	Collection<OreStack> getInputs();
 
-	Collection<OreStack> getOutputs();
+	Collection<ItemStack> getOutputs();
 
 	String getCatalyst();
 

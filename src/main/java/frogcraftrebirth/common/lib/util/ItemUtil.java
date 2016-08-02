@@ -2,6 +2,7 @@ package frogcraftrebirth.common.lib.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Random;
 
 import javax.annotation.Nonnull;
@@ -52,7 +53,7 @@ public final class ItemUtil {
 	
 	public static ItemStack get1stChoiceFromOre(String entry) {
 		try {
-			return OreDictionary.getOres(entry).get(0);
+			return OreDictionary.getOres(entry).get(0).copy();
 		} catch (Exception e) {
 			return null; //fall back
 		}
@@ -64,6 +65,10 @@ public final class ItemUtil {
 			array[i] = get1stChoiceFromOre(oreArray[i]);
 		}
 		return array;
+	}
+	
+	public static Collection<ItemStack> toCollection(IItemHandler handler) {
+		return null; //to be implemented
 	}
 	
 	public static boolean stackContains(ItemStack[] targetArray, ItemStack stack, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {

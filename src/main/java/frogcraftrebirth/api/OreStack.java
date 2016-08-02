@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 4:44:30 PM, Mar 28, 2016, EST
+ * created by 3TUSK at 4:44:30 PM, Mar 28, 2016, EST
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -50,6 +50,14 @@ public class OreStack {
 	public boolean equals(OreStack stack) {
 		return stack.getEntry().equals(this.entry) && stack.getAmount() == this.getAmount();
 	}
+	
+	/**
+	 * Override {@link Object#equals} to make OreStack compatible to many of data structures.
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		return obj instanceof OreStack ? equals((OreStack)obj) : false;
+	}
 
 	public boolean consumable(ItemStack stack) {
 		return OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
@@ -93,6 +101,7 @@ public class OreStack {
 		return entries.contains(ore);
 	}
 
+	@Deprecated //This will not work due to ItemStack does not override equal() method!
 	public static boolean entryHasStack(ItemStack stack, String ore) {
 		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
 	}

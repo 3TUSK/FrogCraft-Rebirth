@@ -1,11 +1,13 @@
 package frogcraftrebirth.common.tile;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 import java.util.Collection;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
-import frogcraftrebirth.api.tile.IAdvChemReactor;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -14,13 +16,12 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileEnergySink implements IAdvChemReactor {
+public class TileAdvChemReactor extends TileEnergySink {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(13);
 	
 	public int process, processMax;
 	private boolean working;
-	private boolean changed = false;
 	private IAdvChemRecRecipe recipe;
 	
 	public TileAdvChemReactor() {
@@ -45,6 +46,22 @@ public class TileAdvChemReactor extends TileEnergySink implements IAdvChemReacto
 	}
 	
 	@Override
+	public void readPacketData(DataInputStream input) throws IOException {
+		super.readPacketData(input);
+		this.process = input.readInt();
+		this.processMax = input.readInt();
+		this.working = input.readBoolean();
+	}
+	
+	@Override
+	public void writePacketData(DataOutputStream output) throws IOException {
+		super.writePacketData(output);
+		output.writeInt(process);
+		output.writeInt(processMax);
+		output.writeBoolean(working);
+	}
+	
+	@Override
 	public void update() {
 		if (worldObj.isRemote) 
 			return;
@@ -55,80 +72,59 @@ public class TileAdvChemReactor extends TileEnergySink implements IAdvChemReacto
 		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
 		
 		if (checkIngredient(recipe)) {
-			this.consumeIngredient(recipe.getOutputs());
+			this.consumeIngredient(recipe.getInputs());
+			this.process = 0;
+			this.processMax = recipe.getTime();
 			this.working = true;
-			this.changed = true;
 		}
 		
 		if (working && charge >= recipe.getEnergyRate()) {
 			this.charge -= recipe.getEnergyRate();
 			++process;
-		} else
-			return;
+		}
 		
 		if (process == processMax) {
 			this.produce();
-			this.changed = true;
 			this.working = false;
+			this.process = 0;
+			this.processMax = 0;
 		}
-		
-		if (changed) {
-			this.markDirty();
-			this.sendTileUpdatePacket(this);
-			changed = false;
-		}
+
+		this.markDirty();
+		this.sendTileUpdatePacket(this);
 	}
 	
-	@Override
-	public double modifyReactionRate(ItemStack... catalyst) {
-		return 1D;
-	}
-	
-	@Override
-	public boolean checkIngredient(IAdvChemRecRecipe recipe) {
+	private boolean checkIngredient(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
 		
 		return false;
 	}
 	
-	@SuppressWarnings("unused")
 	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
-		for (OreStack ore : toBeConsumed) {
-			for (int i = 1; i <= 5 ;i++) {
-				//if (ore.consumable(inv[i])) {
-				//	ore.consume(inv[i]);
-				//	break;
-				//}
-			}
-		}
+		// to be implemented
 	}
 	
-	@SuppressWarnings("unused")
-	public void produce() {
-		for (OreStack ore : recipe.getOutputs()) {
-			boolean match = false;
-			for (int i = 6; i <= 10; i++) {
-				//if (ore.stackable(inv[i])) {
-				//	ore.stack(inv[i]);
-				//	match = true;
-				//	break;
-				//}
-			}
-			
-			if (!match) {
-				//for (int i = 6; i <= 10; i++) 
-				//	if (inv[i] == null) {
-				//		ore.stack(inv[i]);
-				//		break;
-				//	}
-			}
-		}
+	private void produce() {
+		// to be implemented
 	}
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
+	}
+	
+	@Override
+	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			switch (facing) {
+			case UP:
+			case DOWN:
+			default: break;
+			}
+		}
+			
+		return super.getCapability(capability, facing);
 	}
 
 }

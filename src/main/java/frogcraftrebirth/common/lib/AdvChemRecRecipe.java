@@ -12,17 +12,17 @@ import java.util.Collection;
 
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	
-	//Yes this one will *only* support OreDictionary!
+	private final Collection<OreStack> inputs;
+	private final Collection<ItemStack> outputs;
+	private final String validCatalyst;
+	private final int time, energyPerTick;
+	private final int cellReq, cellProduce;
 	
-	private Collection<OreStack> inputs, outputs;
-	private String validCatalyst;
-	private int time, energyPerTick;
-	private int cellReq, cellProduce;
-	
-	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<OreStack> outputs, String catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
+	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<ItemStack> outputs, String catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
@@ -38,7 +38,7 @@ public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	}
 	
 	@Override
-	public Collection<OreStack> getOutputs() {
+	public Collection<ItemStack> getOutputs() {
 		return outputs;
 	}
 	

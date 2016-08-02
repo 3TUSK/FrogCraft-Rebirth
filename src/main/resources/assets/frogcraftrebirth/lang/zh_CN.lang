@@ -186,12 +186,12 @@ gui.MPS.title=移动电源
 
 #JEI GUI texts - 注：因历史原因，某些键仍保留以nei开头，但很快就会改为jei。
 gui.jei.category.condensation=冷凝塔  冷凝
+gui.jei.category.pyrolyzation=高温裂解
 
-nei.euTotal=总耗电量
-nei.euTick=每Tick耗电量
-nei.euTotalGen=总发电量
-nei.euTickOut=每Tick输出
-nei.tick=所需时间
+jei.euTotal=总耗电量：%d EU
+jei.euTick=每Tick耗电量：%d EU
+jei.tick=所需时间：%d tick
+
 nei.tickWithCatalyst=催化下的反应时间
 nei.catalystRequird=这个反应需要催化剂!
 nei.outputLiquid=输出液体

@@ -12,6 +12,7 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiMPS;
+import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.common.FrogBlocks;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
@@ -32,18 +33,20 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 	public void register(IModRegistry registry) {
 		//registry.addRecipeHandlers(new HandlerAdvChemReactor());
 		registry.addRecipeHandlers(new HandlerCondensation());
-		//registry.addRecipeHandlers(new HandlerPyrolyzer());
+		registry.addRecipeHandlers(new HandlerPyrolyzation());
 		
 		//registry.addRecipeCategories(new CategoryChemReaction());
 		registry.addRecipeCategories(new CategoryCondensation(registry.getJeiHelpers().getGuiHelper()));
-		//registry.addRecipeCategories(new CategoryPyrolyzation());
+		registry.addRecipeCategories(new CategoryPyrolyzation(registry.getJeiHelpers().getGuiHelper()));
 		
 		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogBlocks.condenseTowerPart, 1, 0), "frogcraftrebirth.condensation");
 		
 		registry.addRecipes(RecipeCondensation.getWrappedRecipeList());
+		registry.addRecipes(RecipePyrolyzation.getWrappedRecipeList());
 		
 		registry.addRecipeClickArea(GuiMPS.class, 39, 47, 24, 16, VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
 		registry.addRecipeClickArea(GuiCondenseTower.class, 109, 30, 13, 12, "frogcraftrebirth.condensation");
+		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
 	}
 
 	@Override

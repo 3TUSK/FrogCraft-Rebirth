@@ -34,7 +34,7 @@ public class GuiPyrolyzer extends GuiContainer {
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("Pyrolyzer"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 		
-		int chargeIcon = (int) (15 * tile.charge / tile.maxCharge);
+		int chargeIcon = (int) (14 * tile.charge / tile.maxCharge);
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
 		
 		if (tile.working) {

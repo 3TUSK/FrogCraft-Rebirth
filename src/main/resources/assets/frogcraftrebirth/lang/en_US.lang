@@ -186,12 +186,12 @@ gui.MPS.title=Mobile Power Supply
 
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
 gui.jei.category.condensation=Condensation
+gui.jei.category.pyrolyzation=Pyrolysis
 
-nei.euTotal=Total Eu
-nei.euTick=Eu per tick
-nei.euTotalGen=Total generated
-nei.euTickOut=Eu per tick
-nei.tick=tick
+jei.euTotal=Total EU: %d
+jei.euTick=EU per tick: %d
+jei.tick=Time in ticks: %d
+
 nei.tickWithCatalyst=Reaction tick under catalyst
 nei.catalystRequird=This reaction needs catalyst
 nei.outputLiquid=Output liquid

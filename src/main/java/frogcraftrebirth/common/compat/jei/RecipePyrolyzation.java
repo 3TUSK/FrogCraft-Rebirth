@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 2:05:57 PM, Jul 28, 2016, 
+ * created by U_Knowledge at 9:42:53 PM, Jul 23, 2016, 
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -12,53 +12,55 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class RecipeCondensation implements IRecipeWrapper {
+public class RecipePyrolyzation implements IRecipeWrapper {
 	
-	public static List<RecipeCondensation> getWrappedRecipeList() {
-		List<RecipeCondensation> recipesToReturn = new ArrayList<RecipeCondensation>();
-		for (ICondenseTowerRecipe recipe : FrogAPI.managerCT.getRecipes()) {
-			recipesToReturn.add(new RecipeCondensation(recipe));
+	public static List<RecipePyrolyzation> getWrappedRecipeList() {
+		List<RecipePyrolyzation> recipeToReturn = new ArrayList<RecipePyrolyzation>();
+		for (IPyrolyzerRecipe recipe : FrogAPI.managerPyrolyzer.getRecipes()) {
+			recipeToReturn.add(new RecipePyrolyzation(recipe));
 		}
-		return recipesToReturn;
+		return recipeToReturn;
 	}
 	
-	private final ICondenseTowerRecipe recipe;
+	private final IPyrolyzerRecipe recipe;
 	
-	public RecipeCondensation(ICondenseTowerRecipe recipe) {
+	public RecipePyrolyzation(@Nonnull IPyrolyzerRecipe recipe) {
 		this.recipe = recipe;
 	}
 
 	@Override
 	public List<ItemStack> getInputs() {
-		return null;
-	}
-
-	@Override
-	public List<ItemStack> getOutputs() {
-		return null;
-	}
-
-	@Override
-	public List<FluidStack> getFluidInputs() {
 		return Arrays.asList(recipe.getInput());
 	}
 
 	@Override
+	public List<ItemStack> getOutputs() {
+		return Arrays.asList(recipe.getOutput());
+	}
+
+	@Override
+	public List<FluidStack> getFluidInputs() {
+		return null;
+	}
+
+	@Override
 	public List<FluidStack> getFluidOutputs() {
-		return new ArrayList<FluidStack>(recipe.getOutput());
+		return Arrays.asList(recipe.getOutputFluid());
 	}
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		minecraft.fontRendererObj.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 70, 0x404040);
+		minecraft.fontRendererObj.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 80, 0x404040);
 	}
 
 	@Override

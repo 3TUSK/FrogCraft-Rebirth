@@ -21,7 +21,7 @@ public class FrogASMTransformer implements IClassTransformer {
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
 		if (transformedName.equals("net.minecraft.world.biome.BiomeProvider")) {
-			FrogASMPlugin.LOGGER.info("Due to technical reasons, IC2-ex10 cannot work properly in newer version of Forge. This will try to fix that.");
+			FrogASMPlugin.LOGGER.info("Due to technical reasons, IC2-ex10 cannot work properly in dev environment of newer version of Forge. This will try to fix that.");
 			
 			ClassReader reader = new ClassReader(basicClass);
 			ClassNode node = new ClassNode();

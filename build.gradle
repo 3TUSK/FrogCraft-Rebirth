@@ -36,7 +36,7 @@ minecraft {
 
     mappings = Mapping_Ver
     
-    replace "@VERSION", project.version
+    replace "@VERSION@", project.version
 }
 
 dependencies {
@@ -48,7 +48,7 @@ dependencies {
 
 jar {
     manifest {
-        attributes 'FMLCorePlugin': 'frogcraftrebirth.common.asm.FrogASMPlugin'
+        //attributes 'FMLCorePlugin': 'frogcraftrebirth.common.asm.FrogASMPlugin'
         attributes 'FMLAT': 'fcr_at.cfg'
     }
 }

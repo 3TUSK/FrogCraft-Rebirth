@@ -92,7 +92,29 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		int facing = state.getValue(FACING_HORIZONTAL).getIndex();
+		int facing;
+		switch (state.getValue(FACING_HORIZONTAL)) {
+			case SOUTH: {
+				facing = 0;
+				break;
+			}
+			case WEST: {
+				facing = 1;
+				break;
+			}
+			case NORTH: {
+				facing = 2;
+				break;
+			}
+			case EAST: {
+				facing = 3;
+				break;
+			}
+			default: {
+				facing = 2;
+				break;
+			}
+		}
 		return (facing << 2) + state.getValue(TYPE).ordinal();
 	}
 	

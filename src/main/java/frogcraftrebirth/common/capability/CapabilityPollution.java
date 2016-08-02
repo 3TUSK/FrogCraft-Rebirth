@@ -16,6 +16,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class CapabilityPollution {
 	
@@ -27,6 +28,12 @@ public class CapabilityPollution {
 	
 	@CapabilityInject(IAntiPollutionObject.class)
 	public static Capability<IAntiPollutionObject> ANTI = null;
+	
+	public static final void initCapability() {
+		CapabilityManager.INSTANCE.register(IPollutionSource.class, new PollutionSourceStorage(), (Class<? extends IPollutionSource>)null);
+		CapabilityManager.INSTANCE.register(IPollutionVictim.class, new PollutionVictimStorage(), (Class<? extends IPollutionVictim>)null);
+		CapabilityManager.INSTANCE.register(IAntiPollutionObject.class, new AntiPollutionObjStorage(), (Class<? extends IAntiPollutionObject>)null);
+	}
 
 	private static class PollutionSourceStorage implements IStorage<IPollutionSource> {
 

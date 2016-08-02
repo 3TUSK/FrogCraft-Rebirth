@@ -24,14 +24,16 @@ public class ItemIngot extends ItemFrogCraft {
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		ArrayList<String> list = new ArrayList<String>();
-		list.add(I18n.format("item.Item_Ingots."+nameArray[stack.getItemDamage()]+".info"));
+		list.add(I18n.format("item.Item_Ingots."+nameArray[stack.getMetadata()]+".info"));
 		switch (stack.getItemDamage()) {
-			case 0:
+			case 0: {
 				list.add(I18n.format("item.Item_Ingots.ingotDesc"));
 				break;
-			case 1:
+			}
+			case 1: {
 				list.add(I18n.format("item.Item_Ingots.ingotDesc"));
 				break;
+			}
 			case 2: {
 				list.add(I18n.format("item.Item_Ingots.nghDesc"));
 				break;

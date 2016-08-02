@@ -26,7 +26,7 @@ public class RegFrogRecipes {
 		FrogAPI.managerCT.add(new CondenseTowerRecipe(100, new FluidStack(FrogFluids.coalTar, 5), new FluidStack[] {new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 1), new FluidStack(FrogFluids.carbonOxide, 2)}));
 		FrogAPI.managerCT.add(new CondenseTowerRecipe(100, new FluidStack(FluidRegistry.getFluid("ic2air"), 10), new FluidStack[] {new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 7), new FluidStack(FrogFluids.carbonDioxide, 2)}));
 		
-		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Items.COAL), new ItemStack(FrogItems.itemIngot, 1, 7), new FluidStack(FrogFluids.coalTar, 50), 100));
+		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Items.COAL), new ItemStack(FrogItems.itemIngot, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 100));
 		FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogItems.itemDust, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 1000), 100));
 	
 		FrogAPI.FUEL_REG.regFuelByproduct(new ItemStack(Items.COAL, 1, 0), FrogFluids.carbonDioxide);

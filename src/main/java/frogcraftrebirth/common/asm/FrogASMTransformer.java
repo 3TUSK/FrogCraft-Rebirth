@@ -29,15 +29,27 @@ public class FrogASMTransformer implements IClassTransformer {
 
 			MethodVisitor meth = node.visitMethod(Opcodes.ACC_PUBLIC, "getBiomeGenerator", "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;", null, null);
 			meth.visitVarInsn(Opcodes.ALOAD, 0);
-			meth.visitFieldInsn(Opcodes.GETFIELD, "net/minecraft/world/biome/BiomeProvider", "biomeCache", "Lnet/minecraft/world/biome/BiomeCache;");
 			meth.visitVarInsn(Opcodes.ALOAD, 1);
-			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/util/math/BlockPos", "getX", "()I", false);
-			meth.visitVarInsn(Opcodes.ALOAD, 1);
-			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/util/math/BlockPos", "getZ", "()I", false);
 			meth.visitVarInsn(Opcodes.ALOAD, 2);
-			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/world/biome/BiomeCache", "getBiome", "(IILnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;", false);
+			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/world/biome/BiomeProvider", "getBiome", "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;", false);
+			meth.visitInsn(Opcodes.ARETURN);	
+			node.visitEnd();
+			
+			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
+			node.accept(writer);
+			return writer.toByteArray();
+		} else if (transformedName.equals("net.minecraft.world.World")) {
+			ClassReader reader = new ClassReader(basicClass);
+			ClassNode node = new ClassNode();
+			reader.accept(node, 0);
+			
+			MethodVisitor meth = node.visitMethod(Opcodes.ACC_PUBLIC, "getBiomeGenForCoords", "(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", null, null);
+			meth.visitVarInsn(Opcodes.ALOAD, 0);
+			meth.visitVarInsn(Opcodes.ALOAD, 1);
+			meth.visitMethodInsn(Opcodes.INVOKEVIRTUAL, "net/minecraft/world/World", "getBiome", "(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", false);
 			meth.visitInsn(Opcodes.ARETURN);
 			node.visitEnd();
+			
 			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 			node.accept(writer);
 			return writer.toByteArray();

@@ -25,13 +25,12 @@ public class FrogASMPlugin implements IFMLLoadingPlugin {
 	public String[] getASMTransformerClass() {
 		return new String[] {
 			"frogcraftrebirth.common.asm.FrogASMTransformer"
-			//Will be enabled as soon as there is necessity
 		};
 	}
 
 	@Override
 	public String getModContainerClass() {
-		return "frogcraftrebirth.common.asm.FrogCoremodContainer";
+		return null;
 	}
 
 	@Override

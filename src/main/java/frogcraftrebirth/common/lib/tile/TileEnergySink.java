@@ -49,14 +49,12 @@ public abstract class TileEnergySink extends TileFrog implements ITickable, IEne
 	
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
 		charge = input.readInt();
 		maxCharge = input.readInt();
 	}
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
 		output.writeInt(charge);
 		output.writeInt(maxCharge);
 	}

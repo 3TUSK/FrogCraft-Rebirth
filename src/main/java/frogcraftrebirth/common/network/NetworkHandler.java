@@ -11,7 +11,7 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.PacketBuffer;
@@ -22,6 +22,8 @@ import net.minecraftforge.fml.common.network.FMLNetworkEvent.ServerCustomPacketE
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class NetworkHandler {
 	
@@ -41,22 +43,23 @@ public class NetworkHandler {
 	@SubscribeEvent
 	public void serverPacket(ServerCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeData(input, ((NetHandlerPlayServer)event.getHandler()).playerEntity);
+		decodeDataServer(input, ((NetHandlerPlayServer)event.getHandler()).playerEntity);
 	}
 	
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeData(input, Minecraft.getMinecraft().thePlayer);
+		decodeDataClient(input, Minecraft.getMinecraft().thePlayer);
 	}
 	
-	private void decodeData(InputStream input, EntityPlayer player) {
+	@SideOnly(Side.CLIENT)
+	private void decodeDataClient(InputStream input, EntityPlayerSP player) {
 		DataInputStream data = new DataInputStream(input);
 		try {
 			byte identity = data.readByte();
 			switch(identity) {
 				case 0: {
-					new PacketFrog00TileUpdate().readData(data);
+					new PacketFrog00TileUpdate(player).readData(data);
 					break;
 				}
 				case 1: {
@@ -71,6 +74,17 @@ public class NetworkHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private void decodeDataServer(InputStream input, EntityPlayerMP player) {
+		DataInputStream data = new DataInputStream(input);
+		try {
+			@SuppressWarnings("unused")
+			byte identity = data.readByte();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
 	private static ByteBuf asByteBuf(IFrogPacket packet) {

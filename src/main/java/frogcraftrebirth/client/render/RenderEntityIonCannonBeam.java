@@ -13,12 +13,11 @@ public class RenderEntityIonCannonBeam extends Render<EntityIonCannonBeam> {
 
 	@Override
 	public void doRender(EntityIonCannonBeam entity, double d1, double d2, double d3, float f1, float f2) {
-		// TODO 
+		
 	}
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityIonCannonBeam entity) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 

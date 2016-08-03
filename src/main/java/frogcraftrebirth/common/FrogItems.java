@@ -9,10 +9,12 @@ public class FrogItems {
 	public static Item coolantAmmonia180K;
 	public static Item coolantAmmonia360K;
 	
-	@Deprecated
-	public static Item itemCell;
 	public static Item itemIngot;
 	public static Item itemDust;
+	public static Item itemCrushedDust;
+	public static Item itemPurifiedDust;
+	public static Item itemSmallPileDust;
+	
 	public static Item itemReactionModule;
 
 	public static Item ionCannon;

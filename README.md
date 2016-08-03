@@ -23,11 +23,13 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  
 ### What's changed in this version?
  * Due to GregTech is still in 1.7.10, compatibilities for GregTech, including Pnuematic Compressor, are disabled for now. 
- * Thermal Cracker is renamed to Pyrolyzer.
+ * New textures powered by huangziye812!
+ * Thermal Cracker is renamed to Pyrolyzer. "Thermal Cracker" sounds like Chinglish to me. 
  * Cells are removed. Use IC2 Universal Fluid Cell instead.
+ * Crushed ore dust, purified ore dust, and dust of small pile! 
  * Railgun and Academy Windmill are removed. The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements.
- * As a replacement, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
- * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents, e.g. Chisel.
+ * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
+ * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents from other mods, e.g. Chisel.
  * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as Marble and Basalt.
  * **This mod now requires Java 8 to run**. If you plan to use FrogCraft: Rebirth on dedicated server, please be aware of your Java version.
 
@@ -38,15 +40,15 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
 Yes, NO GUI. It sounds like insane, but it *will* be.
 
 ### License
-FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebirth).  
-Textures are still not sure. If necessary I will remove them immediately.
+All code of FrogCraft: Rebirth is licensed under [the MIT License](./LICENSE_FrogCraft_Rebirth).  
+All textures are All Rights Reserved, as some are permitted to use only in FrogCraft: Rebirth.
 
 ### Credits
 The progress of FrogCraft: Rebirth will not come true without the following folks' support:  
  * Credits to [ueyudiud](https://github.com/ueyudiud) for his generous consultant.  
  * Credits to dunge for his design idea and several texture.  
  * Credits to [Glease](https://github.com/Glease) for his consultant.
- * Credits to [huangziye](http://tieba.baidu.com/home/main?un=huangziye812) for his new textures.
+ * Credits to [huangziye812](http://tieba.baidu.com/home/main?un=huangziye812) for his new textures.
 
 [link_FrogCraft_original]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=9458
 [link_FrogCraft_ported]: http://forum.industrial-craft.net/index.php?page=Thread&threadID=10447

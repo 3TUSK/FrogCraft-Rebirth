@@ -50,6 +50,12 @@ public class FrogTextures {
 		for (int index = 0; index < damnitSubNames.length; index++) {
 			RegHelper.registerModel(FrogItems.itemDust, index, "dust/" + damnitSubNames[index]);
 		}
+		final String[] damnitSubNames2 = {"Carnallite", "Dewalquite", "Fluorapatite"};
+		for (int index = 0; index < damnitSubNames2.length; index++) {
+			RegHelper.registerModel(FrogItems.itemCrushedDust, index, "dust/" +  damnitSubNames2[index] + "Crushed");
+			RegHelper.registerModel(FrogItems.itemPurifiedDust, index, "dust/" +  damnitSubNames2[index] + "Purified");
+			RegHelper.registerModel(FrogItems.itemSmallPileDust, index, "dust/" +  damnitSubNames2[index] + "Small");
+		}
 	}
 	
 	public static void initFrogBlocksTexture() {

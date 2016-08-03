@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 9:57:13 AM, Jun 21, 2016, 
+ * created by 3TUSK at 9:57:13 AM, Jun 21, 2016, 
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -19,25 +19,24 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemResources extends ItemFrogCraft {
-	
-	private final String mainTextureDomain;
 
-	public ItemResources(boolean hasSubType, String textureMain) {
-		super(hasSubType);
-		this.mainTextureDomain = textureMain;
+	public ItemResources(String unlocalizedName, String... subNameArray) {
+		super(true);
+		setUnlocalizedName(unlocalizedName);
+		setSubNameArray(subNameArray);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean f3PlusB) {
 		List<String> tooltips = new ArrayList<String>();
-		tooltips.add(I18n.format("item." + mainTextureDomain + "." + nameArray[stack.getItemDamage()] + ".info"));
-		return new ArrayList<String>();
+		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
+		return tooltips;
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName()+"."+nameArray[stack.getItemDamage()];
+		return super.getUnlocalizedName()+"."+nameArray[stack.getMetadata()];
 	}
 
 }

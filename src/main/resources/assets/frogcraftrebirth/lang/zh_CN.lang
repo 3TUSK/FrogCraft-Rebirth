@@ -96,6 +96,18 @@ item.Item_Dusts.Al2O3.info=Al2O3
 item.Item_Dusts.V2O5=五氧化二钒
 item.Item_Dusts.V2O5.info=V2O5
 
+item.crushedOre.Carnallite=Crushed Carnallite Ore
+item.crushedOre.Dewalquite=Crushed Dewalquite Ore
+item.crushedOre.Fluorapatite=Crushed Fluorapatite Ore
+
+item.purifiedOre.Carnallite=Purified Carnallite Ore
+item.purifiedOre.Dewalquite=Purified Dewalquite Ore
+item.purifiedOre.Fluorapatite=Purified Fluorapatite Ore
+
+item.smallDust.Carnallite=Tiny Pile of Carnallite Dust
+item.smallDust.Dewalquite=Tiny Pile of Dewalquite Dust
+item.smallDust.Fluorapatite=Tiny Pile of Fluorapatite Dust
+
 #Ingots
 #To translators: for briquette, see the following links:
 #https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
@@ -109,8 +121,6 @@ item.Item_Ingots.CoalCokeShattered=焦煤炭碎片
 item.Item_Ingots.CoalCokeShattered.info=有效的燃料
 item.Item_Ingots.Briquette=蜂窝煤
 item.Item_Ingots.Briquette.info=中国特色！
-item.Item_Ingots.ingotDesc=然而并不一定都是锭
-item.Item_Ingots.fuelDesc=据信是好用的燃料
 
 item.tiberium.red=泰伯利亚红晶
 item.tiberium.blue=泰伯利亚蓝晶

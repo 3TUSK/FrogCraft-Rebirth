@@ -110,8 +110,6 @@ item.Item_Ingots.CoalCokeShattered=Kokskohlefragmente
 item.Item_Ingots.CoalCokeShattered.info=Effizienter Treibstoff~
 item.Item_Ingots.Briquette=Brikett
 #item.Item_Ingots.Briquette.info=Chinese style
-#item.Item_Ingots.ingotDesc=But it's not always real ingot
-#item.Item_Ingots.nghDesc=It is believed as useful fuel...
 
 #Blocks
 tile.mineral.carnallite.name=Carnallit

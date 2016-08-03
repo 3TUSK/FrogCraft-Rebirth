@@ -8,9 +8,12 @@ import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import ic2.api.item.IC2Items;
+import ic2.api.recipe.Recipes;
+import ic2.api.recipe.RecipeInputItemStack;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -41,11 +44,42 @@ public class RegFrogRecipes {
 		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.itemIngot, 1, 4), 1800);
 		
 		FrogAPI.FUEL_REG.regFuel(IC2Items.getItem("dust", "sulfur"), ConfigMain.enableClassicMode ? 1600 : 1200);
+		
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(FrogBlocks.frogOres, 1, 0)), null, true, new ItemStack(FrogItems.itemCrushedDust, 3, 0));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(FrogBlocks.frogOres, 1, 1)), null, true, new ItemStack(FrogItems.itemCrushedDust, 3, 1));
+		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(FrogBlocks.frogOres, 1, 2)), null, true, new ItemStack(FrogItems.itemCrushedDust, 3, 2));
+		
+		NBTTagCompound oreWashingMetadata = new NBTTagCompound();
+		oreWashingMetadata.setInteger("amount", 500);
+		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 0)), oreWashingMetadata, true, new ItemStack(FrogItems.itemPurifiedDust, 1, 0), new ItemStack(FrogItems.itemSmallPileDust, 2, 0), new ItemStack(Blocks.SAND));
+		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 1)), oreWashingMetadata, true, new ItemStack(FrogItems.itemPurifiedDust, 1, 1), new ItemStack(FrogItems.itemSmallPileDust, 2, 1), IC2Items.getItem("dust", "stone"));
+		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 2)), oreWashingMetadata, true, new ItemStack(FrogItems.itemPurifiedDust, 1, 2), new ItemStack(FrogItems.itemSmallPileDust, 2, 2), IC2Items.getItem("dust", "stone"));
+	
+		NBTTagCompound centrifugeMetadata = new NBTTagCompound();
+		centrifugeMetadata.setInteger("minHeat", 500);
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemPurifiedDust, 1, 0)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 4), new ItemStack(FrogItems.itemSmallPileDust, 1, 0));
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemPurifiedDust, 1, 1)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 6), new ItemStack(FrogItems.itemSmallPileDust, 1, 1));
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemPurifiedDust, 1, 2)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 7), new ItemStack(FrogItems.itemSmallPileDust, 1, 2));
+		centrifugeMetadata.setInteger("minHeat", 1000);
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 0)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 4), new ItemStack(FrogItems.itemSmallPileDust, 2, 0), IC2Items.getItem("dust", "small_lithium"));
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 1)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 6), new ItemStack(FrogItems.itemSmallPileDust, 2, 1), IC2Items.getItem("dust", "stone"));
+		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemCrushedDust, 1, 2)), centrifugeMetadata, true, new ItemStack(FrogItems.itemDust, 1, 7), new ItemStack(FrogItems.itemSmallPileDust, 2, 2), IC2Items.getItem("dust", "stone"));
+	
+		Recipes.compressor.addRecipe(new RecipeInputItemStack(new ItemStack(FrogItems.itemIngot, 8, 4)), null, true, new ItemStack(FrogItems.itemIngot, 1, 3));
 	}
 	
 	private static void defaultCraftingRecipe() {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogBlocks.mobilePowerStation), new Object[] {"ICI", "IBI", "IFI", 'I', "plateIron", 'C', "circuitAdvanced", 'B', IC2Items.getItem("te", "batbox"), 'F', IC2Items.getItem("te", "electric_furnace")}));
+		
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogBlocks.condenseTowerPart, 1, 0), new Object[] {"MAM", "CPC", "CYC", 'M', IC2Items.getItem("mining_pipe", "pipe"), 'A', "circuitAdvanced", 'C', IC2Items.getItem("fluid_cell"), 'P', IC2Items.getItem("te", "pump"), 'Y', new ItemStack(FrogBlocks.condenseTowerPart, 1, 1)}));
+	
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogItems.itemDust, 1, 4), new Object[] {"DDD", "DDD", "DDD", 'D', "dustTinyCarnallite"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogItems.itemDust, 1, 6), new Object[] {"DDD", "DDD", "DDD", 'D', "dustTinyDewalquite"}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogItems.itemDust, 1, 7), new Object[] {"DDD", "DDD", "DDD", 'D', "dustTinyFluorapatite"}));
+	
+		GameRegistry.addShapelessRecipe(new ItemStack(FrogItems.itemSmallPileDust, 9, 0), new ItemStack(FrogItems.itemDust, 1, 4));
+		GameRegistry.addShapelessRecipe(new ItemStack(FrogItems.itemSmallPileDust, 9, 1), new ItemStack(FrogItems.itemDust, 1, 6));
+		GameRegistry.addShapelessRecipe(new ItemStack(FrogItems.itemSmallPileDust, 9, 2), new ItemStack(FrogItems.itemDust, 1, 7));
 	}
 	
 	static void initOreDict() {
@@ -62,5 +96,13 @@ public class RegFrogRecipes {
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogBlocks.frogOres, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogBlocks.frogOres, 1, 1));
 		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogBlocks.frogOres, 1, 2));
+		
+		OreDictionary.registerOre("dustCarnallite", new ItemStack(FrogItems.itemDust, 1, 4));
+		OreDictionary.registerOre("dustDewalquite", new ItemStack(FrogItems.itemDust, 1, 6));
+		OreDictionary.registerOre("dustFluorapatite", new ItemStack(FrogItems.itemDust, 1, 7));
+		
+		OreDictionary.registerOre("dustTinyCarnallite", new ItemStack(FrogItems.itemSmallPileDust, 1, 0));
+		OreDictionary.registerOre("dustTinyDewalquite", new ItemStack(FrogItems.itemSmallPileDust, 1, 1));
+		OreDictionary.registerOre("dustTinyFluorapatite", new ItemStack(FrogItems.itemSmallPileDust, 1, 2));
 	}
 }

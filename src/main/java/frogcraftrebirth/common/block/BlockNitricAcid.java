@@ -2,7 +2,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.Random;
 
-import frogcraftrebirth.common.item.ItemIngot;
+import frogcraftrebirth.common.FrogItems;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -88,9 +88,8 @@ public class BlockNitricAcid extends BlockFluidFrog {
 		super.onEntityCollidedWithBlock(world, pos, state, entity);
 		if (entity instanceof EntityItem) {
 			ItemStack stack = ((EntityItem)entity).getEntityItem();
-			if (stack.getItem() instanceof ItemIngot && stack.getItemDamage() == 0) {
+			if (stack.getItem() == FrogItems.itemIngot && stack.getMetadata() == 0) {
 				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
-				//TODO: modify explosion scale
 			}
 		}
 	}

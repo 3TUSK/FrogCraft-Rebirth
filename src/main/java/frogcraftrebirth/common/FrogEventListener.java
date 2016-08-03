@@ -2,7 +2,6 @@ package frogcraftrebirth.common;
 
 import frogcraftrebirth.api.FrogAchievements;
 import frogcraftrebirth.api.event.AccessControlEvent;
-import frogcraftrebirth.common.item.ItemIngot;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -25,7 +24,7 @@ public class FrogEventListener {
 		IBlockState block = event.getWorld().getBlockState(new BlockPos(event.getExplosion().getPosition()));
 		
 		if (item instanceof EntityItem){
-			if (((EntityItem)item).getEntityItem().getItem() instanceof ItemIngot && ((EntityItem)item).getEntityItem().getItemDamage() == 0){
+			if (((EntityItem)item).getEntityItem().getItem() == FrogItems.itemIngot && ((EntityItem)item).getEntityItem().getItemDamage() == 0){
 				if (block == FrogBlocks.fluidNitricAcid) {
 					EntityPlayer player = event.getWorld().getClosestPlayerToEntity(item, 10.0D);
 					player.addStat(FrogAchievements.POTASSIUM.get());

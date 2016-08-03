@@ -51,18 +51,17 @@ fluid.sulfurTrioxide.info=SO3
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
 #If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
-item.Item_Miscs.Railgun_Core=超电磁炮导轨
-item.Item_Miscs.Railgun_Core.info=采用超导体制成
 item.Item_Miscs.GoldClod=金坷垃
 item.Item_Miscs.GoldClod.info=妈妈的 金坷垃是窝的!
-item.Item_Miscs.ElectrolizeModule=电解器插件
-item.Item_Miscs.ElectrolizeModule.info=电解反应物
-item.Item_Miscs.HeatingModule=加热器插件
-item.Item_Miscs.HeatingModule.info=用来给反应提供热量
-item.Item_Miscs.AmmoniaModule=氨合成专用催化剂
-item.Item_Miscs.AmmoniaModule.info=合成氨的专用催化剂
-item.Item_Miscs.V2O5Module=五氧化二钒催化剂
-item.Item_Miscs.V2O5Module.info=合成三氧化硫的专用催化剂
+
+item.reactionModule.Electrolize=电解器插件
+item.reactionModule.Electrolize.info=电解反应物
+item.reactionModule.Heating=加热器插件
+item.reactionModule.Heating.info=用来给反应提供热量
+item.reactionModule.Ammonia=氨合成专用催化剂
+item.reactionModule.Ammonia.info=合成氨的专用催化剂
+item.reactionModule.V2O5=五氧化二钒催化剂
+item.reactionModule.V2O5.info=合成三氧化硫的专用催化剂
 
 #Dusts
 item.Item_Dusts.CaO=氧化钙粉

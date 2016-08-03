@@ -51,18 +51,17 @@ fluid.sulfurTrioxide.info=SO₃
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
 #If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
-item.Item_Miscs.Railgun_Core=Superconductive rail
-item.Item_Miscs.Railgun_Core.info=Made of superconductor
 item.Item_Miscs.GoldClod=Goldclod
 item.Item_Miscs.GoldClod.info=Magical fertilizer additive
-item.Item_Miscs.ElectrolizeModule=Electrolizer component
-item.Item_Miscs.ElectrolizeModule.info=Electrolize the reactant
-item.Item_Miscs.HeatingModule=Heating component
-item.Item_Miscs.HeatingModule.info=Provide heat to a endothermic reaction
-item.Item_Miscs.AmmoniaModule=Ammonia catalyst
-item.Item_Miscs.AmmoniaModule.info=Necessary for ammonia manufactoring
-item.Item_Miscs.V2O5Module=Vanadium Pentoxide Catalyst
-item.Item_Miscs.V2O5Module.info=Necessary for SO₃ manufactoring
+
+item.reactionModule.Electrolize=Electrolizer Component
+item.reactionModule.Electrolize.info=Electrolize the reactant
+item.reactionModule.Heating=Heating Component
+item.reactionModule.Heating.info=Provide heat to a endothermic reaction
+item.reactionModule.Ammonia=Ammonia Catalyst
+item.reactionModule.Ammonia.info=Necessary for ammonia manufactoring
+item.reactionModule.V2O5=Vanadium Pentoxide Catalyst
+item.reactionModule.V2O5.info=Necessary for SO₃ manufactoring
 
 #Dusts
 item.Item_Dusts.CaO=Calcium Oxide Dust

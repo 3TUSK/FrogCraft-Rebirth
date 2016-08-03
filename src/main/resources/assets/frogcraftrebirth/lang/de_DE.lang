@@ -52,18 +52,17 @@ item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
 #Miscs
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
 #If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
-item.Item_Miscs.Railgun_Core=Supraleitfähige Schiene
-item.Item_Miscs.Railgun_Core.info=Gemacht mit Supraleitern
 item.Item_Miscs.GoldClod=Goldclod
 item.Item_Miscs.GoldClod.info=Magischer Düngemittelzusatz
-item.Item_Miscs.ElectrolizeModule=Elektrolysier-Komponente
-item.Item_Miscs.ElectrolizeModule.info=Elektrolysiert den Reaktionspartner
-item.Item_Miscs.HeatingModule=Aufheiz-Komponente
-item.Item_Miscs.HeatingModule.info=Bietet einer endothermen Reaktion Wärme an
-item.Item_Miscs.AmmoniaModule=Ammoniak-Katalysator
-item.Item_Miscs.AmmoniaModule.info=Nötig für Ammoniak-Herstellung
-item.Item_Miscs.V2O5Module=Vanadium Pentoxide Catalyst
-item.Item_Miscs.V2O5Module.info=Necessary for SO3 manufactoring
+
+item.reactionModule.Electrolize=Elektrolysier-Komponente
+item.reactionModule.Electrolize.info=Elektrolysiert den Reaktionspartner
+item.reactionModule.Heating=Aufheiz-Komponente
+item.reactionModule.Heating.info=Bietet einer endothermen Reaktion Wärme an
+item.reactionModule.Ammonia=Ammoniak-Katalysator
+item.reactionModule.Ammonia.info=Nötig für Ammoniak-Herstellung
+item.reactionModule.V2O5=Vanadium Pentoxide Catalyst
+item.reactionModule.V2O5.info=Necessary for SO3 manufactoring
 
 #Dusts
 item.Item_Dusts.CaO=Calciumoxidstaub

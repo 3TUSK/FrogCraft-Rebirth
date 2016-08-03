@@ -20,7 +20,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileCombustionFurnace extends TileEnergyGenerator {
+public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWork {
 
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
@@ -34,11 +34,17 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	public TileCombustionFurnace() {
 		super(1, 16);
 	}
+	
+	public boolean isWorking() {
+		return working;
+	}
 
 	@Override
 	public void update() {
-		if (worldObj.isRemote)
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
+		}
 		super.update();
 		
 		//Don't stuck the inventory
@@ -55,7 +61,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 			this.working = true;
 			this.burning = inv.extractItem(0, 1, false);
 			this.timeMax = getItemBurnTime(burning) / 4;
-			this.time = getItemBurnTime(burning) / 4;
+			this.time = getItemBurnTime(burning) / 4;		
 		}
 		//Overflowed power will be voided 
 		if (this.charge > CHARGE_MAX)
@@ -116,7 +122,6 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
 		tank.readPacketData(input);
 		this.time = input.readInt();
 		this.timeMax = input.readInt();
@@ -125,7 +130,6 @@ public class TileCombustionFurnace extends TileEnergyGenerator {
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
 		tank.writePacketData(output);
 		output.writeInt(time);
 		output.writeInt(timeMax);

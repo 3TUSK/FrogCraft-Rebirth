@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityProvider {
@@ -25,13 +27,14 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	public BlockGenerator() {
 		super(MACHINE, "generator", false, 0);
 		setUnlocalizedName("generator");
+		setDefaultState(getDefaultState().withProperty(WORKING, false));
 		setHardness(5.0F);
 		setResistance(10.0F);
 	}
 	
 	@Override
 	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { FACING_HORIZONTAL };
+		return new IProperty[] { FACING_HORIZONTAL, WORKING };
 	}
 	
 	@Override
@@ -50,6 +53,15 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	@Override
 	public TileEntity createNewTileEntity(World world, int meta) {
 		return new TileCombustionFurnace(); //For now it is the possibility
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof IHasWork)
+			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
+		else
+			return state.withProperty(WORKING, false);
 	}
 	
 	@Override

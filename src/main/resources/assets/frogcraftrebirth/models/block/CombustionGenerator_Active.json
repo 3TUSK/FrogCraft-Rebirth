@@ -1,0 +1,12 @@
+{
+	"parent": "frogcraftrebirth:block/CombustionGenerator",
+	"textures": {
+		"particle": "frogcraftrebirth:blocks/CombustionFurnace_Front",
+		"down": "ic2:blocks/resource/advanced_machine",
+		"up": "ic2:blocks/resource/advanced_machine",
+		"north": "frogcraftrebirth:blocks/CombustionFurnace_Front_Active",
+		"east": "frogcraftrebirth:blocks/CombustionFurnace_Side_Active",
+		"south": "frogcraftrebirth:blocks/CombustionFurnace_Back",
+		"west": "frogcraftrebirth:blocks/CombustionFurnace_Side_Active"
+	}
+}

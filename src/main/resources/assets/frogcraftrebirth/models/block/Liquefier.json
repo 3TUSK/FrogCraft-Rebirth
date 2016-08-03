@@ -2,8 +2,8 @@
 	"parent": "block/cube",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/machines/Liquefier",
-		"down": "frogcraftrebirth:blocks/IndustrialDevice_Top",
-		"up": "frogcraftrebirth:blocks/IndustrialDevice_Top",
+		"down": "ic2:blocks/resource/advanced_machine",
+		"up": "ic2:blocks/resource/advanced_machine",
 		"north": "frogcraftrebirth:blocks/machines/Liquefier",
 		"east": "frogcraftrebirth:blocks/machines/Liquefier",
 		"south": "frogcraftrebirth:blocks/machines/Liquefier",

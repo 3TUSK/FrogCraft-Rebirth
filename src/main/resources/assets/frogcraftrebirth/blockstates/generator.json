@@ -1,14 +1,15 @@
 {
 	"forge_marker": 1,
-	"defaults": {
-		"model": "frogcraftrebirth:CombustionGenerator"
-	},
 	"variants": {
 		"facing": {
 			"east": { "y": 90, "uvlock": true },
 			"north": {},
 			"south": { "y": 180, "uvlock": true },
 			"west": { "y": 270, "uvlock": true }
+		},
+		"working": {
+			"true": { "model": "frogcraftrebirth:CombustionGenerator_Active" },
+			"false": { "model": "frogcraftrebirth:CombustionGenerator" }
 		}
 	}
 }

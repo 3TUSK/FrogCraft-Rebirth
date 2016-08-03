@@ -7,6 +7,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,6 +17,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockFrog extends Block {
+	
+	public static final PropertyBool WORKING = PropertyBool.create("working");
 		
 	public static final Material ORE = new Material(MapColor.STONE).setRequiresTool();
 	public static final Material MACHINE = new Material(MapColor.SILVER).setBurning().setImmovableMobility();

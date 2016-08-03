@@ -34,7 +34,7 @@ public class RegFluid {
 		regFluid(FrogFluids.carbonDioxide);
 		regFluid(FrogFluids.coalTar);
 		regFluid(FrogFluids.fluorine);
-		regFluid(FrogFluids.nitricAcid);
+		regFluid(FrogFluids.nitricAcid, true);
 		regFluid(FrogFluids.nitrogenOxide);
 		regFluid(FrogFluids.oxygen);
 		regFluid(FrogFluids.sulfurDioxide);
@@ -56,9 +56,14 @@ public class RegFluid {
 	}
 	
 	private static void regFluid(Fluid fluid) {
+		regFluid(fluid, false);
+	}
+	
+	private static void regFluid(Fluid fluid, boolean regBucket) {
 		if (!FluidRegistry.registerFluid(fluid))
 			fluid = FluidRegistry.getFluid(fluid.getName());
-		FluidRegistry.addBucketForFluid(fluid);
+		if (regBucket)
+			FluidRegistry.addBucketForFluid(fluid);
 	}
 
 }

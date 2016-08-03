@@ -1,6 +1,6 @@
 /**
  * This file is a part of FrogCraftRebirth, 
- * created by U_Knowledge at 3:28:45 PM, Mar 13, 2016, EST
+ * created by 3TUSK at 3:28:45 PM, Mar 13, 2016, EST
  * FrogCraftRebirth, is open-source under MIT license,
  * check https://github.com/FrogCraft-Rebirth/
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
@@ -20,6 +20,7 @@ public enum FrogAchievements {
 		Field achievement;
 		try {
 			achievement = Class.forName("frogcraftrebirth.common.registry.RegFrogAchievements").getDeclaredField(this.name());
+			achievement.setAccessible(true);
 			return (Achievement) achievement.get(null);
 		} catch (Exception e) {
 			return null;

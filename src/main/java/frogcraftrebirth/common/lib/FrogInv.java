@@ -6,19 +6,16 @@
  * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
  * more information.
  */
-package frogcraftrebirth.common.lib.tile;
+package frogcraftrebirth.common.lib;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-@Deprecated //Will switch to individual ItemHandler, instead of implementing on TileEntity
-public abstract class TileFrogInventory extends TileFrog implements IItemHandler {
 
-	protected ItemStack[] inv;
+public class FrogInv implements IItemHandler {
+
+	protected final ItemStack[] inv;
 	
-	protected TileFrogInventory(int slotsCount) {
+	public FrogInv(int slotsCount) {
 		this.inv = new ItemStack[slotsCount];
 	}
 	
@@ -34,6 +31,8 @@ public abstract class TileFrogInventory extends TileFrog implements IItemHandler
 
 	@Override
 	public ItemStack insertItem(int slot, final ItemStack stack, boolean simulate) {
+		if (slot >= inv.length)
+			return stack;
 		if (inv[slot].isItemEqual(stack)) {
 			int num = inv[slot].stackSize + stack.stackSize;
 			if (num > inv[slot].getMaxStackSize()) {
@@ -53,32 +52,22 @@ public abstract class TileFrogInventory extends TileFrog implements IItemHandler
 
 	@Override
 	public ItemStack extractItem(int slot, int amount, boolean simulate) {
-		ItemStack toReturn = null;
+		if (slot >= inv.length)
+			return null;
 		if (inv[slot].stackSize < amount)
-			return toReturn;
-		else if (inv[slot].stackSize == amount) {
-			toReturn = inv[slot].copy();
-			if (!simulate)
-				inv[slot] = null;
-			return toReturn;
-		} else {
-			toReturn = inv[slot].copy();
-			toReturn.stackSize = amount;
-			if (!simulate)
-				inv[slot].stackSize = inv[slot].stackSize - amount;
+			return null;
+		else  {
+			ItemStack toReturn;
+			if (!simulate) {
+				toReturn = inv[slot].splitStack(amount);
+				if (inv[slot].stackSize <= 0)
+					inv[slot] = null;
+			} else {
+				toReturn = inv[slot].copy();
+				toReturn.stackSize = amount;
+			}
 			return toReturn;
 		}
-	}
-	
-	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing direction) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-	}
-	
-	@SuppressWarnings("unchecked")
-	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing direction) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)this : super.getCapability(capability, direction);
 	}
 
 }

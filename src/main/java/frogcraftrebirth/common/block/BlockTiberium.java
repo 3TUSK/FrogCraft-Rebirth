@@ -9,18 +9,22 @@
 package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.common.item.ItemTiberium;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -90,6 +94,25 @@ public class BlockTiberium extends BlockFrog {
 	@Override
 	public boolean isOpaqueCube(IBlockState blockState) {
 		return false;
+	}
+	
+	@Override
+	public void onBlockDestroyedByExplosion(World worldIn, BlockPos pos, Explosion explosionIn) {
+		
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
+		if (worldIn.rand.nextInt(5) == 0 && entityIn instanceof EntityLivingBase) {
+			entityIn.attackEntityFrom(ItemTiberium.TIBERIUM, 5.0F);
+		}
+	}
+	
+	@Override
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		if (rand.nextInt(100) < 5) {
+			worldIn.setBlockState(pos.add(rand.nextGaussian() * 10, rand.nextGaussian() * 10, rand.nextGaussian() * 10), getTiberiumWithType(rand.nextInt(3)));
+		}
 	}
 
 	public void explode(World world, BlockPos pos, float strength, boolean smoke) {

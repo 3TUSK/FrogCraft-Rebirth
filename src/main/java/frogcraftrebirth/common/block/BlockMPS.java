@@ -91,9 +91,9 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 	
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) {
-			playerIn.openGui(FrogCraftRebirth.instance, 4, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		}
+		if (worldIn.isRemote)
+			return true;
+		playerIn.openGui(FrogCraftRebirth.instance, 4, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 	

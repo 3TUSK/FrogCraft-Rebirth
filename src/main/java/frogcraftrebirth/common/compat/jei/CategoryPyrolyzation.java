@@ -62,7 +62,7 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 
 	@Override
 	public void drawAnimations(Minecraft minecraft) {
-		progressBar.draw(minecraft, 46, 47);
+		progressBar.draw(minecraft, 45, 47);
 		electricBar.draw(minecraft, 81, 75);
 	}
 

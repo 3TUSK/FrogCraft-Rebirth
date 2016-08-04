@@ -54,7 +54,7 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 
 	@Override
 	public void drawAnimations(Minecraft minecraft) {
-		progressBar.draw(minecraft, 39, 4);
+		progressBar.draw(minecraft, 40, 4);
 	}
 
 	@Override

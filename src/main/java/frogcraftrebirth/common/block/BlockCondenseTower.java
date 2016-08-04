@@ -24,7 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEntityProvider {
-	
+
 	public static final PropertyEnum<Part> TYPE = PropertyEnum.<Part>create("part", Part.class);
 
 	public BlockCondenseTower() {
@@ -34,7 +34,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 		setHardness(15.0F);
 		setResistance(20.0f);
 	}
-	
+
 	@Override
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { TYPE, FACING_HORIZONTAL, WORKING };
@@ -53,12 +53,12 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 				return null;
 		}
 	}
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getBlock().getMetaFromState(state) & 0b11;
 	}
-	
+
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -68,16 +68,18 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 			return state.withProperty(WORKING, false);
 		}
 	}
-	
+
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) {
-			playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		if (worldIn.getBlockState(pos).getValue(TYPE) == Part.CYLINDER)
+			return false; // process as normal block
+
+		if (worldIn.isRemote)
 			return true;
-		}	
-		return true;
+		playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		return true; // i.e. server and not cylinder
 	}
-	
+
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tile = worldIn.getTileEntity(pos);
@@ -85,7 +87,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 			((ICondenseTowerPart)tile).onDestruct(((ICondenseTowerPart)tile).getMainBlock());
 		super.breakBlock(worldIn, pos, state);
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state) {
 		int facing;
@@ -113,13 +115,13 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 		}
 		return (facing << 2) + state.getValue(TYPE).ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		int facing = meta >> 2, type = meta & 0b11;
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL,  EnumFacing.getHorizontal(facing)).withProperty(TYPE, Part.values()[type]);
 	}
-	
+
 	public static enum Part implements IStringSerializable {
 		CORE, CYLINDER, OUTPUT;
 

@@ -1,0 +1,17 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"normal": [{}],
+		"inventory": [{}],
+		"facing": {
+			"north": {},
+			"east": { "y": 90, "uvlock": true },
+			"south": { "y": 180, "uvlock": true },
+			"west": { "y": 270, "uvlock": true }
+		},
+		"working": {
+			"false": { "model": "frogcraftrebirth:CondenseTower_Output" },
+			"true": { "model": "frogcraftrebirth:CondenseTower_Output" }
+		}
+	}
+}

@@ -84,8 +84,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) 
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(pos, pos);
 			return;
+		}
 		super.update();
 		
 		boolean check = checkStructure();
@@ -117,6 +119,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				process = 0;
 				working = true;
 			} else {
+				working = false; // Put working = false here, so that debug screen won't blink (hopefully)
 				this.markDirty();
 				this.sendTileUpdatePacket(this);
 				return;
@@ -140,7 +143,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			process = 0;
 			processMax = 0;
 			recipe = null;
-			working = false;
 		}
 		this.markDirty();
 		this.sendTileUpdatePacket(this);

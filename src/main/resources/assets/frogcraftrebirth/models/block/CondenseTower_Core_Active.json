@@ -1,0 +1,12 @@
+{
+	"parent": "frogcraftrebirth:block/CondenseTower_Core",
+	"textures": {
+		"particle": "frogcraftrebirth:blocks/condensetower/Core_Side",
+		"down": "frogcraftrebirth:blocks/condensetower/Cylinder_Top",
+		"up": "frogcraftrebirth:blocks/condensetower/Cylinder_Top",
+		"north": "frogcraftrebirth:blocks/condensetower/Core_Front",
+		"east": "frogcraftrebirth:blocks/condensetower/Core_Side_Active",
+		"south": "frogcraftrebirth:blocks/condensetower/Core_Back",
+		"west": "frogcraftrebirth:blocks/condensetower/Core_Side_Active"
+	}
+}

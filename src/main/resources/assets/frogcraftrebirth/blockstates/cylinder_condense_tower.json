@@ -9,10 +9,9 @@
 			"south": { "y": 180, "uvlock": true },
 			"west": { "y": 270, "uvlock": true }
 		},
-		"part": {
-			"core": { "model": "frogcraftrebirth:CondenseTower_Core" },
-			"cylinder": { "model": "frogcraftrebirth:CondenseTower_Cylinder" },
-			"output": { "model": "frogcraftrebirth:CondenseTower_Output" }
+		"working": {
+			"false": { "model": "frogcraftrebirth:CondenseTower_Cylinder" },
+			"true": { "model": "frogcraftrebirth:CondenseTower_Cylinder" }
 		}
 	}
 }

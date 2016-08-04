@@ -10,6 +10,7 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -70,6 +71,7 @@ public class FrogTextures {
 		ModelLoader.setCustomStateMapper(FrogBlocks.mobilePowerStation, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
 		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "MPS");
 		
+		ModelLoader.setCustomStateMapper(FrogBlocks.condenseTowerPart, new StateMap.Builder().withSuffix("_condense_tower").withName(BlockCondenseTower.TYPE).build());
 		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 0, "condensetower/Core");
 		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 1, "condensetower/Cylinder");
 		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 2, "condensetower/Output");

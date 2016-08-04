@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
+import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
@@ -19,6 +20,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEntityProvider {
@@ -28,13 +30,14 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	public BlockCondenseTower() {
 		super(MACHINE, "condense_tower", false, 0, 1, 2);
 		setUnlocalizedName("condenseTower");
+		setDefaultState(getDefaultState().withProperty(WORKING, false));
 		setHardness(15.0F);
 		setResistance(20.0f);
 	}
 	
 	@Override
 	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { TYPE, FACING_HORIZONTAL };
+		return new IProperty[] { TYPE, FACING_HORIZONTAL, WORKING };
 	}
 
 	@Override
@@ -54,6 +57,16 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getBlock().getMetaFromState(state) & 0b11;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof IHasWork) {
+			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
+		} else {
+			return state.withProperty(WORKING, false);
+		}
 	}
 	
 	@Override

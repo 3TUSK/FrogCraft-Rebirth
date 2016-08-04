@@ -18,7 +18,7 @@ public class RegFluid {
 		FrogFluids.bromine = new FrogFluid("bromine", "bromine", 3103, 300, false, EnumRarity.UNCOMMON);
 		FrogFluids.carbonOxide = new FrogFluid("carbonOxide", "CO", 1250, 300, true, EnumRarity.UNCOMMON);
 		FrogFluids.carbonDioxide = new FrogFluid("carbonDioxide", "CO2", 1980, 300, true, EnumRarity.COMMON);
-		FrogFluids.coalTar = new FrogFluid("coalTar", "coal_tar", 2000, 300, true, EnumRarity.RARE).setViscosity(2000);
+		FrogFluids.coalTar = new FrogFluid("coalTar", "coal_tar", 2000, 300, false, EnumRarity.RARE).setViscosity(2000);
 		FrogFluids.fluorine = new FrogFluid("fluorine", "fluorine", 1696, 300, true, EnumRarity.EPIC);
 		FrogFluids.nitricAcid = new FrogFluid("nitricAcid", "HNO3_flow", "HNO3",  1420, 300, false, EnumRarity.RARE);
 		FrogFluids.nitrogenOxide = new FrogFluid("nitrogenOxide", "NO", 1340, 300, true, EnumRarity.RARE);
@@ -32,7 +32,7 @@ public class RegFluid {
 		regFluid(FrogFluids.bromine);
 		regFluid(FrogFluids.carbonOxide);
 		regFluid(FrogFluids.carbonDioxide);
-		regFluid(FrogFluids.coalTar);
+		regFluid(FrogFluids.coalTar, true);
 		regFluid(FrogFluids.fluorine);
 		regFluid(FrogFluids.nitricAcid, true);
 		regFluid(FrogFluids.nitrogenOxide);

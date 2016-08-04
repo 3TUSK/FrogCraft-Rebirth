@@ -1,3 +1,6 @@
 design_guideline
 
 /build/
+/.idea
+/run
+/.gradle

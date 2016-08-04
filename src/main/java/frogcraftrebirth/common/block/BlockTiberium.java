@@ -10,6 +10,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
 
+import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogItems;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
@@ -29,6 +30,12 @@ public class BlockTiberium extends BlockFrog {
 	
 	public static final PropertyEnum<BlockTiberium.Color> TYPE = PropertyEnum.<BlockTiberium.Color>create("color", BlockTiberium.Color.class);
 
+	public static IBlockState getTiberiumWithType(int typeIndex) {
+		if (typeIndex > 2)
+			typeIndex = 2; //Use Green Tiberium as fallback
+		return ((BlockTiberium)FrogBlocks.tiberium).getDefaultState().withProperty(TYPE, BlockTiberium.Color.values()[typeIndex]);
+	}
+	
 	public BlockTiberium() {
 		super(TIBERIUM, "tiberium_crystal", 0, 1, 2);
 		this.setUnlocalizedName("tiberium_crystal");

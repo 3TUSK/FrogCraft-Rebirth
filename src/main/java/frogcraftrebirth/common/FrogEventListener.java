@@ -1,7 +1,12 @@
 package frogcraftrebirth.common;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Random;
+
 import frogcraftrebirth.api.FrogAchievements;
 import frogcraftrebirth.api.event.AccessControlEvent;
+import frogcraftrebirth.common.item.ItemTiberium;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -10,11 +15,15 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 
 public class FrogEventListener {
+	
+	public static final Random RAND = new Random();
 	
 	@SubscribeEvent
 	public void onExplosion(ExplosionEvent event) {
@@ -26,10 +35,37 @@ public class FrogEventListener {
 		if (item instanceof EntityItem){
 			if (((EntityItem)item).getEntityItem().getItem() == FrogItems.itemIngot && ((EntityItem)item).getEntityItem().getItemDamage() == 0){
 				if (block == FrogBlocks.fluidNitricAcid) {
-					EntityPlayer player = event.getWorld().getClosestPlayerToEntity(item, 10.0D);
+					EntityPlayer player = event.getWorld().getClosestPlayerToEntity(item, 5.0D);
 					player.addStat(FrogAchievements.POTASSIUM.get());
 				}
 			}			
+		}
+	}
+	
+	@SubscribeEvent
+	public void onDeath(LivingDeathEvent event) {
+		if (event.getSource() == ItemTiberium.TIBERIUM) {
+			event.getEntity().entityDropItem(new ItemStack(FrogItems.tiberium, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
+		}
+	}
+	
+	@SubscribeEvent
+	public void onPlayerDrop(PlayerDropsEvent event) {
+		if (event.getSource() == ItemTiberium.TIBERIUM) {
+			Iterator<EntityItem> iterator = event.getDrops().iterator();
+			ArrayList<EntityItem> newDrops = new ArrayList<EntityItem>();
+			while (iterator.hasNext()) {
+				EntityItem item = iterator.next();
+				if (RAND.nextInt(10) == 0) {
+					EntityItem replacement = new EntityItem(item.worldObj, item.posX, item.posY, item.posZ, new ItemStack(FrogItems.tiberium, RAND.nextInt(3), item.getEntityItem().stackSize));
+					replacement.motionX = item.motionX;
+					replacement.motionY = item.motionY;
+					replacement.motionZ = item.motionZ;
+					newDrops.add(replacement);
+					iterator.remove();
+				}
+			}
+			event.getDrops().addAll(newDrops);
 		}
 	}
 	
@@ -81,7 +117,7 @@ public class FrogEventListener {
 	}
 	
 	@SubscribeEvent
-	public void onPersonalize(AccessControlEvent event) {
+	public void onAccessControlFired(AccessControlEvent event) {
 		if (event.tile.getOwnerUUID() == null)
 			event.tile.setOwner(event.player.getUniqueID());
 	}

@@ -6,6 +6,9 @@ effect.tiberium=Tiberium
 #Death Message
 death.attack.tiberium=%1$s is now a tiberium crystal
 
+#Chat Message
+chat.tiberiumCorrosion=One of your item stack has been contaminated by tiberium!
+
 #Items
 item.ItemMiniIonCannon.name=Portable Ion Cannon
 item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
@@ -130,6 +133,7 @@ item.Item_Ingots.Briquette.info=Chinese style
 item.tiberium.red=Tiberium (Red)
 item.tiberium.blue=Tiberium (Blue)
 item.tiberium.green=Tiberium (Green)
+item.tiberium.info=Be aware during operation, and also separate storage
 
 #Blocks
 tile.mineral.carnallite.name=Carnallite Ore

@@ -6,6 +6,9 @@ effect.tiberium=泰伯利亚
 #Death Message
 death.attack.tiberium=%1$s 被泰伯利亚同化了
 
+#Chat Message
+chat.tiberiumCorrosion=你的某个物品已被泰伯利亚污染！
+
 #Items
 item.ItemMiniIonCannon.name=便携式离子炮
 item.ItemMiniIonCannon.info=全球防御组织监制
@@ -130,6 +133,7 @@ item.Item_Ingots.Briquette.info=中国特色！
 item.tiberium.red=泰伯利亚红晶
 item.tiberium.blue=泰伯利亚蓝晶
 item.tiberium.green=泰伯利亚绿晶
+item.tiberium.info=小心操作，谨记隔离储存
 
 #Blocks
 tile.mineral.carnallite.name=光卤石

@@ -44,6 +44,8 @@ public interface IAdvChemRecRecipe {
 		for (OreStack ore : this.getInputs()) {
 			boolean match = false;
 			for (ItemStack stack : stacks) {
+				if (stack == null)
+					continue;
 				if (ore.consumable(stack)) {
 					match = true;
 					break;

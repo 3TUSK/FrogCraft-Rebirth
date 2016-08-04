@@ -5,14 +5,13 @@ import javax.annotation.Nullable;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -41,8 +40,8 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileFrog tile = (TileFrog)worldIn.getTileEntity(pos);
 		if (tile != null) {
-			if (tile instanceof IInventory) {
-				InventoryHelper.dropInventoryItems(worldIn, pos, (IInventory)tile);
+			if (tile instanceof TileCombustionFurnace) {
+				ItemUtil.dropInventroyItems(worldIn, pos, ((TileCombustionFurnace)tile).input, ((TileCombustionFurnace)tile).output, ((TileCombustionFurnace)tile).fluidIO);
 			}
 			//world.func_147453_f(x, y, z, block);
 		}

@@ -14,11 +14,17 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	
-	public final ItemStackHandler inv = new ItemStackHandler(13);
+	//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
+	public final IItemHandler module = new ItemStackHandler();
+	public final IItemHandler input = new ItemStackHandler(5);
+	public final IItemHandler output = new ItemStackHandler(5);
+	public final IItemHandler cellInput = new ItemStackHandler();
+	public final IItemHandler cellOutput = new ItemStackHandler();
 	
 	public int process, processMax;
 	private boolean working;
@@ -26,7 +32,6 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	
 	public TileAdvChemReactor() {
 		super(2, 100000);
-		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
 	}
 	
 	@Override
@@ -74,7 +79,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		}
 		super.update();
 		
-		ItemStack[] inputs = null;
+		ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
 		
 		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
 		
@@ -121,16 +126,25 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 			case UP:
+				return (T)input;
 			case DOWN:
-			default: break;
+				return (T)output;
+			case NORTH:
+			case EAST:
+				return (T)cellInput;
+			case SOUTH:
+			case WEST:
+				return (T)cellOutput;
+			default:
+				break;
 			}
-		}
-			
+		}	
 		return super.getCapability(capability, facing);
 	}
 

@@ -20,9 +20,12 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 
-	private static final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
+	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(4);
+	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
+	public final ItemStackHandler input = new ItemStackHandler();
+	public final ItemStackHandler output = new ItemStackHandler();
+	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(16000);
 
 	public int process, processMax;
@@ -48,26 +51,26 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 		}
 		super.update();
 		
-		if (inv.getStackInSlot(INPUT_F) != null) {
-			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
+		if (fluidIO.getStackInSlot(INPUT_F) != null) {
+			if (fluidIO.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryFillContainer(fluidIO.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
 				if (result != null && result.stackSize > 0) {
-					inv.extractItem(INPUT_F, 1, false);
-					ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
+					fluidIO.extractItem(INPUT_F, 1, false);
+					ItemStack remainder = fluidIO.insertItem(OUTPUT_F, result, false);
 					if (remainder != null && remainder.stackSize > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
 				}
 			}
 		}
 
-		if (inv.getStackInSlot(INPUT) == null || this.charge <= 128) {
+		if (input.getStackInSlot(INPUT) == null || this.charge <= 128) {
 			this.working = false;
 			this.process = 0;
 			this.processMax = 0;
 		}
 		
 		if (!working) {
-			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(inv.getStackInSlot(INPUT));
+			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(input.getStackInSlot(INPUT));
 			if (canWork(recipe)) {
 				this.process = 0;
 				this.processMax = recipe.getTime();
@@ -105,15 +108,15 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 				return false;
 		}
 		
-		if (!inv.getStackInSlot(INPUT).isItemEqual(recipe.getInput()))
+		if (!input.getStackInSlot(INPUT).isItemEqual(recipe.getInput()))
 			return false;
 		else
-			return inv.extractItem(INPUT, recipe.getInput().stackSize, true) != null;
+			return input.extractItem(INPUT, recipe.getInput().stackSize, true) != null;
 	}
 	
 	private void pyrolyze() {
-		inv.extractItem(INPUT, recipe.getInput().stackSize, false);
-		ItemStack remainder = inv.insertItem(OUTPUT, recipe.getOutput(), false);
+		input.extractItem(INPUT, recipe.getInput().stackSize, false);
+		ItemStack remainder = output.insertItem(OUTPUT, recipe.getOutput(), false);
 		if (remainder != null && remainder.stackSize > 0)
 			ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
 		if (recipe.getOutputFluid() != null) {
@@ -125,7 +128,9 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
-		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
+		this.input.deserializeNBT(tag.getCompoundTag("input"));
+		this.output.deserializeNBT(tag.getCompoundTag("output"));
+		this.fluidIO.deserializeNBT(tag.getCompoundTag("fluidIO"));
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
@@ -153,7 +158,9 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
-		tag.setTag("inv", inv.serializeNBT());
+		tag.setTag("input", this.input.serializeNBT());
+		tag.setTag("output", this.output.serializeNBT());
+		tag.setTag("fluidIO", this.fluidIO.serializeNBT());
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
@@ -165,24 +172,44 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		switch (facing) {
-		case UP:
-		case DOWN:
-			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-		default:
-			return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
+			case UP:
+			case DOWN:
+				return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+			case NORTH:
+			case EAST:
+			case SOUTH:
+			case WEST:
+				return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
+			default:
+				return super.hasCapability(capability, facing);
 		}
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		switch (facing) {
-		case UP:
-		case DOWN:
-			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
-		default:
-			return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ? (T)tank : super.getCapability(capability, facing);
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			switch (facing) {
+				case UP:
+					return (T)input;
+				case DOWN:
+					return (T)output;
+				default:
+					break;
+			}
+		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			switch (facing) {
+				case NORTH:
+				case EAST:
+				case SOUTH:
+				case WEST:
+					return (T)tank;
+				default:
+					break;
+			}
 		}
+		
+		return super.getCapability(capability, facing);
 	}
 
 }

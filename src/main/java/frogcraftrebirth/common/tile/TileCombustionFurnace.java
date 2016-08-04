@@ -24,7 +24,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
-	public final ItemStackHandler inv = new ItemStackHandler(4);
+	public final ItemStackHandler input = new ItemStackHandler();
+	public final ItemStackHandler output = new ItemStackHandler();
+	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public boolean working = false;
@@ -48,7 +50,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		super.update();
 		
 		//Don't stuck the inventory
-		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).stackSize >= inv.getStackInSlot(1).getMaxStackSize()) {
+		if (output.getStackInSlot(0) != null && output.getStackInSlot(0).stackSize >= output.getStackInSlot(0).getMaxStackSize()) {
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			return;
@@ -57,9 +59,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		if (working) {
 			this.charge += 10;
 			this.time--;
-		} else if (inv.extractItem(0, 1, true) != null && getItemBurnTime(inv.getStackInSlot(0)) > 0) {	
+		} else if (input.extractItem(0, 1, true) != null && getItemBurnTime(input.getStackInSlot(0)) > 0) {	
 			this.working = true;
-			this.burning = inv.extractItem(0, 1, false);
+			this.burning = input.extractItem(0, 1, false);
 			this.timeMax = getItemBurnTime(burning) / 4;
 			this.time = getItemBurnTime(burning) / 4;		
 		}
@@ -75,12 +77,12 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 			this.working = false;
 		}
 		
-		if (tank.getFluidAmount() != 0 && inv.getStackInSlot(2) != null) {
-			if (inv.getStackInSlot(2).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(2, 1, true), tank, 1000, null, true);
+		if (tank.getFluidAmount() != 0 && fluidIO.getStackInSlot(0) != null) {
+			if (fluidIO.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryFillContainer(fluidIO.extractItem(0, 1, true), tank, 1000, null, true);
 				if (result != null && result.stackSize > 0) {
-					inv.extractItem(2, 1, false);
-					ItemStack remainder = inv.insertItem(3, result, false);
+					fluidIO.extractItem(0, 1, false);
+					ItemStack remainder = fluidIO.insertItem(1, result, false);
 					if (remainder != null && remainder.stackSize > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
 				}
@@ -100,11 +102,11 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 			String oreName = OreDictionary.getOreName(oreIDs[0]);
 			if (!oreName.equals("Unknown")) {
 				//Feature: if there is no space for byproduct, they just go disappear
-				inv.insertItem(1, FUEL_REG.getItemByproduct(oreName), false);
+				output.insertItem(0, FUEL_REG.getItemByproduct(oreName), false);
 				tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
 			}
 		} else {
-			inv.insertItem(2, FUEL_REG.getItemByproduct(input), false);
+			output.insertItem(0, FUEL_REG.getItemByproduct(input), false);
 			tank.fill(FUEL_REG.getFluidByproduct(input), true);
 		}	
 	}
@@ -116,7 +118,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		this.working = tag.getBoolean("working");
 		this.time = tag.getInteger("time");
 		this.timeMax = tag.getInteger("timeMax");
-		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
+		this.input.deserializeNBT(tag.getCompoundTag("input"));
+		this.output.deserializeNBT(tag.getCompoundTag("output"));
+		this.fluidIO.deserializeNBT(tag.getCompoundTag("fluidIO"));
 		this.burning = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("burning"));
 	}
 	
@@ -142,7 +146,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		tag.setBoolean("working", this.working);
 		tag.setInteger("time", this.time);
 		tag.setInteger("timeMax", this.timeMax);
-		tag.setTag("inv", this.inv.serializeNBT());
+		tag.setTag("input", this.input.serializeNBT());
+		tag.setTag("output", this.output.serializeNBT());
+		tag.setTag("fluidIO", this.fluidIO.serializeNBT());
 		tag.setTag("burning", this.burning != null ? burning.writeToNBT(new NBTTagCompound()) : new NBTTagCompound());
 		return super.writeToNBT(tag);
 	}
@@ -161,7 +167,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		switch (facing) {
 			case DOWN:
-			case UP: return (T)inv;
+				return (T)output;
+			case UP: 
+				return (T)input;
 			default: return (T)tank;
 		}
 	}

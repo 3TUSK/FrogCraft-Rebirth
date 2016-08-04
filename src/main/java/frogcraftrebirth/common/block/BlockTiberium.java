@@ -9,7 +9,7 @@
 package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -117,7 +117,7 @@ public class BlockTiberium extends BlockFrog {
 		entityIn.attackEntityFrom(FrogAPI.TIBERIUM, 1.0F);
 		if (entityIn instanceof EntityLiving) {
 			PotionEffect effect = new PotionEffect(FrogAPI.potionTiberium, 1200, 2, false, false);
-			effect.setCurativeItems(Arrays.<ItemStack>asList());
+			effect.setCurativeItems(Collections.<ItemStack>emptyList());
 			((EntityLiving)entityIn).addPotionEffect(effect);
 		}
 	}

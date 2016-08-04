@@ -1,5 +1,11 @@
 #Master Language File, 2013.5.3
 
+#Potion
+effect.tiberium=泰伯利亚
+
+#Death Message
+death.attack.tiberium=%1$s 被泰伯利亚同化了
+
 #Items
 item.ItemMiniIonCannon.name=便携式离子炮
 item.ItemMiniIonCannon.info=全球防御组织监制

@@ -17,11 +17,12 @@ import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import frogcraftrebirth.common.FrogBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.util.DamageSource;
 
 public final class FrogAPI {
 
@@ -42,14 +43,19 @@ public final class FrogAPI {
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public Item getTabIconItem() {
-			return Item.getItemFromBlock(FrogBlocks.hybridStorageUnit);
+			return findFrogItem("hybridStorageUnit", 1, 0).getItem();
 		}
 	};
+	
+	public static final DamageSource TIBERIUM = new DamageSource("tiberium").setDamageBypassesArmor().setDamageIsAbsolute().setDifficultyScaled();
+	
+	@Nonnull
+	public static Potion potionTiberium;
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
 	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
-
+	
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	@Nonnull

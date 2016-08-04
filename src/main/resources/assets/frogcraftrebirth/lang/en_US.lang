@@ -1,5 +1,11 @@
 ﻿#Master Language File
 
+#Potion
+effect.tiberium=Tiberium
+
+#Death Message
+death.attack.tiberium=%1$s is now a tiberium crystal
+
 #Items
 item.ItemMiniIonCannon.name=Portable Ion Cannon
 item.ItemMiniIonCannon.info=Powered by Global Defense Initiative

@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Random;
 
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogAchievements;
 import frogcraftrebirth.api.event.AccessControlEvent;
-import frogcraftrebirth.common.item.ItemTiberium;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -44,14 +44,14 @@ public class FrogEventListener {
 	
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent event) {
-		if (event.getSource() == ItemTiberium.TIBERIUM) {
+		if (event.getSource() == FrogAPI.TIBERIUM) {
 			event.getEntity().entityDropItem(new ItemStack(FrogItems.tiberium, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
 		}
 	}
 	
 	@SubscribeEvent
 	public void onPlayerDrop(PlayerDropsEvent event) {
-		if (event.getSource() == ItemTiberium.TIBERIUM) {
+		if (event.getSource() == FrogAPI.TIBERIUM) {
 			Iterator<EntityItem> iterator = event.getDrops().iterator();
 			ArrayList<EntityItem> newDrops = new ArrayList<EntityItem>();
 			while (iterator.hasNext()) {

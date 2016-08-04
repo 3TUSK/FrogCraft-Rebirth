@@ -27,21 +27,29 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileLiquefier extends TileEnergySink implements IAirConsumer {
+public class TileLiquefier extends TileEnergySink implements IAirConsumer, IHasWork {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
+	public boolean working;
 
 	public TileLiquefier() {
 		super(2, 10000);
 	}
 	
 	@Override
+	public boolean isWorking() {
+		return working;
+	}
+	
+	@Override
 	public void update() {
-		if (worldObj.isRemote)
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
+		}
 		super.update();
 		
 		if (inv.getStackInSlot(0) != null) {
@@ -57,10 +65,13 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 		
 		TileEntity tile = worldObj.getTileEntity(getPos().down());
 		if (tile == null || !(tile instanceof IAirPump) || tank.isFull()) {
+			this.working = false;
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			return;
 		}
+		
+		working = true;
 		
 		if (++process < 200) {
 			charge -= 128;
@@ -82,6 +93,7 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 		super.readPacketData(input);
 		this.tank.readPacketData(input);
 		this.process = input.readInt();
+		this.working = input.readBoolean();
 	}
 	
 	@Override
@@ -89,6 +101,7 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer {
 		super.writePacketData(output);
 		this.tank.writePacketData(output);
 		output.writeInt(process);
+		output.writeBoolean(working);
 	}
 	
 	@Override

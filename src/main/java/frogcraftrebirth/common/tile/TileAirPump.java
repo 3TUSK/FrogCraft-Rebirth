@@ -19,7 +19,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAirPump {
+public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAirPump, IHasWork {
 	
 	private static final int MAX_AIR = 1000;
 	private static final int MAX_CHARGE = 10000;
@@ -28,8 +28,9 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	private int airAmount, tick;
 	private boolean isInENet;
 	
-	public TileAirPump() {
-
+	@Override
+	public boolean isWorking() {
+		return getWorld().isBlockIndirectlyGettingPowered(this.pos) == 0;
 	}
 	
 	public void invalidate() {
@@ -42,8 +43,11 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote)
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
+		}
+		
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;

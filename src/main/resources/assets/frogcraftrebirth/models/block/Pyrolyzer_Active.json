@@ -4,9 +4,9 @@
 		"particle": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front",
 		"down": "ic2:blocks/resource/advanced_machine",
 		"up": "ic2:blocks/resource/advanced_machine",
-		"north": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front",
-		"east": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side",
+		"north": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front_Active",
+		"east": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side_Active",
 		"south": "frogcraftrebirth:blocks/machines/Pyrolyzer_Back",
-		"west": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side"
+		"west": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side_Active"
 	}
 }

@@ -18,7 +18,7 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TilePyrolyzer extends TileEnergySink {
+public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 
 	private static final int INPUT = 0, OUTPUT = 1, INPUT_F = 2, OUTPUT_F = 3;
 	
@@ -33,12 +33,19 @@ public class TilePyrolyzer extends TileEnergySink {
 	public TilePyrolyzer() {
 		super(2, 20000);
 	}
+	
+	@Override
+	public boolean isWorking() {
+		return working;
+	}
 
 	int count = 0;
 	@Override
 	public void update() {
-		if (this.worldObj.isRemote)
+		if (this.worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
+		}
 		super.update();
 		
 		if (inv.getStackInSlot(INPUT_F) != null) {

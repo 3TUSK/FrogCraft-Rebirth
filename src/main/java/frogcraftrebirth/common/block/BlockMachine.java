@@ -5,6 +5,7 @@ import javax.annotation.Nullable;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquefier;
@@ -20,6 +21,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProvider {
@@ -29,13 +31,14 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	public BlockMachine() {
 		super(MACHINE, "machine", false, 0, 1, 2, 3);
 		setUnlocalizedName("machines");
+		setDefaultState(getDefaultState().withProperty(WORKING, false));
 		setHardness(5.0F);
 		setResistance(10.0F);
 	}
 	
 	@Override
 	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { TYPE, FACING_HORIZONTAL };
+		return new IProperty[] { TYPE, FACING_HORIZONTAL, WORKING };
 	}
 	
 	@Override
@@ -79,6 +82,16 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getBlock().getMetaFromState(state) & 0b11;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+		TileEntity tile = worldIn.getTileEntity(pos);
+		if (tile instanceof IHasWork) {
+			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
+		} else {
+			return state.withProperty(WORKING, false);
+		}
 	}
 	
 	@Override

@@ -16,7 +16,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileEnergySink {
+public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(13);
 	
@@ -27,6 +27,11 @@ public class TileAdvChemReactor extends TileEnergySink {
 	public TileAdvChemReactor() {
 		super(2, 100000);
 		//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
+	}
+	
+	@Override
+	public boolean isWorking() {
+		return working;
 	}
 	
 	@Override
@@ -63,8 +68,10 @@ public class TileAdvChemReactor extends TileEnergySink {
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) 
+		if (worldObj.isRemote) {
+			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
+		}
 		super.update();
 		
 		ItemStack[] inputs = null;

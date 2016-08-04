@@ -1,0 +1,12 @@
+{
+	"parent": "frogcraftrebirth:block/AdvancedChemicalReactor",
+	"textures": {
+		"particle": "ic2:blocks/resource/advanced_machine",
+		"down": "ic2:blocks/resource/advanced_machine",
+		"up": "ic2:blocks/resource/advanced_machine",
+		"north": "frogcraftrebirth:blocks/machines/AdvanceChemicalReactor_Front_Active",
+		"east": "ic2:blocks/resource/advanced_machine",
+		"south": "ic2:blocks/resource/advanced_machine",
+		"west": "ic2:blocks/resource/advanced_machine"
+	}
+}

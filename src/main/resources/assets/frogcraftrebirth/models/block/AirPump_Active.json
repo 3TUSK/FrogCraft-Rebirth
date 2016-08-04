@@ -1,0 +1,12 @@
+{
+	"parent": "frogcraftrebirth:block/AirPump",
+	"textures": {
+		"particle": "frogcraftrebirth:blocks/machines/AirPump_Front",
+		"down": "frogcraftrebirth:blocks/machines/AirPump_Top",
+		"up": "frogcraftrebirth:blocks/machines/AirPump_Top",
+		"north": "frogcraftrebirth:blocks/machines/AirPump_Front",
+		"east": "frogcraftrebirth:blocks/machines/AirPump_Side",
+		"south": "frogcraftrebirth:blocks/machines/AirPump_Back",
+		"west": "frogcraftrebirth:blocks/machines/AirPump_Side"
+	}
+}

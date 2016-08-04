@@ -36,8 +36,9 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 		if (input[0] == null) 
 			return null;
 		for (ICondenseTowerRecipe recipe : recipes) {
-			if (recipe.getInput().isFluidStackIdentical((net.minecraftforge.fluids.FluidStack) input[0]))
-				return recipe;
+			if (recipe.getInput().isFluidEqual((net.minecraftforge.fluids.FluidStack) input[0]))
+				if (recipe.getInput().amount <= ((net.minecraftforge.fluids.FluidStack) input[0]).amount)
+					return recipe;
 		}
 		return null;
 	}

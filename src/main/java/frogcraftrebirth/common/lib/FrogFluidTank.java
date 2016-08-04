@@ -49,7 +49,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	
 	@Override
 	public FluidStack getFluid() {
-		return fluidInv;
+		return fluidInv != null ? fluidInv.copy() : null;
 	}
 
 	@Override

@@ -3,7 +3,9 @@ package frogcraftrebirth.common.tile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
@@ -12,28 +14,38 @@ import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore {
+public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasWork {
+	
+	private static final int INPUT_F = 0, OUTPUT_F = 1;
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean structureCompletedOnLastTick = false;
-	private ArrayList<ICondenseTowerOutputHatch> outputs = new ArrayList<ICondenseTowerOutputHatch>();
-	private ArrayList<ICondenseTowerPart> structures = new ArrayList<ICondenseTowerPart>();
+	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<ICondenseTowerOutputHatch>();
+	private Set<ICondenseTowerPart> structures = new HashSet<ICondenseTowerPart>();
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
+	private boolean working;
 	
 	public TileCondenseTower() {
 		super(3, 10000);
+	}
+	
+	public boolean isWorking() {
+		return working;
 	}
 	
 	@Override
@@ -86,29 +98,41 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			structureCompletedOnLastTick = true;
 		}
 			
-		if (tank.getFluid() == null)
-			return;
+		if (inv.getStackInSlot(INPUT_F) != null) {
+			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+				ItemStack result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
+				if (result != null && result.stackSize > 0) {
+					inv.extractItem(INPUT_F, 1, false);
+					ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
+					if (remainder != null && remainder.stackSize > 0)
+						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+				}
+			}
+		}
 		
-		recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
-		if (checkRecipe(recipe)) {
-			this.tank.drain(recipe.getInput().amount, !worldObj.isRemote);
-			processMax = recipe.getTime();
-			process = 0;
-		} else {
-			this.markDirty();
-			this.sendTileUpdatePacket(this);
-			return;
+		if (recipe == null) {
+			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+			if (checkRecipe(recipe)) {
+				processMax = recipe.getTime();
+				process = 0;
+				working = true;
+			} else {
+				this.markDirty();
+				this.sendTileUpdatePacket(this);
+				return;
+			}
 		}
 		
 		charge -= recipe.getEnergyPerTick();
 		process++;
 		
 		if (process == processMax) {
-			java.util.Set<FluidStack> outputs = recipe.getOutput();
+			this.tank.drain(recipe.getInput().amount, true);
+			Set<FluidStack> outputs = recipe.getOutput();
 			for (FluidStack fluid : outputs) {
 				for (ICondenseTowerOutputHatch output : this.outputs) {
 					if (output.canInject(fluid)) {
-						output.inject(fluid, !worldObj.isRemote);
+						output.inject(fluid.copy(), true);
 						break;
 					}
 				}
@@ -116,6 +140,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			process = 0;
 			processMax = 0;
 			recipe = null;
+			working = false;
 		}
 		this.markDirty();
 		this.sendTileUpdatePacket(this);
@@ -155,13 +180,14 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		for (FluidStack fluid : aRecipe.getOutput()) {
 			boolean checkPass = false;
 			for (ICondenseTowerOutputHatch output : outputs) {
-				if (output.canInject(fluid)) {
+				if (output.canInject(fluid.copy())) {
 					checkPass = true;
 					break;
 				}
 			}
-			if (!checkPass)
+			if (!checkPass) {
 				return false;
+			}
 		}
 		return true;
 	}
@@ -174,6 +200,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		this.structureCompletedOnLastTick = input.readBoolean();
 		this.process = input.readInt();
 		this.processMax = input.readInt();
+		this.working = input.readBoolean();
 	}
 	
 	@Override
@@ -183,6 +210,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		output.writeBoolean(structureCompletedOnLastTick);
 		output.writeInt(process);
 		output.writeInt(processMax);
+		output.writeBoolean(working);
 	}
 	
 	@Override
@@ -190,12 +218,20 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
+		this.recipe = FrogAPI.managerCT.<FluidStack>getRecipe(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe")));
+		this.working = tag.getBoolean("working");
+		this.process = tag.getInteger("process");
+		this.processMax = tag.getInteger("processMax");
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
 		tag.setTag("inv", inv.serializeNBT());
+		tag.setTag("recipe", recipe != null ? recipe.getInput().copy().writeToNBT(new NBTTagCompound()) : new NBTTagCompound());
+		tag.setBoolean("working", working);
+		tag.setInteger("process", process);
+		tag.setInteger("processMax", processMax);
 		return super.writeToNBT(tag);
 	}
 

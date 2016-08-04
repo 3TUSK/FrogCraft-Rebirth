@@ -16,16 +16,20 @@ public class GuiFluidOutputHatch extends GuiContainer {
 		super(new ContainerFluidOutputHatch(playerInv, tile));
 		this.tile = tile;
 	}
+	
+	@Override
+	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
+		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("LiquidOutput"));
+		this.drawTexturedModalRect(143, 23, 176, 0, 16, 47);
+	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("LiquidOutput"));
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		// TODO
-		// GuiUtil.renderFluidTank(0, 0, 0, 0,
-		// tile.getTankInfo()[0].fluid.getFluid(),
-		// 100*(tile.getTankInfo()[0].fluid.amount)/(tile.getTankInfo()[0].capacity));
+		
+		GuiUtil.renderFluidTank(this, tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);
 	}
 
 }

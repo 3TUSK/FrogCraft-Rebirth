@@ -7,6 +7,7 @@ import java.io.IOException;
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.common.lib.FrogFluidTank;
+import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -18,7 +19,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	private ICondenseTowerCore mainBlock;
 	
-	protected FrogFluidTank tank = new FrogFluidTank(8000);
+	public final FrogFluidTank tank = new FrogFluidTank(8000);
 
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
@@ -63,7 +64,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	@Override
 	public boolean canInject(FluidStack stack) {
-		return stack != null ? this.tank.fill(stack, false) != 0 : false;
+		return stack != null ? tank.getFluid() == null ? true : this.tank.fill(stack, false) != 0 : false;
 	}
 
 	@Override
@@ -73,17 +74,23 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return true;
-		else return super.hasCapability(capability, facing);
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			EnumFacing currectFacing = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			return currectFacing == facing;
+		}
+		
+		return super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)tank;
-		else return super.getCapability(capability, facing);
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			EnumFacing currectFacing = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			return currectFacing == facing ? (T)tank : super.getCapability(capability, currectFacing);
+		}
+			
+		return super.getCapability(capability, facing);
 	}
 
 }

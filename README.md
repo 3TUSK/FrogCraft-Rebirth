@@ -4,6 +4,7 @@ A Minecraft Mod, IC2 Addon, with theme of chemistry and fun things.
 ### Table of content:  
  1. Intro of FrogCraft: Rebirth
  2. What's changed in this new port?
+ 3. Other posts
  3. Notes for potential contributors
  3. Future Plan
  4. License
@@ -34,6 +35,12 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as of Marble and Basalt.
  * **This mod now requires Java 8 to run**. If you plan to use FrogCraft: Rebirth on dedicated server, please be aware of your Java version.
 
+### Other posts
+I have created several pages on different site for different users:
+* For IC2 Forum: http://forum.industrial-craft.net/index.php?page=Thread&threadID=12584
+* For Cursefroge: https://minecraft.curseforge.com/projects/frogcraft-rebirth
+* For mcbbs: http://www.mcbbs.net/thread-615493-1-1.html
+
 ### Notes for potential contributors
 If you're trying to run FrogCraft: Rebirth in development environment but get crash like this:
 ````
@@ -46,9 +53,9 @@ You may want to add the following arguments into your JVM arguments:
 ````
 This should only happen in development environment, not in regular game.
 
-### Future plan: _FrogCraft 2: Chemia_
-*FrogCraft 2: Chemia* (aka Laboratorium Chemiae) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage.  
-There is no real progress of FrogCraft2, but once FrogCraft: Rebirth is stable, I will start to work on that.
+### Future plan: _Laboratorium Chemiae_
+*Laboratorium Chemiae* (previously named FrogCraft 2: Chemia) is the spiritual successor of both FrogCraft & FrogCraft: Rebirth, which highly focuses on chemical engineering, aiming to establish an IRL-ish system about chemicals synthetic and usage.  
+There is no real progress of FrogCraft2, nor roal map, but once FrogCraft: Rebirth is stable, I will start to work on that.
 
 *FrogCraft 2: Chemia* will follow [Cult of Kitteh][link_CultOfKitteh].  
 Yes, NO GUI. It sounds like insane, but it *will* be.

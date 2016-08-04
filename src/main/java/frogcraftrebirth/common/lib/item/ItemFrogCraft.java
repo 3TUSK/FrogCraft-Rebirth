@@ -5,12 +5,13 @@ import java.util.List;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
-import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.translation.I18n;
 
+@SuppressWarnings("deprecation")
 public abstract class ItemFrogCraft extends Item {
 	
 	protected String[] nameArray;
@@ -39,7 +40,7 @@ public abstract class ItemFrogCraft extends Item {
 	
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
-		return I18n.format(getUnlocalizedName(stack));
+		return I18n.translateToLocal(getUnlocalizedName(stack));
 	}
 	
 	@SideOnly(Side.CLIENT)

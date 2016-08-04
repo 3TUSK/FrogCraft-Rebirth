@@ -4,6 +4,7 @@ A Minecraft Mod, IC2 Addon, with theme of chemistry and fun things.
 ### Table of content:  
  1. Intro of FrogCraft: Rebirth
  2. What's changed in this new port?
+ 3. Notes for potential contributors
  3. Future Plan
  4. License
  5. Credits
@@ -32,6 +33,18 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents from other mods, e.g. [Chisel](https://minecraft.curseforge.com/projects/chisel).
  * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as of Marble and Basalt.
  * **This mod now requires Java 8 to run**. If you plan to use FrogCraft: Rebirth on dedicated server, please be aware of your Java version.
+
+### Notes for potential contributors
+If you're trying to run FrogCraft: Rebirth in development environment but get crash like this:
+````
+java.lang.NoSuchMethodError: net.minecraft.world.biome.BiomeProvider.getBiomeGenerator(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;
+````
+
+You may want to add the following arguments into your JVM arguments:
+````
+-Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin
+````
+This should only happen in development environment, not in regular game.
 
 ### Future plan: _FrogCraft 2: Chemia_
 *FrogCraft 2: Chemia* (aka Laboratorium Chemiae) is a mod highly concentrating on chemical industry, aiming to establish a whole system about chemicals synthetic and usage.  

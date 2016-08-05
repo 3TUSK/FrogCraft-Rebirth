@@ -12,29 +12,25 @@ public class FrogMath {
 		return (double)(Math.log(exp)/Math.log(base));
 	}
 	
-	public static double cot(double radius) {
-		return (double)(1/Math.tan(radius));
+	public static double cot(double radians) {
+		return (double)(1/Math.tan(radians));
 	}
 	
-	public static double sec(double radius) {
-		return (double)(1/Math.cos(radius));
+	public static double sec(double radians) {
+		return (double)(1/Math.cos(radians));
 	}
 	
-	public static double csc(double radius) {
-		return (double)(1/Math.sin(radius));
+	public static double csc(double radians) {
+		return (double)(1/Math.sin(radians));
 	}
 	
-	/*
-	public static double arcsin(double radius)
-	
-	public static double arccos(double radius)
-	
-	public static double arctan(double radius)
-	
-	public static double arccot(double radius)
-	
-	public static double arcsec(double radius)
-	
-	public static double arccsc(double radius)*/
+	public static String toFancyString(int value) {
+		try {
+			return (String) Class.forName("ic2.core.util.Util").getDeclaredMethod("toSiString", double.class, int.class).invoke(null, value, 2);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Integer.toString(value);
+		}
+	}
 
 }

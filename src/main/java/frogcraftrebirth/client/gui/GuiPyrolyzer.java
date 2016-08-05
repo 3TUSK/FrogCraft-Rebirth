@@ -1,6 +1,9 @@
 package frogcraftrebirth.client.gui;
 
+import java.util.Arrays;
+
 import frogcraftrebirth.common.gui.ContainerPyrolyzer;
+import frogcraftrebirth.common.lib.util.FrogMath;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -22,6 +25,10 @@ public class GuiPyrolyzer extends GuiTileFrog<TilePyrolyzer, ContainerPyrolyzer>
 		
 		if (mouseX > 143 + guiLeft && mouseX < 159 + guiLeft && mouseY > 23 + guiTop && mouseY < 70 + guiTop) {
 			this.renderFluidTankTooltip(tile.tank, mouseX, mouseY);
+		}
+		
+		if (mouseX > 81 + guiLeft && mouseX < 95 + guiLeft && mouseY > 57 + guiTop && mouseY < 71 + guiTop) {
+			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GRAY_40);

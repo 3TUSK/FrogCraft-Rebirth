@@ -1,6 +1,9 @@
 package frogcraftrebirth.client.gui;
 
+import java.util.Arrays;
+
 import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
+import frogcraftrebirth.common.lib.util.FrogMath;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -22,6 +25,10 @@ public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace, Con
 		
 		if (mouseX > 143 + guiLeft && mouseX < 159 + guiLeft && mouseY > 23 + guiTop && mouseY < 70 + guiTop) {
 			this.renderFluidTankTooltip(tile.tank, mouseX, mouseY);
+		}
+		
+		if (mouseX > 72 + guiLeft && mouseX < 96 + guiLeft && mouseY > 55 + guiTop && mouseY < 72 + guiTop) {
+			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(5000))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GRAY_40);

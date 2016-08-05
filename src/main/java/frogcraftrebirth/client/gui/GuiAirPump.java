@@ -1,6 +1,9 @@
 package frogcraftrebirth.client.gui;
 
+import java.util.Arrays;
+
 import frogcraftrebirth.common.gui.ContainerAirPump;
+import frogcraftrebirth.common.lib.util.FrogMath;
 import frogcraftrebirth.common.tile.TileAirPump;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,12 +22,16 @@ public class GuiAirPump extends GuiTileFrog<TileAirPump, ContainerAirPump> {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		this.fontRendererObj.drawString("Industrial Air Pump", 8, ySize - 155, 4210752);
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+		
+		if (mouseX > 118 + guiLeft && mouseX < 132 + guiLeft && mouseY > 33 + guiTop && mouseY < 47 + guiTop) {
+			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(10000))), mouseX - guiLeft, mouseY - guiTop);
+		}
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		int chargeIcon = (int) (15 * tile.charge / 10000); // TileAirPump.MAX_CHARGE = 10000;
+		int chargeIcon = (int) (14 * tile.charge / 10000); // TileAirPump.MAX_CHARGE = 10000;
 		this.drawTexturedModalRect(this.guiLeft + 118, this.guiTop + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
 		
 		int airPercentage = (int) (40 * tile.airAmount() / 1000); //TileAirPump.MAX_AIR = 1000;

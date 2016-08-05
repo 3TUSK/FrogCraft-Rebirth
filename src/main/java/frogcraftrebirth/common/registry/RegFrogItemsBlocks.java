@@ -97,7 +97,7 @@ public class RegFrogItemsBlocks {
 		FrogItems.itemCrushedDust = new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed");
 		FrogItems.itemPurifiedDust = new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified");
 		FrogItems.itemSmallPileDust = new ItemResources("smallDust", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("small_pile_dust");
-		FrogItems.itemReactionModule = new ItemResources("reactionModule", "Heating", "Electrolize", "Ammonia", "V2O5").setRegistryName("catalyst_module");
+		FrogItems.itemReactionModule = new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module");
 		FrogItems.ionCannon = new ItemIonCannon(1000000).setRegistryName("ion_cannon");
 		FrogItems.ionCannonFrame = new ItemFrogCraft(false) {
 

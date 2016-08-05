@@ -16,10 +16,10 @@ item.ItemMiniIonCannon.coolingDown=很抱歉通知您，指挥官，离子炮仍
 item.ionCannonFrame=离子炮框架
 tile.mobilePowerStation.normal.name=移动电源
 tile.mobilePowerStation.info=§o外出野营的最佳伴侣
-item.CoolantAmmonia60K=60K氨冷却槽
-item.CoolantAmmonia180K=180K氨冷却槽
-item.CoolantAmmonia360K=360K氨冷却槽
-item.CoolantAmmonia.info=一个普通的%s氨冷却槽
+item.CoolantAmmonia60K=60K氨冷却单元
+item.CoolantAmmonia180K=180K氨冷却单元
+item.CoolantAmmonia360K=360K氨冷却单元
+item.CoolantAmmonia.info=一个普通的%s氨冷却单元
 item.academyWindmillRotor.name=学园都市风力发电机叶片
 item.UBattery.name=铀衰变电池
 item.ThBattery.name=钍衰变电池
@@ -61,10 +61,10 @@ fluid.sulfurTrioxide.info=SO3
 #For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
 #If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.GoldClod=金坷垃
-item.Item_Miscs.GoldClod.info=妈妈的 金坷垃是窝的!
+item.Item_Miscs.GoldClod.info=妈妈的 金坷垃是窝的！
 
-item.reactionModule.Electrolize=电解器插件
-item.reactionModule.Electrolize.info=电解反应物
+item.reactionModule.Electrolyze=电解器插件
+item.reactionModule.Electrolyze.info=电解反应物
 item.reactionModule.Heating=加热器插件
 item.reactionModule.Heating.info=用来给反应提供热量
 item.reactionModule.Ammonia=氨合成专用催化剂
@@ -164,14 +164,14 @@ tile.nitricAcid.name=硝酸
 
 #Achivements
 achievement.get_railgun=Only my railgun!
-achievement.get_railgun.desc=来一炮?
+achievement.get_railgun.desc=来一炮？
 achievement.get_EVT=超高压变压器
 achievement.get_EVT.desc=降压到2048
 achievement.killed_by_Potassium=被钾炸死
-achievement.killed_by_Potassium.desc=不作死就不会死,永远不要把碱金属放到水里!
+achievement.killed_by_Potassium.desc=不作死就不会死，永远不要把碱金属放到水里！
 achievement.gaspump=空气的力量
 achievement.gaspump.desc=一股无形而强大的力量
-achievement.pneumaticCompressor=工业TNT,886~
+achievement.pneumaticCompressor=工业TNT，886~
 achievement.pneumaticCompressor.desc=制作铱板再也不需要工业TNT啦
 achievement.liquifier=无尽的原材料
 achievement.liquifier.desc=乃学会了从空气中获得原材料
@@ -180,10 +180,10 @@ achievement.hsu.desc=可以存储100000000EU！
 achievement.uhsu=变态的MFSU
 achievement.uhsu.desc=可以存储1000000000EU！
 achievement.goldclod=妈妈的
-achievement.goldclod.desc=金坷拉是我的!
+achievement.goldclod.desc=金坷拉是我的！
 achievement.get_ACR=化学之路
-achievement.get_ACR.desc=能出现嘛有趣的反应呢?
-achievement.condensetower=分离他们?
+achievement.get_ACR.desc=能出现嘛有趣的反应呢？
+achievement.condensetower=分离他们？
 achievement.condensetower.desc=似乎还缺点什么
 achievement.condensetower2=分离他们。
 achievement.condensetower2.desc=乃学会了如何分离液体或者气体的混合物
@@ -212,7 +212,7 @@ jei.euTick=每Tick耗电量：%d EU
 jei.tick=所需时间：%d tick
 
 nei.tickWithCatalyst=催化下的反应时间
-nei.catalystRequird=这个反应需要催化剂!
+nei.catalystRequired=这个反应需要催化剂！
 nei.outputLiquid=输出液体
 
 #Misc

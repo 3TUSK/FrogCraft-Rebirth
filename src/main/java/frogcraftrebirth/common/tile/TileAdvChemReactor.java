@@ -9,12 +9,15 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.util.ItemUtil;
+import ic2.api.item.IC2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
@@ -31,7 +34,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	private IAdvChemRecRecipe recipe;
 	
 	public TileAdvChemReactor() {
-		super(2, 100000);
+		super(2, 50000);
 	}
 	
 	@Override
@@ -79,46 +82,92 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		}
 		super.update();
 		
-		ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-		
-		recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
-		
-		if (checkIngredient(recipe)) {
-			this.consumeIngredient(recipe.getInputs());
-			this.process = 0;
-			this.processMax = recipe.getTime();
-			this.working = true;
+		if (!working || recipe == null) {
+			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
+			recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
+			
+			if (checkRecipe(recipe)) {
+				this.consumeIngredient(recipe.getInputs());
+				this.process = 0;
+				this.processMax = recipe.getTime();
+				this.working = true;
+			} else {
+				this.working = false;
+				this.sendTileUpdatePacket(this);
+				this.markDirty();
+				return;
+			}
 		}
 		
-		if (working && charge >= recipe.getEnergyRate()) {
+		if (recipe != null && charge >= recipe.getEnergyRate()) {
 			this.charge -= recipe.getEnergyRate();
 			++process;
 		}
 		
-		if (process == processMax) {
+		if (recipe != null && process == processMax) {
 			this.produce();
-			this.working = false;
 			this.process = 0;
 			this.processMax = 0;
+			this.recipe = null;
 		}
-
-		this.markDirty();
+		
 		this.sendTileUpdatePacket(this);
+		this.markDirty();
 	}
 	
-	private boolean checkIngredient(IAdvChemRecRecipe recipe) {
+	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
-		
-		return false;
+		if (cellInput.getStackInSlot(0) != null) {
+			if (!IC2Items.getItem("fluid_cell").isItemEqual(cellInput.getStackInSlot(0)))
+				return false;
+			if (cellInput.getStackInSlot(0).stackSize < recipe.getRequiredCellAmount())
+				return false;
+		} else {
+			if (recipe.getRequiredCellAmount() > 0)
+				return false;
+		}
+		if (recipe.getCatalyst() != null && !recipe.getCatalyst().isItemEqual(module.getStackInSlot(0)))
+			return false;
+		for (ItemStack outputStack : recipe.getOutputs()) {
+			ItemStack remain = ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true);
+			if (remain != null)
+				return false;
+		}
+		return true;
 	}
 	
 	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
-		// to be implemented
+		for (OreStack ore : toBeConsumed) {
+			for (int i = 0; i < 5; i++) {
+				if (ore.consumable(input.getStackInSlot(i)))
+					input.extractItem(i, ore.getAmount(), false);
+			}
+		}
+		if (recipe.getRequiredCellAmount() > 0) {
+			cellInput.extractItem(0, recipe.getRequiredCellAmount(), false);
+		}
 	}
 	
 	private void produce() {
-		// to be implemented
+		for (ItemStack outputStack : recipe.getOutputs()) {
+			ItemStack remain = ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), false);
+			if (remain != null)
+				ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
+		}
+		if (recipe.getProducedCellAmount() > 0) {
+			if (cellOutput.getStackInSlot(0) != null) {
+				ItemStack cell = cellOutput.getStackInSlot(0).copy();
+				cell.stackSize = recipe.getProducedCellAmount();
+				ItemStack remain = cellOutput.insertItem(0, cell, false);
+				if (remain != null)
+					ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
+			} else {
+				ItemStack stack = IC2Items.getItem("fluid_cell");
+				stack.stackSize = recipe.getProducedCellAmount();
+				cellOutput.insertItem(0, stack, false);
+			}
+		}
 	}
 	
 	@Override

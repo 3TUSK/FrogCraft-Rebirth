@@ -18,11 +18,11 @@ public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	
 	private final Collection<OreStack> inputs;
 	private final Collection<ItemStack> outputs;
-	private final String validCatalyst;
+	private final ItemStack validCatalyst;
 	private final int time, energyPerTick;
 	private final int cellReq, cellProduce;
 	
-	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<ItemStack> outputs, String catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
+	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<ItemStack> outputs, ItemStack catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
@@ -43,7 +43,7 @@ public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	}
 	
 	@Override
-	public String getCatalyst() {
+	public ItemStack getCatalyst() {
 		return validCatalyst;
 	}
 	

@@ -10,10 +10,10 @@ public class ContainerAdvChemReactor extends ContainerTileFrog<TileAdvChemReacto
 		this.addSlotToContainer(new SlotFrog(tile.module, 0, 147, 52));
 		for (int i = 0; i < 5; i++) {
 			this.addSlotToContainer(new SlotFrog(tile.input, i, 40 + i * 20, 22));
-			this.addSlotToContainer(new SlotFrog(tile.output, i, 40 + i * 20, 52));
+			this.addSlotToContainer(new SlotOutput(tile.output, i, 40 + i * 20, 52));
 		}
 		this.addSlotToContainer(new SlotFrog(tile.cellInput, 0, 12, 22));
-		this.addSlotToContainer(new SlotFrog(tile.cellOutput, 0, 12, 52));
+		this.addSlotToContainer(new SlotOutput(tile.cellOutput, 0, 12, 52));
 		this.registerPlayerInventory(playerInv);
 	}
 

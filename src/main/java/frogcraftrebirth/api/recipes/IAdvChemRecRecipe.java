@@ -19,7 +19,7 @@ public interface IAdvChemRecRecipe {
 
 	Collection<ItemStack> getOutputs();
 
-	String getCatalyst();
+	ItemStack getCatalyst();
 
 	int getTime();
 

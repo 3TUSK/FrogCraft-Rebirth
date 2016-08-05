@@ -60,7 +60,7 @@ public class OreStack {
 	}
 
 	public boolean consumable(ItemStack stack) {
-		return OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
+		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
 	}
 
 	public void consume(ItemStack stack) {
@@ -71,7 +71,7 @@ public class OreStack {
 	}
 
 	public boolean stackable(ItemStack stack) {
-		return OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
+		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
 	}
 
 	public void stack(ItemStack stack) {
@@ -101,9 +101,15 @@ public class OreStack {
 		return entries.contains(ore);
 	}
 
-	@Deprecated //This will not work due to ItemStack does not override equal() method!
 	public static boolean entryHasStack(ItemStack stack, String ore) {
-		return OreDictionary.doesOreNameExist(ore) && OreDictionary.getOres(ore).contains(stack);
+		if (OreDictionary.doesOreNameExist(ore)) {
+			for (ItemStack test : OreDictionary.getOres(ore)) {
+				if (test.isItemEqual(stack))
+					return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public static OreStack loadFromNBT(NBTTagCompound tag) {

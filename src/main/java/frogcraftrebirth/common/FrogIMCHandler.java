@@ -76,7 +76,7 @@ public final class FrogIMCHandler {
 							});
 							int time = theTag.getInteger("time");
 							int energyPerTick = theTag.getInteger("energyPerTick");
-							String catalyst = theTag.getString("catalyst");
+							ItemStack catalyst = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("catalyst"));
 							int cellReq = theTag.getInteger("cellReq");
 							int cellProduce = theTag.getInteger("cellProduce");
 							FrogAPI.managerACR.add(new AdvChemRecRecipe(inputsArray, outputsArray, catalyst, time, energyPerTick, cellReq, cellProduce));

@@ -1,5 +1,6 @@
 package frogcraftrebirth.common;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Map.Entry;
 
 import frogcraftrebirth.FrogCraftRebirth;
@@ -41,6 +42,13 @@ public class FrogProxy {
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 3);
 		RegFrogAchievements.init();
+		if (Loader.isModLoaded("techreborn")) {
+			try {
+				Class.forName("frogcraftrebirth.common.compat.techreborn.CompatTechReborn").getDeclaredMethod("preInit").invoke(null);
+			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	public void init(FMLInitializationEvent event) {

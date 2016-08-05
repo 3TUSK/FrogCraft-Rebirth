@@ -28,6 +28,10 @@ repositories {
         name = "ic2"
         url = "http://maven.ic2.player.to"
     }
+    maven {
+    	name = "techreborn"
+    	url = "http://maven.modmuss50.me"
+    }
 }
 
 minecraft {
@@ -42,6 +46,7 @@ minecraft {
 dependencies {
     compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
     compile "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
+    compile "TechReborn:TechReborn-${Minecraft_Ver}:${TechReborn_Ver}:dev"
 
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }

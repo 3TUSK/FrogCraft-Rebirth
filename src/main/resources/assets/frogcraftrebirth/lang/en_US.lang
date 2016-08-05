@@ -204,6 +204,10 @@ gui.combustionFurnace.title=Combustion Furnace
 
 gui.MPS.title=Mobile Power Supply
 
+gui.fluid.name=Name: %s
+gui.fluid.amount=Amount: %d
+gui.fluid.null=No fluid in this tank
+
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
 gui.jei.category.condensation=Condensation
 gui.jei.category.pyrolyzation=Pyrolysis

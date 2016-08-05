@@ -9,18 +9,41 @@ import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch {
+public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch, ITickable {
 
 	private ICondenseTowerCore mainBlock;
 	
+	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 
+	@Override
+	public void update() {
+		if (!worldObj.isRemote) {
+			if (tank.getFluidAmount() != 0 && inv.getStackInSlot(0) != null) {
+				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+					ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
+					if (result != null && result.stackSize > 0) {
+						inv.extractItem(0, 1, false);
+						ItemStack remainder = inv.insertItem(1, result, false);
+						if (remainder != null && remainder.stackSize > 0)
+							ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+					}
+				}
+			} 
+		}
+	}
+	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);

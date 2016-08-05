@@ -204,6 +204,10 @@ gui.combustionFurnace.title=焚烧炉
 
 gui.MPS.title=移动电源
 
+gui.fluid.name=流体名称：%s
+gui.fluid.amount=流体存量：%d
+gui.fluid.null=这个储罐空空如也
+
 #JEI GUI texts - 注：因历史原因，某些键仍保留以nei开头，但很快就会改为jei。
 gui.jei.category.condensation=冷凝塔  冷凝
 gui.jei.category.pyrolyzation=高温裂解

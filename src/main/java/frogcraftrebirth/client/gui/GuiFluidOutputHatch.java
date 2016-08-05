@@ -1,12 +1,16 @@
 package frogcraftrebirth.client.gui;
 
+import java.util.Arrays;
+
 import org.lwjgl.opengl.GL11;
 
 import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.fluids.FluidStack;
 
 public class GuiFluidOutputHatch extends GuiContainer {
 
@@ -21,6 +25,18 @@ public class GuiFluidOutputHatch extends GuiContainer {
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("LiquidOutput"));
 		this.drawTexturedModalRect(143, 23, 176, 0, 16, 47);
+		
+		if (mouseX > 143 + guiLeft && mouseX < 159 + guiLeft && mouseY > 23 + guiTop && mouseY < 70 + guiTop) {
+			FluidStack stack = tile.tank.getFluid();
+			if (stack != null) {
+				String name = stack.getLocalizedName();
+				int amount = stack.amount;
+				String[] info = new String[] {I18n.format("gui.fluid.name", name), I18n.format("gui.fluid.amount", amount)};
+				this.drawHoveringText(Arrays.asList(info), mouseX - guiLeft, mouseY - guiTop);
+			} else {
+				this.drawHoveringText(Arrays.asList(I18n.format("gui.fluid.null")), mouseX - guiLeft, mouseY - guiTop);
+			}
+		}
 	}
 
 	@Override

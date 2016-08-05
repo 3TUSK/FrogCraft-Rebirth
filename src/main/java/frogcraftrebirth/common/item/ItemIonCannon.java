@@ -19,6 +19,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -73,8 +74,11 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add(I18n.format("item.ItemMiniIonCannon.info"));
-		if (ElectricItem.manager.getCharge(stack) <= 100000) {
+		if (player.getCooldownTracker().hasCooldown(stack.getItem())) {
 			list.add(I18n.format("item.ItemMiniIonCannon.coolingDown"));
+		}
+		if (ElectricItem.manager.getCharge(stack) <= 100000) {
+			list.add(I18n.format("item.ItemMiniIonCannon.discharged"));
 		}
 		return list;
 	}
@@ -99,19 +103,21 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		if (worldIn.isRemote)
 			return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
-		return new ActionResult<ItemStack>(EnumActionResult.PASS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
+		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
     }
 	
 	private ItemStack ionCannonLogic(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		boolean active = itemStackIn.getTagCompound().getBoolean("active");
 		if (!worldIn.isRemote && playerIn.isSneaking()) {
-			this.setStatus(itemStackIn, active);
+			this.setStatus(itemStackIn, !active);
 			return itemStackIn;
 		}
 		
-		if (active && ElectricItem.manager.canUse(itemStackIn, 5000000)) {
+		if (!worldIn.isRemote && active && ElectricItem.manager.canUse(itemStackIn, 500000)) {
+			ElectricItem.manager.discharge(itemStackIn, 500000, 4, true, false, false);
 			worldIn.spawnEntityInWorld(new EntityIonCannonBeam(worldIn, playerIn));
-			playerIn.addChatMessage(new net.minecraft.util.text.TextComponentTranslation("item.ItemMiniIonCannon.warning"));
+			playerIn.getCooldownTracker().setCooldown(itemStackIn.getItem(), 200);
+			playerIn.addChatMessage(new TextComponentTranslation("item.ItemMiniIonCannon.warning"));
 		}
 		return itemStackIn;
 	}
@@ -133,7 +139,7 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 
 	@Override
 	public int getTier(ItemStack itemStack) {
-		return 3;
+		return 4;
 	}
 
 	@Override

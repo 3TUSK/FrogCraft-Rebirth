@@ -12,7 +12,9 @@ chat.tiberiumCorrosion=你的某个物品已被泰伯利亚污染！
 #Items
 item.ItemMiniIonCannon.name=便携式离子炮
 item.ItemMiniIonCannon.info=全球防御组织监制
-item.ItemMiniIonCannon.coolingDown=很抱歉通知您，指挥官，离子炮仍在冷却中，请等待冷却结束。
+item.ItemMiniIonCannon.coolingDown=指挥官，很抱歉通知您，离子炮仍在冷却中，请等待冷却结束。
+item.ItemMiniIonCannon.warning=警告：离子炮已发射，现进入强制冷却模式。
+item.ItemMiniIonCannon.discharged=离子炮目前没有足够能量储存维持其运转，在能源供应恢复前，一切指令都将会被取消。
 item.ionCannonFrame=离子炮框架
 tile.mobilePowerStation.normal.name=移动电源
 tile.mobilePowerStation.info=§o外出野营的最佳伴侣

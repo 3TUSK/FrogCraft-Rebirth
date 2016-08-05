@@ -17,7 +17,7 @@ public class ContainerLiquefier extends ContainerTileFrog<TileLiquefier> {
 	public ContainerLiquefier(InventoryPlayer playerInv, TileLiquefier tile) {
 		super(playerInv, tile);
 		this.addSlotToContainer(new SlotItemHandler(tile.inv, 0, 113, 21));
-		this.addSlotToContainer(new SlotItemHandler(tile.inv, 1, 113, 56));
+		this.addSlotToContainer(new SlotOutput(tile.inv, 1, 113, 56));
 		this.registerPlayerInventory(playerInv);
 	}
 

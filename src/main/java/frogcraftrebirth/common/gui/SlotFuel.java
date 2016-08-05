@@ -9,7 +9,7 @@
 package frogcraftrebirth.common.gui;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.items.IItemHandler;
 
 public class SlotFuel extends SlotFrog {
@@ -20,7 +20,7 @@ public class SlotFuel extends SlotFrog {
 	
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return GameRegistry.getFuelValue(stack) > 0;
+		return TileEntityFurnace.getItemBurnTime(stack) > 0;
 	}
 
 }

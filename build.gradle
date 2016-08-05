@@ -40,6 +40,9 @@ minecraft {
 
     mappings = Mapping_Ver
     
+    clientRunArgs += "-Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin"
+    serverRunArgs += "-Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin"
+    
     replace "@VERSION@", project.version
 }
 

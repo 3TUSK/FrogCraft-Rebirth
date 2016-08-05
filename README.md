@@ -42,16 +42,15 @@ I have created several pages on different site for different users:
 * For mcbbs: http://www.mcbbs.net/thread-615493-1-1.html
 
 ### Notes for potential contributors
-If you're trying to run FrogCraft: Rebirth in development environment but get crash like this:
+If you're trying to deploy the FrogCraft: Rebirth development environment, just run:
+````bash
+bash gradlew setupDecompWorkspace
 ````
-java.lang.NoSuchMethodError: net.minecraft.world.biome.BiomeProvider.getBiomeGenerator(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;
+Or on Windows:
+````batch
+gradlew.bat setupDecompWorkspace
 ````
-
-You may want to add the following arguments into your JVM arguments:
-````
--Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin
-````
-This should only happen in development environment, not in regular game.
+And also add `eclipse` or `idea` behind `setupDecompWorkspace`, which depends on which IDE you're using.
 
 ### Future plan: _Laboratorium Chemiae_
 *Laboratorium Chemiae* (previously named FrogCraft 2: Chemia) is the spiritual successor of both FrogCraft & FrogCraft: Rebirth, which highly focuses on chemical engineering, aiming to establish an IRL-ish system about chemicals synthetic and usage.  

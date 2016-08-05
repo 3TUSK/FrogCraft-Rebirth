@@ -4,13 +4,15 @@
 #item.ItemMiniIonCannon.name=Portable Ion Cannon
 #item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
 #item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
+#item.ItemMiniIonCannon.warning=Caution: Ion Cannon has launched, starting mandatory cooling down.
+#item.ItemMiniIonCannon.discharged=Ion Cannon is currently discharged, all further operation will be aborted before it is charged again.
+#item.ionCannonFrame=Ion Cannon Frame
 tile.mobilePowerStation.normal.name=Mobile Energieversorgung
 #tile.mobilePowerStation.info=§oThe best camping gear
 item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
 item.CoolantAmmonia180K=180K Ammoniak-Kühlzelle
 item.CoolantAmmonia360K=360K Ammoniak-Kühlzelle
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
-item.academyWindmillRotor.name=Academy City Windmühlrotor
 item.UBattery.name=Uran-Zerfallsbatterie
 item.ThBattery.name=Thorium-Zerfallsbatterie
 item.PuBattery.name=Plutonium-Zerfallsbatterie
@@ -103,8 +105,8 @@ item.Item_Ingots.K=Kalium
 item.Item_Ingots.K.info=K
 item.Item_Ingots.P=Phosphor
 item.Item_Ingots.P.info=P
-item.Item_Ingots.NaturalGasHydrate=Methane clathrate
-item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
+#item.Item_Ingots.NaturalGasHydrate=Methane clathrate
+#item.Item_Ingots.NaturalGasHydrate.info=CH4·H2O
 item.Item_Ingots.CoalCokeShattered=Kokskohlefragmente
 item.Item_Ingots.CoalCokeShattered.info=Effizienter Treibstoff~
 item.Item_Ingots.Briquette=Brikett
@@ -128,10 +130,7 @@ tile.hybridStorageUnit.ultra.name=Ultimative Hybrid-Speichereinheit
 
 tile.hybridStorageUnit.EVT.name=ES-Transformator
 
-tile.academyWindmill.Turbine.name=Academic City Windmühlgenerator
-tile.academyWindmill.Base.name=Academic City Windmühlbasis
-tile.academyWindmill.Cylinder.name=Academic City Windmühlwand
-tile.generator.CombustionFurnace.name=Verbrennungsofen
+tile.generator.combustionFurnace.name=Verbrennungsofen
 
 tile.Machines.PneumaticCompressor.name=Pneumatischer Kompressor
 
@@ -139,8 +138,6 @@ tile.machines.advchemreactor.name=Fortgeschrittener Chemischer Reaktor
 tile.machines.airpump.name=Industrielle Pumpe
 #tile.machines.pyrolyzer.name=Pyrolyzer
 tile.machines.liquefier.name=Verflüssiger
-
-#tile.Machines.AutoWorkBench.name=Auto-Werkbank
 
 tile.nitricAcid.name=Nitric Acid
 

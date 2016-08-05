@@ -22,7 +22,6 @@ item.CoolantAmmonia60K=60K Ammonia Coolant Cell
 item.CoolantAmmonia180K=180K Ammonia Coolant Cell
 item.CoolantAmmonia360K=360K Ammonia Coolant Cell
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
-item.academyWindmillRotor.name=Academy City Windmill Rotor
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery

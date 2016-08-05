@@ -7,6 +7,7 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.compat.techreborn.CompatTechReborn;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
@@ -48,6 +49,7 @@ public class FrogProxy {
 			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				e.printStackTrace();
 			}
+			FrogAPI.registerFrogCompatModule("techreborn", new CompatTechReborn());
 		}
 	}
 

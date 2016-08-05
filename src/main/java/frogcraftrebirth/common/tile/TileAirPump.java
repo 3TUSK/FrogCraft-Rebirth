@@ -44,7 +44,6 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	@Override
 	public void update() {
 		if (worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
 			return;
 		}
 		

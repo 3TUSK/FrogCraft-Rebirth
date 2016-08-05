@@ -198,15 +198,8 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 					break;
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			switch (facing) {
-				case NORTH:
-				case EAST:
-				case SOUTH:
-				case WEST:
-					return (T)tank;
-				default:
-					break;
-			}
+			if (facing != null)
+				return (T)tank;
 		}
 		
 		return super.getCapability(capability, facing);

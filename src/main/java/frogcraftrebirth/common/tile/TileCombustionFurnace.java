@@ -155,23 +155,38 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		switch (facing) {
-			case DOWN:
-			case UP: return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
-			default: return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY;
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+			return true;
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			switch (facing) {
+				case DOWN:
+				case UP: 
+					return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
+				default:
+					break;
+			}
 		}
+		
+		return super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		switch (facing) {
-			case DOWN:
-				return (T)output;
-			case UP: 
-				return (T)input;
-			default: return (T)tank;
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+			switch (facing) {
+				case DOWN:
+					return (T)output;
+				case UP: 
+					return (T)input;
+				default:
+					break;
+			}
+		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
+			return (T)tank;
 		}
+		
+		return super.getCapability(capability, facing);
 	}
 
 }

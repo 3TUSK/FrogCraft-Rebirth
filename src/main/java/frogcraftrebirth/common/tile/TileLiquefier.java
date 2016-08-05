@@ -130,7 +130,8 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer, IHasW
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
 			return (T)tank;
-		else return super.getCapability(capability, facing);
+		else 
+			return super.getCapability(capability, facing);
 	}
 
 	@Override

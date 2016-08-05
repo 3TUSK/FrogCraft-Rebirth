@@ -1,21 +1,17 @@
 package frogcraftrebirth.client.gui;
 
-import org.lwjgl.opengl.GL11;
-
-import frogcraftrebirth.client.GuiUtil;
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.tile.TileAirPump;
-import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class GuiAirPump extends GuiContainer {
-
-	TileAirPump tile;
+@SideOnly(Side.CLIENT)
+public class GuiAirPump extends GuiTileFrog<TileAirPump, ContainerAirPump> {
 
 	public GuiAirPump(InventoryPlayer playerInv, TileAirPump tile) {
-		super(new ContainerAirPump(playerInv, tile));
-		this.tile = tile;
+		super(new ContainerAirPump(playerInv, tile), tile, "GUI_AirPump.png");
 	}
 
 	@Override
@@ -26,11 +22,8 @@ public class GuiAirPump extends GuiContainer {
 	}
 
 	@Override
-	protected void drawGuiContainerBackgroundLayer(float par1Float, int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("AirPump"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
-		
+	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
+		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		int chargeIcon = (int) (15 * tile.charge / 10000); // TileAirPump.MAX_CHARGE = 10000;
 		this.drawTexturedModalRect(this.guiLeft + 118, this.guiTop + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
 		

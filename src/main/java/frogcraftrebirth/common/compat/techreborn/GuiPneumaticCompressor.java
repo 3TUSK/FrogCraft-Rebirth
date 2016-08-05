@@ -8,25 +8,20 @@
  */
 package frogcraftrebirth.common.compat.techreborn;
 
-import org.lwjgl.opengl.GL11;
-
-import frogcraftrebirth.client.GuiUtil;
-import net.minecraft.client.gui.inventory.GuiContainer;
+import frogcraftrebirth.client.gui.GuiTileFrog;
 import net.minecraft.entity.player.InventoryPlayer;
 
-public class GuiPneumaticCompressor extends GuiContainer {
+public class GuiPneumaticCompressor extends GuiTileFrog<TilePneumaticCompressor, ContainerPneumaticCompressor> {
 
 	TilePneumaticCompressor tile;
 	
 	public GuiPneumaticCompressor(InventoryPlayer playerInv, TilePneumaticCompressor tile) {
-		super(new ContainerPneumaticCompressor(playerInv, tile));
+		super(new ContainerPneumaticCompressor(playerInv, tile), tile, "GUI_PneumaticCompressor.png");
 	}
 
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		this.mc.getTextureManager().bindTexture(GuiUtil.getGuiBackground("PneumaticCompressor"));
-		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
+		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 	}
 
 }

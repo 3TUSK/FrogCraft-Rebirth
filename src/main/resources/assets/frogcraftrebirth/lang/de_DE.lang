@@ -10,7 +10,7 @@ item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
 item.CoolantAmmonia180K=180K Ammoniak-Kühlzelle
 item.CoolantAmmonia360K=360K Ammoniak-Kühlzelle
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
-item.academyWindmillRotor.name=Academic City Windmühlrotor
+item.academyWindmillRotor.name=Academy City Windmühlrotor
 item.UBattery.name=Uran-Zerfallsbatterie
 item.ThBattery.name=Thorium-Zerfallsbatterie
 item.PuBattery.name=Plutonium-Zerfallsbatterie
@@ -192,7 +192,7 @@ nei.euTotalGen=Total generated
 nei.euTickOut=Eu per tick
 nei.tick=Tick
 nei.tickWithCatalyst=Reaktion tickt unter Katalysator
-nei.catalystRequird=Diese Reaktion benötigt Katalysator
+nei.catalystRequired=Diese Reaktion benötigt Katalysator
 nei.outputLiquid=Stoße Flüssigkeit aus
 
 #Misc

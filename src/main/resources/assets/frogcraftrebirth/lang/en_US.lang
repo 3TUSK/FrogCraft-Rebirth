@@ -16,18 +16,18 @@ item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling 
 item.ionCannonFrame=Ion Cannon Frame
 tile.mobilePowerStation.normal.name=Mobile Power Supply
 tile.mobilePowerStation.info=§oThe best camping gear
-item.CoolantAmmonia60K=60K ammonia coolant cell
-item.CoolantAmmonia180K=180K ammonia coolant cell
-item.CoolantAmmonia360K=360K ammonia coolant cell
+item.CoolantAmmonia60K=60K Ammonia Coolant Cell
+item.CoolantAmmonia180K=180K Ammonia Coolant Cell
+item.CoolantAmmonia360K=360K Ammonia Coolant Cell
 item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
-item.academyWindmillRotor.name=Academic City Windmill Rotor
+item.academyWindmillRotor.name=Academy City Windmill Rotor
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery
 item.DecayBattery.info.0=A radioactive decay battery
-item.DecayBattery.info.1=Provide you with infinity electricity with high cost!
+item.DecayBattery.info.1=Provide you with infinite electricity at a high cost!
 item.Item_NitricAcidBucket.name=Nitric Acid Bucket
-item.Item_NitricAcidBucket.info=Warning: Super Corrossive!
+item.Item_NitricAcidBucket.info=Warning: Super Corrosive!
 
 #Fluid
 fluid.ammonia=Ammonia
@@ -63,14 +63,14 @@ fluid.sulfurTrioxide.info=SO₃
 item.Item_Miscs.GoldClod=Goldclod
 item.Item_Miscs.GoldClod.info=Magical fertilizer additive
 
-item.reactionModule.Electrolize=Electrolizer Component
-item.reactionModule.Electrolize.info=Electrolize the reactant
+item.reactionModule.Electrolyze=Electrolyzer Component
+item.reactionModule.Electrolyze.info=Electrolyze the reactant
 item.reactionModule.Heating=Heating Component
-item.reactionModule.Heating.info=Provide heat to a endothermic reaction
+item.reactionModule.Heating.info=Provide heat to an endothermic reaction
 item.reactionModule.Ammonia=Ammonia Catalyst
-item.reactionModule.Ammonia.info=Necessary for ammonia manufactoring
+item.reactionModule.Ammonia.info=Necessary for ammonia manufacturing
 item.reactionModule.V2O5=Vanadium Pentoxide Catalyst
-item.reactionModule.V2O5.info=Necessary for SO₃ manufactoring
+item.reactionModule.V2O5.info=Necessary for SO₃ manufacturing
 
 #Dusts
 item.Item_Dusts.CaO=Calcium Oxide Dust
@@ -165,36 +165,36 @@ tile.nitricAcid.name=Nitric Acid
 #Achivements
 achievement.get_railgun=Only my railgun!
 achievement.get_railgun.desc=Come on man?!
-achievement.get_EVT=EV transformer
+achievement.get_EVT=EV Transformer
 achievement.get_EVT.desc=Step down to 2048
 achievement.killed_by_Potassium=Explode by potassium
 achievement.killed_by_Potassium.desc=Never makes the alkaline metal with water!
 achievement.gaspump=Power of gas
 achievement.gaspump.desc=A invisible power
 achievement.pneumaticCompressor=Say goodbye to ITNT
-achievement.pneumaticCompressor.desc=You nolonger have to prepare tones of ITNT
+achievement.pneumaticCompressor.desc=You no longer have to prepare tons of ITNT
 achievement.liquifier=Infinite raw material
 achievement.liquifier.desc=You have learnt how to get raw material from air
 achievement.hsu=Larger MFSU
-achievement.hsu.desc=Stores 100000000eu!
+achievement.hsu.desc=Stores 100000000EU!
 achievement.uhsu=Hentai MFSU
-achievement.uhsu.desc=Stores 1000000000eu!
+achievement.uhsu.desc=Stores 1000000000EU!
 achievement.goldclod=Goldclod
 achievement.goldclod.desc=Goldclod is mine!
 achievement.get_ACR=Way of chemistry
 achievement.get_ACR.desc=Will there be any interesting reactions?
-achievement.condensetower=Seperate them?
-achievement.condensetower.desc=Seems missing something...
-achievement.condensetower2=Seperate them。
-achievement.condensetower2.desc=You have learnt how to seperate liquid mixtures
+achievement.condensetower=Separate them?
+achievement.condensetower.desc=Seems to be missing something...
+achievement.condensetower2=Separate them.
+achievement.condensetower2.desc=You have learnt how to separate liquid mixtures
 achievement.suicideExpert=Suicide Expert
 achievement.suicideExpert.desc=Potassium plus acid equals explosion!
 
 gui.HSU.normal.title=HSU
 gui.HSU.ultra.title=UHSU
 gui.HSU.percent=Percentage: %.2f%%
-gui.HSU.store=EU: %d 
-gui.HSU.max=Max. EU: %d  
+gui.HSU.store=EU: %d
+gui.HSU.max=Max. EU: %d
 gui.HSU.output=Output: %d EU/tick
 
 gui.pyrolyzer.title=Pyrolyzer
@@ -212,7 +212,7 @@ jei.euTick=Power: %d EU/t
 jei.tick=Time in ticks: %d
 
 nei.tickWithCatalyst=Reaction tick under catalyst
-nei.catalystRequird=This reaction needs catalyst
+nei.catalystRequired=This reaction requires catalyst
 nei.outputLiquid=Output liquid
 
 #Misc

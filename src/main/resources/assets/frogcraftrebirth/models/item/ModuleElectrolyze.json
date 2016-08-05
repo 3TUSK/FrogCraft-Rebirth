@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/reactionModule/ElectrolizeModule"
+        "layer0": "frogcraftrebirth:items/reactionModule/ElectrolyzeModule"
     }
 }

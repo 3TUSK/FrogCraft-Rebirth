@@ -1,6 +1,5 @@
 package frogcraftrebirth.common;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.Map.Entry;
 
 import frogcraftrebirth.FrogCraftRebirth;
@@ -46,7 +45,7 @@ public class FrogProxy {
 		if (Loader.isModLoaded("techreborn")) {
 			try {
 				Class.forName("frogcraftrebirth.common.compat.techreborn.CompatTechReborn").getDeclaredMethod("preInit").invoke(null);
-			} catch (NoSuchMethodException | SecurityException | ClassNotFoundException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 			FrogAPI.registerFrogCompatModule("techreborn", new CompatTechReborn());

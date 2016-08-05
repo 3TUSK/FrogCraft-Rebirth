@@ -4,7 +4,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.LinkedListMultimap;
 import com.google.common.collect.Multimap;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -29,8 +29,7 @@ import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
  */
 public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 
-	public static final ArmorMaterial FLUID_ARMOR = 
-		EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 100);
+	public static final ArmorMaterial FLUID_ARMOR = EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 1);
 	
 	protected final int capacity;
 	
@@ -38,6 +37,8 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);//0->cloth(leather) renderer; render stuff is WIP
 		setMaxStackSize(1);
 		setCreativeTab(FrogAPI.TAB);
+		setRegistryName("fluid_armor");
+		setUnlocalizedName("fluidArmor");
 		this.capacity = capacity;
 	}
 
@@ -50,12 +51,13 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 	public void onArmorTick(World world, EntityPlayer player, ItemStack itemStack) {
 		if (world.isRemote) return;
 		
-		Fluid currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents().getFluid();
-		
-		Collection<PotionEffect> effectList = fluidSideEffect.get(currentFluid);
-		Iterator<PotionEffect> iter = effectList.iterator();
-		while (iter.hasNext()) {
-			player.addPotionEffect(iter.next());
+		FluidStack currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
+		if (currentFluid != null) {
+			Collection<PotionEffect> effectList = fluidSideEffect.get(currentFluid.getFluid());
+			Iterator<PotionEffect> iter = effectList.iterator();
+			while (iter.hasNext()) {
+				player.addPotionEffect(iter.next());
+			}
 		}
 	}
 	
@@ -66,14 +68,18 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 	
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List<String> info, boolean adv) {
-		FluidStack fluid = FluidStack.loadFluidStackFromNBT(stack.getTagCompound().getCompoundTag("Fluid"));
-		info.add("Name:" + fluid.getLocalizedName());
-		info.add("Amount" + fluid.amount);
+		FluidStack fluid = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
+		if (fluid != null) {
+			info.add("Name:" + fluid.getLocalizedName());
+			info.add("Amount: " + fluid.amount);
+		} else {
+			info.add("No fluid is in armor now");
+		}
 	}
 
 	//Fluid armor side-effect system start, TODO: finish this system, move to api pkg
 	
-	private static Multimap<Fluid, PotionEffect> fluidSideEffect = ArrayListMultimap.<Fluid, PotionEffect>create();
+	private static Multimap<Fluid, PotionEffect> fluidSideEffect = LinkedListMultimap.<Fluid, PotionEffect>create();
 	
 	public static boolean registerFluidArmorSideEffect(Fluid fluid, PotionEffect potion) {
 		return fluidSideEffect.put(fluid, potion);

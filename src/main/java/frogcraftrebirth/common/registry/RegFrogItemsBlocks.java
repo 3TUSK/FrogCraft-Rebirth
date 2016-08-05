@@ -15,6 +15,7 @@ import frogcraftrebirth.common.block.BlockTiberium;
 import frogcraftrebirth.common.compat.techreborn.TilePneumaticCompressor;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
 import frogcraftrebirth.common.item.ItemDecayBattery;
+import frogcraftrebirth.common.item.ItemFluidArmor;
 import frogcraftrebirth.common.item.ItemIonCannon;
 import frogcraftrebirth.common.item.ItemJinkela;
 import frogcraftrebirth.common.item.ItemMPS;
@@ -109,6 +110,7 @@ public class RegFrogItemsBlocks {
 		}.setUnlocalizedName("ionCannonFrame").setCreativeTab(FrogAPI.TAB).setMaxStackSize(1).setRegistryName("ion_cannon_frame");
 		FrogItems.jinkela = new ItemJinkela().setRegistryName("jinkela");
 		FrogItems.tiberium = new ItemTiberium().setRegistryName("tiberium");
+		FrogItems.fluidArmor = new ItemFluidArmor(12000);
 		
 		GameRegistry.<Item>register(FrogItems.decayBatteryUranium);
 		GameRegistry.<Item>register(FrogItems.decayBatteryThorium);
@@ -126,6 +128,7 @@ public class RegFrogItemsBlocks {
 		GameRegistry.<Item>register(FrogItems.ionCannonFrame);
 		GameRegistry.<Item>register(FrogItems.jinkela);
 		GameRegistry.<Item>register(FrogItems.tiberium);
+		GameRegistry.<Item>register(FrogItems.fluidArmor);
 	}
 	
 	private static void initTileEntity() {

@@ -40,9 +40,9 @@ public class GuiPyrolyzer extends GuiTileFrog<TilePyrolyzer, ContainerPyrolyzer>
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		int chargeIcon = (int) (14 * tile.charge / tile.maxCharge);
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 57 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 10, chargeIcon);
-		if (tile.working) {
+		if (tile.isWorking()) {
 			this.drawTexturedModalRect(this.guiLeft + 25, this.guiTop + 49, 176, 66, 14, 14);
-			int progressPercent = (int) (24 * tile.process / tile.processMax);
+			int progressPercent = tile.processMax == 0 ? 0 : (int) (24 * tile.process / tile.processMax);
 			this.drawTexturedModalRect(this.guiLeft + 45, this.guiTop + 29, 176, 80, progressPercent, 17);
 		}
 		this.renderFluidTank(tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);

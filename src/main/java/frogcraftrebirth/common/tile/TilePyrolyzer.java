@@ -21,16 +21,12 @@ import net.minecraftforge.items.ItemStackHandler;
 public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 
 	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
-	
-	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
 	public final ItemStackHandler input = new ItemStackHandler();
 	public final ItemStackHandler output = new ItemStackHandler();
 	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(16000);
-
 	public int process, processMax;
 	public boolean working;
-	
 	private IPyrolyzerRecipe recipe;
 
 	public TilePyrolyzer() {
@@ -70,7 +66,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 			this.processMax = 0;
 		}
 		
-		if (!working) {
+		if (!working || recipe == null) {
 			recipe = FrogAPI.managerPyrolyzer.<ItemStack>getRecipe(input.getStackInSlot(INPUT));
 			if (canWork(recipe)) {
 				this.process = 0;

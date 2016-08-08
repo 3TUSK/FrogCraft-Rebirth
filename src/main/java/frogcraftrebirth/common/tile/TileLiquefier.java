@@ -73,9 +73,14 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer, IHasW
 		
 		working = true;
 		
-		if (++process < 200) {
+		if (charge >= 128) {
 			charge -= 128;
-		} else {
+			++process;
+		}
+		else if (charge < 0)
+			charge = 0;
+		
+		if (process == 200) {
 			if (((IAirPump)tile).airAmount() >= 1000) {
 				((IAirPump)tile).extractAir(EnumFacing.DOWN, 1000, false);	
 				tank.fill(FluidRegistry.getFluidStack("ic2air", 10), true);

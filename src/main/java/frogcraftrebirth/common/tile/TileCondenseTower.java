@@ -126,8 +126,13 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		
-		charge -= recipe.getEnergyPerTick();
-		process++;
+		if (charge >= recipe.getEnergyPerTick()) {
+			charge -= recipe.getEnergyPerTick();
+			process++;
+		}
+		
+		if (charge < 0)
+			charge = 0;
 		
 		if (process == processMax) {
 			this.tank.drain(recipe.getInput().amount, true);

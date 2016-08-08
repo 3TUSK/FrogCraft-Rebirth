@@ -1,6 +1,6 @@
 package frogcraftrebirth.common.item;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -13,8 +13,8 @@ import net.minecraft.nbt.NBTTagCompound;
 
 public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent{
 
-	private int heatStorage;
-	private String type;
+	private final int heatStorage;
+	private final String type;
 	
 	public ItemAmmoniaCoolant(String type, int storage) {
 		super(false);
@@ -26,9 +26,7 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add(I18n.format("item.CoolantAmmonia.info", type));
-		return list;
+		return Arrays.asList(I18n.format("item.CoolantAmmonia.info", type));
 	}
 
 	@Override
@@ -54,7 +52,6 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 		return yourStack.getTagCompound().getInteger("heat");
 	}
 
-	//Currently the ammonia coolant won't be used up...
 	@Override
 	public int alterHeat(ItemStack yourStack, IReactor reactor, int x, int y, int heat) {
 		int coolantHeat;
@@ -62,11 +59,12 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 			coolantHeat = yourStack.getTagCompound().getInteger("heat");
 		} catch (NullPointerException e) {
 			yourStack.setTagCompound(new NBTTagCompound());
-			yourStack.getTagCompound().setInteger("heat", 0);
 			coolantHeat = 0;
 		}
 		
-		if (coolantHeat/getMaxHeat(yourStack, reactor, x, y) >= 1.0F) {
+		if (coolantHeat > this.heatStorage) {
+			reactor.setItemAt(x, y, null);
+			heat = this.heatStorage - coolantHeat + 1;
 			return heat;
 		}
 		
@@ -79,6 +77,7 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 			heat = 0;
 		}
 		
+		yourStack.setItemDamage(this.getMaxDamage() * coolantHeat / this.heatStorage );
 		yourStack.getTagCompound().setInteger("heat", coolantHeat);
 		return heat;
 	}

@@ -1,13 +1,10 @@
 package frogcraftrebirth.common.item;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import com.google.common.collect.LinkedListMultimap;
-import com.google.common.collect.Multimap;
-
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.item.FluidArmorPotionEffectManager;
 import ic2.api.item.IMetalArmor;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
@@ -18,7 +15,6 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.EnumHelper;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
@@ -53,10 +49,9 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 		
 		FluidStack currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
 		if (currentFluid != null) {
-			Collection<PotionEffect> effectList = fluidSideEffect.get(currentFluid.getFluid());
-			Iterator<PotionEffect> iter = effectList.iterator();
-			while (iter.hasNext()) {
-				player.addPotionEffect(iter.next());
+			Collection<PotionEffect> effectList = FluidArmorPotionEffectManager.INSTANCE.getEffect(currentFluid.getFluid());
+			for (PotionEffect effect : effectList) {
+				player.addPotionEffect(effect);
 			}
 		}
 	}
@@ -76,17 +71,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 			info.add("No fluid is in armor now");
 		}
 	}
-
-	//Fluid armor side-effect system start, TODO: finish this system, move to api pkg
 	
-	private static Multimap<Fluid, PotionEffect> fluidSideEffect = LinkedListMultimap.<Fluid, PotionEffect>create();
 	
-	public static boolean registerFluidArmorSideEffect(Fluid fluid, PotionEffect potion) {
-		return fluidSideEffect.put(fluid, potion);
-	}
-	
-	public static Collection<PotionEffect> getEffect(Fluid fluid) {
-		return fluidSideEffect.get(fluid);
-	}
 	
 }

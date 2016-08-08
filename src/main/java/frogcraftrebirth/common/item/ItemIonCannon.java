@@ -16,7 +16,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -25,12 +24,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
-	
-	public static DamageSource railgun = new DamageSource("IonCannon")
-			.setDamageBypassesArmor()
-			.setExplosion()
-			.setFireDamage()
-			.setProjectile();
 	
 	public final int energyMax;
 	

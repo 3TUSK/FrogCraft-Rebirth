@@ -48,6 +48,7 @@ public final class FrogAPI {
 	};
 	
 	public static final DamageSource TIBERIUM = new DamageSource("tiberium").setDamageBypassesArmor().setDamageIsAbsolute().setDifficultyScaled();
+	public static final DamageSource ION_CANNON = new DamageSource("IonCannon").setDamageBypassesArmor().setFireDamage().setExplosion().setProjectile();
 	
 	@Nonnull
 	public static Potion potionTiberium;

@@ -39,7 +39,7 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 
 	@Override
 	public String getTitle() {
-		return I18n.format("gui.jei.category.condensation");
+		return I18n.format("jei.category.condensation");
 	}
 
 	@Override

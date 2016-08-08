@@ -51,6 +51,11 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 		//registry.addRecipeClickArea(GuiAdvChemReactor.class, ?, ?, ?, ?, "frogcraftrebirth.chemreaction");
 		registry.addRecipeClickArea(GuiCondenseTower.class, 115, 40, 12, 14, "frogcraftrebirth.condensation");
 		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
+		
+		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 0), "jei.doc.advChemReactor");
+		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 1), "jei.doc.airPump");
+		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 2), "jei.doc.pyrolyzer");
+		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 3), "jei.doc.liquefier");
 	}
 
 	@Override

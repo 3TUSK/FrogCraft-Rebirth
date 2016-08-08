@@ -47,7 +47,7 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 
 	@Override
 	public String getTitle() {
-		return I18n.format("gui.jei.category.pyrolyzation");
+		return I18n.format("jei.category.pyrolyzation");
 	}
 
 	@Override

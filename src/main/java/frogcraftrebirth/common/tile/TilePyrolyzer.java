@@ -63,8 +63,9 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 			}
 		}
 
-		if (input.getStackInSlot(INPUT) == null || this.charge <= 128) {
+		if (input.getStackInSlot(INPUT) == null) { //Operation aborted
 			this.working = false;
+			this.recipe = null;
 			this.process = 0;
 			this.processMax = 0;
 		}
@@ -76,20 +77,25 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 				this.processMax = recipe.getTime();
 				this.working = true;
 			} else {
+				this.recipe = null;
+				this.working = false;
 				this.sendTileUpdatePacket(this);
 				this.markDirty();
 				return;
 			}
 		} else {
-			this.charge -= recipe.getEnergyPerTick();
-			process++;
+			if (this.charge <= recipe.getEnergyPerTick()) {
+				process = 0; //Similar as GregTech machine, all progress will lose when power is insufficient
+			} else {
+				this.charge -= recipe.getEnergyPerTick();
+				process++;
+			}
 			
 			if (process == processMax) {
 				pyrolyze();
 				process = 0;
 				processMax = 0;
 				recipe = null;
-				working = false;
 			}
 		}
 		

@@ -21,11 +21,11 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * New ores
  * Decay Battery (Creative Only for now)
  * Ammonia Coolant
- * Eastern Eggs and more!
+ * Easter Eggs and more!
  
 ### What's changed in this version?
- * Due to GregTech is still in 1.7.10, compatibilities for GregTech, including Pnuematic Compressor, are disabled for now. 
- * New textures powered by huangziye812!
+ * Due to GregTech is still in 1.7.10, compatibilities for GregTech, including Pnuematic Compressor, are disabled for now. Pnu. Compressor may eventually become part of compat for TechReborn, but it is still a WIP.
+ * New textures powered by huangziye812 and dunge!
  * Thermal Cracker is renamed to **Pyrolyzer**. "Thermal Cracker" sounds like Chinglish to me. 
  * Cells are removed. Use IC2 Universal Fluid Cell instead.
  * Crushed ore dust, purified ore dust, and dust of small pile! 
@@ -54,7 +54,7 @@ And also add `eclipse` or `idea` behind `setupDecompWorkspace`, which depends on
 
 ### Future plan: _Laboratorium Chemiae_
 *Laboratorium Chemiae* (previously named FrogCraft 2: Chemia) is the spiritual successor of both FrogCraft & FrogCraft: Rebirth, which highly focuses on chemical engineering, aiming to establish an IRL-ish system about chemicals synthetic and usage.  
-There is no real progress of FrogCraft2, nor roal map, but once FrogCraft: Rebirth is stable, I will start to work on that.
+There is no real progress of FrogCraft2, nor road map, but once FrogCraft: Rebirth is stable, I will start to work on that.
 
 *FrogCraft 2: Chemia* will follow [Cult of Kitteh][link_CultOfKitteh].  
 Yes, NO GUI. It sounds like insane, but it *will* be.

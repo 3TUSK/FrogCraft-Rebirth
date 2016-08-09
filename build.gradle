@@ -21,6 +21,9 @@ group = "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
 repositories {
+    maven { 
+    	url "http://maven.winterblade.org/content/repositories/minecraft/" 
+    }
     maven {
         url "http://dvs1.progwml6.com/files/maven"
     }
@@ -50,6 +53,8 @@ dependencies {
     compile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
     compile "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
     compile "TechReborn:TechReborn-${Minecraft_Ver}:${TechReborn_Ver}:dev"
+    
+    compile "org.winterblade.minecraft:craftingharmonics:1.9.4_1.10_1.10.2-${CraftingHarmonics_Ver}"
 
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }

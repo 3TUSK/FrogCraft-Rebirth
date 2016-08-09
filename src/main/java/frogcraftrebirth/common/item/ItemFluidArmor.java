@@ -6,6 +6,7 @@ import java.util.List;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.item.FluidArmorPotionEffectManager;
 import ic2.api.item.IMetalArmor;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
@@ -27,7 +28,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 
 	public static final ArmorMaterial FLUID_ARMOR = EnumHelper.addArmorMaterial("fluidArmor", "armorMaterial.fluidArmor", 1000, new int[] {1,1,1,1}, 5, null, 1);
 	
-	protected final int capacity;
+	public final int capacity;
 	
 	public ItemFluidArmor(int capacity) {
 		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);//0->cloth(leather) renderer; render stuff is WIP
@@ -37,6 +38,12 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor {
 		setUnlocalizedName("fluidArmor");
 		this.capacity = capacity;
 	}
+	
+	@Override
+	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
+		return "frogcraftrebirth:textures/items/FluidArmor.png";
+	}
+	
 
 	@Override
 	public boolean isMetalArmor(ItemStack itemstack, EntityPlayer player) {

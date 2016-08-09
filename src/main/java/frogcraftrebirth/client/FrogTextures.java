@@ -58,6 +58,8 @@ public class FrogTextures {
 			RegHelper.registerModel(FrogItems.itemPurifiedDust, index, "dust/" +  damnitSubNames2[index] + "Purified");
 			RegHelper.registerModel(FrogItems.itemSmallPileDust, index, "dust/" +  damnitSubNames2[index] + "Small");
 		}
+		
+		RegHelper.registerModel(FrogItems.fluidArmor, "FluidArmor");
 	}
 	
 	public static void initFrogBlocksTexture() {

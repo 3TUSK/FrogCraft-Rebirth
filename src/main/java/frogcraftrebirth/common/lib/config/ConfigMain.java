@@ -15,10 +15,12 @@ public class ConfigMain {
 	public static int airPumpGenerateSpeed;
 	public static int combustionFurnacePowerRate;
 	
+	@Deprecated
 	public static boolean enableTCAspect;
 
 	public static boolean enableAccessControl;
 
+	public static boolean enableModpackCreationMode;
 	public static boolean enableClassicMode;
 	
 	public static void init(FMLPreInitializationEvent event) {
@@ -38,6 +40,7 @@ public class ConfigMain {
 		
 		config.load();
 		
+		enableModpackCreationMode = config.getBoolean("EnableModpackCreationMode", "General", false, "Set this to ture will let FrogCraft: Rebirth not loading any recipes, providing convenience for modpack creators.", "frogcraft.config.general.modpack");
 		enableClassicMode = config.get("General", "EnableClassicMode", false).getBoolean();
 		
 		airPumpPowerRate = config.get("Machine", "AirPumpPowerRate", 120).getInt();

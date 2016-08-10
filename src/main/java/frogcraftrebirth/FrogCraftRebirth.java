@@ -1,7 +1,6 @@
 package frogcraftrebirth;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.FrogIMCHandler;
 import frogcraftrebirth.common.FrogProxy;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -18,10 +17,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 		guiFactory = "frogcraftrebirth.common.lib.config.ConfigGuiFactory", 
 		useMetadata = true)
 public class FrogCraftRebirth {
-
-	static {
-		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
-	}
 	
 	@Mod.Instance(FrogAPI.MODID)
 	public static FrogCraftRebirth instance;
@@ -31,6 +26,7 @@ public class FrogCraftRebirth {
 	
 	public FrogCraftRebirth() {
 		instance = this;
+		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
 	}
 
 	@Mod.EventHandler
@@ -45,7 +41,7 @@ public class FrogCraftRebirth {
 
 	@Mod.EventHandler
 	public void imcInit(FMLInterModComms.IMCEvent event) {
-		FrogIMCHandler.resolveIMCMessage(event.getMessages());
+		proxy.imcInit(event);
 	}
 
 	@Mod.EventHandler

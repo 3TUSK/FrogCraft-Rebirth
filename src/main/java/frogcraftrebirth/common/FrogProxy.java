@@ -24,6 +24,7 @@ import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
@@ -59,6 +60,10 @@ public class FrogProxy {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
+	}
+	
+	public void imcInit(FMLInterModComms.IMCEvent event) {
+		FrogIMCHandler.resolveIMCMessage(event.getMessages());
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {

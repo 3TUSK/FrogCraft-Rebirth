@@ -10,6 +10,7 @@ package frogcraftrebirth.common.compat.jei;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
+import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
@@ -31,24 +32,24 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 
 	@Override
 	public void register(IModRegistry registry) {
-		//registry.addRecipeHandlers(new HandlerChemReaction());
+		registry.addRecipeHandlers(new HandlerChemReaction());
 		registry.addRecipeHandlers(new HandlerCondensation());
 		registry.addRecipeHandlers(new HandlerPyrolyzation());
 		
-		//registry.addRecipeCategories(new CategoryChemReaction());
+		registry.addRecipeCategories(new CategoryChemReaction(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new CategoryCondensation(registry.getJeiHelpers().getGuiHelper()));
 		registry.addRecipeCategories(new CategoryPyrolyzation(registry.getJeiHelpers().getGuiHelper()));
 		
-		//registry.addRecipeCategoryCraftingItem(new ItemStack(FrogBlocks.machines, 1, 0), "frogcraftrebirth.chemreaction");
+		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogBlocks.machines, 1, 0), "frogcraftrebirth.chemreaction");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogBlocks.condenseTowerPart, 1, 0), "frogcraftrebirth.condensation");
 		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogBlocks.machines, 1, 2), "frogcraftrebirth.pyrolyzation");
 		
-		//registry.addRecipes(RecipeChenReaction.getWrappedRecipeList());
+		registry.addRecipes(RecipeChemReaction.getWrappedRecipeList());
 		registry.addRecipes(RecipeCondensation.getWrappedRecipeList());
 		registry.addRecipes(RecipePyrolyzation.getWrappedRecipeList());
 		
 		registry.addRecipeClickArea(GuiMPS.class, 39, 47, 24, 16, VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
-		//registry.addRecipeClickArea(GuiAdvChemReactor.class, ?, ?, ?, ?, "frogcraftrebirth.chemreaction");
+		registry.addRecipeClickArea(GuiAdvChemReactor.class, 73, 40, 30, 10, "frogcraftrebirth.chemreaction");
 		registry.addRecipeClickArea(GuiCondenseTower.class, 115, 40, 12, 14, "frogcraftrebirth.condensation");
 		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
 		

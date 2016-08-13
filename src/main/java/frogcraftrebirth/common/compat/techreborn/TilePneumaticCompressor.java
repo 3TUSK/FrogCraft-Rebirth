@@ -14,7 +14,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import frogcraftrebirth.api.air.IAirConsumer;
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -36,7 +35,7 @@ import reborncore.api.recipe.RecipeHandler;
 import techreborn.api.Reference;
 import techreborn.tiles.multiblock.MultiblockChecker;
 
-public class TilePneumaticCompressor extends TileEnergySink implements IAirConsumer, IHasWork, IMetaDelegate, ITickable {
+public class TilePneumaticCompressor extends TileEnergySink implements IHasWork, IMetaDelegate, ITickable {
 	
 	public final ItemStackHandler input = new ItemStackHandler();
 	public final ItemStackHandler output = new ItemStackHandler(2);
@@ -196,11 +195,6 @@ public class TilePneumaticCompressor extends TileEnergySink implements IAirConsu
 			}
 		}
 		return super.getCapability(capability, facing);
-	}
-
-	@Override
-	public int inject(EnumFacing facing, int amount, boolean doInject) {
-		return 0; //Um, Don't even know what to do here.
 	}
 
 	@Override

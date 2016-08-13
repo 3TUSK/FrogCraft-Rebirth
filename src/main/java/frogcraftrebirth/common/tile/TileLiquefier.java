@@ -12,7 +12,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.api.air.IAirConsumer;
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
@@ -27,7 +26,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileLiquefier extends TileEnergySink implements IAirConsumer, IHasWork {
+public class TileLiquefier extends TileEnergySink implements IHasWork {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
@@ -137,11 +136,6 @@ public class TileLiquefier extends TileEnergySink implements IAirConsumer, IHasW
 			return (T)tank;
 		else 
 			return super.getCapability(capability, facing);
-	}
-
-	@Override
-	public int inject(EnumFacing facing, int amount, boolean doInject) {
-		return amount; //Currently it does not has any internal air storage.
 	}
 
 }

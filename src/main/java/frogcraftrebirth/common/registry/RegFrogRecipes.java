@@ -4,7 +4,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.FrogItems;
-import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import ic2.api.item.IC2Items;
@@ -14,7 +13,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -26,9 +24,6 @@ public class RegFrogRecipes {
 		initOreDict();
 		if (!ConfigMain.enableModpackCreationMode) {
 			defaultCraftingRecipe();
-			//Note: because we don't have GregTech, several fluid is still missing. This will be fixed when I get those fluid back.
-			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 5), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 1), new FluidStack(FrogFluids.carbonOxide, 2) }));
-			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 10), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 7), new FluidStack(FrogFluids.carbonDioxide, 2) }));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogItems.itemIngot, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 80, 48));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogItems.itemDust, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100, 64));
 			FrogAPI.FUEL_REG.regFuelByproduct(new ItemStack(Items.COAL, 1, 0), FrogFluids.carbonDioxide);

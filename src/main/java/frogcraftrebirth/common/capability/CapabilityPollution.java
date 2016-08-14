@@ -8,17 +8,23 @@
  */
 package frogcraftrebirth.common.capability;
 
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.pollution.IAntiPollutionObject;
 import frogcraftrebirth.api.pollution.IPollutionSource;
 import frogcraftrebirth.api.pollution.IPollutionVictim;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.Capability.IStorage;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public class CapabilityPollution {
+	
+	static final ResourceLocation RL_CAP_SOURCE = new ResourceLocation(FrogAPI.MODID, "pollutionSource");
+	static final ResourceLocation RL_CAP_VICTIM = new ResourceLocation(FrogAPI.MODID, "pollutionVictim");
+	static final ResourceLocation RL_CAP_ANTI_POLLUTION = new ResourceLocation(FrogAPI.MODID, "antiPollution");
 	
 	@CapabilityInject(IPollutionSource.class)
 	public static Capability<IPollutionSource> SOURCE = null;
@@ -33,6 +39,7 @@ public class CapabilityPollution {
 		CapabilityManager.INSTANCE.register(IPollutionSource.class, new PollutionSourceStorage(), (Class<? extends IPollutionSource>)null);
 		CapabilityManager.INSTANCE.register(IPollutionVictim.class, new PollutionVictimStorage(), (Class<? extends IPollutionVictim>)null);
 		CapabilityManager.INSTANCE.register(IAntiPollutionObject.class, new AntiPollutionObjStorage(), (Class<? extends IAntiPollutionObject>)null);
+		new CapabilityHandler();
 	}
 
 	private static class PollutionSourceStorage implements IStorage<IPollutionSource> {

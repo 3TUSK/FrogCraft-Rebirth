@@ -15,7 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.IFuelHandler;
 
 /**
- * This FuelHanlder implementation will handle both vanilla fuel registration 
+ * This FuelHanlder implementation will handle vanilla fuel registration 
  * in a more generic way; it will also handle Combustion Furnace fuel and 
  * byproducts registration.
  * 

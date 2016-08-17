@@ -40,8 +40,10 @@ public enum MPSUpgradeManager {
 		if (stack == null || stack.stackSize == 0)
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validStorageUpgrades.entrySet()) {
-			if (entry.getKey().isItemEqual(stack))
-				return entry.getValue();
+			if (entry.getKey().isItemEqual(stack)) {
+				int increasement = stack.stackSize / entry.getKey().stackSize * entry.getValue();
+				return increasement;
+			}
 		}
 		return 0;
 	}
@@ -50,8 +52,10 @@ public enum MPSUpgradeManager {
 		if (stack == null || stack.stackSize == 0)
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validVoltageUpgrades.entrySet()) {
-			if (entry.getKey().isItemEqual(stack))
-				return entry.getValue();
+			if (entry.getKey().isItemEqual(stack)) {
+				int increasement = stack.stackSize / entry.getKey().stackSize * entry.getValue();
+				return increasement;
+			}
 		}
 		return 0;
 	}

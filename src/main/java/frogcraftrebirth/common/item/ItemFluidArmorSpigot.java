@@ -15,6 +15,7 @@ import frogcraftrebirth.api.item.IFluidBackpackSpigot;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -38,11 +39,24 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Arrays.asList("");
+		return Arrays.asList(""); // TODO show mode
 	}
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		if (playerIn.isSneaking()) {
+			if (!itemStackIn.hasTagCompound())
+				itemStackIn.setTagCompound(new NBTTagCompound());
+			if (!itemStackIn.getTagCompound().hasKey("extraction")) {
+				itemStackIn.getTagCompound().setBoolean("extraction", true);
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			} else {
+				boolean mode = itemStackIn.getTagCompound().getBoolean("extraction");
+				itemStackIn.getTagCompound().setBoolean("extraction", !mode);
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemStackIn);
+			}
+		}
+		
 		for (ItemStack armor : playerIn.getArmorInventoryList()) {
 			if (armor.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
 				FluidStack drained = armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).drain(1000, true);
@@ -61,8 +75,13 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 		if (worldIn.getTileEntity(pos).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
 			for (ItemStack armor : playerIn.getArmorInventoryList()) {
 				if (armor.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
-					worldIn.getTileEntity(pos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).fill(armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).drain(1000, true), true);
+					boolean mode = stack.getTagCompound().getBoolean("extraction");
+					if (mode)
+						armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).fill(worldIn.getTileEntity(pos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).drain(1000, true), true);
+					else
+						worldIn.getTileEntity(pos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).fill(armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).drain(1000, true), true);
 				}
+				return EnumActionResult.SUCCESS;
 			}
 		}
 		

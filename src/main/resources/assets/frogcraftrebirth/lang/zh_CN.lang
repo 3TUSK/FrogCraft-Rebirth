@@ -1,4 +1,4 @@
-#Master Language File, 2013.5.3
+#Master Language File, 2016.8.18
 
 #Potion
 effect.tiberium=泰伯利亚
@@ -205,7 +205,7 @@ gui.combustionFurnace.title=焚烧炉
 gui.MPS.title=移动电源
 
 gui.fluid.name=流体名称：%s
-gui.fluid.amount=流体存量：%d
+gui.fluid.amount=流体存量：%d mB
 gui.fluid.null=这个储罐空空如也
 
 #JEI GUI texts - 注：因历史原因，某些键仍保留以nei开头，但很快就会改为jei。
@@ -219,6 +219,13 @@ jei.tick=所需时间：%d tick
 nei.tickWithCatalyst=催化下的反应时间
 nei.catalystRequired=这个反应需要催化剂！
 nei.outputLiquid=输出液体
+
+jei.doc.advChemReactor=高级化学反应器是一台可以承载各种化学反应的高级机器。\n它拥有5输入格、5输出格、独立的通用流体单元输入格和输出格、以及反应模块安装插槽。
+jei.doc.airPump=工业气泵是一台可以产生压缩空气的机器。将其置于液化机正下方，可为液化机源源不断地提供压缩空气。
+jei.doc.pyrolyzer=热裂解机可通过产生极高热量来分解物质。\n其能耗由分解的物质所决定。
+jei.doc.liquefier=液化机可将压缩空气转化为液化空气。目前，只有工业气泵可为其提供高压空气。
+
+jei.doc.condenseTower=冷凝塔是一种可根据液体沸点不同，将混合液体分离成数种纯净物的多方块设备。
 
 #Misc
 itemGroup.FrogCraft=青蛙化工

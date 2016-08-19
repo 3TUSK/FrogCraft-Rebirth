@@ -8,6 +8,8 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
+import java.util.Arrays;
+
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
@@ -57,6 +59,8 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 1), "jei.doc.airPump");
 		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 2), "jei.doc.pyrolyzer");
 		registry.addDescription(new ItemStack(FrogBlocks.machines, 1, 3), "jei.doc.liquefier");
+		
+		registry.addDescription(Arrays.asList(new ItemStack(FrogBlocks.condenseTowerPart, 1, 0), new ItemStack(FrogBlocks.condenseTowerPart, 1, 1), new ItemStack(FrogBlocks.condenseTowerPart, 1, 2)), "jei.doc.condenseTower");
 	}
 
 	@Override

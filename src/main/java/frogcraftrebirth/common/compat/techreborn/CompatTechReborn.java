@@ -46,8 +46,8 @@ public class CompatTechReborn implements ICompatModuleFrog {
 		cellCarbonMonoxide.stackSize = 5;
 		FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new OreStack("dustPhosphorous", 1), new OreStack("dustFlint", 3),new OreStack("dustCoal", 5)), Arrays.asList(new ItemStack(FrogItems.itemIngot, 2, 1), new ItemStack(FrogItems.itemDust, 3, 5), cellCarbonMonoxide), new ItemStack(FrogItems.itemReactionModule, 1, 0), 200, 50, 5, 0));
 	
-		FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 22), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.carbonOxide, 5), FluidRegistry.getFluidStack("methane", 10), FluidRegistry.getFluidStack("hydrogen", 5)}));
-		FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 3), new FluidStack(FrogFluids.carbonDioxide, 1), FluidRegistry.getFluidStack("nitrogen", 7) }));
+		FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 22), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.carbonOxide, 5), FluidRegistry.getFluidStack("fluidmethane", 10), FluidRegistry.getFluidStack("fluidhydrogen", 5)}));
+		FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 3), new FluidStack(FrogFluids.carbonDioxide, 1), FluidRegistry.getFluidStack("fluidnitrogen", 7) }));
 		
 	}
 

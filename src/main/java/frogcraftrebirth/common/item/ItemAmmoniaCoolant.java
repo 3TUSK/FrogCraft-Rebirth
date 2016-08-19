@@ -11,7 +11,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent{
+public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent {
 
 	private final int heatStorage;
 	private final String type;
@@ -27,6 +27,11 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
 		return Arrays.asList(I18n.format("item.CoolantAmmonia.info", type));
+	}
+	
+	@Override
+	public boolean canBePlacedIn(ItemStack stack, IReactor reactor) {
+		return true;
 	}
 
 	@Override

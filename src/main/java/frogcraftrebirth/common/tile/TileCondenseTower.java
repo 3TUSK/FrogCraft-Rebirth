@@ -74,6 +74,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			} else
 				return false;
 		}
+		this.structureCompletedOnLastTick = true;
 		return true;
 	}
 	
@@ -89,16 +90,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			return;
 		}
 		super.update();
-		
-		boolean check = checkStructure();
-		if (structureCompletedOnLastTick && !check) {
-			onDestruct(this);
-			structureCompletedOnLastTick = false;
-			return;
-		} else if (check) {
-			onConstruct(this);
-			structureCompletedOnLastTick = true;
-		}
 			
 		if (inv.getStackInSlot(INPUT_F) != null) {
 			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
@@ -110,6 +101,11 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
 				}
 			}
+		}
+		
+		if (!structureCompletedOnLastTick) {
+			onDestruct(this);
+			return;
 		}
 		
 		if (recipe == null) {
@@ -174,6 +170,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		this.outputs.clear();
 		this.structures.clear();
+		this.structureCompletedOnLastTick = false;
 	}
 
 	@Override

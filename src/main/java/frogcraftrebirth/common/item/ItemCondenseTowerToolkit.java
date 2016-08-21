@@ -11,9 +11,11 @@ package frogcraftrebirth.common.item;
 import java.util.Arrays;
 import java.util.List;
 
+import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -37,6 +39,14 @@ public class ItemCondenseTowerToolkit extends ItemFrogCraft {
 	
 	@Override
 	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote) {
+			TileEntity tile = worldIn.getTileEntity(pos);
+			if (tile instanceof ICondenseTowerCore && !((ICondenseTowerCore)tile).isCompleted()) {
+				if (((ICondenseTowerCore)tile).checkStructure())
+					((ICondenseTowerCore)tile).onConstruct((ICondenseTowerCore)tile);;
+			}
+		}
+		
 		return EnumActionResult.PASS;
 	}
 

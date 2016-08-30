@@ -8,6 +8,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrebirth.common.lib.FrogFluidTank;
+import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
@@ -176,14 +179,14 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 				case DOWN:
-					return (T)output;
+					return (T)new ItemHandlerOutputWrapper(output);
 				case UP: 
-					return (T)input;
+					return (T)new ItemHandlerInputWrapper(input);
 				default:
 					break;
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			return (T)tank;
+			return (T)new FluidHandlerOutputWrapper(tank);
 		}
 		
 		return super.getCapability(capability, facing);

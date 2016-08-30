@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.common.lib.FrogFluidTank;
+import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
@@ -133,7 +134,7 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)tank;
+			return (T)new FluidHandlerOutputWrapper(tank);
 		else 
 			return super.getCapability(capability, facing);
 	}

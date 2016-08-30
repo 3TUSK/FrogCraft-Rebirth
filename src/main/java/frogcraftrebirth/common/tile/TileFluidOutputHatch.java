@@ -8,6 +8,7 @@ import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
+import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
@@ -110,7 +111,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			EnumFacing currectFacing = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
-			return currectFacing == facing ? (T)tank : super.getCapability(capability, currectFacing);
+			return currectFacing == facing ? (T)new FluidHandlerOutputWrapper(tank) : super.getCapability(capability, currectFacing);
 		}
 			
 		return super.getCapability(capability, facing);

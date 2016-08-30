@@ -7,6 +7,9 @@ import java.io.IOException;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.common.lib.FrogFluidTank;
+import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
@@ -193,15 +196,15 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 				case UP:
-					return (T)input;
+					return (T)new ItemHandlerInputWrapper(input);
 				case DOWN:
-					return (T)output;
+					return (T)new ItemHandlerOutputWrapper(output);
 				default:
 					break;
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			if (facing != null)
-				return (T)tank;
+				return (T)new FluidHandlerOutputWrapper(tank);
 		}
 		
 		return super.getCapability(capability, facing);

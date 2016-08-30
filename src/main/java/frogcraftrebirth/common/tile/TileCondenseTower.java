@@ -33,7 +33,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
-	private boolean structureCompletedOnLastTick = false;
+	boolean structureCompletedOnLastTick = false;
+	private boolean requireCleanCache = false;
 	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<ICondenseTowerOutputHatch>();
 	private Set<ICondenseTowerPart> structures = new HashSet<ICondenseTowerPart>();
 	private ICondenseTowerRecipe recipe;
@@ -75,6 +76,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				return false;
 		}
 		this.structureCompletedOnLastTick = true;
+		this.requireCleanCache = true;
 		return true;
 	}
 	
@@ -104,7 +106,9 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		
 		if (!structureCompletedOnLastTick) {
-			onDestruct(this);
+			if (requireCleanCache)
+				onDestruct(this);
+			
 			return;
 		}
 		
@@ -161,16 +165,17 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void onDestruct(ICondenseTowerCore core) {
-		for (ICondenseTowerOutputHatch output : outputs) {
-			output.onDestruct(core);
+		if (requireCleanCache) {
+			for (ICondenseTowerOutputHatch output : outputs) {
+				output.onDestruct(core);
+			}
+			for (ICondenseTowerPart part : structures) {
+				part.onDestruct(core);
+			}
+			this.outputs.clear();
+			this.structures.clear();
+			requireCleanCache = false;
 		}
-	
-		for (ICondenseTowerPart part : structures) {
-			part.onDestruct(core);
-		}
-		this.outputs.clear();
-		this.structures.clear();
-		this.structureCompletedOnLastTick = false;
 	}
 
 	@Override

@@ -8,6 +8,8 @@ import java.util.Collection;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.item.IC2Items;
@@ -181,15 +183,15 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 			case UP:
-				return (T)input;
+				return (T)new ItemHandlerInputWrapper(input);
 			case DOWN:
-				return (T)output;
+				return (T)new ItemHandlerOutputWrapper(output);
 			case NORTH:
 			case EAST:
-				return (T)cellInput;
+				return (T)new ItemHandlerInputWrapper(cellInput);
 			case SOUTH:
 			case WEST:
-				return (T)cellOutput;
+				return (T)new ItemHandlerOutputWrapper(cellOutput);
 			default:
 				break;
 			}

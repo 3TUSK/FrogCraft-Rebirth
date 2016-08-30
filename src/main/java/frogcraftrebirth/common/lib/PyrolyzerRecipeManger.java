@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import net.minecraft.item.ItemStack;
 
 public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 
@@ -36,13 +37,12 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <ItemStack> IPyrolyzerRecipe getRecipe(ItemStack... inputs) {
-		ItemStack input = (ItemStack)inputs[0];
-		if (input == null)
+	public <T> IPyrolyzerRecipe getRecipe(T... inputs) {
+		if (inputs[0] == null || !(inputs[0] instanceof ItemStack))
 			return null;
 		for (IPyrolyzerRecipe r : recipes) {
-			if (r.getInput().isItemEqual((net.minecraft.item.ItemStack)input) 
-					&& r.getInput().stackSize <= ((net.minecraft.item.ItemStack)input).stackSize)
+			if (r.getInput().isItemEqual((ItemStack)inputs[0]) 
+					&& r.getInput().stackSize <= ((ItemStack)inputs[0]).stackSize)
 				return r;
 		}
 		return null;

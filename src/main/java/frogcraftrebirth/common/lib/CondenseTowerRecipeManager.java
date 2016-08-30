@@ -6,6 +6,7 @@ import java.util.List;
 
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTowerRecipe> {
 
@@ -32,12 +33,13 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 	//This method will only read the first parameter.
 	@SuppressWarnings("unchecked")
 	@Override
-	public <FluidStack> ICondenseTowerRecipe getRecipe(FluidStack... input) {
-		if (input[0] == null) 
+	public <T> ICondenseTowerRecipe getRecipe(T... input) {
+		if (input[0] == null || !(input[0] instanceof FluidStack))
 			return null;
+		
 		for (ICondenseTowerRecipe recipe : recipes) {
-			if (recipe.getInput().isFluidEqual((net.minecraftforge.fluids.FluidStack) input[0]))
-				if (recipe.getInput().amount <= ((net.minecraftforge.fluids.FluidStack) input[0]).amount)
+			if (recipe.getInput().isFluidEqual((FluidStack) input[0]))
+				if (recipe.getInput().amount <= ((FluidStack) input[0]).amount)
 					return recipe;
 		}
 		return null;

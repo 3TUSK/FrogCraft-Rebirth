@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {
 
@@ -34,10 +35,12 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <ItemStack> IAdvChemRecRecipe getRecipe(ItemStack... inputs) {
-		for (IAdvChemRecRecipe recipe : recipes) {
-			if (recipe.matchInputs((net.minecraft.item.ItemStack[])inputs)) {
-				return recipe;
+	public <T> IAdvChemRecRecipe getRecipe(T... inputs) {
+		if (inputs instanceof ItemStack[]) {
+			for (IAdvChemRecRecipe recipe : recipes) {
+				if (recipe.matchInputs((ItemStack[])inputs)) {
+					return recipe;
+				}
 			}
 		}
 		

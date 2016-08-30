@@ -26,7 +26,7 @@ import net.minecraft.world.World;
 
 public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProvider {
 	
-	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("machine", Type.class);
+	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("variant", Type.class);
 
 	public BlockMachine() {
 		super(MACHINE, "machine", false, 0, 1, 2, 3);
@@ -63,7 +63,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 			}
 			default: 
 				break;
-		}	//Don't use BlockContainer, so that this call can remove tile entity.
+		}
 		super.breakBlock(worldIn, pos, state);
 	}
 
@@ -145,7 +145,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 
 		@Override
 		public String getName() {
-			return this.name().toLowerCase();
+			return this.name().toLowerCase(java.util.Locale.ENGLISH);
 		}
 	}
 }

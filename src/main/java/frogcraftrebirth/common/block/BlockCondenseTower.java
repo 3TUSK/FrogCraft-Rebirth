@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEntityProvider {
 
-	public static final PropertyEnum<Part> TYPE = PropertyEnum.<Part>create("part", Part.class);
+	public static final PropertyEnum<Part> TYPE = PropertyEnum.<Part>create("variant", Part.class);
 
 	public BlockCondenseTower() {
 		super(MACHINE, "condense_tower", false, 0, 1, 2);
@@ -127,7 +127,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 
 		@Override
 		public String getName() {
-			return this.name().toLowerCase();
+			return this.name().toLowerCase(java.util.Locale.ENGLISH);
 		}
 	}
 

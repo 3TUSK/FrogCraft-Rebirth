@@ -11,7 +11,7 @@ import net.minecraft.util.IStringSerializable;
 
 public class BlockFrogOre extends BlockFrog {
 	
-	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("type", Type.class);
+	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("variant", Type.class);
 
 	public BlockFrogOre() {
 		super(ORE, "ore", 0, 1, 2);

@@ -10,6 +10,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -35,7 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockTiberium extends BlockFrog {
 
-	public static final PropertyEnum<BlockTiberium.Color> TYPE = PropertyEnum.<BlockTiberium.Color>create("color", BlockTiberium.Color.class);
+	public static final PropertyEnum<BlockTiberium.Color> TYPE = PropertyEnum.<BlockTiberium.Color>create("variant", BlockTiberium.Color.class);
 
 	public static IBlockState getTiberiumWithType(int typeIndex) {
 		if (typeIndex > 2)
@@ -56,6 +57,7 @@ public class BlockTiberium extends BlockFrog {
 	}
 
 	@SideOnly(Side.CLIENT)
+	@Override
 	public AxisAlignedBB getSelectedBoundingBox(IBlockState state, World worldIn, BlockPos pos) {
 		return new AxisAlignedBB(0.05D, 0.0D, 0.05D, 0.95D, 0.9D, 0.95D).offset(pos);
 	}
@@ -138,7 +140,7 @@ public class BlockTiberium extends BlockFrog {
 
 		@Override
 		public String getName() {
-			return this.name().toLowerCase();
+			return this.name().toLowerCase(Locale.ENGLISH);
 		}
 	}
 

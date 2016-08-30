@@ -35,7 +35,7 @@ public final class FrogIMCHandler {
 				NBTTagCompound theTag = message.getNBTValue();
 				String mode = theTag.getString("mode");
 
-				if ("compat".equalsIgnoreCase(mode)) {
+				if ("compat".toLowerCase(Locale.ENGLISH).equals(mode)) {
 					String path = theTag.getString("modulePath");
 					try {
 						Class<?> clazz = Class.forName(path);
@@ -47,7 +47,7 @@ public final class FrogIMCHandler {
 					}
 				}
 
-				if ("recipe".equalsIgnoreCase(mode)) {
+				if ("recipe".toLowerCase(Locale.ENGLISH).equals(mode)) {
 					String machine = theTag.getString("machine").toLowerCase(Locale.ENGLISH);
 						switch (machine) {
 						case ("pyrolyzer"): {
@@ -119,12 +119,12 @@ public final class FrogIMCHandler {
 					}
 				}
 				
-				if ("mps".equalsIgnoreCase(mode)) {
+				if ("mps".toLowerCase(Locale.ENGLISH).equals(mode)) {
 					String type = theTag.getString("type");
 					ItemStack item = ItemStack.loadItemStackFromNBT((NBTTagCompound) theTag.getTag("item"));
 					int value = theTag.getInteger("value");
 					if (item != null) {
-						switch (type.toLowerCase()) {
+						switch (type.toLowerCase(Locale.ENGLISH)) {
 							case ("solar"): {
 								MPSUpgradeManager.INSTANCE.registerSolarUpgrade(item);
 								break;
@@ -134,6 +134,7 @@ public final class FrogIMCHandler {
 								MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(item, value);
 								break;
 							}
+							case ("capacity"):
 							case ("storage"): {
 								MPSUpgradeManager.INSTANCE.registerStorageUpgrade(item, value);
 								break;

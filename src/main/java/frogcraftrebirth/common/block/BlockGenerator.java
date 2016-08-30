@@ -43,7 +43,6 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 			if (tile instanceof TileCombustionFurnace) {
 				ItemUtil.dropInventroyItems(worldIn, pos, ((TileCombustionFurnace)tile).input, ((TileCombustionFurnace)tile).output, ((TileCombustionFurnace)tile).fluidIO);
 			}
-			//world.func_147453_f(x, y, z, block);
 		}
 		
 		super.breakBlock(worldIn, pos, state);
@@ -92,7 +91,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 
 		@Override
 		public String getName() {
-			return this.name().toLowerCase();
+			return this.name().toLowerCase(java.util.Locale.ENGLISH);
 		}
 	}
 

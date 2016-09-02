@@ -21,9 +21,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemResources extends ItemFrogCraft {
 
 	public ItemResources(String unlocalizedName, String... subNameArray) {
-		super(true);
+		this(true, unlocalizedName, subNameArray);
+	}
+	
+	public ItemResources(boolean hasSubType, String unlocalizedName, String... subNameArray) {
+		super(hasSubType);
 		setUnlocalizedName(unlocalizedName);
-		setSubNameArray(subNameArray);
+		if (hasSubType && subNameArray.length > 0)
+			setSubNameArray(subNameArray);
 	}
 
 	@SideOnly(Side.CLIENT)

@@ -19,7 +19,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class BlockFrog extends Block {
 	
 	public static final PropertyBool WORKING = PropertyBool.create("working");
-		
+
 	public static final Material ORE = new Material(MapColor.STONE).setRequiresTool();
 	public static final Material MACHINE = new Material(MapColor.SILVER).setBurning().setImmovableMobility();
 	public static final Material TIBERIUM = new Material(MapColor.BLUE).setNoPushMobility();

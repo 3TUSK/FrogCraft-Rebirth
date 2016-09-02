@@ -28,7 +28,6 @@ public class FrogMath {
 		try {
 			return (String) Class.forName("ic2.core.util.Util").getDeclaredMethod("toSiString", double.class, int.class).invoke(null, value, 2);
 		} catch (Exception e) {
-			e.printStackTrace();
 			return Integer.toString(value);
 		}
 	}

@@ -9,9 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-/**
- * Identical to WorldGenClay, but allow user to generate their own blocks.
- */
+/** Identical to WorldGenClay, but allow user to generate their own blocks. */
 public class WorldGenClayFake extends FrogWorldGenerator {
 
 	final int numberOfBlocks;
@@ -28,7 +26,6 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 			return false;
 		} else {
 			int i = rand.nextInt(this.numberOfBlocks - 2) + 2;
-			//int j = 1; why there is an unused variable?
 
 			for (int k = position.getX() - i; k <= position.getX() + i; ++k) {
 				for (int l = position.getZ() - i; l <= position.getZ() + i; ++l) {

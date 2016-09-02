@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import frogcraftrebirth.api.air.IAirPump;
+import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.IHasWork;
@@ -184,12 +186,12 @@ public class TilePneumaticCompressor extends TileEnergySink implements IHasWork,
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 				case UP:
-					return (T) input;
+					return (T)new ItemHandlerInputWrapper(input);
 				case NORTH:
 				case EAST:
 				case SOUTH:
 				case WEST:
-					return (T) output;
+					return (T)new ItemHandlerOutputWrapper(output);
 				default:
 					break;
 			}
@@ -206,7 +208,7 @@ public class TilePneumaticCompressor extends TileEnergySink implements IHasWork,
 			if (tile instanceof IEnergyTile && tile instanceof IAirPump)
 				list.add((IEnergyTile)tile);
 		}
-		return null;
+		return list;
 	}
 
 }

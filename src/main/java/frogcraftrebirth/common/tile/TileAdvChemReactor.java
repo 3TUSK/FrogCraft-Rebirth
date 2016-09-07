@@ -33,6 +33,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	
 	public int process, processMax;
 	private boolean working;
+	private boolean requireRefresh;
 	private IAdvChemRecRecipe recipe;
 	
 	public TileAdvChemReactor() {
@@ -79,7 +80,10 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	@Override
 	public void update() {
 		if (worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+			if (requireRefresh) {
+				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				requireRefresh = false;
+			}
 			return;
 		}
 		super.update();
@@ -93,10 +97,12 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
+				this.requireRefresh = true;
 			} else {
 				this.working = false;
 				this.sendTileUpdatePacket(this);
 				this.markDirty();
+				this.requireRefresh = true;
 				return;
 			}
 		}

@@ -40,6 +40,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
 	private boolean working;
+	private boolean requireRefresh;
 	
 	public TileCondenseTower() {
 		super(3, 10000);
@@ -88,7 +89,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public void update() {
 		if (worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(pos, pos);
+			if (requireRefresh) {
+				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				requireRefresh = false;
+			}
 			return;
 		}
 		super.update();
@@ -118,10 +122,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				processMax = recipe.getTime();
 				process = 0;
 				working = true;
+				this.requireRefresh = true;
 			} else {
 				working = false; // Put working = false here, so that debug screen won't blink (hopefully)
 				this.markDirty();
 				this.sendTileUpdatePacket(this);
+				this.requireRefresh = true;
 				return;
 			}
 		}
@@ -151,6 +157,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		this.markDirty();
 		this.sendTileUpdatePacket(this);
+		this.requireRefresh = true;
 	}
 	
 	@Override

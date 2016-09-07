@@ -35,6 +35,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 	public boolean working = false;
 	public int time = 0, timeMax = 0;
 	private ItemStack burning;
+	private boolean requireRefresh;
 
 	public TileCombustionFurnace() {
 		super(1, 16);
@@ -47,7 +48,10 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 	@Override
 	public void update() {
 		if (worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+			if (requireRefresh) {
+				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				requireRefresh = false;
+			}
 			return;
 		}
 		super.update();
@@ -56,6 +60,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		if (output.getStackInSlot(0) != null && output.getStackInSlot(0).stackSize >= output.getStackInSlot(0).getMaxStackSize()) {
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
+			this.requireRefresh = true;
 			return;
 		}
 		
@@ -78,6 +83,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 				bonus(burning);
 			burning = null;
 			this.working = false;
+			this.requireRefresh = true;
 		}
 		
 		if (tank.getFluidAmount() != 0 && fluidIO.getStackInSlot(0) != null) {

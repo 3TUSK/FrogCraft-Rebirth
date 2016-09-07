@@ -31,6 +31,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	public int process, processMax;
 	public boolean working;
 	private IPyrolyzerRecipe recipe;
+	private boolean requireRefresh;
 
 	public TilePyrolyzer() {
 		super(2, 20000);
@@ -45,7 +46,10 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	@Override
 	public void update() {
 		if (this.worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+			if (requireRefresh) {
+				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				requireRefresh = false;
+			}
 			return;
 		}
 		super.update();
@@ -67,6 +71,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 			this.recipe = null;
 			this.process = 0;
 			this.processMax = 0;
+			this.requireRefresh = true;
 		}
 		
 		if (!working || recipe == null) {
@@ -75,11 +80,13 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
+				this.requireRefresh = true;
 			} else {
 				this.recipe = null;
 				this.working = false;
 				this.sendTileUpdatePacket(this);
 				this.markDirty();
+				this.requireRefresh = true;
 				return;
 			}
 		} else {

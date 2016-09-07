@@ -34,6 +34,7 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 	
 	public int process;
 	public boolean working;
+	private boolean requireRefresh;
 
 	public TileLiquefier() {
 		super(2, 10000);
@@ -47,7 +48,10 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 	@Override
 	public void update() {
 		if (worldObj.isRemote) {
-			worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+			if (requireRefresh) {
+				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				requireRefresh = false;
+			}
 			return;
 		}
 		super.update();
@@ -68,10 +72,12 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 			this.working = false;
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
+			this.requireRefresh = true;
 			return;
 		}
 		
 		working = true;
+		requireRefresh = true;
 		
 		if (charge >= 128) {
 			charge -= 128;

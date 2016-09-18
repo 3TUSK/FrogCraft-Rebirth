@@ -29,7 +29,7 @@ public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCo
 			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
-		if (!tile.isCompleted()) //This string does support localization due to a legacy reason.
+		if (!tile.isCompleted()) //This string doesn't support localization due to a legacy reason.
 			this.fontRendererObj.drawString("Incomplete Machine Casing!", 8, ySize - 96, GRAY_40);
 	}
 

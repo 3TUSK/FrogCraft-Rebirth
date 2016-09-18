@@ -10,12 +10,10 @@ package frogcraftrebirth.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.relauncher.Side;
@@ -68,12 +66,7 @@ class RegHelper {
 				return aResource;
 			}		
 		});
-		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), new ItemMeshDefinition() {
-			@Override
-			public ModelResourceLocation getModelLocation(ItemStack stack) {
-				return aResource;
-			}	
-		});
+		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), stack -> aResource);
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(fluidBlock), aResource);
 	}
 

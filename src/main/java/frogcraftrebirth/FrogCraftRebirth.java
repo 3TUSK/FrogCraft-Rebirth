@@ -25,7 +25,6 @@ public class FrogCraftRebirth {
 	public static FrogProxy proxy;
 	
 	public FrogCraftRebirth() {
-		instance = this;
 		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
 	}
 

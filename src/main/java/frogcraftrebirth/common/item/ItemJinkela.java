@@ -1,6 +1,6 @@
 package frogcraftrebirth.common.item;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -47,9 +47,7 @@ public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		List<String> list = new ArrayList<String>();
-		list.add(I18n.format("item.Item_Miscs.GoldClod.info"));
-		return list;
+		return Arrays.asList(I18n.format("item.Item_Miscs.GoldClod.info"));
 	}
 
 	//@Optional.Method(modid = "thaumcraft")

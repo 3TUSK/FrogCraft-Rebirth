@@ -9,7 +9,6 @@ import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
@@ -113,11 +112,6 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 			playerIn.addChatMessage(new TextComponentTranslation("item.ItemMiniIonCannon.warning"));
 		}
 		return itemStackIn;
-	}
-	
-	public void onUpdate(ItemStack stack, World world, Entity player, int slot, boolean isHolding) {
-		if (world.isRemote)
-			return;
 	}
 
 	@Override

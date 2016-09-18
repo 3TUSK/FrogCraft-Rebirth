@@ -27,11 +27,6 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	}
 	
 	@Override
-	public void addListener(IContainerListener listener) {
-		super.addListener(listener);
-	}
-	
-	@Override
 	public Slot addSlotToContainer(Slot slot) {
 		if (!(slot.inventory instanceof InventoryPlayer))
 			tileInvCount++;

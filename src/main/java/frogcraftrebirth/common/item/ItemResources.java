@@ -8,7 +8,7 @@
  */
 package frogcraftrebirth.common.item;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -34,9 +34,7 @@ public class ItemResources extends ItemFrogCraft {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean f3PlusB) {
-		List<String> tooltips = new ArrayList<String>();
-		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
-		return tooltips;
+		return Arrays.asList(I18n.format(getUnlocalizedName(stack) + ".info"));
 	}
 	
 	@Override

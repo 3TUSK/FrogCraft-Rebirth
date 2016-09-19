@@ -31,7 +31,6 @@ public class FrogItems {
 	
 	public static Item fluidArmor;
 	
-	@Deprecated //Unless there is GregTech in 1.10.2, this will always be null
-	public static ItemStack pneumaticCompressor = null;
+	public static ItemStack pneumaticCompressor;
 
 }

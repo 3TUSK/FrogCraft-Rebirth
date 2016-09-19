@@ -8,7 +8,7 @@
  */
 package frogcraftrebirth.common.item;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
@@ -34,7 +34,7 @@ public class ItemCondenseTowerToolkit extends ItemFrogCraft {
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Arrays.asList("");
+		return Collections.emptyList();
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package frogcraftrebirth.common.item;
 
+import java.util.Arrays;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -57,7 +58,7 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return java.util.Arrays.asList(new String[] {
+		return Arrays.asList(new String[] {
 				I18n.format("item.DecayBattery.info.0"),
 				I18n.format("item.DecayBattery.info.1")
 		});

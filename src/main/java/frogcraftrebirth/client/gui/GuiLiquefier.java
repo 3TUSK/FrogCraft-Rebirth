@@ -8,7 +8,7 @@
  */
 package frogcraftrebirth.client.gui;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import frogcraftrebirth.common.gui.ContainerLiquefier;
 import frogcraftrebirth.common.lib.util.FrogMath;
@@ -36,7 +36,7 @@ public class GuiLiquefier extends GuiTileFrog<TileLiquefier, ContainerLiquefier>
 		}
 		
 		if (mouseX > 81 + guiLeft && mouseX < 95 + guiLeft && mouseY > 27 + guiTop && mouseY < 41 + guiTop) {
-			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
+			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GRAY_40);

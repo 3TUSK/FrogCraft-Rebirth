@@ -1,6 +1,6 @@
 package frogcraftrebirth.client.gui;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.lib.util.FrogMath;
@@ -20,7 +20,7 @@ public class GuiAdvChemReactor extends GuiTileFrog<TileAdvChemReactor, Container
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
 		if (mouseX > 148 + guiLeft && mouseX < 162 + guiLeft && mouseY > 23 + guiTop && mouseY < 37 + guiTop) {
-			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
+			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 	}
 

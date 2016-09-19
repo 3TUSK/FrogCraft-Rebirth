@@ -1,6 +1,6 @@
 package frogcraftrebirth.client.gui;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.lib.util.FrogMath;
@@ -24,7 +24,7 @@ public class GuiAirPump extends GuiTileFrog<TileAirPump, ContainerAirPump> {
 		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 		
 		if (mouseX > 118 + guiLeft && mouseX < 132 + guiLeft && mouseY > 33 + guiTop && mouseY < 47 + guiTop) {
-			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(10000))), mouseX - guiLeft, mouseY - guiTop);
+			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(10000))), mouseX - guiLeft, mouseY - guiTop);
 		}
 	}
 

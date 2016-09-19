@@ -1,6 +1,6 @@
 package frogcraftrebirth.client.gui;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.lib.util.FrogMath;
@@ -26,7 +26,7 @@ public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCo
 		}
 		
 		if (mouseX > 81 + guiLeft && mouseX < 95 + guiLeft && mouseY > 27 + guiTop && mouseY < 41 + guiTop) {
-			this.drawHoveringText(Arrays.asList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
+			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
 		if (!tile.isCompleted()) //This string doesn't support localization due to a legacy reason.

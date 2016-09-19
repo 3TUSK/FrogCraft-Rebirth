@@ -18,6 +18,7 @@ public final class CapabilityHandler {
 		MinecraftForge.EVENT_BUS.register(this);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@SubscribeEvent
 	public void onWorldCapLoad(AttachCapabilitiesEvent.World event) {
 		//event.addCapability(key, cap);

@@ -24,7 +24,6 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Easter Eggs and more!
  
 ### What's changed in this version?
- * Due to GregTech is still in 1.7.10, compatibilities for GregTech, including Pnuematic Compressor, are disabled for now. Pnu. Compressor may eventually become part of compat for TechReborn, but it is still a WIP.
  * New textures powered by huangziye812 and dunge!
  * Thermal Cracker is renamed to **Pyrolyzer**. "Thermal Cracker" sounds like Chinglish to me. 
  * Cells are removed. Use IC2 Universal Fluid Cell instead.
@@ -33,6 +32,7 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
  * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents from other mods, e.g. [Chisel](https://minecraft.curseforge.com/projects/chisel).
  * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as of Marble and Basalt.
+ * Four industrial machines are separated out into [a new mod called "Industrial Machine"](https://github.com/3TUSK/IndustrialMachine). 
  * **This mod now requires Java 8 to run**. If you plan to use FrogCraft: Rebirth on dedicated server, please be aware of your Java version.
 
 ### Other posts

@@ -39,7 +39,7 @@ public class ItemResources extends ItemFrogCraft {
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName()+"."+nameArray[stack.getMetadata()];
+		return nameArray != null ? super.getUnlocalizedName()+"."+nameArray[stack.getMetadata()] : super.getUnlocalizedName(stack);
 	}
 
 }

@@ -1,6 +1,9 @@
 package frogcraftrebirth.common.compat.gregtech;
 
+
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
 import gregtech.api.GregTech_API;
@@ -22,7 +25,7 @@ import net.minecraft.util.EnumFacing;
 public class GT_MetaTileEntity_PneumaticCompressor 
 	extends GT_MetaTileEntity_MultiBlockBase {
 	
-	public ArrayList<GT_MetaTileEntity_AirPumpHatch> mAirPumpHatches = new ArrayList<GT_MetaTileEntity_AirPumpHatch>();
+	public Set<GT_MetaTileEntity_AirPumpHatch> mAirPumpHatches = new HashSet<GT_MetaTileEntity_AirPumpHatch>();
 
 	public GT_MetaTileEntity_PneumaticCompressor(int aID, String aName, String aNameRegional) {
 		super(aID, aName, aNameRegional);
@@ -107,12 +110,12 @@ public class GT_MetaTileEntity_PneumaticCompressor
 		for (int x = -1; x < 2; x++) {
 			for (int z = -1; z < 2; z++) {
 				for (int y = -1; y < 2; y++) {
-					if (((y != 0) || (((xAxisDir + x != 0) || (zAxisDir + z != 0))) && (((x != 0) || (z != 0))))) {
-						IGregTechTileEntity aGTTile = aBaseMetaTileEntity.getIGregTechTileEntityOffset(xAxisDir + x, y, zAxisDir + z);
+					if (y != 0 || (xAxisDir + x != 0) || (zAxisDir + z != 0) && (x != 0) || (z != 0)) {
+						IGregTechTileEntity aGTTile = aBaseMetaTileEntity.getIGregTechTileEntityOffset(xAxisDir, 0, zAxisDir).getIGregTechTileEntityOffset(x, y, z);
 						if ((!addMaintenanceToMachineList(aGTTile, 50)) && (!addInputToMachineList(aGTTile, 50)) && (!addOutputToMachineList(aGTTile, 50)) && (!addEnergyInputToMachineList(aGTTile, 50))) {
 							Block aBlock = aBaseMetaTileEntity.getBlockOffset(xAxisDir + x, y, zAxisDir + z);
 							byte aMetadata = aBaseMetaTileEntity.getMetaIDOffset(xAxisDir + x, y, zAxisDir + z);
-							if (((aBlock != GregTech_API.sBlockCasings4) || (aMetadata != 2))) {
+							if ((aBlock != GregTech_API.sBlockCasings4) || (aMetadata != 2)) {
 								return false;
 							}
 							casings++;

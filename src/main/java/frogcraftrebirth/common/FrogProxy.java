@@ -6,6 +6,7 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.compat.gregtech.CompatGregTech;
 import frogcraftrebirth.common.compat.techreborn.CompatTechReborn;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
@@ -50,6 +51,9 @@ public class FrogProxy {
 				e.printStackTrace();
 			}
 			FrogAPI.registerFrogCompatModule("techreborn", new CompatTechReborn());
+		}
+		if (Loader.isModLoaded("gregtech")) {
+			FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
 		}
 	}
 

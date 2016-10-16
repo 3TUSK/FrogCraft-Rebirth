@@ -12,8 +12,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
+
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -34,6 +37,12 @@ public class RecipeCondensation implements IRecipeWrapper {
 	
 	public RecipeCondensation(ICondenseTowerRecipe recipe) {
 		this.recipe = recipe;
+	}
+	
+	@Override
+	public void getIngredients(IIngredients ingredients) {
+		ingredients.setInputs(FluidStack.class, ImmutableList.of(recipe.getInput()));
+		ingredients.setOutputs(FluidStack.class, ImmutableList.copyOf(recipe.getOutput()));
 	}
 
 	@Override

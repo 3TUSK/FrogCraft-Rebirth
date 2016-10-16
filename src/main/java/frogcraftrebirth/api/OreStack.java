@@ -9,6 +9,7 @@
 package frogcraftrebirth.api;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -88,6 +89,10 @@ public class OreStack {
 		tag.setString("oreName", entry);
 		tag.setInteger("amount", amount);
 		return tag;
+	}
+	
+	public List<ItemStack> toStacks() {
+		return OreDictionary.getOres(entry);
 	}
 
 	public static boolean stackHasEntry(ItemStack stack, String ore) {

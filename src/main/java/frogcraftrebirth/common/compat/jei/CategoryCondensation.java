@@ -15,6 +15,7 @@ import mezz.jei.api.gui.IDrawableAnimated.StartDirection;
 import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -67,6 +68,11 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, recipeWrapper.getFluidOutputs().get(index).amount, false, null);
 			fluidStacks.set(index + 1, recipeWrapper.getFluidOutputs().get(index));
 		}
+	}
+
+	@Override
+	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper, IIngredients ingredients) {
+		setRecipe(recipeLayout, recipeWrapper); //Work around
 	}
 	
 }

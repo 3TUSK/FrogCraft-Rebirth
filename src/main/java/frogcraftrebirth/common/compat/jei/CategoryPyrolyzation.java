@@ -15,6 +15,7 @@ import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.gui.IDrawableAnimated.StartDirection;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
@@ -37,7 +38,7 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 		IDrawableStatic progressBarOverlay = helper.createDrawable(backgroundTexture, 176, 80, 24, 17);
 		progressBar = helper.createAnimatedDrawable(progressBarOverlay, 100, StartDirection.LEFT, false);
 		IDrawableStatic electricBarOverlay = helper.createDrawable(backgroundTexture, 176, 52, 14, 14);
-		electricBar = helper.createAnimatedDrawable(electricBarOverlay, 60, StartDirection.BOTTOM, false);
+		electricBar = helper.createAnimatedDrawable(electricBarOverlay, 30, StartDirection.BOTTOM, false);
 	}
 	
 	@Override
@@ -76,6 +77,11 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 		items.set(1, recipeWrapper.getOutputs());
 		fluids.init(0, false, 143, 41, 16, 47, recipeWrapper.getFluidOutputs().get(0).amount, false, tankOverlay);
 		fluids.set(0, recipeWrapper.getFluidOutputs());
+	}
+
+	@Override
+	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper, IIngredients ingredients) {
+		setRecipe(recipeLayout, recipeWrapper);
 	}
 
 }

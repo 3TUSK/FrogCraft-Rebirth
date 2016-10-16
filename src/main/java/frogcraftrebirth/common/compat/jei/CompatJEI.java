@@ -21,6 +21,7 @@ import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
 import mezz.jei.api.JEIPlugin;
+import mezz.jei.api.ingredients.IModIngredientRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 
@@ -30,6 +31,11 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 	@Override
 	public void init() {
 		FrogAPI.FROG_LOG.info("Detected JustEnoughItems, compability will be enabled automatically.");
+	}
+	
+	@Override
+	public void registerIngredients(IModIngredientRegistration registry) {
+		
 	}
 
 	@Override

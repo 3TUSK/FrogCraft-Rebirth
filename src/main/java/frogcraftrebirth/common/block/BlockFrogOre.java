@@ -1,12 +1,9 @@
 package frogcraftrebirth.common.block;
 
-import java.util.Random;
-
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.item.Item;
 import net.minecraft.util.IStringSerializable;
 
 public class BlockFrogOre extends BlockFrog {
@@ -19,6 +16,9 @@ public class BlockFrogOre extends BlockFrog {
 		setHardness(5.0F);
 		setResistance(15.0f);
 		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
+		setHarvestLevel("shovel", 2, this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
+		setHarvestLevel("pickaxe", 2, this.blockState.getBaseState().withProperty(TYPE, Type.DEWALQUITE));
+		setHarvestLevel("pickaxe", 2, this.blockState.getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
 	}
 
 	@Override
@@ -26,22 +26,22 @@ public class BlockFrogOre extends BlockFrog {
 		return new IProperty[] { TYPE };
 	}
 	
-	public Item getItemDropped(int meta, Random rand, int fortune) {
-		return Item.getItemFromBlock(this);
-	}
-
 	@Override
-	public int quantityDropped(IBlockState state, int fortune, Random random) {
-		if (state.getBlock().getMetaFromState(state) ==5) {
-			int i = 1;
-			for (int n = 0; n < fortune; n++) {
-			if (random.nextInt(3) == 1)
-				++i;
-			}
-			return i;
+	public boolean isToolEffective(String type, IBlockState state) {
+		switch (state.getValue(TYPE)) {
+			case CARNALLITE :
+				return "shovel".equals(type);
+			case DEWALQUITE : 
+			case FLUORAPATITE :
+				return "pickaxe".equals(type);
+			default :
+				return true;
 		}
-		
-		return 1;
+	}
+	
+	@Override
+	public int damageDropped(IBlockState state) {
+		return state.getValue(TYPE).ordinal();
 	}
 	
 	@Override
@@ -55,8 +55,7 @@ public class BlockFrogOre extends BlockFrog {
 	}
 	
 	public static enum Type implements IStringSerializable {
-		CARNALLITE, DEWALQUITE, FLUORAPATITE/*, NGH*/;
-		//Natural Gas Hydrate is canceled again...
+		CARNALLITE, DEWALQUITE, FLUORAPATITE;
 
 		@Override
 		public String getName() {

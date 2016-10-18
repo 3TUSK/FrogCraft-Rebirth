@@ -5,7 +5,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraftforge.fml.common.eventhandler.Cancelable;
 import net.minecraftforge.fml.common.eventhandler.Event;
 import net.minecraftforge.fml.common.eventhandler.Event.HasResult;
-
+/**
+ * <b>Deprecated.</b> This event is actually a design flaw. 
+ * It has to replaced with a callback-style system instead.
+ */
+@Deprecated
 @Cancelable
 @HasResult
 public class AccessControlEvent extends Event {

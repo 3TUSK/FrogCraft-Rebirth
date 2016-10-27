@@ -113,18 +113,18 @@ public class RegFrogItemsBlocks {
 	}
 	
 	private static void initTileEntity() {
-		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "FrogCraft_MobilePowerStation");
-		GameRegistry.registerTileEntity(TileHSU.class, "FrogCraft_HybridStorageUnit");
-		GameRegistry.registerTileEntity(TileHSUUltra.class, "FrogCraft_UltraHybridStorageUnit");
-		GameRegistry.registerTileEntity(TileAirPump.class, "FrogCraft_AirPump");
-		GameRegistry.registerTileEntity(TileCondenseTower.class, "FrogCraft_CondenseTowerCore");
-		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "FrogCraft_CondenseTowerCylinder");
-		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "FrogCraft_CondenseTowerFluidOutput");
-		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "FrogCraft_CombustionFurnace");
-		GameRegistry.registerTileEntity(TilePyrolyzer.class, "FrogCraft_ThermalCracker");
-		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "FrogCraft_AdvancedChemicalReactor");
-		GameRegistry.registerTileEntity(TileLiquefier.class, "FrogCraft_Liquefier");
+		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraft_mobile_power_station");
+		GameRegistry.registerTileEntity(TileHSU.class, "frogcraft_hybrid_storage_unit");
+		GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraft_ultra_hybrid_storage_unit");
+		GameRegistry.registerTileEntity(TileAirPump.class, "frogcraft_air_pump");
+		GameRegistry.registerTileEntity(TileCondenseTower.class, "frogcraft_condense_tower_core");
+		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "frogcraft_condense_tower_cylinder");
+		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "frogcraft_condense_tower_outlet");
+		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "frogcraft_combustion_furnace");
+		GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraft_thermal_cracker");
+		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraft_advanced_chemical_reactor");
+		GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraft_liquefier");
 		
-		GameRegistry.registerTileEntity(TilePneumaticCompressor.class, "FrogCraft_PneumaticCompressor");
+		GameRegistry.registerTileEntity(TilePneumaticCompressor.class, "frogcraft_pneumatic_compressor");
 	}
 }

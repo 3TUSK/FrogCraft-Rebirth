@@ -6,7 +6,6 @@ import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogAchievements;
-import frogcraftrebirth.api.event.AccessControlEvent;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -114,12 +113,6 @@ public class FrogEventListener {
 				return;
 			}
 		}
-	}
-	
-	@SubscribeEvent
-	public void onAccessControlFired(AccessControlEvent event) {
-		if (event.tile.getOwnerUUID() == null)
-			event.tile.setOwner(event.player.getUniqueID());
 	}
 
 }

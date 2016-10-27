@@ -64,7 +64,7 @@ class RegHelper {
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 				return aResource;
-			}		
+			}
 		});
 		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), stack -> aResource);
 		ModelBakery.registerItemVariants(Item.getItemFromBlock(fluidBlock), aResource);

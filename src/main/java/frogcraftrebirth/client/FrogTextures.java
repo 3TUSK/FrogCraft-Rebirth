@@ -23,71 +23,71 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class FrogTextures {
 	
 	public static void initFrogItemsTexture() {
-		RegHelper.registerModel(FrogItems.coolantAmmonia60K, "AmmoniaCoolant60K");
-		RegHelper.registerModel(FrogItems.coolantAmmonia180K, "AmmoniaCoolant180K");
-		RegHelper.registerModel(FrogItems.coolantAmmonia360K, "AmmoniaCoolant360K");
-		RegHelper.registerModel(FrogItems.decayBatteryPlutoium, "DecayBatteryPlutoium");
-		RegHelper.registerModel(FrogItems.decayBatteryThorium, "DecayBatteryThorium");
-		RegHelper.registerModel(FrogItems.decayBatteryUranium, "DecayBatteryUranium");
+		RegHelper.registerModel(FrogItems.coolantAmmonia60K);
+		RegHelper.registerModel(FrogItems.coolantAmmonia180K);
+		RegHelper.registerModel(FrogItems.coolantAmmonia360K);
+		RegHelper.registerModel(FrogItems.decayBatteryPlutoium);
+		RegHelper.registerModel(FrogItems.decayBatteryThorium);
+		RegHelper.registerModel(FrogItems.decayBatteryUranium);
 		RegHelper.registerModel(FrogItems.ionCannon);
 		RegHelper.registerModel(FrogItems.ionCannonFrame);
-		RegHelper.registerModel(FrogItems.jinkela, "GoldClod");
+		RegHelper.registerModel(FrogItems.jinkela);
 		
-		RegHelper.registerModel(FrogItems.tiberium, 0, "TiberiumRed");
-		RegHelper.registerModel(FrogItems.tiberium, 1, "TiberiumBlue");
-		RegHelper.registerModel(FrogItems.tiberium, 2, "TiberiumGreen");
+		RegHelper.registerModel(FrogItems.tiberium, 0, "tiberium_red");
+		RegHelper.registerModel(FrogItems.tiberium, 1, "tiberium_blue");
+		RegHelper.registerModel(FrogItems.tiberium, 2, "tiberium_green");
 		
-		RegHelper.registerModel(FrogItems.itemReactionModule, 0, "ModuleHeating");
-		RegHelper.registerModel(FrogItems.itemReactionModule, 1, "ModuleElectrolyze");
-		RegHelper.registerModel(FrogItems.itemReactionModule, 2, "ModuleAmmonia");
-		RegHelper.registerModel(FrogItems.itemReactionModule, 3, "ModuleSulfuricAcid");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 0, "module_heating");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 1, "module_electrolysis");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 2, "module_ammonia");
+		RegHelper.registerModel(FrogItems.itemReactionModule, 3, "module_sulfuric_acid");
 		
-		RegHelper.registerModel(FrogItems.itemIngot, 0, "Potassium");
-		RegHelper.registerModel(FrogItems.itemIngot, 1, "Phosphorus");
-		RegHelper.registerModel(FrogItems.itemIngot, 2, "NaturalGasHydrate");
-		RegHelper.registerModel(FrogItems.itemIngot, 3, "Briquette");
-		RegHelper.registerModel(FrogItems.itemIngot, 4, "ShatteredCoalCoke");
-		
-		final String[] damnitSubNames = {"Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5"};
+		RegHelper.registerModel(FrogItems.itemIngot, 0, "potassium");
+		RegHelper.registerModel(FrogItems.itemIngot, 1, "phosphorus");
+		RegHelper.registerModel(FrogItems.itemIngot, 2, "natural_gas_hydrate");
+		RegHelper.registerModel(FrogItems.itemIngot, 3, "briquette");
+		RegHelper.registerModel(FrogItems.itemIngot, 4, "shattered_coal_coke");
+		final String[] damnitSubNames = {"aluminium_oxide", "calcium_fluoride", "calcium_oxide", "calcium_hydroxide", "carnallite", "calcium_silicate", "dewalquite", "fluorapatite", "potassium_chloride", "magnesium_bromide", "ammoinum_nitrate", "titanium_iv_oxide", "urea", "vanadium_v_oxide"};
+		//{"Al2O3", "CaF2", "CaO", "CaOH2", "carnallite", "CaSiO3", "dewalquite", "fluorapatite", "KCl", "magnalium", "MgBr2", "NH4NO3", "TiO2", "urea", "V2O5"};
 		for (int index = 0; index < damnitSubNames.length; index++) {
 			RegHelper.registerModel(FrogItems.itemDust, index, "dust/" + damnitSubNames[index]);
 		}
-		final String[] damnitSubNames2 = {"Carnallite", "Dewalquite", "Fluorapatite"};
+		final String[] damnitSubNames2 = {"carnallite", "dewalquite", "fluorapatite"};
 		for (int index = 0; index < damnitSubNames2.length; index++) {
-			RegHelper.registerModel(FrogItems.itemCrushedDust, index, "dust/" +  damnitSubNames2[index] + "Crushed");
-			RegHelper.registerModel(FrogItems.itemPurifiedDust, index, "dust/" +  damnitSubNames2[index] + "Purified");
-			RegHelper.registerModel(FrogItems.itemSmallPileDust, index, "dust/" +  damnitSubNames2[index] + "Small");
+			RegHelper.registerModel(FrogItems.itemCrushedDust, index, "dust/" +  damnitSubNames2[index] + "_crushed");
+			RegHelper.registerModel(FrogItems.itemPurifiedDust, index, "dust/" +  damnitSubNames2[index] + "_purified");
+			RegHelper.registerModel(FrogItems.itemSmallPileDust, index, "dust/" +  damnitSubNames2[index] + "_small");
 		}
 		
-		RegHelper.registerModel(FrogItems.fluidArmor, "FluidArmor");
+		RegHelper.registerModel(FrogItems.fluidArmor, "fluid_armor");
 	}
 	
 	public static void initFrogBlocksTexture() {
-		RegHelper.registerModel(FrogBlocks.frogOres, 0, "Carnallite");
-		RegHelper.registerModel(FrogBlocks.frogOres, 1, "Dewalquite");
-		RegHelper.registerModel(FrogBlocks.frogOres, 2, "Fluorapatite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 0, "carnallite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 1, "dewalquite");
+		RegHelper.registerModel(FrogBlocks.frogOres, 2, "fluorapatite");
 		RegHelper.registerModel(FrogBlocks.tiberium, 0);
 		RegHelper.registerModel(FrogBlocks.tiberium, 1);
 		RegHelper.registerModel(FrogBlocks.tiberium, 2);
 		
 		ModelLoader.setCustomStateMapper(FrogBlocks.mobilePowerStation, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
-		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "MPS");
+		RegHelper.registerModel(FrogBlocks.mobilePowerStation, "mobile_power_station");
 		
 		ModelLoader.setCustomStateMapper(FrogBlocks.condenseTowerPart, new StateMap.Builder().withSuffix("_condense_tower").withName(BlockCondenseTower.TYPE).build());
-		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 0, "condensetower/Core");
-		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 1, "condensetower/Cylinder");
-		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 2, "condensetower/Output");
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 0, "condensetower/core");
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 1, "condensetower/cylinder");
+		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 2, "condensetower/outlet");
 		
 		ModelLoader.setCustomStateMapper(FrogBlocks.machines, new StateMap.Builder().withName(BlockMachine.TYPE).build());
-		RegHelper.registerModel(FrogBlocks.machines, 0, "AdvancedChemicalReactor");
-		RegHelper.registerModel(FrogBlocks.machines, 1, "AirPump");
-		RegHelper.registerModel(FrogBlocks.machines, 2, "Pyrolyzer");
-		RegHelper.registerModel(FrogBlocks.machines, 3, "Liquefier");
+		RegHelper.registerModel(FrogBlocks.machines, 0, "advanced_chemical_reactor");
+		RegHelper.registerModel(FrogBlocks.machines, 1, "air_pump");
+		RegHelper.registerModel(FrogBlocks.machines, 2, "pyrolyzer");
+		RegHelper.registerModel(FrogBlocks.machines, 3, "liquefier");
 		
-		RegHelper.registerModel(FrogBlocks.generators, "CombustionGenerator");
+		RegHelper.registerModel(FrogBlocks.generators, "combustion_furnace");
 		
-		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 0, "HSU");
-		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 1, "UHSU");
+		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 0, "hybrid_storage_unit");
+		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 1, "ultra_hybrid_storage_unit");
 		
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidAmmonia, "ammonia");
 		RegHelper.regFluidBlockTexture((BlockFluidBase)FrogBlocks.fluidArgon, "argon");

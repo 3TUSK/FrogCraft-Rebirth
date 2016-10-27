@@ -1,6 +1,6 @@
 # Blender v2.76 (sub 0) OBJ File: 'test.blend'
 # www.blender.org
-mtllib TiberiumCrystal_Green.mtl
+mtllib tiberium_crystal_blue.mtl
 o Cube
 v 0.301324 -0.301324 -0.301324
 v 0.301324 -0.301324 0.301324

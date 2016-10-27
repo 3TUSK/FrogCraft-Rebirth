@@ -10,8 +10,8 @@
 			"west": { "y": 270, "uvlock": true }
 		},
 		"working": {
-			"false": { "model": "frogcraftrebirth:CondenseTower_Cylinder" },
-			"true": { "model": "frogcraftrebirth:CondenseTower_Cylinder" }
+			"false": { "model": "frogcraftrebirth:condense_tower_cylinder" },
+			"true": { "model": "frogcraftrebirth:condense_tower_cylinder" }
 		}
 	}
 }

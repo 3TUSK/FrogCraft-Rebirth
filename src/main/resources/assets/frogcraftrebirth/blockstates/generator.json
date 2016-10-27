@@ -8,8 +8,8 @@
 			"west": { "y": 270, "uvlock": true }
 		},
 		"working": {
-			"true": { "model": "frogcraftrebirth:CombustionGenerator_Active" },
-			"false": { "model": "frogcraftrebirth:CombustionGenerator" }
+			"true": { "model": "frogcraftrebirth:combustion_furnace_active" },
+			"false": { "model": "frogcraftrebirth:combustion_furnace" }
 		}
 	}
 }

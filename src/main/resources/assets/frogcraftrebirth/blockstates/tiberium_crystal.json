@@ -4,9 +4,9 @@
 		"normal": [{}],
 		"inventory": [{}],
 		"color": {
-			"red": { "model": "frogcraftrebirth:TiberiumCrystal_Red.obj" },
-			"blue": { "model": "frogcraftrebirth:TiberiumCrystal_Blue.obj" },
-			"green": { "model": "frogcraftrebirth:TiberiumCrystal_Green.obj" }
+			"red": { "model": "frogcraftrebirth:tiberium_crystal_red.obj" },
+			"blue": { "model": "frogcraftrebirth:tiberium_crystal_blue.obj" },
+			"green": { "model": "frogcraftrebirth:tiberium_crystal_green.obj" }
 		}
 	}
 }

@@ -1,8 +1,8 @@
 package frogcraftrebirth.common.lib;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
@@ -36,7 +36,7 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 	public <T> ICondenseTowerRecipe getRecipe(T... input) {
 		if (input[0] == null || !(input[0] instanceof FluidStack))
 			return null;
-		
+
 		for (ICondenseTowerRecipe recipe : recipes) {
 			if (recipe.getInput().isFluidEqual((FluidStack) input[0]))
 				if (recipe.getInput().amount <= ((FluidStack) input[0]).amount)
@@ -45,6 +45,6 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 		return null;
 	}
 	
-	private final List<ICondenseTowerRecipe> recipes = new ArrayList<ICondenseTowerRecipe>();;
+	private final Set<ICondenseTowerRecipe> recipes = new HashSet<ICondenseTowerRecipe>();;
 
 }

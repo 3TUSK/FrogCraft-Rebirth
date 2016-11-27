@@ -24,7 +24,7 @@ public class TileHSU extends TileEnergyStorage implements ITickable {
 
 	@Override
 	public void update() {
-		if (worldObj.isRemote)
+		if (getWorld().isRemote)
 			return;
 		super.update();
 		

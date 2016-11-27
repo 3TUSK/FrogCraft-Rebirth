@@ -32,7 +32,7 @@ public class EntityIonCannonBeam extends EntityThrowable {
 
 	@Override
 	protected void onImpact(RayTraceResult objPos) {
-		if (!this.worldObj.isRemote)
+		if (!this.world.isRemote)
 			MinecraftForge.EVENT_BUS.post(new IonCannonImpactEvent(this, objPos));
 	}
 

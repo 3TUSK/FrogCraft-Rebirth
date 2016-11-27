@@ -34,7 +34,7 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	}
 	
 	public void invalidate() {
-		if (!worldObj.isRemote && isInENet) {
+		if (!getWorld().isRemote && isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
@@ -43,7 +43,7 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) {
+		if (getWorld().isRemote) {
 			return;
 		}
 		
@@ -52,7 +52,7 @@ public class TileAirPump extends TileFrog implements ITickable, IEnergySink, IAi
 			isInENet = true;
 		}
 		
-		if (this.worldObj.isBlockIndirectlyGettingPowered(this.pos) != 0)
+		if (this.getWorld().isBlockIndirectlyGettingPowered(this.pos) != 0)
 			return;
 		
 		if (this.charge < ConfigMain.airPumpPowerRate)

@@ -58,10 +58,7 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 
 	@Override
 	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Arrays.asList(new String[] {
-				I18n.format("item.DecayBattery.info.0"),
-				I18n.format("item.DecayBattery.info.1")
-		});
+		return Arrays.asList(I18n.format("item.DecayBattery.info.0"), I18n.format("item.DecayBattery.info.1"));
 	}
 	
 	@Override

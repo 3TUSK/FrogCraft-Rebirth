@@ -47,9 +47,9 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) {
+		if (getWorld().isRemote) {
 			if (requireRefresh) {
-				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 				requireRefresh = false;
 			}
 			return;
@@ -62,12 +62,12 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 				if (result != null && result.stackSize > 0) {
 					ItemStack remainder = inv.insertItem(1, result, false);
 					if (remainder != null && remainder.stackSize > 0)
-						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
 		}
 		
-		TileEntity tile = worldObj.getTileEntity(getPos().down());
+		TileEntity tile = getWorld().getTileEntity(getPos().down());
 		if (tile == null || !(tile instanceof IAirPump) || tank.isFull()) {
 			this.working = false;
 			this.sendTileUpdatePacket(this);

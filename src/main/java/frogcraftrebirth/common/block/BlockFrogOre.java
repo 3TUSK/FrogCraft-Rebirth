@@ -3,6 +3,7 @@ package frogcraftrebirth.common.block;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.IStringSerializable;
 
@@ -16,9 +17,9 @@ public class BlockFrogOre extends BlockFrog {
 		setHardness(5.0F);
 		setResistance(15.0f);
 		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
-		setHarvestLevel("shovel", 2, this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
-		setHarvestLevel("pickaxe", 2, this.blockState.getBaseState().withProperty(TYPE, Type.DEWALQUITE));
-		setHarvestLevel("pickaxe", 2, this.blockState.getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
+		setHarvestLevel("shovel", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.CARNALLITE));
+		setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.DEWALQUITE));
+		setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
 	}
 
 	@Override

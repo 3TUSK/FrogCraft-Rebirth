@@ -45,9 +45,9 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 	int count = 0;
 	@Override
 	public void update() {
-		if (this.worldObj.isRemote) {
+		if (this.getWorld().isRemote) {
 			if (requireRefresh) {
-				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 				requireRefresh = false;
 			}
 			return;
@@ -61,7 +61,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 					fluidIO.extractItem(INPUT_F, 1, false);
 					ItemStack remainder = fluidIO.insertItem(OUTPUT_F, result, false);
 					if (remainder != null && remainder.stackSize > 0)
-						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
 		}
@@ -130,7 +130,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 		input.extractItem(INPUT, recipe.getInput().stackSize, false);
 		ItemStack remainder = output.insertItem(OUTPUT, recipe.getOutput(), false);
 		if (remainder != null && remainder.stackSize > 0)
-			ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 		if (recipe.getOutputFluid() != null) {
 			tank.fill(recipe.getOutputFluid(), true);
 		}

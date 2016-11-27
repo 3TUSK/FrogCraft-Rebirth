@@ -21,7 +21,7 @@ public abstract class TileEnergyGenerator extends TileFrog implements ITickable,
 	
 	@Override
 	public void invalidate() {
-		if (!worldObj.isRemote && isInENet) {
+		if (!getWorld().isRemote && isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
@@ -30,7 +30,7 @@ public abstract class TileEnergyGenerator extends TileFrog implements ITickable,
 	
 	@Override
 	public void update() {
-		if (!worldObj.isRemote && !isInENet) {
+		if (!getWorld().isRemote && !isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInENet = true;
 		}

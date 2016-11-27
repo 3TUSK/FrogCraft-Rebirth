@@ -8,6 +8,8 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
+import javax.annotation.Nullable;
+
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -47,16 +49,21 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 	public IDrawable getBackground() {
 		return background;
 	}
+	
+	@Override
+	@Nullable
+	public IDrawable getIcon() {
+		return null; //Delegate to JEI
+	}
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft) {
 		progressBar.draw(minecraft, 40, 4);
 	}
+
+	@Deprecated
+	@Override
+	public void drawAnimations(Minecraft minecraft) {}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper) {

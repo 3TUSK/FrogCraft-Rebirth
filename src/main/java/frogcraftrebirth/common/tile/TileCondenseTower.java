@@ -53,14 +53,14 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public boolean checkStructure() {
 		TileEntity tile;
-		tile = worldObj.getTileEntity(getPos().up(1));
+		tile = getWorld().getTileEntity(getPos().up(1));
 		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
 			((ICondenseTowerPart)tile).onConstruct(this);
 			this.registerSturcture((ICondenseTowerPart)tile);
 		} else {
 			return false;
 		}
-		tile = worldObj.getTileEntity(getPos().up(2));
+		tile = getWorld().getTileEntity(getPos().up(2));
 		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
 			((ICondenseTowerPart)tile).onConstruct(this);
 			this.registerSturcture((ICondenseTowerPart)tile);
@@ -68,7 +68,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			return false;
 		}
 		for (int i = 3; i < 7; i++) {
-			tile = worldObj.getTileEntity(this.getPos().up(i));
+			tile = getWorld().getTileEntity(this.getPos().up(i));
 			if (tile instanceof ICondenseTowerOutputHatch) {
 				((ICondenseTowerOutputHatch)tile).onConstruct(this);
 				this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
@@ -88,9 +88,9 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) {
+		if (getWorld().isRemote) {
 			if (requireRefresh) {
-				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 				requireRefresh = false;
 			}
 			return;
@@ -104,7 +104,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 					inv.extractItem(INPUT_F, 1, false);
 					ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
 					if (remainder != null && remainder.stackSize > 0)
-						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
 		}
@@ -143,14 +143,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		if (process == processMax) {
 			this.tank.drain(recipe.getInput().amount, true);
 			Set<FluidStack> outputs = recipe.getOutput();
-			for (FluidStack fluid : outputs) {
-				for (ICondenseTowerOutputHatch output : this.outputs) {
+			outputs.forEach(fluid -> this.outputs.forEach(output -> {
 					if (output.canInject(fluid)) {
 						output.inject(fluid.copy(), true);
-						break;
+						return;
 					}
-				}
-			}
+			}));
 			process = 0;
 			processMax = 0;
 			recipe = null;
@@ -173,12 +171,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public void onDestruct(ICondenseTowerCore core) {
 		if (requireCleanCache) {
-			for (ICondenseTowerOutputHatch output : outputs) {
-				output.onDestruct(core);
-			}
-			for (ICondenseTowerPart part : structures) {
-				part.onDestruct(core);
-			}
+			outputs.forEach(output -> output.onDestruct(core));
+			structures.forEach(part -> part.onDestruct(core));
 			this.outputs.clear();
 			this.structures.clear();
 			requireCleanCache = false;

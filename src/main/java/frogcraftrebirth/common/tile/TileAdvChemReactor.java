@@ -3,7 +3,9 @@ package frogcraftrebirth.common.tile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
@@ -79,9 +81,9 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote) {
+		if (getWorld().isRemote) {
 			if (requireRefresh) {
-				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 				requireRefresh = false;
 			}
 			return;
@@ -123,6 +125,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		this.markDirty();
 	}
 	
+	private final List<ItemStack> checkCache = new ArrayList<ItemStack>();
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
@@ -137,32 +140,33 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		}
 		if (recipe.getCatalyst() != null && !recipe.getCatalyst().isItemEqual(module.getStackInSlot(0)))
 			return false;
-		for (ItemStack outputStack : recipe.getOutputs()) {
-			ItemStack remain = ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true);
-			if (remain != null)
-				return false;
-		}
-		return true;
+		checkCache.clear();
+		recipe.getOutputs().forEach(outputStack -> checkCache.add(ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true)));
+		checkCache.removeIf(stack -> stack == null);
+		return checkCache.size() == 0;
 	}
 	
 	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
-		for (OreStack ore : toBeConsumed) {
+		toBeConsumed.forEach(ore -> {
 			for (int i = 0; i < 5; i++) {
-				if (ore.consumable(input.getStackInSlot(i)))
+				if (ore.consumable(input.getStackInSlot(i))) {
 					input.extractItem(i, ore.getAmount(), false);
+					return;
+				}
 			}
-		}
+		});
 		if (recipe.getRequiredCellAmount() > 0) {
 			cellInput.extractItem(0, recipe.getRequiredCellAmount(), false);
 		}
 	}
 	
+	private final List<ItemStack> dropCache = new ArrayList<>();
+	
 	private void produce() {
-		for (ItemStack outputStack : recipe.getOutputs()) {
-			ItemStack remain = ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), false);
-			if (remain != null)
-				ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
-		}
+		recipe.getOutputs().forEach(itemStack -> dropCache.add(ItemHandlerHelper.insertItemStacked(output, itemStack.copy(), false)));
+		dropCache.stream().filter(stack -> stack != null).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
+		dropCache.clear();
+		
 		if (recipe.getProducedCellAmount() > 0) {
 			if (cellOutput.getStackInSlot(0) != null) {
 				ItemStack cell = cellOutput.getStackInSlot(0).copy();

@@ -47,9 +47,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 
 	@Override
 	public void update() {
-		if (worldObj.isRemote) {
+		if (getWorld().isRemote) {
 			if (requireRefresh) {
-				worldObj.markBlockRangeForRenderUpdate(getPos(), getPos());
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
 				requireRefresh = false;
 			}
 			return;
@@ -93,7 +93,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 					fluidIO.extractItem(0, 1, false);
 					ItemStack remainder = fluidIO.insertItem(1, result, false);
 					if (remainder != null && remainder.stackSize > 0)
-						ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
 		}

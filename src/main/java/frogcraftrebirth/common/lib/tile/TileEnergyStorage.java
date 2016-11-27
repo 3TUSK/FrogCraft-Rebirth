@@ -36,7 +36,7 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 	
 	@Override
 	public void invalidate() {
-		if (!worldObj.isRemote && loaded) {
+		if (!getWorld().isRemote && loaded) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			this.loaded = false;
 		}
@@ -45,11 +45,11 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 	
 	@Override
 	public void update() {
-		if (!worldObj.isRemote && !loaded) {
+		if (!getWorld().isRemote && !loaded) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			this.loaded = true;
 		}
-		this.emitDir = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_ALL);
+		this.emitDir = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_ALL);
 	}
 	
 	@Override

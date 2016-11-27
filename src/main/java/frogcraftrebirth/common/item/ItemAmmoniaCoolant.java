@@ -82,7 +82,7 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 			heat = 0;
 		}
 		
-		yourStack.setItemDamage(this.getMaxDamage() * coolantHeat / this.heatStorage );
+		yourStack.setItemDamage(this.getMaxDamage(yourStack) * coolantHeat / this.heatStorage );
 		yourStack.getTagCompound().setInteger("heat", coolantHeat);
 		return heat;
 	}

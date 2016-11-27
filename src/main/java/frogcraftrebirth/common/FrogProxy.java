@@ -1,13 +1,8 @@
 package frogcraftrebirth.common;
 
-import java.util.Map.Entry;
-
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
-import frogcraftrebirth.common.compat.gregtech.CompatGregTech;
-import frogcraftrebirth.common.compat.techreborn.CompatTechReborn;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
@@ -44,17 +39,6 @@ public class FrogProxy {
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 3);
 		RegFrogAchievements.init();
-		if (Loader.isModLoaded("techreborn")) {
-			try {
-				Class.forName("frogcraftrebirth.common.compat.techreborn.CompatTechReborn").getDeclaredMethod("preInit").invoke(null);
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
-			FrogAPI.registerFrogCompatModule("techreborn", new CompatTechReborn());
-		}
-		if (Loader.isModLoaded("gregtech")) {
-			FrogAPI.registerFrogCompatModule("gregtech", new CompatGregTech());
-		}
 	}
 
 	public void init(FMLInitializationEvent event) {
@@ -76,12 +60,12 @@ public class FrogProxy {
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
-		for (Entry<String, ICompatModuleFrog> module : FrogAPI.COMPATS.entrySet()) {
+		FrogAPI.COMPATS.entrySet().forEach(module -> {
 			if (Loader.isModLoaded(module.getKey()))
 				module.getValue().init();
 			else
 				FrogAPI.FROG_LOG.info("The compat module '%s' is not loaded because the mod is not present. It may be a typo, but who knows?", module.getKey());
-		}
+		});
 	}
 
 }

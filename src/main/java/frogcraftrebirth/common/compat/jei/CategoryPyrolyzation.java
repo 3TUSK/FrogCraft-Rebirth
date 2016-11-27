@@ -8,6 +8,8 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
+import javax.annotation.Nullable;
+
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -55,17 +57,23 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 	public IDrawable getBackground() {
 		return background;
 	}
+	
+	@Override
+	@Nullable
+	public IDrawable getIcon() {
+		return null; //Delegate to JEI
+	}
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
 		fireOverlay.draw(minecraft, 24, 68);
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft) {
 		progressBar.draw(minecraft, 45, 47);
 		electricBar.draw(minecraft, 81, 75);
 	}
+
+	@Deprecated
+	@Override
+	public void drawAnimations(Minecraft minecraft) {}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper) {

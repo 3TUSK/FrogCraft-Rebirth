@@ -56,7 +56,7 @@ public class FrogEventListener {
 			while (iterator.hasNext()) {
 				EntityItem item = iterator.next();
 				if (RAND.nextInt(10) == 0) {
-					EntityItem replacement = new EntityItem(item.worldObj, item.posX, item.posY, item.posZ, new ItemStack(FrogItems.tiberium, RAND.nextInt(3), item.getEntityItem().stackSize));
+					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(FrogItems.tiberium, RAND.nextInt(3), item.getEntityItem().stackSize));
 					replacement.motionX = item.motionX;
 					replacement.motionY = item.motionY;
 					replacement.motionZ = item.motionZ;

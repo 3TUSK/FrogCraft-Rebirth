@@ -43,7 +43,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	
 	@Override
 	public void invalidate() {
-		if (!worldObj.isRemote && isInENet) {
+		if (!getWorld().isRemote && isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
 			isInENet = false;
 		}
@@ -57,7 +57,7 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	
 	@Override
 	public void update() {
-		if (worldObj.isRemote)
+		if (getWorld().isRemote)
 			return;	
 		if (!isInENet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
@@ -76,11 +76,11 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 			tier = 1;
 		}
 		//Check solar upgrade, if pass, generate energy from sunlight
-		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && worldObj.isDaytime() && worldObj.canBlockSeeSky(getPos())) {
+		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && getWorld().isDaytime() && getWorld().canBlockSeeSky(getPos())) {
 			energy += 1;
 		}
 		// For each tick, there is 10% probability that overflowed energy disappears
-		if (energy > energyMax && worldObj.rand.nextInt(10) == 1)
+		if (energy > energyMax && getWorld().rand.nextInt(10) == 1)
 			energy = energyMax;
 		//Extract energy from charge-in slot
 		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {

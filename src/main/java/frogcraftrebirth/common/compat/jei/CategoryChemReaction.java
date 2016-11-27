@@ -10,6 +10,8 @@ package frogcraftrebirth.common.compat.jei;
 
 import java.util.List;
 
+import javax.annotation.Nullable;
+
 import frogcraftrebirth.api.OreStack;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -54,17 +56,22 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 	public IDrawable getBackground() {
 		return background;
 	}
+	
+	@Override
+	@Nullable
+	public IDrawable getIcon() {
+		return null; //Delegate to JEI
+	}
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
-		
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft) {
 		progressBar.draw(minecraft, 73, 58);
 		chargeBar.draw(minecraft, 148, 41);
 	}
+
+	@Deprecated //As deprecated in JEI
+	@Override
+	public void drawAnimations(Minecraft minecraft) {}
 
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, RecipeChemReaction recipeWrapper) {

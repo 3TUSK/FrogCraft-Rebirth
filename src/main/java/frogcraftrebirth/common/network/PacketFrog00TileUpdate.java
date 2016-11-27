@@ -39,7 +39,7 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 	@Override
 	public void readData(DataInputStream input) throws IOException {
 		BlockPos aPos = new BlockPos(input.readInt(), input.readInt(), input.readInt());
-		TileEntity tile = Minecraft.getMinecraft().theWorld.getTileEntity(aPos);
+		TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(aPos);
 		
 		if (tile instanceof IFrogNetworkObject)
 			((IFrogNetworkObject) tile).readPacketData(input);

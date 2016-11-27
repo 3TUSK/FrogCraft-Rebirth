@@ -1,10 +1,7 @@
 package frogcraftrebirth.api;
 
-import gregtech.api.util.GT_Recipe;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
@@ -63,8 +60,6 @@ public final class FrogAPI {
 	public static IRecipeManager<ICondenseTowerRecipe> managerCT;
 	@Nonnull
 	public static IRecipeManager<IPyrolyzerRecipe> managerPyrolyzer;
-
-	public static final GT_Recipe.GT_Recipe_Map sPneumaticImplosionRecipes = new GT_Recipe.GT_Recipe_Map(new HashSet<GT_Recipe>(50), "fcr.recipe.pneumaticcompressor", "Pneumatic Compressor", null, "gregtech:textures/gui/basicmachines/Default", 1, 1, 1, 0, 1, "", 1, "", true, true);
 
 	/**
 	 * @param modid

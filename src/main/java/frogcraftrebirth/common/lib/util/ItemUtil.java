@@ -20,6 +20,15 @@ public final class ItemUtil {
 	public static final Random RAND = new Random();
 	
 	/**
+	 * For 1.10 to 1.11 migration
+	 * @param stack
+	 * @return True if the stack is safe for manipulation
+	 */
+	public static boolean isStackValid(ItemStack stack) {
+		return stack != null;
+	}
+	
+	/**
 	 * Identical to {@link InventoryHelper#dropInventoryItems}, except this one is designed for {@link IItemHandler}.
 	 * @param worldIn The world that block is in
 	 * @param pos The position of block
@@ -30,7 +39,7 @@ public final class ItemUtil {
 			final int slots = invSingle.getSlots();
 			for (int index = 0; index < slots; index++) {
 				ItemStack stack = invSingle.getStackInSlot(index);
-				if (stack != null)
+				if (isStackValid(stack))
 					dropItemStackAsEntityInsanely(worldIn, pos, stack);
 			}
 		}
@@ -47,7 +56,7 @@ public final class ItemUtil {
 		entityItem.motionX = RAND.nextGaussian() * 0.05D;
 		entityItem.motionY = RAND.nextGaussian() * 0.05D + 0.2D;
 		entityItem.motionZ = RAND.nextGaussian() * 0.05D;
-		toDrop.stackSize = 0;
+		toDrop = null;
 		worldIn.spawnEntityInWorld(entityItem);
 	}
 	
@@ -80,9 +89,7 @@ public final class ItemUtil {
 					entryArray.addAll(Arrays.asList(OreDictionary.getOreName(id)));
 				}
 				ArrayList<ItemStack> stackArray = new ArrayList<ItemStack>();
-				for (String entry : entryArray) {
-					stackArray.addAll(OreDictionary.getOres(entry));
-				}
+				entryArray.forEach(entry -> stackArray.addAll(OreDictionary.getOres(entry)));
 				for (ItemStack examining : stackArray) {
 					if (OreDictionary.itemMatches(examining, stack, true)) {
 						return true;

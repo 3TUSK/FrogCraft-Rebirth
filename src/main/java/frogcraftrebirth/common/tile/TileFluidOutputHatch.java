@@ -30,7 +30,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	@Override
 	public void update() {
-		if (!worldObj.isRemote) {
+		if (!getWorld().isRemote) {
 			if (tank.getFluidAmount() != 0 && inv.getStackInSlot(0) != null) {
 				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
 					ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
@@ -38,7 +38,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 						inv.extractItem(0, 1, false);
 						ItemStack remainder = inv.insertItem(1, result, false);
 						if (remainder != null && remainder.stackSize > 0)
-							ItemUtil.dropItemStackAsEntityInsanely(worldObj, getPos(), remainder);
+							ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 					}
 				}
 			} 
@@ -99,7 +99,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currectFacing = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
 			return currectFacing == facing;
 		}
 		
@@ -110,7 +110,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currectFacing = worldObj.getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
 			return currectFacing == facing ? (T)new FluidHandlerOutputWrapper(tank) : super.getCapability(capability, currectFacing);
 		}
 			

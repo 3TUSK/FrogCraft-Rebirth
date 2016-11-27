@@ -17,6 +17,7 @@ public interface IPersonal {
 
 	boolean match(UUID beingChecked);
 
+	@Deprecated
 	String getWaringInfo(EntityPlayer player);
 
 }

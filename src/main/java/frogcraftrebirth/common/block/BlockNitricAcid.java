@@ -17,7 +17,7 @@ import net.minecraftforge.fluids.Fluid;
 public class BlockNitricAcid extends BlockFluidFrog {
 	
 	public BlockNitricAcid(Fluid fluid) {
-		super(fluid, "fluid.nitricAcid", Material.WATER);
+		super(fluid, "fluid.nitric_acid", Material.WATER);
 		this.setUnlocalizedName("nitricAcid");
 		this.setDensity(fluid.getDensity());
 		this.setQuantaPerBlock(8);

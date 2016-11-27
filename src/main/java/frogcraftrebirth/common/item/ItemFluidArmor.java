@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.item;
 
-import java.util.Collection;
 import java.util.List;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -13,7 +12,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.DamageSource;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ISpecialArmor;
@@ -58,10 +56,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, ISpecialAr
 		
 		FluidStack currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
 		if (currentFluid != null) {
-			Collection<PotionEffect> effectList = FluidArmorPotionEffectManager.INSTANCE.getEffect(currentFluid.getFluid());
-			for (PotionEffect effect : effectList) {
-				player.addPotionEffect(effect);
-			}
+			FluidArmorPotionEffectManager.INSTANCE.getEffect(currentFluid.getFluid()).forEach(effect -> player.addPotionEffect(effect));
 		}
 	}
 	

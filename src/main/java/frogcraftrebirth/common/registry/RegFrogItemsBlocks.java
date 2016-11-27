@@ -9,7 +9,6 @@ import frogcraftrebirth.common.block.BlockHSU;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.block.BlockTiberium;
-import frogcraftrebirth.common.compat.techreborn.TilePneumaticCompressor;
 import frogcraftrebirth.common.item.ItemAmmoniaCoolant;
 import frogcraftrebirth.common.item.ItemDecayBattery;
 import frogcraftrebirth.common.item.ItemFluidArmor;
@@ -124,7 +123,5 @@ public class RegFrogItemsBlocks {
 		GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraft_thermal_cracker");
 		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraft_advanced_chemical_reactor");
 		GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraft_liquefier");
-		
-		GameRegistry.registerTileEntity(TilePneumaticCompressor.class, "frogcraft_pneumatic_compressor");
 	}
 }

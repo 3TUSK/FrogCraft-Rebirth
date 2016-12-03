@@ -5,7 +5,6 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.util.IStringSerializable;
 
 public class BlockFrogOre extends BlockFrog {
 	
@@ -55,13 +54,8 @@ public class BlockFrogOre extends BlockFrog {
 		return this.blockState.getBaseState().withProperty(TYPE, Type.values()[meta]);
 	}
 	
-	public static enum Type implements IStringSerializable {
+	public static enum Type implements IStringSerializableEnumImpl {
 		CARNALLITE, DEWALQUITE, FLUORAPATITE;
-
-		@Override
-		public String getName() {
-			return this.name().toLowerCase();
-		}
 	}
 
 }

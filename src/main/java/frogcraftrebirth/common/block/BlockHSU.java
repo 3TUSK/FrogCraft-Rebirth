@@ -15,7 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -71,13 +70,8 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta % 2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta % 6]);
 	}
 
-	public static enum Level implements IStringSerializable {
+	public static enum Level implements IStringSerializableEnumImpl {
 		NORMAL, ULTRA;
-
-		@Override
-		public String getName() {
-			return this.name().toLowerCase(java.util.Locale.ENGLISH);
-		}
 	}
 
 }

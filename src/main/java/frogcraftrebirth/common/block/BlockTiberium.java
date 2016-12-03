@@ -10,7 +10,6 @@ package frogcraftrebirth.common.block;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Locale;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -25,7 +24,6 @@ import net.minecraft.entity.EntityLiving;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.Explosion;
@@ -135,13 +133,8 @@ public class BlockTiberium extends BlockFrog {
 		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), strength, smoke);
 	}
 
-	public static enum Color implements IStringSerializable {
+	public static enum Color implements IStringSerializableEnumImpl {
 		RED, BLUE, GREEN;
-
-		@Override
-		public String getName() {
-			return this.name().toLowerCase(Locale.ENGLISH);
-		}
 	}
 
 }

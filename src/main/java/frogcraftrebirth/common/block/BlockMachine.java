@@ -19,7 +19,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -140,12 +139,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(facing)).withProperty(TYPE, Type.values()[type]);
 	}
 	
-	public static enum Type implements IStringSerializable {
+	public static enum Type implements IStringSerializableEnumImpl {
 		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUEFIER;
-
-		@Override
-		public String getName() {
-			return this.name().toLowerCase(java.util.Locale.ENGLISH);
-		}
 	}
 }

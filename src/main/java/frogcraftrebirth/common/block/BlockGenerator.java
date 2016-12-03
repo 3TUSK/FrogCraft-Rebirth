@@ -16,7 +16,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -86,13 +85,8 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, enumfacing);
 	}
 	
-	public static enum Type implements IStringSerializable {
+	public static enum Type implements IStringSerializableEnumImpl {
 		COMBUSTION/*, ???*/;
-
-		@Override
-		public String getName() {
-			return this.name().toLowerCase(java.util.Locale.ENGLISH);
-		}
 	}
 
 }

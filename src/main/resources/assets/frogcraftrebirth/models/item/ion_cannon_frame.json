@@ -1,6 +1,6 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "frogcraftrebirth:items/Railgun_Core"
+		"layer0": "frogcraftrebirth:items/ion_cannon_frame"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/ingot/Briquette"
+        "layer0": "frogcraftrebirth:items/ingot/briquette"
     }
 }

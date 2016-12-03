@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/reactionModule/V2O5Module"
+        "layer0": "frogcraftrebirth:items/module/sulfuric_acid"
     }
 }

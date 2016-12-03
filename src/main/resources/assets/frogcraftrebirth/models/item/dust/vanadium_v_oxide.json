@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "frogcraftrebirth:items/dust/V2O5"
+		"layer0": "frogcraftrebirth:items/dust/vanadium_v_oxide"
 	}
 }

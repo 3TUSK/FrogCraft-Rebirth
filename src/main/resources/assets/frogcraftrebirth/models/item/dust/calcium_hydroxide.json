@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "frogcraftrebirth:items/dust/CaOH2"
+		"layer0": "frogcraftrebirth:items/dust/calcium_hydroxide"
 	}
 }

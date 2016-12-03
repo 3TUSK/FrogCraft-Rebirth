@@ -13,6 +13,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
 
 public class FrogFluid extends Fluid {
+	
+	public FrogFluid(String name, int density, int temperature, boolean gaseous, EnumRarity rarity) {
+		this(name, name, name, density, temperature, gaseous, rarity);
+	}
 
 	public FrogFluid(String name, String resLoc, int density, int temperature, boolean gaseous, EnumRarity rarity) {
 		this(name, resLoc, resLoc, density, temperature, gaseous, rarity);

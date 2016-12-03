@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "frogcraftrebirth:items/dust/SmallPileCarnallite"
+		"layer0": "frogcraftrebirth:items/dust/small_carnallite"
 	}
 }

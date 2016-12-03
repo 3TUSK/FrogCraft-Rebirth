@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/UHSU_Side",
-		"down": "frogcraftrebirth:blocks/UHSU_Side",
-		"up": "frogcraftrebirth:blocks/UHSU_Top",
-		"north": "frogcraftrebirth:blocks/UHSU_Front",
-		"east": "frogcraftrebirth:blocks/UHSU_Side",
-		"south": "frogcraftrebirth:blocks/UHSU_Side",
-		"west": "frogcraftrebirth:blocks/UHSU_Side"
+		"particle": "frogcraftrebirth:blocks/uhsu_side",
+		"down": "frogcraftrebirth:blocks/uhsu_side",
+		"up": "frogcraftrebirth:blocks/uhsu_top",
+		"north": "frogcraftrebirth:blocks/uhsu_front",
+		"east": "frogcraftrebirth:blocks/uhsu_side",
+		"south": "frogcraftrebirth:blocks/uhsu_side",
+		"west": "frogcraftrebirth:blocks/uhsu_side"
 	}
 }

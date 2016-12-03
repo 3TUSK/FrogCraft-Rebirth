@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/FluidArmor_Icon"
+        "layer0": "frogcraftrebirth:items/fluid_armor_icon"
     }
 }

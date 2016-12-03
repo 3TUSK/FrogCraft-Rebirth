@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/BatteryPu"
+        "layer0": "frogcraftrebirth:items/decay_battery_plutoium"
     }
 }

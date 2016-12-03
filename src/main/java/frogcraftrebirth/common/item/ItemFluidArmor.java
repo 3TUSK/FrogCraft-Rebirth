@@ -42,7 +42,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, ISpecialAr
 	
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
-		return "frogcraftrebirth:textures/items/FluidArmor.png";
+		return "frogcraftrebirth:textures/items/fluid_armor.png";
 	}
 
 	@Override

@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front",
+		"particle": "frogcraftrebirth:blocks/machines/pyrolyzer_front",
 		"down": "ic2:blocks/resource/advanced_machine",
 		"up": "ic2:blocks/resource/advanced_machine",
-		"north": "frogcraftrebirth:blocks/machines/Pyrolyzer_Front_Active",
-		"east": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side_Active",
-		"south": "frogcraftrebirth:blocks/machines/Pyrolyzer_Back",
-		"west": "frogcraftrebirth:blocks/machines/Pyrolyzer_Side_Active"
+		"north": "frogcraftrebirth:blocks/machines/pyrolyzer_front_active",
+		"east": "frogcraftrebirth:blocks/machines/pyrolyzer_side_active",
+		"south": "frogcraftrebirth:blocks/machines/pyrolyzer_back",
+		"west": "frogcraftrebirth:blocks/machines/pyrolyzer_side_active"
 	}
 }

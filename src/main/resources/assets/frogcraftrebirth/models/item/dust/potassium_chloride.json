@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"textures": {
-		"layer0": "frogcraftrebirth:items/dust/KCl"
+		"layer0": "frogcraftrebirth:items/dust/potassium_chloride"
 	}
 }

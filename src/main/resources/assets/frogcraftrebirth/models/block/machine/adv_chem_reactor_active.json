@@ -4,7 +4,7 @@
 		"particle": "ic2:blocks/resource/advanced_machine",
 		"down": "ic2:blocks/resource/advanced_machine",
 		"up": "ic2:blocks/resource/advanced_machine",
-		"north": "frogcraftrebirth:blocks/machines/AdvanceChemicalReactor_Front_Active",
+		"north": "frogcraftrebirth:blocks/machines/adv_chem_reactor_front_active",
 		"east": "ic2:blocks/resource/advanced_machine",
 		"south": "ic2:blocks/resource/advanced_machine",
 		"west": "ic2:blocks/resource/advanced_machine"

@@ -10,7 +10,7 @@
 		},
 		"working": {
 			"false": { "model": "frogcraftrebirth:machine/air_pump" }, 
-			"true": { "model": "frogcraftrebirth:machine/air_pump_active" }
+			"true": { "model": "frogcraftrebirth:machine/air_pump" }
 		}
 	}
 }

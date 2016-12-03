@@ -47,7 +47,7 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogItems.itemIngot, 2, "natural_gas_hydrate");
 		RegHelper.registerModel(FrogItems.itemIngot, 3, "briquette");
 		RegHelper.registerModel(FrogItems.itemIngot, 4, "shattered_coal_coke");
-		final String[] damnitSubNames = {"aluminium_oxide", "calcium_fluoride", "calcium_oxide", "calcium_hydroxide", "carnallite", "calcium_silicate", "dewalquite", "fluorapatite", "potassium_chloride", "magnalium", "magnesium_bromide", "ammoinum_nitrate", "titanium_iv_oxide", "urea", "vanadium_v_oxide"};
+		final String[] damnitSubNames = {"aluminium_oxide", "calcium_fluoride", "calcium_oxide", "calcium_hydroxide", "carnallite", "calcium_silicate", "dewalquite", "fluorapatite", "potassium_chloride", "magnalium", "magnesium_bromide", "ammonium_nitrate", "titanium_iv_oxide", "urea", "vanadium_v_oxide"};
 		//{"Al2O3", "CaF2", "CaO", "CaOH2", "carnallite", "CaSiO3", "dewalquite", "fluorapatite", "KCl", "magnalium", "MgBr2", "NH4NO3", "TiO2", "urea", "V2O5"};
 		for (int index = 0; index < damnitSubNames.length; index++) {
 			RegHelper.registerModel(FrogItems.itemDust, index, "dust/" + damnitSubNames[index]);

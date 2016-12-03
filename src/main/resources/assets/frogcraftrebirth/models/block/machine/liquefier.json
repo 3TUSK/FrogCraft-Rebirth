@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/machines/Liquefier",
+		"particle": "frogcraftrebirth:blocks/machines/liquefier",
 		"down": "ic2:blocks/resource/advanced_machine",
 		"up": "ic2:blocks/resource/advanced_machine",
-		"north": "frogcraftrebirth:blocks/machines/Liquefier",
-		"east": "frogcraftrebirth:blocks/machines/Liquefier",
-		"south": "frogcraftrebirth:blocks/machines/Liquefier",
-		"west": "frogcraftrebirth:blocks/machines/Liquefier"
+		"north": "frogcraftrebirth:blocks/machines/liquefier",
+		"east": "frogcraftrebirth:blocks/machines/liquefier",
+		"south": "frogcraftrebirth:blocks/machines/liquefier",
+		"west": "frogcraftrebirth:blocks/machines/liquefier"
 	}
 }

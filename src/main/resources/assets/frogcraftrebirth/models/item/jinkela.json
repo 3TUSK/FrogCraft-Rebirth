@@ -1,6 +1,6 @@
 {
     "parent": "item/handheld",
     "textures": {
-        "layer0": "frogcraftrebirth:items/GoldClod"
+        "layer0": "frogcraftrebirth:items/jinkela"
     }
 }

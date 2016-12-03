@@ -19,15 +19,15 @@
 		},
 		"carbon_dioxide": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "carbondioxide" }
+			"custom": { "fluid": "carbon_dioxide" }
 		},
 		"carbon_oxide": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "carbonoxide" }
+			"custom": { "fluid": "carbon_oxide" }
 		},
 		"coal_tar": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "coaltar" }
+			"custom": { "fluid": "coal_tar" }
 		},
 		"fluorine": {
 			"model": "forge:fluid",
@@ -35,11 +35,11 @@
 		},
 		"nitric_acid": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "nitricacid" }
+			"custom": { "fluid": "nitric_acid" }
 		},
 		"nitrogen_oxide": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "nitrogenoxide" }
+			"custom": { "fluid": "nitrogen_oxide" }
 		},
 		"oxygen": {
 			"model": "forge:fluid",
@@ -47,11 +47,11 @@
 		},
 		"sulfur_dioxide": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "sulfurdioxide" }
+			"custom": { "fluid": "sulfur_dioxide" }
 		},
 		"sulfur_trioxide": {
 			"model": "forge:fluid",
-			"custom": { "fluid": "sulfurtrioxide" }
+			"custom": { "fluid": "sulfur_trioxide" }
 		}
 	}
 }

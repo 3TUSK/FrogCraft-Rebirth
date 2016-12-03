@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/machines/AirPump_Front",
-		"down": "frogcraftrebirth:blocks/machines/AirPump_Top",
-		"up": "frogcraftrebirth:blocks/machines/AirPump_Top",
-		"north": "frogcraftrebirth:blocks/machines/AirPump_Front",
-		"east": "frogcraftrebirth:blocks/machines/AirPump_Side",
-		"south": "frogcraftrebirth:blocks/machines/AirPump_Back",
-		"west": "frogcraftrebirth:blocks/machines/AirPump_Side"
+		"particle": "frogcraftrebirth:blocks/machines/air_pump_front",
+		"down": "frogcraftrebirth:blocks/machines/air_pump_top",
+		"up": "frogcraftrebirth:blocks/machines/air_pump_top",
+		"north": "frogcraftrebirth:blocks/machines/air_pump_front",
+		"east": "frogcraftrebirth:blocks/machines/air_pump_side",
+		"south": "frogcraftrebirth:blocks/machines/air_pump_back",
+		"west": "frogcraftrebirth:blocks/machines/air_pump_side"
 	}
 }

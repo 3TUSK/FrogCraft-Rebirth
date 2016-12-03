@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/mps/MobilePS_Side",
-		"up": "frogcraftrebirth:blocks/mps/MobilePS_Top",
-		"down": "frogcraftrebirth:blocks/mps/MobilePS_Bottom",
-		"north": "frogcraftrebirth:blocks/mps/MobilePS_Side",
-		"east": "frogcraftrebirth:blocks/mps/MobilePS_Side",
-		"south": "frogcraftrebirth:blocks/mps/MobilePS_Side",
-		"west": "frogcraftrebirth:blocks/mps/MobilePS_Side"
+		"particle": "frogcraftrebirth:blocks/mps/side",
+		"up": "frogcraftrebirth:blocks/mps/top",
+		"down": "frogcraftrebirth:blocks/mps/bottom",
+		"north": "frogcraftrebirth:blocks/mps/side",
+		"east": "frogcraftrebirth:blocks/mps/side",
+		"south": "frogcraftrebirth:blocks/mps/side",
+		"west": "frogcraftrebirth:blocks/mps/side"
 	}
 }

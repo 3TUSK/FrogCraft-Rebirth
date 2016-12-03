@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/CombustionFurnace_Front",
+		"particle": "frogcraftrebirth:blocks/combustion_furnace_front",
 		"down": "ic2:blocks/resource/advanced_machine",
 		"up": "ic2:blocks/resource/advanced_machine",
-		"north": "frogcraftrebirth:blocks/CombustionFurnace_Front",
-		"east": "frogcraftrebirth:blocks/CombustionFurnace_Side",
-		"south": "frogcraftrebirth:blocks/CombustionFurnace_Back",
-		"west": "frogcraftrebirth:blocks/CombustionFurnace_Side"
+		"north": "frogcraftrebirth:blocks/combustion_furnace_front",
+		"east": "frogcraftrebirth:blocks/combustion_furnace_side",
+		"south": "frogcraftrebirth:blocks/combustion_furnace_back",
+		"west": "frogcraftrebirth:blocks/combustion_furnace_side"
 	}
 }

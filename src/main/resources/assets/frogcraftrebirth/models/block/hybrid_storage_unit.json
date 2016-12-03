@@ -1,12 +1,12 @@
 {
 	"parent": "block/cube",
 	"textures": {
-		"particle": "frogcraftrebirth:blocks/HSU_Side",
-		"down": "frogcraftrebirth:blocks/HSU_Side",
-		"up": "frogcraftrebirth:blocks/HSU_Top",
-		"north": "frogcraftrebirth:blocks/HSU_Front",
-		"east": "frogcraftrebirth:blocks/HSU_Side",
-		"south": "frogcraftrebirth:blocks/HSU_Side",
-		"west": "frogcraftrebirth:blocks/HSU_Side"
+		"particle": "frogcraftrebirth:blocks/hsu_side",
+		"down": "frogcraftrebirth:blocks/hsu_side",
+		"up": "frogcraftrebirth:blocks/hsu_top",
+		"north": "frogcraftrebirth:blocks/hsu_front",
+		"east": "frogcraftrebirth:blocks/hsu_side",
+		"south": "frogcraftrebirth:blocks/hsu_side",
+		"west": "frogcraftrebirth:blocks/hsu_side"
 	}
 }

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/Coolant_NH3_180K"
+        "layer0": "frogcraftrebirth:items/ammonia_coolant_180k"
     }
 }

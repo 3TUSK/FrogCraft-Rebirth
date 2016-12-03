@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/reactionModule/AmmoniaModule"
+        "layer0": "frogcraftrebirth:items/module/ammonia"
     }
 }

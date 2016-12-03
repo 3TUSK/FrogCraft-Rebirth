@@ -1,5 +1,5 @@
 {
-	"parent": "frogcraftrebirth:block/CondenseTower_Core",
+	"parent": "frogcraftrebirth:block/condense_tower_core",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/condensetower/Core_Side",
 		"down": "frogcraftrebirth:blocks/condensetower/Cylinder_Top",

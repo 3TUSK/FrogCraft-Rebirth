@@ -9,8 +9,8 @@
 			"west": { "y": 270, "uvlock": true }
 		},
 		"working": {
-			"false": { "model": "frogcraftrebirth:advanced_chemical_reactor" }, 
-			"true": { "model": "frogcraftrebirth:advanced_chemical_reactor_active" }
+			"false": { "model": "frogcraftrebirth:machine/adv_chem_reactor" }, 
+			"true": { "model": "frogcraftrebirth:machine/adv_chem_reactor_active" }
 		}
 	}
 }

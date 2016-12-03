@@ -1,5 +1,5 @@
 {
-	"parent": "frogcraftrebirth:block/CombustionGenerator",
+	"parent": "frogcraftrebirth:block/combustion_furnace",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/CombustionFurnace_Front",
 		"down": "ic2:blocks/resource/advanced_machine",

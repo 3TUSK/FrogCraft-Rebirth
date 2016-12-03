@@ -1,5 +1,5 @@
 {
-	"parent": "frogcraftrebirth:block/Liquefier",
+	"parent": "frogcraftrebirth:block/machine/liquefier",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/machines/Liquefier",
 		"down": "ic2:blocks/resource/advanced_machine",

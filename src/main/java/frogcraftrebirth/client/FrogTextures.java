@@ -79,11 +79,12 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogBlocks.condenseTowerPart, 2, "condensetower/outlet");
 		
 		ModelLoader.setCustomStateMapper(FrogBlocks.machines, new StateMap.Builder().withName(BlockMachine.TYPE).build());
-		RegHelper.registerModel(FrogBlocks.machines, 0, "advanced_chemical_reactor");
-		RegHelper.registerModel(FrogBlocks.machines, 1, "air_pump");
-		RegHelper.registerModel(FrogBlocks.machines, 2, "pyrolyzer");
-		RegHelper.registerModel(FrogBlocks.machines, 3, "liquefier");
+		RegHelper.registerModel(FrogBlocks.machines, 0, "machine/advanced_chemical_reactor");
+		RegHelper.registerModel(FrogBlocks.machines, 1, "machine/air_pump");
+		RegHelper.registerModel(FrogBlocks.machines, 2, "machine/pyrolyzer");
+		RegHelper.registerModel(FrogBlocks.machines, 3, "machine/liquefier");
 		
+		ModelLoader.setCustomStateMapper(FrogBlocks.generators, new StateMap.Builder().build());
 		RegHelper.registerModel(FrogBlocks.generators, "combustion_furnace");
 		
 		RegHelper.registerModel(FrogBlocks.hybridStorageUnit, 0, "hybrid_storage_unit");

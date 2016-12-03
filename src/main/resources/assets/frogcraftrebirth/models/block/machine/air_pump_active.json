@@ -1,5 +1,5 @@
 {
-	"parent": "frogcraftrebirth:block/AirPump",
+	"parent": "frogcraftrebirth:block/machine/air_pump",
 	"textures": {
 		"particle": "frogcraftrebirth:blocks/machines/AirPump_Front",
 		"down": "frogcraftrebirth:blocks/machines/AirPump_Top",

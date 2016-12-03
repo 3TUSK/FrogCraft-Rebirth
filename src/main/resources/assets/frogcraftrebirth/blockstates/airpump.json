@@ -9,8 +9,8 @@
 			"west": { "y": 270, "uvlock": true }
 		},
 		"working": {
-			"false": { "model": "frogcraftrebirth:air_pump" }, 
-			"true": { "model": "frogcraftrebirth:air_pump_active" }
+			"false": { "model": "frogcraftrebirth:machine/air_pump" }, 
+			"true": { "model": "frogcraftrebirth:machine/air_pump_active" }
 		}
 	}
 }

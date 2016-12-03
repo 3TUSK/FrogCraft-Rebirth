@@ -1,5 +1,5 @@
 {
-	"parent": "frogcraftrebirth:block/AdvancedChemicalReactor",
+	"parent": "frogcraftrebirth:block/machine/adv_chem_reactor",
 	"textures": {
 		"particle": "ic2:blocks/resource/advanced_machine",
 		"down": "ic2:blocks/resource/advanced_machine",

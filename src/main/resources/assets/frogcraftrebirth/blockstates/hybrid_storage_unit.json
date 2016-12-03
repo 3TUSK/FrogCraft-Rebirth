@@ -1,7 +1,7 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"level": {
+		"variant": {
 			"normal": { "model": "frogcraftrebirth:hybrid_storage_unit" },
 			"ultra": { "model": "frogcraftrebirth:ultra_hybrid_storage_unit" }
 		},

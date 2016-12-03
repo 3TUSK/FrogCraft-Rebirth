@@ -3,7 +3,7 @@
 	"variants": {
 		"normal": [{}],
 		"inventory": [{}],
-		"color": {
+		"variant": {
 			"red": { "model": "frogcraftrebirth:tiberium_crystal_red.obj" },
 			"blue": { "model": "frogcraftrebirth:tiberium_crystal_blue.obj" },
 			"green": { "model": "frogcraftrebirth:tiberium_crystal_green.obj" }

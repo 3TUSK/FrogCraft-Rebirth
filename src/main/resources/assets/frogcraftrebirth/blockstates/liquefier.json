@@ -9,8 +9,8 @@
 			"west": { "y": 270, "uvlock": true }
 		},
 		"working": {
-			"false": { "model": "frogcraftrebirth:liquefier" }, 
-			"true": { "model": "frogcraftrebirth:liquefier_active" }
+			"false": { "model": "frogcraftrebirth:machine/liquefier" }, 
+			"true": { "model": "frogcraftrebirth:machine/liquefier_active" }
 		}
 	}
 }

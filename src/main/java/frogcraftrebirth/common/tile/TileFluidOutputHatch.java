@@ -73,17 +73,13 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	}
 	
 	@Override
-	public void onConstruct(ICondenseTowerCore core) {
-		this.mainBlock = core;
-	}
-
-	@Override
-	public void onDestruct(ICondenseTowerCore core) {
-		this.mainBlock = null;
-	}
-	
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;
+	}
+	
+	@Override
+	public void setMainBlock(ICondenseTowerCore core) {
+		this.mainBlock = core;
 	}
 
 	@Override

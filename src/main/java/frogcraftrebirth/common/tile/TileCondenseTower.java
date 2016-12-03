@@ -49,7 +49,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public boolean isCompleted() {
-		return structures.size() > 2 && outputs.size() > 0;
+		return structures.size() > 1 && outputs.size() > 0;
 	}
 	
 	@Override
@@ -76,7 +76,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		
 		if (!this.isCompleted()) {
-			onDestruct(this);
 			return;
 		}
 		
@@ -106,11 +105,9 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		
 		if (process == processMax) {
 			this.tank.drain(recipe.getInput().amount, true);
-			Set<FluidStack> outputs = recipe.getOutput();
-			outputs.forEach(fluid -> this.outputs.forEach(output -> {
+			recipe.getOutput().forEach(fluid -> this.outputs.forEach(output -> {
 					if (output.canInject(fluid)) {
 						output.inject(fluid.copy(), true);
-						return;
 					}
 			}));
 			process = 0;
@@ -130,10 +127,11 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public void onPartAttached(ICondenseTowerPart part) {
 		if (part instanceof ICondenseTowerOutputHatch) {
-			this.outputs.add((ICondenseTowerOutputHatch)part);
+			this.registerOutputHatch((ICondenseTowerOutputHatch)part);
 		} else {
-			this.structures.add(part);
+			this.registerSturcture(part);
 		}
+		part.setMainBlock(this);
 	}
 	
 	@Override
@@ -143,14 +141,9 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 	
 	@Override
-	public void onConstruct(ICondenseTowerCore core) {
-		
-	}
-	
-	@Override
-	public void onDestruct(ICondenseTowerCore core) {
-		outputs.forEach(output -> output.onDestruct(core));
-		structures.forEach(part -> part.onDestruct(core));
+	public void onDestruction() {
+		outputs.forEach(output -> output.setMainBlock(null));
+		structures.forEach(part -> part.setMainBlock(null));
 		this.outputs.clear();
 		this.structures.clear();
 	}

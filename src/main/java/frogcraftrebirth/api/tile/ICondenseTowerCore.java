@@ -16,8 +16,14 @@ public interface ICondenseTowerCore extends ICondenseTowerPart {
 	
 	void onPartRemoved(ICondenseTowerPart part);
 	
+	void onDestruction();
+	
 	default ICondenseTowerCore getMainBlock() {
 		return this;
+	}
+	
+	default void setMainBlock(ICondenseTowerCore core) {
+		// No operation
 	}
 	
 	@Override

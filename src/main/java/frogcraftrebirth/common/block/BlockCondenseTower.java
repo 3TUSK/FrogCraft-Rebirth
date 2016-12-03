@@ -74,12 +74,11 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		TileEntity tile = world.getTileEntity(pos);
-		TileEntity tileBelow = world.getTileEntity(pos);
+		if (tile instanceof ICondenseTowerCore)
+			return;
+		TileEntity tileBelow = world.getTileEntity(pos.down());
 		if (tile != null && tileBelow != null && tile instanceof ICondenseTowerPart && tileBelow instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)tile).onConstruct(((ICondenseTowerPart)tileBelow).getMainBlock());
-			if (tileBelow instanceof ICondenseTowerCore) {
-				((ICondenseTowerCore)tileBelow).onPartAttached((ICondenseTowerPart)tile);
-			}
+			((ICondenseTowerPart)tileBelow).getMainBlock().onPartAttached((ICondenseTowerPart)tile);
 		}
 	}
 
@@ -97,8 +96,11 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof ICondenseTowerPart)
-			((ICondenseTowerPart)tile).onDestruct(((ICondenseTowerPart)tile).getMainBlock());
+		if (tile instanceof ICondenseTowerCore)
+			((ICondenseTowerCore)tile).onDestruction();
+		else if (tile instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)tile).getMainBlock().onPartRemoved((ICondenseTowerPart)tile);
+		}
 		super.breakBlock(worldIn, pos, state);
 	}
 

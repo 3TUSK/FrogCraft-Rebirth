@@ -24,20 +24,15 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	public void behave() {
 		
 	}
-
-	@Override
-	public void onConstruct(ICondenseTowerCore core) {
-		this.mainBlock = core;
-	}
-
-	@Override
-	public void onDestruct(ICondenseTowerCore core) {
-		this.mainBlock = null;
-	}
 	
 	@Override
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;
+	}
+	
+	@Override
+	public void setMainBlock(ICondenseTowerCore core) {
+		this.mainBlock = core;
 	}
 	
 	@Override

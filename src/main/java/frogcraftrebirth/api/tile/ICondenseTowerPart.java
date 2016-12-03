@@ -8,6 +8,7 @@
  */
 package frogcraftrebirth.api.tile;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public interface ICondenseTowerPart {
@@ -17,9 +18,9 @@ public interface ICondenseTowerPart {
 	 */
 	void behave();
 	
-	void onConstruct(ICondenseTowerCore core);
+	void onConstruct(@Nonnull ICondenseTowerCore core);
 	
-	void onDestruct(@Nullable ICondenseTowerCore core);
+	void onDestruct(@Nonnull ICondenseTowerCore core);
 	
 	@Nullable
 	ICondenseTowerCore getMainBlock();

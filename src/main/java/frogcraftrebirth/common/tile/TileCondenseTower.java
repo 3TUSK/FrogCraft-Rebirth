@@ -17,7 +17,6 @@ import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
@@ -33,8 +32,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
-	boolean structureCompletedOnLastTick = false;
-	private boolean requireCleanCache = false;
 	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<ICondenseTowerOutputHatch>();
 	private Set<ICondenseTowerPart> structures = new HashSet<ICondenseTowerPart>();
 	private ICondenseTowerRecipe recipe;
@@ -51,39 +48,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 	
 	@Override
-	public boolean checkStructure() {
-		TileEntity tile;
-		tile = getWorld().getTileEntity(getPos().up(1));
-		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
-			((ICondenseTowerPart)tile).onConstruct(this);
-			this.registerSturcture((ICondenseTowerPart)tile);
-		} else {
-			return false;
-		}
-		tile = getWorld().getTileEntity(getPos().up(2));
-		if (tile instanceof ICondenseTowerPart && !((ICondenseTowerPart)tile).isFunctional()) {
-			((ICondenseTowerPart)tile).onConstruct(this);
-			this.registerSturcture((ICondenseTowerPart)tile);
-		} else {
-			return false;
-		}
-		for (int i = 3; i < 7; i++) {
-			tile = getWorld().getTileEntity(this.getPos().up(i));
-			if (tile instanceof ICondenseTowerOutputHatch) {
-				((ICondenseTowerOutputHatch)tile).onConstruct(this);
-				this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
-				continue;
-			} else
-				return false;
-		}
-		this.structureCompletedOnLastTick = true;
-		this.requireCleanCache = true;
-		return true;
-	}
-	
-	@Override
 	public boolean isCompleted() {
-		return this.structureCompletedOnLastTick;
+		return structures.size() > 2 && outputs.size() > 0;
 	}
 	
 	@Override
@@ -109,10 +75,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		
-		if (!structureCompletedOnLastTick) {
-			if (requireCleanCache)
-				onDestruct(this);
-			
+		if (!this.isCompleted()) {
+			onDestruct(this);
 			return;
 		}
 		
@@ -164,24 +128,31 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 	
 	@Override
+	public void onPartAttached(ICondenseTowerPart part) {
+		if (part instanceof ICondenseTowerOutputHatch) {
+			this.outputs.add((ICondenseTowerOutputHatch)part);
+		} else {
+			this.structures.add(part);
+		}
+	}
+	
+	@Override
+	public void onPartRemoved(ICondenseTowerPart part) {
+		this.outputs.remove(part); //Let's see if someone will let this mess up
+		this.structures.remove(part);
+	}
+	
+	@Override
 	public void onConstruct(ICondenseTowerCore core) {
 		
 	}
 	
 	@Override
 	public void onDestruct(ICondenseTowerCore core) {
-		if (requireCleanCache) {
-			outputs.forEach(output -> output.onDestruct(core));
-			structures.forEach(part -> part.onDestruct(core));
-			this.outputs.clear();
-			this.structures.clear();
-			requireCleanCache = false;
-		}
-	}
-
-	@Override
-	public ICondenseTowerCore getMainBlock() {
-		return this;
+		outputs.forEach(output -> output.onDestruct(core));
+		structures.forEach(part -> part.onDestruct(core));
+		this.outputs.clear();
+		this.structures.clear();
 	}
 
 	private boolean checkRecipe(ICondenseTowerRecipe aRecipe) {
@@ -207,7 +178,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
 		tank.readPacketData(input);
-		this.structureCompletedOnLastTick = input.readBoolean();
 		this.process = input.readInt();
 		this.processMax = input.readInt();
 		this.working = input.readBoolean();
@@ -217,7 +187,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
 		tank.writePacketData(output);
-		output.writeBoolean(structureCompletedOnLastTick);
 		output.writeInt(process);
 		output.writeInt(processMax);
 		output.writeBoolean(working);

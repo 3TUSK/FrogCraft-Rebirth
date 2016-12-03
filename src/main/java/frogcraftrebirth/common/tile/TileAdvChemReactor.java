@@ -92,7 +92,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 		
 		if (!working || recipe == null) {
 			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-			recipe = (IAdvChemRecRecipe)FrogAPI.managerACR.<ItemStack>getRecipe(inputs);
+			recipe = FrogAPI.managerACR.getRecipe(inputs);
 			
 			if (checkRecipe(recipe)) {
 				this.consumeIngredient(recipe.getInputs());

@@ -3,6 +3,7 @@ package frogcraftrebirth.common.block;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
+import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.IHasWork;
@@ -13,6 +14,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -66,6 +68,18 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
 		} else {
 			return state.withProperty(WORKING, false);
+		}
+	}
+	
+	@Override
+	public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		TileEntity tile = world.getTileEntity(pos);
+		TileEntity tileBelow = world.getTileEntity(pos);
+		if (tile != null && tileBelow != null && tile instanceof ICondenseTowerPart && tileBelow instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)tile).onConstruct(((ICondenseTowerPart)tileBelow).getMainBlock());
+			if (tileBelow instanceof ICondenseTowerCore) {
+				((ICondenseTowerCore)tileBelow).onPartAttached((ICondenseTowerPart)tile);
+			}
 		}
 	}
 

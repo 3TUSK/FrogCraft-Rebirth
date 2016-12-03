@@ -10,9 +10,15 @@ package frogcraftrebirth.api.tile;
 
 public interface ICondenseTowerCore extends ICondenseTowerPart {
 	
-	boolean checkStructure();
-	
 	boolean isCompleted();
+	
+	void onPartAttached(ICondenseTowerPart part);
+	
+	void onPartRemoved(ICondenseTowerPart part);
+	
+	default ICondenseTowerCore getMainBlock() {
+		return this;
+	}
 	
 	@Override
 	default boolean isFunctional() {

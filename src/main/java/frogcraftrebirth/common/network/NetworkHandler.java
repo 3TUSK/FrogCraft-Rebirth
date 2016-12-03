@@ -49,7 +49,7 @@ public class NetworkHandler {
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeDataClient(input, Minecraft.getMinecraft().player);
+		decodeDataClient(input, Minecraft.getMinecraft().thePlayer);
 	}
 	
 	@SideOnly(Side.CLIENT)

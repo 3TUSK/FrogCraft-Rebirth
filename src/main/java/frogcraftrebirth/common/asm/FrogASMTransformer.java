@@ -16,16 +16,17 @@ import org.objectweb.asm.tree.ClassNode;
 
 import net.minecraft.launchwrapper.IClassTransformer;
 
+//Note: This class is messy. Also a dirty workaround. But who cares? This won't be in production.
 public class FrogASMTransformer implements IClassTransformer {
 
 	@Override
 	public byte[] transform(String name, String transformedName, byte[] basicClass) {
+		ClassReader reader = new ClassReader(basicClass);
+		ClassNode node = new ClassNode();
+		reader.accept(node, 0);
+		
 		if (transformedName.equals("net.minecraft.world.biome.BiomeProvider")) {
 			FrogASMPlugin.LOGGER.info("Due to technical reasons, IC2-ex10 cannot work properly in dev environment of newer version of Forge. This will try to fix that.");
-			
-			ClassReader reader = new ClassReader(basicClass);
-			ClassNode node = new ClassNode();
-			reader.accept(node, 0);
 
 			MethodVisitor meth = node.visitMethod(Opcodes.ACC_PUBLIC, "getBiomeGenerator", "(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/world/biome/Biome;)Lnet/minecraft/world/biome/Biome;", null, null);
 			meth.visitVarInsn(Opcodes.ALOAD, 0);
@@ -38,11 +39,7 @@ public class FrogASMTransformer implements IClassTransformer {
 			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 			node.accept(writer);
 			return writer.toByteArray();
-		} else if (transformedName.equals("net.minecraft.world.World")) {
-			ClassReader reader = new ClassReader(basicClass);
-			ClassNode node = new ClassNode();
-			reader.accept(node, 0);
-			
+		} else if (transformedName.equals("net.minecraft.world.World")) {			
 			MethodVisitor meth = node.visitMethod(Opcodes.ACC_PUBLIC, "getBiomeGenForCoords", "(Lnet/minecraft/util/math/BlockPos;)Lnet/minecraft/world/biome/Biome;", null, null);
 			meth.visitVarInsn(Opcodes.ALOAD, 0);
 			meth.visitVarInsn(Opcodes.ALOAD, 1);
@@ -53,7 +50,7 @@ public class FrogASMTransformer implements IClassTransformer {
 			ClassWriter writer = new ClassWriter(ClassWriter.COMPUTE_MAXS);
 			node.accept(writer);
 			return writer.toByteArray();
-		}
+		} 
 		return basicClass;
 	}
 

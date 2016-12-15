@@ -18,6 +18,7 @@ import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -26,7 +27,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasWork {
+public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasWork, ITickable {
 	
 	private static final int INPUT_F = 0, OUTPUT_F = 1;
 	
@@ -61,7 +62,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 			return;
 		}
-		super.update();
 			
 		if (inv.getStackInSlot(INPUT_F) != null) {
 			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {

@@ -21,13 +21,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileLiquefier extends TileEnergySink implements IHasWork {
+public class TileLiquefier extends TileEnergySink implements IHasWork, ITickable {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
@@ -54,7 +55,6 @@ public class TileLiquefier extends TileEnergySink implements IHasWork {
 			}
 			return;
 		}
-		super.update();
 		
 		if (inv.getStackInSlot(0) != null) {
 			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {

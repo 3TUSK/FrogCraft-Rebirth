@@ -54,7 +54,6 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 			}
 			return;
 		}
-		super.update();
 		
 		//Don't stuck the inventory
 		if (output.getStackInSlot(0) != null && output.getStackInSlot(0).stackSize >= output.getStackInSlot(0).getMaxStackSize()) {

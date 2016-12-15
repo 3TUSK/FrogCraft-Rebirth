@@ -4,26 +4,20 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.tile.IEnergyStorage;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
 
-public abstract class TileEnergyStorage extends TileFrog implements ITickable, IEnergySink, IEnergySource, IEnergyStorage {
+public abstract class TileEnergyStorage extends TileEnergy implements IEnergySink, IEnergySource, IEnergyStorage {
 
 	public EnumFacing emitDir;
 	public int storedE, maxE, output, tier;
-	protected boolean loaded = false;
 	protected final boolean usableForTp;
 	
 	public TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
@@ -32,24 +26,6 @@ public abstract class TileEnergyStorage extends TileFrog implements ITickable, I
 		this.output = output;
 		this.tier = tier;
 		this.usableForTp = allowTelep;
-	}
-	
-	@Override
-	public void invalidate() {
-		if (!getWorld().isRemote && loaded) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-			this.loaded = false;
-		}
-		super.invalidate();
-	}
-	
-	@Override
-	public void update() {
-		if (!getWorld().isRemote && !loaded) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			this.loaded = true;
-		}
-		this.emitDir = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_ALL);
 	}
 	
 	@Override

@@ -26,7 +26,6 @@ public class TileHSU extends TileEnergyStorage implements ITickable {
 	public void update() {
 		if (getWorld().isRemote)
 			return;
-		super.update();
 		
 		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);

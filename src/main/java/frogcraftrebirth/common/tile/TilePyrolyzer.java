@@ -15,13 +15,14 @@ import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TilePyrolyzer extends TileEnergySink implements IHasWork {
+public class TilePyrolyzer extends TileEnergySink implements IHasWork, ITickable {
 
 	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
 	public final ItemStackHandler input = new ItemStackHandler();
@@ -52,7 +53,6 @@ public class TilePyrolyzer extends TileEnergySink implements IHasWork {
 			}
 			return;
 		}
-		super.update();
 		
 		if (fluidIO.getStackInSlot(INPUT_F) != null) {
 			if (fluidIO.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {

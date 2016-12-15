@@ -18,13 +18,14 @@ import ic2.api.item.IC2Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
+public class TileAdvChemReactor extends TileEnergySink implements IHasWork, ITickable {
 	
 	//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
 	public final IItemHandler module = new ItemStackHandler();
@@ -88,7 +89,6 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork {
 			}
 			return;
 		}
-		super.update();
 		
 		if (!working || recipe == null) {
 			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};

@@ -1,15 +1,12 @@
 package frogcraftrebirth.common.lib.tile;
 
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileEnergyGenerator extends TileFrog implements ITickable, IEnergySource {
+public abstract class TileEnergyGenerator extends TileEnergy implements ITickable, IEnergySource {
 
 	public int charge, sourceTier, output;
 	protected boolean isInENet;
@@ -17,23 +14,6 @@ public abstract class TileEnergyGenerator extends TileFrog implements ITickable,
 	public TileEnergyGenerator (int sourceTier, int output) {
 		this.sourceTier = sourceTier;
 		this.output = output;
-	}
-	
-	@Override
-	public void invalidate() {
-		if (!getWorld().isRemote && isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-			isInENet = false;
-		}
-		super.invalidate();
-	}
-	
-	@Override
-	public void update() {
-		if (!getWorld().isRemote && !isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
-		}
 	}
 	
 	@Override

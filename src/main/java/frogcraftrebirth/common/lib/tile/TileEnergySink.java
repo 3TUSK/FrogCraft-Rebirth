@@ -4,40 +4,18 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraftforge.common.MinecraftForge;
 
-public abstract class TileEnergySink extends TileFrog implements ITickable, IEnergySink {
+public abstract class TileEnergySink extends TileEnergy implements IEnergySink {
 	
 	public int charge, maxCharge, sinkTier;
-	protected boolean isInENet;
 	
 	protected TileEnergySink(int sinkTier, int maxEnergy) {
 		this.sinkTier = sinkTier;
 		this.maxCharge = maxEnergy;
-	}
-	
-	@Override
-	public void invalidate() {
-		if (!getWorld().isRemote && isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-			isInENet = false;
-		}
-		super.invalidate();
-	}
-	
-	@Override
-	public void update() {	
-		if (!getWorld().isRemote && !isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
-		}
 	}
 	
 	@Override

@@ -15,11 +15,9 @@ import net.minecraftforge.common.MinecraftForge;
 
 public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 	
-	protected static volatile transient boolean processingEnergyTileLoading = false;
+	private static transient boolean processingEnergyTileLoading = false;
 	
 	private boolean isInEnergyNet;
-	
-	private transient int antiRecursiveInvoke = 0;
 	
 	@Override
 	public void invalidate() {
@@ -35,12 +33,9 @@ public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 		while (processingEnergyTileLoading) {
 			// This will ensure that chunk loading won't stuck
 			// I could not think about another way to prevent this happening
-			// This will definitely slow down chunk loading, 
-			// but that happens only if you have bunch of machines from FrogCraft: Rebirth
-			antiRecursiveInvoke++;
-			if (antiRecursiveInvoke > 1) {
-				return;
-			}
+			// This will definitely slow down chunk loading somehow, 
+			// hope it won't slow it down too much
+			return;
 		}
 		if (!getWorld().isRemote && !isInEnergyNet) {
 			processingEnergyTileLoading = true;

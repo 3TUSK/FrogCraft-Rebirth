@@ -25,9 +25,9 @@ import net.minecraftforge.fml.common.network.internal.FMLProxyPacket;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class NetworkHandler {
+public enum NetworkHandler {
 	
-	public static final NetworkHandler FROG_NETWORK = new NetworkHandler();
+	FROG_NETWORK;
 	
 	private final FMLEventChannel frogChannel;
 	
@@ -72,17 +72,20 @@ public class NetworkHandler {
 				}
 			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			FrogAPI.FROG_LOG.error("Fail to unpack data, please report to author!", e);
 		}
 	}
 	
 	private void decodeDataServer(InputStream input, EntityPlayerMP player) {
 		DataInputStream data = new DataInputStream(input);
 		try {
-			@SuppressWarnings("unused")
 			byte identity = data.readByte();
+			switch (identity) {
+				default:
+					break; // This suppresses unused warning
+			}
 		} catch (IOException e) {
-			e.printStackTrace();
+			FrogAPI.FROG_LOG.error("Fail to unpack data, please report to author!", e);
 		}
 		
 	}
@@ -93,7 +96,7 @@ public class NetworkHandler {
 		try {
 			packet.writeData(data);
 		} catch (IOException e) {
-			FrogAPI.FROG_LOG.error("Fail to generate packet, please report to author!");
+			FrogAPI.FROG_LOG.error("Fail to generate packet, please report to author!", e);
 		}
 		return Unpooled.wrappedBuffer(byteArray.toByteArray());
 	}

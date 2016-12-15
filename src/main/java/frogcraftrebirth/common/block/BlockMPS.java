@@ -81,8 +81,6 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 			if (stack.getTagCompound() != null) {
 				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
 				tile.loadDataFrom(stack.getTagCompound());
-				//if (tile.getOwnerUUID() == null && placer instanceof EntityPlayer)
-					//MinecraftForge.EVENT_BUS.post(); TODO: use a proper event
 			}
 		}
 	}

@@ -78,20 +78,20 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 
 		if (this.time <= 0) {
 			this.timeMax = 0;
-			if (working && burning != null)
+			if (working && ItemUtil.isStackValid(burning))
 				bonus(burning);
 			burning = null;
 			this.working = false;
 			this.requireRefresh = true;
 		}
 		
-		if (tank.getFluidAmount() != 0 && fluidIO.getStackInSlot(0) != null) {
+		if (tank.getFluidAmount() != 0 && ItemUtil.isStackValid(fluidIO.getStackInSlot(0))) {
 			if (fluidIO.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
 				ItemStack result = FluidUtil.tryFillContainer(fluidIO.extractItem(0, 1, true), tank, 1000, null, true);
 				if (result != null && result.stackSize > 0) {
 					fluidIO.extractItem(0, 1, false);
 					ItemStack remainder = fluidIO.insertItem(1, result, false);
-					if (remainder != null && remainder.stackSize > 0)
+					if (ItemUtil.isStackValid(remainder) && remainder.stackSize > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
@@ -102,7 +102,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 	}
 	
 	private void bonus(ItemStack input) {
-		if (input == null)
+		if (!ItemUtil.isStackValid(input))
 			return;
 		
 		int[] oreIDs = OreDictionary.getOreIDs(input);

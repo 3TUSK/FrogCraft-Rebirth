@@ -1,16 +1,23 @@
 package frogcraftrebirth.common.tile;
 
+import frogcraftrebirth.client.gui.GuiHybridEStorage;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerHybridEStorage;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileHSU extends TileEnergyStorage implements ITickable {
+public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	
@@ -60,6 +67,16 @@ public class TileHSU extends TileEnergyStorage implements ITickable {
 	@Override
 	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerHybridEStorage(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiHybridEStorage(player.inventory, this, this instanceof TileHSUUltra);
 	}
 
 }

@@ -8,6 +8,10 @@ import java.util.UUID;
 import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.api.tile.IPersonal;
+import frogcraftrebirth.client.gui.GuiMPS;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerMPS;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.event.EnergyTileLoadEvent;
 import ic2.api.energy.event.EnergyTileUnloadEvent;
@@ -19,12 +23,13 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileMobilePowerStation extends TileFrog implements ITickable, IEnergySource, IMobilePowerStation {
+public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickable, IEnergySource, IMobilePowerStation {
 
 	private static final int 
 	UPGRADE_SOLAR = 0, UPGRADE_VOLTAGE = 1, UPGRADE_STORAGE = 2, 
@@ -200,6 +205,16 @@ public class TileMobilePowerStation extends TileFrog implements ITickable, IEner
 	@Override
 	public String getWaringInfo(EntityPlayer player) {
 		return "ACCESS DENIED";
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerMPS(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiMPS(player.inventory, this);
 	}
 
 }

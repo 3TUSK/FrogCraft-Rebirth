@@ -12,13 +12,20 @@ import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
+import frogcraftrebirth.client.gui.GuiCondenseTower;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerCondenseTower;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
@@ -27,7 +34,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasWork, ITickable {
+public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasGui, IHasWork, ITickable {
 	
 	private static final int INPUT_F = 0, OUTPUT_F = 1;
 	
@@ -230,5 +237,15 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public boolean registerSturcture(ICondenseTowerPart structure) {
 		return structure != null ? structures.add(structure) : false;
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerCondenseTower(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiCondenseTower(player.inventory, this);
 	}
 }

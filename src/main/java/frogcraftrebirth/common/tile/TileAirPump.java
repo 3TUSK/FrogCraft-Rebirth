@@ -1,6 +1,10 @@
 package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.api.air.IAirPump;
+import frogcraftrebirth.client.gui.GuiAirPump;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerAirPump;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 
 import java.io.DataInputStream;
@@ -8,14 +12,17 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergyEmitter;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class TileAirPump extends TileEnergySink implements ITickable, IAirPump, IHasWork {
+public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, IAirPump, IHasWork {
 
 	private static final int MAX_AIR = 1000;
 	private static final int MAX_CHARGE = 10000;
@@ -112,5 +119,15 @@ public class TileAirPump extends TileEnergySink implements ITickable, IAirPump, 
 	
 	public void setAirAmount(int amount) {
 		this.airAmount = amount;
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerAirPump(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiAirPump(player.inventory, this);
 	}
 }

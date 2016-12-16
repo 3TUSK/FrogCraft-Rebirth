@@ -7,15 +7,22 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import frogcraftrebirth.client.gui.GuiCombustionFurnace;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -23,7 +30,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
-public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWork {
+public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGui, IHasWork {
 
 	private static final int CHARGE_MAX = 5000;
 	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
@@ -195,6 +202,16 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasWo
 		}
 		
 		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerCombustionFurnace(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiCombustionFurnace(player.inventory, this);
 	}
 
 }

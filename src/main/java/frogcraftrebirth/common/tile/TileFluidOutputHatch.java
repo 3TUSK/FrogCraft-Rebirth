@@ -6,22 +6,28 @@ import java.io.IOException;
 
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
+import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch, ITickable {
+public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch, IHasGui, ITickable {
 
 	private ICondenseTowerCore mainBlock;
 	
@@ -111,6 +117,16 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 		}
 			
 		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerFluidOutputHatch(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiFluidOutputHatch(player.inventory, this);
 	}
 
 }

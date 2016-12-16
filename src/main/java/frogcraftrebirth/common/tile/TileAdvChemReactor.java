@@ -10,22 +10,29 @@ import java.util.List;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.client.gui.GuiAdvChemReactor;
+import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.item.IC2Items;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileAdvChemReactor extends TileEnergySink implements IHasWork, ITickable {
+public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 	
 	//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
 	public final IItemHandler module = new ItemStackHandler();
@@ -207,6 +214,16 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasWork, ITic
 			}
 		}	
 		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
+		return new ContainerAdvChemReactor(player.inventory, this);
+	}
+
+	@Override
+	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
+		return new GuiAdvChemReactor(player.inventory, this);
 	}
 
 }

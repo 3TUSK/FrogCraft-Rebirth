@@ -27,14 +27,14 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 		} else {
 			int i = rand.nextInt(this.numberOfBlocks - 2) + 2;
 
-			for (int k = position.getX() - i; k <= position.getX() + i; ++k) {
-				for (int l = position.getZ() - i; l <= position.getZ() + i; ++l) {
-					int i1 = k - position.getX();
-					int j1 = l - position.getZ();
+			for (int x = position.getX() - i; x <= position.getX() + i; ++x) {
+				for (int z = position.getZ() - i; z <= position.getZ() + i; ++z) {
+					int i1 = x - position.getX();
+					int j1 = z - position.getZ();
 
 					if (i1 * i1 + j1 * j1 <= i * i) {
-						for (int k1 = position.getY() - 1; k1 <= position.getY() + 1; ++k1) {
-							BlockPos blockpos = new BlockPos(k, k1, l);
+						for (int y = position.getY() - 1; y <= position.getY() + 1; ++y) {
+							BlockPos blockpos = new BlockPos(x, y, z);
 							Block target = worldIn.getBlockState(blockpos).getBlock();
 							if (target == Blocks.DIRT|| target == Blocks.CLAY) {
 								worldIn.setBlockState(blockpos, blockstate, 2);

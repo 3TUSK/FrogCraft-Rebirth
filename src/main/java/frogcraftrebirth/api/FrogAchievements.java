@@ -10,12 +10,15 @@ package frogcraftrebirth.api;
 
 import java.lang.reflect.Field;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.stats.Achievement;
 
 public enum FrogAchievements {
 
 	EVT, RAILGUN, POTASSIUM, GAS_PUMP, LIQUEFIER, HSU, UHSU, ADV_CHEM_REACTOR, JINKELA, CONDENSE_TOWER_CORE, CONDENSE_TOWER, NITRIC_ACID;
 
+	@Nullable
 	public Achievement get() {
 		Field achievement;
 		try {

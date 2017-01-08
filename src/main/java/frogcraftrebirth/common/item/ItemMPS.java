@@ -18,9 +18,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	public ItemMPS(BlockMPS block) {
-		super(block, (ItemStack aStack) -> {
-			return "normal";
-		});
+		super(block, aStack -> "normal");
 		setHasSubtypes(false);
 		setMaxStackSize(1);
 	}
@@ -72,7 +70,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 			stack.getTagCompound().setInteger("tier", 1);
 			return stack;
 		} else 
-			return stack; // Prevent attaching unecessary data to other item
+			return stack; // Prevent attaching unnecessary data to other item
 	}
 
 }

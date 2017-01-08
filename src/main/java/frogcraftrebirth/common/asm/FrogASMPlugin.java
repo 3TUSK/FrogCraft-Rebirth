@@ -14,7 +14,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.fml.relauncher.IFMLLoadingPlugin;
-
+/**
+ * Note: this CoreMod will not function in production (i.e. in actual game play)
+ */
 @IFMLLoadingPlugin.MCVersion("1.10.2")
 @IFMLLoadingPlugin.TransformerExclusions("frogcraftrebirth.common.asm")
 public class FrogASMPlugin implements IFMLLoadingPlugin {

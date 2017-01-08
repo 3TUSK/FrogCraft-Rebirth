@@ -19,7 +19,8 @@ public class FrogFluids {
 
 	public static Fluid hydrochlorine;
 	public static Fluid nitricAcid;
-	public static Fluid sulfateAcid;
+	public static Fluid oleum;
+	public static Fluid sulfuricAcid;
 
 	public static Fluid ammonia;
 	public static Fluid potassiumHydroxide;

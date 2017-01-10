@@ -35,7 +35,6 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, ISpecialAr
 		super(FLUID_ARMOR, 0, EntityEquipmentSlot.CHEST);
 		setMaxStackSize(1);
 		setCreativeTab(FrogAPI.TAB);
-		setRegistryName("fluid_armor");
 		setUnlocalizedName("fluidArmor");
 		this.capacity = capacity;
 	}

@@ -12,7 +12,6 @@ import java.util.List;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,7 +31,7 @@ public class BlockFluidFrog extends BlockFluidClassic {
 		super(fluid, material);
 		this.setCreativeTab(FrogAPI.TAB);
 		this.setRegistryName(registryName);
-		GameRegistry.<Block>register(this);
+		GameRegistry.register(this);
 		fluid.setBlock(this);
 		ItemFrogBlock.registerItemBlockFor(this, new ItemBlock(this).setCreativeTab(FrogAPI.TAB));
 	}

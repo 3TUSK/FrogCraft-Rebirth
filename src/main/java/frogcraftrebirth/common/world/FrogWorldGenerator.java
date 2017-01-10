@@ -9,7 +9,7 @@ import net.minecraft.world.chunk.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import frogcraftrebirth.common.FrogBlocks;
+import frogcraftrebirth.api.FrogBlocks;
 import frogcraftrebirth.common.block.BlockFrogOre;
 
 public class FrogWorldGenerator implements IWorldGenerator {
@@ -19,7 +19,7 @@ public class FrogWorldGenerator implements IWorldGenerator {
 		int xCor = chunkX * 16 + random.nextInt(16);
 		int zCor = chunkZ * 16 + random.nextInt(16);
 		
-		IBlockState theOre = FrogBlocks.frogOres.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.CARNALLITE);
+		IBlockState theOre = FrogBlocks.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.CARNALLITE);
 		new WorldGenClayFake(theOre, 5).generate(world, random, world.getTopSolidOrLiquidBlock(new BlockPos(xCor, 60, zCor)));
 		
 		theOre = theOre.withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.DEWALQUITE);

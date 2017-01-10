@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.registry;
 
-import frogcraftrebirth.common.FrogBlocks;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockFluidFrog;
 import frogcraftrebirth.common.block.BlockNitricAcid;
@@ -40,19 +39,19 @@ public class RegFluid {
 		regFluid(FrogFluids.sulfurDioxide);
 		regFluid(FrogFluids.sulfurTrioxide);
 		
-		FrogBlocks.fluidNitricAcid = new BlockNitricAcid(FrogFluids.nitricAcid);
-		FrogBlocks.fluidAmmonia = new BlockFluidFrog(FrogFluids.ammonia, "fluid.ammonia");
-		FrogBlocks.fluidArgon = new BlockFluidFrog(FrogFluids.argon, "fluid.argon");
-		FrogBlocks.fluidBenzene = new BlockFluidFrog(FrogFluids.benzene, "fluid.benzene");
-		FrogBlocks.fluidBromine = new BlockFluidFrog(FrogFluids.bromine, "fluid.bromine");
-		FrogBlocks.fluidCarbonDioxide = new BlockFluidFrog(FrogFluids.carbonDioxide, "fluid.carbonDioxide");
-		FrogBlocks.fluidCarbonOxide = new BlockFluidFrog(FrogFluids.carbonOxide, "fluid.carbonOxide");
-		FrogBlocks.fluidCoalTar = new BlockFluidFrog(FrogFluids.coalTar, "fluid.coalTar");
-		FrogBlocks.fluidFluorine = new BlockFluidFrog(FrogFluids.fluorine, "fluid.Fluorine");
-		FrogBlocks.fluidNitrogenOxide = new BlockFluidFrog(FrogFluids.nitrogenOxide, "fluid.nitrogenOxide");
-		FrogBlocks.fluidOxygen = new BlockFluidFrog(FrogFluids.oxygen, "fluid.Oxygen");
-		FrogBlocks.fluidSulfurDioxide = new BlockFluidFrog(FrogFluids.sulfurDioxide, "fluid.sulfurDioxide");
-		FrogBlocks.fluidSulfurTrioxide = new BlockFluidFrog(FrogFluids.sulfurTrioxide, "fluid.sulfurTrioxide");
+		new BlockNitricAcid(FrogFluids.nitricAcid);
+		new BlockFluidFrog(FrogFluids.ammonia, "fluid.ammonia");
+		new BlockFluidFrog(FrogFluids.argon, "fluid.argon");
+		new BlockFluidFrog(FrogFluids.benzene, "fluid.benzene");
+		new BlockFluidFrog(FrogFluids.bromine, "fluid.bromine");
+		new BlockFluidFrog(FrogFluids.carbonDioxide, "fluid.carbonDioxide");
+		new BlockFluidFrog(FrogFluids.carbonOxide, "fluid.carbonOxide");
+		new BlockFluidFrog(FrogFluids.coalTar, "fluid.coalTar");
+		new BlockFluidFrog(FrogFluids.fluorine, "fluid.Fluorine");
+		new BlockFluidFrog(FrogFluids.nitrogenOxide, "fluid.nitrogenOxide");
+		new BlockFluidFrog(FrogFluids.oxygen, "fluid.Oxygen");
+		new BlockFluidFrog(FrogFluids.sulfurDioxide, "fluid.sulfurDioxide");
+		new BlockFluidFrog(FrogFluids.sulfurTrioxide, "fluid.sulfurTrioxide");
 	}
 	
 	private static void regFluid(Fluid fluid) {

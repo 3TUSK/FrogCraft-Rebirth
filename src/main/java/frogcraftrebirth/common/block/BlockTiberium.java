@@ -13,8 +13,8 @@ import java.util.Collections;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.FrogBlocks;
-import frogcraftrebirth.common.FrogItems;
+import frogcraftrebirth.api.FrogBlocks;
+import frogcraftrebirth.api.FrogItems;
 import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -39,7 +39,7 @@ public class BlockTiberium extends BlockFrog {
 	public static IBlockState getTiberiumWithType(int typeIndex) {
 		if (typeIndex > 2)
 			typeIndex = 2; // Use Green Tiberium as fallback
-		return ((BlockTiberium) FrogBlocks.tiberium).getDefaultState().withProperty(TYPE, BlockTiberium.Color.values()[typeIndex]);
+		return ((BlockTiberium) FrogBlocks.TIBERIUM).getDefaultState().withProperty(TYPE, BlockTiberium.Color.values()[typeIndex]);
 	}
 
 	public BlockTiberium() {
@@ -74,7 +74,7 @@ public class BlockTiberium extends BlockFrog {
 	public ArrayList<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		ArrayList<ItemStack> dropList = new ArrayList<ItemStack>();
 		int quantityDropped = 1 + RANDOM.nextInt(fortune * 2);
-		dropList.add(new ItemStack(FrogItems.tiberium, quantityDropped, this.damageDropped(state)));
+		dropList.add(new ItemStack(FrogItems.TIBERIUM, quantityDropped, this.damageDropped(state)));
 		return dropList;
 	}
 

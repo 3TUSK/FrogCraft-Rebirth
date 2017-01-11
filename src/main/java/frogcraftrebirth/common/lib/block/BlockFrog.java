@@ -12,6 +12,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.ChunkCache;
+import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -54,6 +59,14 @@ public abstract class BlockFrog extends Block {
 	public void getSubBlocks(Item item, CreativeTabs tab, List<ItemStack> list) {
 		for (int i : metaArrayForCreativeTab) {
 			list.add(new ItemStack(item, 1, i));
+		}
+	}
+	
+	protected TileEntity getTileEntitySafe(IBlockAccess access, BlockPos pos) {
+		if (access instanceof ChunkCache) {
+			return ((ChunkCache)access).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
+		} else {
+			return access.getTileEntity(pos);
 		}
 	}
 

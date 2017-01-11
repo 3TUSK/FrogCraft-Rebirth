@@ -54,7 +54,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		TileEntity tile = worldIn.getTileEntity(pos);
+		TileEntity tile = this.getTileEntitySafe(worldIn, pos);
 		if (tile instanceof IHasWork)
 			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
 		else

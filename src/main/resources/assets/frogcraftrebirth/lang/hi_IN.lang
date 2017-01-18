@@ -197,27 +197,27 @@ gui.HSU.store=EU: %d
 gui.HSU.max=Max. EU: %d
 gui.HSU.output=Output: %d EU/tick
 
-gui.pyrolyzer.title=Pyrolyzer
+gui.pyrolyzer.title=पयरोलाइज़र
 
-gui.combustionFurnace.title=Combustion Furnace
+gui.combustionFurnace.title=ज्वलन का भट्ठी 
 
-gui.MPS.title=Mobile Power Supply
+gui.MPS.title=मोबाइल पावर सप्लाई
 
 gui.fluid.name=Name: %s
 gui.fluid.amount=Amount: %d mB
-gui.fluid.null=No fluid in this tank
+gui.fluid.null=इस टैंक में कोई लिक्विड नहीं है
 
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
-jei.category.condensation=Condensation
-jei.category.pyrolyzation=Pyrolysis
+jei.category.condensation=कॉंडेन्सेशन
+jei.category.pyrolyzation=पयरोलाईसिस
 
 jei.euTotal=Total: %d EU
 jei.euTick=Power: %d EU/t
 jei.tick=Time in ticks: %d
 
-nei.tickWithCatalyst=Reaction tick under catalyst
-nei.catalystRequired=This reaction requires catalyst
-nei.outputLiquid=Output liquid
+nei.tickWithCatalyst=रीऐक्शन टिक कैटलस्ट के नीचे
+nei.catalystRequired=इस रीऐक्शन को कैटलस्ट की ज़रारत है
+nei.outputLiquid=ओऊपुत लिक्विड
 
 jei.doc.advChemReactor=Advanced Chemical Reactor is a highly-advanced machine that is capable to allow many chemical reaction happen inside of it. \nIt has 5 input slots, 5 output slots, individual cell input/output slot and a reaction module slot.
 jei.doc.airPump=Air Pump is a machine that can produce high-pressure air. Place one of it below Liquefier will automatically supply Liquefier with high-pressure air. 
@@ -227,4 +227,4 @@ jei.doc.liquefier=Liquefier can convert high-pressure air into liquefied air. It
 jei.doc.condenseTower=Condense Tower is a multiblock structure that can separate liquid mixture into several pure liquid, based on differences among boiling point of liquids.
 
 #Misc
-itemGroup.FrogCraft=FrogCraft
+itemGroup.FrogCraft=फ़्रॉगक्राफ़्ट

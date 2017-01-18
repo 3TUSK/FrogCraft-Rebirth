@@ -157,38 +157,38 @@ tile.generator.combustionFurnace.name=ज्वलन का भट्ठी
 
 tile.machines.advchemreactor.name=विकसित केमिकल रीऐक्टर
 tile.machines.airpump.name=औद्योगिक हवा की पम्प
-tile.machines.pyrolyzer.name=पयरो 
-tile.machines.liquefier.name=Liquefier
+tile.machines.pyrolyzer.name=पयरोलाइज़र
+tile.machines.liquefier.name=लिक्विफ़ाइअर
 
-tile.nitricAcid.name=Nitric Acid
+tile.nitricAcid.name=नाइट्रिक ऐसिड
 
 #Achivements
-achievement.get_railgun=Only my railgun!
-achievement.get_railgun.desc=Come on man?!
-achievement.get_EVT=EV Transformer
-achievement.get_EVT.desc=Step down to 2048
-achievement.killed_by_Potassium=Explode by potassium
-achievement.killed_by_Potassium.desc=Never makes the alkaline metal with water!
-achievement.gaspump=Power of gas
-achievement.gaspump.desc=A invisible power
-achievement.pneumaticCompressor=Say goodbye to ITNT
-achievement.pneumaticCompressor.desc=You no longer have to prepare tons of ITNT
-achievement.liquifier=Infinite raw material
-achievement.liquifier.desc=You have learnt how to get raw material from air
-achievement.hsu=Larger MFSU
-achievement.hsu.desc=Stores 100000000EU!
-achievement.uhsu=Hentai MFSU
-achievement.uhsu.desc=Stores 1000000000EU!
-achievement.goldclod=Goldclod
-achievement.goldclod.desc=Goldclod is mine!
-achievement.get_ACR=Way of chemistry
-achievement.get_ACR.desc=Will there be any interesting reactions?
-achievement.condensetower=Separate them?
-achievement.condensetower.desc=Seems to be missing something...
-achievement.condensetower2=Separate them.
-achievement.condensetower2.desc=You have learnt how to separate liquid mixtures
-achievement.suicideExpert=Suicide Expert
-achievement.suicideExpert.desc=Potassium plus acid equals explosion!
+achievement.get_railgun=सिर्फ़ मेरी रेलगूँ!
+achievement.get_railgun.desc=अर्रे यार!
+achievement.get_EVT=EV ट्रैन्स्फ़ॉर्मर
+achievement.get_EVT.desc=२०४८ तक स्टेप डाउन करो
+achievement.killed_by_Potassium=पटैसीयम से मारो
+achievement.killed_by_Potassium.desc=पानी से मत मिलाओ!
+achievement.gaspump=गैस की शक्ति
+achievement.gaspump.desc=एक अलक्ष्य शक्ति
+achievement.pneumaticCompressor=ITNT को बाई बाई कहो
+achievement.pneumaticCompressor.desc=बहुत सारा ITNT को अब तुमको नहीं बना है
+achievement.liquifier=अनंत राव मटीरीयल
+achievement.liquifier.desc=हवा को राव मटीरीयल में बना सकते हो
+achievement.hsu=ज़्यादा बड़ा MFSU
+achievement.hsu.desc=100000000EU!
+achievement.uhsu=हेंटै MFSU
+achievement.uhsu.desc=1000000000EU!
+achievement.goldclod=गोल्डक्लाड
+achievement.goldclod.desc=गोल्डक्लाड मेरा है!
+achievement.get_ACR=रसायन विज्ञान का ढंग
+achievement.get_ACR.desc=कोई बढ़िया रीऐक्शन होगा?
+achievement.condensetower=अलग करो?
+achievement.condensetower.desc=कुछ खो लिया है...
+achievement.condensetower2=अलग करो।
+achievement.condensetower2.desc=लिक्विड को अलग कर सकते हो।
+achievement.suicideExpert=आत्महत्या विशेषज्ञ
+achievement.suicideExpert.desc=पटैसीयम + ऐसिड = धमाका
 
 gui.HSU.normal.title=HSU
 gui.HSU.ultra.title=UHSU

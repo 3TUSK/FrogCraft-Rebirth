@@ -85,79 +85,79 @@ item.Item_Dusts.CaOH2=कैल्सीयम हायड्राक्सा
 item.Item_Dusts.CaOH2.info=Ca(OH)₂
 item.Item_Dusts.Magnalium=मैग्नेलीअम डस्ट
 item.Item_Dusts.Magnalium.info=Mg.Al₂
-item.Item_Dusts.Carnallite=कार्नलाइट कार्नलाइट
+item.Item_Dusts.Carnallite=कार्नलाइट डस्ट
 item.Item_Dusts.Carnallite.info=4KCl.MgBr₂.8H₂O
 item.Item_Dusts.KCl=पटैसीयम क्लॉरायड डस्ट
 item.Item_Dusts.KCl.info=KCl
 item.Item_Dusts.MgBr2=मैग्नीज़ीयम ब्रोमायड डस्ट
 item.Item_Dusts.MgBr2.info=MgBr₂
-item.Item_Dusts.Fluorapatite=Fluorapatite Dust
+item.Item_Dusts.Fluorapatite=फ़्लोरोऐपटाइट डस्ट
 item.Item_Dusts.Fluorapatite.info=Ca₅F(PO₄)₃
-item.Item_Dusts.CaF2=Calcium Fluoride Dust
+item.Item_Dusts.CaF2=कैल्सीयम फ़्लोराइड डस्ट
 item.Item_Dusts.CaF2.info=CaF₂
-item.Item_Dusts.V2O5=Vanadium Pentoxide Dust
+item.Item_Dusts.V2O5=वनेडीयम पेंटाक्सायड डस्ट
 item.Item_Dusts.V2O5.info=V₂O₅
-item.Item_Dusts.Dewalquite=Dewalquite Dust
+item.Item_Dusts.Dewalquite=डेवलक्वाइट डस्ट
 item.Item_Dusts.Dewalquite.info=25Al₂O₃.TiO₂.V₂O₅
-item.Item_Dusts.TiO2=Titanium Dioxide Dust
+item.Item_Dusts.TiO2=टायटेनीयम डायआक्सायड डस्ट
 item.Item_Dusts.TiO2.info=TiO₂
-item.Item_Dusts.Al2O3=Aluminum Oxide Dust
+item.Item_Dusts.Al2O3=अलूमिनम आक्सायड डस्ट
 item.Item_Dusts.Al2O3.info=Al₂O₃
 
-item.crushedOre.Carnallite=Crushed Carnallite Ore
-item.crushedOre.Dewalquite=Crushed Dewalquite Ore
-item.crushedOre.Fluorapatite=Crushed Fluorapatite Ore
+item.crushedOre.Carnallite=तोड़ा हुआ कार्नलाइट ओर
+item.crushedOre.Dewalquite=तोड़ा हुआ वलक्वाइट ओर
+item.crushedOre.Fluorapatite=तोड़ा हुआ फ़्लोरोऐपटाइट ओर
 
-item.purifiedOre.Carnallite=Purified Carnallite Ore
-item.purifiedOre.Dewalquite=Purified Dewalquite Ore
-item.purifiedOre.Fluorapatite=Purified Fluorapatite Ore
+item.purifiedOre.Carnallite=प्युरिफ़ायड कार्नलाइट ओर
+item.purifiedOre.Dewalquite=प्युरिफ़ायड वलक्वाइट ओर
+item.purifiedOre.Fluorapatite=प्युरिफ़ायड फ़्लोरोऐपटाइट ओर
 
-item.smallDust.Carnallite=Tiny Pile of Carnallite Dust
-item.smallDust.Dewalquite=Tiny Pile of Dewalquite Dust
-item.smallDust.Fluorapatite=Tiny Pile of Fluorapatite Dust
+item.smallDust.Carnallite=थोड़ा सा कार्नलाइट डस्ट
+item.smallDust.Dewalquite=थोड़ा सा डेवलक्वाइट डस्ट
+item.smallDust.Fluorapatite=थोड़ा सा फ़्लोरोऐपटाइट डस्ट
 
 #Ingots
 #To translators: for briquette, see the following links:
 #https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
-item.Item_Ingots.K=Potassium
+item.Item_Ingots.K=पटैसीयम
 item.Item_Ingots.K.info=K
-item.Item_Ingots.P=Phosphor
+item.Item_Ingots.P=फ़ास्फ़र
 item.Item_Ingots.P.info=P
-item.Item_Ingots.NaturalGasHydrate=Methane Clathrate
+item.Item_Ingots.NaturalGasHydrate=मेथेन कलाथरेट
 item.Item_Ingots.NaturalGasHydrate.info=CH₄·H₂O
-item.Item_Ingots.CoalCokeShattered=Coking coal fragments
-item.Item_Ingots.CoalCokeShattered.info=Efficient fuel~
-item.Item_Ingots.Briquette=Briquette
-item.Item_Ingots.Briquette.info=Chinese style
+item.Item_Ingots.CoalCokeShattered=कोकिंग कोल के टुकड़े
+item.Item_Ingots.CoalCokeShattered.info=कार्यक्षम कोयला~
+item.Item_Ingots.Briquette=ब्रिकेट
+item.Item_Ingots.Briquette.info=चीनी बनावट
 
-item.tiberium.red=Tiberium (Red)
-item.tiberium.blue=Tiberium (Blue)
-item.tiberium.green=Tiberium (Green)
-item.tiberium.info=Be aware during operation, and also separate storage
+item.tiberium.red=टाइबीरीअम (लाल)
+item.tiberium.blue=टाइबीरीअम (नीला)
+item.tiberium.green=टाइबीरीअम (हरा)
+item.tiberium.info=सावधान रहो, और अलग संग्रह करो
 
 #Blocks
-tile.mineral.carnallite.name=Carnallite Ore
-tile.mineral.dewalquite.name=Dewalquite Ore
-tile.mineral.fluorapatite.name=Fluorapatite Ore
+tile.mineral.carnallite.name=कार्नलाइट डस्ट
+tile.mineral.dewalquite.name=डेवलक्वाइट डस्ट
+tile.mineral.fluorapatite.name=फ़्लोरोऐपटाइट डस्ट
 
-tile.tiberium_crystal.red.name=Tiberium (Red)
-tile.tiberium_crystal.blue.name=Tiberium (Blue)
-tile.tiberium_crystal.green.name=Tiberium (Green)
+tile.tiberium_crystal.red.name=टाइबीरीअम (लाल)
+tile.tiberium_crystal.blue.name=टाइबीरीअम (नीला)
+tile.tiberium_crystal.green.name=टाइबीरीअम (हरा)
 
-tile.condenseTower.core.name=Condense Tower
-tile.condenseTower.output.name=Liquid Outlet
-tile.condenseTower.cylinder.name=Condense Tower Wall
+tile.condenseTower.core.name=कंडेन्स टावर
+tile.condenseTower.output.name=लिक्विड आउट्लेट
+tile.condenseTower.cylinder.name=कंडेन्स टावर दीवार
 
-tile.hybridStorageUnit.normal.name=Hybrid Storage Unit (HSU)
-tile.hybridStorageUnit.ultra.name=Ultimate Hybrid Storage Unit (UHSU)
+tile.hybridStorageUnit.normal.name=हाइब्रिड स्टॉरिज यूनिट (HSU)
+tile.hybridStorageUnit.ultra.name=परम हाइब्रिड स्टॉरिज यूनिट (UHSU)
 
-tile.hybridStorageUnit.EVT.name=EV Transformer
+tile.hybridStorageUnit.EVT.name=EV ट्रैन्स्फ़ॉर्मर 
 
-tile.generator.combustionFurnace.name=Combustion Furnace
+tile.generator.combustionFurnace.name=ज्वलन का भट्ठी 
 
-tile.machines.advchemreactor.name=Advanced Chemical Reactor
-tile.machines.airpump.name=Industrial Air Pump
-tile.machines.pyrolyzer.name=Pyrolyzer
+tile.machines.advchemreactor.name=विकसित केमिकल रीऐक्टर
+tile.machines.airpump.name=औद्योगिक हवा की पम्प
+tile.machines.pyrolyzer.name=पयरो 
 tile.machines.liquefier.name=Liquefier
 
 tile.nitricAcid.name=Nitric Acid

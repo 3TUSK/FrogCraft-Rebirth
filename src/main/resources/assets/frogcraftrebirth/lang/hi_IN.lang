@@ -1,0 +1,230 @@
+#Hindi
+
+#Potion
+effect.tiberium=टाइबीरीअम
+
+#Death Message
+death.attack.tiberium=%1$s अब टाइबीरीअम क्रिस्टल है
+#Chat Message
+chat.tiberiumCorrosion=आपका एक आइटम स्टैक टाइबीरीअम से कंटैमिनेट हो गया है!
+
+#Items
+item.ItemMiniIonCannon.name=पॉर्टबल आइआन तोप
+item.ItemMiniIonCannon.info=Global Defense Initiative ने बनाया
+item.ItemMiniIonCannon.coolingDown=माफ़ कीजिए कमांडर, आइआन तोप अभी भी cool down कर रहा है, कृपया इंतज़ार कीजिए।
+item.ItemMiniIonCannon.warning=Caution: आइआन कानन लॉंच कर लिया है, अब cooldown शुरू होगा।
+item.ItemMiniIonCannon.discharged=आइआन तोप अभी discharged है, charge करने तक नहीं चलेगा।
+item.ionCannonFrame=आइआन तोप फ़्रेम
+tile.mobilePowerStation.normal.name=पावर आपूर्ति
+tile.mobilePowerStation.info=§oसबसे अच्छा कैम्पिंग गीर
+item.CoolantAmmonia60K=६०K अमोन्या कूलांट सेल
+item.CoolantAmmonia180K=१८०K अमोन्या कूलांट सेल
+item.CoolantAmmonia360K=३६०K अमोन्या कूलांट सेल
+item.CoolantAmmonia.info=एक मामूली %s अमोन्या कूलांट सेल
+item.UBattery.name=युरेनीयम डिके बैटरी
+item.ThBattery.name=थॉरीयम डिके बैटरी
+item.PuBattery.name=प्लूटोनीयम डिके बैटरी
+item.DecayBattery.info.0=एक रेडीओऐक्टिव डिके बैटरी
+item.DecayBattery.info.1=अनंत बिजली मगर बहुत महँगा है!
+item.Item_NitricAcidBucket.name=नाइट्रिक ऐसिड बालटी
+item.Item_NitricAcidBucket.info=सावधान: बहुत असिडिक!
+
+#Fluid
+fluid.ammonia=अमोन्या
+fluid.ammonia.info=NH₃
+fluid.argon=आर्गान
+fluid.argon.info=Ar
+fluid.benzene=बेंज़ीन
+fluid.benzene.info=C₆H₆
+fluid.bromine=ब्रोमीन
+fluid.bromine.info=Br₂
+fluid.carbonDioxide=कार्बन डायआक्सायड
+fluid.carbonDioxide.info=CO₂
+fluid.carbonOxide=कार्बन मनाक्सायड
+fluid.carbonOxide.info=CO
+fluid.coalTar=कोल टार
+fluid.coalTar.info=अरे इसमें क्या है?!
+fluid.fluorine=फ़्लौरने
+fluid.fluorine.info=F₂
+fluid.nitricAcid=नाइट्रिक ऐसिड
+fluid.nitricAcid.info=HNO₃
+fluid.nitrogenOxide=नाइट्रोजन मनाक्सायड
+fluid.nitrogenOxide.info=NO
+fluid.oxygen=ऑक्सिजन
+fluid.oxygen.info=O₂
+fluid.sulfurDioxide=सल्फ़र डायआक्सायड
+fluid.sulfurDioxide.info=SO₂
+fluid.sulfurTrioxide=सल्फ़र ट्रायआक्सायड
+fluid.sulfurTrioxide.info=SO₃
+
+#Miscs
+#For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
+#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
+item.Item_Miscs.GoldClod=गोल्डक्लोड
+item.Item_Miscs.GoldClod.info=जादुई उर्वरक ऐडिटिव
+
+item.reactionModule.Electrolyze=एलेक्ट्रोल्यजेर कम्पोनेंट
+item.reactionModule.Electrolyze.info=रीऐक्टंट को एलेक्ट्रोल्यजे करो
+item.reactionModule.Heating=गरम करने का कम्पोनेंट
+item.reactionModule.Heating.info=डोथर्मिक रीऐक्शन को हाट दो
+item.reactionModule.Ammonia=अमोन्या कैटलस्ट
+item.reactionModule.Ammonia.info=अमोन्या बनाने के लिए ज़रूरी है
+item.reactionModule.V2O5=वनेडीयम पेंटाक्सायड कैटलस्ट
+item.reactionModule.V2O5.info=SO₃ बनाने के लिए ज़रूरी है
+
+#Dusts
+item.Item_Dusts.CaO=कैल्सीयम आक्सायड डस्ट
+item.Item_Dusts.CaO.info=CaO
+item.Item_Dusts.Urea=उरीअ डस्ट
+item.Item_Dusts.Urea.info=CO(NH₂)₂
+item.Item_Dusts.NH4NO3=अमोन्या नाइट्रेट डस्ट
+item.Item_Dusts.NH4NO3.info=NH₄NO₃
+item.Item_Dusts.CaSiO3=कैल्सीयम सिलिकेट डस्ट
+item.Item_Dusts.CaSiO3.info=CaSiO₃
+item.Item_Dusts.CaOH2=कैल्सीयम हायड्राक्सायड डस्ट
+item.Item_Dusts.CaOH2.info=Ca(OH)₂
+item.Item_Dusts.Magnalium=मैग्नेलीअम डस्ट
+item.Item_Dusts.Magnalium.info=Mg.Al₂
+item.Item_Dusts.Carnallite=कार्नलाइट डस्ट
+item.Item_Dusts.Carnallite.info=4KCl.MgBr₂.8H₂O
+item.Item_Dusts.KCl=पटैसीयम क्लॉरायड डस्ट
+item.Item_Dusts.KCl.info=KCl
+item.Item_Dusts.MgBr2=मैग्नीज़ीयम ब्रोमायड डस्ट
+item.Item_Dusts.MgBr2.info=MgBr₂
+item.Item_Dusts.Fluorapatite=फ़्लोरोऐपटाइट डस्ट
+item.Item_Dusts.Fluorapatite.info=Ca₅F(PO₄)₃
+item.Item_Dusts.CaF2=कैल्सीयम फ़्लोराइड डस्ट
+item.Item_Dusts.CaF2.info=CaF₂
+item.Item_Dusts.V2O5=वनेडीयम पेंटाक्सायड डस्ट
+item.Item_Dusts.V2O5.info=V₂O₅
+item.Item_Dusts.Dewalquite=डेवलक्वाइट डस्ट
+item.Item_Dusts.Dewalquite.info=25Al₂O₃.TiO₂.V₂O₅
+item.Item_Dusts.TiO2=टायटेनीयम डायआक्सायड डस्ट
+item.Item_Dusts.TiO2.info=TiO₂
+item.Item_Dusts.Al2O3=अलूमिनम आक्सायड डस्ट
+item.Item_Dusts.Al2O3.info=Al₂O₃
+
+item.crushedOre.Carnallite=तोड़ा हुआ कार्नलाइट ओर
+item.crushedOre.Dewalquite=तोड़ा हुआ वलक्वाइट ओर
+item.crushedOre.Fluorapatite=तोड़ा हुआ फ़्लोरोऐपटाइट ओर
+
+item.purifiedOre.Carnallite=प्युरिफ़ायड कार्नलाइट ओर
+item.purifiedOre.Dewalquite=प्युरिफ़ायड वलक्वाइट ओर
+item.purifiedOre.Fluorapatite=प्युरिफ़ायड फ़्लोरोऐपटाइट ओर
+
+item.smallDust.Carnallite=थोड़ा सा कार्नलाइट डस्ट
+item.smallDust.Dewalquite=थोड़ा सा डेवलक्वाइट डस्ट
+item.smallDust.Fluorapatite=थोड़ा सा फ़्लोरोऐपटाइट डस्ट
+
+#Ingots
+#To translators: for briquette, see the following links:
+#https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
+item.Item_Ingots.K=पटैसीयम
+item.Item_Ingots.K.info=K
+item.Item_Ingots.P=फ़ास्फ़र
+item.Item_Ingots.P.info=P
+item.Item_Ingots.NaturalGasHydrate=मेथेन कलाथरेट
+item.Item_Ingots.NaturalGasHydrate.info=CH₄·H₂O
+item.Item_Ingots.CoalCokeShattered=कोकिंग कोल के टुकड़े
+item.Item_Ingots.CoalCokeShattered.info=कार्यक्षम कोयला~
+item.Item_Ingots.Briquette=ब्रिकेट
+item.Item_Ingots.Briquette.info=चीनी बनावट
+
+item.tiberium.red=टाइबीरीअम (लाल)
+item.tiberium.blue=टाइबीरीअम (नीला)
+item.tiberium.green=टाइबीरीअम (हरा)
+item.tiberium.info=सावधान रहो, और अलग संग्रह करो
+
+#Blocks
+tile.mineral.carnallite.name=कार्नलाइट डस्ट
+tile.mineral.dewalquite.name=डेवलक्वाइट डस्ट
+tile.mineral.fluorapatite.name=फ़्लोरोऐपटाइट डस्ट
+
+tile.tiberium_crystal.red.name=टाइबीरीअम (लाल)
+tile.tiberium_crystal.blue.name=टाइबीरीअम (नीला)
+tile.tiberium_crystal.green.name=टाइबीरीअम (हरा)
+
+tile.condenseTower.core.name=कंडेन्स टावर
+tile.condenseTower.output.name=लिक्विड आउट्लेट
+tile.condenseTower.cylinder.name=कंडेन्स टावर दीवार
+
+tile.hybridStorageUnit.normal.name=हाइब्रिड स्टॉरिज यूनिट (HSU)
+tile.hybridStorageUnit.ultra.name=परम हाइब्रिड स्टॉरिज यूनिट (UHSU)
+
+tile.hybridStorageUnit.EVT.name=EV ट्रैन्स्फ़ॉर्मर 
+
+tile.generator.combustionFurnace.name=ज्वलन का भट्ठी 
+
+tile.machines.advchemreactor.name=विकसित केमिकल रीऐक्टर
+tile.machines.airpump.name=औद्योगिक हवा की पम्प
+tile.machines.pyrolyzer.name=पयरोलाइज़र
+tile.machines.liquefier.name=लिक्विफ़ाइअर
+
+tile.nitricAcid.name=नाइट्रिक ऐसिड
+
+#Achivements
+achievement.get_railgun=सिर्फ़ मेरी रेलगूँ!
+achievement.get_railgun.desc=अर्रे यार!
+achievement.get_EVT=EV ट्रैन्स्फ़ॉर्मर
+achievement.get_EVT.desc=२०४८ तक स्टेप डाउन करो
+achievement.killed_by_Potassium=पटैसीयम से मारो
+achievement.killed_by_Potassium.desc=पानी से मत मिलाओ!
+achievement.gaspump=गैस की शक्ति
+achievement.gaspump.desc=एक अलक्ष्य शक्ति
+achievement.pneumaticCompressor=ITNT को बाई बाई कहो
+achievement.pneumaticCompressor.desc=बहुत सारा ITNT को अब तुमको नहीं बना है
+achievement.liquifier=अनंत राव मटीरीयल
+achievement.liquifier.desc=हवा को राव मटीरीयल में बना सकते हो
+achievement.hsu=ज़्यादा बड़ा MFSU
+achievement.hsu.desc=100000000EU!
+achievement.uhsu=हेंटै MFSU
+achievement.uhsu.desc=1000000000EU!
+achievement.goldclod=गोल्डक्लाड
+achievement.goldclod.desc=गोल्डक्लाड मेरा है!
+achievement.get_ACR=रसायन विज्ञान का ढंग
+achievement.get_ACR.desc=कोई बढ़िया रीऐक्शन होगा?
+achievement.condensetower=अलग करो?
+achievement.condensetower.desc=कुछ खो लिया है...
+achievement.condensetower2=अलग करो।
+achievement.condensetower2.desc=लिक्विड को अलग कर सकते हो।
+achievement.suicideExpert=आत्महत्या विशेषज्ञ
+achievement.suicideExpert.desc=पटैसीयम + ऐसिड = धमाका
+
+gui.HSU.normal.title=HSU
+gui.HSU.ultra.title=UHSU
+gui.HSU.percent=Percentage: %.2f%%
+gui.HSU.store=EU: %d
+gui.HSU.max=Max. EU: %d
+gui.HSU.output=Output: %d EU/tick
+
+gui.pyrolyzer.title=पयरोलाइज़र
+
+gui.combustionFurnace.title=ज्वलन का भट्ठी 
+
+gui.MPS.title=मोबाइल पावर सप्लाई
+
+gui.fluid.name=Name: %s
+gui.fluid.amount=Amount: %d mB
+gui.fluid.null=इस टैंक में कोई लिक्विड नहीं है
+
+#JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
+jei.category.condensation=कॉंडेन्सेशन
+jei.category.pyrolyzation=पयरोलाईसिस
+
+jei.euTotal=Total: %d EU
+jei.euTick=Power: %d EU/t
+jei.tick=Time in ticks: %d
+
+nei.tickWithCatalyst=रीऐक्शन टिक कैटलस्ट के नीचे
+nei.catalystRequired=इस रीऐक्शन को कैटलस्ट की ज़रारत है
+nei.outputLiquid=ओऊपुत लिक्विड
+
+jei.doc.advChemReactor=Advanced Chemical Reactor is a highly-advanced machine that is capable to allow many chemical reaction happen inside of it. \nIt has 5 input slots, 5 output slots, individual cell input/output slot and a reaction module slot.
+jei.doc.airPump=Air Pump is a machine that can produce high-pressure air. Place one of it below Liquefier will automatically supply Liquefier with high-pressure air. 
+jei.doc.pyrolyzer=Pyrolyzer can use extreme amount of heat to decompose several substances. \nPower requirement is vary on recipes. 
+jei.doc.liquefier=Liquefier can convert high-pressure air into liquefied air. It requires an Air Pump below it in order to get air supply.
+
+jei.doc.condenseTower=Condense Tower is a multiblock structure that can separate liquid mixture into several pure liquid, based on differences among boiling point of liquids.
+
+#Misc
+itemGroup.FrogCraft=फ़्रॉगक्राफ़्ट

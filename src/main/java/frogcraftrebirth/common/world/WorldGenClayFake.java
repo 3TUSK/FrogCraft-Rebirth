@@ -8,19 +8,22 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenClay;
 
 /** Identical to WorldGenClay, but allow user to generate their own blocks. */
-public class WorldGenClayFake extends FrogWorldGenerator {
+public class WorldGenClayFake extends WorldGenClay {
 
 	final int numberOfBlocks;
 
 	final IBlockState blockstate;
 
 	public WorldGenClayFake(IBlockState blockstate, int numberOfBlocks) {
+		super(0);
 		this.blockstate = blockstate;
 		this.numberOfBlocks = numberOfBlocks;
 	}
 
+	@Override
 	public boolean generate(World worldIn, Random rand, BlockPos position) {
 		if (worldIn.getBlockState(position).getMaterial() != Material.WATER) {
 			return false;
@@ -36,7 +39,7 @@ public class WorldGenClayFake extends FrogWorldGenerator {
 						for (int y = position.getY() - 1; y <= position.getY() + 1; ++y) {
 							BlockPos blockpos = new BlockPos(x, y, z);
 							Block target = worldIn.getBlockState(blockpos).getBlock();
-							if (target == Blocks.DIRT|| target == Blocks.CLAY) {
+							if (target == Blocks.DIRT || target == Blocks.CLAY) {
 								worldIn.setBlockState(blockpos, blockstate, 2);
 							}
 						}

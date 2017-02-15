@@ -2,7 +2,6 @@ package frogcraftrebirth.common;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
@@ -15,8 +14,6 @@ import frogcraftrebirth.common.registry.RegFrogAchievements;
 import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import frogcraftrebirth.common.registry.RegFrogRecipes;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
-import ic2.api.item.IC2Items;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -35,9 +32,11 @@ public class FrogProxy {
 		RegFrogItemsBlocks.init();
 		RegFluid.init(); 
 		FrogAPI.potionTiberium = new PotionTiberium(0x66CCFF);
-		GameRegistry.<Potion>register(FrogAPI.potionTiberium);
+		GameRegistry.register(FrogAPI.potionTiberium);
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
-		GameRegistry.registerWorldGenerator(new FrogWorldGenerator(), 3);
+		FrogWorldGenerator generator = new FrogWorldGenerator();
+		MinecraftForge.TERRAIN_GEN_BUS.register(generator);
+		MinecraftForge.ORE_GEN_BUS.register(generator);
 		RegFrogAchievements.init();
 	}
 
@@ -56,9 +55,6 @@ public class FrogProxy {
 
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogRecipes.postInit();
-		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
-		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
-		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		FrogAPI.COMPATS.entrySet().forEach(module -> {
 			if (Loader.isModLoaded(module.getKey()))

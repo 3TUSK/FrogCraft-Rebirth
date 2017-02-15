@@ -3,6 +3,7 @@ package frogcraftrebirth.common.registry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogBlocks;
 import frogcraftrebirth.api.FrogItems;
+import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.config.ConfigMain;
@@ -35,6 +36,10 @@ public class RegFrogRecipes {
 	}
 	
 	public static void postInit() {
+		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
+		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
+		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
+		
 		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.INGOT, 1, 3), 16000);
 		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogItems.INGOT, 1, 4), 1800);
 		

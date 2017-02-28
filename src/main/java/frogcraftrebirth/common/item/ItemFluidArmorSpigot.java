@@ -8,9 +8,6 @@
  */
 package frogcraftrebirth.common.item;
 
-import java.util.Arrays;
-import java.util.List;
-
 import frogcraftrebirth.api.item.IFluidBackpackSpigot;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -36,11 +33,8 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 	public FluidStack extractFrom(ItemStack backpack) {
 		return null;
 	}
-
-	@Override
-	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Arrays.asList(""); // TODO show mode
-	}
+	
+	// TODO Add tooltip for mode
 	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {

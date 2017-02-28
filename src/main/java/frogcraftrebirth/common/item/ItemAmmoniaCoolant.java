@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.item;
 
-import java.util.Collections;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
@@ -25,8 +24,8 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	}
 	
 	@Override
-	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Collections.singletonList(I18n.format("item.CoolantAmmonia.info", type));
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+		tooltips.add(I18n.format("item.CoolantAmmonia.info", type));
 	}
 	
 	@Override

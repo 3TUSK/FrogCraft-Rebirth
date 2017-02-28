@@ -8,15 +8,12 @@
  */
 package frogcraftrebirth.common.item;
 
-import java.util.Collections;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemResources extends ItemFrogCraft {
 
@@ -31,10 +28,9 @@ public class ItemResources extends ItemFrogCraft {
 			setSubNameArray(subNameArray);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean f3PlusB) {
-		return Collections.singletonList(I18n.format(getUnlocalizedName(stack) + ".info"));
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
 	}
 	
 	@Override

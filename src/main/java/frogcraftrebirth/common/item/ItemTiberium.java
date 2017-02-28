@@ -8,7 +8,6 @@
  */
 package frogcraftrebirth.common.item;
 
-import java.util.Collections;
 import java.util.List;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -32,8 +31,8 @@ public class ItemTiberium extends ItemFrogCraft {
 	}
 
 	@Override
-	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		return Collections.singletonList(I18n.format("item.tiberium.info"));
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+		tooltips.add(I18n.format("item.tiberium.info"));
 	}
 	
 	@Override

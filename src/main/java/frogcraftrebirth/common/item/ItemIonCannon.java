@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
@@ -63,16 +62,14 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
     }
 
 	@Override
-	public List<String> getToolTip(ItemStack stack, EntityPlayer player, boolean adv) {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add(I18n.format("item.ItemMiniIonCannon.info"));
+	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+		tooltips.add(I18n.format("item.ItemMiniIonCannon.info"));
 		if (player.getCooldownTracker().hasCooldown(stack.getItem())) {
-			list.add(I18n.format("item.ItemMiniIonCannon.coolingDown"));
+			tooltips.add(I18n.format("item.ItemMiniIonCannon.coolingDown"));
 		}
 		if (ElectricItem.manager.getCharge(stack) <= 100000) {
-			list.add(I18n.format("item.ItemMiniIonCannon.discharged"));
+			tooltips.add(I18n.format("item.ItemMiniIonCannon.discharged"));
 		}
-		return list;
 	}
 	
 	@Override

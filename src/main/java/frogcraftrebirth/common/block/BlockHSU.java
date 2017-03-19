@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 
 public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider {
 
-	public static final PropertyEnum<Level> LEVEL = PropertyEnum.<Level>create("variant", Level.class);
+	public static final PropertyEnum<Level> LEVEL = PropertyEnum.create("variant", Level.class);
 
 	public BlockHSU() {
 		super(MACHINE, "hybrid_storage_unit", true, 0, 1);
@@ -71,7 +71,7 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 
 	public static enum Level implements IStringSerializableEnumImpl {
-		NORMAL, ULTRA;
-	}
+		NORMAL, ULTRA
+    }
 
 }

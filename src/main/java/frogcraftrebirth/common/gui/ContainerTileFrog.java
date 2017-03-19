@@ -68,7 +68,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			}
 
 			if (itemstack1.stackSize == 0) {
-				slot.putStack((ItemStack)null);
+				slot.putStack(null);
 			} else {
 				slot.onSlotChanged();
 			}

@@ -40,8 +40,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
-	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<ICondenseTowerOutputHatch>();
-	private Set<ICondenseTowerPart> structures = new HashSet<ICondenseTowerPart>();
+	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<>();
+	private Set<ICondenseTowerPart> structures = new HashSet<>();
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
 	private boolean working;
@@ -87,7 +87,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		
 		if (recipe == null) {
-			recipe = FrogAPI.managerCT.<FluidStack>getRecipe(tank.getFluid());
+			recipe = FrogAPI.managerCT.getRecipe(tank.getFluid());
 			if (checkRecipe(recipe)) {
 				processMax = recipe.getTime();
 				process = 0;
@@ -197,7 +197,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
-		this.recipe = FrogAPI.managerCT.<FluidStack>getRecipe(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe")));
+		this.recipe = FrogAPI.managerCT.getRecipe(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe")));
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
@@ -216,10 +216,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return true;
-		else 
-			return super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -232,11 +229,11 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 	
 	public boolean registerOutputHatch(ICondenseTowerOutputHatch output) {
-		return output != null ? outputs.add(output) : false;
+		return output != null && outputs.add(output);
 	}
 	
 	public boolean registerSturcture(ICondenseTowerPart structure) {
-		return structure != null ? structures.add(structure) : false;
+		return structure != null && structures.add(structure);
 	}
 
 	@Override

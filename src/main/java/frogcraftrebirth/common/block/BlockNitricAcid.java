@@ -2,7 +2,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.Random;
 
-import frogcraftrebirth.api.FrogItems;
+import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -12,32 +12,27 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 
-public class BlockNitricAcid extends BlockFluidFrog {
+public class BlockNitricAcid extends BlockFluidClassic {
 	
 	public BlockNitricAcid(Fluid fluid) {
-		super(fluid, "fluid.nitric_acid", Material.WATER);
+		super(fluid, Material.WATER);
 		this.setUnlocalizedName("nitricAcid");
 		this.setDensity(fluid.getDensity());
 		this.setQuantaPerBlock(8);
-		this.setTickRate(10);
+		this.setTickRate(20);
 	}
 	
 	@Override
 	public boolean canDisplace(IBlockAccess world, BlockPos pos) {
-		if (world.getBlockState(pos).getMaterial().isLiquid()) {
-			return false;
-		}
-		return super.canDisplace(world, pos);
+		return !world.getBlockState(pos).getMaterial().isLiquid() && super.canDisplace(world, pos);
 	}
 
 	@Override
 	public boolean displaceIfPossible(World world, BlockPos pos) {
-		if (world.getBlockState(pos).getMaterial().isLiquid()) {
-			return false;
-		}
-		return super.displaceIfPossible(world, pos);
+		return !world.getBlockState(pos).getMaterial().isLiquid() && super.displaceIfPossible(world, pos);
 	}
 
 	private int corrosion;
@@ -88,7 +83,7 @@ public class BlockNitricAcid extends BlockFluidFrog {
 		super.onEntityCollidedWithBlock(world, pos, state, entity);
 		if (entity instanceof EntityItem) {
 			ItemStack stack = ((EntityItem)entity).getEntityItem();
-			if (stack.getItem() == FrogItems.INGOT && stack.getMetadata() == 0) {
+			if (stack.getItem() == RegFrogItemsBlocks.INGOT && stack.getMetadata() == 0) {
 				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
 			}
 		}

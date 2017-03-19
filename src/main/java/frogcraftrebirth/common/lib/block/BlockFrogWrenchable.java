@@ -8,7 +8,7 @@
  */
 package frogcraftrebirth.common.lib.block;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import ic2.api.tile.IWrenchable;
@@ -30,7 +30,7 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 	public static final PropertyDirection FACING_ALL = BlockDirectional.FACING;
 	public static final PropertyDirection FACING_HORIZONTAL = BlockHorizontal.FACING;
 	
-	protected final boolean allowVerticalRotation;
+	private final boolean allowVerticalRotation;
 
 	protected BlockFrogWrenchable(Material material, String registryName, boolean allowVerticalRotation, int... metaForDisplay) {
 		super(material, registryName, metaForDisplay);
@@ -51,7 +51,7 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
 		if (!allowVerticalRotation) {
 			switch (newDirection) {
-				case UP: return false;
+				case UP:
 				case DOWN: return false;
 				default: {
 					world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_HORIZONTAL, newDirection), 2);
@@ -71,7 +71,7 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		return Arrays.asList(new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
+		return Collections.singletonList(new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
 	}
 
 }

@@ -23,7 +23,7 @@ public class GuiMPS extends GuiTileFrog<TileMobilePowerStation, ContainerMPS> {
 
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		int fillRatio = (int) (40 * tile.getCurrentEnergy() / tile.getCurrentEnergyCapacity());
+		int fillRatio = 40 * tile.getCurrentEnergy() / tile.getCurrentEnergyCapacity();
 		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 63 - fillRatio, 176, 0, 12, fillRatio);
 		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 59 - fillRatio, 176, 42, 12, 4);
 	}

@@ -90,7 +90,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	@Override
 	public boolean canInject(FluidStack stack) {
-		return stack != null ? tank.getFluid() == null ? true : this.tank.fill(stack, false) != 0 : false;
+		return stack != null && (tank.getFluid() == null || this.tank.fill(stack, false) != 0);
 	}
 
 	@Override

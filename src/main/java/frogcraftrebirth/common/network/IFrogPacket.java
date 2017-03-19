@@ -10,11 +10,11 @@ public interface IFrogPacket {
 	
 	void readData(DataInputStream input) throws IOException;
 	
-	public static final byte PACKET_INVALID = 0xFFFFFFFF;
+	byte PACKET_INVALID = 0xFFFFFFFF;
 	
-	public static final byte PACKET_TILE = 0x00000000;
+	byte PACKET_TILE = 0x00000000;
 	
-	public static final byte PACKET_ENTITY = 0x00000001;
+	byte PACKET_ENTITY = 0x00000001;
 	
-	public static final byte PACKET_GUI = 0x00000002;
+	byte PACKET_GUI = 0x00000002;
 }

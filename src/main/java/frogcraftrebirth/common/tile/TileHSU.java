@@ -22,7 +22,7 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	
 	public TileHSU() {
-		super(100000000, 2048, 5, true);
+		this(100000000, 2048, 5, true);
 	}
 	
 	protected TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {

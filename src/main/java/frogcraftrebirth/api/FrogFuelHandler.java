@@ -40,7 +40,7 @@ public final class FrogFuelHandler implements IFuelHandler {
 			return 0;
 		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
 			if (fuel.isItemEqual(entry.getKey()))
-				return entry.getValue().intValue();
+				return entry.getValue();
 		}
 		return 0;
 	}
@@ -76,7 +76,7 @@ public final class FrogFuelHandler implements IFuelHandler {
 	
 	@Nullable
 	public ItemStack getItemByproduct(@Nullable String ore) {
-		return null;
+		return ore2ByproductMap.get(ore);
 	}
 
 	public void regFuel(@Nonnull Item fuel, int timeInTicks) {
@@ -111,9 +111,9 @@ public final class FrogFuelHandler implements IFuelHandler {
 		ore2ByproductMap.put(ore, byproduct);
 	}
 
-	private final Map<ItemStack, Integer> fuelMap = new LinkedHashMap<ItemStack, Integer>();
-	private final Map<ItemStack, FluidStack> fuel2FluidMap = new LinkedHashMap<ItemStack, FluidStack>();
-	private final Map<ItemStack, ItemStack> fuel2ByproductMap = new LinkedHashMap<ItemStack, ItemStack>();
-	private final Map<String, FluidStack> ore2FluidMap = new HashMap<String, FluidStack>();
-	private final Map<String, ItemStack> ore2ByproductMap = new HashMap<String, ItemStack>();
+	private final Map<ItemStack, Integer> fuelMap = new LinkedHashMap<>();
+	private final Map<ItemStack, FluidStack> fuel2FluidMap = new LinkedHashMap<>();
+	private final Map<ItemStack, ItemStack> fuel2ByproductMap = new LinkedHashMap<>();
+	private final Map<String, FluidStack> ore2FluidMap = new HashMap<>();
+	private final Map<String, ItemStack> ore2ByproductMap = new HashMap<>();
 }

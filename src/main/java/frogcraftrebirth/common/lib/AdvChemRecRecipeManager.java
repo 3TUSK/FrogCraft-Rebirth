@@ -11,11 +11,7 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 
 	@Override
 	public boolean equal(IAdvChemRecRecipe recipe1, IAdvChemRecRecipe recipe2) {
-		if (recipe1.getInputs().size() != recipe2.getInputs().size()) 
-			return false;
-		if (recipe1.getInputs().containsAll(recipe2.getInputs()))
-			return true;
-			else return false;
+		return recipe1.getInputs().size() == recipe2.getInputs().size() && recipe1.getInputs().containsAll(recipe2.getInputs());
 	}
 
 	@Override
@@ -47,6 +43,6 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 		return null;
 	}
 
-	private static ArrayList<IAdvChemRecRecipe> recipes = new ArrayList<IAdvChemRecRecipe>();
+	private static ArrayList<IAdvChemRecRecipe> recipes = new ArrayList<>();
 
 }

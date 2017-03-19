@@ -9,7 +9,7 @@
 package frogcraftrebirth.common.compat.jei;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -26,7 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class RecipeCondensation implements IRecipeWrapper {
 	
 	public static List<RecipeCondensation> getWrappedRecipeList() {
-		List<RecipeCondensation> recipesToReturn = new ArrayList<RecipeCondensation>();
+		List<RecipeCondensation> recipesToReturn = new ArrayList<>();
 		for (ICondenseTowerRecipe recipe : FrogAPI.managerCT.getRecipes()) {
 			recipesToReturn.add(new RecipeCondensation(recipe));
 		}
@@ -57,12 +57,12 @@ public class RecipeCondensation implements IRecipeWrapper {
 
 	@Override
 	public List<FluidStack> getFluidInputs() {
-		return Arrays.asList(recipe.getInput());
+		return Collections.singletonList(recipe.getInput());
 	}
 
 	@Override
 	public List<FluidStack> getFluidOutputs() {
-		return new ArrayList<FluidStack>(recipe.getOutput());
+		return new ArrayList<>(recipe.getOutput());
 	}
 
 	@Override

@@ -1,12 +1,18 @@
 package frogcraftrebirth.common.registry;
 
 import frogcraftrebirth.common.FrogFluids;
-import frogcraftrebirth.common.block.BlockFluidFrog;
 import frogcraftrebirth.common.block.BlockNitricAcid;
 import frogcraftrebirth.common.lib.FrogFluid;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumRarity;
+import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public class RegFluid {
 	
@@ -33,36 +39,29 @@ public class RegFluid {
 		regFluid(FrogFluids.carbonDioxide);
 		regFluid(FrogFluids.coalTar, true);
 		regFluid(FrogFluids.fluorine);
-		regFluid(FrogFluids.nitricAcid, true);
+		regFluid(FrogFluids.nitricAcid, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
 		regFluid(FrogFluids.nitrogenOxide);
 		regFluid(FrogFluids.oxygen);
 		regFluid(FrogFluids.sulfurDioxide);
 		regFluid(FrogFluids.sulfurTrioxide);
-		
-		new BlockNitricAcid(FrogFluids.nitricAcid);
-		new BlockFluidFrog(FrogFluids.ammonia, "fluid.ammonia");
-		new BlockFluidFrog(FrogFluids.argon, "fluid.argon");
-		new BlockFluidFrog(FrogFluids.benzene, "fluid.benzene");
-		new BlockFluidFrog(FrogFluids.bromine, "fluid.bromine");
-		new BlockFluidFrog(FrogFluids.carbonDioxide, "fluid.carbonDioxide");
-		new BlockFluidFrog(FrogFluids.carbonOxide, "fluid.carbonOxide");
-		new BlockFluidFrog(FrogFluids.coalTar, "fluid.coalTar");
-		new BlockFluidFrog(FrogFluids.fluorine, "fluid.Fluorine");
-		new BlockFluidFrog(FrogFluids.nitrogenOxide, "fluid.nitrogenOxide");
-		new BlockFluidFrog(FrogFluids.oxygen, "fluid.Oxygen");
-		new BlockFluidFrog(FrogFluids.sulfurDioxide, "fluid.sulfurDioxide");
-		new BlockFluidFrog(FrogFluids.sulfurTrioxide, "fluid.sulfurTrioxide");
 	}
 	
 	private static void regFluid(Fluid fluid) {
 		regFluid(fluid, false);
 	}
-	
+
 	private static void regFluid(Fluid fluid, boolean regBucket) {
+		regFluid(fluid, regBucket, null);
+	}
+
+	private static void regFluid(Fluid fluid, boolean regBucket, @Nullable Function<Fluid, Block> getBlock) {
 		if (!FluidRegistry.registerFluid(fluid))
 			fluid = FluidRegistry.getFluid(fluid.getName());
 		if (regBucket)
 			FluidRegistry.addBucketForFluid(fluid);
+		Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
+		GameRegistry.register(block);
+		fluid.setBlock(block);
 	}
 
 }

@@ -11,6 +11,7 @@ package frogcraftrebirth.common;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
+import java.util.Objects;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
@@ -61,19 +62,15 @@ public final class FrogIMCHandler {
 						}
 						case ("advchemreactor"): {
 							NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
-							ArrayList<OreStack> inputsArray = new ArrayList<OreStack>();
-							ArrayList<ItemStack> outputsArray = new ArrayList<ItemStack>();
+							ArrayList<OreStack> inputsArray = new ArrayList<>();
+							ArrayList<ItemStack> outputsArray = new ArrayList<>();
 							for (int n = 0; n < 5; n++) {
 								int index = n + 1;
 								inputsArray.add(OreStack.loadFromNBT(inputs.getCompoundTag("input" + index)));
 								outputsArray.add(ItemStack.loadItemStackFromNBT(outputs.getCompoundTag("output" + index)));
 							}
-							inputsArray.removeIf((OreStack stack) -> {
-								return stack == null;
-							});
-							outputsArray.removeIf((ItemStack stack) -> {
-								return stack == null;
-							});
+							inputsArray.removeIf(Objects::isNull);
+							outputsArray.removeIf(Objects::isNull);
 							int time = theTag.getInteger("time");
 							int energyPerTick = theTag.getInteger("energyPerTick");
 							ItemStack catalyst = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("catalyst"));

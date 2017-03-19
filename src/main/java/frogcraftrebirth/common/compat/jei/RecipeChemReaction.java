@@ -24,7 +24,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class RecipeChemReaction implements IRecipeWrapper {
 	
 	public static List<RecipeChemReaction> getWrappedRecipeList() {
-		List<RecipeChemReaction> list = new ArrayList<RecipeChemReaction>();
+		List<RecipeChemReaction> list = new ArrayList<>();
 		for (IAdvChemRecRecipe recipe : FrogAPI.managerACR.getRecipes()) {
 			list.add(new RecipeChemReaction(recipe));
 		}

@@ -9,7 +9,7 @@
 package frogcraftrebirth.common.compat.jei;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -26,7 +26,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class RecipePyrolyzation implements IRecipeWrapper {
 	
 	public static List<RecipePyrolyzation> getWrappedRecipeList() {
-		List<RecipePyrolyzation> recipeToReturn = new ArrayList<RecipePyrolyzation>();
+		List<RecipePyrolyzation> recipeToReturn = new ArrayList<>();
 		for (IPyrolyzerRecipe recipe : FrogAPI.managerPyrolyzer.getRecipes()) {
 			recipeToReturn.add(new RecipePyrolyzation(recipe));
 		}
@@ -48,12 +48,12 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 
 	@Override
 	public List<ItemStack> getInputs() {
-		return Arrays.asList(recipe.getInput());
+		return Collections.singletonList(recipe.getInput());
 	}
 
 	@Override
 	public List<ItemStack> getOutputs() {
-		return Arrays.asList(recipe.getOutput());
+		return Collections.singletonList(recipe.getOutput());
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 
 	@Override
 	public List<FluidStack> getFluidOutputs() {
-		return Arrays.asList(recipe.getOutputFluid());
+		return Collections.singletonList(recipe.getOutputFluid());
 	}
 
 	@Override

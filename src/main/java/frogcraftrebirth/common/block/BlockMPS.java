@@ -1,5 +1,6 @@
 package frogcraftrebirth.common.block;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -150,7 +151,7 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
 			((TileMobilePowerStation)te).saveDataTo(stack.getTagCompound());
 		else
 			ItemMPS.normalize(stack);
-		return java.util.Arrays.<ItemStack>asList(stack);
+		return Collections.singletonList(stack);
 	}
 
 }

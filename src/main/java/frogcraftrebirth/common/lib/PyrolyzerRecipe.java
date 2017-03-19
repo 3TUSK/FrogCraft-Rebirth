@@ -40,10 +40,7 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 	
 	@Override
 	public boolean equals(Object r) {
-		if (!(r instanceof PyrolyzerRecipe)) 
-			return false;
-		
-		return ((PyrolyzerRecipe)r).getInput().isItemEqual(this.input);
+		return r instanceof PyrolyzerRecipe && ((PyrolyzerRecipe)r).getInput().isItemEqual(this.input);
 	}
 
 }

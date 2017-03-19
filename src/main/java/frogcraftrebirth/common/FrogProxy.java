@@ -34,9 +34,6 @@ public class FrogProxy {
 		FrogAPI.potionTiberium = new PotionTiberium(0x66CCFF);
 		GameRegistry.register(FrogAPI.potionTiberium);
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
-		FrogWorldGenerator generator = new FrogWorldGenerator();
-		MinecraftForge.TERRAIN_GEN_BUS.register(generator);
-		MinecraftForge.ORE_GEN_BUS.register(generator);
 		RegFrogAchievements.init();
 	}
 
@@ -47,6 +44,9 @@ public class FrogProxy {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
+		FrogWorldGenerator generator = new FrogWorldGenerator();
+		MinecraftForge.TERRAIN_GEN_BUS.register(generator);
+		MinecraftForge.ORE_GEN_BUS.register(generator);
 	}
 	
 	public void imcInit(FMLInterModComms.IMCEvent event) {

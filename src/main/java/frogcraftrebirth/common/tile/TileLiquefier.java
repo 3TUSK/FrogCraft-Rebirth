@@ -138,9 +138,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return true;
-		else return super.hasCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")

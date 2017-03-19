@@ -55,7 +55,7 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, ISpecialAr
 		
 		FluidStack currentFluid = itemStack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
 		if (currentFluid != null) {
-			FluidArmorPotionEffectManager.INSTANCE.getEffect(currentFluid.getFluid()).forEach(effect -> player.addPotionEffect(effect));
+			FluidArmorPotionEffectManager.INSTANCE.getEffect(currentFluid.getFluid()).forEach(player::addPotionEffect);
 		}
 	}
 	

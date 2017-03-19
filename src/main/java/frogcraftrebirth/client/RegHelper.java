@@ -10,12 +10,11 @@ package frogcraftrebirth.client;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fluids.BlockFluidBase;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,16 +57,14 @@ class RegHelper {
 		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, "inventory"));
 	}
 	
-	static void regFluidBlockTexture(BlockFluidBase fluidBlock, final String name) {
-		ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", name);
-		ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
+	static void regFluidBlockTexture(Fluid fluid) {
+		ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
+		ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
 			@Override
 			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
 				return aResource;
 			}
 		});
-		ModelLoader.setCustomMeshDefinition(Item.getItemFromBlock(fluidBlock), stack -> aResource);
-		ModelBakery.registerItemVariants(Item.getItemFromBlock(fluidBlock), aResource);
 	}
 
 }

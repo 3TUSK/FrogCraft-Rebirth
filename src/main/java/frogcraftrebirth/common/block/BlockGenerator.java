@@ -86,7 +86,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	}
 	
 	public static enum Type implements IStringSerializableEnumImpl {
-		COMBUSTION/*, ???*/;
-	}
+		COMBUSTION/*, ???*/
+    }
 
 }

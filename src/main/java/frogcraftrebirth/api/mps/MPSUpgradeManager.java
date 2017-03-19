@@ -20,11 +20,11 @@ public enum MPSUpgradeManager {
 	
 	INSTANCE;
 	
-	private Set<ItemStack> validSolarUpgrades = new LinkedHashSet<ItemStack>();
+	private Set<ItemStack> validSolarUpgrades = new LinkedHashSet<>();
 	
-	private Map<ItemStack, Integer> validStorageUpgrades = new LinkedHashMap<ItemStack, Integer>();
+	private Map<ItemStack, Integer> validStorageUpgrades = new LinkedHashMap<>();
 	
-	private Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<ItemStack, Integer>();
+	private Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<>();
 	
 	public boolean isSolarUpgradeValid(ItemStack stack) { 
 		if (stack == null || stack.stackSize == 0)
@@ -41,8 +41,7 @@ public enum MPSUpgradeManager {
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validStorageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack)) {
-				int increasement = stack.stackSize / entry.getKey().stackSize * entry.getValue();
-				return increasement;
+				return stack.stackSize / entry.getKey().stackSize * entry.getValue();
 			}
 		}
 		return 0;
@@ -53,8 +52,7 @@ public enum MPSUpgradeManager {
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validVoltageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack)) {
-				int increasement = stack.stackSize / entry.getKey().stackSize * entry.getValue();
-				return increasement;
+				return stack.stackSize / entry.getKey().stackSize * entry.getValue();
 			}
 		}
 		return 0;
@@ -94,7 +92,7 @@ public enum MPSUpgradeManager {
 	 * @param stack The upgrade item being registered
 	 * @param incrQuantity The quantity increased of voltage level. 1 is LV, 2 is MV, 3 is HV, and so on.
 	 * @return true if succeed, false if fail
-	 * @See {@link ic2.api.energy.tile.IEnergySource#getSourceTier()}
+	 * @see ic2.api.energy.tile.IEnergySource#getSourceTier
 	 */
 	public boolean registerVoltageUpgrades(ItemStack stack, int incrQuantity) {
 		try {
@@ -111,10 +109,9 @@ public enum MPSUpgradeManager {
 	 * Clear all existed registry info.
 	 * @return true if all registration info is cleared.
 	 */
-	public boolean resetRegistry() {
+	public void resetRegistry() {
 		validSolarUpgrades.clear();
 		validStorageUpgrades.clear();
 		validVoltageUpgrades.clear();
-		return true;
 	}
 }

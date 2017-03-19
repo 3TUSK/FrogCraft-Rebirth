@@ -6,16 +6,11 @@ import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogAchievements;
-import frogcraftrebirth.api.FrogBlocks;
-import frogcraftrebirth.api.FrogItems;
+import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
@@ -28,25 +23,13 @@ public class FrogEventListener {
 	
 	@SubscribeEvent
 	public void onExplosion(ExplosionEvent event) {
-		if (event.getWorld().isRemote) 
-			return;
-		Entity item = event.getExplosion().getExplosivePlacedBy();	
-		IBlockState block = event.getWorld().getBlockState(new BlockPos(event.getExplosion().getPosition()));
-		
-		if (item instanceof EntityItem){
-			if (((EntityItem)item).getEntityItem().getItem() == FrogItems.INGOT && ((EntityItem)item).getEntityItem().getItemDamage() == 0){
-				if (block == FrogBlocks.FLUID_NITRIC_ACID) {
-					EntityPlayer player = event.getWorld().getClosestPlayerToEntity(item, 5.0D);
-					player.addStat(FrogAchievements.POTASSIUM.get());
-				}
-			}			
-		}
+		// TODO rewrite the logic
 	}
 	
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent event) {
 		if (event.getSource() == FrogAPI.TIBERIUM) {
-			event.getEntity().entityDropItem(new ItemStack(FrogItems.TIBERIUM, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
+			event.getEntity().entityDropItem(new ItemStack(RegFrogItemsBlocks.TIBERIUM, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
 		}
 	}
 	
@@ -54,11 +37,11 @@ public class FrogEventListener {
 	public void onPlayerDrop(PlayerDropsEvent event) {
 		if (event.getSource() == FrogAPI.TIBERIUM) {
 			Iterator<EntityItem> iterator = event.getDrops().iterator();
-			ArrayList<EntityItem> newDrops = new ArrayList<EntityItem>();
+			ArrayList<EntityItem> newDrops = new ArrayList<>();
 			while (iterator.hasNext()) {
 				EntityItem item = iterator.next();
 				if (RAND.nextInt(10) == 0) {
-					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(FrogItems.TIBERIUM, RAND.nextInt(3), item.getEntityItem().stackSize));
+					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(RegFrogItemsBlocks.TIBERIUM, RAND.nextInt(3), item.getEntityItem().stackSize));
 					replacement.motionX = item.motionX;
 					replacement.motionY = item.motionY;
 					replacement.motionZ = item.motionZ;
@@ -77,7 +60,7 @@ public class FrogEventListener {
 		if (crafted.getItem() instanceof ItemBlock) {
 			Block block = ((ItemBlock)crafted.getItem()).block;
 			
-			if (block == FrogBlocks.MACHINE)
+			if (block == RegFrogItemsBlocks.MACHINE)
 				switch (meta & 0b11) {
 					case 0: {
 						event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
@@ -93,12 +76,12 @@ public class FrogEventListener {
 					}
 				}
 			
-			if (block == FrogBlocks.CONDENSE_TOWER)
+			if (block == RegFrogItemsBlocks.CONDENSE_TOWER)
 				if ((meta & 0b11) == 0) {
 					event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
 					return;
 				}
-			if (block == FrogBlocks.HSU)
+			if (block == RegFrogItemsBlocks.HSU)
 				switch (meta % 2) {
 					case 0: {
 						event.player.addStat(FrogAchievements.HSU.get());
@@ -106,13 +89,11 @@ public class FrogEventListener {
 					}
 					case 1: {
 						event.player.addStat(FrogAchievements.UHSU.get());
-						return;
 					}
 				}
 		} else {
-			if (crafted.getItem() == FrogItems.JINKELA) {
+			if (crafted.getItem() == RegFrogItemsBlocks.JINKELA) {
 				event.player.addStat(FrogAchievements.JINKELA.get());
-				return;
 			}
 		}
 	}

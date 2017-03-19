@@ -9,6 +9,7 @@
 package frogcraftrebirth.client.gui;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 import org.lwjgl.opengl.GL11;
 
@@ -84,7 +85,7 @@ public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFro
 			String[] info = new String[] {I18n.format("gui.fluid.name", name), I18n.format("gui.fluid.amount", amount)};
 			this.drawHoveringText(Arrays.asList(info), x - guiLeft, y - guiTop);
 		} else {
-			this.drawHoveringText(Arrays.asList(I18n.format("gui.fluid.null")), x - guiLeft, y - guiTop);
+			this.drawHoveringText(Collections.singletonList(I18n.format("gui.fluid.null")), x - guiLeft, y - guiTop);
 		}
 	}
 

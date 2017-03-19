@@ -30,7 +30,7 @@ public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 	
 	@Override
 	public void validate() {
-		while (processingEnergyTileLoading) {
+		if (processingEnergyTileLoading) {
 			// This will ensure that chunk loading won't stuck
 			// I could not think about another way to prevent this happening
 			// This will definitely slow down chunk loading somehow, 

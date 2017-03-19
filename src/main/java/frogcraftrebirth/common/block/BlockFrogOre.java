@@ -8,7 +8,7 @@ import net.minecraft.block.state.IBlockState;
 
 public class BlockFrogOre extends BlockFrog {
 	
-	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("variant", Type.class);
+	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
 
 	public BlockFrogOre() {
 		super(ORE, "ore", 0, 1, 2);
@@ -55,7 +55,7 @@ public class BlockFrogOre extends BlockFrog {
 	}
 	
 	public static enum Type implements IStringSerializableEnumImpl {
-		CARNALLITE, DEWALQUITE, FLUORAPATITE;
-	}
+		CARNALLITE, DEWALQUITE, FLUORAPATITE
+    }
 
 }

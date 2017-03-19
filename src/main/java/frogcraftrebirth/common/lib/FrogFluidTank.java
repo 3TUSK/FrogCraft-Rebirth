@@ -28,8 +28,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	private final String tankName;
 	
 	public FrogFluidTank (int capacity) {
-		this.capacity = capacity;
-		this.tankName = "tank";
+		this(capacity, "tank");
 	}
 	
 	public FrogFluidTank (int capacity, String tagName) {
@@ -147,7 +146,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	}
 	
 	public boolean isFull() {
-		return fluidInv == null ? false : fluidInv.amount >= this.capacity;
+		return fluidInv != null && fluidInv.amount >= this.capacity;
 	}
 	
 	/**

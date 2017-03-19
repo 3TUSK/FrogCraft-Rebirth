@@ -9,19 +9,19 @@ public class FrogMath {
 	 * @return log<sub>base</sub>(exp)
 	 */
 	public static double logBase(double base, double exp) {
-		return (double)(Math.log(exp)/Math.log(base));
+		return Math.log(exp)/Math.log(base);
 	}
 	
 	public static double cot(double radians) {
-		return (double)(1/Math.tan(radians));
+		return 1/Math.tan(radians);
 	}
 	
 	public static double sec(double radians) {
-		return (double)(1/Math.cos(radians));
+		return 1/Math.cos(radians);
 	}
 	
 	public static double csc(double radians) {
-		return (double)(1/Math.sin(radians));
+		return 1/Math.sin(radians);
 	}
 	
 	public static String toFancyString(int value) {

@@ -37,7 +37,7 @@ public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCo
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
-		int chargeIcon = (int) (14 * tile.charge / 10000); //Max charge of Condense Tower
+		int chargeIcon = 14 * tile.charge / 10000; //Max charge of Condense Tower
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 27 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 14, chargeIcon);
 		
 		this.renderFluidTank(tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);

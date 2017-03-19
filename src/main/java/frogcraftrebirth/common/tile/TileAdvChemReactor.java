@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
@@ -132,7 +133,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		this.markDirty();
 	}
 	
-	private final List<ItemStack> checkCache = new ArrayList<ItemStack>();
+	private final List<ItemStack> checkCache = new ArrayList<>();
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
@@ -149,7 +150,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 			return false;
 		checkCache.clear();
 		recipe.getOutputs().forEach(outputStack -> checkCache.add(ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true)));
-		checkCache.removeIf(stack -> stack == null);
+		checkCache.removeIf(Objects::isNull);
 		return checkCache.size() == 0;
 	}
 	
@@ -171,7 +172,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	
 	private void produce() {
 		recipe.getOutputs().forEach(itemStack -> dropCache.add(ItemHandlerHelper.insertItemStacked(output, itemStack.copy(), false)));
-		dropCache.stream().filter(stack -> stack != null).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
+		dropCache.stream().filter(Objects::nonNull).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
 		dropCache.clear();
 		
 		if (recipe.getProducedCellAmount() > 0) {
@@ -191,7 +192,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? true : super.hasCapability(capability, facing);
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")

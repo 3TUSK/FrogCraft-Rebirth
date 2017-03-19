@@ -1,9 +1,6 @@
 package frogcraftrebirth.common.lib.util;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Random;
+import java.util.*;
 
 import javax.annotation.Nonnull;
 
@@ -77,18 +74,23 @@ public final class ItemUtil {
 	}
 	
 	public static Collection<ItemStack> toCollection(IItemHandler handler) {
-		return null; //to be implemented
+		List<ItemStack> stacks = new ArrayList<>();
+		final int slotsNum = handler.getSlots();
+		for (int index = 0; index < slotsNum; index++) {
+			stacks.add(handler.getStackInSlot(index));
+		}
+		return Collections.unmodifiableList(stacks);
 	}
 	
 	public static boolean stackContains(ItemStack[] targetArray, ItemStack stack, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {
 		for (ItemStack aStack : targetArray) {
 			if (oreDict) {
 				int[] idArray = OreDictionary.getOreIDs(stack);
-				ArrayList<String> entryArray = new ArrayList<String>();
+				ArrayList<String> entryArray = new ArrayList<>();
 				for (int id : idArray) {
-					entryArray.addAll(Arrays.asList(OreDictionary.getOreName(id)));
+					entryArray.addAll(Collections.singletonList(OreDictionary.getOreName(id)));
 				}
-				ArrayList<ItemStack> stackArray = new ArrayList<ItemStack>();
+				ArrayList<ItemStack> stackArray = new ArrayList<>();
 				entryArray.forEach(entry -> stackArray.addAll(OreDictionary.getOres(entry)));
 				for (ItemStack examining : stackArray) {
 					if (OreDictionary.itemMatches(examining, stack, true)) {
@@ -105,8 +107,6 @@ public final class ItemUtil {
 			
 			if (hasStack)
 				return true;
-			else
-				continue;
 		}
 		return false;
 	}

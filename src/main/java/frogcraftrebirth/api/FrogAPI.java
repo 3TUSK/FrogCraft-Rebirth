@@ -1,12 +1,12 @@
 package frogcraftrebirth.api;
 
-import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
 
+import net.minecraft.block.Block;
+import net.minecraft.util.ResourceLocation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -14,10 +14,8 @@ import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 
@@ -32,15 +30,14 @@ public final class FrogAPI {
 		MODID = "frogcraftrebirth", 
 		NAME = "FrogCraft: Rebirth", 
 		API = "FrogAPI",
-		API_VER = "0.2", 
-		DEPENDING = "required-after:Forge@[12.18.1.2063,);required-after:IC2@[2.6.40,);after:JEI@[3.11.0,)";
+		API_VER = "0.2";
 
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public Item getTabIconItem() {
-			return findFrogItem("hybridStorageUnit", 1, 0).getItem();
+			return Item.getItemFromBlock(Block.REGISTRY.getObject(new ResourceLocation("frogcraftrebirth", "hybrid_storage_unit")));
 		}
 	};
 	
@@ -52,7 +49,7 @@ public final class FrogAPI {
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
-	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<String, ICompatModuleFrog>();
+	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<>();
 	
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
@@ -76,34 +73,6 @@ public final class FrogAPI {
 
 		COMPATS.put(modid, module);
 		return true;
-	}
-
-	/**
-	 * @param name
-	 *            internal name.
-	 * @param amount
-	 *            quantity of stack
-	 * @param damage
-	 * @return Your item stack, maybe null.
-	 */
-	@Nullable
-	public static ItemStack findFrogItem(final String name, final int amount, final int meta) {
-		Field stuff;
-
-		try {
-			stuff = Class.forName("frogcraftrebirth.common.FrogItems").getField(name);
-			return new ItemStack((Item) stuff.get(null), amount, meta);
-		} catch (Exception e) {
-		}
-
-		try {
-			stuff = Class.forName("frogcraftrebirth.common.FrogBlocks").getField(name);
-			return new ItemStack((Block) stuff.get(null), amount, meta);
-		} catch (Exception e) {
-		}
-
-		FROG_LOG.error("Failed to find FrogCraft: Rebirth item: " + name + "@" + meta);
-		return null;
 	}
 
 }

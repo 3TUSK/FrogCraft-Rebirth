@@ -57,7 +57,7 @@ public class OreStack {
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		return obj instanceof OreStack ? equals((OreStack)obj) : false;
+		return obj instanceof OreStack && equals((OreStack) obj);
 	}
 
 	public boolean consumable(ItemStack stack) {
@@ -99,7 +99,7 @@ public class OreStack {
 		if (!OreDictionary.doesOreNameExist(ore))
 			return false;
 
-		ArrayList<String> entries = new ArrayList<String>();
+		ArrayList<String> entries = new ArrayList<>();
 		for (int num : OreDictionary.getOreIDs(stack))
 			entries.add(OreDictionary.getOreName(num));
 

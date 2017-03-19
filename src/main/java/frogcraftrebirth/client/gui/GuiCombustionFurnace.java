@@ -38,7 +38,7 @@ public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace, Con
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		int chargePercent = (int) (24 * tile.charge / 5000);
+		int chargePercent = 24 * tile.charge / 5000;
 		this.drawTexturedModalRect(this.guiLeft + 72, this.guiTop + 55, 176, 97, chargePercent, 17);
 		
 		if (tile.working) {

@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProvider {
 	
-	public static final PropertyEnum<Type> TYPE = PropertyEnum.<Type>create("variant", Type.class);
+	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
 
 	public BlockMachine() {
 		super(MACHINE, "machine", false, 0, 1, 2, 3);
@@ -140,6 +140,6 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	}
 	
 	public static enum Type implements IStringSerializableEnumImpl {
-		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUEFIER;
-	}
+		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUEFIER
+    }
 }

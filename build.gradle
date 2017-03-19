@@ -43,9 +43,10 @@ minecraft {
 }
 
 dependencies {
-    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
-    deobfCompile "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
+    provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:api"
+    provided "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
+    runtime "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }
 

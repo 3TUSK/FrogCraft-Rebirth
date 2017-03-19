@@ -34,10 +34,7 @@ public interface IAdvChemRecRecipe {
 	}
 
 	default boolean equals(IAdvChemRecRecipe rec) {
-		if (rec.getInputs().equals(getInputs()))
-			return true;
-		else
-			return false;
+		return rec.getInputs().equals(getInputs());
 	}
 
 	default boolean matchInputs(ItemStack... stacks) {

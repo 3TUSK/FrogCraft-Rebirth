@@ -20,7 +20,7 @@ public enum FluidArmorPotionEffectManager {
 	
 	INSTANCE;
 	
-	private final Multimap<Fluid, PotionEffect> fluidSideEffect = LinkedListMultimap.<Fluid, PotionEffect>create();
+	private final Multimap<Fluid, PotionEffect> fluidSideEffect = LinkedListMultimap.create();
 	
 	public boolean registerFluidArmorSideEffect(Fluid fluid, PotionEffect potion) {
 		return fluidSideEffect.put(fluid, potion);

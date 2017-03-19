@@ -5,13 +5,14 @@ import java.util.Collection;
 /** Meaningless. */
 public interface IRecipeManager<R> {
 
-	public boolean equal(R recipe1, R recipe2);
+	boolean equal(R recipe1, R recipe2);
 
-	public void add(R recipe);
+	void add(R recipe);
 
-	public void remove(R recipe);
+	void remove(R recipe);
 
-	public Collection<R> getRecipes();
+	Collection<R> getRecipes();
 
-	public <T> R getRecipe(@SuppressWarnings("unchecked") T... input);
+	@SuppressWarnings("unchecked")
+	<T> R getRecipe(T... input);
 }

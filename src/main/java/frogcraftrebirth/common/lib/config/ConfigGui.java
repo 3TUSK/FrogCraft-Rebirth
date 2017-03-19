@@ -22,7 +22,7 @@ public class ConfigGui extends GuiConfig {
 	private static final List<IConfigElement> ELEMENTS_LIST;
 	
 	static {
-		ELEMENTS_LIST = new ArrayList<IConfigElement>();
+		ELEMENTS_LIST = new ArrayList<>();
 		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("General")));
 		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("Machine")));
 		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("Misc")));

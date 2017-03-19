@@ -92,7 +92,7 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		if (worldIn.isRemote)
 			return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
+		return new ActionResult<>(EnumActionResult.SUCCESS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
     }
 	
 	private ItemStack ionCannonLogic(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {

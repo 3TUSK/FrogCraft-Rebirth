@@ -45,6 +45,6 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 		return null;
 	}
 	
-	private final Set<ICondenseTowerRecipe> recipes = new HashSet<ICondenseTowerRecipe>();;
+	private final Set<ICondenseTowerRecipe> recipes = new HashSet<>();
 
 }

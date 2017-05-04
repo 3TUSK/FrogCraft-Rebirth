@@ -43,16 +43,16 @@ I have created several pages on different site for different users:
 
 ### Notes for potential contributors
 If you're trying to deploy the FrogCraft: Rebirth development environment, just run:
-````bash
+```bash
 bash gradlew setupDecompWorkspace
-````
+```
 Or on Windows:
-````batch
+```batch
 gradlew.bat setupDecompWorkspace
-````
+```
 And also add `eclipse` or `idea` behind `setupDecompWorkspace`, which depends on which IDE you're using.
 
-### Future plan: _Laboratorium Chemiae_
+### Future plan: [_Laboratorium Chemiae_](https://github.com/FrogCraft-Rebirth/LaboratoriumChemiae)
 *Laboratorium Chemiae* (previously named FrogCraft 2: Chemia) is the spiritual successor of both FrogCraft & FrogCraft: Rebirth, which highly focuses on chemical engineering, aiming to establish an IRL-ish system about chemicals synthetic and usage.  
 There is no real progress of FrogCraft2, nor road map, but once FrogCraft: Rebirth is stable, I will start to work on that.
 

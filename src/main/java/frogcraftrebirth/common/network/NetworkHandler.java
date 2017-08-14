@@ -48,7 +48,7 @@ public enum NetworkHandler {
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeDataClient(input, Minecraft.getMinecraft().thePlayer);
+		decodeDataClient(input, Minecraft.getMinecraft().player);
 	}
 	
 	@SideOnly(Side.CLIENT)

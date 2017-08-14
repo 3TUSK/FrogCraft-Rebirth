@@ -57,7 +57,7 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 			if (armor.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
 				FluidStack drained = armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).drain(1000, true);
 				if (drained != null && drained.amount >= 1000) {
-					worldIn.spawnEntityInWorld(new EntitySnowball(worldIn));
+					worldIn.spawnEntity(new EntitySnowball(worldIn));
 				}
 				return new ActionResult<>(EnumActionResult.SUCCESS, itemStackIn);
 			}
@@ -77,8 +77,8 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 						armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).fill(worldIn.getTileEntity(pos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).drain(1000, true), true);
 					else
 						tile.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).fill(armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).drain(1000, true), true);
+					return EnumActionResult.SUCCESS;
 				}
-				return EnumActionResult.SUCCESS;
 			}
 		}
 		

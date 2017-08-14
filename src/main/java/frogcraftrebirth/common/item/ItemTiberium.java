@@ -49,11 +49,10 @@ public class ItemTiberium extends ItemFrogCraft {
 					ItemStack target = inv[index];
 					if (target != null && !(target.getItem() instanceof ItemTiberium)) {
 						inv[index] = new ItemStack(this, target.stackSize, stack.getMetadata());
-						entity.addChatMessage(new TextComponentTranslation("chat.tiberiumCorrosion"));
+						entity.sendMessage(new TextComponentTranslation("chat.tiberiumCorrosion"));
 					}
 				}
 			}
-			
 		}
 	}
 

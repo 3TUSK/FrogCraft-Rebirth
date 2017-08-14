@@ -28,6 +28,7 @@ public class FrogProxyClient extends FrogProxy {
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
 		FrogAPI.FROG_LOG.info("Client side post-initialization finished");
+		FrogAPI.FROG_LOG.info("FrogCraft has finished loading. The era of chemistry will begin!");
 	}
 
 }

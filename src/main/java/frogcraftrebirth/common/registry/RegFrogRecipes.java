@@ -7,7 +7,6 @@ import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
-import ic2.api.recipe.RecipeInputItemStack;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -45,27 +44,27 @@ public class RegFrogRecipes {
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(RegFrogItemsBlocks.AMMONIA_COOLANT_60K), " T ", "TCT", " T ", 'T', "plateTin", 'C', new FluidStack(FrogFluids.ammonia, 1000));
 		
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 0)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 0));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 1)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 1));
-		Recipes.macerator.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 2)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 2));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 0)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 0));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 1)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 1));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.ORE, 1, 2)), null, true, new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 3, 2));
 		
 		NBTTagCompound oreWashingMetadata = new NBTTagCompound();
 		oreWashingMetadata.setInteger("amount", 500);
-		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 0)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 0), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 0), new ItemStack(Blocks.SAND));
-		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 1)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 1), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 1), IC2Items.getItem("dust", "stone"));
-		Recipes.oreWashing.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 2)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 2), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 0)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 0), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 0), new ItemStack(Blocks.SAND));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 1)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 1), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 1), IC2Items.getItem("dust", "stone"));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 2)), oreWashingMetadata, true, new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 2), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 2), IC2Items.getItem("dust", "stone"));
 	
 		NBTTagCompound centrifugeMetadata = new NBTTagCompound();
 		centrifugeMetadata.setInteger("minHeat", 500);
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 0)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 4), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 0));
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 1)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 6), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 1));
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 2)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 7), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 2));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 0)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 4), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 0));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 1)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 6), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 1));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.PURIFIED_DUST, 1, 2)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 7), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 1, 2));
 		centrifugeMetadata.setInteger("minHeat", 1000);
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 0)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 4), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 0), IC2Items.getItem("dust", "small_lithium"));
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 1)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 6), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 1), IC2Items.getItem("dust", "stone"));
-		Recipes.centrifuge.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 2)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 7), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 0)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 4), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 0), IC2Items.getItem("dust", "small_lithium"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 1)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 6), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 1), IC2Items.getItem("dust", "stone"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.CRUSHED_DUST, 1, 2)), centrifugeMetadata, true, new ItemStack(RegFrogItemsBlocks.DUST, 1, 7), new ItemStack(RegFrogItemsBlocks.SMALL_PILE_DUST, 2, 2), IC2Items.getItem("dust", "stone"));
 	
-		Recipes.compressor.addRecipe(new RecipeInputItemStack(new ItemStack(RegFrogItemsBlocks.INGOT, 8, 4)), null, true, new ItemStack(RegFrogItemsBlocks.INGOT, 1, 3));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(RegFrogItemsBlocks.INGOT, 8, 4)), null, true, new ItemStack(RegFrogItemsBlocks.INGOT, 1, 3));
 	}
 	
 	private static void defaultCraftingRecipe() {

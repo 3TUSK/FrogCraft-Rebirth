@@ -104,9 +104,9 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 		
 		if (!worldIn.isRemote && active && ElectricItem.manager.canUse(itemStackIn, 500000)) {
 			ElectricItem.manager.discharge(itemStackIn, 500000, 4, true, false, false);
-			worldIn.spawnEntityInWorld(new EntityIonCannonBeam(worldIn, playerIn));
+			worldIn.spawnEntity(new EntityIonCannonBeam(worldIn, playerIn));
 			playerIn.getCooldownTracker().setCooldown(itemStackIn.getItem(), 200);
-			playerIn.addChatMessage(new TextComponentTranslation("item.ItemMiniIonCannon.warning"));
+			playerIn.sendMessage(new TextComponentTranslation("item.ItemMiniIonCannon.warning"));
 		}
 		return itemStackIn;
 	}

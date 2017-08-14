@@ -45,7 +45,6 @@ public class FrogCraftRebirth {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		proxy.postInit(event);
-		FrogAPI.FROG_LOG.info("FrogCraft has finished loading. The era of chemsitry will begin!");
 	}
 
 }

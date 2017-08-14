@@ -22,6 +22,7 @@ archivesBaseName = "FrogCraft-Rebirth"
 
 repositories {
     maven {
+        name "jei"
         url "http://dvs1.progwml6.com/files/maven"
     }
     maven {
@@ -46,7 +47,7 @@ dependencies {
     provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:api"
     provided "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
-    runtime "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
+    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }
 

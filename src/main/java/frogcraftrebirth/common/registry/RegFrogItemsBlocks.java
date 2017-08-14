@@ -6,6 +6,8 @@ import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RegFrogItemsBlocks {
@@ -35,21 +37,18 @@ public class RegFrogItemsBlocks {
 	public static final Item JINKELA = new ItemJinkela().setRegistryName("jinkela");
 	public static final Item TIBERIUM_ITEM = new ItemTiberium().setRegistryName("tiberium");
 	public static final Item FLUID_ARMOR = new ItemFluidArmor(12000).setRegistryName("fluid_armor");
-	
+
+	/**
+	 * @deprecated Use RegistryEvent.Register instead.
+	 */
+	@Deprecated
 	public static void init() {
-		initBlocks();
-		initItems();
 		initTileEntity();
 	}
-	
-	private static void initBlocks() {
-		GameRegistry.register(ORE);
-		GameRegistry.register(TIBERIUM);
-		GameRegistry.register(GENERATOR);
-		GameRegistry.register(MACHINE);
-		GameRegistry.register(CONDENSE_TOWER);
-		GameRegistry.register(HSU);
-		GameRegistry.register(MPS);
+
+	@SubscribeEvent
+	public static void initBlocks(RegistryEvent.Register<Block> event) {
+		event.getRegistry().registerAll(ORE, TIBERIUM, GENERATOR, MACHINE, CONDENSE_TOWER, HSU, MPS);
 		ItemFrogBlock.registerItemBlockFor(CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName());
 		ItemFrogBlock.registerItemBlockFor(ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName());
 		ItemFrogBlock.registerItemBlockFor(GENERATOR, aStack -> "combustionFurnace");
@@ -59,24 +58,13 @@ public class RegFrogItemsBlocks {
 		ItemFrogBlock.registerItemBlockFor(MPS, new ItemMPS((BlockMPS)MPS));
 	}
 
-	private static void initItems() {		
-		GameRegistry.register(DECAY_BATTERY_URANIUM);
-		GameRegistry.register(DECAY_BATTERY_THORIUM);
-		GameRegistry.register(DECAY_BATTERY_PLOTONIUM);
-		GameRegistry.register(AMMONIA_COOLANT_60K);
-		GameRegistry.register(AMMONIA_COOLANT_180K);
-		GameRegistry.register(AMMONIA_COOLANT_360K);
-		GameRegistry.register(INGOT);
-		GameRegistry.register(DUST);
-		GameRegistry.register(CRUSHED_DUST);
-		GameRegistry.register(PURIFIED_DUST);
-		GameRegistry.register(SMALL_PILE_DUST);
-		GameRegistry.register(REACTION_MODULE);
-		GameRegistry.register(ION_CANNON);
-		GameRegistry.register(ION_CANNON_FRAME);
-		GameRegistry.register(JINKELA);
-		GameRegistry.register(TIBERIUM_ITEM);
-		GameRegistry.register(FLUID_ARMOR);
+	@SubscribeEvent
+	public static void initItems(RegistryEvent.Register<Item> event) {
+		event.getRegistry().registerAll(DECAY_BATTERY_URANIUM, DECAY_BATTERY_THORIUM, DECAY_BATTERY_PLOTONIUM,
+				AMMONIA_COOLANT_60K, AMMONIA_COOLANT_180K, AMMONIA_COOLANT_360K,
+				INGOT, DUST, CRUSHED_DUST, PURIFIED_DUST, SMALL_PILE_DUST,
+				REACTION_MODULE, ION_CANNON, ION_CANNON_FRAME,
+				JINKELA, TIBERIUM_ITEM, FLUID_ARMOR);
 	}
 	
 	private static void initTileEntity() {

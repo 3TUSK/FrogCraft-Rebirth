@@ -14,12 +14,17 @@ import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
 import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 class FrogTextures {
+
+	public static void regModel(ModelRegistryEvent event) {
+
+	}
 	
 	static void initFrogItemsTexture() {
 		RegHelper.registerModel(RegFrogItemsBlocks.AMMONIA_COOLANT_60K);

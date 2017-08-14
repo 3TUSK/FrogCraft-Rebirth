@@ -29,10 +29,8 @@ public class FrogProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigMain.init(event);
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
-		RegFrogItemsBlocks.init();
-		RegFluid.init(); 
-		FrogAPI.potionTiberium = new PotionTiberium(0x66CCFF);
-		GameRegistry.register(FrogAPI.potionTiberium);
+		//RegFrogItemsBlocks.init();
+		RegFluid.init();
 		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
 		RegFrogAchievements.init();
 	}
@@ -56,11 +54,11 @@ public class FrogProxy {
 	public void postInit(FMLPostInitializationEvent event) {
 		RegFrogRecipes.postInit();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
-		FrogAPI.COMPATS.entrySet().forEach(module -> {
-			if (Loader.isModLoaded(module.getKey()))
-				module.getValue().init();
+		FrogAPI.COMPATS.forEach((modid, module) -> {
+			if (Loader.isModLoaded(modid))
+				module.init();
 			else
-				FrogAPI.FROG_LOG.info("The compat module '%s' is not loaded because the mod is not present. It may be a typo, but who knows?", module.getKey());
+				FrogAPI.FROG_LOG.info("The compat module '%s' is not loaded because the mod is not present. It may be a typo, but who knows?", modid);
 		});
 	}
 

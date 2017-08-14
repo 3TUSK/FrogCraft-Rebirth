@@ -17,7 +17,6 @@ public class PotionTiberium extends Potion {
 	public PotionTiberium(int liquidColorIn) {
 		super(true, liquidColorIn);
 		setPotionName("effect.tiberium");
-		setRegistryName("tiberium");
 	}
 	
 	@Override

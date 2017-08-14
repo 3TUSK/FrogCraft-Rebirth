@@ -13,7 +13,7 @@ import javax.annotation.Nullable;
 public interface ICondenseTowerPart {
 
 	/**
-	 * A slave method that may be called when a {@link CondensationEvent} is fired.
+	 * Callback during every functional tick.
 	 */
 	void behave();
 	

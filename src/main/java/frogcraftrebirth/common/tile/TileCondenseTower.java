@@ -23,6 +23,7 @@ import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
@@ -143,8 +144,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void onPartRemoved(ICondenseTowerPart part) {
-		this.outputs.remove(part); //Let's see if someone will let this mess up
-		this.structures.remove(part);
+		if (part instanceof TileEntity) {
+			this.outputs.removeIf(out -> out instanceof TileEntity && ((TileEntity)out).getPos().getY() >= ((TileEntity)part).getPos().getY());
+			this.structures.removeIf(p -> p instanceof TileEntity && ((TileEntity)p).getPos().getY() >= ((TileEntity)part).getPos().getY());
+		}
 	}
 	
 	@Override

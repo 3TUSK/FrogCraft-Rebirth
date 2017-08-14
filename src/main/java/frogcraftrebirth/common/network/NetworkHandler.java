@@ -31,9 +31,8 @@ public enum NetworkHandler {
 	
 	private final FMLEventChannel frogChannel;
 	
-	private NetworkHandler() {
-		frogChannel = NetworkRegistry.INSTANCE.newEventDrivenChannel(FrogAPI.MODID);
-		frogChannel.register(this);
+	NetworkHandler() {
+		(frogChannel = NetworkRegistry.INSTANCE.newEventDrivenChannel(FrogAPI.MODID)).register(this);
 	}
 	
 	public static void init() {

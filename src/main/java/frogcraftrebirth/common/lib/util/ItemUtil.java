@@ -18,7 +18,7 @@ public final class ItemUtil {
 	
 	/**
 	 * For 1.10 to 1.11 migration
-	 * @param stack
+	 * @param stack the ItemStack instance to be checked
 	 * @return True if the stack is safe for manipulation
 	 */
 	public static boolean isStackValid(ItemStack stack) {
@@ -49,12 +49,11 @@ public final class ItemUtil {
 	 * @param toDrop The item stack to drop.
 	 */
 	public static void dropItemStackAsEntityInsanely(World worldIn, BlockPos pos, @Nonnull ItemStack toDrop) {
-		EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), toDrop.copy());
+		EntityItem entityItem = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), toDrop);
 		entityItem.motionX = RAND.nextGaussian() * 0.05D;
 		entityItem.motionY = RAND.nextGaussian() * 0.05D + 0.2D;
 		entityItem.motionZ = RAND.nextGaussian() * 0.05D;
-		toDrop = null;
-		worldIn.spawnEntityInWorld(entityItem);
+		worldIn.spawnEntity(entityItem);
 	}
 	
 	public static ItemStack get1stChoiceFromOre(String entry) {
@@ -103,7 +102,7 @@ public final class ItemUtil {
 			if (strictSize)
 				hasStack = aStack.stackSize == stack.stackSize;
 			if (strictNBT)
-				hasStack = aStack.getTagCompound().equals(stack.getTagCompound());
+				hasStack = ItemStack.areItemStackTagsEqual(aStack, stack);
 			
 			if (hasStack)
 				return true;

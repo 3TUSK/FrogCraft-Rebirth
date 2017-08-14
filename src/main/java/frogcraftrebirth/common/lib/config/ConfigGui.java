@@ -8,29 +8,22 @@
  */
 package frogcraftrebirth.common.lib.config;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
-import net.minecraftforge.fml.client.config.IConfigElement;
 
 public class ConfigGui extends GuiConfig {
-	
-	private static final List<IConfigElement> ELEMENTS_LIST;
-	
-	static {
-		ELEMENTS_LIST = new ArrayList<>();
-		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("General")));
-		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("Machine")));
-		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("Misc")));
-		ELEMENTS_LIST.add(new ConfigElement(ConfigMain.config.getCategory("Compatibility")));
-	}
 
 	public ConfigGui(GuiScreen parentScreen) {
-		super(parentScreen, ELEMENTS_LIST, FrogAPI.MODID, false, false, "FrogCraft-Rebirth", "Config Interface");
+		super(parentScreen, Arrays.asList(
+				new ConfigElement(ConfigMain.config.getCategory("General")),
+				new ConfigElement(ConfigMain.config.getCategory("Machine")),
+				new ConfigElement(ConfigMain.config.getCategory("Misc")),
+				new ConfigElement(ConfigMain.config.getCategory("Compatibility"))
+		), FrogAPI.MODID, false, false, "FrogCraft-Rebirth", "Config Interface");
 	}
 
 }

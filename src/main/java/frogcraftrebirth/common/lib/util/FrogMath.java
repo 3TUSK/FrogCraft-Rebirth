@@ -4,8 +4,8 @@ public class FrogMath {
 	
 	/**
 	 * This has been annoying me for a very long time. Now it's time to end it.
-	 * @param base
-	 * @param exp
+	 * @param base base of the logarithm
+	 * @param exp exponential 
 	 * @return log<sub>base</sub>(exp)
 	 */
 	public static double logBase(double base, double exp) {

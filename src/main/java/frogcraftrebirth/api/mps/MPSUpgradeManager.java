@@ -107,7 +107,6 @@ public enum MPSUpgradeManager {
 	
 	/**
 	 * Clear all existed registry info.
-	 * @return true if all registration info is cleared.
 	 */
 	public void resetRegistry() {
 		validSolarUpgrades.clear();

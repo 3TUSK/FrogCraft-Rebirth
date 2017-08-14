@@ -37,9 +37,6 @@ minecraft {
 
     mappings = Mapping_Ver
     
-    clientJvmArgs += "-Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin -Xms2G"
-    serverJvmArgs += "-Dfml.coreMods.load=frogcraftrebirth.common.asm.FrogASMPlugin -Xms2G"
-    
     replace "@VERSION@", project.version
 }
 
@@ -47,7 +44,7 @@ dependencies {
     provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:api"
     provided "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
-    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:dev"
+    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110"
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }
 

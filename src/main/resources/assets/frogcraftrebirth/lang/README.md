@@ -16,4 +16,5 @@ It _doesn't_ means you have to do so, but means it will be better to do so.
 
 # Credits granted to the following volunteers:
 * de_DE: [Vexatos](https://github.com/Vexatos)
+* hi_IN: [Aryaman](https://github.com/aryamanarora)
 * (who will be next?)

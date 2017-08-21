@@ -7,7 +7,6 @@ import javax.annotation.Nonnull;
 
 import net.minecraft.block.Block;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,10 +16,8 @@ import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 
-@GameRegistry.ObjectHolder(FrogAPI.MODID)
 public final class FrogAPI {
 
 	// Why you want an instance of this?
@@ -45,10 +42,6 @@ public final class FrogAPI {
 	
 	public static final DamageSource TIBERIUM = new DamageSource("tiberium").setDamageBypassesArmor().setDamageIsAbsolute().setDifficultyScaled();
 	public static final DamageSource ION_CANNON = new DamageSource("IonCannon").setDamageBypassesArmor().setFireDamage().setExplosion().setProjectile();
-
-	@GameRegistry.ObjectHolder("tiberium")
-	@Nonnull
-	public static final Potion potionTiberium = null;
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	

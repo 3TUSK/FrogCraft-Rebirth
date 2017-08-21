@@ -6,7 +6,7 @@ import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogAchievements;
-import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
+import frogcraftrebirth.api.FrogRegistees;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemBlock;
@@ -29,7 +29,7 @@ public class FrogEventListener {
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent event) {
 		if (event.getSource() == FrogAPI.TIBERIUM) {
-			event.getEntity().entityDropItem(new ItemStack(RegFrogItemsBlocks.TIBERIUM, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
+			event.getEntity().entityDropItem(new ItemStack(FrogRegistees.TIBERIUM, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
 		}
 	}
 	
@@ -41,7 +41,7 @@ public class FrogEventListener {
 			while (iterator.hasNext()) {
 				EntityItem item = iterator.next();
 				if (RAND.nextInt(10) == 0) {
-					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(RegFrogItemsBlocks.TIBERIUM, RAND.nextInt(3), item.getEntityItem().stackSize));
+					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(FrogRegistees.TIBERIUM, RAND.nextInt(3), item.getEntityItem().stackSize));
 					replacement.motionX = item.motionX;
 					replacement.motionY = item.motionY;
 					replacement.motionZ = item.motionZ;
@@ -60,7 +60,7 @@ public class FrogEventListener {
 		if (crafted.getItem() instanceof ItemBlock) {
 			Block block = ((ItemBlock)crafted.getItem()).block;
 			
-			if (block == RegFrogItemsBlocks.MACHINE)
+			if (block == FrogRegistees.MACHINE)
 				switch (meta & 0b11) {
 					case 0: {
 						event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
@@ -76,12 +76,12 @@ public class FrogEventListener {
 					}
 				}
 			
-			if (block == RegFrogItemsBlocks.CONDENSE_TOWER)
+			if (block == FrogRegistees.CONDENSE_TOWER)
 				if ((meta & 0b11) == 0) {
 					event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
 					return;
 				}
-			if (block == RegFrogItemsBlocks.HSU)
+			if (block == FrogRegistees.HSU)
 				switch (meta % 2) {
 					case 0: {
 						event.player.addStat(FrogAchievements.HSU.get());
@@ -92,7 +92,7 @@ public class FrogEventListener {
 					}
 				}
 		} else {
-			if (crafted.getItem() == RegFrogItemsBlocks.JINKELA) {
+			if (crafted.getItem() == FrogRegistees.JINKELA) {
 				event.player.addStat(FrogAchievements.JINKELA.get());
 			}
 		}

@@ -9,7 +9,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.function.Function;
@@ -60,7 +60,7 @@ public class RegFluid {
 		if (regBucket)
 			FluidRegistry.addBucketForFluid(fluid);
 		Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
-		GameRegistry.register(block);
+		ForgeRegistries.BLOCKS.register(block);
 		fluid.setBlock(block);
 	}
 

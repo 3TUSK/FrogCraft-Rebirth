@@ -2,7 +2,9 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogProxy;
+import net.minecraftforge.client.MinecraftForgeClient;
 import net.minecraftforge.client.model.obj.OBJLoader;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
@@ -12,9 +14,6 @@ public class FrogProxyClient extends FrogProxy {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		OBJLoader.INSTANCE.addDomain(FrogAPI.MODID);
-		FrogTextures.initFrogItemsTexture();
-		FrogTextures.initFrogBlocksTexture();
 		FrogAPI.FROG_LOG.info("Client side pre-initialization finished");
 	}
 

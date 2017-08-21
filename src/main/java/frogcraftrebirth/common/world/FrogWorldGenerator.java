@@ -1,6 +1,6 @@
 package frogcraftrebirth.common.world;
 
-import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
+import frogcraftrebirth.api.FrogRegistees;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -13,9 +13,9 @@ import frogcraftrebirth.common.block.BlockFrogOre;
 
 public final class FrogWorldGenerator {
 
-	private static final IBlockState CARNALLITE = RegFrogItemsBlocks.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.CARNALLITE);
-	private static final IBlockState DEWALQUITE = RegFrogItemsBlocks.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.DEWALQUITE);
-	private static final IBlockState FLUORAPATITE = RegFrogItemsBlocks.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.FLUORAPATITE);
+	private static final IBlockState CARNALLITE = FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.CARNALLITE);
+	private static final IBlockState DEWALQUITE = FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.DEWALQUITE);
+	private static final IBlockState FLUORAPATITE = FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.FLUORAPATITE);
 	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(CARNALLITE, 5);
 	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(DEWALQUITE, 15);
 	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FLUORAPATITE, 15);

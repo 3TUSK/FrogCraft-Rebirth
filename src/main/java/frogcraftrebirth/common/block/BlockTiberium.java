@@ -13,8 +13,8 @@ import java.util.List;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.lib.block.BlockFrog;
-import frogcraftrebirth.common.registry.RegFrogItemsBlocks;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -38,7 +38,7 @@ public class BlockTiberium extends BlockFrog {
 	public static IBlockState getTiberiumWithType(int typeIndex) {
 		if (typeIndex > 2)
 			typeIndex = 2; // Use Green Tiberium as fallback
-		return RegFrogItemsBlocks.TIBERIUM.getDefaultState().withProperty(TYPE, BlockTiberium.Color.values()[typeIndex]);
+		return FrogRegistees.TIBERIUM.getDefaultState().withProperty(TYPE, BlockTiberium.Color.values()[typeIndex]);
 	}
 
 	public BlockTiberium() {
@@ -72,7 +72,7 @@ public class BlockTiberium extends BlockFrog {
 	@Override
 	public List<ItemStack> getDrops(IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 		int quantityDropped = 1 + RANDOM.nextInt(fortune * 2);
-		return Collections.singletonList(new ItemStack(RegFrogItemsBlocks.TIBERIUM, quantityDropped, this.damageDropped(state)));
+		return Collections.singletonList(new ItemStack(FrogRegistees.TIBERIUM, quantityDropped, this.damageDropped(state)));
 	}
 
 	@Override
@@ -113,7 +113,7 @@ public class BlockTiberium extends BlockFrog {
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		entityIn.attackEntityFrom(FrogAPI.TIBERIUM, 1.0F);
 		if (entityIn instanceof EntityLiving) {
-			PotionEffect effect = new PotionEffect(FrogAPI.potionTiberium, 1200, 2, false, false);
+			PotionEffect effect = new PotionEffect(FrogRegistees.POTION_TIBERIUM, 1200, 2, false, false);
 			effect.setCurativeItems(Collections.emptyList());
 			((EntityLiving)entityIn).addPotionEffect(effect);
 		}

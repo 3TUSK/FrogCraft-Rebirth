@@ -89,7 +89,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 
 		if (worldIn.isRemote)
 			return true;
-		playerIn.openGui(FrogCraftRebirth.instance, 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(FrogCraftRebirth.getInstance(), 2, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true; // i.e. server and not cylinder
 	}
 

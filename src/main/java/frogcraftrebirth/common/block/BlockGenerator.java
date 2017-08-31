@@ -65,7 +65,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote)
 			return true;
-		playerIn.openGui(FrogCraftRebirth.instance, 3, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(FrogCraftRebirth.getInstance(), 3, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 	

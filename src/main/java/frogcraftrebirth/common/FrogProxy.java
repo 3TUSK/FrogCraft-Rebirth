@@ -27,13 +27,13 @@ public class FrogProxy {
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigMain.init(event);
 		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
-		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, frogcraftrebirth.FrogCraftRebirth.instance, 160, 5, true);
+		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, FrogCraftRebirth.getInstance(), 160, 5, true);
 		RegFrogAchievements.init();
 	}
 
 	public void init(FMLInitializationEvent event) {
 		NetworkHandler.init();
-		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.instance, new FrogGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();

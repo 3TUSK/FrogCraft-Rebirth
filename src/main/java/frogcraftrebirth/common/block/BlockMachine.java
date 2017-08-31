@@ -101,7 +101,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote)
 			return true;
-		playerIn.openGui(FrogCraftRebirth.instance, 5, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		playerIn.openGui(FrogCraftRebirth.getInstance(), 5, worldIn, pos.getX(), pos.getY(), pos.getZ());
 		return true;
 	}
 	

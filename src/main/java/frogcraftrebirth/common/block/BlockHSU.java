@@ -37,7 +37,7 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 		if (worldIn.isRemote) {
 			return true;
 		} else if (worldIn.getTileEntity(pos) instanceof TileHSU) {
-			playerIn.openGui(FrogCraftRebirth.instance, 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
+			playerIn.openGui(FrogCraftRebirth.getInstance(), 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
 			return true;
 		}
 		return false;

@@ -6,6 +6,7 @@ import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
@@ -22,8 +23,8 @@ public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 	}
 
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!playerIn.canPlayerEdit(pos, facing, stack))
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!playerIn.canPlayerEdit(pos, facing, playerIn.getHeldItem(hand)))
 			return EnumActionResult.FAIL;
 		
 		IBlockState state = worldIn.getBlockState(pos);
@@ -45,7 +46,7 @@ public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.Item_Miscs.GoldClod.info"));
 	}
 

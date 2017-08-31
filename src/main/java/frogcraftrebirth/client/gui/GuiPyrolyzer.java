@@ -31,8 +31,8 @@ public class GuiPyrolyzer extends GuiTileFrog<TilePyrolyzer, ContainerPyrolyzer>
 			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(tile.maxCharge))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.pyrolyzer.title"), 8, ySize - 155, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 96 + 2, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.pyrolyzer.title"), 8, ySize - 155, GRAY_40);
 	}
 
 	@Override

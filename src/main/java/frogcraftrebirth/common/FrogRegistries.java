@@ -1,5 +1,6 @@
 package frogcraftrebirth.common;
 
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
@@ -9,13 +10,14 @@ import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod.EventBusSubscriber
+@Mod.EventBusSubscriber(modid = FrogAPI.MODID)
 public class FrogRegistries {
 
     @SubscribeEvent
@@ -45,7 +47,16 @@ public class FrogRegistries {
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-                new ItemResources("Item_Ingots", "K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered").setRegistryName("ingot"),
+                new ItemResources("Item_Ingots", "K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered") {
+                    @Override
+                    public int getItemBurnTime(ItemStack stack) {
+                        switch (stack.getMetadata()) {
+                            case 3: return 18000;
+                            case 4: return 1600;
+                            default: return 0;
+                        }
+                    }
+                }.setRegistryName("ingot"),
                 new ItemResources("Item_Dusts", "Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5").setRegistryName("dust"),
                 new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed"),
                 new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified"),

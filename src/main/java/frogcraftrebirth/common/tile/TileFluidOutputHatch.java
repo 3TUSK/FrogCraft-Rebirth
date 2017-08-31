@@ -22,6 +22,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -37,13 +38,13 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	@Override
 	public void update() {
 		if (!getWorld().isRemote) {
-			if (tank.getFluidAmount() != 0 && inv.getStackInSlot(0) != null) {
+			if (tank.getFluidAmount() != 0 && !inv.getStackInSlot(0).isEmpty()) {
 				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-					ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
-					if (result != null && result.stackSize > 0) {
+					FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
+					if (result.isSuccess() && result.result.getCount() > 0) {
 						inv.extractItem(0, 1, false);
-						ItemStack remainder = inv.insertItem(1, result, false);
-						if (remainder != null && remainder.stackSize > 0)
+						ItemStack remainder = inv.insertItem(1, result.result, false);
+						if (!remainder.isEmpty() && remainder.getCount() > 0)
 							ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 					}
 				}

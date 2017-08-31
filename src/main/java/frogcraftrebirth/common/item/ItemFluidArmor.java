@@ -5,6 +5,7 @@ import java.util.List;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.item.FluidArmorPotionEffectManager;
 import ic2.api.item.IMetalArmor;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +20,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidHandlerItemStack;
 
 /**
@@ -65,14 +67,18 @@ public class ItemFluidArmor extends ItemArmor implements IMetalArmor, ISpecialAr
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> info, boolean adv) {
-		FluidStack fluid = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).getTankProperties()[0].getContents();
-		if (fluid != null) {
-			info.add("Name:" + fluid.getLocalizedName());
-			info.add("Amount: " + fluid.amount);
-		} else {
-			info.add("No fluid is in armor now");
+	public void addInformation(ItemStack stack, World worldIn, List<String> info, ITooltipFlag flag) {
+		IFluidHandlerItem handler = stack.getCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null);
+		if (handler != null) {
+			FluidStack fluid = handler.getTankProperties()[0].getContents();
+			if (fluid != null) {
+				info.add("Name:" + fluid.getLocalizedName());
+				info.add("Amount: " + fluid.amount);
+				return;
+			}
 		}
+
+		info.add("No fluid is in armor now");
 	}
 
 	@Override

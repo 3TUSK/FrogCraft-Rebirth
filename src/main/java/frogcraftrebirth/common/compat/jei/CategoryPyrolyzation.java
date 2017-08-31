@@ -10,6 +10,7 @@ package frogcraftrebirth.common.compat.jei;
 
 import javax.annotation.Nullable;
 
+import frogcraftrebirth.api.FrogAPI;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -22,7 +23,9 @@ import mezz.jei.api.gui.IDrawableAnimated.StartDirection;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 
@@ -54,6 +57,11 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 	}
 
 	@Override
+	public String getModName() {
+		return FrogAPI.NAME;
+	}
+
+	@Override
 	public IDrawable getBackground() {
 		return background;
 	}
@@ -71,25 +79,16 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 		electricBar.draw(minecraft, 81, 75);
 	}
 
-	@Deprecated
 	@Override
-	public void drawAnimations(Minecraft minecraft) {}
-
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper) {
+	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper, IIngredients ingredients) {
 		IGuiItemStackGroup items = recipeLayout.getItemStacks();
 		IGuiFluidStackGroup fluids = recipeLayout.getFluidStacks();
 		items.init(0, true, 23, 45);
-		items.set(0, recipeWrapper.getInputs());
+		items.set(0, ingredients.getInputs(ItemStack.class).get(0));
 		items.init(1, false, 74, 45);
-		items.set(1, recipeWrapper.getOutputs());
-		fluids.init(0, false, 143, 41, 16, 47, recipeWrapper.getFluidOutputs().get(0).amount, false, tankOverlay);
-		fluids.set(0, recipeWrapper.getFluidOutputs());
-	}
-
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper, IIngredients ingredients) {
-		setRecipe(recipeLayout, recipeWrapper);
+		items.set(1, ingredients.getInputs(ItemStack.class).get(1));
+		fluids.init(0, false, 143, 41, 16, 47, ingredients.getOutputs(FluidStack.class).get(0).get(0).amount, false, tankOverlay);
+		fluids.set(0, ingredients.getOutputs(FluidStack.class).get(0));
 	}
 
 }

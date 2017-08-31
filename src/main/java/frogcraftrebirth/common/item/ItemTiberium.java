@@ -13,6 +13,7 @@ import java.util.List;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -31,7 +32,7 @@ public class ItemTiberium extends ItemFrogCraft {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.tiberium.info"));
 	}
 	
@@ -43,12 +44,12 @@ public class ItemTiberium extends ItemFrogCraft {
 	@Override
 	public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
 		if (world.rand.nextInt(100) == 0 && entity instanceof EntityPlayerMP) {
-			ItemStack[] inv = ((EntityPlayerMP)entity).inventory.mainInventory;
-			for (int index = 0; index < 36; index++) {
+			List<ItemStack> inv = ((EntityPlayerMP)entity).inventory.mainInventory;
+			for (ItemStack item : inv) {
 				if (world.rand.nextInt(100) == 0) {
-					ItemStack target = inv[index];
-					if (target != null && !(target.getItem() instanceof ItemTiberium)) {
-						inv[index] = new ItemStack(this, target.stackSize, stack.getMetadata());
+					if (!item.isEmpty() && !(item.getItem() instanceof ItemTiberium)) {
+						//TODO: Index-based loop?
+						inv.set(inv.indexOf(item), new ItemStack(this, item.getCount(), item.getMetadata()));
 						entity.sendMessage(new TextComponentTranslation("chat.tiberiumCorrosion"));
 					}
 				}

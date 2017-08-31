@@ -19,11 +19,6 @@ public class HandlerChemReaction implements IRecipeHandler<RecipeChemReaction> {
 	}
 
 	@Override
-	public String getRecipeCategoryUid() {
-		return "frogcraftrebirth.chemreaction";
-	}
-
-	@Override
 	public String getRecipeCategoryUid(RecipeChemReaction recipe) {
 		return "frogcraftrebirth.chemreaction";
 	}

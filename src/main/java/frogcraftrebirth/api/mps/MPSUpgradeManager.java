@@ -27,7 +27,7 @@ public enum MPSUpgradeManager {
 	private Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<>();
 	
 	public boolean isSolarUpgradeValid(ItemStack stack) { 
-		if (stack == null || stack.stackSize == 0)
+		if (stack.isEmpty())
 			return false;
 		for (ItemStack aStack : validSolarUpgrades) {
 			if (aStack.isItemEqual(stack))
@@ -37,22 +37,22 @@ public enum MPSUpgradeManager {
 	}
 	
 	public int getEnergyStoreIncreasementFrom(ItemStack stack) {
-		if (stack == null || stack.stackSize == 0)
+		if (stack.isEmpty())
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validStorageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack)) {
-				return stack.stackSize / entry.getKey().stackSize * entry.getValue();
+				return stack.getCount() / entry.getKey().getCount() * entry.getValue();
 			}
 		}
 		return 0;
 	}
 	
 	public int getVoltageIncreasementFrom(ItemStack stack) {
-		if (stack == null || stack.stackSize == 0)
+		if (stack.isEmpty())
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validVoltageUpgrades.entrySet()) {
 			if (entry.getKey().isItemEqual(stack)) {
-				return stack.stackSize / entry.getKey().stackSize * entry.getValue();
+				return stack.getCount() / entry.getKey().getCount() * entry.getValue();
 			}
 		}
 		return 0;

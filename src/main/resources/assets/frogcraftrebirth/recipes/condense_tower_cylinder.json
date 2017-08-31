@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:condense_tower",
+    "data": 1
+  },
+  "group": "frogcraftrebirth:machine",
+  "pattern": [
+    "SPS",
+    "SPS",
+    "SAS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#plate_steel"
+    },
+    "P": {
+      "item": "ic2:mining_pipe",
+      "data": 0
+    },
+    "A": {
+      "item": "ic2:resource",
+      "data": 13
+    }
+  }
+}

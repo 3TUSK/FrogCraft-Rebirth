@@ -5,8 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 
-import net.minecraft.block.Block;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,7 +14,6 @@ import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 
 public final class FrogAPI {
@@ -35,8 +33,8 @@ public final class FrogAPI {
 
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
-		public Item getTabIconItem() {
-			return Item.getItemFromBlock(Block.REGISTRY.getObject(new ResourceLocation("frogcraftrebirth", "hybrid_storage_unit")));
+		public ItemStack getTabIconItem() {
+			return new ItemStack(FrogRegistees.HSU);
 		}
 	};
 	

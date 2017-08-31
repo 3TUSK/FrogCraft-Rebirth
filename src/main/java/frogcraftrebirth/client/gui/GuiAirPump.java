@@ -14,14 +14,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiAirPump extends GuiTileFrog<TileAirPump, ContainerAirPump> {
 
 	public GuiAirPump(InventoryPlayer playerInv, TileAirPump tile) {
-		super(new ContainerAirPump(playerInv, tile), tile, "GUI_AirPump.png");
+		super(new ContainerAirPump(playerInv, tile), tile, "gui_air_pump.png");
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRendererObj.drawString("Industrial Air Pump", 8, ySize - 155, 4210752);
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
+		this.fontRenderer.drawString("Industrial Air Pump", 8, ySize - 155, 4210752);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 		
 		if (mouseX > 118 + guiLeft && mouseX < 132 + guiLeft && mouseY > 33 + guiTop && mouseY < 47 + guiTop) {
 			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(10000))), mouseX - guiLeft, mouseY - guiTop);

@@ -67,17 +67,17 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 				}
 			}
 
-			if (itemstack1.stackSize == 0) {
-				slot.putStack(null);
+			if (itemstack1.getCount() == 0) {
+				slot.putStack(ItemStack.EMPTY);
 			} else {
 				slot.onSlotChanged();
 			}
 
-			if (itemstack1.stackSize == itemstack.stackSize) {
+			if (itemstack1.getCount() == itemstack.getCount()) {
 				return null;
 			}
 
-			slot.onPickupFromSlot(player, itemstack1);
+			slot.onTake(player, itemstack1);
 		}
 
 		return itemstack;

@@ -23,14 +23,8 @@ public class HandlerPyrolyzation implements IRecipeHandler<RecipePyrolyzation> {
 
 	@Nonnull
 	@Override
-	public String getRecipeCategoryUid() {
-		return "frogcraftrebirth.pyrolyzation";
-	}
-
-	@Nonnull
-	@Override
 	public String getRecipeCategoryUid(RecipePyrolyzation recipe) {
-		return getRecipeCategoryUid();
+		return "frogcraftrebirth.pyrolyzation";
 	}
 
 	@Nonnull
@@ -41,7 +35,7 @@ public class HandlerPyrolyzation implements IRecipeHandler<RecipePyrolyzation> {
 
 	@Override
 	public boolean isRecipeValid(RecipePyrolyzation recipe) {
-		return recipe.getFluidInputs() == null;
+		return true;
 	}
 
 }

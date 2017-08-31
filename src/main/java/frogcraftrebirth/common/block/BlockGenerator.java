@@ -1,7 +1,5 @@
 package frogcraftrebirth.common.block;
 
-import javax.annotation.Nullable;
-
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -12,7 +10,6 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -62,7 +59,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.isRemote)
 			return true;
 		playerIn.openGui(FrogCraftRebirth.getInstance(), 3, worldIn, pos.getX(), pos.getY(), pos.getZ());

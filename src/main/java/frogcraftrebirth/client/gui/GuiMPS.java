@@ -11,14 +11,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiMPS extends GuiTileFrog<TileMobilePowerStation, ContainerMPS> {
 
 	public GuiMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
-		super(new ContainerMPS(playerInv, tile), tile, "GUI_MobilePS.png");
+		super(new ContainerMPS(playerInv, tile), tile, "gui_mps.png");
 	}
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRendererObj.drawString(I18n.format("gui.MPS.title"), 8, ySize - 160, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.MPS.title"), 8, ySize - 160, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GRAY_40);
 	}
 
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {

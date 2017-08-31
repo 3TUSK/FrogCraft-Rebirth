@@ -9,7 +9,6 @@
 package frogcraftrebirth.common.compat.jei;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -47,35 +46,10 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 	}
 
 	@Override
-	public List<ItemStack> getInputs() {
-		return Collections.singletonList(recipe.getInput());
-	}
-
-	@Override
-	public List<ItemStack> getOutputs() {
-		return Collections.singletonList(recipe.getOutput());
-	}
-
-	@Override
-	public List<FluidStack> getFluidInputs() {
-		return null;
-	}
-
-	@Override
-	public List<FluidStack> getFluidOutputs() {
-		return Collections.singletonList(recipe.getOutputFluid());
-	}
-
-	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		minecraft.fontRendererObj.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 80, 0x404040);
-		minecraft.fontRendererObj.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
-		minecraft.fontRendererObj.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 60, 0x404040);
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft, int recipeWidth, int recipeHeight) {
-		
+		minecraft.fontRenderer.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 80, 0x404040);
+		minecraft.fontRenderer.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
+		minecraft.fontRenderer.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 60, 0x404040);
 	}
 
 	@Override

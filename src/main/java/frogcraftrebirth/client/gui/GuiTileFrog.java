@@ -61,10 +61,6 @@ public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFro
 			return;
 		
 		TextureAtlasSprite fluidSprite = this.mc.getTextureMapBlocks().getAtlasSprite(tank.getFluid().getFluid().getStill().toString());
-		if (fluidSprite == null) { //Fall back to purple-black
-			fluidSprite = this.mc.getTextureMapBlocks().getMissingSprite();
-		}
-		
 		this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
 		
 		int scaledHeight = tankHeight * tank.getFluidAmount() / tank.getCapacity();

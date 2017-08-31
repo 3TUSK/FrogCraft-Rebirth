@@ -82,7 +82,7 @@ public class BlockNitricAcid extends BlockFluidClassic {
 	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
 		super.onEntityCollidedWithBlock(world, pos, state, entity);
 		if (entity instanceof EntityItem) {
-			ItemStack stack = ((EntityItem)entity).getEntityItem();
+			ItemStack stack = ((EntityItem)entity).getItem();
 			if (stack.getItem() == FrogRegistees.INGOT && stack.getMetadata() == 0) {
 				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
 			}

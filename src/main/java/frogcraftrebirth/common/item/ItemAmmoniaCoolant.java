@@ -6,9 +6,10 @@ import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.reactor.IReactor;
 import ic2.api.reactor.IReactorComponent;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 
 public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent {
 
@@ -24,7 +25,7 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.CoolantAmmonia.info", type));
 	}
 	

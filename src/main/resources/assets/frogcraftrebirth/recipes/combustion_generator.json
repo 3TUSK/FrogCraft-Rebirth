@@ -1,0 +1,37 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:generator",
+    "data": 0
+  },
+  "group": "frogcraftrebirth:machine",
+  "pattern": [
+    "SSS",
+    "PEP",
+    "CGC"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#plate_steel"
+    },
+    "E": {
+      "item": "ic2:te",
+      "data": 45,
+      "_comment": "45 -> Extractor"
+    },
+    "C": {
+      "item": "ic2:fluid_cell",
+      "data": 0
+    },
+    "G": {
+      "item": "ic2:te",
+      "data": 3,
+      "_comment": "3 -> Generator"
+    },
+    "P": {
+      "item": "ic2:crafting",
+      "data": 3,
+      "_comment": "3 -> Adv. Alloy Plate"
+    }
+  }
+}

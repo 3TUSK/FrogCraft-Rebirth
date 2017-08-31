@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiFluidOutputHatch extends GuiTileFrog<TileFluidOutputHatch, ContainerFluidOutputHatch> {
 
 	public GuiFluidOutputHatch(InventoryPlayer playerInv, TileFluidOutputHatch tile) {
-		super(new ContainerFluidOutputHatch(playerInv, tile), tile, "GUI_LiquidOutput.png");
+		super(new ContainerFluidOutputHatch(playerInv, tile), tile, "GUI_Liquid_Output.png");
 	}
 	
 	@Override

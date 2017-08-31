@@ -30,6 +30,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -63,12 +64,12 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 			return;
 		}
 		
-		if (inv.getStackInSlot(0) != null) {
+		if (!inv.getStackInSlot(0).isEmpty()) {
 			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
-				if (result != null && result.stackSize > 0) {
-					ItemStack remainder = inv.insertItem(1, result, false);
-					if (remainder != null && remainder.stackSize > 0)
+				FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+				if (result.isSuccess() && result.result.getCount() > 0) {
+					ItemStack remainder = inv.insertItem(1, result.result, false);
+					if (!remainder.isEmpty() && remainder.getCount() > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}

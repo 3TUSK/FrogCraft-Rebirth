@@ -61,28 +61,26 @@ public class OreStack {
 	}
 
 	public boolean consumable(ItemStack stack) {
-		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.stackSize >= this.amount;
+		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.getCount() >= this.amount;
 	}
 
 	public void consume(ItemStack stack) {
 		if (this.consumable(stack))
-			stack.stackSize -= this.amount;
-		if (stack.stackSize <= 0)
-			stack = null;
+			stack.shrink(this.amount);
 	}
 
 	public boolean stackable(ItemStack stack) {
-		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.stackSize;
+		return stack != null && OreStack.entryHasStack(stack, this.entry) && stack.getMaxStackSize() <= this.amount + stack.getCount();
 	}
 
 	public void stack(ItemStack stack) {
 		if (stack == null) {
 			stack = OreDictionary.getOres(this.entry).get(0);
-			stack.stackSize = this.amount;
+			stack.setCount(this.amount);
 			return;
 		}
 
-		stack.stackSize += this.amount;
+		stack.grow(this.amount);
 	}
 	
 	public NBTTagCompound saveToNBT(NBTTagCompound tag) {
@@ -120,7 +118,7 @@ public class OreStack {
 	public static OreStack loadFromNBT(NBTTagCompound tag) {
 		String name = tag.getString("oreName");
 		int quantity = tag.getInteger("amount");
-		return name != null && (!"".equals(name)) ? new OreStack(name, quantity) : null;
+		return !name.isEmpty() && (!"".equals(name)) ? new OreStack(name, quantity) : null;
 	}
 
 }

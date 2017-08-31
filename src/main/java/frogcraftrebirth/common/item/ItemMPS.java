@@ -7,11 +7,14 @@ import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -48,17 +51,19 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-		// Add necessary NBT data so that we won't get NPE.
-		ItemStack discharged = normalize(new ItemStack(item, 1, 0));
-		list.add(discharged.copy());
-		ElectricItem.manager.charge(discharged, 60000, 1, true, false);
-		list.add(discharged.copy());
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if (this.isInCreativeTab(tab)) {
+			// Add necessary NBT data so that we won't get NPE.
+			ItemStack discharged = normalize(new ItemStack(this, 1, 0));
+			list.add(discharged.copy());
+			ElectricItem.manager.charge(discharged, 60000, 1, true, false);
+			list.add(discharged);
+		}
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> aList, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> aList, ITooltipFlag flag) {
 		aList.add(I18n.format("tile.mobilePowerStation.info"));
 	}
 	

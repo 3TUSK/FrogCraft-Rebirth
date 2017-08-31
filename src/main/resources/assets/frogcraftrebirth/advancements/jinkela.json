@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "frogcraftrebirth:jinkela"
+    },
+    "title": {
+      "translate": ""
+    },
+    "description": {
+      "translate": ""
+    },
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placeholder": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "frogcraftrebirth:adv_chem_reactor"
+}

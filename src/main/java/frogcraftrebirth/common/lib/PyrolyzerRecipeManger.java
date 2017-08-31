@@ -42,7 +42,7 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 			return null;
 		for (IPyrolyzerRecipe r : recipes) {
 			if (r.getInput().isItemEqual((ItemStack)inputs[0]) 
-					&& r.getInput().stackSize <= ((ItemStack)inputs[0]).stackSize)
+					&& r.getInput().getCount() <= ((ItemStack)inputs[0]).getCount())
 				return r;
 		}
 		return null;

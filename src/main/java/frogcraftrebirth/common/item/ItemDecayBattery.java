@@ -5,10 +5,13 @@ import java.util.List;
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,15 +59,17 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.DecayBattery.info.0"));
 		tooltips.add(I18n.format("item.DecayBattery.info.1"));
 	}
 	
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs tab, List<ItemStack> list) {
-		list.add(new ItemStack(item, 1, 0));
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
+		if (this.isInCreativeTab(tab)) {
+			list.add(new ItemStack(this, 1, 0));
+		}
 	}
 
 }

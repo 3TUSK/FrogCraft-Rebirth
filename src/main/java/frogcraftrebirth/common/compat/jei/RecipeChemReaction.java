@@ -19,7 +19,6 @@ import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class RecipeChemReaction implements IRecipeWrapper {
 	
@@ -44,32 +43,7 @@ public class RecipeChemReaction implements IRecipeWrapper {
 	}
 
 	@Override
-	public List<?> getInputs() {
-		return null;
-	}
-
-	@Override
-	public List<?> getOutputs() {
-		return new ArrayList<>(recipe.getOutputs());
-	}
-
-	@Override
-	public List<FluidStack> getFluidInputs() {
-		return null;
-	}
-
-	@Override
-	public List<FluidStack> getFluidOutputs() {
-		return null;
-	}
-
-	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		
-	}
-
-	@Override
-	public void drawAnimations(Minecraft minecraft, int recipeWidth, int recipeHeight) {
 		
 	}
 

@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "frogcraftrebirth:hybrid_storage_unit",
+      "data": 1
+    },
+    "title": {
+      "translate": ""
+    },
+    "description": {
+      "translate": ""
+    },
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placeholder": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "frogcraftrebirth:hsu"
+}

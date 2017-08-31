@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiAdvChemReactor extends GuiTileFrog<TileAdvChemReactor, ContainerAdvChemReactor> {
 
 	public GuiAdvChemReactor(InventoryPlayer playerInv, TileAdvChemReactor tile) {
-		super(new ContainerAdvChemReactor(playerInv, tile), tile, "GUI_AdvanceChemicalReactor.png");
+		super(new ContainerAdvChemReactor(playerInv, tile), tile, "gui_adv_chem_reactor.png");
 	}
 	
 	@Override

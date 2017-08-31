@@ -49,7 +49,7 @@ public class BlockTiberium extends BlockFrog {
 	}
 
 	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, World worldIn, BlockPos pos) {
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos) {
 		return new AxisAlignedBB(0.05D, 0.0D, 0.05D, 0.95D, 0.9D, 0.95D);
 	}
 

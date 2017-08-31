@@ -1,0 +1,13 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:small_pile_dust",
+    "data": 2,
+    "count": 9
+  },
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "#dust_fluorapatite"
+    }
+  ]
+}

@@ -1,7 +1,5 @@
 package frogcraftrebirth.common.block;
 
-import javax.annotation.Nullable;
-
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
@@ -83,7 +81,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, @Nullable ItemStack heldItem, EnumFacing side, float hitX, float hitY, float hitZ) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (worldIn.getBlockState(pos).getValue(TYPE) == Part.CYLINDER)
 			return false; // process as normal block
 

@@ -36,7 +36,11 @@ public class ItemHandlerInputWrapper implements IItemHandler {
 
 	@Override
 	public ItemStack extractItem(int slot, int amount, boolean simulate) {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
+	@Override
+	public int getSlotLimit(int slot) {
+		return handler.getSlotLimit(slot);
+	}
 }

@@ -19,11 +19,6 @@ public class HandlerCondensation implements IRecipeHandler<RecipeCondensation> {
 	}
 
 	@Override
-	public String getRecipeCategoryUid() {
-		return "frogcraftrebirth.condensation";
-	}
-
-	@Override
 	public String getRecipeCategoryUid(RecipeCondensation recipe) {
 		return "frogcraftrebirth.condensation";
 	}
@@ -35,7 +30,7 @@ public class HandlerCondensation implements IRecipeHandler<RecipeCondensation> {
 
 	@Override
 	public boolean isRecipeValid(RecipeCondensation recipe) {
-		return recipe.getInputs() == null && recipe.getOutputs() == null;
+		return true;
 	}
 
 }

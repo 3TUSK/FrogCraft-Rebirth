@@ -24,6 +24,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -61,19 +62,19 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 			return;
 		}
 		
-		if (fluidIO.getStackInSlot(INPUT_F) != null) {
+		if (!fluidIO.getStackInSlot(INPUT_F).isEmpty()) {
 			if (fluidIO.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryFillContainer(fluidIO.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
-				if (result != null && result.stackSize > 0) {
+				FluidActionResult result = FluidUtil.tryFillContainer(fluidIO.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
+				if (result.isSuccess() && result.result.getCount() > 0) {
 					fluidIO.extractItem(INPUT_F, 1, false);
-					ItemStack remainder = fluidIO.insertItem(OUTPUT_F, result, false);
-					if (remainder != null && remainder.stackSize > 0)
+					ItemStack remainder = fluidIO.insertItem(OUTPUT_F, result.result, false);
+					if (remainder != null && remainder.getCount() > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
 		}
 
-		if (input.getStackInSlot(INPUT) == null) { //Operation aborted
+		if (input.getStackInSlot(INPUT).isEmpty()) { //Operation aborted
 			this.working = false;
 			this.recipe = null;
 			this.process = 0;
@@ -127,13 +128,13 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				return false;
 		}
 
-		return input.getStackInSlot(INPUT).isItemEqual(recipe.getInput()) && input.extractItem(INPUT, recipe.getInput().stackSize, true) != null;
+		return input.getStackInSlot(INPUT).isItemEqual(recipe.getInput()) && !input.extractItem(INPUT, recipe.getInput().getCount(), true).isEmpty();
 	}
 	
 	private void pyrolyze() {
-		input.extractItem(INPUT, recipe.getInput().stackSize, false);
+		input.extractItem(INPUT, recipe.getInput().getCount(), false);
 		ItemStack remainder = output.insertItem(OUTPUT, recipe.getOutput(), false);
-		if (remainder != null && remainder.stackSize > 0)
+		if (!remainder.isEmpty() && remainder.getCount() > 0)
 			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 		if (recipe.getOutputFluid() != null) {
 			tank.fill(recipe.getOutputFluid(), true);
@@ -150,7 +151,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
-		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(ItemStack.loadItemStackFromNBT(tag.getCompoundTag("recipeInput")));
+		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new ItemStack(tag.getCompoundTag("recipeInput")));
 	}
 
 	@Override

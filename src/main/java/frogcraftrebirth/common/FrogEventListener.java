@@ -5,7 +5,6 @@ import java.util.Iterator;
 import java.util.Random;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.FrogAchievements;
 import frogcraftrebirth.api.FrogRegistees;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
@@ -41,7 +40,7 @@ public class FrogEventListener {
 			while (iterator.hasNext()) {
 				EntityItem item = iterator.next();
 				if (RAND.nextInt(10) == 0) {
-					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(FrogRegistees.TIBERIUM, RAND.nextInt(3), item.getEntityItem().stackSize));
+					EntityItem replacement = new EntityItem(item.getEntityWorld(), item.posX, item.posY, item.posZ, new ItemStack(FrogRegistees.TIBERIUM, RAND.nextInt(3), item.getItem().getCount()));
 					replacement.motionX = item.motionX;
 					replacement.motionY = item.motionY;
 					replacement.motionZ = item.motionZ;
@@ -58,42 +57,42 @@ public class FrogEventListener {
 		ItemStack crafted = event.crafting;
 		int meta = crafted.getMetadata();
 		if (crafted.getItem() instanceof ItemBlock) {
-			Block block = ((ItemBlock)crafted.getItem()).block;
+			Block block = ((ItemBlock)crafted.getItem()).getBlock();
 			
 			if (block == FrogRegistees.MACHINE)
 				switch (meta & 0b11) {
 					case 0: {
-						event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
+						//event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
 						return;
 					}
 					case 1: {
-						event.player.addStat(FrogAchievements.GAS_PUMP.get());
+						//event.player.addStat(FrogAchievements.GAS_PUMP.get());
 						return;
 					}
 					case 3: {
-						event.player.addStat(FrogAchievements.LIQUEFIER.get());
+						//event.player.addStat(FrogAchievements.LIQUEFIER.get());
 						return;
 					}
 				}
 			
 			if (block == FrogRegistees.CONDENSE_TOWER)
 				if ((meta & 0b11) == 0) {
-					event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
+					//event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
 					return;
 				}
 			if (block == FrogRegistees.HSU)
 				switch (meta % 2) {
 					case 0: {
-						event.player.addStat(FrogAchievements.HSU.get());
+						//event.player.addStat(FrogAchievements.HSU.get());
 						return;
 					}
 					case 1: {
-						event.player.addStat(FrogAchievements.UHSU.get());
+						//event.player.addStat(FrogAchievements.UHSU.get());
 					}
 				}
 		} else {
 			if (crafted.getItem() == FrogRegistees.JINKELA) {
-				event.player.addStat(FrogAchievements.JINKELA.get());
+				//event.player.addStat(FrogAchievements.JINKELA.get());
 			}
 		}
 	}

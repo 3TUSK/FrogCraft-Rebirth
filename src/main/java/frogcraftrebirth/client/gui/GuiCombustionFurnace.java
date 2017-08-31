@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace, ContainerCombustionFurnace> {
 
 	public GuiCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
-		super(new ContainerCombustionFurnace(playerInv, tile), tile, "GUI_CombustionFurnace.png");
+		super(new ContainerCombustionFurnace(playerInv, tile), tile, "gui_combustion_furnace.png");
 	}
 	
 	@Override
@@ -31,8 +31,8 @@ public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace, Con
 			this.drawHoveringText(Collections.singletonList(String.format("%s/%s EU", FrogMath.toFancyString(tile.charge), FrogMath.toFancyString(5000))), mouseX - guiLeft, mouseY - guiTop);
 		}
 		
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.combustionFurnace.title"), 8, ySize - 155, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.combustionFurnace.title"), 8, ySize - 155, GRAY_40);
 	}
 
 	@Override

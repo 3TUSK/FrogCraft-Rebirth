@@ -8,6 +8,7 @@
  */
 package frogcraftrebirth.common.capability;
 
+import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -20,7 +21,7 @@ public final class CapabilityHandler {
 	
 	@SuppressWarnings("deprecation")
 	@SubscribeEvent
-	public void onWorldCapLoad(AttachCapabilitiesEvent.World event) {
+	public void onWorldCapLoad(AttachCapabilitiesEvent<World> event) {
 		//event.addCapability(key, cap);
 		//TODO CapProvider 
 	}

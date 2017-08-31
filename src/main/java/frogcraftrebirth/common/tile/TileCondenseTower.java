@@ -28,6 +28,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -71,13 +72,13 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			return;
 		}
 			
-		if (inv.getStackInSlot(INPUT_F) != null) {
+		if (!inv.getStackInSlot(INPUT_F).isEmpty()) {
 			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
-				if (result != null && result.stackSize > 0) {
+				FluidActionResult result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
+				if (result.isSuccess() && result.result.getCount() > 0) {
 					inv.extractItem(INPUT_F, 1, false);
-					ItemStack remainder = inv.insertItem(OUTPUT_F, result, false);
-					if (remainder != null && remainder.stackSize > 0)
+					ItemStack remainder = inv.insertItem(OUTPUT_F, result.result, false);
+					if (!remainder.isEmpty() && remainder.getCount()> 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}

@@ -27,7 +27,7 @@ public class EntityIonCannonBeam extends EntityThrowable {
 		super(world, someone); //Server-side constructor
 		setSize(0.5F, 0.5F);
 		Vec3d looking = someone.getLookVec();
-		this.setThrowableHeading(looking.xCoord, looking.yCoord, looking.zCoord, this.getGravityVelocity(), 1.0F);
+		this.setThrowableHeading(looking.x, looking.y, looking.z, this.getGravityVelocity(), 1.0F);
 	}
 
 	@Override

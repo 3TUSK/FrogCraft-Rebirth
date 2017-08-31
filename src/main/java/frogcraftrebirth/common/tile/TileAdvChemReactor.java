@@ -137,10 +137,10 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
 		if (recipe == null)
 			return false;
-		if (cellInput.getStackInSlot(0) != null) {
+		if (!cellInput.getStackInSlot(0).isEmpty()) {
 			if (!IC2Items.getItem("fluid_cell").isItemEqual(cellInput.getStackInSlot(0)))
 				return false;
-			if (cellInput.getStackInSlot(0).stackSize < recipe.getRequiredCellAmount())
+			if (cellInput.getStackInSlot(0).getCount() < recipe.getRequiredCellAmount())
 				return false;
 		} else {
 			if (recipe.getRequiredCellAmount() > 0)
@@ -176,15 +176,15 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		dropCache.clear();
 		
 		if (recipe.getProducedCellAmount() > 0) {
-			if (cellOutput.getStackInSlot(0) != null) {
+			if (!cellOutput.getStackInSlot(0).isEmpty()) {
 				ItemStack cell = cellOutput.getStackInSlot(0).copy();
-				cell.stackSize = recipe.getProducedCellAmount();
+				cell.setCount(recipe.getProducedCellAmount());
 				ItemStack remain = cellOutput.insertItem(0, cell, false);
-				if (remain != null)
+				if (!remain.isEmpty())
 					ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
 			} else {
 				ItemStack stack = IC2Items.getItem("fluid_cell");
-				stack.stackSize = recipe.getProducedCellAmount();
+				stack.setCount(recipe.getProducedCellAmount());
 				cellOutput.insertItem(0, stack, false);
 			}
 		}

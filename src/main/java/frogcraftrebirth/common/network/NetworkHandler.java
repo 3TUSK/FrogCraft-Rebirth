@@ -42,7 +42,7 @@ public enum NetworkHandler {
 	@SubscribeEvent
 	public void serverPacket(ServerCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeDataServer(input, ((NetHandlerPlayServer)event.getHandler()).playerEntity);
+		decodeDataServer(input, ((NetHandlerPlayServer)event.getHandler()).player);
 	}
 	
 	@SubscribeEvent

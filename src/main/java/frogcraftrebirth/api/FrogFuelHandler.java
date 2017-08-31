@@ -12,7 +12,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.IFuelHandler;
 
 /**
  * This FuelHanlder implementation will handle vanilla fuel registration 
@@ -23,7 +22,7 @@ import net.minecraftforge.fml.common.IFuelHandler;
  * @see net.minecraft.tileentity.TileEntityFurnace#getItemBurnTime
  * @author 3TUSK
  */
-public final class FrogFuelHandler implements IFuelHandler {
+public final class FrogFuelHandler {
 
 	/**
 	 * Use 1000mB as default volume.
@@ -34,20 +33,19 @@ public final class FrogFuelHandler implements IFuelHandler {
 	FrogFuelHandler() {
 	}
 
-	@Override
-	public int getBurnTime(@Nullable ItemStack fuel) {
-		if (fuel == null)
-			return 0;
-		for (Entry<ItemStack, Integer> entry : fuelMap.entrySet()) {
-			if (fuel.isItemEqual(entry.getKey()))
-				return entry.getValue();
-		}
-		return 0;
+	/**
+	 * @deprecated Use TileEntityFurnace#getItemBurnTime
+	 * @param fuel The item to be queried for burn time
+	 * @return The burn time
+	 */
+	@Deprecated
+	public int getBurnTime(@Nonnull ItemStack fuel) {
+		return net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime(fuel);
 	}
 
 	@Nullable
-	public FluidStack getFluidByproduct(@Nullable ItemStack aStack) {
-		if (aStack == null)
+	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {
+		if (aStack.isEmpty())
 			return null;
 		for (Entry<ItemStack, FluidStack> entry : fuel2FluidMap.entrySet()) {
 			if (aStack.isItemEqual(entry.getKey()))
@@ -57,15 +55,15 @@ public final class FrogFuelHandler implements IFuelHandler {
 	}
 	
 	@Nullable
-	public FluidStack getFluidByproduct(@Nullable String ore) {
-		if (ore == null)
+	public FluidStack getFluidByproduct(@Nonnull String ore) {
+		if (ore.isEmpty())
 			return null;
 		return ore2FluidMap.get(ore);
 	}
 
 	@Nullable
-	public ItemStack getItemByproduct(@Nullable ItemStack aStack) {
-		if (aStack == null)
+	public ItemStack getItemByproduct(@Nonnull ItemStack aStack) {
+		if (aStack.isEmpty())
 			return null;
 		for (Entry<ItemStack, ItemStack> entry : fuel2ByproductMap.entrySet()) {
 			if (aStack.isItemEqual(entry.getKey()))
@@ -75,16 +73,18 @@ public final class FrogFuelHandler implements IFuelHandler {
 	}
 	
 	@Nullable
-	public ItemStack getItemByproduct(@Nullable String ore) {
+	public ItemStack getItemByproduct(@Nonnull String ore) {
 		return ore2ByproductMap.get(ore);
 	}
 
+	@Deprecated
 	public void regFuel(@Nonnull Item fuel, int timeInTicks) {
 		regFuel(new ItemStack(fuel, 1), timeInTicks);
 	}
 
+	@Deprecated
 	public void regFuel(@Nonnull ItemStack fuel, int timeInTicks) {
-		fuelMap.put(fuel, timeInTicks < 0 ? 0 : timeInTicks);
+		//no-op
 	}
 
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {
@@ -111,7 +111,6 @@ public final class FrogFuelHandler implements IFuelHandler {
 		ore2ByproductMap.put(ore, byproduct);
 	}
 
-	private final Map<ItemStack, Integer> fuelMap = new LinkedHashMap<>();
 	private final Map<ItemStack, FluidStack> fuel2FluidMap = new LinkedHashMap<>();
 	private final Map<ItemStack, ItemStack> fuel2ByproductMap = new LinkedHashMap<>();
 	private final Map<String, FluidStack> ore2FluidMap = new HashMap<>();

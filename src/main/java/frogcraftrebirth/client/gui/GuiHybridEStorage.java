@@ -21,12 +21,12 @@ public class GuiHybridEStorage extends GuiTileFrog<TileHSU, ContainerHybridEStor
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);		
 		final int store = tile.getStored(), max = tile.getCapacity(), output = tile.output;
-		this.fontRendererObj.drawString(I18n.format(isUHSU ? "gui.HSU.ultra.title" : "gui.HSU.normal.title"), 8, 6, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.HSU.percent", (float)(100 * store / max)), 8, 24, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.HSU.store", store), 8, 34, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.HSU.max", max), 8, 44, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("gui.HSU.output", output), 8, 54, GRAY_40);
-		this.fontRendererObj.drawString(I18n.format("container.inventory"), 8, ySize - 96, GRAY_40);
+		this.fontRenderer.drawString(I18n.format(isUHSU ? "gui.HSU.ultra.title" : "gui.HSU.normal.title"), 8, 6, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.HSU.percent", (float)(100 * store / max)), 8, 24, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.HSU.store", store), 8, 34, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.HSU.max", max), 8, 44, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("gui.HSU.output", output), 8, 54, GRAY_40);
+		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, ySize - 96, GRAY_40);
 	}
 
 	@Override

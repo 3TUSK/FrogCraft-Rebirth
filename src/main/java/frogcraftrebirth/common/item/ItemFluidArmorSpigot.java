@@ -39,7 +39,8 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 	// TODO Add tooltip for mode
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
+		ItemStack itemStackIn = playerIn.getHeldItem(hand);
 		if (playerIn.isSneaking()) {
 			if (!itemStackIn.hasTagCompound())
 				itemStackIn.setTagCompound(new NBTTagCompound());
@@ -67,11 +68,12 @@ public class ItemFluidArmorSpigot extends ItemFrogCraft implements IFluidBackpac
 	}
 	
 	@Override
-	public EnumActionResult onItemUse(ItemStack stack, EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile != null && tile.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
 			for (ItemStack armor : playerIn.getArmorInventoryList()) {
 				if (armor.hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing)) {
+					ItemStack stack = playerIn.getHeldItem(hand);
 					boolean mode = stack.hasTagCompound() && stack.getTagCompound().getBoolean("extraction");
 					if (mode)
 						armor.getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null).fill(worldIn.getTileEntity(pos).getCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, facing).drain(1000, true), true);

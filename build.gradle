@@ -7,14 +7,14 @@ buildscript {
         }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.2-SNAPSHOT'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT'
     }
 }
 
+apply plugin: 'idea'
 apply plugin: 'net.minecraftforge.gradle.forge'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
 
 version = "${FCR_Ver_Major}.${FCR_Ver_Minor}.${FCR_Ver_Patch}"
 group = "frogcraftrebirth"
@@ -41,10 +41,10 @@ minecraft {
 }
 
 dependencies {
-    provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110:api"
+    provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112:api"
     provided "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
-    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex110"
+    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112"
     runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
 }
 

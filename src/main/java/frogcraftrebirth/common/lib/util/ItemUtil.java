@@ -14,16 +14,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemUtil {
 	
-	public static final Random RAND = new Random();
-	
-	/**
-	 * For 1.10 to 1.11 migration
-	 * @param stack the ItemStack instance to be checked
-	 * @return True if the stack is safe for manipulation
-	 */
-	public static boolean isStackValid(ItemStack stack) {
-		return stack != null;
-	}
+	private static final Random RAND = new Random();
 	
 	/**
 	 * Identical to {@link InventoryHelper#dropInventoryItems}, except this one is designed for {@link IItemHandler}.
@@ -36,7 +27,7 @@ public final class ItemUtil {
 			final int slots = invSingle.getSlots();
 			for (int index = 0; index < slots; index++) {
 				ItemStack stack = invSingle.getStackInSlot(index);
-				if (isStackValid(stack))
+				if (!stack.isEmpty())
 					dropItemStackAsEntityInsanely(worldIn, pos, stack);
 			}
 		}
@@ -100,7 +91,7 @@ public final class ItemUtil {
 			
 			boolean hasStack = OreDictionary.itemMatches(aStack, stack, true);
 			if (strictSize)
-				hasStack = aStack.stackSize == stack.stackSize;
+				hasStack = aStack.getCount() == stack.getCount();
 			if (strictNBT)
 				hasStack = ItemStack.areItemStackTagsEqual(aStack, stack);
 			

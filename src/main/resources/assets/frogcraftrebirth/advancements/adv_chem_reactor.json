@@ -1,0 +1,21 @@
+{
+  "display": {
+    "icon": {
+      "item": "frogcraftrebirth:machine",
+      "data": 0
+    },
+    "title": {
+      "translate": "achievement.get_ACR"
+    },
+    "description": {
+      "translate": "achievement.get_ACR.desc"
+    },
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "placeholder": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "frogcraftrebirth:gas_pump"
+}

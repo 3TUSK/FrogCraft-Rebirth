@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCondenseTower> {
 
 	public GuiCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
-		super(new ContainerCondenseTower(playerInv, tile), tile, "GUI_CondenseTower_Core.png");
+		super(new ContainerCondenseTower(playerInv, tile), tile, "gui_condense_tower.png");
 	}
 	
 	@Override
@@ -30,7 +30,7 @@ public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCo
 		}
 		
 		if (!tile.isCompleted()) //This string doesn't support localization due to a legacy reason.
-			this.fontRendererObj.drawString("Incomplete Machine Casing!", 8, ySize - 96, GRAY_40);
+			this.fontRenderer.drawString("Incomplete Machine Casing!", 8, ySize - 96, GRAY_40);
 	}
 
 	@Override

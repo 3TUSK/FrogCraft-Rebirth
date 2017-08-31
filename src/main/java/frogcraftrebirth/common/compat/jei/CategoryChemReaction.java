@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.OreStack;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -53,6 +54,11 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 	}
 
 	@Override
+	public String getModName() {
+		return FrogAPI.NAME;
+	}
+
+	@Override
 	public IDrawable getBackground() {
 		return background;
 	}
@@ -69,15 +75,6 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 		chargeBar.draw(minecraft, 148, 41);
 	}
 
-	@Deprecated //As deprecated in JEI
-	@Override
-	public void drawAnimations(Minecraft minecraft) {}
-
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipeChemReaction recipeWrapper) {
-		//No-op
-	}
-
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, RecipeChemReaction recipeWrapper, IIngredients ingredients) {
 		recipeWrapper.getIngredients(ingredients);
@@ -90,13 +87,13 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 		if (cellInput > 0) {
 			stacks.init(11, true, 11, 39);
 			ItemStack cells = ic2.api.item.IC2Items.getItem("fluid_cell");
-			cells.stackSize = cellInput;
+			cells.setCount(cellInput);
 			stacks.set(11, cells);
 		}
 		if (cellOutput > 0) {
 			stacks.init(12, false, 11, 69);
 			ItemStack cells = ic2.api.item.IC2Items.getItem("fluid_cell");
-			cells.stackSize = cellOutput;
+			cells.setCount(cellOutput);
 			stacks.set(12, cells);
 		}
 		int index = 0;
@@ -105,7 +102,7 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 			stacks.set(index++, ore.toStacks());
 		}
 		index = 6;
-		List<ItemStack> outputs = ingredients.getOutputs(ItemStack.class);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
 		final int outputSize = outputs.size();
 		for (int i = 0; i < outputSize; i++){
 			stacks.init(index, false, 39 + i * 20, 69);

@@ -13,9 +13,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 
 public class RegFrogRecipes {
 	
@@ -37,11 +35,12 @@ public class RegFrogRecipes {
 		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
+
+		// Commented out in favor of weird Item#getItemBurnTime
+		//FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 3), 16000);
+		//FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 4), 1800);
 		
-		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 3), 16000);
-		FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 4), 1800);
-		
-		FrogAPI.FUEL_REG.regFuel(IC2Items.getItem("dust", "sulfur"), ConfigMain.enableClassicMode ? 1600 : 1200);
+		//FrogAPI.FUEL_REG.regFuel(IC2Items.getItem("dust", "sulfur"), ConfigMain.enableClassicMode ? 1600 : 1200);
 		
 		Recipes.advRecipes.addRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_60K), " T ", "TCT", " T ", 'T', "plateTin", 'C', new FluidStack(FrogFluids.ammonia, 1000));
 		
@@ -68,35 +67,10 @@ public class RegFrogRecipes {
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.INGOT, 8, 4)), null, true, new ItemStack(FrogRegistees.INGOT, 1, 3));
 	}
 	
-	private static void defaultCraftingRecipe() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.MACHINE, 1, 0), "PMP", "CEC", "PAP", 'P', "plateDenseSteel", 'C', "circuitAdvanced", 'M', IC2Items.getItem("te", "magnetizer"), 'E', IC2Items.getItem("te", "extractor"), 'A', IC2Items.getItem("resource", "advanced_machine")));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.MACHINE, 1, 1), "#C#", "#P#", "#A#", '#', IC2Items.getItem("fluid_cell"), 'C', "circuitAdvanced", 'P', IC2Items.getItem("te", "pump"), 'A', IC2Items.getItem("resource", "advanced_machine")));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.MACHINE, 1, 2), "#C#", "#E#", "HAH", '#', IC2Items.getItem("fluid_cell"), 'C', "circuitAdvanced", 'E', IC2Items.getItem("te", "extractor"), 'A', IC2Items.getItem("resource", "advanced_machine"), 'H', new ItemStack(FrogRegistees.REACTION_MODULE, 1, 0)));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.MACHINE, 1, 3), "#P#", "#Z#", "CAC", '#', IC2Items.getItem("fluid_cell"), 'P', IC2Items.getItem("te", "pump"), 'Z', IC2Items.getItem("te", "compressor"), 'C', "circuitBasic", 'A', IC2Items.getItem("resource", "advanced_machine")));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.MPS), "ICI", "IBI", "IFI", 'I', "plateIron", 'C', "circuitAdvanced", 'B', IC2Items.getItem("te", "batbox"), 'F', IC2Items.getItem("te", "electric_furnace")));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.GENERATOR), "SSS", "PEP", "CGC", 'S', "plateSteel", 'P', IC2Items.getItem("crafting", "alloy"), 'E', IC2Items.getItem("te", "extractor"), 'C', IC2Items.getItem("fluid_cell"), 'G', IC2Items.getItem("te", "generator")));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), "MAM", "CPC", "CYC", 'M', IC2Items.getItem("mining_pipe", "pipe"), 'A', "circuitAdvanced", 'C', IC2Items.getItem("fluid_cell"), 'P', IC2Items.getItem("te", "pump"), 'Y', new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 1)));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1 ,1), "SPS", "SPS", "SAS", 'S', "plateSteel", 'P', IC2Items.getItem("mining_pipe", "pipe"), 'A', IC2Items.getItem("resource", "advanced_machine")));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1 ,2), "SGS", "SPS", "SAS", 'S', "plateSteel", 'G', IC2Items.getItem("glass", "reinforced"), 'P', IC2Items.getItem("mining_pipe", "pipe"), 'A', IC2Items.getItem("resource", "advanced_machine")));
-		
+	private static void defaultCraftingRecipe() {/*
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_180K), "TTT", "CCC", "TTT", 'T', "plateTin", 'C', new ItemStack(FrogRegistees.AMMONIA_COOLANT_60K)));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_360K), "TCT", "TDT", "TCT", 'T', "plateTin", 'D', "plateDenseCopper", 'C', new ItemStack(FrogRegistees.AMMONIA_COOLANT_180K)));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.REACTION_MODULE, 1, 0), " B ", "SCS", " B ", 'B', IC2Items.getItem("crafting", "copper_boiler"), 'S', IC2Items.getItem("casing", "steel"), 'C', "circuitAdvanced"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), " M ", " C ", " E ", 'M', IC2Items.getItem("te", "magnetizer"), 'C', "circuitAdvanced", 'E', IC2Items.getItem("te", "electrolyzer")));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.REACTION_MODULE, 1, 2), "AVA", "VMV", "AVA", 'A', IC2Items.getItem("crafting", "alloy"), 'M', new ItemStack(FrogRegistees.REACTION_MODULE, 1, 0), 'V', "dustVanadiumPentoxide"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.REACTION_MODULE, 1, 3), " I ", "IMI", " I ", 'I', "plateIron", 'M', new ItemStack(FrogRegistees.REACTION_MODULE, 1, 0)));
-		
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.DUST, 1, 4), "DDD", "DDD", "DDD", 'D', "dustTinyCarnallite"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.DUST, 1, 6), "DDD", "DDD", "DDD", 'D', "dustTinyDewalquite"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.DUST, 1, 7), "DDD", "DDD", "DDD", 'D', "dustTinyFluorapatite"));
-	
-		GameRegistry.addShapelessRecipe(new ItemStack(FrogRegistees.SMALL_PILE_DUST, 9, 0), new ItemStack(FrogRegistees.DUST, 1, 4));
-		GameRegistry.addShapelessRecipe(new ItemStack(FrogRegistees.SMALL_PILE_DUST, 9, 1), new ItemStack(FrogRegistees.DUST, 1, 6));
-		GameRegistry.addShapelessRecipe(new ItemStack(FrogRegistees.SMALL_PILE_DUST, 9, 2), new ItemStack(FrogRegistees.DUST, 1, 7));
+		*/
 	}
 	
 	static void initOreDict() {

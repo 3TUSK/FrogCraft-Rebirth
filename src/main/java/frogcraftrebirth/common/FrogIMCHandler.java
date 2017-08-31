@@ -30,7 +30,7 @@ public final class FrogIMCHandler {
 		throw new UnsupportedOperationException();
 	}
 	
-	public static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
+	static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
 		for (FMLInterModComms.IMCMessage message : messages) {
 			if (message.isNBTMessage()) {
 				NBTTagCompound theTag = message.getNBTValue();
@@ -52,8 +52,8 @@ public final class FrogIMCHandler {
 					String machine = theTag.getString("machine").toLowerCase(Locale.ENGLISH);
 						switch (machine) {
 						case ("pyrolyzer"): {
-							ItemStack input = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("input"));
-							ItemStack output = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("output"));
+							ItemStack input = new ItemStack(theTag.getCompoundTag("input"));
+							ItemStack output = new ItemStack(theTag.getCompoundTag("output"));
 							FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
 							int time = theTag.getInteger("time");
 							int energyPerTick = theTag.getInteger("energyPerTick");
@@ -67,13 +67,13 @@ public final class FrogIMCHandler {
 							for (int n = 0; n < 5; n++) {
 								int index = n + 1;
 								inputsArray.add(OreStack.loadFromNBT(inputs.getCompoundTag("input" + index)));
-								outputsArray.add(ItemStack.loadItemStackFromNBT(outputs.getCompoundTag("output" + index)));
+								outputsArray.add(new ItemStack(outputs.getCompoundTag("output" + index)));
 							}
 							inputsArray.removeIf(Objects::isNull);
 							outputsArray.removeIf(Objects::isNull);
 							int time = theTag.getInteger("time");
 							int energyPerTick = theTag.getInteger("energyPerTick");
-							ItemStack catalyst = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("catalyst"));
+							ItemStack catalyst = new ItemStack(theTag.getCompoundTag("catalyst"));
 							int cellReq = theTag.getInteger("cellReq");
 							int cellProduce = theTag.getInteger("cellProduce");
 							FrogAPI.managerACR.add(new AdvChemRecRecipe(inputsArray, outputsArray, catalyst, time, energyPerTick, cellReq, cellProduce));
@@ -92,17 +92,17 @@ public final class FrogIMCHandler {
 							break;
 						}
 						case ("combustionfurnace"): {
-							ItemStack input = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("input"));
-							ItemStack output = ItemStack.loadItemStackFromNBT(theTag.getCompoundTag("output"));
+							ItemStack input = new ItemStack(theTag.getCompoundTag("input"));
+							ItemStack output = new ItemStack(theTag.getCompoundTag("output"));
 							FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
 							String ore = theTag.getString("ore");
-							if (input != null) {
-								if (output != null)
+							if (!input.isEmpty()) {
+								if (!output.isEmpty())
 									FrogAPI.FUEL_REG.regFuelByproduct(input, output);
 								if (outputFluid != null)
 									FrogAPI.FUEL_REG.regFuelByproduct(input, outputFluid);
-							} else if (ore != null && (!ore.equals(""))) {
-								if (output != null)
+							} else if (!ore.isEmpty()) {
+								if (!output.isEmpty())
 									FrogAPI.FUEL_REG.regFuelByproduct(ore, output);
 								if (outputFluid != null)
 									FrogAPI.FUEL_REG.regFuelByproduct(ore, outputFluid);
@@ -118,9 +118,9 @@ public final class FrogIMCHandler {
 				
 				if ("mps".toLowerCase(Locale.ENGLISH).equals(mode)) {
 					String type = theTag.getString("type");
-					ItemStack item = ItemStack.loadItemStackFromNBT((NBTTagCompound) theTag.getTag("item"));
+					ItemStack item = new ItemStack((NBTTagCompound) theTag.getTag("item"));
 					int value = theTag.getInteger("value");
-					if (item != null) {
+					if (!item.isEmpty()) {
 						switch (type.toLowerCase(Locale.ENGLISH)) {
 							case ("solar"): {
 								MPSUpgradeManager.INSTANCE.registerSolarUpgrade(item);

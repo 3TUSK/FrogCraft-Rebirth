@@ -24,6 +24,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
@@ -63,7 +64,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		}
 		
 		//Don't stuck the inventory
-		if (output.getStackInSlot(0) != null && output.getStackInSlot(0).stackSize >= output.getStackInSlot(0).getMaxStackSize()) {
+		if (!output.getStackInSlot(0).isEmpty() && output.getStackInSlot(0).getCount() >= output.getStackInSlot(0).getMaxStackSize()) {
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			this.requireRefresh = true;
@@ -73,7 +74,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		if (working) {
 			this.charge += 10;
 			this.time--;
-		} else if (input.extractItem(0, 1, true) != null && getItemBurnTime(input.getStackInSlot(0)) > 0) {	
+		} else if (!input.extractItem(0, 1, true).isEmpty() && getItemBurnTime(input.getStackInSlot(0)) > 0) {
 			this.working = true;
 			this.burning = input.extractItem(0, 1, false);
 			this.timeMax = getItemBurnTime(burning) / 4;
@@ -85,20 +86,20 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 
 		if (this.time <= 0) {
 			this.timeMax = 0;
-			if (working && ItemUtil.isStackValid(burning))
+			if (working && !burning.isEmpty())
 				bonus(burning);
 			burning = null;
 			this.working = false;
 			this.requireRefresh = true;
 		}
 		
-		if (tank.getFluidAmount() != 0 && ItemUtil.isStackValid(fluidIO.getStackInSlot(0))) {
+		if (tank.getFluidAmount() != 0 && !fluidIO.getStackInSlot(0).isEmpty()) {
 			if (fluidIO.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				ItemStack result = FluidUtil.tryFillContainer(fluidIO.extractItem(0, 1, true), tank, 1000, null, true);
-				if (result != null && result.stackSize > 0) {
+				FluidActionResult result = FluidUtil.tryFillContainer(fluidIO.extractItem(0, 1, true), tank, 1000, null, true);
+				if (result.isSuccess() && result.result.getCount() > 0) {
 					fluidIO.extractItem(0, 1, false);
-					ItemStack remainder = fluidIO.insertItem(1, result, false);
-					if (ItemUtil.isStackValid(remainder) && remainder.stackSize > 0)
+					ItemStack remainder = fluidIO.insertItem(1, result.result, false);
+					if (!remainder.isEmpty() && remainder.getCount() > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
@@ -109,7 +110,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	}
 	
 	private void bonus(ItemStack input) {
-		if (!ItemUtil.isStackValid(input))
+		if (input.isEmpty())
 			return;
 		
 		int[] oreIDs = OreDictionary.getOreIDs(input);
@@ -136,7 +137,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		this.input.deserializeNBT(tag.getCompoundTag("input"));
 		this.output.deserializeNBT(tag.getCompoundTag("output"));
 		this.fluidIO.deserializeNBT(tag.getCompoundTag("fluidIO"));
-		this.burning = ItemStack.loadItemStackFromNBT(tag.getCompoundTag("burning"));
+		this.burning = new ItemStack(tag.getCompoundTag("burning"));
 	}
 	
 	@Override

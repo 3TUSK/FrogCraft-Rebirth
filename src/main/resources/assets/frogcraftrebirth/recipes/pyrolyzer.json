@@ -1,0 +1,36 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:machine",
+    "data": 2
+  },
+  "group": "frogcraftrebirth:machine",
+  "pattern": [
+    "#C#",
+    "#E#",
+    "HAH"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "E": {
+      "item": "ic2:te",
+      "data": 45,
+      "_comment": "45 -> Extractor"
+    },
+    "#": {
+      "item": "ic2:fluid_cell",
+      "data": 0
+    },
+    "C": {
+      "item": "#circuit_advanced"
+    },
+    "A": {
+      "item": "ic2:resource",
+      "data": 13,
+      "_comment": "13 -> Advanced Machine Casing"
+    },
+    "H": {
+      "item": "frogcraftrebirth:catalyst_module",
+      "data": 0
+    }
+  }
+}

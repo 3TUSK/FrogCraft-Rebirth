@@ -1,0 +1,72 @@
+[
+  {
+    "name": "plate_steel",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateSteel"
+    }
+  },
+  {
+    "name": "circuit_advanced",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "circuitAdvanced"
+    }
+  },
+  {
+    "name": "plate_iron",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateIron"
+    }
+  },
+  {
+    "name": "dust_vanadium_pentoxide",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustVanadiumPentoxide"
+    }
+  },
+  {
+    "name": "dust_tiny_carnallite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustTinyCarnallite"
+    }
+  },
+  {
+    "name": "dust_tiny_dewalquite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustTinyDewalquite"
+    }
+  },
+  {
+    "name": "dust_tiny_fluorapatite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustTinyFluorapatite"
+    }
+  },
+  {
+    "name": "dust_carnallite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustCarnallite"
+    }
+  },
+  {
+    "name": "dust_dewalquite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustDewalquite"
+    }
+  },
+  {
+    "name": "dust_fluorapatite",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "dustFluorapatite"
+    }
+  }
+]

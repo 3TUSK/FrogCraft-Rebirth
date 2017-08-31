@@ -12,8 +12,9 @@ import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 public class ItemResources extends ItemFrogCraft {
 
@@ -29,7 +30,7 @@ public class ItemResources extends ItemFrogCraft {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
 	}
 	

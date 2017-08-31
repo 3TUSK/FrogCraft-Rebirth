@@ -1,7 +1,6 @@
 package frogcraftrebirth.common.lib.item;
 
-import java.util.List;
-
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import frogcraftrebirth.api.FrogAPI;
@@ -10,7 +9,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
-@SuppressWarnings("deprecation")
 public abstract class ItemFrogCraft extends Item {
 	
 	protected String[] nameArray;
@@ -30,13 +28,15 @@ public abstract class ItemFrogCraft extends Item {
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs tabs, List<ItemStack> list) {
-		if (!getHasSubtypes()) {
-			super.getSubItems(item, tabs, list);
-			return;
-		}
-		for (int i = 0; i < nameArray.length; i++) {
-			list.add(new ItemStack(item, 1, i));
+	public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list) {
+		if (this.isInCreativeTab(tabs)) {
+			if (!getHasSubtypes()) {
+				super.getSubItems(tabs, list);
+				return;
+			}
+			for (int i = 0; i < nameArray.length; i++) {
+				list.add(new ItemStack(this, 1, i));
+			}
 		}
 	}
 	

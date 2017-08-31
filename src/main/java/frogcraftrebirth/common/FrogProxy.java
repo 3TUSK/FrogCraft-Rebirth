@@ -8,10 +8,9 @@ import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
 import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.network.NetworkHandler;
-import frogcraftrebirth.common.registry.RegFluid;
-import frogcraftrebirth.common.registry.RegFrogAchievements;
 import frogcraftrebirth.common.registry.RegFrogRecipes;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -26,9 +25,7 @@ public class FrogProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigMain.init(event);
-		GameRegistry.registerFuelHandler(FrogAPI.FUEL_REG);
-		EntityRegistry.registerModEntity(EntityIonCannonBeam.class, "EntityRailgunCoin", 0, FrogCraftRebirth.getInstance(), 160, 5, true);
-		RegFrogAchievements.init();
+		EntityRegistry.registerModEntity(new ResourceLocation(FrogAPI.MODID, "ion_cannon_beam"), EntityIonCannonBeam.class, "EntityRailgunCoin", 0, FrogCraftRebirth.getInstance(), 160, 5, true);
 	}
 
 	public void init(FMLInitializationEvent event) {

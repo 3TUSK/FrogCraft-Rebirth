@@ -7,15 +7,16 @@ import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -48,11 +49,11 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	
 	@SideOnly(Side.CLIENT)
 	@Override
-	public void getSubItems(Item item, CreativeTabs aTab, List<ItemStack> subItems) {
-		ItemStack stack = new ItemStack(item, 1);
+	public void getSubItems(CreativeTabs aTab, NonNullList<ItemStack> subItems) {
+		ItemStack stack = new ItemStack(this, 1);
 		subItems.add(stack);
 
-		ItemStack charged = new ItemStack(item, 1);
+		ItemStack charged = new ItemStack(this, 1);
 		ElectricItem.manager.charge(charged, 2147483647, getTier(charged), true, false);
 		subItems.add(charged);
 	}
@@ -62,11 +63,11 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
     }
 
 	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List<String> tooltips, boolean adv) {
+	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.ItemMiniIonCannon.info"));
-		if (player.getCooldownTracker().hasCooldown(stack.getItem())) {
+		/*if (player.getCooldownTracker().hasCooldown(stack.getItem())) {
 			tooltips.add(I18n.format("item.ItemMiniIonCannon.coolingDown"));
-		}
+		}*/
 		if (ElectricItem.manager.getCharge(stack) <= 100000) {
 			tooltips.add(I18n.format("item.ItemMiniIonCannon.discharged"));
 		}
@@ -89,10 +90,10 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand hand) {
 		if (worldIn.isRemote)
-			return super.onItemRightClick(itemStackIn, worldIn, playerIn, hand);
-		return new ActionResult<>(EnumActionResult.SUCCESS, this.ionCannonLogic(itemStackIn, worldIn, playerIn, hand));
+			return super.onItemRightClick(worldIn, playerIn, hand);
+		return new ActionResult<>(EnumActionResult.SUCCESS, this.ionCannonLogic(playerIn.getHeldItem(hand), worldIn, playerIn, hand));
     }
 	
 	private ItemStack ionCannonLogic(ItemStack itemStackIn, World worldIn, EntityPlayer playerIn, EnumHand hand) {

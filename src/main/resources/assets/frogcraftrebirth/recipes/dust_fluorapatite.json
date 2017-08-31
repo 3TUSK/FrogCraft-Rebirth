@@ -1,0 +1,18 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:dust",
+    "data": 7
+  },
+  "group": "frogcraftrebirth:resource",
+  "pattern": [
+    "DDD",
+    "DDD",
+    "DDD"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "#dust_tiny_fluorapatite"
+    }
+  }
+}

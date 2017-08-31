@@ -1,0 +1,31 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:mobile_power_station",
+    "data": 0
+  },
+  "group": "frogcraftrebirth:misc",
+  "pattern": [
+    "ICI",
+    "IBI",
+    "IFI"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "I": {
+      "item": "#plate_iron"
+    },
+    "C": {
+      "item": "#circuit_advanced"
+    },
+    "B": {
+      "item": "ic2:te",
+      "data": 68,
+      "_comment": "68 -> BatBox"
+    },
+    "F": {
+      "item": "ic2:te",
+      "data": 44,
+      "_comment":  "44 -> Electric Furnace"
+    }
+  }
+}

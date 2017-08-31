@@ -31,12 +31,17 @@ public class ItemHandlerOutputWrapper implements IItemHandler {
 
 	@Override
 	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
-		return null;
+		return ItemStack.EMPTY;
 	}
 
 	@Override
 	public ItemStack extractItem(int slot, int amount, boolean simulate) {
 		return handler.extractItem(slot, amount, simulate);
+	}
+
+	@Override
+	public int getSlotLimit(int slot) {
+		return handler.getSlotLimit(slot);
 	}
 
 }

@@ -10,6 +10,7 @@ package frogcraftrebirth.common.compat.jei;
 
 import javax.annotation.Nullable;
 
+import frogcraftrebirth.api.FrogAPI;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -22,6 +23,7 @@ import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 
@@ -46,6 +48,11 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 	}
 
 	@Override
+	public String getModName() {
+		return FrogAPI.NAME;
+	}
+
+	@Override
 	public IDrawable getBackground() {
 		return background;
 	}
@@ -61,25 +68,16 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 		progressBar.draw(minecraft, 40, 4);
 	}
 
-	@Deprecated
 	@Override
-	public void drawAnimations(Minecraft minecraft) {}
-
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper) {
+	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper, IIngredients ingredients) {
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(0, true, 14, 4, 16, 16, recipeWrapper.getFluidInputs().get(0).amount, false, null);
-		fluidStacks.set(0, recipeWrapper.getFluidInputs());
-		final int size = recipeWrapper.getFluidOutputs().size();
+		fluidStacks.init(0, true, 14, 4, 16, 16, ingredients.getInputs(FluidStack.class).get(0).get(0).amount, false, null);
+		fluidStacks.set(0, ingredients.getInputs(FluidStack.class).get(0));
+		final int size = ingredients.getOutputs(FluidStack.class).size();
 		for (int index = 0; index < size; index++) {
-			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, recipeWrapper.getFluidOutputs().get(index).amount, false, null);
-			fluidStacks.set(index + 1, recipeWrapper.getFluidOutputs().get(index));
+			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, ingredients.getInputs(FluidStack.class).get(index).get(0).amount, false, null);
+			fluidStacks.set(index + 1, ingredients.getInputs(FluidStack.class).get(index));
 		}
 	}
 
-	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper, IIngredients ingredients) {
-		setRecipe(recipeLayout, recipeWrapper); //Work around
-	}
-	
 }

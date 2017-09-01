@@ -4,16 +4,23 @@
       "item": "frogcraftrebirth:jinkela"
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.goldclod.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.goldclod.desc"
     },
     "announce_to_chat": false
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "jinkela": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frogcraftrebirth:jinkela"
+          }
+        ]
+      }
     }
   },
   "parent": "frogcraftrebirth:adv_chem_reactor"

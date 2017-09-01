@@ -13,6 +13,9 @@ import java.util.Arrays;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.ICompatModuleFrog;
+import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
+import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiMPS;
@@ -23,6 +26,7 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
+import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 
@@ -45,34 +49,39 @@ public class CompatJEI implements IModPlugin, ICompatModuleFrog {
 	}
 
 	@Override
+	public void registerCategories(IRecipeCategoryRegistration registry) {
+		registry.addRecipeCategories(
+				new CategoryChemReaction(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryCondensation(registry.getJeiHelpers().getGuiHelper()),
+				new CategoryPyrolyzation(registry.getJeiHelpers().getGuiHelper())
+		);
+	}
+
+	@Override
 	public void register(IModRegistry registry) {
-		registry.addRecipeHandlers(new HandlerChemReaction());
-		registry.addRecipeHandlers(new HandlerCondensation());
-		registry.addRecipeHandlers(new HandlerPyrolyzation());
+		registry.handleRecipes(IAdvChemRecRecipe.class, new RecipeWrapperFactoryChemReaction(), "frogcraftrebirth.chemreaction");
+		registry.handleRecipes(ICondenseTowerRecipe.class, new RecipeWrapperFactoryCondensation(), "frogcraftrebirth.condensation");
+		registry.handleRecipes(IPyrolyzerRecipe.class, new RecipeWrapperFactoryPyrolyzation(), "frogcraftrebirth.pyrolyzation");
 		
-		registry.addRecipeCategories(new CategoryChemReaction(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategories(new CategoryCondensation(registry.getJeiHelpers().getGuiHelper()));
-		registry.addRecipeCategories(new CategoryPyrolyzation(registry.getJeiHelpers().getGuiHelper()));
-		
-		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogRegistees.MACHINE, 1, 0), "frogcraftrebirth.chemreaction");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), "frogcraftrebirth.condensation");
-		registry.addRecipeCategoryCraftingItem(new ItemStack(FrogRegistees.MACHINE, 1, 2), "frogcraftrebirth.pyrolyzation");
-		
-		registry.addRecipes(RecipeChemReaction.getWrappedRecipeList());
-		registry.addRecipes(RecipeCondensation.getWrappedRecipeList());
-		registry.addRecipes(RecipePyrolyzation.getWrappedRecipeList());
+		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.MACHINE, 1, 0), "frogcraftrebirth.chemreaction");
+		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), "frogcraftrebirth.condensation");
+		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.MACHINE, 1, 2), "frogcraftrebirth.pyrolyzation");
+
+		registry.addRecipes(FrogAPI.managerACR.getRecipes(), "frogcraftrebirth.chemreaction");
+		registry.addRecipes(FrogAPI.managerCT.getRecipes(), "frogcraftrebirth.condensation");
+		registry.addRecipes(FrogAPI.managerPyrolyzer.getRecipes(), "frogcraftrebirth.pyrolyzation");
 		
 		registry.addRecipeClickArea(GuiMPS.class, 39, 47, 24, 16, VanillaRecipeCategoryUid.SMELTING, VanillaRecipeCategoryUid.FUEL);
 		registry.addRecipeClickArea(GuiAdvChemReactor.class, 73, 40, 30, 10, "frogcraftrebirth.chemreaction");
 		registry.addRecipeClickArea(GuiCondenseTower.class, 115, 40, 12, 14, "frogcraftrebirth.condensation");
 		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
 		
-		registry.addDescription(new ItemStack(FrogRegistees.MACHINE, 1, 0), "jei.doc.advChemReactor");
-		registry.addDescription(new ItemStack(FrogRegistees.MACHINE, 1, 1), "jei.doc.airPump");
-		registry.addDescription(new ItemStack(FrogRegistees.MACHINE, 1, 2), "jei.doc.pyrolyzer");
-		registry.addDescription(new ItemStack(FrogRegistees.MACHINE, 1, 3), "jei.doc.liquefier");
+		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 0), ItemStack.class, "jei.doc.advChemReactor");
+		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 1), ItemStack.class, "jei.doc.airPump");
+		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 2), ItemStack.class, "jei.doc.pyrolyzer");
+		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 3), ItemStack.class, "jei.doc.liquefier");
 		
-		registry.addDescription(Arrays.asList(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 1), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 2)), "jei.doc.condenseTower");
+		registry.addIngredientInfo(Arrays.asList(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 1), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 2)), ItemStack.class, "jei.doc.condenseTower");
 	}
 
 	@Override

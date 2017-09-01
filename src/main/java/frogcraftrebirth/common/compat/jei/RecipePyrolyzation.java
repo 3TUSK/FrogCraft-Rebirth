@@ -24,14 +24,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class RecipePyrolyzation implements IRecipeWrapper {
 	
-	public static List<RecipePyrolyzation> getWrappedRecipeList() {
-		List<RecipePyrolyzation> recipeToReturn = new ArrayList<>();
-		for (IPyrolyzerRecipe recipe : FrogAPI.managerPyrolyzer.getRecipes()) {
-			recipeToReturn.add(new RecipePyrolyzation(recipe));
-		}
-		return recipeToReturn;
-	}
-	
 	private final IPyrolyzerRecipe recipe;
 	
 	public RecipePyrolyzation(@Nonnull IPyrolyzerRecipe recipe) {

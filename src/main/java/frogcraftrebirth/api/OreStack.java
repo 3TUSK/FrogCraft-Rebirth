@@ -90,7 +90,9 @@ public class OreStack {
 	}
 	
 	public List<ItemStack> toStacks() {
-		return OreDictionary.getOres(entry);
+		List<ItemStack> stacks = OreDictionary.getOres(entry);
+		stacks.forEach(stack -> stack.setCount(this.amount));
+		return stacks;
 	}
 
 	public static boolean stackHasEntry(ItemStack stack, String ore) {

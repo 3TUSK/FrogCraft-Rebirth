@@ -1,14 +1,15 @@
 {
   "display": {
     "icon": {
-      "block": "frogcraftrebirth:nitric_acid",
-      "data": 0
+      "item": "forge:bucketfilled",
+      "data": 0,
+      "nbt": "{\"FluidName\": \"nitric_acid\", \"Amount\": 1000}"
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.suicide_expert.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.suicide_expert.desc"
     },
     "announce_to_chat": false
   },
@@ -17,5 +18,5 @@
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "frogcraftrebirth:root"
+  "parent": "frogcraftrebirth:potassium"
 }

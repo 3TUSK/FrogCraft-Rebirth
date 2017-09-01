@@ -4,6 +4,7 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.common.FrogFluids;
+import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import frogcraftrebirth.common.lib.config.ConfigMain;
 import ic2.api.item.IC2Items;
@@ -12,6 +13,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -20,7 +22,8 @@ public class RegFrogRecipes {
 	public static void init() {
 		initOreDict();
 		if (!ConfigMain.enableModpackCreationMode) {
-			defaultCraftingRecipe();
+			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 5), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 1), new FluidStack(FrogFluids.carbonOxide, 2) }));
+			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 10), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 7), new FluidStack(FrogFluids.carbonDioxide, 2) }));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogRegistees.INGOT, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 80, 48));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogRegistees.DUST, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100, 64));
 			FrogAPI.FUEL_REG.regFuelByproduct(new ItemStack(Items.COAL, 1, 0), FrogFluids.carbonDioxide);
@@ -36,12 +39,6 @@ public class RegFrogRecipes {
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
 
-		// Commented out in favor of weird Item#getItemBurnTime
-		//FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 3), 16000);
-		//FrogAPI.FUEL_REG.regFuel(new ItemStack(FrogRegistees.INGOT, 1, 4), 1800);
-		
-		//FrogAPI.FUEL_REG.regFuel(IC2Items.getItem("dust", "sulfur"), ConfigMain.enableClassicMode ? 1600 : 1200);
-		
 		Recipes.advRecipes.addRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_60K), " T ", "TCT", " T ", 'T', "plateTin", 'C', new FluidStack(FrogFluids.ammonia, 1000));
 		
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE, 1, 0)), null, true, new ItemStack(FrogRegistees.CRUSHED_DUST, 3, 0));
@@ -67,14 +64,7 @@ public class RegFrogRecipes {
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.INGOT, 8, 4)), null, true, new ItemStack(FrogRegistees.INGOT, 1, 3));
 	}
 	
-	private static void defaultCraftingRecipe() {/*
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_180K), "TTT", "CCC", "TTT", 'T', "plateTin", 'C', new ItemStack(FrogRegistees.AMMONIA_COOLANT_60K)));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(FrogRegistees.AMMONIA_COOLANT_360K), "TCT", "TDT", "TCT", 'T', "plateTin", 'D', "plateDenseCopper", 'C', new ItemStack(FrogRegistees.AMMONIA_COOLANT_180K)));
-		*/
-	}
-	
 	static void initOreDict() {
-		OreDictionary.registerOre("railgun", FrogRegistees.ION_CANNON);
 		OreDictionary.registerOre("jinkela", FrogRegistees.JINKELA);
 		
 		OreDictionary.registerOre("crystalTiberiumRed", new ItemStack(FrogRegistees.TIBERIUM, 1, 0));

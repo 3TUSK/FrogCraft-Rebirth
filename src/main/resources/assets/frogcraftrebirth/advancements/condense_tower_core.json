@@ -5,17 +5,25 @@
       "data": 0
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.condensetower.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.condensetower.desc"
     },
-    "announce_to_chat": false
+    "announce_to_chat": true
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "condense_tower_core": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frogcraftrebirth:condense_tower",
+            "data": 0
+          }
+        ]
+      }
     }
   },
-  "parent": "frogcraftrebirth:liqueifier"
+  "parent": "frogcraftrebirth:liquefier"
 }

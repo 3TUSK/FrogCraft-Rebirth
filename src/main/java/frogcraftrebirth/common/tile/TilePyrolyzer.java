@@ -40,7 +40,6 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	public int process, processMax;
 	public boolean working;
 	private IPyrolyzerRecipe recipe;
-	private boolean requireRefresh;
 
 	public TilePyrolyzer() {
 		super(2, 20000);
@@ -51,14 +50,12 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		return working;
 	}
 
-	int count = 0;
+	private int count = 0;
 	@Override
 	public void update() {
-		if (this.getWorld().isRemote) {
-			if (requireRefresh) {
-				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-				requireRefresh = false;
-			}
+		if (this.getWorld().isRemote && count++ > 20) {
+			getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
+			count = 0;
 			return;
 		}
 		
@@ -68,7 +65,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				if (result.isSuccess() && result.result.getCount() > 0) {
 					fluidIO.extractItem(INPUT_F, 1, false);
 					ItemStack remainder = fluidIO.insertItem(OUTPUT_F, result.result, false);
-					if (remainder != null && remainder.getCount() > 0)
+					if (!remainder.isEmpty() && remainder.getCount() > 0)
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 				}
 			}
@@ -79,7 +76,6 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 			this.recipe = null;
 			this.process = 0;
 			this.processMax = 0;
-			this.requireRefresh = true;
 		}
 		
 		if (!working || recipe == null) {
@@ -88,13 +84,11 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
-				this.requireRefresh = true;
 			} else {
 				this.recipe = null;
 				this.working = false;
 				this.sendTileUpdatePacket(this);
 				this.markDirty();
-				this.requireRefresh = true;
 				return;
 			}
 		} else {

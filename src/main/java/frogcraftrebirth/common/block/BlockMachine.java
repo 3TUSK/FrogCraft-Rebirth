@@ -86,7 +86,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		TileEntity tile = this.getTileEntitySafe(worldIn, pos);
+		TileEntity tile = worldIn.getTileEntity(pos);
 		if (tile instanceof IHasWork) {
 			return state.withProperty(WORKING, ((IHasWork)tile).isWorking());
 		} else {

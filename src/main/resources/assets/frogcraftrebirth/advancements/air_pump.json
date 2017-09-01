@@ -2,28 +2,28 @@
   "display": {
     "icon": {
       "item": "frogcraftrebirth:machine",
-      "data": 0
+      "data": 1
     },
     "title": {
-      "translate": "advancement.fcrebirth.advchem.name"
+      "translate": "advancement.fcrebirth.airpump.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.advchem.desc"
+      "translate": "advancement.fcrebirth.airpump.desc"
     },
     "announce_to_chat": true
   },
   "criteria": {
-    "ace": {
+    "air_pump": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "item": "frogcraftrebirth:machine",
-            "data": 0
+            "data": 1
           }
         ]
       }
     }
   },
-  "parent": "frogcraftrebirth:air_pump"
+  "parent": "frogcraftrebirth:root"
 }

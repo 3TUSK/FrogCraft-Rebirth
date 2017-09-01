@@ -62,13 +62,5 @@ public abstract class BlockFrog extends Block {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
-	
-	protected TileEntity getTileEntitySafe(IBlockAccess access, BlockPos pos) {
-		if (access instanceof ChunkCache) {
-			return ((ChunkCache)access).getTileEntity(pos, Chunk.EnumCreateEntityType.CHECK);
-		} else {
-			return access.getTileEntity(pos);
-		}
-	}
 
 }

@@ -25,14 +25,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class RecipeCondensation implements IRecipeWrapper {
 	
-	public static List<RecipeCondensation> getWrappedRecipeList() {
-		List<RecipeCondensation> recipesToReturn = new ArrayList<>();
-		for (ICondenseTowerRecipe recipe : FrogAPI.managerCT.getRecipes()) {
-			recipesToReturn.add(new RecipeCondensation(recipe));
-		}
-		return recipesToReturn;
-	}
-	
 	private final ICondenseTowerRecipe recipe;
 	
 	public RecipeCondensation(ICondenseTowerRecipe recipe) {

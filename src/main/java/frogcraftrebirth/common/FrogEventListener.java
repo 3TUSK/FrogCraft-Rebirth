@@ -12,9 +12,11 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
+import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.event.world.ExplosionEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
+import net.minecraftforge.oredict.OreDictionary;
 
 public class FrogEventListener {
 	
@@ -51,48 +53,15 @@ public class FrogEventListener {
 			event.getDrops().addAll(newDrops);
 		}
 	}
-	
+
 	@SubscribeEvent
-	public void onCrafting(ItemCraftedEvent event) {
-		ItemStack crafted = event.crafting;
-		int meta = crafted.getMetadata();
-		if (crafted.getItem() instanceof ItemBlock) {
-			Block block = ((ItemBlock)crafted.getItem()).getBlock();
-			
-			if (block == FrogRegistees.MACHINE)
-				switch (meta & 0b11) {
-					case 0: {
-						//event.player.addStat(FrogAchievements.ADV_CHEM_REACTOR.get());
-						return;
-					}
-					case 1: {
-						//event.player.addStat(FrogAchievements.GAS_PUMP.get());
-						return;
-					}
-					case 3: {
-						//event.player.addStat(FrogAchievements.LIQUEFIER.get());
-						return;
-					}
-				}
-			
-			if (block == FrogRegistees.CONDENSE_TOWER)
-				if ((meta & 0b11) == 0) {
-					//event.player.addStat(FrogAchievements.CONDENSE_TOWER_CORE.get());
+	public void onFuelValueQueried(FurnaceFuelBurnTimeEvent event) {
+		if (OreDictionary.doesOreNameExist("dustSulfur")) {
+			for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
+				if (stack.isItemEqual(event.getItemStack())) {
+					event.setBurnTime(1600);
 					return;
 				}
-			if (block == FrogRegistees.HSU)
-				switch (meta % 2) {
-					case 0: {
-						//event.player.addStat(FrogAchievements.HSU.get());
-						return;
-					}
-					case 1: {
-						//event.player.addStat(FrogAchievements.UHSU.get());
-					}
-				}
-		} else {
-			if (crafted.getItem() == FrogRegistees.JINKELA) {
-				//event.player.addStat(FrogAchievements.JINKELA.get());
 			}
 		}
 	}

@@ -5,16 +5,24 @@
       "data": 0
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.hsu.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.hsu.desc"
     },
     "announce_to_chat": false
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "hsu": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "frogcraftrebirth:hybrid_storage_unit",
+            "data": 0
+          }
+        ]
+      }
     }
   },
   "parent": "frogcraftrebirth:evt"

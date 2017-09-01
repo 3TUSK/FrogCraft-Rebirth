@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:ammonia_coolant_180k",
+    "data": 0
+  },
+  "group": "frogcraftrebirth:coolant",
+  "pattern": [
+    "TCT",
+    "TDT",
+    "TCT"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "T": {
+      "item": "#plate_tin"
+    },
+    "C": {
+      "item": "frogcraftrebirth:ammonia_coolant_180k",
+      "data": 0
+    },
+    "D": {
+      "item": "#plate_dense_copper"
+    }
+  }
+}

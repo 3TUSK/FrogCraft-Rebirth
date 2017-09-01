@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:ion_cannon"
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.ion_cannon.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.ion_cannon.desc"
     },
     "announce_to_chat": false
   },

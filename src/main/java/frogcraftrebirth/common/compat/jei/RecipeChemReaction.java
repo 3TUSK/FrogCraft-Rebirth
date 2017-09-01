@@ -8,12 +8,12 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
 
-import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -21,14 +21,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
 public class RecipeChemReaction implements IRecipeWrapper {
-	
-	public static List<RecipeChemReaction> getWrappedRecipeList() {
-		List<RecipeChemReaction> list = new ArrayList<>();
-		for (IAdvChemRecRecipe recipe : FrogAPI.managerACR.getRecipes()) {
-			list.add(new RecipeChemReaction(recipe));
-		}
-		return list;
-	}
 	
 	final IAdvChemRecRecipe recipe;
 	
@@ -38,7 +30,7 @@ public class RecipeChemReaction implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		//ingredients.setInputs(OreStack.class, ImmutableList.copyOf(recipe.getInputs())); // This is not possible without special treatment. This will be changed soon.
+		ingredients.setInputLists(ItemStack.class, ImmutableList.copyOf(recipe.getInputs().stream().map(OreStack::toStacks).collect(Collectors.toList())));
 		ingredients.setOutputs(ItemStack.class, ImmutableList.copyOf(recipe.getOutputs()));
 	}
 

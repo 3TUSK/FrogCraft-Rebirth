@@ -5,17 +5,17 @@
       "data": 0
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.potassium.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.potassium.desc"
     },
-    "announce_to_chat": false
+    "announce_to_chat": true
   },
   "criteria": {
     "placeholder": {
       "trigger": "minecraft:impossible"
     }
   },
-  "parent": "frogcraftrebirth:nitric_acid"
+  "parent": "frogcraftrebirth:root"
 }

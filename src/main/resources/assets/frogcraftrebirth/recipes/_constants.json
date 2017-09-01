@@ -21,6 +21,20 @@
     }
   },
   {
+    "name": "plate_tin",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateTin"
+    }
+  },
+  {
+    "name": "plate_dense_copper",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateDenseCopper"
+    }
+  },
+  {
     "name": "dust_vanadium_pentoxide",
     "ingredient": {
       "type": "forge:ore_dict",

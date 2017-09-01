@@ -5,10 +5,10 @@
       "data": 0
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.evt.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.evt.desc"
     },
     "announce_to_chat": false
   },

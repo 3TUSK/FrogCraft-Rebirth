@@ -24,7 +24,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	
-	public final int energyMax;
+	private final int energyMax;
 	
 	public ItemIonCannon(int maxEnergy) {
 		super(false);
@@ -50,12 +50,12 @@ public class ItemIonCannon extends ItemFrogCraft implements IElectricItem {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void getSubItems(CreativeTabs aTab, NonNullList<ItemStack> subItems) {
-		ItemStack stack = new ItemStack(this, 1);
-		subItems.add(stack);
-
-		ItemStack charged = new ItemStack(this, 1);
-		ElectricItem.manager.charge(charged, 2147483647, getTier(charged), true, false);
-		subItems.add(charged);
+		if (this.isInCreativeTab(aTab)) {
+			ItemStack stack = new ItemStack(this, 1);
+			subItems.add(stack.copy());
+			ElectricItem.manager.charge(stack, 2147483647, getTier(stack), true, false);
+			subItems.add(stack);
+		}
 	}
 	
 	public boolean showDurabilityBar(ItemStack stack) {

@@ -2,15 +2,15 @@
   "display": {
     "icon": {
       "item": "frogcraftrebirth:machine",
-      "data": 0
+      "data": 3
     },
     "title": {
-      "translate": "advancement.fcrebirth.advchem.name"
+      "translate": "advancement.fcrebirth.liquefier.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.advchem.desc"
+      "translate": "advancement.fcrebirth.liquefier.desc"
     },
-    "announce_to_chat": true
+    "announce_to_chat": false
   },
   "criteria": {
     "ace": {
@@ -19,7 +19,7 @@
         "items": [
           {
             "item": "frogcraftrebirth:machine",
-            "data": 0
+            "data": 3
           }
         ]
       }

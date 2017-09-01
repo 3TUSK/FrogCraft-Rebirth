@@ -5,15 +5,16 @@
       "data": 2
     },
     "title": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.condensetower_complete.name"
     },
     "description": {
-      "translate": ""
+      "translate": "advancement.fcrebirth.condensetower_complete.desc"
     },
     "announce_to_chat": false
   },
   "criteria": {
     "placeholder": {
+      "_comment": "To be implemented - this will be triggered at: ...",
       "trigger": "minecraft:impossible"
     }
   },

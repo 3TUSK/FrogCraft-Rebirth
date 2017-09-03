@@ -24,7 +24,6 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 public class FrogProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigMain.init(event);
 		EntityRegistry.registerModEntity(new ResourceLocation(FrogAPI.MODID, "ion_cannon_beam"), EntityIonCannonBeam.class, "EntityRailgunCoin", 0, FrogCraftRebirth.getInstance(), 160, 5, true);
 	}
 

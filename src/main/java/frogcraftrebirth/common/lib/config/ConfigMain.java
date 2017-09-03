@@ -6,6 +6,10 @@ import frogcraftrebirth.api.FrogAPI;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
+/**
+ * @deprecated Will be migrated to {@link frogcraftrebirth.common.FrogConfig}.
+ */
+@Deprecated
 public final class ConfigMain {
 	
 	private ConfigMain() {
@@ -20,15 +24,16 @@ public final class ConfigMain {
 	public static int airPumpPowerRate;
 	public static int airPumpGenerateSpeed;
 	public static int combustionFurnacePowerRate;
-	
-	@Deprecated
-	public static boolean enableTCAspect;
-
-	public static boolean enableAccessControl;
 
 	public static boolean enableModpackCreationMode;
 	public static boolean enableClassicMode;
-	
+
+	/**
+	 * Entry point of initialization of configuration file used by FrogCraft: Rebirth.
+	 * @deprecated Not used anymore since migration to <literal>@Config</literal>.
+	 * @param event The depending <code>FMLPreInitializationEvent</code> injected.
+	 */
+	@Deprecated
 	public static void init(FMLPreInitializationEvent event) {
 		File configDir = new File(event.getModConfigurationDirectory(), FrogAPI.MODID);	
 		if (!configDir.exists())
@@ -50,10 +55,6 @@ public final class ConfigMain {
 		
 		railgunDamageScale = config.getFloat("RailgunDamageScale", "Misc", 100, Double.MIN_EXPONENT, Double.MAX_EXPONENT, null, "frogcraft.config.railgunDamageScale");
 
-		enableTCAspect = config.get("Compatibility", "addAspectIntoItems", true).getBoolean();
-		
-		enableAccessControl = config.get("Access Control", "EnableAccessControl", false).getBoolean();
-		
 		if (config.hasChanged())
 			config.save();
 	}

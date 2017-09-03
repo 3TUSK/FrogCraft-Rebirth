@@ -3,6 +3,7 @@ package frogcraftrebirth.common.tile;
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiAirPump;
 import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.config.ConfigMain;
@@ -48,7 +49,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 		if (this.getWorld().isBlockIndirectlyGettingPowered(this.pos) != 0)
 			return;
 		
-		if (this.charge < ConfigMain.airPumpPowerRate)
+		if (this.charge < FrogConfig.airPumpPowerRate)
 			return;
 		
 		if (airAmount >= MAX_AIR) {
@@ -56,7 +57,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 			return;
 		}
 		
-		this.charge -= ConfigMain.airPumpPowerRate;
+		this.charge -= FrogConfig.airPumpPowerRate;
 		this.tick++;
 		if (tick == 4) {
 			this.airAmount += ConfigMain.airPumpGenerateSpeed;

@@ -3,6 +3,7 @@ package frogcraftrebirth.common.registry;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
@@ -21,7 +22,7 @@ public class RegFrogRecipes {
 	
 	public static void init() {
 		initOreDict();
-		if (!ConfigMain.enableModpackCreationMode) {
+		if (!FrogConfig.modpackMode) {
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 5), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 1), new FluidStack(FrogFluids.carbonOxide, 2) }));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 10), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 7), new FluidStack(FrogFluids.carbonDioxide, 2) }));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogRegistees.INGOT, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 80, 48));

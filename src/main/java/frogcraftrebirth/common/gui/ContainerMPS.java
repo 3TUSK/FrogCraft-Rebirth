@@ -20,7 +20,7 @@ public class ContainerMPS extends ContainerTileFrog<TileMobilePowerStation> {
 
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
-		return !(ConfigMain.enableAccessControl && tile != null) || tile.match(player.getUniqueID());
+		return tile != null && tile.match(player.getUniqueID());
 	}
 
 }

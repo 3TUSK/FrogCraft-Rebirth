@@ -8,9 +8,10 @@
  */
 package frogcraftrebirth.common.lib.config;
 
-import java.util.Arrays;
+import java.util.Collections;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.common.FrogConfig;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraftforge.common.config.ConfigElement;
 import net.minecraftforge.fml.client.config.GuiConfig;
@@ -18,12 +19,7 @@ import net.minecraftforge.fml.client.config.GuiConfig;
 public class ConfigGui extends GuiConfig {
 
 	public ConfigGui(GuiScreen parentScreen) {
-		super(parentScreen, Arrays.asList(
-				new ConfigElement(ConfigMain.config.getCategory("General")),
-				new ConfigElement(ConfigMain.config.getCategory("Machine")),
-				new ConfigElement(ConfigMain.config.getCategory("Misc")),
-				new ConfigElement(ConfigMain.config.getCategory("Compatibility"))
-		), FrogAPI.MODID, false, false, "FrogCraft-Rebirth", "Config Interface");
+		super(parentScreen, Collections.singletonList(ConfigElement.from(FrogConfig.class)), FrogAPI.MODID, false, false, "FrogCraft-Rebirth", "Config Interface");
 	}
 
 }

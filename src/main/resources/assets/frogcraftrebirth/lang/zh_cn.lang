@@ -229,5 +229,21 @@ jei.doc.liquefier=液化机可将压缩空气转化为液化空气。目前，�
 
 jei.doc.condenseTower=冷凝塔是一种可根据液体沸点不同，将混合液体分离成数种纯净物的多方块设备。
 
+#Config
+config.config.fcrebirth.2=设定
+
+config.fcrebirth.general=一般设定
+config.fcrebirth.general.tooltip=所有青蛙化工的配置项目均可在此找到。
+config.fcrebirth.modpack=整合模式
+config.fcrebirth.modpack.tooltip=启用此选项后，青蛙化工将不会加载其默认合成。可用于整合包制作。
+config.fcrebirth.machine.airpump_gen_speed=气泵产能
+config.fcrebirth.machine.airpump_gen_speed.tooltip=指定气泵输出液化空气的速度，以 mB/tick 为单位。
+config.fcrebirth.machine.airpump_power_rate=气泵额定功率
+config.fcrebirth.machine.airpump_power_rate.tooltip=指定气泵的额定能耗速度，以 EU/tick 为单位。
+config.fcrebirth.machine.combustion_furnace=焚烧炉发电速度
+config.fcrebirth.machine.combustion_furnace.tooltip=指定焚烧炉的发电量，以 EU/tick 为单位。
+config.fcrebirth.misc.ion_cannon=离子炮伤害
+config.fcrebirth.misc.ion_cannon.tooltip=指定离子炮单次攻击可造成的伤害。
+
 #Misc
 itemGroup.FrogCraft=青蛙化工

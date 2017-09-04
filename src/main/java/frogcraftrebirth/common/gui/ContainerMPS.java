@@ -1,6 +1,5 @@
 package frogcraftrebirth.common.gui;
 
-import frogcraftrebirth.common.lib.config.ConfigMain;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;

@@ -6,7 +6,6 @@ import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
-import frogcraftrebirth.common.lib.config.ConfigMain;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -60,7 +59,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 		this.charge -= FrogConfig.airPumpPowerRate;
 		this.tick++;
 		if (tick == 4) {
-			this.airAmount += ConfigMain.airPumpGenerateSpeed;
+			this.airAmount += FrogConfig.airPumpGenerationRate;
 			tick = 0;
 		}
 		this.sendTileUpdatePacket(this);

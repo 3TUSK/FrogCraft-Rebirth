@@ -7,7 +7,6 @@ import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
-import frogcraftrebirth.common.lib.config.ConfigMain;
 import ic2.api.item.IC2Items;
 import ic2.api.recipe.Recipes;
 import net.minecraft.init.Blocks;

@@ -9,6 +9,7 @@ import java.io.IOException;
 
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
@@ -72,7 +73,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		}
 		
 		if (working) {
-			this.charge += 10;
+			this.charge += FrogConfig.combustionFurnaceGenRate;
 			this.time--;
 		} else if (!input.extractItem(0, 1, true).isEmpty() && getItemBurnTime(input.getStackInSlot(0)) > 0) {
 			this.working = true;

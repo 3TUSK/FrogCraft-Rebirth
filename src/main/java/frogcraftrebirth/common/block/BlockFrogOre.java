@@ -54,7 +54,7 @@ public class BlockFrogOre extends BlockFrog {
 		return this.blockState.getBaseState().withProperty(TYPE, Type.values()[meta]);
 	}
 	
-	public static enum Type implements IStringSerializableEnumImpl {
+	public enum Type implements IStringSerializableEnumImpl {
 		CARNALLITE, DEWALQUITE, FLUORAPATITE
     }
 

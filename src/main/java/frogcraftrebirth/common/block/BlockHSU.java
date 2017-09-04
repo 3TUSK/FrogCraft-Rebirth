@@ -67,7 +67,7 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta % 2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta % 6]);
 	}
 
-	public static enum Level implements IStringSerializableEnumImpl {
+	public enum Level implements IStringSerializableEnumImpl {
 		NORMAL, ULTRA
     }
 

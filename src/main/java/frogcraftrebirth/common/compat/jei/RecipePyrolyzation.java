@@ -8,12 +8,10 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nonnull;
 
-import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;

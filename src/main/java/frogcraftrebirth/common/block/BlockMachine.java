@@ -136,7 +136,7 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(facing)).withProperty(TYPE, Type.values()[type]);
 	}
 	
-	public static enum Type implements IStringSerializableEnumImpl {
+	public enum Type implements IStringSerializableEnumImpl {
 		ADVCHEMREACTOR, AIRPUMP, PYROLYZER, LIQUEFIER
     }
 }

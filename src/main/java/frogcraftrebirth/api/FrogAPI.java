@@ -1,8 +1,5 @@
 package frogcraftrebirth.api;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.annotation.Nonnull;
 
 import net.minecraft.item.ItemStack;

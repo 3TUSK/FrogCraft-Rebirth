@@ -35,7 +35,7 @@ public class CapabilityPollution {
 	@CapabilityInject(IAntiPollutionObject.class)
 	public static Capability<IAntiPollutionObject> ANTI = null;
 	
-	public static final void initCapability() {
+	public static void initCapability() {
 		CapabilityManager.INSTANCE.register(IPollutionSource.class, new PollutionSourceStorage(), (Class<? extends IPollutionSource>)null);
 		CapabilityManager.INSTANCE.register(IPollutionVictim.class, new PollutionVictimStorage(), (Class<? extends IPollutionVictim>)null);
 		CapabilityManager.INSTANCE.register(IAntiPollutionObject.class, new AntiPollutionObjStorage(), (Class<? extends IAntiPollutionObject>)null);

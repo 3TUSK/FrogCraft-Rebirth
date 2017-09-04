@@ -136,7 +136,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL,  EnumFacing.getHorizontal(facing)).withProperty(TYPE, Part.values()[type]);
 	}
 
-	public static enum Part implements IStringSerializable {
+	public enum Part implements IStringSerializable {
 		CORE, CYLINDER, OUTPUT;
 
 		@Override

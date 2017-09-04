@@ -2,9 +2,6 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogProxy;
-import net.minecraftforge.client.MinecraftForgeClient;
-import net.minecraftforge.client.model.obj.OBJLoader;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;

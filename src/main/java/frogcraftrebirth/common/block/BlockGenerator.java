@@ -82,7 +82,7 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, enumfacing);
 	}
 	
-	public static enum Type implements IStringSerializableEnumImpl {
+	public enum Type implements IStringSerializableEnumImpl {
 		COMBUSTION/*, ???*/
     }
 

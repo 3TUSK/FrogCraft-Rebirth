@@ -8,19 +8,15 @@
  */
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public class RecipeCondensation implements IRecipeWrapper {

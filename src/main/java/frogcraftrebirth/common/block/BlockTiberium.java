@@ -130,7 +130,7 @@ public class BlockTiberium extends BlockFrog {
 		world.createExplosion(null, pos.getX(), pos.getY(), pos.getZ(), strength, smoke);
 	}
 
-	public static enum Color implements IStringSerializableEnumImpl {
+	public enum Color implements IStringSerializableEnumImpl {
 		RED, BLUE, GREEN
 	}
 

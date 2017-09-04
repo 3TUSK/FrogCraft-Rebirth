@@ -12,7 +12,6 @@ import java.util.Arrays;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
-import frogcraftrebirth.api.ICompatModuleFrog;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
@@ -31,13 +30,8 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 
 @JEIPlugin
-public class CompatJEI implements IModPlugin, ICompatModuleFrog {
+public class CompatJEI implements IModPlugin {
 
-	@Override
-	public void init() {
-		FrogAPI.FROG_LOG.info("Detected JustEnoughItems, compability will be enabled automatically.");
-	}
-	
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {
 		

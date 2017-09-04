@@ -36,18 +36,6 @@ public final class FrogIMCHandler {
 				NBTTagCompound theTag = message.getNBTValue();
 				String mode = theTag.getString("mode");
 
-				if ("compat".toLowerCase(Locale.ENGLISH).equals(mode)) {
-					String path = theTag.getString("modulePath");
-					try {
-						Class<?> clazz = Class.forName(path);
-						if (frogcraftrebirth.api.ICompatModuleFrog.class.isAssignableFrom(clazz) )
-							clazz.getDeclaredMethod("init").invoke(clazz.newInstance());
-					} catch (Exception e) {
-						FrogAPI.FROG_LOG.error("Error occured when FrogCompatModule '%s' is loading. If you are not sure the origin, please report the FULL log to FrogCraft-Rebirth.", path);
-						e.printStackTrace();
-					}
-				}
-
 				if ("recipe".toLowerCase(Locale.ENGLISH).equals(mode)) {
 					String machine = theTag.getString("machine").toLowerCase(Locale.ENGLISH);
 						switch (machine) {

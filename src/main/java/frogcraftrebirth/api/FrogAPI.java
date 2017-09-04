@@ -43,30 +43,11 @@ public final class FrogAPI {
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 	
-	public static final Map<String, ICompatModuleFrog> COMPATS = new HashMap<>();
-	
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	@Nonnull
 	public static IRecipeManager<ICondenseTowerRecipe> managerCT;
 	@Nonnull
 	public static IRecipeManager<IPyrolyzerRecipe> managerPyrolyzer;
-
-	/**
-	 * @param modid
-	 *            the mod id.
-	 * @param module
-	 *            instance of compat module
-	 * @return true if successfully added
-	 */
-	public static boolean registerFrogCompatModule(final String modid, final ICompatModuleFrog module) {
-		if (COMPATS.containsKey(modid)) {
-			FROG_LOG.error("Failed when registering compat module: " + modid + ", because the id has been occupied");
-			return false;
-		}
-
-		COMPATS.put(modid, module);
-		return true;
-	}
 
 }

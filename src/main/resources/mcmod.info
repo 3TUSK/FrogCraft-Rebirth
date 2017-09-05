@@ -12,7 +12,7 @@
     	"logoFile": "logo.png",
     	"screenshots": [],
     	"parent": "",
-    	"requiredMods": ["Forge@[12.18.1.2063,)", "IC2"],
-    	"dependencies": ["JustEnoughItems"]
+    	"requiredMods": ["forge@[12.18.1.2063,)", "ic2"],
+    	"dependencies": ["jei"]
 	}
 ]

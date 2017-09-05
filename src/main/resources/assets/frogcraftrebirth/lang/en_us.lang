@@ -163,33 +163,35 @@ tile.machines.liquefier.name=Liquefier
 
 tile.nitricAcid.name=Nitric Acid
 
-#Achivements
-achievement.get_railgun=Only my railgun!
-achievement.get_railgun.desc=Come on man?!
-achievement.get_EVT=EV Transformer
-achievement.get_EVT.desc=Step down to 2048
-achievement.killed_by_Potassium=Explode by potassium
-achievement.killed_by_Potassium.desc=Never makes the alkaline metal with water!
-achievement.gaspump=Power of gas
-achievement.gaspump.desc=A invisible power
-achievement.pneumaticCompressor=Say goodbye to ITNT
-achievement.pneumaticCompressor.desc=You no longer have to prepare tons of ITNT
-achievement.liquifier=Infinite raw material
-achievement.liquifier.desc=You have learnt how to get raw material from air
-achievement.hsu=Larger MFSU
-achievement.hsu.desc=Stores 100000000EU!
-achievement.uhsu=Hentai MFSU
-achievement.uhsu.desc=Stores 1000000000EU!
-achievement.goldclod=Goldclod
-achievement.goldclod.desc=Goldclod is mine!
-achievement.get_ACR=Way of chemistry
-achievement.get_ACR.desc=Will there be any interesting reactions?
-achievement.condensetower=Separate them?
-achievement.condensetower.desc=Seems to be missing something...
-achievement.condensetower2=Separate them.
-achievement.condensetower2.desc=You have learnt how to separate liquid mixtures
-achievement.suicideExpert=Suicide Expert
-achievement.suicideExpert.desc=Potassium plus acid equals explosion!
+#Advancements
+advancement.fcrebirth.root.name=Origin of Chemical Industry
+advancement.fcrebirth.root.desc=BEHOLD, THE ADVANCED CHEMICAL REACTOR
+advancement.fcrebirth.ion_cannon.name=Only my railgun!
+advancement.fcrebirth.ion_cannon.desc=You think I am railgun? No! It's me, ion cannon!
+advancement.fcrebirth.evt.name=EV Transformer
+advancement.fcrebirth.evt.desc=Step down to 2048 EU/packet
+advancement.fcrebirth.potassium.name=Blown away by potassium
+advancement.fcrebirth.potassium.desc=Never toss alkaline metal with water!
+advancement.fcrebirth.airpump.name=Power of gas
+advancement.fcrebirth.airpump.desc=A invisible power
+advancement.fcrebirth.pneumatic_compressor.name=Say goodbye to ITNT
+advancement.fcrebirth.pneumatic_compressor.desc=You no longer have to prepare tons of ITNT
+advancement.fcrebirth.liquefier.name=Infinite raw material
+advancement.fcrebirth.liquefier.desc=You have learnt how to get raw material from air
+advancement.fcrebirth.hsu.name=Larger MFSU
+advancement.fcrebirth.hsu.desc=Stores 100000000EU!
+advancement.fcrebirth.uhsu.name=Hentai MFSU
+advancement.fcrebirth.uhsu.desc=Stores 1000000000EU!
+advancement.fcrebirth.goldclod.name=Goldclod
+advancement.fcrebirth.goldclod.desc=Goldclod is mine!
+advancement.fcrebirth.advchem.name=Way towards chemistry
+advancement.fcrebirth.advchem.desc=Will there be any interesting reactions?
+advancement.fcrebirth.condensetower.name=Separate them?
+advancement.fcrebirth.condensetower.desc=Seems to be missing something...
+advancement.fcrebirth.condensetower_complete.name=Separate them.
+advancement.fcrebirth.condensetower_complete.desc=You have learnt how to separate liquid mixtures
+advancement.fcrebirth.suicide_expert.name=Suicide Expert
+advancement.fcrebirth.suicide_expert.desc=Potassium + acid = Explosion!
 
 gui.HSU.normal.title=HSU
 gui.HSU.ultra.title=UHSU
@@ -228,5 +230,21 @@ jei.doc.liquefier=Liquefier can convert high-pressure air into liquefied air. It
 
 jei.doc.condenseTower=Condense Tower is a multiblock structure that can separate liquid mixture into several pure liquid, based on differences among boiling point of liquids.
 
+#Config
+config.config.fcrebirth.2=Config Settings
+
+config.fcrebirth.general=General
+config.fcrebirth.general.tooltip=All configurable variables used by FrogCraft: Rebirth are here.
+config.fcrebirth.modpack=Modpack Mode
+config.fcrebirth.modpack.tooltip=Set it to true to disable all recipes. Useful for modpack creators.
+config.fcrebirth.machine.airpump_gen_speed=Air Pump Gen. Rate
+config.fcrebirth.machine.airpump_gen_speed.tooltip=EU consumption rate of Air Pump, in EU/t.
+config.fcrebirth.machine.airpump_power_rate=Air Pump Power
+config.fcrebirth.machine.airpump_power_rate.tooltip=Liquid air generation speed of Air Pump, in mB/t.
+config.fcrebirth.machine.combustion_furnace=Combustion Furnace Output Power
+config.fcrebirth.machine.combustion_furnace.tooltip=Energy generation rate of Combustion Furnace, in EU/t.
+config.fcrebirth.misc.ion_cannon=Ion Cannon Damage
+config.fcrebirth.misc.ion_cannon.tooltip=Damage caused by Portable Ion Cannon per launch.
+
 #Misc
-itemGroup.FrogCraft=FrogCraft
+itemGroup.FrogCraft=FrogCraft: Rebirth

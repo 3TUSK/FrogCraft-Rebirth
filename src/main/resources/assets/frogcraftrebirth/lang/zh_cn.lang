@@ -165,7 +165,7 @@ tile.nitricAcid.name=硝酸
 
 #Advancements
 advancement.fcrebirth.root.name=化学工业起源
-advancement.fcrebirth.root.desc=BEHOLD, THE ADVANCED CHEMICAL REACTOR
+advancement.fcrebirth.root.desc=看啊，高级反应釜
 advancement.fcrebirth.ion_cannon.name=Only my railgun!
 advancement.fcrebirth.ion_cannon.desc=你以为我是电磁炮，其实我是离子炮哒！
 advancement.fcrebirth.evt.name=超高压变压器
@@ -247,4 +247,4 @@ config.fcrebirth.misc.ion_cannon=离子炮伤害
 config.fcrebirth.misc.ion_cannon.tooltip=指定离子炮单次攻击可造成的伤害。
 
 #Misc
-itemGroup.FrogCraft=青蛙化工
+itemGroup.FrogCraft=青蛙化工：重生

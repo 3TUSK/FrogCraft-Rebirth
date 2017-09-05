@@ -14,6 +14,7 @@ import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -79,7 +80,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		}
 		
 		if (!working || recipe == null) {
-			recipe = FrogAPI.managerPyrolyzer.getRecipe(input.getStackInSlot(INPUT));
+			recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(input.getStackInSlot(INPUT)));
 			if (canWork(recipe)) {
 				this.process = 0;
 				this.processMax = recipe.getTime();
@@ -145,7 +146,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
-		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new ItemStack(tag.getCompoundTag("recipeInput")));
+		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(new ItemStack(tag.getCompoundTag("recipeInput"))));
 	}
 
 	@Override

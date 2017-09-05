@@ -37,7 +37,7 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 	
 	public CategoryPyrolyzation(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/GUI_Pyrolyzer.png");
-		background = helper.createDrawable(backgroundTexture, 0, 5, 175, 70, 23, 88, 0, 0);
+		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
 		tankOverlay = helper.createDrawable(backgroundTexture, 176, 0, 16, 47);
 		fireOverlay = helper.createDrawable(backgroundTexture, 176, 66, 14, 14);
 		IDrawableStatic progressBarOverlay = helper.createDrawable(backgroundTexture, 176, 80, 24, 17);
@@ -86,7 +86,7 @@ public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation>
 		items.init(0, true, 23, 45);
 		items.set(0, ingredients.getInputs(ItemStack.class).get(0));
 		items.init(1, false, 74, 45);
-		items.set(1, ingredients.getInputs(ItemStack.class).get(1));
+		items.set(1, ingredients.getOutputs(ItemStack.class).get(0));
 		fluids.init(0, false, 143, 41, 16, 47, ingredients.getOutputs(FluidStack.class).get(0).get(0).amount, false, tankOverlay);
 		fluids.set(0, ingredients.getOutputs(FluidStack.class).get(0));
 	}

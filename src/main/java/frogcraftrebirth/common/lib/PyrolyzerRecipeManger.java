@@ -2,17 +2,15 @@ package frogcraftrebirth.common.lib;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
-
-	@Override
-	public boolean equal(IPyrolyzerRecipe recipe1, IPyrolyzerRecipe recipe2) {
-		return (recipe1.getInput() == recipe2.getInput());
-	}
 
 	@Override
 	public void add(IPyrolyzerRecipe recipe) {
@@ -21,29 +19,32 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 
 	@Override
 	public void remove(IPyrolyzerRecipe recipe) {
-		java.util.Iterator<IPyrolyzerRecipe> iter = recipes.iterator();
-		while (iter.hasNext()) {
-			if (iter.next().equals(recipe)) {
-				iter.remove();
-				return;
-			}
-		}
+		recipes.removeIf(recipe::equals);
 	}
 	
 	@Override
 	public Collection<IPyrolyzerRecipe> getRecipes() {
 		return recipes;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public <T> IPyrolyzerRecipe getRecipe(T... inputs) {
-		if (inputs[0] == null || !(inputs[0] instanceof ItemStack))
+	public IPyrolyzerRecipe getRecipe(IFrogRecipeInput... inputs) {
+		if (inputs.length == 0)
 			return null;
-		for (IPyrolyzerRecipe r : recipes) {
-			if (r.getInput().isItemEqual((ItemStack)inputs[0]) 
-					&& r.getInput().getCount() <= ((ItemStack)inputs[0]).getCount())
-				return r;
+		IFrogRecipeInput input = inputs[0];
+		if (input == null)
+			return null;
+		List<ItemStack> list = input.getActualInputs(ItemStack.class);
+		if (list.size() > 0) {
+			ItemStack first = list.get(0);
+			if (first.isEmpty())
+				return null;
+
+			for (IPyrolyzerRecipe r : recipes) {
+				if (r.getInput().isItemEqual(first) && first.getCount() > r.getInput().getCount()) {
+					return r;
+				}
+			}
 		}
 		return null;
 	}

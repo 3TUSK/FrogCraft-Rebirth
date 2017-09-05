@@ -9,18 +9,18 @@ import java.util.List;
 import java.util.Objects;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
-import ic2.api.item.IC2Items;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -100,7 +100,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		
 		if (!working || recipe == null) {
 			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-			recipe = FrogAPI.managerACR.getRecipe(inputs);
+			recipe = FrogAPI.managerACR.getRecipe(FrogRecipeInputs.wrap(inputs).toArray(new IFrogRecipeInput[5]));
 			
 			if (checkRecipe(recipe)) {
 				this.consumeIngredient(recipe.getInputs());
@@ -138,7 +138,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		if (recipe == null)
 			return false;
 		if (!cellInput.getStackInSlot(0).isEmpty()) {
-			if (!IC2Items.getItem("fluid_cell").isItemEqual(cellInput.getStackInSlot(0)))
+			if (!FrogRecipeInputs.UNI_CELL.isItemEqual(cellInput.getStackInSlot(0)))
 				return false;
 			if (cellInput.getStackInSlot(0).getCount() < recipe.getRequiredCellAmount())
 				return false;
@@ -150,15 +150,15 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 			return false;
 		checkCache.clear();
 		recipe.getOutputs().forEach(outputStack -> checkCache.add(ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true)));
-		checkCache.removeIf(Objects::isNull);
+		checkCache.removeIf(ItemUtil.EMPTY_PREDICATE);
 		return checkCache.size() == 0;
 	}
 	
-	private void consumeIngredient(Collection<OreStack> toBeConsumed) {
-		toBeConsumed.forEach(ore -> {
+	private void consumeIngredient(Collection<IFrogRecipeInput> toBeConsumed) {
+		toBeConsumed.forEach(input -> {
 			for (int i = 0; i < 5; i++) {
-				if (ore.consumable(input.getStackInSlot(i))) {
-					input.extractItem(i, ore.getAmount(), false);
+				if (input.matches(this.input.getStackInSlot(i))) {
+					this.input.extractItem(i, input.getSize(), false);
 					return;
 				}
 			}
@@ -172,7 +172,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	
 	private void produce() {
 		recipe.getOutputs().forEach(itemStack -> dropCache.add(ItemHandlerHelper.insertItemStacked(output, itemStack.copy(), false)));
-		dropCache.stream().filter(Objects::nonNull).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
+		dropCache.stream().filter(ItemUtil.NON_EMPTY_PREDICATE).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
 		dropCache.clear();
 		
 		if (recipe.getProducedCellAmount() > 0) {
@@ -183,7 +183,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 				if (!remain.isEmpty())
 					ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
 			} else {
-				ItemStack stack = IC2Items.getItem("fluid_cell");
+				ItemStack stack = FrogRecipeInputs.UNI_CELL.copy();
 				stack.setCount(recipe.getProducedCellAmount());
 				cellOutput.insertItem(0, stack, false);
 			}

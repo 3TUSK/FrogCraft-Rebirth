@@ -10,19 +10,20 @@ package frogcraftrebirth.common.lib;
 
 import java.util.Collection;
 
-import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
+import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	
-	private final Collection<OreStack> inputs;
+	private final Collection<IFrogRecipeInput> inputs;
 	private final Collection<ItemStack> outputs;
 	private final ItemStack validCatalyst;
 	private final int time, energyPerTick;
 	private final int cellReq, cellProduce;
 	
-	public AdvChemRecRecipe(Collection<OreStack> inputs, Collection<ItemStack> outputs, ItemStack catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
+	public AdvChemRecRecipe(Collection<IFrogRecipeInput> inputs, Collection<ItemStack> outputs, ItemStack catalyst, int time, int energyPerTick, int cellReq, int cellProduce) {
 		this.inputs = inputs;
 		this.outputs = outputs;
 		this.validCatalyst = catalyst;
@@ -33,7 +34,7 @@ public class AdvChemRecRecipe implements IAdvChemRecRecipe {
 	}
 	
 	@Override
-	public Collection<OreStack> getInputs() {
+	public Collection<IFrogRecipeInput> getInputs() {
 		return inputs;
 	}
 	

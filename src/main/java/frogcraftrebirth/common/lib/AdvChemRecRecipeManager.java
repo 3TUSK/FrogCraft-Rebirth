@@ -4,15 +4,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {
-
-	@Override
-	public boolean equal(IAdvChemRecRecipe recipe1, IAdvChemRecRecipe recipe2) {
-		return recipe1.getInputs().size() == recipe2.getInputs().size() && recipe1.getInputs().containsAll(recipe2.getInputs());
-	}
 
 	@Override
 	public void add(IAdvChemRecRecipe recipe) {
@@ -31,12 +27,10 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> IAdvChemRecRecipe getRecipe(T... inputs) {
-		if (inputs instanceof ItemStack[]) {
-			for (IAdvChemRecRecipe recipe : recipes) {
-				if (recipe.matchInputs((ItemStack[])inputs)) {
-					return recipe;
-				}
+	public IAdvChemRecRecipe getRecipe(IFrogRecipeInput... inputs) {
+		for (IAdvChemRecRecipe recipe : recipes) {
+			if (recipe.matchInputs()) {
+				return recipe;
 			}
 		}
 		

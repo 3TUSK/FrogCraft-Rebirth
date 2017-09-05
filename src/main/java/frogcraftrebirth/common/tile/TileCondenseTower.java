@@ -17,6 +17,7 @@ import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -89,7 +90,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 		
 		if (recipe == null) {
-			recipe = FrogAPI.managerCT.getRecipe(tank.getFluid());
+			recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(tank.getFluid()));
 			if (checkRecipe(recipe)) {
 				processMax = recipe.getTime();
 				process = 0;
@@ -201,7 +202,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
-		this.recipe = FrogAPI.managerCT.getRecipe(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe")));
+		this.recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe"))));
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");

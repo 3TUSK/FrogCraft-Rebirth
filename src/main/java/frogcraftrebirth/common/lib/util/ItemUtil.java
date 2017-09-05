@@ -1,6 +1,7 @@
 package frogcraftrebirth.common.lib.util;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
 
@@ -15,7 +16,11 @@ import net.minecraftforge.oredict.OreDictionary;
 public final class ItemUtil {
 	
 	private static final Random RAND = new Random();
-	
+
+	public static final Predicate<ItemStack> EMPTY_PREDICATE = ItemStack::isEmpty;
+
+	public static final Predicate<ItemStack> NON_EMPTY_PREDICATE = stack -> !stack.isEmpty();
+
 	/**
 	 * Identical to {@link InventoryHelper#dropInventoryItems}, except this one is designed for {@link IItemHandler}.
 	 * @param worldIn The world that block is in
@@ -34,7 +39,8 @@ public final class ItemUtil {
 	}
 	
 	/**
-	 * Identical to {@link InventoryHelper#spawnItemStack}, except this one has insane implementation.
+	 * Identical to {@link InventoryHelper#spawnItemStack} in terms of functionality,
+	 * except that this one has insane implementation.
 	 * @param worldIn The world that item stack will drop.
 	 * @param pos The position reference.
 	 * @param toDrop The item stack to drop.

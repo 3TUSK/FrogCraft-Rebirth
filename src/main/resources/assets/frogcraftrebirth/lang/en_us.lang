@@ -211,6 +211,7 @@ gui.fluid.null=No fluid in this tank
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
 jei.category.condensation=Condensation
 jei.category.pyrolyzation=Pyrolysis
+jei.category.chemreaction=Adv. Chemical Reactor
 
 jei.euTotal=Total: %d EU
 jei.euTick=Power: %d EU/t

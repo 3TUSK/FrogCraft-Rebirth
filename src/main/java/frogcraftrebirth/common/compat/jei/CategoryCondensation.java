@@ -31,8 +31,8 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 	protected final IDrawableAnimated progressBar;
 	
 	public CategoryCondensation(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/GUI_CondenseTower.png");
-		background = helper.createDrawable(backgroundTexture, 0, 30, 175, 100);
+		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_condense_tower.png");
+		background = helper.createDrawable(backgroundTexture, 5, 30, 165, 100, 0,0,5,10);
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 24, 16);
 		progressBar = helper.createAnimatedDrawable(progressBarBackground, 100, StartDirection.LEFT, false);
 	}
@@ -75,8 +75,8 @@ public class CategoryCondensation implements IRecipeCategory<RecipeCondensation>
 		fluidStacks.set(0, ingredients.getInputs(FluidStack.class).get(0));
 		final int size = ingredients.getOutputs(FluidStack.class).size();
 		for (int index = 0; index < size; index++) {
-			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, ingredients.getInputs(FluidStack.class).get(index).get(0).amount, false, null);
-			fluidStacks.set(index + 1, ingredients.getInputs(FluidStack.class).get(index));
+			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, ingredients.getOutputs(FluidStack.class).get(index).get(0).amount, false, null);
+			fluidStacks.set(index + 1, ingredients.getOutputs(FluidStack.class).get(index));
 		}
 	}
 

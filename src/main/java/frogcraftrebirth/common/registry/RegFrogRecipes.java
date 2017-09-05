@@ -5,9 +5,14 @@ import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogFluids;
+import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputUniversalFluidCell;
 import ic2.api.item.IC2Items;
+import ic2.api.recipe.IRecipeInputFactory;
 import ic2.api.recipe.Recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -17,11 +22,15 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class RegFrogRecipes {
 	
 	public static void init() {
 		initOreDict();
 		if (!FrogConfig.modpackMode) {
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.DUST, 1,2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(new ItemStack(FrogRegistees.DUST, 1,3)), ItemStack.EMPTY, 20, 100, 0, 1));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 5), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 1), new FluidStack(FrogFluids.carbonOxide, 2) }));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 10), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.oxygen, 7), new FluidStack(FrogFluids.carbonDioxide, 2) }));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogRegistees.INGOT, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 80, 48));

@@ -8,14 +8,14 @@
  */
 package frogcraftrebirth.api.recipes;
 
+import java.util.Arrays;
 import java.util.Collection;
 
-import frogcraftrebirth.api.OreStack;
 import net.minecraft.item.ItemStack;
 
 public interface IAdvChemRecRecipe {
 
-	Collection<OreStack> getInputs();
+	Collection<IFrogRecipeInput> getInputs();
 
 	Collection<ItemStack> getOutputs();
 
@@ -37,22 +37,8 @@ public interface IAdvChemRecRecipe {
 		return rec.getInputs().equals(getInputs());
 	}
 
-	default boolean matchInputs(ItemStack... stacks) {
-		for (OreStack ore : this.getInputs()) {
-			boolean match = false;
-			for (ItemStack stack : stacks) {
-				if (stack == null)
-					continue;
-				if (ore.consumable(stack)) {
-					match = true;
-					break;
-				}
-			}
-			if (!match)
-				return false;
-		}
-
-		return true;
+	default boolean matchInputs(IFrogRecipeInput... inputs) {
+		return getInputs().containsAll(Arrays.asList(inputs));
 	}
 
 }

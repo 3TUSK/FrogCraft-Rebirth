@@ -13,8 +13,10 @@ import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
 
-import frogcraftrebirth.api.OreStack;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
+import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
@@ -30,7 +32,7 @@ public class RecipeChemReaction implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputLists(ItemStack.class, ImmutableList.copyOf(recipe.getInputs().stream().map(OreStack::toStacks).collect(Collectors.toList())));
+		ingredients.setInputLists(ItemStack.class, ImmutableList.copyOf(recipe.getInputs().stream().map(FrogRecipeInputs.MAP_TO_ITEM).collect(Collectors.toList())));
 		ingredients.setOutputs(ItemStack.class, ImmutableList.copyOf(recipe.getOutputs()));
 	}
 

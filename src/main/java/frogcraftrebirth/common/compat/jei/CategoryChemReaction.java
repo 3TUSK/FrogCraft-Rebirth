@@ -13,7 +13,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.OreStack;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
+import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -35,8 +36,8 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 	protected final IDrawableAnimated chargeBar;
 	
 	public CategoryChemReaction(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/GUI_AdvanceChemicalReactor.png");
-		background = helper.createDrawable(backgroundTexture, 0, 5, 175, 70, 23, 88, 0, 0);
+		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_chem_reactor.png");
+		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 30, 10);
 		progressBar = helper.createAnimatedDrawable(progressBarBackground, 100, StartDirection.TOP, false);
 		IDrawableStatic chargeBarBackground = helper.createDrawable(backgroundTexture, 176, 17, 14, 14);
@@ -50,7 +51,7 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 
 	@Override
 	public String getTitle() {
-		return I18n.format("jei.category.chemReaction");
+		return I18n.format("jei.category.chemreaction");
 	}
 
 	@Override
@@ -97,9 +98,9 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 			stacks.set(12, cells);
 		}
 		int index = 0;
-		for (OreStack ore : recipeWrapper.recipe.getInputs()) {
+		for (IFrogRecipeInput input : recipeWrapper.recipe.getInputs()) {
 			stacks.init(index, true, 39 + index * 20, 39);
-			stacks.set(index++, ore.toStacks());
+			stacks.set(index++, input.getActualInputs(ItemStack.class));
 		}
 		index = 6;
 		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);

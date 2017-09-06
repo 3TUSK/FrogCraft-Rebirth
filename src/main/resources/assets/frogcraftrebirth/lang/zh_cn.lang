@@ -1,21 +1,5 @@
 #Master Language File, 2016.8.18
 
-#Potion
-effect.tiberium=泰伯利亚
-
-#Death Message
-death.attack.tiberium=%1$s 被泰伯利亚同化了
-
-#Chat Message
-chat.tiberiumCorrosion=你的某个物品已被泰伯利亚污染！
-
-#Items
-item.ItemMiniIonCannon.name=便携式离子炮
-item.ItemMiniIonCannon.info=全球防御组织监制
-item.ItemMiniIonCannon.coolingDown=指挥官，很抱歉通知您，离子炮仍在冷却中，请等待冷却结束。
-item.ItemMiniIonCannon.warning=警告：离子炮已发射，现进入强制冷却模式。
-item.ItemMiniIonCannon.discharged=离子炮目前没有足够能量储存维持其运转，在能源供应恢复前，一切指令都将会被取消。
-item.ionCannonFrame=离子炮框架
 tile.mobilePowerStation.normal.name=移动电源
 tile.mobilePowerStation.info=§o外出野营的最佳伴侣
 item.CoolantAmmonia60K=60K氨冷却单元
@@ -131,19 +115,10 @@ item.Item_Ingots.CoalCokeShattered.info=有效的燃料
 item.Item_Ingots.Briquette=蜂窝煤
 item.Item_Ingots.Briquette.info=中国特色！
 
-item.tiberium.red=泰伯利亚红晶
-item.tiberium.blue=泰伯利亚蓝晶
-item.tiberium.green=泰伯利亚绿晶
-item.tiberium.info=小心操作，谨记隔离储存
-
 #Blocks
 tile.mineral.carnallite.name=光卤石
 tile.mineral.dewalquite.name=铝矾土矿
 tile.mineral.fluorapatite.name=氟磷灰石
-
-tile.tiberium_crystal.red.name=泰伯利亚红晶
-tile.tiberium_crystal.blue.name=泰伯利亚蓝晶
-tile.tiberium_crystal.green.name=泰伯利亚绿晶
 
 tile.condenseTower.core.name=冷凝塔
 tile.condenseTower.output.name=冷凝塔液体出口
@@ -166,8 +141,6 @@ tile.nitricAcid.name=硝酸
 #Advancements
 advancement.fcrebirth.root.name=化学工业起源
 advancement.fcrebirth.root.desc=看啊，高级反应釜
-advancement.fcrebirth.ion_cannon.name=Only my railgun!
-advancement.fcrebirth.ion_cannon.desc=你以为我是电磁炮，其实我是离子炮哒！
 advancement.fcrebirth.evt.name=超高压变压器
 advancement.fcrebirth.evt.desc=降压到2048
 advancement.fcrebirth.potassium.name=被钾炸死

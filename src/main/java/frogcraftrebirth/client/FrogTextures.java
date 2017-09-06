@@ -17,7 +17,6 @@ import frogcraftrebirth.common.block.BlockMachine;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.model.obj.OBJLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -27,21 +26,13 @@ public class FrogTextures {
 
 	@SubscribeEvent
 	public static void regModel(ModelRegistryEvent event) {
-		OBJLoader.INSTANCE.addDomain(FrogAPI.MODID);
-
 		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_60K);
 		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_180K);
 		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_360K);
 		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_URANIUM);
 		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_THORIUM);
 		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_PLOTONIUM);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON_FRAME);
 		RegHelper.registerModel(FrogRegistees.JINKELA);
-		
-		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 0, "tiberium_red");
-		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 1, "tiberium_blue");
-		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 2, "tiberium_green");
 		
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 0, "module_heating");
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 1, "module_electrolysis");
@@ -69,9 +60,6 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.ORE, 0, "carnallite");
 		RegHelper.registerModel(FrogRegistees.ORE, 1, "dewalquite");
 		RegHelper.registerModel(FrogRegistees.ORE, 2, "fluorapatite");
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 0);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 1);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 2);
 		
 		ModelLoader.setCustomStateMapper(FrogRegistees.MPS, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
 		RegHelper.registerModel(FrogRegistees.MPS, "mobile_power_station");

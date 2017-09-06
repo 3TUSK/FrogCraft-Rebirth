@@ -1,4 +1,4 @@
-package frogcraftrebirth.api.event;
+package frogcraftrebirth.api.pollution;
 
 import frogcraftrebirth.api.pollution.IPollutionSource;
 import net.minecraft.world.World;

@@ -24,7 +24,7 @@ public class FrogRegistries {
     @SubscribeEvent
     public static void regBlock(RegistryEvent.Register<Block> event) {
         event.getRegistry().registerAll(new BlockHSU(), new BlockMPS(), new BlockCondenseTower(), new BlockGenerator(),
-                new BlockMachine(), new BlockFrogOre(), new BlockTiberium());
+                new BlockMachine(), new BlockFrogOre());
         GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraft_mobile_power_station");
         GameRegistry.registerTileEntity(TileHSU.class, "frogcraft_hybrid_storage_unit");
         GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraft_ultra_hybrid_storage_unit");
@@ -78,20 +78,16 @@ public class FrogRegistries {
                 new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified"),
                 new ItemResources("smallDust", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("small_pile_dust"),
                 new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
-                new ItemIonCannon(1000000).setRegistryName("ion_cannon"),
-                new ItemResources(false, "ionCannonFrame").setMaxStackSize(1).setRegistryName("ion_cannon_frame"),
                 new ItemDecayBattery("U").setRegistryName("uranium_decay_battery"),
                 new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery"),
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
                 new ItemJinkela().setRegistryName("jinkela"),
-                new ItemTiberium().setRegistryName("tiberium"),
                 new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
                 new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.ORE.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.TIBERIUM, aStack -> BlockTiberium.Color.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.TIBERIUM.getRegistryName()),
                 new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName())
         );
     }

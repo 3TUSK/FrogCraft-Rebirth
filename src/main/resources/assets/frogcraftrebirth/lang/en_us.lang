@@ -1,21 +1,5 @@
 ﻿#Master Language File
 
-#Potion
-effect.tiberium=Tiberium
-
-#Death Message
-death.attack.tiberium=%1$s is now a tiberium crystal
-
-#Chat Message
-chat.tiberiumCorrosion=One of your item stack has been contaminated by tiberium!
-
-#Items
-item.ItemMiniIonCannon.name=Portable Ion Cannon
-item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
-item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
-item.ItemMiniIonCannon.warning=Caution: Ion Cannon has launched, starting mandatory cooling down.
-item.ItemMiniIonCannon.discharged=Ion Cannon is currently discharged, all further operation will be aborted before it is charged again.
-item.ionCannonFrame=Ion Cannon Frame
 tile.mobilePowerStation.normal.name=Mobile Power Supply
 tile.mobilePowerStation.info=§oThe best camping gear
 item.CoolantAmmonia60K=60K Ammonia Coolant Cell
@@ -131,19 +115,10 @@ item.Item_Ingots.CoalCokeShattered.info=Efficient fuel~
 item.Item_Ingots.Briquette=Briquette
 item.Item_Ingots.Briquette.info=Chinese style
 
-item.tiberium.red=Tiberium (Red)
-item.tiberium.blue=Tiberium (Blue)
-item.tiberium.green=Tiberium (Green)
-item.tiberium.info=Be aware during operation, and also separate storage
-
 #Blocks
 tile.mineral.carnallite.name=Carnallite Ore
 tile.mineral.dewalquite.name=Dewalquite Ore
 tile.mineral.fluorapatite.name=Fluorapatite Ore
-
-tile.tiberium_crystal.red.name=Tiberium (Red)
-tile.tiberium_crystal.blue.name=Tiberium (Blue)
-tile.tiberium_crystal.green.name=Tiberium (Green)
 
 tile.condenseTower.core.name=Condense Tower
 tile.condenseTower.output.name=Liquid Outlet
@@ -166,8 +141,6 @@ tile.nitricAcid.name=Nitric Acid
 #Advancements
 advancement.fcrebirth.root.name=Origin of Chemical Industry
 advancement.fcrebirth.root.desc=BEHOLD, THE ADVANCED CHEMICAL REACTOR
-advancement.fcrebirth.ion_cannon.name=Only my railgun!
-advancement.fcrebirth.ion_cannon.desc=You think I am railgun? No! It's me, ion cannon!
 advancement.fcrebirth.evt.name=EV Transformer
 advancement.fcrebirth.evt.desc=Step down to 2048 EU/packet
 advancement.fcrebirth.potassium.name=Blown away by potassium

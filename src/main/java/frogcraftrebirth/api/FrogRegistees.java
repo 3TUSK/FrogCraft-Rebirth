@@ -19,8 +19,6 @@ public final class FrogRegistees {
 	public static final Block MACHINE = null;
 	@GameRegistry.ObjectHolder("ore")
 	public static final Block ORE = null;
-	@GameRegistry.ObjectHolder("tiberium_crystal")
-	public static final Block TIBERIUM = null;
 	@GameRegistry.ObjectHolder("nitric_acid")
 	public static final Block NITRIC_ACID = null;
 
@@ -42,10 +40,6 @@ public final class FrogRegistees {
 	public static final Item SMALL_PILE_DUST = null;
 	@GameRegistry.ObjectHolder("catalyst_module")
 	public static final Item REACTION_MODULE = null;
-	@GameRegistry.ObjectHolder("ion_cannon")
-	public static final Item ION_CANNON = null;
-	@GameRegistry.ObjectHolder("ion_cannon_frame")
-	public static final Item ION_CANNON_FRAME = null;
 	@GameRegistry.ObjectHolder("uranium_decay_battery")
 	public static final Item DECAY_BATTERY_URANIUM = null;
 	@GameRegistry.ObjectHolder("thorium_decay_battery")
@@ -54,8 +48,6 @@ public final class FrogRegistees {
 	public static final Item DECAY_BATTERY_PLOTONIUM = null;
 	@GameRegistry.ObjectHolder("jinkela")
 	public static final Item JINKELA = null;
-	@GameRegistry.ObjectHolder("tiberium")
-	public static final Item TIBERIUM_ITEM = null;
 	@GameRegistry.ObjectHolder("fluid_armor")
 	public static final Item FLUID_ARMOR = null;
 

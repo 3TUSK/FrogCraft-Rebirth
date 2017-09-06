@@ -53,4 +53,9 @@ public class FrogRecipeInputFluidStack implements IFrogRecipeInput {
 			return actualInput; //No-op when type mismatch
 		}
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return o == this || o instanceof FrogRecipeInputFluidStack && ((FrogRecipeInputFluidStack)o).stack.isFluidEqual(this.stack);
+	}
 }

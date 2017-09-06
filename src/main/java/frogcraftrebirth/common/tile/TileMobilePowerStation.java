@@ -69,16 +69,16 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 			isInENet = true;
 		}
 		//Check storage upgrade, if pass, increase energy capacity
-		if (inv.getStackInSlot(UPGRADE_STORAGE) != null) {
-			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
-		} else {
+		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
 			energyMax = 60000;
+		} else {
+			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
 		}
 		//Check transformer upgrade, if pass, increase voltage level
-		if (inv.getStackInSlot(UPGRADE_VOLTAGE) != null) {
-			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
-		} else {
+		if (inv.getStackInSlot(UPGRADE_VOLTAGE).isEmpty()) {
 			tier = 1;
+		} else {
+			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
 		}
 		//Check solar upgrade, if pass, generate energy from sunlight
 		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && getWorld().isDaytime() && getWorld().canBlockSeeSky(getPos())) {
@@ -88,11 +88,11 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		if (energy > energyMax && getWorld().rand.nextInt(10) == 1)
 			energy = energyMax;
 		//Extract energy from charge-in slot
-		if (inv.getStackInSlot(CHAGRE_IN) != null && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(CHAGRE_IN).isEmpty() && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {
 			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), 32, getSourceTier(), true, true, false);
 		}
 		//Offer energy to item that is in charge-out slot
-		if (inv.getStackInSlot(CHARGE_OUT) != null && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty() && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
 			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
 		}
 		

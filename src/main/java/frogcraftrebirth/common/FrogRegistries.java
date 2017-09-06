@@ -9,6 +9,7 @@ import frogcraftrebirth.common.potion.PotionTiberium;
 import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
@@ -48,6 +49,21 @@ public class FrogRegistries {
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
                 new ItemResources("Item_Ingots", "K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered") {
+                    @Override
+                    public boolean onEntityItemUpdate(EntityItem entityItem) {
+                        if (entityItem.getItem().isEmpty()) {
+                            return false;
+                        }
+                        if (!entityItem.getEntityWorld().isRemote && entityItem.getItem().getMetadata() == 0) {
+                            if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogRegistees.NITRIC_ACID) {
+                                //TODO set up explosion and grant advancement to players
+                                entityItem.setDead();
+                                return false;
+                            }
+                        }
+                        return true;
+                    }
+
                     @Override
                     public int getItemBurnTime(ItemStack stack) {
                         switch (stack.getMetadata()) {

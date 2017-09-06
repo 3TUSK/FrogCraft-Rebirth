@@ -21,6 +21,8 @@ public final class FrogRegistees {
 	public static final Block ORE = null;
 	@GameRegistry.ObjectHolder("tiberium_crystal")
 	public static final Block TIBERIUM = null;
+	@GameRegistry.ObjectHolder("nitric_acid")
+	public static final Block NITRIC_ACID = null;
 
 	@GameRegistry.ObjectHolder("ammonia_coolant_60k")
 	public static final Item AMMONIA_COOLANT_60K = null;

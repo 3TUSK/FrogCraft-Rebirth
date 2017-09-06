@@ -8,7 +8,9 @@ import net.minecraft.entity.player.EntityPlayer;
  * Usage is still unclear. Implementation of this interface will mark a
  * tileEntity can be personalized so that permission control will be applied.
  * Method may be called in the future.
+ * @deprecated Scheduled to remove the immature permission control system.
  */
+@Deprecated
 public interface IPersonal {
 
 	UUID getOwnerUUID();

@@ -57,7 +57,7 @@ public final class ItemUtil {
 		try {
 			return OreDictionary.getOres(entry).get(0).copy();
 		} catch (Exception e) {
-			return null; //fall back
+			return ItemStack.EMPTY; //fall back
 		}
 	}
 	
@@ -76,58 +76,6 @@ public final class ItemUtil {
 			stacks.add(handler.getStackInSlot(index));
 		}
 		return Collections.unmodifiableList(stacks);
-	}
-	
-	public static boolean stackContains(ItemStack[] targetArray, ItemStack stack, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {
-		for (ItemStack aStack : targetArray) {
-			if (oreDict) {
-				int[] idArray = OreDictionary.getOreIDs(stack);
-				ArrayList<String> entryArray = new ArrayList<>();
-				for (int id : idArray) {
-					entryArray.addAll(Collections.singletonList(OreDictionary.getOreName(id)));
-				}
-				ArrayList<ItemStack> stackArray = new ArrayList<>();
-				entryArray.forEach(entry -> stackArray.addAll(OreDictionary.getOres(entry)));
-				for (ItemStack examining : stackArray) {
-					if (OreDictionary.itemMatches(examining, stack, true)) {
-						return true;
-					}
-				}
-			}
-			
-			boolean hasStack = OreDictionary.itemMatches(aStack, stack, true);
-			if (strictSize)
-				hasStack = aStack.getCount() == stack.getCount();
-			if (strictNBT)
-				hasStack = ItemStack.areItemStackTagsEqual(aStack, stack);
-			
-			if (hasStack)
-				return true;
-		}
-		return false;
-	}
-	
-	/**
-	 * Return whether stack1 has all stuff that stack2 has.
-	 * @param oreDict Give it true if two stack can be equivalent in term of ore dictionary
-	 * @param strictNBT Give it true if NBT tag is required in term of "equivalent"
-	 * @param strictSize Give it false if size doesn't matter
-	 * @return True if stack1 contains all stack2 contents, based on three extra parameters
-	 */
-	public static boolean deepStackContainsAll(ItemStack[] stack1, ItemStack[] stack2, final boolean oreDict, final boolean strictNBT, final boolean strictSize) {
-		for (ItemStack s : stack2) {
-			if (stackContains(stack1, s, oreDict, strictNBT, strictSize))
-				return true;
-		}
-		return false;
-	}
-	
-	public static boolean deepStackEquals(ItemStack[] stack1, ItemStack[] stack2, final boolean oreDict, final boolean strictNBT) {
-		for (ItemStack s : stack2) {
-			if (stackContains(stack1, s, oreDict, strictNBT, true))
-				return true;
-		}
-		return false;
 	}
 
 }

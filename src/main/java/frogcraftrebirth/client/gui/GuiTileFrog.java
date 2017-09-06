@@ -8,15 +8,11 @@
  */
 package frogcraftrebirth.client.gui;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import org.lwjgl.opengl.GL11;
-
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
@@ -25,6 +21,9 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 @SideOnly(Side.CLIENT)
 public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFrog<T>> extends GuiContainer {
@@ -42,8 +41,15 @@ public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFro
 	}
 
 	@Override
+	public void drawScreen(int mouseX, int mouseY, float partialTick) {
+		this.drawDefaultBackground();
+		super.drawScreen(mouseX, mouseY, partialTick);
+		this.renderHoveredToolTip(mouseX, mouseY);
+	}
+
+	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
-		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		this.mc.getTextureManager().bindTexture(guiBackground);
 		this.drawTexturedModalRect(this.guiLeft, this.guiTop, 0, 0, this.xSize, this.ySize);
 	}

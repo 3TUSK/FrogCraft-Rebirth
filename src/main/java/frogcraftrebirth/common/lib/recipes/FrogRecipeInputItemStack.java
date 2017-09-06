@@ -46,4 +46,9 @@ public class FrogRecipeInputItemStack implements IFrogRecipeInput {
 		}
 		return actualInput; //If type mismatch, don't touch it.
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return o == this || o instanceof FrogRecipeInputItemStack && ((FrogRecipeInputItemStack)o).stack.equals(this.stack);
+	}
 }

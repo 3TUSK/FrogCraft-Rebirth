@@ -46,4 +46,9 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 			return actualInput;
 		}
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this == o || o instanceof FrogRecipeInputOreDict && ((FrogRecipeInputOreDict)o).entry.equals(this.entry);
+	}
 }

@@ -75,4 +75,9 @@ public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 
 		return actualInput;
 	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this == o || o instanceof FrogRecipeInputUniversalFluidCell && ((FrogRecipeInputUniversalFluidCell)o).stack.isFluidEqual(this.stack);
+	}
 }

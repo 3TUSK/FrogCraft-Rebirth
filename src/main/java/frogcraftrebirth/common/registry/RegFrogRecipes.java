@@ -61,7 +61,7 @@ public class RegFrogRecipes {
 			//2SO2+O2->2SO3 - note: you get SO2 by burning sulfur dust in combustion furnace
 			ItemStack so3Cell = FrogRecipeInputs.UNI_CELL.copy();
 			FluidUtil.getFluidHandler(so3Cell).fill(new FluidStack(FrogFluids.sulfurTrioxide, 1000), true);
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfurDioxide, 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluic_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 3), 300, 100, 0, 1));
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfurDioxide, 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 3), 300, 100, 0, 1));
 
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 25), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 3), new FluidStack(FrogFluids.carbonOxide, 5), new FluidStack(FrogFluids.methane, 10), FluidRegistry.getFluidStack("ic2hydrogen", 5) }));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.nitrogen, 7), new FluidStack(FrogFluids.oxygen, 2), new FluidStack(FrogFluids.carbonDioxide, 2) }));

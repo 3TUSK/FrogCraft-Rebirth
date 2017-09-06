@@ -47,12 +47,20 @@ fluid.coal_tar=煤焦油
 fluid.coal_tar.info=这特么究竟含有什么？！
 fluid.fluorine=氟
 fluid.fluorine.info=F₂
+fluid.methane=甲烷
+fluid.methane.info=CH₄
 fluid.nitric_acid=硝酸
 fluid.nitric_acid=HNO₃
+fluid.nitrogen=氮气
+fluid.nitrogen.info=N₂
 fluid.nitrogen_oxide=一氧化氮
 fluid.nitrogen_oxide.info=NO
+fluid.oleum=发烟硫酸
+fluid.oleum.info=H₂SO₄·SO₃
 fluid.oxygen=氧气
 fluid.oxygen.info=O₂
+fluid.sulfuric_acid=硫酸
+fluid.sulfuric_acid.info=H₂SO₄
 fluid.sulfur_dioxide=二氧化硫
 fluid.sulfur_dioxide.info=SO₂
 fluid.sulfur_trioxide=三氧化硫
@@ -105,17 +113,17 @@ item.Item_Dusts.Al2O3.info=Al₂O
 item.Item_Dusts.V2O5=五氧化二钒
 item.Item_Dusts.V2O5.info=V₂O₅
 
-item.crushedOre.Carnallite=Crushed Carnallite Ore
-item.crushedOre.Dewalquite=Crushed Dewalquite Ore
-item.crushedOre.Fluorapatite=Crushed Fluorapatite Ore
+item.crushedOre.Carnallite=粉碎光卤石
+item.crushedOre.Dewalquite=粉碎铝钒土矿
+item.crushedOre.Fluorapatite=粉碎氟磷灰石
 
-item.purifiedOre.Carnallite=Purified Carnallite Ore
-item.purifiedOre.Dewalquite=Purified Dewalquite Ore
-item.purifiedOre.Fluorapatite=Purified Fluorapatite Ore
+item.purifiedOre.Carnallite=洗净的粉碎光卤石
+item.purifiedOre.Dewalquite=洗净的粉碎铝钒土矿
+item.purifiedOre.Fluorapatite=洗净的粉碎氟磷灰石
 
-item.smallDust.Carnallite=Tiny Pile of Carnallite Dust
-item.smallDust.Dewalquite=Tiny Pile of Dewalquite Dust
-item.smallDust.Fluorapatite=Tiny Pile of Fluorapatite Dust
+item.smallDust.Carnallite=小堆光卤石粉
+item.smallDust.Dewalquite=小堆铝钒土矿粉
+item.smallDust.Fluorapatite=小堆氟磷灰石粉
 
 #Ingots
 #To translators: for briquette, see the following links:

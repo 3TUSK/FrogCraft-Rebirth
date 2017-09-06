@@ -31,6 +31,12 @@ public class FrogConfig {
 	@Config.RangeInt(min = 1)
 	public static int combustionFurnaceGenRate = 10;
 
+	@Config.Comment("Set to false to disable all world generation from FrogCraft: Rebirth.")
+	@Config.LangKey("config.fcrebirth.worldgen")
+	@Config.Name("EnableWorldGeneration")
+	@Config.RequiresMcRestart
+	public static boolean enableWorldGen = true;
+
 	@Config.Comment("Damage caused by Portable Ion Cannon per launch.")
 	@Config.LangKey("config.fcrebirth.misc.ion_cannon")
 	@Config.Name("IonCannonDamage")

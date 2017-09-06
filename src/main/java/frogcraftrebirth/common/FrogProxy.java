@@ -31,9 +31,9 @@ public class FrogProxy {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		RegFrogRecipes.init();
-		FrogWorldGenerator generator = new FrogWorldGenerator();
-		MinecraftForge.TERRAIN_GEN_BUS.register(generator);
-		MinecraftForge.ORE_GEN_BUS.register(generator);
+		if (FrogConfig.enableWorldGen) {
+			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
+		}
 	}
 	
 	public void imcInit(FMLInterModComms.IMCEvent event) {

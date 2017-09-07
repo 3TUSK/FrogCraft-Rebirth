@@ -27,9 +27,10 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * New textures powered by huangziye812 and dunge!
  * Thermal Cracker is renamed to **Pyrolyzer**. "Thermal Cracker" sounds like Chinglish to me. 
  * Cells are removed. Use IC2 Universal Fluid Cell instead.
- * Crushed ore dust, purified ore dust, and dust of small pile! 
+ * Crushed ore dust, purified ore dust, and dust of small pile!
+ * Full sulfuric acid production line!
  * Railgun and Academy Windmill are removed. The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements.
- * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
+   * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
  * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt, but now I suggest to use other equivalents from other mods, e.g. [Chisel](https://minecraft.curseforge.com/projects/chisel).
  * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as of Marble and Basalt.
  * Four industrial machines are separated out into [a new mod called "Industrial Machine"](https://github.com/3TUSK/IndustrialMachine). 

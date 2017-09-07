@@ -10,28 +10,44 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ * A specialized {@link IFrogRecipeInput} that only matches Universal Fluid Cell
+ * from IndustrialCraft2. Used in Adv. Chemical Reactor, serving as a solution
+ * to match the behavior from FrogCraft where it accepts IC2 cell (removed around
+ * 1.10.2).
+ *
+ * @implSpec
+ * The <code>getSize</code> method implemented here always return the ItemStack size.
+ * If FluidStack.amount is needed, it is safe to assume that it is 1000 * getSize().
+ *
+ * @implNote
+ * By default, it makes assumption that the given FluidStack instanced has amount
+ * of multiple of 1000. This assumption is based on the legacy IC2 Cell behavior
+ * where it always has volume of 1000 mB. As an direct result, this input cannot
+ * support fluid input that has volume of non-1000-multiple.
+ *
+ * @see frogcraftrebirth.common.tile.TileAdvChemReactor
+ */
 public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 
 	private final FluidStack stack;
+	private final int size;
 
 	public FrogRecipeInputUniversalFluidCell(FluidStack stack) {
 		this.stack = stack;
+		this.size = stack.amount % 1000;
 	}
 
 	public FrogRecipeInputUniversalFluidCell(ItemStack stack) {
 		if (FrogRecipeInputs.UNI_CELL.isItemEqual(stack)) {
 			IFluidHandlerItem handler = FluidUtil.getFluidHandler(stack);
-			if (handler != null) {
-				FluidStack f = handler.getTankProperties()[0].getContents();
-				if (f != null) {
-					this.stack = f.copy();
-				} else { //TODO this seems too brutal
-					throw new NullPointerException("Cannot pass empty IC2 Universal Fluid Cell here!");
-				}
-			} else {
-				throw new NullPointerException("An IC2 Universal Fluid Cell is missing its fluid handler, possibly due to corrupted data");
-			}
+			Objects.requireNonNull(handler, "An IC2 Universal Fluid Cell is missing its fluid handler, possibly due to corrupted data");
+			FluidStack f = handler.getTankProperties()[0].getContents();
+			Objects.requireNonNull(f, "Cannot pass empty IC2 Universal Fluid Cell here!");
+			this.stack = f;
+			this.size = f.amount % 1000;
 		} else {
 			throw new IllegalArgumentException("Only IC2 Universal Fluid Cell can pass into this constructor");
 		}
@@ -59,16 +75,16 @@ public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 
 	@Override
 	public int getSize() {
-		return stack.amount;
+		return size;
 	}
 
 	@Nullable
 	@Override
 	public <I> I accepts(Class<I> type, I actualInput) {
 		if (type == ItemStack.class) {
-			IFluidHandlerItem handler = FluidUtil.getFluidHandler((ItemStack)actualInput);
-			if (handler != null) { // For safety sake
-				handler.fill(stack.copy(), true);
+			ItemStack itemStack = (ItemStack)actualInput;
+			if (FrogRecipeInputs.UNI_CELL.isItemEqual(itemStack)) {
+				itemStack.shrink(this.size);
 				return actualInput;
 			}
 		}

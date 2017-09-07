@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Objects;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
@@ -17,6 +16,7 @@ import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
+import frogcraftrebirth.common.lib.capability.ItemHandlerUniversalCell;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -39,8 +39,8 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	public final IItemHandler module = new ItemStackHandler();
 	public final IItemHandler input = new ItemStackHandler(5);
 	public final IItemHandler output = new ItemStackHandler(5);
-	public final IItemHandler cellInput = new ItemStackHandler();
-	public final IItemHandler cellOutput = new ItemStackHandler();
+	public final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
+	public final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
 	
 	public int process, processMax;
 	private boolean working;
@@ -100,7 +100,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		
 		if (!working || recipe == null) {
 			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-			recipe = FrogAPI.managerACR.getRecipe(FrogRecipeInputs.wrap(inputs).toArray(new IFrogRecipeInput[5]));
+			recipe = FrogAPI.managerACR.getRecipe(inputs);
 			
 			if (checkRecipe(recipe)) {
 				this.consumeIngredient(recipe.getInputs());
@@ -132,28 +132,11 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		this.sendTileUpdatePacket(this);
 		this.markDirty();
 	}
-	
-	private final List<ItemStack> checkCache = new ArrayList<>();
+
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
-		if (recipe == null)
-			return false;
-		if (!cellInput.getStackInSlot(0).isEmpty()) {
-			if (!FrogRecipeInputs.UNI_CELL.isItemEqual(cellInput.getStackInSlot(0)))
-				return false;
-			if (cellInput.getStackInSlot(0).getCount() < recipe.getRequiredCellAmount())
-				return false;
-		} else {
-			if (recipe.getRequiredCellAmount() > 0)
-				return false;
-		}
-		if (recipe.getCatalyst() != null && !recipe.getCatalyst().isItemEqual(module.getStackInSlot(0)))
-			return false;
-		checkCache.clear();
-		recipe.getOutputs().forEach(outputStack -> checkCache.add(ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true)));
-		checkCache.removeIf(ItemUtil.EMPTY_PREDICATE);
-		return checkCache.size() == 0;
+		return recipe != null && this.cellInput.getCellCount() >= recipe.getRequiredCellAmount() && recipe.getCatalyst().isItemEqual(module.getStackInSlot(0));
 	}
-	
+
 	private void consumeIngredient(Collection<IFrogRecipeInput> toBeConsumed) {
 		toBeConsumed.forEach(input -> {
 			for (int i = 0; i < 5; i++) {
@@ -169,10 +152,10 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 	
 	private final List<ItemStack> dropCache = new ArrayList<>();
-	
 	private void produce() {
 		recipe.getOutputs().forEach(itemStack -> dropCache.add(ItemHandlerHelper.insertItemStacked(output, itemStack.copy(), false)));
-		dropCache.stream().filter(ItemUtil.NON_EMPTY_PREDICATE).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
+		dropCache.removeIf(ItemUtil.EMPTY_PREDICATE);
+		dropCache.forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
 		dropCache.clear();
 		
 		if (recipe.getProducedCellAmount() > 0) {

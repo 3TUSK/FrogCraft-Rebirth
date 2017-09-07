@@ -48,7 +48,12 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 		}
 		return null;
 	}
-	
+
+	@Override
+	public IPyrolyzerRecipe getRecipe(ItemStack... input) {
+		throw new UnsupportedOperationException("Unimplemented"); //TODO Stub
+	}
+
 	private static ArrayList<IPyrolyzerRecipe> recipes = new ArrayList<>();
 
 }

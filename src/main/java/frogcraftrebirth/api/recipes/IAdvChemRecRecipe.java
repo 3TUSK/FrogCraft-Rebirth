@@ -41,4 +41,19 @@ public interface IAdvChemRecRecipe {
 		return getInputs().containsAll(Arrays.asList(inputs));
 	}
 
+	/**
+	 * @param inputs The input ItemStack array
+	 * @return true if given inputs matches this recipe
+	 *
+	 * @since 1.1.0
+	 */
+	default boolean matchInputs(ItemStack... inputs) {
+		for (ItemStack input : inputs) {
+			if (getInputs().stream().noneMatch(i -> i.matches(input))) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

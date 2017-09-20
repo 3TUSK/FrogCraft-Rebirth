@@ -16,7 +16,15 @@ public interface IRecipeManager<R> {
 
 	Collection<R> getRecipes();
 
-	R getRecipe(IFrogRecipeInput... input);
+	/**
+	 * @deprecated This cannot be properly implemented
+	 * @param input Array of wrapped inputs
+	 * @return The recipe if matched any; null if otherwise.
+	 */
+	@Deprecated
+	default R getRecipe(IFrogRecipeInput... input) {
+		return null;
+	}
 
 	/**
 	 *

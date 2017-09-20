@@ -55,7 +55,8 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	public boolean isWorking() {
 		return working;
 	}
-	
+
+	//TODO input slots, output slots, etc. are not properly serialized, thus item are lost after game restart
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
@@ -134,7 +135,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
-		return recipe != null && this.cellInput.getCellCount() >= recipe.getRequiredCellAmount() && recipe.getCatalyst().isItemEqual(module.getStackInSlot(0));
+		return recipe != null && this.cellInput.getCellCount() >= recipe.getRequiredCellAmount() && ItemStack.areItemsEqual(recipe.getCatalyst(), module.getStackInSlot(0));
 	}
 
 	private void consumeIngredient(Collection<IFrogRecipeInput> toBeConsumed) {

@@ -85,7 +85,7 @@ public class RegFrogRecipes {
 			ItemStack sulfuricCell = FrogRecipeInputs.UNI_CELL.copy();
 			FluidUtil.getFluidHandler(sulfuricCell).fill(new FluidStack(FrogFluids.sulfuricAcid, 1000), true);
 			sulfuricCell.setCount(2);
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "water"))), Collections.singleton(sulfuricCell), ItemStack.EMPTY, 100, 10, 0,0));
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell), ItemStack.EMPTY, 100, 10, 0,0));
 		}
 	}
 	

@@ -37,7 +37,7 @@ public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 
 	public FrogRecipeInputUniversalFluidCell(FluidStack stack) {
 		this.stack = stack;
-		this.size = stack.amount % 1000;
+		this.size = stack.amount / 1000;
 	}
 
 	public FrogRecipeInputUniversalFluidCell(ItemStack stack) {
@@ -47,7 +47,7 @@ public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 			FluidStack f = handler.getTankProperties()[0].getContents();
 			Objects.requireNonNull(f, "Cannot pass empty IC2 Universal Fluid Cell here!");
 			this.stack = f;
-			this.size = f.amount % 1000;
+			this.size = f.amount / 1000;
 		} else {
 			throw new IllegalArgumentException("Only IC2 Universal Fluid Cell can pass into this constructor");
 		}

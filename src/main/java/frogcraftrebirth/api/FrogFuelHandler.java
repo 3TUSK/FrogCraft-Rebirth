@@ -56,8 +56,6 @@ public final class FrogFuelHandler {
 	
 	@Nullable
 	public FluidStack getFluidByproduct(@Nonnull String ore) {
-		if (ore.isEmpty())
-			return null;
 		return ore2FluidMap.get(ore);
 	}
 

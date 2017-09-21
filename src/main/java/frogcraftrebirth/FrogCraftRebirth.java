@@ -22,6 +22,7 @@ import javax.annotation.Nonnull;
 		modid = FrogAPI.MODID, 
 		name = FrogAPI.NAME, 
 		version = "@VERSION@",
+		acceptedMinecraftVersions = "[1.12, 1.13)",
 		guiFactory = "frogcraftrebirth.common.lib.config.ConfigGuiFactory", 
 		useMetadata = true)
 public final class FrogCraftRebirth {

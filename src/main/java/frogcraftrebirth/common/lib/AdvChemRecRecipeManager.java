@@ -36,7 +36,7 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	}
 
 	@Override
-	public IAdvChemRecRecipe getRecipe(ItemStack... inputs) {
+	public IAdvChemRecRecipe getRecipe(Iterable<IFrogRecipeInput> inputs) {
 		for (IAdvChemRecRecipe recipe : recipes) {
 			if (recipe.matchInputs(inputs)) {
 				return recipe;

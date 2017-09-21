@@ -1,7 +1,6 @@
 package frogcraftrebirth.api.recipes;
 
-import net.minecraft.item.ItemStack;
-
+import java.util.Arrays;
 import java.util.Collection;
 
 /**
@@ -17,21 +16,17 @@ public interface IRecipeManager<R> {
 	Collection<R> getRecipes();
 
 	/**
-	 * @deprecated This cannot be properly implemented
 	 * @param input Array of wrapped inputs
+	 *
+	 * @implSpec
+	 * Default implementation delegates to {@link #getRecipe(Iterable)}.
+	 *
 	 * @return The recipe if matched any; null if otherwise.
 	 */
-	@Deprecated
 	default R getRecipe(IFrogRecipeInput... input) {
-		return null;
+		return getRecipe(Arrays.asList(input));
 	}
 
-	/**
-	 *
-	 * @param input Input ItemStack array
-	 * @return the recipe, or null if none matched
-	 *
-	 * @since 1.1.0
-	 */
-	R getRecipe(ItemStack... input);
+	R getRecipe(Iterable<IFrogRecipeInput> input);
+
 }

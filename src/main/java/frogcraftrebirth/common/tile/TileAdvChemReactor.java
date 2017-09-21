@@ -10,6 +10,7 @@ import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerUniversalCell;
+import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItemHandler;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -107,8 +108,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		}
 		
 		if (!working || recipe == null) {
-			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-			recipe = FrogAPI.managerACR.getRecipe(inputs);
+			recipe = FrogAPI.managerACR.getRecipe(new IterableFrogRecipeInputsBackedByIItemHandler(this.input));
 			
 			if (checkRecipe(recipe)) {
 				this.consumeIngredient(recipe.getInputs());

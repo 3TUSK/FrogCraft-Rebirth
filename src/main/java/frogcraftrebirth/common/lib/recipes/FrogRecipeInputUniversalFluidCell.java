@@ -54,6 +54,11 @@ public class FrogRecipeInputUniversalFluidCell implements IFrogRecipeInput {
 	}
 
 	@Override
+	public boolean matches(IFrogRecipeInput input) {
+		return input.getActualInputs(FluidStack.class).stream().anyMatch(this.stack::equals);
+	}
+
+	@Override
 	public boolean matches(Object actualInput) {
 		return actualInput instanceof ItemStack && FrogRecipeInputs.UNI_CELL.isItemEqual((ItemStack)actualInput) && stack.isFluidEqual((ItemStack)actualInput);
 	}

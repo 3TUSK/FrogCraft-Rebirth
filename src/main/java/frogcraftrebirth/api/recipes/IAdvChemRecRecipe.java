@@ -37,38 +37,22 @@ public interface IAdvChemRecRecipe {
 		return rec.getInputs().equals(getInputs());
 	}
 
-	/**
-	 * @deprecated This cannot be properly implemented and it is thus discouraged to use this.
-	 *             Currently the default implementation always returns false.
-	 *             Use {@link #matchInputs(ItemStack...)} instead.
-	 * @param inputs Array of {@link IFrogRecipeInput} instances
-	 * @return true if the given recipe inputs matches this recipe
-	 */
-	@Deprecated
 	default boolean matchInputs(IFrogRecipeInput... inputs) {
-		return false;
+		return matchInputs(Arrays.asList(inputs));
 	}
 
-	/**
-	 * @param inputs The input ItemStack array
-	 * @return true if given inputs matches this recipe
-	 *
-	 * @since 1.1.0
-	 */
-	default boolean matchInputs(ItemStack... inputs) {
-		for (IFrogRecipeInput i : getInputs()) {
+	default boolean matchInputs(Iterable<IFrogRecipeInput> inputs) {
+		for (IFrogRecipeInput input : getInputs()) {
 			boolean found = false;
-			for (ItemStack iActual : inputs) {
-				if (i.matches(iActual)) {
+			for (IFrogRecipeInput check : inputs) {
+				if (input.matches(check)) {
 					found = true;
-					break;
 				}
 			}
 			if (!found) {
 				return false;
 			}
 		}
-
 		return true;
 	}
 

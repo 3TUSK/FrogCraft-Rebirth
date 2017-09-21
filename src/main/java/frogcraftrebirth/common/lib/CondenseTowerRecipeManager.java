@@ -8,8 +8,6 @@ import java.util.Set;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTowerRecipe> {
@@ -48,8 +46,21 @@ public class CondenseTowerRecipeManager implements IRecipeManager<ICondenseTower
 	}
 
 	@Override
-	public ICondenseTowerRecipe getRecipe(ItemStack... input) {
-		return null; //It is impossible
+	public ICondenseTowerRecipe getRecipe(Iterable<IFrogRecipeInput> inputs) {
+		IFrogRecipeInput input = inputs.iterator().next();
+		if (input == null)
+			return null;
+		List<FluidStack> inputFluid = input.getActualInputs(FluidStack.class);
+		if (inputFluid.size() > 0) {
+			FluidStack first = inputFluid.get(0);
+			for (ICondenseTowerRecipe recipe : recipes) {
+				if (recipe.getInput().isFluidEqual(first)) {
+					return recipe;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	private final Set<ICondenseTowerRecipe> recipes = new HashSet<>();

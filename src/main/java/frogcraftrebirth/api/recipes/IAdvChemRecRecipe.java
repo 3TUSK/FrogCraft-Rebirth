@@ -38,7 +38,23 @@ public interface IAdvChemRecRecipe {
 	}
 
 	default boolean matchInputs(IFrogRecipeInput... inputs) {
-		return getInputs().containsAll(Arrays.asList(inputs));
+		return matchInputs(Arrays.asList(inputs));
+	}
+
+	default boolean matchInputs(Iterable<IFrogRecipeInput> inputs) {
+		for (IFrogRecipeInput input : getInputs()) {
+			boolean found = false;
+			for (IFrogRecipeInput check : inputs) {
+				if (input.matches(check)) {
+					found = true;
+					break;
+				}
+			}
+			if (!found) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

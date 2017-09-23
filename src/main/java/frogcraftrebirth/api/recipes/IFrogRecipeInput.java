@@ -6,9 +6,28 @@ import java.util.List;
 
 /**
  * A <code>IFrogRecipeInput</code> represents a wrapped input ingredient,
- * with its actual type being unknown by default.
+ * with its actual type not being exposed by default.
  */
 public interface IFrogRecipeInput {
+
+	/**
+	 * A specialized version of {@link #matches(Object)}.
+	 * @param input Wrapped <code>IFrogRecipeInput</code>
+	 *
+	 * @implSpec
+	 * Contracts of {@link Object#equals} also applies here, with only difference
+	 * that a.matches(b) == true does not guarantee a.equals(b) == true. That said,
+	 * this method only checks equivalency based on exchangeability, e.g.
+	 * an instance of FluidStack may matches an instance of ItemStack that happens
+	 * to be a fluid container with the exact same fluid stack in it.
+	 *
+	 * @return true if the given actual input is matched; false for otherwise.
+	 *
+	 * @see Object#equals
+	 */
+	default boolean matches(IFrogRecipeInput input) {
+		return this.equals(input);
+	}
 
 	/**
 	 * @param actualInput The actual input ingredient.

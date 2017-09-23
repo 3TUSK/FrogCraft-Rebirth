@@ -20,6 +20,12 @@ public class FrogRecipeInputFluidStack implements IFrogRecipeInput {
 	}
 
 	@Override
+	public boolean matches(IFrogRecipeInput input) {
+		List<FluidStack> list = input.getActualInputs(FluidStack.class);
+		return list.size() > 0 && list.stream().anyMatch(input::equals);
+	}
+
+	@Override
 	public boolean matches(Object actualInput) {
 		return actualInput instanceof FluidStack ? stack.isFluidEqual((FluidStack)actualInput) : actualInput instanceof ItemStack && stack.isFluidEqual((ItemStack)actualInput);
 	}

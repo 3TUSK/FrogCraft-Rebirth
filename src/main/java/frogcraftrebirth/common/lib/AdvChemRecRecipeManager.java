@@ -24,16 +24,24 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 	public Collection<IAdvChemRecRecipe> getRecipes() {
 		return recipes;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public IAdvChemRecRecipe getRecipe(IFrogRecipeInput... inputs) {
 		for (IAdvChemRecRecipe recipe : recipes) {
-			if (recipe.matchInputs()) {
+			if (recipe.matchInputs(inputs)) {
 				return recipe;
 			}
 		}
-		
+		return null;
+	}
+
+	@Override
+	public IAdvChemRecRecipe getRecipe(Iterable<IFrogRecipeInput> inputs) {
+		for (IAdvChemRecRecipe recipe : recipes) {
+			if (recipe.matchInputs(inputs)) {
+				return recipe;
+			}
+		}
 		return null;
 	}
 

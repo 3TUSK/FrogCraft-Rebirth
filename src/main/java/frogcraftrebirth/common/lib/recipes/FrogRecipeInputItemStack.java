@@ -17,6 +17,11 @@ public class FrogRecipeInputItemStack implements IFrogRecipeInput {
 	}
 
 	@Override
+	public boolean matches(IFrogRecipeInput input) {
+		return input.matches(stack);
+	}
+
+	@Override
 	public boolean matches(Object actualInput) {
 		return actualInput instanceof ItemStack && stack.isItemEqual((ItemStack)actualInput);
 	}

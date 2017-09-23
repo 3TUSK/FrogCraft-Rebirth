@@ -1,13 +1,5 @@
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
@@ -17,7 +9,8 @@ import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
-import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
+import frogcraftrebirth.common.lib.capability.ItemHandlerUniversalCell;
+import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItemHandler;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -29,18 +22,24 @@ import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 	
 	//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
-	public final IItemHandler module = new ItemStackHandler();
-	public final IItemHandler input = new ItemStackHandler(5);
-	public final IItemHandler output = new ItemStackHandler(5);
-	public final IItemHandler cellInput = new ItemStackHandler();
-	public final IItemHandler cellOutput = new ItemStackHandler();
+	public final ItemStackHandler module = new ItemStackHandler();
+	public final ItemStackHandler input = new ItemStackHandler(5);
+	public final ItemStackHandler output = new ItemStackHandler(5);
+	public final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
+	public final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
 	
 	public int process, processMax;
 	private boolean working;
@@ -55,13 +54,18 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	public boolean isWorking() {
 		return working;
 	}
-	
+
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
+		this.input.deserializeNBT(tag.getCompoundTag("input"));
+		this.output.deserializeNBT(tag.getCompoundTag("output"));
+		this.module.deserializeNBT(tag.getCompoundTag("module"));
+		this.cellInput.deserializeNBT(tag.getCompoundTag("cellInput"));
+		this.cellOutput.deserializeNBT(tag.getCompoundTag("cellOutput"));
 	}
 	
 	@Override
@@ -69,6 +73,11 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
+		tag.setTag("input", this.input.serializeNBT());
+		tag.setTag("output", this.output.serializeNBT());
+		tag.setTag("module", this.module.serializeNBT());
+		tag.setTag("cellInput", this.cellInput.serializeNBT());
+		tag.setTag("cellOutput", this.cellOutput.serializeNBT());
 		return super.writeToNBT(tag);
 	}
 	
@@ -99,8 +108,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		}
 		
 		if (!working || recipe == null) {
-			ItemStack[] inputs = new ItemStack[] {input.getStackInSlot(0), input.getStackInSlot(1), input.getStackInSlot(2), input.getStackInSlot(3), input.getStackInSlot(4)};
-			recipe = FrogAPI.managerACR.getRecipe(FrogRecipeInputs.wrap(inputs).toArray(new IFrogRecipeInput[5]));
+			recipe = FrogAPI.managerACR.getRecipe(new IterableFrogRecipeInputsBackedByIItemHandler(this.input));
 			
 			if (checkRecipe(recipe)) {
 				this.consumeIngredient(recipe.getInputs());
@@ -132,28 +140,11 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		this.sendTileUpdatePacket(this);
 		this.markDirty();
 	}
-	
-	private final List<ItemStack> checkCache = new ArrayList<>();
+
 	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
-		if (recipe == null)
-			return false;
-		if (!cellInput.getStackInSlot(0).isEmpty()) {
-			if (!FrogRecipeInputs.UNI_CELL.isItemEqual(cellInput.getStackInSlot(0)))
-				return false;
-			if (cellInput.getStackInSlot(0).getCount() < recipe.getRequiredCellAmount())
-				return false;
-		} else {
-			if (recipe.getRequiredCellAmount() > 0)
-				return false;
-		}
-		if (recipe.getCatalyst() != null && !recipe.getCatalyst().isItemEqual(module.getStackInSlot(0)))
-			return false;
-		checkCache.clear();
-		recipe.getOutputs().forEach(outputStack -> checkCache.add(ItemHandlerHelper.insertItemStacked(output, outputStack.copy(), true)));
-		checkCache.removeIf(ItemUtil.EMPTY_PREDICATE);
-		return checkCache.size() == 0;
+		return recipe != null && this.cellInput.getCellCount() >= recipe.getRequiredCellAmount() && ItemStack.areItemsEqual(recipe.getCatalyst(), module.getStackInSlot(0));
 	}
-	
+
 	private void consumeIngredient(Collection<IFrogRecipeInput> toBeConsumed) {
 		toBeConsumed.forEach(input -> {
 			for (int i = 0; i < 5; i++) {
@@ -164,28 +155,26 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 			}
 		});
 		if (recipe.getRequiredCellAmount() > 0) {
-			cellInput.extractItem(0, recipe.getRequiredCellAmount(), false);
+			cellInput.decrease(recipe.getRequiredCellAmount());
 		}
 	}
 	
 	private final List<ItemStack> dropCache = new ArrayList<>();
-	
 	private void produce() {
 		recipe.getOutputs().forEach(itemStack -> dropCache.add(ItemHandlerHelper.insertItemStacked(output, itemStack.copy(), false)));
-		dropCache.stream().filter(ItemUtil.NON_EMPTY_PREDICATE).forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
+		dropCache.removeIf(ItemUtil.EMPTY_PREDICATE);
+		dropCache.forEach(stack -> ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), stack));
 		dropCache.clear();
 		
 		if (recipe.getProducedCellAmount() > 0) {
-			if (!cellOutput.getStackInSlot(0).isEmpty()) {
+			if (cellOutput.getCellCount() <= 0) {
+				cellOutput.increase(recipe.getProducedCellAmount());
+			} else {
 				ItemStack cell = cellOutput.getStackInSlot(0).copy();
 				cell.setCount(recipe.getProducedCellAmount());
 				ItemStack remain = cellOutput.insertItem(0, cell, false);
 				if (!remain.isEmpty())
 					ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remain);
-			} else {
-				ItemStack stack = FrogRecipeInputs.UNI_CELL.copy();
-				stack.setCount(recipe.getProducedCellAmount());
-				cellOutput.insertItem(0, stack, false);
 			}
 		}
 	}

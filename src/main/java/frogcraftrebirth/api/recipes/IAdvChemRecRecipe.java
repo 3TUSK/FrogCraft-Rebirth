@@ -47,6 +47,7 @@ public interface IAdvChemRecRecipe {
 			for (IFrogRecipeInput check : inputs) {
 				if (input.matches(check)) {
 					found = true;
+					break;
 				}
 			}
 			if (!found) {

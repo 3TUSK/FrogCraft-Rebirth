@@ -4,6 +4,7 @@ import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import net.minecraftforge.items.IItemHandler;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 import java.util.Spliterator;
 import java.util.function.Consumer;
 
@@ -18,15 +19,20 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 	@Override
 	public Iterator<IFrogRecipeInput> iterator() {
 		return new Iterator<IFrogRecipeInput>() {
+			private final int count = handlerWrapped.getSlots();
 			private int ptr = 0;
 			@Override
 			public boolean hasNext() {
-				return ptr < handlerWrapped.getSlots();
+				return ptr < count;
 			}
 
 			@Override
 			public IFrogRecipeInput next() {
-				return new FrogRecipeInputItemStack(handlerWrapped.getStackInSlot(ptr));
+				if (ptr < count) {
+					return new FrogRecipeInputItemStack(handlerWrapped.getStackInSlot(ptr++));
+				} else {
+					throw new NoSuchElementException();
+				}
 			}
 		};
 	}

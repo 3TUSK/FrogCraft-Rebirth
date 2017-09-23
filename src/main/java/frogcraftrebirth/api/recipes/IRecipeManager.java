@@ -25,7 +25,7 @@ public interface IRecipeManager<R> {
 	 *
 	 * @return The recipe if matched any; null if otherwise.
 	 *
-	 * @see #getRecipe(Iterable) 
+	 * @see #getRecipe(Iterable)
 	 */
 	@Nullable
 	default R getRecipe(IFrogRecipeInput... input) {

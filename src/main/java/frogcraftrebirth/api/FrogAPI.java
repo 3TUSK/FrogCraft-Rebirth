@@ -2,14 +2,11 @@ package frogcraftrebirth.api;
 
 import javax.annotation.Nonnull;
 
+import frogcraftrebirth.api.recipes.*;
 import net.minecraft.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
-import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
-import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
-import frogcraftrebirth.api.recipes.IRecipeManager;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.util.DamageSource;
 
@@ -39,7 +36,9 @@ public final class FrogAPI {
 	public static final DamageSource ION_CANNON = new DamageSource("IonCannon").setDamageBypassesArmor().setFireDamage().setExplosion().setProjectile();
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
-	
+
+	@Nonnull
+	public static IRecipeManager<IAdvBlastFurnaceRecipe> managerABF;
 	@Nonnull
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
 	@Nonnull

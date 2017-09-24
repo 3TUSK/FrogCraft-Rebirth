@@ -21,12 +21,12 @@ import net.minecraftforge.fml.common.registry.EntityRegistry;
 public class FrogProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
+		NetworkHandler.init();
+		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 		EntityRegistry.registerModEntity(new ResourceLocation(FrogAPI.MODID, "ion_cannon_beam"), EntityIonCannonBeam.class, "EntityRailgunCoin", 0, FrogCraftRebirth.getInstance(), 160, 5, true);
 	}
 
 	public void init(FMLInitializationEvent event) {
-		NetworkHandler.init();
-		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();

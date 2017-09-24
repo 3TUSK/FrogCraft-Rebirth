@@ -5,14 +5,12 @@ import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
-import frogcraftrebirth.common.potion.PotionTiberium;
 import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -92,8 +90,4 @@ public class FrogRegistries {
         );
     }
 
-    @SubscribeEvent
-    public static void regPotion(RegistryEvent.Register<Potion> event) {
-        event.getRegistry().register(new PotionTiberium(0x66CCFF).setRegistryName("frogcraftrebirth:tiberium"));
-    }
 }

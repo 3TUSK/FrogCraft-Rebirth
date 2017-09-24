@@ -8,12 +8,10 @@ import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
-import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputUniversalFluidCell;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
 import ic2.api.item.IC2Items;
-import ic2.api.recipe.IRecipeInputFactory;
 import ic2.api.recipe.Recipes;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -125,13 +123,6 @@ public class RegFrogRecipes {
 
 		OreDictionary.registerOre("ingotPotassium", new ItemStack(FrogRegistees.INGOT, 1, 0));
 		OreDictionary.registerOre("ingotPhosphorus", new ItemStack(FrogRegistees.INGOT, 1, 1));
-
-		OreDictionary.registerOre("crystalTiberiumRed", new ItemStack(FrogRegistees.TIBERIUM, 1, 0));
-		OreDictionary.registerOre("crystalTiberiumBlue", new ItemStack(FrogRegistees.TIBERIUM, 1, 1));
-		OreDictionary.registerOre("crystalTiberiumGreen", new ItemStack(FrogRegistees.TIBERIUM, 1, 2));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 0));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 1));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 2));
 		
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogRegistees.ORE, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogRegistees.ORE, 1, 1));

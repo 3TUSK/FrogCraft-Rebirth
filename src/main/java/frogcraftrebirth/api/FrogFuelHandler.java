@@ -56,25 +56,23 @@ public final class FrogFuelHandler {
 	
 	@Nullable
 	public FluidStack getFluidByproduct(@Nonnull String ore) {
-		if (ore.isEmpty())
-			return null;
 		return ore2FluidMap.get(ore);
 	}
 
-	@Nullable
+	@Nonnull
 	public ItemStack getItemByproduct(@Nonnull ItemStack aStack) {
 		if (aStack.isEmpty())
-			return null;
+			return ItemStack.EMPTY;
 		for (Entry<ItemStack, ItemStack> entry : fuel2ByproductMap.entrySet()) {
 			if (aStack.isItemEqual(entry.getKey()))
 				return entry.getValue();
 		}
-		return null;
+		return ItemStack.EMPTY;
 	}
 	
-	@Nullable
+	@Nonnull
 	public ItemStack getItemByproduct(@Nonnull String ore) {
-		return ore2ByproductMap.get(ore);
+		return ore2ByproductMap.getOrDefault(ore, ItemStack.EMPTY);
 	}
 
 	@Deprecated

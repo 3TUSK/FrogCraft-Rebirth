@@ -18,12 +18,11 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 public class FrogProxy {
 
 	public void preInit(FMLPreInitializationEvent event) {
-		// Yeah! No-op!
+		NetworkHandler.init();
+		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 	}
 
 	public void init(FMLInitializationEvent event) {
-		NetworkHandler.init();
-		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();

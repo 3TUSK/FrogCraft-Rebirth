@@ -14,6 +14,7 @@ import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
+import frogcraftrebirth.common.lib.FrogFluid;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -89,9 +90,13 @@ public class FrogTextures {
 		RegHelper.regFluidBlockTexture(FrogFluids.carbonOxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.fluorine);
+		RegHelper.regFluidBlockTexture(FrogFluids.methane);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);
+		RegHelper.regFluidBlockTexture(FrogFluids.nitrogen);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitrogenOxide);
+		RegHelper.regFluidBlockTexture(FrogFluids.oleum);
 		RegHelper.regFluidBlockTexture(FrogFluids.oxygen);
+		RegHelper.regFluidBlockTexture(FrogFluids.sulfuricAcid);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfurDioxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfurTrioxide);
 	}

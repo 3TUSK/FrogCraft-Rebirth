@@ -50,7 +50,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
-		ItemStack itemstack = null;
+		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = this.inventorySlots.get(index);
 
 		if (slot != null && slot.getHasStack()) {
@@ -59,11 +59,11 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 
 			if (index >= 0 && index <= this.tileInvCount) {
 				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			} else if (index > this.tileInvCount && index < 27 + this.tileInvCount) {
 				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size() - 9, this.inventorySlots.size(), false)) {
-					return null;
+					return ItemStack.EMPTY;
 				}
 			}
 
@@ -74,7 +74,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			}
 
 			if (itemstack1.getCount() == itemstack.getCount()) {
-				return null;
+				return ItemStack.EMPTY;
 			}
 
 			slot.onTake(player, itemstack1);

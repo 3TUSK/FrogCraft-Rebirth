@@ -19,6 +19,10 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 		this.amount = size;
 	}
 
+	public boolean matches(IFrogRecipeInput input) {
+		return OreDictionary.getOres(entry).stream().anyMatch(input::matches);
+	}
+
 	@Override
 	public boolean matches(Object actualInput) {
 		return actualInput instanceof ItemStack && OreDictionary.getOres(entry).stream().anyMatch(test -> test.isItemEqual((ItemStack)actualInput));
@@ -45,5 +49,10 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 		} else {
 			return actualInput;
 		}
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		return this == o || o instanceof FrogRecipeInputOreDict && ((FrogRecipeInputOreDict)o).entry.equals(this.entry);
 	}
 }

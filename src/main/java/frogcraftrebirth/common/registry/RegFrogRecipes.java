@@ -32,6 +32,7 @@ public class RegFrogRecipes {
 	public static void init() {
 		initOreDict();
 		if (!FrogConfig.modpackMode) {
+			// --- Begin of old FrogCraft recipes ---
 			// CaO + H2O -> Ca(OH)2
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.DUST, 1,2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(new ItemStack(FrogRegistees.DUST, 1,3)), ItemStack.EMPTY, 20, 100, 0, 1));
 			// Ca(OH)2 + CO2 -> CaCO3 + H2O
@@ -56,8 +57,11 @@ public class RegFrogRecipes {
 			//Cl2+2K=2KCl
 			//CaF2=Ca+F2
 			//Ca+F2=CaF2
-			//SO3+H2O->H2SO4  TODO: utilize oleum - Vexatos, I am looking at you!
-			//2SO2+O2->2SO3
+			//SO3+H2O->H2SO4
+			//2SO2+O2->2SO3 - note: you get SO2 by burning sulfur dust in combustion furnace
+			ItemStack so3Cell = FrogRecipeInputs.UNI_CELL.copy();
+			FluidUtil.getFluidHandler(so3Cell).fill(new FluidStack(FrogFluids.sulfurTrioxide, 1000), true);
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfurDioxide, 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 3), 300, 100, 0, 1));
 
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 25), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 3), new FluidStack(FrogFluids.carbonOxide, 5), new FluidStack(FrogFluids.methane, 10), FluidRegistry.getFluidStack("ic2hydrogen", 5) }));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.nitrogen, 7), new FluidStack(FrogFluids.oxygen, 2), new FluidStack(FrogFluids.carbonDioxide, 2) }));
@@ -71,6 +75,17 @@ public class RegFrogRecipes {
 			FrogAPI.FUEL_REG.regFuelByproduct("dustCoal", FrogFluids.carbonDioxide);
 			FrogAPI.FUEL_REG.regFuelByproduct("dustCharcoal", FrogFluids.carbonDioxide);
 			FrogAPI.FUEL_REG.regFuelByproduct("dustSulfur", FrogFluids.sulfurDioxide);
+			// --- End of old FrogCraft recipes ---
+
+			// H2SO4(l) + SO3(g) -> H2S2O7(l), i.e. oleum
+			ItemStack oleumCell = FrogRecipeInputs.UNI_CELL.copy();
+			FluidUtil.getFluidHandler(oleumCell).fill(new FluidStack(FrogFluids.oleum, 1000), true);
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfuricAcid, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfurTrioxide, 1000))), Collections.singleton(oleumCell), ItemStack.EMPTY, 200, 10, 0, 1));
+			// H2S2O7 + H2O -> 2H2SO4, mimicking contact process https://en.wikipedia.org/wiki/Contact_process
+			ItemStack sulfuricCell = FrogRecipeInputs.UNI_CELL.copy();
+			FluidUtil.getFluidHandler(sulfuricCell).fill(new FluidStack(FrogFluids.sulfuricAcid, 1000), true);
+			sulfuricCell.setCount(2);
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell), ItemStack.EMPTY, 100, 10, 0,0));
 		}
 	}
 	

@@ -117,11 +117,9 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		int[] oreIDs = OreDictionary.getOreIDs(input);
 		if (oreIDs.length != 0) { //Why is 0? According to my experience, having more than one ore dict entry is very very rare.
 			String oreName = OreDictionary.getOreName(oreIDs[0]);
-			if (!oreName.equals("Unknown")) {
-				//Feature: if there is no space for byproduct, they just go disappear
-				output.insertItem(0, FUEL_REG.getItemByproduct(oreName), false);
-				tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
-			}
+			//Feature: if there is no space for byproduct, they just go disappear
+			output.insertItem(0, FUEL_REG.getItemByproduct(oreName), false);
+			tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
 		} else {
 			output.insertItem(0, FUEL_REG.getItemByproduct(input), false);
 			tank.fill(FUEL_REG.getFluidByproduct(input), true);

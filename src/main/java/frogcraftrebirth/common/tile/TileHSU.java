@@ -17,6 +17,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
@@ -24,7 +26,8 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	public TileHSU() {
 		this(100000000, 2048, 5, true);
 	}
-	
+
+	@SuppressWarnings("WeakerAccess")
 	protected TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
 		super(maxEnergy, output, tier, allowTelep);
 	}
@@ -34,11 +37,11 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		if (getWorld().isRemote)
 			return;
 		
-		if (inv.getStackInSlot(1) != null && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(1).isEmpty() && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);
 		}
 		
-		if (inv.getStackInSlot(0) != null && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(0).isEmpty() && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
 			this.storedE -= ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		}
 		
@@ -59,13 +62,13 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	}
 	
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
 	}
 

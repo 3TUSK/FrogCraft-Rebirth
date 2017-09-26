@@ -31,6 +31,8 @@ import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 
 	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
@@ -112,7 +114,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		this.markDirty();
 	}
 	
-	private boolean canWork(IPyrolyzerRecipe recipe) {
+	private boolean canWork(@Nullable IPyrolyzerRecipe recipe) {
 		if (recipe == null)
 			return false;
 
@@ -182,7 +184,10 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (facing == null)
+			return false;
+
 		switch (facing) {
 			case UP:
 			case DOWN:
@@ -196,22 +201,21 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				return super.hasCapability(capability, facing);
 		}
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing != null) {
 			switch (facing) {
 				case UP:
-					return (T)new ItemHandlerInputWrapper(input);
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerInputWrapper(input));
 				case DOWN:
-					return (T)new ItemHandlerOutputWrapper(output);
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerOutputWrapper(output));
 				default:
 					break;
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			if (facing != null)
-				return (T)new FluidHandlerOutputWrapper(tank);
+				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		}
 		
 		return super.getCapability(capability, facing);

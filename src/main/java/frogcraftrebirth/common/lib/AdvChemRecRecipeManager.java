@@ -6,7 +6,6 @@ import java.util.Collection;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {
 

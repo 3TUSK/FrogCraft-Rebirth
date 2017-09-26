@@ -15,8 +15,6 @@ import net.minecraftforge.common.MinecraftForge;
 
 public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 	
-	private static transient boolean processingEnergyTileLoading = false;
-	
 	private boolean isInEnergyNet;
 	
 	@Override
@@ -30,23 +28,10 @@ public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 	
 	@Override
 	public void validate() {
-		if (processingEnergyTileLoading) {
-			// This will ensure that chunk loading won't stuck
-			// I could not think about another way to prevent this happening
-			// This will definitely slow down chunk loading somehow, 
-			// hope it won't slow it down too much
-			return;
-		}
 		if (!getWorld().isRemote && !isInEnergyNet) {
-			processingEnergyTileLoading = true;
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			processingEnergyTileLoading = false;
 			isInEnergyNet = true;
 		}
-	}
-	
-	public boolean hasBeenInEnergyNet() {
-		return this.isInEnergyNet;
 	}
 
 }

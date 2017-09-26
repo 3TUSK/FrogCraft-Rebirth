@@ -1,4 +1,4 @@
-/**
+/*
  * This file is a part of FrogCraftRebirth, 
  * created by 3TUSK at 2:55:25 PM, Apr 2, 2016, EST
  * FrogCraftRebirth, is open-source under MIT license,
@@ -35,6 +35,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nullable;
 
 public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 	
@@ -138,13 +140,13 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
 			return (T)new FluidHandlerOutputWrapper(tank);
 		else 

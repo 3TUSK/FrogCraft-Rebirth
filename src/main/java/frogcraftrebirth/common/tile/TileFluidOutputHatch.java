@@ -28,6 +28,8 @@ import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutputHatch, IHasGui, ITickable {
 
 	private ICondenseTowerCore mainBlock;
@@ -85,7 +87,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	}
 	
 	@Override
-	public void setMainBlock(ICondenseTowerCore core) {
+	public void setMainBlock(@Nullable ICondenseTowerCore core) {
 		this.mainBlock = core;
 	}
 
@@ -100,7 +102,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	}
 	
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
 			return currectFacing == facing;
@@ -111,10 +113,10 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
-			return currectFacing == facing ? (T)new FluidHandlerOutputWrapper(tank) : super.getCapability(capability, currectFacing);
+			EnumFacing currentFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			return currentFacing == facing ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank)) : super.getCapability(capability, currentFacing);
 		}
 			
 		return super.getCapability(capability, facing);

@@ -1,12 +1,10 @@
 package frogcraftrebirth.common.tile;
 
-import static frogcraftrebirth.api.FrogAPI.FUEL_REG;
-import static net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
@@ -25,6 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.event.ForgeEventFactory;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
@@ -32,10 +31,11 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.oredict.OreDictionary;
 
+import javax.annotation.Nullable;
+
 public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGui, IHasWork {
 
 	private static final int CHARGE_MAX = 5000;
-	/** Index: 0 input; 1 output; 2 fluid container input; 3 fluid container output.*/
 	public final ItemStackHandler input = new ItemStackHandler();
 	public final ItemStackHandler output = new ItemStackHandler();
 	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
@@ -75,13 +75,16 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		if (working) {
 			this.charge += FrogConfig.combustionFurnaceGenRate;
 			this.time--;
-		} else if (!input.extractItem(0, 1, true).isEmpty() && getItemBurnTime(input.getStackInSlot(0)) > 0) {
-			this.working = true;
-			this.burning = input.extractItem(0, 1, false);
-			this.timeMax = getItemBurnTime(burning) / 4;
-			this.time = getItemBurnTime(burning) / 4;		
+		} else if (!input.extractItem(0, 1, true).isEmpty()) {
+			int burnTime = ForgeEventFactory.getItemBurnTime(input.getStackInSlot(0));
+			if (burnTime > 0) {
+				this.working = true;
+				this.burning = input.extractItem(0, 1, false);
+				this.timeMax = burnTime / 4;
+				this.time = burnTime / 4;
+			}
 		}
-		//Overflowed power will be voided 
+		//Void overflowed power
 		if (this.charge > CHARGE_MAX)
 			this.charge = CHARGE_MAX;
 
@@ -118,11 +121,11 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		if (oreIDs.length != 0) { //Why is 0? According to my experience, having more than one ore dict entry is very very rare.
 			String oreName = OreDictionary.getOreName(oreIDs[0]);
 			//Feature: if there is no space for byproduct, they just go disappear
-			output.insertItem(0, FUEL_REG.getItemByproduct(oreName), false);
-			tank.fill(FUEL_REG.getFluidByproduct(oreName), true);
+			output.insertItem(0, FrogAPI.FUEL_REG.getItemByproduct(oreName), false);
+			tank.fill(FrogAPI.FUEL_REG.getFluidByproduct(oreName), true);
 		} else {
-			output.insertItem(0, FUEL_REG.getItemByproduct(input), false);
-			tank.fill(FUEL_REG.getFluidByproduct(input), true);
+			output.insertItem(0, FrogAPI.FUEL_REG.getItemByproduct(input), false);
+			tank.fill(FrogAPI.FUEL_REG.getFluidByproduct(input), true);
 		}	
 	}
 	
@@ -169,9 +172,13 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
+		if (facing == null) {
+			return false;
+		}
+		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			return true;
+		}
 		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
 			switch (facing) {
 				case DOWN:
@@ -187,18 +194,18 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing != null) {
 			switch (facing) {
 				case DOWN:
-					return (T)new ItemHandlerOutputWrapper(output);
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerOutputWrapper(output));
 				case UP: 
-					return (T)new ItemHandlerInputWrapper(input);
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY .cast(new ItemHandlerInputWrapper(input));
 				default:
 					break;
 			}
 		} else if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			return (T)new FluidHandlerOutputWrapper(tank);
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		}
 		
 		return super.getCapability(capability, facing);

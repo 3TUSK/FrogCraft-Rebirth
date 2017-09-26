@@ -14,9 +14,7 @@ import java.util.stream.Collectors;
 import com.google.common.collect.ImmutableList;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
-import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
-import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;

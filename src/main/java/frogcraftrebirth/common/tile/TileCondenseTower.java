@@ -37,6 +37,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
+
 public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasGui, IHasWork, ITickable {
 	
 	private static final int INPUT_F = 0, OUTPUT_F = 1;
@@ -160,7 +162,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		this.structures.clear();
 	}
 
-	private boolean checkRecipe(ICondenseTowerRecipe aRecipe) {
+	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {
 		if (aRecipe == null)
 			return false;
 		for (FluidStack fluid : aRecipe.getOutput()) {
@@ -220,13 +222,13 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
 			return (T)tank;
 		else 

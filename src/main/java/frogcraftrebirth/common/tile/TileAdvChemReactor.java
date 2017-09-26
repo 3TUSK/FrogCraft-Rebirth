@@ -25,6 +25,7 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.items.ItemStackHandler;
 
+import javax.annotation.Nullable;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -33,8 +34,7 @@ import java.util.Collection;
 import java.util.List;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasWork, ITickable {
-	
-	//0 for module, 1-5 for input, 6-10 for output, 11 for cell input and 12 for cell output
+
 	public final ItemStackHandler module = new ItemStackHandler();
 	public final ItemStackHandler input = new ItemStackHandler(5);
 	public final ItemStackHandler output = new ItemStackHandler(5);
@@ -141,7 +141,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 		this.markDirty();
 	}
 
-	private boolean checkRecipe(IAdvChemRecRecipe recipe) {
+	private boolean checkRecipe(@Nullable IAdvChemRecRecipe recipe) {
 		return recipe != null && this.cellInput.getCellCount() >= recipe.getRequiredCellAmount() && ItemStack.areItemsEqual(recipe.getCatalyst(), module.getStackInSlot(0));
 	}
 
@@ -180,27 +180,24 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 	
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY && facing != null) {
 			switch (facing) {
-			case UP:
-				return (T)new ItemHandlerInputWrapper(input);
-			case DOWN:
-				return (T)new ItemHandlerOutputWrapper(output);
-			case NORTH:
-			case EAST:
-				return (T)new ItemHandlerInputWrapper(cellInput);
-			case SOUTH:
-			case WEST:
-				return (T)new ItemHandlerOutputWrapper(cellOutput);
-			default:
-				break;
+				case UP:
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerInputWrapper(input));
+				case DOWN:
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerOutputWrapper(output));
+				case NORTH:
+				case EAST:
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerInputWrapper(cellInput));
+				case SOUTH:
+				case WEST:
+					return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(new ItemHandlerOutputWrapper(cellOutput));
 			}
 		}	
 		return super.getCapability(capability, facing);

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCondenseTower> {
 
 	public GuiCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
-		super(new ContainerCondenseTower(playerInv, tile), tile, "gui_condense_tower.png");
+		super(new ContainerCondenseTower(playerInv, tile), tile, "gui_condense_tower_core.png");
 	}
 	
 	@Override

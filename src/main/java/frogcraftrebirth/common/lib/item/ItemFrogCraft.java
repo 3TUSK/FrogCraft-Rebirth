@@ -20,7 +20,8 @@ public abstract class ItemFrogCraft extends Item {
 			this.setHasSubtypes(true);
 		}
 	}
-	
+
+	@SuppressWarnings("deprecation")
 	@Override
 	public String getItemStackDisplayName(ItemStack stack) {
 		return I18n.translateToLocal(getUnlocalizedName(stack));

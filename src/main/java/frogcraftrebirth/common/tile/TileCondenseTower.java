@@ -3,8 +3,8 @@ package frogcraftrebirth.common.tile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -29,10 +29,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
@@ -45,8 +45,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
-	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<>();
-	private Set<ICondenseTowerPart> structures = new HashSet<>();
+	private Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
+	private Set<ICondenseTowerPart> structures = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
 	private boolean working;
@@ -76,13 +76,15 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 			
 		if (!inv.getStackInSlot(INPUT_F).isEmpty()) {
-			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				FluidActionResult result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
-				if (result.isSuccess() && result.result.getCount() > 0) {
+			IFluidHandlerItem fluidIn = FluidUtil.getFluidHandler(inv.extractItem(INPUT_F, 1, true));
+			if (fluidIn != null) {
+				FluidStack transferResult = FluidUtil.tryFluidTransfer(this.tank, fluidIn, Integer.MAX_VALUE, true);
+				if (transferResult != null) {
 					inv.extractItem(INPUT_F, 1, false);
-					ItemStack remainder = inv.insertItem(OUTPUT_F, result.result, false);
-					if (!remainder.isEmpty() && remainder.getCount()> 0)
+					ItemStack remainder = inv.insertItem(OUTPUT_F, fluidIn.getContainer(), false);
+					if (!remainder.isEmpty() && remainder.getCount()> 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
 				}
 			}
 		}
@@ -117,11 +119,14 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		
 		if (process == processMax) {
 			this.tank.drain(recipe.getInput().amount, true);
-			recipe.getOutput().forEach(fluid -> this.outputs.forEach(output -> {
+			recipe.getOutput().forEach(fluid -> {
+				for (ICondenseTowerOutputHatch output : this.outputs) {
 					if (output.canInject(fluid)) {
 						output.inject(fluid.copy(), true);
+						break;
 					}
-			}));
+				}
+			});
 			process = 0;
 			processMax = 0;
 			recipe = null;
@@ -229,17 +234,15 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)tank;
-		else 
-			return super.getCapability(capability, facing);
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ?
+				CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank) : super.getCapability(capability, facing);
 	}
 	
-	public boolean registerOutputHatch(ICondenseTowerOutputHatch output) {
+	public boolean registerOutputHatch(@Nullable ICondenseTowerOutputHatch output) {
 		return output != null && outputs.add(output);
 	}
 	
-	public boolean registerSturcture(ICondenseTowerPart structure) {
+	public boolean registerSturcture(@Nullable ICondenseTowerPart structure) {
 		return structure != null && structures.add(structure);
 	}
 

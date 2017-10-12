@@ -76,7 +76,10 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 			return;
 		TileEntity tileBelow = world.getTileEntity(pos.down());
 		if (tile != null && tileBelow != null && tile instanceof ICondenseTowerPart && tileBelow instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)tileBelow).getMainBlock().onPartAttached((ICondenseTowerPart)tile);
+			ICondenseTowerCore core = ((ICondenseTowerPart)tileBelow).getMainBlock();
+			if (core != null) {
+				core.onPartAttached((ICondenseTowerPart) tile);
+			}
 		}
 	}
 

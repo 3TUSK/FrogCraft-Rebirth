@@ -15,6 +15,14 @@ import java.io.IOException;
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import ic2.core.energy.grid.Tile;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTUtil;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
 
@@ -31,7 +39,7 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	}
 	
 	@Override
-	public void setMainBlock(ICondenseTowerCore core) {
+	public void setMainBlock(@Nullable ICondenseTowerCore core) {
 		this.mainBlock = core;
 	}
 	
@@ -48,6 +56,32 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		
+	}
+
+	@Override
+	public void setWorldCreate(World worldIn) {
+		this.setWorld(worldIn);
+	}
+
+	@Override
+	public void readFromNBT(NBTTagCompound tag) {
+		super.readFromNBT(tag);
+		BlockPos pos = NBTUtil.getPosFromTag(tag.getCompoundTag("main"));
+		if (pos.getY() < this.pos.getY()) {
+			TileEntity tileEntity = getWorld().getTileEntity(pos);
+			if (tileEntity instanceof ICondenseTowerCore) {
+				setMainBlock((ICondenseTowerCore)tileEntity);
+				((ICondenseTowerCore)tileEntity).onPartAttached(this);
+			}
+		}
+	}
+
+	@Override
+	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
+		if (this.mainBlock != null && this.mainBlock instanceof TileEntity) {
+			tag.setTag("main", NBTUtil.createPosTag(((TileEntity)mainBlock).getPos()));
+		}
+		return super.writeToNBT(tag);
 	}
 
 }

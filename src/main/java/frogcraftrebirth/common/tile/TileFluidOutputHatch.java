@@ -18,11 +18,8 @@ import frogcraftrebirth.common.lib.util.ItemUtil;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTUtil;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
@@ -58,30 +55,14 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	}
 
 	@Override
-	public void setWorldCreate(World worldIn) {
-		this.setWorld(worldIn);
-	}
-	
-	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		tank.readFromNBT(tag);
-		BlockPos pos = NBTUtil.getPosFromTag(tag.getCompoundTag("main"));
-		if (pos.getY() < this.pos.getY()) {
-			TileEntity tileEntity = getWorld().getTileEntity(pos);
-			if (tileEntity instanceof ICondenseTowerCore) {
-				setMainBlock((ICondenseTowerCore)tileEntity);
-				((ICondenseTowerCore)tileEntity).onPartAttached(this);
-			}
-		}
 	}
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tank.writeToNBT(tag);
-		if (this.mainBlock != null && this.mainBlock instanceof TileEntity) {
-			tag.setTag("main", NBTUtil.createPosTag(((TileEntity)mainBlock).getPos()));
-		}
 		return super.writeToNBT(tag);
 	}
 
@@ -104,7 +85,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;
 	}
-	
+
 	@Override
 	public void setMainBlock(@Nullable ICondenseTowerCore core) {
 		this.mainBlock = core;

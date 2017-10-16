@@ -97,10 +97,15 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tile = worldIn.getTileEntity(pos);
-		if (tile instanceof ICondenseTowerCore)
-			((ICondenseTowerCore)tile).onDestruction();
-		else if (tile instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)tile).getMainBlock().onPartRemoved((ICondenseTowerPart)tile);
+		if (tile != null) {
+			if (tile instanceof ICondenseTowerCore)
+				((ICondenseTowerCore) tile).onDestruction();
+			else if (tile instanceof ICondenseTowerPart) {
+				ICondenseTowerCore core = ((ICondenseTowerPart) tile).getMainBlock();
+				if (core != null) {
+					core.onPartRemoved((ICondenseTowerPart) tile);
+				}
+			}
 		}
 		super.breakBlock(worldIn, pos, state);
 	}

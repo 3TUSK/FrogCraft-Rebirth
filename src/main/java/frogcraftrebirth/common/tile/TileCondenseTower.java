@@ -45,8 +45,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
+	private boolean previousStructureCompleteness = false;
 	private Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
-	private Set<ICondenseTowerPart> structures = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
 	private boolean working;
@@ -62,7 +62,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public boolean isCompleted() {
-		return structures.size() > 1 && outputs.size() > 0;
+		return previousStructureCompleteness ? outputs.size() > 0 : checkStructure();
 	}
 	
 	@Override
@@ -123,7 +123,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				for (ICondenseTowerOutputHatch output : this.outputs) {
 					if (output.canInject(fluid)) {
 						output.inject(fluid.copy(), true);
-						break;
+						return;
 					}
 				}
 			});
@@ -145,26 +145,56 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public void onPartAttached(ICondenseTowerPart part) {
 		if (part instanceof ICondenseTowerOutputHatch) {
 			this.registerOutputHatch((ICondenseTowerOutputHatch)part);
-		} else {
-			this.registerSturcture(part);
 		}
 		part.setMainBlock(this);
 	}
 	
 	@Override
 	public void onPartRemoved(ICondenseTowerPart part) {
-		if (part instanceof TileEntity) {
-			this.outputs.removeIf(out -> out instanceof TileEntity && ((TileEntity)out).getPos().getY() >= ((TileEntity)part).getPos().getY());
-			this.structures.removeIf(p -> p instanceof TileEntity && ((TileEntity)p).getPos().getY() >= ((TileEntity)part).getPos().getY());
-		}
+		this.previousStructureCompleteness = checkStructure();
 	}
 	
 	@Override
 	public void onDestruction() {
 		outputs.forEach(output -> output.setMainBlock(null));
-		structures.forEach(part -> part.setMainBlock(null));
 		this.outputs.clear();
-		this.structures.clear();
+		TileEntity
+				struct1 = getWorld().getTileEntity(getPos().up(1)),
+				struct2 = getWorld().getTileEntity(getPos().up(2));
+		if (struct1 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)struct1).setMainBlock(null);
+		}
+		if (struct2 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)struct2).setMainBlock(null);
+		}
+	}
+
+	private boolean checkStructure() {
+		this.outputs.clear();
+		TileEntity
+				struct1 = getWorld().getTileEntity(getPos().up(1)),
+				struct2 = getWorld().getTileEntity(getPos().up(2));
+		if (struct1 instanceof ICondenseTowerPart && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && !((ICondenseTowerPart)struct2).isFunctional()) {
+			for (int i = 3;;i++) {
+				TileEntity tile = getWorld().getTileEntity(getPos().up(i));
+				if (tile instanceof ICondenseTowerOutputHatch) {
+					this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
+				} else {
+					break;
+				}
+			}
+			((ICondenseTowerPart)struct1).setMainBlock(this);
+			((ICondenseTowerPart)struct2).setMainBlock(this);
+			return true;
+		} else {
+			if (struct1 instanceof ICondenseTowerPart) {
+				((ICondenseTowerPart)struct1).setMainBlock(null);
+			}
+			if (struct2 instanceof ICondenseTowerPart) {
+				((ICondenseTowerPart)struct2).setMainBlock(null);
+			}
+			return false;
+		}
 	}
 
 	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {
@@ -183,6 +213,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public void onLoad() {
+		super.onLoad();
+		this.previousStructureCompleteness = checkStructure();
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -240,10 +276,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public boolean registerOutputHatch(@Nullable ICondenseTowerOutputHatch output) {
 		return output != null && outputs.add(output);
-	}
-	
-	public boolean registerSturcture(@Nullable ICondenseTowerPart structure) {
-		return structure != null && structures.add(structure);
 	}
 
 	@Override

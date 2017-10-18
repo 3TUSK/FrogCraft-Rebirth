@@ -45,10 +45,17 @@ public class FrogRegistries {
     @SubscribeEvent
     public static void regItem(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
+                new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.ORE.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.TIBERIUM, aStack -> BlockTiberium.Color.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.TIBERIUM.getRegistryName()),
+                new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName()),
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-                new ItemResources("Item_Ingots", "K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered") {
+                new ItemResources("Item_Ingots", "K", "P", "fat_cluster", "Briquette", "CoalCokeShattered") {
                     @Override
                     public boolean onEntityItemUpdate(EntityItem entityItem) {
                         if (entityItem.getItem().isEmpty()) {
@@ -85,14 +92,7 @@ public class FrogRegistries {
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
                 new ItemJinkela().setRegistryName("jinkela"),
                 new ItemTiberium().setRegistryName("tiberium"),
-                new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
-                new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.ORE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.TIBERIUM, aStack -> BlockTiberium.Color.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.TIBERIUM.getRegistryName()),
-                new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName())
+                new ItemFluidArmor(12000).setRegistryName("fluid_armor")
         );
     }
 

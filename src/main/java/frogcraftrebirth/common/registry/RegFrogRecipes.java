@@ -62,7 +62,7 @@ public class RegFrogRecipes {
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.sulfurDioxide, 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 3), 300, 100, 0, 1));
 
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, new FluidStack(FrogFluids.coalTar, 25), new FluidStack[] { new FluidStack(FrogFluids.benzene, 2), new FluidStack(FrogFluids.ammonia, 3), new FluidStack(FrogFluids.carbonOxide, 5), new FluidStack(FrogFluids.methane, 10), FluidRegistry.getFluidStack("ic2hydrogen", 5) }));
-			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.nitrogen, 7), new FluidStack(FrogFluids.oxygen, 2), new FluidStack(FrogFluids.carbonDioxide, 2) }));
+			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, new FluidStack(FluidRegistry.getFluid("ic2air"), 12), new FluidStack[] { new FluidStack(FrogFluids.argon, 1), new FluidStack(FrogFluids.nitrogen, 7), new FluidStack(FluidRegistry.getFluid("ic2oxygen"), 2), new FluidStack(FrogFluids.carbonDioxide, 2) }));
 
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogRegistees.INGOT, 1, 4), new FluidStack(FrogFluids.coalTar, 50), 80, 48));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogRegistees.DUST, 1, 2), new FluidStack(FrogFluids.carbonDioxide, 50), 100, 64));
@@ -84,6 +84,13 @@ public class RegFrogRecipes {
 			FluidUtil.getFluidHandler(sulfuricCell).fill(new FluidStack(FrogFluids.sulfuricAcid, 1000), true);
 			sulfuricCell.setCount(2);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell), ItemStack.EMPTY, 100, 10, 0,0));
+			// 2KCl + 2H2O -> 2KOH + H2(g) + Cl2(g), manufacturing potassium hydroxide
+
+			// Saponification
+
+			// 2Al2O3 + 3C -> 2Al+ 3CO2, electrolysis
+
+			// TiO2 + 2H2 -> Ti + 2H2O, awaiting feature/adv-blast-furnace merged
 		}
 	}
 	

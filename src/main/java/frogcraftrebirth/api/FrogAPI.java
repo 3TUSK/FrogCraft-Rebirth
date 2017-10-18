@@ -26,6 +26,12 @@ public final class FrogAPI {
 		API = "FrogAPI",
 		API_VER = "0.2";
 
+	/**
+	 * Magic number that serves as an identifier, used by data fixer to identify whether the given
+	 * save contains data from older version of FrogCraft: Rebirth.
+	 */
+	public static final int DATA_FIXER_REMARK = 20160730;
+
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
 
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {

@@ -40,8 +40,10 @@ public final class FrogAPI {
 			return new ItemStack(FrogRegistees.HSU);
 		}
 	};
-	
+
+	@Deprecated
 	public static final DamageSource TIBERIUM = new DamageSource("tiberium").setDamageBypassesArmor().setDamageIsAbsolute().setDifficultyScaled();
+	@Deprecated
 	public static final DamageSource ION_CANNON = new DamageSource("IonCannon").setDamageBypassesArmor().setFireDamage().setExplosion().setProjectile();
 	
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();

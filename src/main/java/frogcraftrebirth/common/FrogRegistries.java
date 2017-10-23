@@ -1,6 +1,7 @@
 package frogcraftrebirth.common;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogConstants;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
@@ -70,15 +71,6 @@ public class FrogRegistries {
                         }
                         return true;
                     }
-
-                    @Override
-                    public int getItemBurnTime(ItemStack stack) {
-                        switch (stack.getMetadata()) {
-                            case 3: return 18000;
-                            case 4: return 1600;
-                            default: return 0;
-                        }
-                    }
                 }.setRegistryName("ingot"),
                 new ItemResources("Item_Dusts", "Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5").setRegistryName("dust"),
                 new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed"),
@@ -92,10 +84,37 @@ public class FrogRegistries {
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
                 new ItemJinkela().setRegistryName("jinkela"),
                 new ItemTiberium().setRegistryName("tiberium"),
-                new ItemFluidArmor(12000).setRegistryName("fluid_armor")
+                new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
+
+
+
+				new ItemResources("ore_crushed", FrogConstants.ORE_TYPES).setRegistryName("ore_crushed"),
+				new ItemResources("ore_purified", FrogConstants.ORE_TYPES).setRegistryName("ore_purified"),
+				new ItemResources("ore_dust", FrogConstants.ORE_TYPES).setRegistryName("ore_dust"),
+				new ItemResources("ore_dust_tiny", FrogConstants.ORE_TYPES).setRegistryName("ore_dust_tiny"),
+				new ItemResources("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
+				new ItemResources("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
+				new ItemResources("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),
+				new ItemResources("metal_plate", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate"),
+				new ItemResources("metal_plate_dense", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate_dense"),
+				new ItemResources("metal_casing", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metallic_casing"),
+				new ItemResources("non_metal_dust", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust"),
+				new ItemResources("non_metal_dust_tiny", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust_tiny"),
+				new ItemResources("intermediate_product", FrogConstants.INTERMEDIATE_TYPES).setRegistryName("intermediate_product"),
+				new ItemResources("inflammable", FrogConstants.INFLAMMABLE) {
+					@Override
+					public int getItemBurnTime(ItemStack stack) {
+						switch (stack.getMetadata()) {
+							case 3: return 18000;
+							case 4: return 1600;
+							default: return 0;
+						}
+					}
+				}.setRegistryName("inflammable")
         );
     }
 
+    @Deprecated
     @SubscribeEvent
     public static void regPotion(RegistryEvent.Register<Potion> event) {
         event.getRegistry().register(new PotionTiberium(0x66CCFF).setRegistryName("frogcraftrebirth:tiberium"));

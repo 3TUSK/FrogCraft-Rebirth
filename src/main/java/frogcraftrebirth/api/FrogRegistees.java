@@ -36,6 +36,29 @@ public final class FrogRegistees {
 	@GameRegistry.ObjectHolder("ammonia_coolant_360k")
 	public static final Item AMMONIA_COOLANT_360K = null;
 
+	@GameRegistry.ObjectHolder("ore_crushed")
+	public static final Item ORE_CRUSHED = null;
+	@GameRegistry.ObjectHolder("ore_purified")
+	public static final Item ORE_PURIFIED = null;
+	@GameRegistry.ObjectHolder("ore_dust")
+	public static final Item ORE_DUST = null;
+	@GameRegistry.ObjectHolder("ore_dust_tiny")
+	public static final Item ORE_DUST_TINY = null;
+	@GameRegistry.ObjectHolder("metal_ingot")
+	public static final Item METAL_INGOT = null;
+	@GameRegistry.ObjectHolder("metal_plate")
+	public static final Item METAL_PLATE = null;
+	@GameRegistry.ObjectHolder("metal_plate_dense")
+	public static final Item METAL_PLATE_DENSE = null;
+	@GameRegistry.ObjectHolder("metal_dust")
+	public static final Item METAL_DUST = null;
+	@GameRegistry.ObjectHolder("metal_dust_tiny")
+	public static final Item METAL_DUST_TNIY = null;
+	@GameRegistry.ObjectHolder("metal_casing")
+	public static final Item METAL_CASING = null;
+	@GameRegistry.ObjectHolder("inflammable")
+	public static final Item INFLAMMABLE = null;
+
 	/**
 	 * Scheduled to be removed with more than one replacement.
 	 * Conversion recipes will be provided before removed in next bump in major version.

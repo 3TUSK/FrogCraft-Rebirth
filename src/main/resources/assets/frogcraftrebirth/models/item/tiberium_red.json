@@ -1,6 +1,6 @@
 {
 	"parent": "item/generated",
 	"texture": {
-		"layer0": "frogcraftrebirth:items/tiberium/red"
+		"layer0": "minecraft:items/barrier"
 	}
 }

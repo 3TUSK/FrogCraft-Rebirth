@@ -41,7 +41,7 @@ public final class FrogConstants {
 			"vanadium_oxide"
 	};
 
-	public static final String[] INFLAMMABLES = {
+	public static final String[] INFLAMMABLE = {
 			"briquette",
 			"lipids_cluster",
 			"shattered_coal_coke"

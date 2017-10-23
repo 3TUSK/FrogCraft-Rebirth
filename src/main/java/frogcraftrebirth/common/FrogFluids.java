@@ -6,9 +6,13 @@ public class FrogFluids {
 
 	public static Fluid argon;
 	public static Fluid bromine;
+	public static Fluid chlorine;
 	public static Fluid fluorine;
 	public static Fluid neon;
 	public static Fluid nitrogen;
+	/**
+	 * Scheduled to become null again.
+	 */
 	@Deprecated
 	public static Fluid oxygen;
 
@@ -32,6 +36,9 @@ public class FrogFluids {
 	public static Fluid gasoline;
 	public static Fluid glycerol;
 	public static Fluid kerosene;
+	/**
+	 * Scheduled to become null again.
+	 */
 	@Deprecated
 	public static Fluid liquidAir;
 	public static Fluid methane;

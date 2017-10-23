@@ -19,6 +19,11 @@ public final class FrogRegistees {
 	public static final Block MACHINE = null;
 	@GameRegistry.ObjectHolder("ore")
 	public static final Block ORE = null;
+	/**
+	 * Scheduled to be removed permanently with no replacement.
+	 * Use TiberiumCraft if replacement is needed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("tiberium_crystal")
 	public static final Block TIBERIUM = null;
 	@GameRegistry.ObjectHolder("nitric_acid")
@@ -30,20 +35,61 @@ public final class FrogRegistees {
 	public static final Item AMMONIA_COOLANT_180K = null;
 	@GameRegistry.ObjectHolder("ammonia_coolant_360k")
 	public static final Item AMMONIA_COOLANT_360K = null;
+
+	/**
+	 * Scheduled to be removed with more than one replacement.
+	 * Conversion recipes will be provided before removed in next bump in major version.
+	 * After the major version bump, this field will be removed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("ingot")
 	public static final Item INGOT = null;
+	/**
+	 * Scheduled to be removed with more than one replacement.
+	 * Conversion recipes will be provided before removed in next bump in major version.
+	 * After the major version bump, this field will be removed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("dust")
 	public static final Item DUST = null;
+	/**
+	 * Scheduled to be removed with more than one replacement.
+	 * Conversion recipes will be provided before removed in next bump in major version.
+	 * After the major version bump, this field will be removed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("crushed")
 	public static final Item CRUSHED_DUST = null;
+	/**
+	 * Scheduled to be removed with more than one replacement.
+	 * Conversion recipes will be provided before removed in next bump in major version.
+	 * After the major version bump, this field will be removed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("purified")
 	public static final Item PURIFIED_DUST = null;
+	/**
+	 * Scheduled to be removed with more than one replacement.
+	 * Conversion recipes will be provided before removed in next bump in major version.
+	 * After the major version bump, this field will be removed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("small_pile_dust")
 	public static final Item SMALL_PILE_DUST = null;
 	@GameRegistry.ObjectHolder("catalyst_module")
 	public static final Item REACTION_MODULE = null;
+	/**
+	 * Scheduled to be removed permanently with no replacement.
+	 * Use TiberiumCraft if replacement is needed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("ion_cannon")
 	public static final Item ION_CANNON = null;
+	/**
+	 * Scheduled to be removed permanently with no replacement.
+	 * Use TiberiumCraft if replacement is needed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("ion_cannon_frame")
 	public static final Item ION_CANNON_FRAME = null;
 	@GameRegistry.ObjectHolder("uranium_decay_battery")
@@ -54,11 +100,21 @@ public final class FrogRegistees {
 	public static final Item DECAY_BATTERY_PLOTONIUM = null;
 	@GameRegistry.ObjectHolder("jinkela")
 	public static final Item JINKELA = null;
+	/**
+	 * Scheduled to be removed permanently with no replacement.
+	 * Use TiberiumCraft if replacement is needed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("tiberium")
 	public static final Item TIBERIUM_ITEM = null;
 	@GameRegistry.ObjectHolder("fluid_armor")
 	public static final Item FLUID_ARMOR = null;
 
+	/**
+	 * Scheduled to be removed permanently with no replacement.
+	 * Use TiberiumCraft if replacement is needed.
+	 */
+	@Deprecated
 	@GameRegistry.ObjectHolder("tiberium")
 	public static final Potion POTION_TIBERIUM = null;
 }

@@ -83,7 +83,15 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	}
 	
 	public enum Type implements IStringSerializableEnumImpl {
-		COMBUSTION/*, ???*/
+		COMBUSTION/*, IMAG_FLUX?, IMAG_PHASE, [NO ACCESS]*/
+		// And AcademyCraft is striking back, seal will be removed,
+		// the nearly-lost descendent *art of miracle* will revive,
+		// Believers are welcome with the neo-gilded age,
+		// Cult of Beasts will thrive, the creep will fade
+		//
+		// Yo-ake made, kono yume, kochou no yume
+		// This dream, till daybreak, is a butterfly dream.
+		//  - Team Shanghai Alice, "Kid's Festival ~ Innocent Treasures"
     }
 
 }

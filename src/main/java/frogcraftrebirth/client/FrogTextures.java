@@ -9,6 +9,7 @@
 package frogcraftrebirth.client;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogConstants;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
@@ -47,7 +48,32 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 1, "module_electrolysis");
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 2, "module_ammonia");
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 3, "module_sulfuric_acid");
-		
+
+		for (int i = 0; i < FrogConstants.ORE_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.ORE_CRUSHED, i, "ore/crushed/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_PURIFIED, i, "ore/purified/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_DUST, i, "ore/dust/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_DUST_TINY, i, "ore/dust_tiny/" + FrogConstants.ORE_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.METALLIC_MATERIAL_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.METAL_INGOT, i, "metal/ingot/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_CASING, i, "metal/casing/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_PLATE, i, "metal/plate/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_PLATE_DENSE, i, "metal/plate_dense/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_DUST, i, "metal/dust/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_DUST_TNIY, i, "metal/dust_tiny/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.NON_METAL_MATERIAL_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.NON_METAL_DUST, i, "non_metal/dust/" + FrogConstants.NON_METAL_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.NON_METAL_DUST_TINY, i, "non_metal/dust_tiny/" +  FrogConstants.NON_METAL_MATERIAL_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.INTERMEDIATE_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.INTERMEDIATE, i, "intermediate/" + FrogConstants.INTERMEDIATE_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.INFLAMMABLE.length; i++) {
+			RegHelper.registerModel(FrogRegistees.INFLAMMABLE, i, "inflammable/" + FrogConstants.INFLAMMABLE[i]);
+		}
+
 		RegHelper.registerModel(FrogRegistees.INGOT, 0, "potassium");
 		RegHelper.registerModel(FrogRegistees.INGOT, 1, "phosphorus");
 		RegHelper.registerModel(FrogRegistees.INGOT, 2, "natural_gas_hydrate");

@@ -56,6 +56,12 @@ public final class FrogRegistees {
 	public static final Item METAL_DUST_TNIY = null;
 	@GameRegistry.ObjectHolder("metal_casing")
 	public static final Item METAL_CASING = null;
+	@GameRegistry.ObjectHolder("non_metal_dust")
+	public static final Item NON_METAL_DUST = null;
+	@GameRegistry.ObjectHolder("non_metal_dust_tiny")
+	public static final Item NON_METAL_DUST_TINY = null;
+	@GameRegistry.ObjectHolder("intermediate_product")
+	public static final Item INTERMEDIATE = null;
 	@GameRegistry.ObjectHolder("inflammable")
 	public static final Item INFLAMMABLE = null;
 

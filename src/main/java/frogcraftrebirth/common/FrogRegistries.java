@@ -86,18 +86,18 @@ public class FrogRegistries {
                 new ItemTiberium().setRegistryName("tiberium"),
                 new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
 
+				// ------ Begin of new items ------
 
-
-				new ItemResources("ore_crushed", FrogConstants.ORE_TYPES).setRegistryName("ore_crushed"),
-				new ItemResources("ore_purified", FrogConstants.ORE_TYPES).setRegistryName("ore_purified"),
-				new ItemResources("ore_dust", FrogConstants.ORE_TYPES).setRegistryName("ore_dust"),
-				new ItemResources("ore_dust_tiny", FrogConstants.ORE_TYPES).setRegistryName("ore_dust_tiny"),
 				new ItemResources("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
 				new ItemResources("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
 				new ItemResources("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),
 				new ItemResources("metal_plate", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate"),
 				new ItemResources("metal_plate_dense", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate_dense"),
-				new ItemResources("metal_casing", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metallic_casing"),
+				new ItemResources("metal_casing", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_casing"),
+				new ItemResources("ore_crushed", FrogConstants.ORE_TYPES).setRegistryName("ore_crushed"),
+				new ItemResources("ore_purified", FrogConstants.ORE_TYPES).setRegistryName("ore_purified"),
+				new ItemResources("ore_dust", FrogConstants.ORE_TYPES).setRegistryName("ore_dust"),
+				new ItemResources("ore_dust_tiny", FrogConstants.ORE_TYPES).setRegistryName("ore_dust_tiny"),
 				new ItemResources("non_metal_dust", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust"),
 				new ItemResources("non_metal_dust_tiny", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust_tiny"),
 				new ItemResources("intermediate_product", FrogConstants.INTERMEDIATE_TYPES).setRegistryName("intermediate_product"),
@@ -105,8 +105,9 @@ public class FrogRegistries {
 					@Override
 					public int getItemBurnTime(ItemStack stack) {
 						switch (stack.getMetadata()) {
-							case 3: return 18000;
-							case 4: return 1600;
+							case 0: return 18000; // Briquette
+							case 1: return 200;   // Lipid Cluster
+							case 2: return 1600;  // Shattered Coal Coke
 							default: return 0;
 						}
 					}

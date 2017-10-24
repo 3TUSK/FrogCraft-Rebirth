@@ -11,7 +11,7 @@ public final class FrogConstants {
 	public static final String[] ORE_TYPES = {
 			"carnallite",
 			"dewalquite",
-			"fluorapaite"
+			"fluorapatite"
 	};
 
 	public static final String[] METALLIC_MATERIAL_TYPES = {

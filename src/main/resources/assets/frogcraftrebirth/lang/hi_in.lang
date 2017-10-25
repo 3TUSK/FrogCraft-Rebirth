@@ -1,20 +1,5 @@
 #Hindi
 
-#Potion
-effect.tiberium=टाइबीरीअम
-
-#Death Message
-death.attack.tiberium=%1$s अब टाइबीरीअम क्रिस्टल है
-#Chat Message
-chat.tiberiumCorrosion=आपका एक आइटम स्टैक टाइबीरीअम से कंटैमिनेट हो गया है!
-
-#Items
-item.ItemMiniIonCannon.name=पॉर्टबल आइआन तोप
-item.ItemMiniIonCannon.info=Global Defense Initiative ने बनाया
-item.ItemMiniIonCannon.coolingDown=माफ़ कीजिए कमांडर, आइआन तोप अभी भी cool down कर रहा है, कृपया इंतज़ार कीजिए।
-item.ItemMiniIonCannon.warning=Caution: आइआन कानन लॉंच कर लिया है, अब cooldown शुरू होगा।
-item.ItemMiniIonCannon.discharged=आइआन तोप अभी discharged है, charge करने तक नहीं चलेगा।
-item.ionCannonFrame=आइआन तोप फ़्रेम
 tile.mobilePowerStation.normal.name=पावर आपूर्ति
 tile.mobilePowerStation.info=§oसबसे अच्छा कैम्पिंग गीर
 item.CoolantAmmonia60K=६०K अमोन्या कूलांट सेल
@@ -130,19 +115,10 @@ item.Item_Ingots.CoalCokeShattered.info=कार्यक्षम कोयल
 item.Item_Ingots.Briquette=ब्रिकेट
 item.Item_Ingots.Briquette.info=चीनी बनावट
 
-item.tiberium.red=टाइबीरीअम (लाल)
-item.tiberium.blue=टाइबीरीअम (नीला)
-item.tiberium.green=टाइबीरीअम (हरा)
-item.tiberium.info=सावधान रहो, और अलग संग्रह करो
-
 #Blocks
 tile.mineral.carnallite.name=कार्नलाइट डस्ट
 tile.mineral.dewalquite.name=डेवलक्वाइट डस्ट
 tile.mineral.fluorapatite.name=फ़्लोरोऐपटाइट डस्ट
-
-tile.tiberium_crystal.red.name=टाइबीरीअम (लाल)
-tile.tiberium_crystal.blue.name=टाइबीरीअम (नीला)
-tile.tiberium_crystal.green.name=टाइबीरीअम (हरा)
 
 tile.condenseTower.core.name=कंडेन्स टावर
 tile.condenseTower.output.name=लिक्विड आउट्लेट
@@ -163,8 +139,6 @@ tile.machines.liquefier.name=लिक्विफ़ाइअर
 tile.nitricAcid.name=नाइट्रिक ऐसिड
 
 #Achivements
-achievement.get_railgun=सिर्फ़ मेरी रेलगूँ!
-achievement.get_railgun.desc=अर्रे यार!
 achievement.get_EVT=EV ट्रैन्स्फ़ॉर्मर
 achievement.get_EVT.desc=२०४८ तक स्टेप डाउन करो
 achievement.killed_by_Potassium=पटैसीयम से मारो

@@ -19,7 +19,6 @@ public abstract class BlockFrog extends Block {
 
 	public static final Material ORE = Material.ROCK;
 	public static final Material MACHINE = Material.IRON;
-	public static final Material TIBERIUM = Material.GLASS;
 	
 	protected final int[] metaArrayForCreativeTab;
 

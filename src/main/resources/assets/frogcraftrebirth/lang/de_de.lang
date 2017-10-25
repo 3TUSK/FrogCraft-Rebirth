@@ -1,12 +1,6 @@
 #German Language File, 2013.8.25 Author: Vextao
 
 #Items
-#item.ItemMiniIonCannon.name=Portable Ion Cannon
-#item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
-#item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
-#item.ItemMiniIonCannon.warning=Caution: Ion Cannon has launched, starting mandatory cooling down.
-#item.ItemMiniIonCannon.discharged=Ion Cannon is currently discharged, all further operation will be aborted before it is charged again.
-#item.ionCannonFrame=Ion Cannon Frame
 tile.mobilePowerStation.normal.name=Mobile Energieversorgung
 #tile.mobilePowerStation.info=§oThe best camping gear
 item.CoolantAmmonia60K=60K Ammoniak-Kühlzelle
@@ -117,10 +111,6 @@ tile.mineral.carnallite.name=Carnallit
 tile.mineral.fluorapatite.name=Fluorapatit
 #tile.mineral.dewalquite.name=Dewalquite Ore
 
-#tile.tiberium_crystal.red.name=Tiberium (Red)
-#tile.tiberium_crystal.blue.name=Tiberium (Blue)
-#tile.tiberium_crystal.green.name=Tiberium (Green)
-
 tile.condenseTower.core.name=Kondensationsturm
 tile.condenseTower.output.name=Flüssigkeitsabfluss
 tile.condenseTower.cylinder.name=Kondensationsturmwand
@@ -142,8 +132,6 @@ tile.machines.liquefier.name=Verflüssiger
 tile.nitricAcid.name=Nitric Acid
 
 #Achivements
-achievement.get_railgun=Only my railgun!
-achievement.get_railgun.desc=Come on man?!
 achievement.get_EVT=ES-Transformator
 achievement.get_EVT.desc=Reduziere auf 2048
 achievement.killed_by_Potassium=Durch Kalium hochgegangen

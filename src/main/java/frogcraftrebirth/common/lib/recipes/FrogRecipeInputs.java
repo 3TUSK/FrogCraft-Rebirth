@@ -17,6 +17,8 @@ public final class FrogRecipeInputs {
 
 	public static final Function<IFrogRecipeInput, List<ItemStack>> MAP_TO_ITEM = i -> i.getActualInputs(ItemStack.class);
 
+	public static final IFrogRecipeInput EMPTY = new FrogRecipeInputEmpty();
+
 	public static Collection<IFrogRecipeInput> wrap(ItemStack... stacks) {
 		List<IFrogRecipeInput> list = new ArrayList<>(stacks.length);
 		for (ItemStack stack : stacks) {

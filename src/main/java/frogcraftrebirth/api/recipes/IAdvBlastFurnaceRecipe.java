@@ -6,11 +6,15 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface IAdvBlastFurnaceRecipe {
 
-	ItemStack getInput();
+	IFrogRecipeInput getInput();
+
+	IFrogRecipeInput getInputSecondary();
 
 	FluidStack getInputFluid();
 
 	ItemStack getOutput();
+
+	ItemStack getByproduct();
 
 	/**
 	 *
@@ -19,9 +23,17 @@ public interface IAdvBlastFurnaceRecipe {
 	 *
 	 * @return The type of shield gas, in {@link Fluid} form.
 	 *
+	 * @throws IllegalStateException only if Fluid::isGaseous == false. Optional.
+	 *
 	 * @see Fluid#isGaseous()
 	 */
 	Fluid getShieldGas();
 
 	int getTime();
+
+	/**
+	 * Returns the heat energy consumption per game tick.
+	 * @return HU consumption, in HU/tick.
+	 */
+	int getHeatConsumption();
 }

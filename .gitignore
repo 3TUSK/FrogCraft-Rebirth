@@ -4,3 +4,10 @@ design_guideline
 /.idea
 /run
 /.gradle
+
+*.iml
+*.ipr
+*.iws
+*.properties
+
+!gradle.properties

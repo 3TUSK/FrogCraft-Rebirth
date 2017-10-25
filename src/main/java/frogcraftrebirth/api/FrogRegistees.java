@@ -65,46 +65,6 @@ public final class FrogRegistees {
 	@GameRegistry.ObjectHolder("inflammable")
 	public static final Item INFLAMMABLE = null;
 
-	/**
-	 * Scheduled to be removed with more than one replacement.
-	 * Conversion recipes will be provided before removed in next bump in major version.
-	 * After the major version bump, this field will be removed.
-	 */
-	@Deprecated
-	@GameRegistry.ObjectHolder("ingot")
-	public static final Item INGOT = null;
-	/**
-	 * Scheduled to be removed with more than one replacement.
-	 * Conversion recipes will be provided before removed in next bump in major version.
-	 * After the major version bump, this field will be removed.
-	 */
-	@Deprecated
-	@GameRegistry.ObjectHolder("dust")
-	public static final Item DUST = null;
-	/**
-	 * Scheduled to be removed with more than one replacement.
-	 * Conversion recipes will be provided before removed in next bump in major version.
-	 * After the major version bump, this field will be removed.
-	 */
-	@Deprecated
-	@GameRegistry.ObjectHolder("crushed")
-	public static final Item CRUSHED_DUST = null;
-	/**
-	 * Scheduled to be removed with more than one replacement.
-	 * Conversion recipes will be provided before removed in next bump in major version.
-	 * After the major version bump, this field will be removed.
-	 */
-	@Deprecated
-	@GameRegistry.ObjectHolder("purified")
-	public static final Item PURIFIED_DUST = null;
-	/**
-	 * Scheduled to be removed with more than one replacement.
-	 * Conversion recipes will be provided before removed in next bump in major version.
-	 * After the major version bump, this field will be removed.
-	 */
-	@Deprecated
-	@GameRegistry.ObjectHolder("small_pile_dust")
-	public static final Item SMALL_PILE_DUST = null;
 	@GameRegistry.ObjectHolder("catalyst_module")
 	public static final Item REACTION_MODULE = null;
 	/**

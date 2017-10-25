@@ -109,11 +109,6 @@ public class FrogRegistries {
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-                new ItemResources("Item_Ingots", "K", "P", "fat_cluster", "Briquette", "CoalCokeShattered").setRegistryName("ingot"),
-                new ItemResources("Item_Dusts", "Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5").setRegistryName("dust"),
-                new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed"),
-                new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified"),
-                new ItemResources("smallDust", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("small_pile_dust"),
                 new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
                 new ItemIonCannon(1000000).setRegistryName("ion_cannon"),
                 new ItemResources(false, "ionCannonFrame").setMaxStackSize(1).setRegistryName("ion_cannon_frame"),
@@ -123,9 +118,6 @@ public class FrogRegistries {
                 new ItemJinkela().setRegistryName("jinkela"),
                 new ItemTiberium().setRegistryName("tiberium"),
                 new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
-
-				// ------ Begin of new items ------
-
 				new ItemResources("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
 				new ItemResources("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
 				new ItemResources("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),

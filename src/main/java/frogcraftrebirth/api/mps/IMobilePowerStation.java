@@ -8,13 +8,9 @@
  */
 package frogcraftrebirth.api.mps;
 
-import frogcraftrebirth.api.tile.IPersonal;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 
-import java.util.UUID;
-
-public interface IMobilePowerStation extends IPersonal {
+public interface IMobilePowerStation {
 	
 	void loadDataFrom(NBTTagCompound tag);
 	
@@ -24,23 +20,4 @@ public interface IMobilePowerStation extends IPersonal {
 	
 	int getCurrentEnergyCapacity();
 
-	@Override
-	default UUID getOwnerUUID() {
-		throw new UnsupportedOperationException("Unsupported");
-	}
-
-	@Override
-	default IPersonal setOwner(UUID owner) {
-		return this;
-	}
-
-	@Override
-	default boolean match(UUID beingChecked) {
-		return false;
-	}
-
-	@Override
-	default String getWaringInfo(EntityPlayer player) {
-		return "Method has been deprecated, this output is legacy support";
-	}
 }

@@ -16,9 +16,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class BlockFrog extends Block {
 	
 	public static final PropertyBool WORKING = PropertyBool.create("working");
-
-	public static final Material ORE = Material.ROCK;
-	public static final Material MACHINE = Material.IRON;
 	
 	protected final int[] metaArrayForCreativeTab;
 

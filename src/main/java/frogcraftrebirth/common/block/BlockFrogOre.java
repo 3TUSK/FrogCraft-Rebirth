@@ -1,6 +1,7 @@
 package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.block.BlockFrog;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -11,7 +12,7 @@ public class BlockFrogOre extends BlockFrog {
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
 
 	public BlockFrogOre() {
-		super(ORE, "ore", 0, 1, 2);
+		super(Material.ROCK, "ore", 0, 1, 2);
 		setUnlocalizedName("mineral");
 		setHardness(5.0F);
 		setResistance(15.0f);

@@ -106,7 +106,6 @@ public class FrogRegistries {
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
                 new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
-                new ItemResources(false, "ionCannonFrame").setMaxStackSize(1).setRegistryName("ion_cannon_frame"),
                 new ItemDecayBattery("U").setRegistryName("uranium_decay_battery"),
                 new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery"),
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
@@ -145,7 +144,7 @@ public class FrogRegistries {
 						switch (stack.getMetadata()) {
 							case 0: return 18000; // Briquette
 							case 1: return 200;   // Lipid Cluster
-							case 2: return 1600;  // Shattered Coal Coke
+							case 4: return 1600;  // Shattered Coal Coke
 							default: return 0;
 						}
 					}

@@ -8,6 +8,7 @@ import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -27,7 +28,7 @@ public class BlockCondenseTower extends BlockFrogWrenchable {
 	public static final PropertyEnum<Part> TYPE = PropertyEnum.create("variant", Part.class);
 
 	public BlockCondenseTower() {
-		super(MACHINE, "condense_tower", false, 0, 1, 2);
+		super(Material.ANVIL, "condense_tower", false, 0, 1, 2);
 		setUnlocalizedName("condenseTower");
 		setDefaultState(getDefaultState().withProperty(WORKING, false));
 		setHardness(15.0F);

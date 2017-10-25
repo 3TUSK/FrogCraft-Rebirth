@@ -33,37 +33,37 @@ item.Item_NitricAcidBucket.info=注意：超级腐蚀性液体！
 #Neo-meta-items
 item.metal_ingot.aluminium=铝锭
 item.metal_ingot.aluminium.info=Al
-item.metal_ingot.magnalium=镁铝合金锭
+item.metal_ingot.magnalium=铝镁合金锭
 item.metal_ingot.magnalium.info=MgAl₂
 item.metal_ingot.titanium=钛锭
 item.metal_ingot.titanium.info=Ti
 item.metal_dust.aluminium=铝粉
 item.metal_dust.aluminium.info=Al
-item.metal_dust.magnalium=镁铝合金粉
+item.metal_dust.magnalium=铝镁合金粉
 item.metal_dust.magnalium.info=MgAl₂
 item.metal_dust.titanium=钛粉
 item.metal_dust.titanium.info=Ti
 item.metal_dust_tiny.aluminium=小堆铝粉
 item.metal_dust_tiny.aluminium.info=Al
-item.metal_dust_tiny.magnalium=小堆镁铝合金粉
+item.metal_dust_tiny.magnalium=小堆铝镁合金粉
 item.metal_dust_tiny.magnalium.info=MgAl₂
 item.metal_dust_tiny.titanium=小堆钛粉
 item.metal_dust_tiny.titanium.info=Ti
 item.metal_plate.aluminium=铝板
 item.metal_plate.aluminium.info=Al
-item.metal_plate.magnalium=镁铝合金板
+item.metal_plate.magnalium=铝镁合金板
 item.metal_plate.magnalium.info=MgAl₂
 item.metal_plate.titanium=钛板
 item.metal_plate.titanium.info=Ti
 item.metal_plate_dense.aluminium=致密铝板
 item.metal_plate_dense.aluminium.info=Al
-item.metal_plate_dense.magnalium=致密镁铝合金板
+item.metal_plate_dense.magnalium=致密铝镁合金板
 item.metal_plate_dense.magnalium.info=MgAl₂
 item.metal_plate_dense.titanium=致密钛板
 item.metal_plate_dense.titanium.info=Ti
 item.metal_casing.aluminium=铝金属盒
 item.metal_casing.aluminium.info=Al
-item.metal_casing.magnalium=镁铝合金金属盒
+item.metal_casing.magnalium=铝镁合金金属盒
 item.metal_casing.magnalium.info=MgAl₂
 item.metal_casing.titanium=钛金属盒
 item.metal_casing.titanium.info=Ti
@@ -242,6 +242,18 @@ item.purifiedOre.Fluorapatite=洗净的粉碎氟磷灰石
 item.smallDust.Carnallite=小堆光卤石粉
 item.smallDust.Dewalquite=小堆铝钒土矿粉
 item.smallDust.Fluorapatite=小堆氟磷灰石粉
+
+item.crushedOre.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.crushedOre.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.crushedOre.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
+
+item.purifiedOre.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.purifiedOre.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.purifiedOre.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
+
+item.smallDust.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.smallDust.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
+item.smallDust.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
 
 #Ingots
 #To translators: for briquette, see the following links:

@@ -243,6 +243,18 @@ item.smallDust.Carnallite=Tiny Pile of Carnallite Dust
 item.smallDust.Dewalquite=Tiny Pile of Dewalquite Dust
 item.smallDust.Fluorapatite=Tiny Pile of Fluorapatite Dust
 
+item.crushedOre.Carnallite.info=Deprecated - Craft to Convert to New Version
+item.crushedOre.Dewalquite.info=Deprecated - Craft to Convert to New Version
+item.crushedOre.Fluorapatite.info=Deprecated - Craft to Convert to New Version
+
+item.purifiedOre.Carnallite.info=Deprecated - Craft to Convert to New Version
+item.purifiedOre.Dewalquite.info=Deprecated - Craft to Convert to New Version
+item.purifiedOre.Fluorapatite.info=Deprecated - Craft to Convert to New Version
+
+item.smallDust.Carnallite.info=Deprecated - Craft to Convert to New Version
+item.smallDust.Dewalquite.info=Deprecated - Craft to Convert to New Version
+item.smallDust.Fluorapatite.info=Deprecated - Craft to Convert to New Version
+
 #Ingots
 #To translators: for briquette, see the following links:
 #https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan

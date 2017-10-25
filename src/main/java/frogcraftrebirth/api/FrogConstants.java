@@ -44,6 +44,8 @@ public final class FrogConstants {
 	public static final String[] INFLAMMABLE = {
 			"briquette",
 			"lipids_cluster",
+			"phosphorus",
+			"potassium",
 			"shattered_coal_coke"
 	};
 }

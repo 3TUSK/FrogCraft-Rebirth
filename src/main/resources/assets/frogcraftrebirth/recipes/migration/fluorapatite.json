@@ -3,16 +3,17 @@
     "item": "frogcraftrebirth:ore_dust",
     "data": 2
   },
-  "group": "frogcraftrebirth:resource",
+  "group": "frogcraftrebirth:migration",
   "pattern": [
-    "DDD",
-    "DDD",
-    "DDD"
+    "   ",
+    " I ",
+    "   "
   ],
   "type": "minecraft:crafting_shaped",
   "key": {
-    "D": {
-      "item": "#dust_tiny_fluorapatite"
+    "I": {
+      "item": "frogcraftrebirth:dust",
+      "data": 7
     }
   }
 }

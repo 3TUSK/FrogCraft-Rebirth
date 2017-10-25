@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:non_metal_dust",
+    "data": 7
+  },
+  "group": "frogcraftrebirth:migration",
+  "pattern": [
+    "   ",
+    " I ",
+    "   "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "frogcraftrebirth:dust",
+      "data": 13
+    }
+  }
+}

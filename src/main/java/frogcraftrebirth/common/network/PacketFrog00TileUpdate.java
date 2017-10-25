@@ -4,7 +4,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.api.IFrogNetworkObject;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;

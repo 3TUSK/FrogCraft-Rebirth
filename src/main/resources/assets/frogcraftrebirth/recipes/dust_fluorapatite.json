@@ -1,7 +1,7 @@
 {
   "result": {
-    "item": "frogcraftrebirth:dust",
-    "data": 7
+    "item": "frogcraftrebirth:ore_dust",
+    "data": 2
   },
   "group": "frogcraftrebirth:resource",
   "pattern": [

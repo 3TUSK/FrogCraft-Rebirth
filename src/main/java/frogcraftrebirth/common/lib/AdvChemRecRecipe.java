@@ -12,7 +12,6 @@ import java.util.Collection;
 
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
-import ic2.api.recipe.IRecipeInput;
 import net.minecraft.item.ItemStack;
 
 public class AdvChemRecRecipe implements IAdvChemRecRecipe {

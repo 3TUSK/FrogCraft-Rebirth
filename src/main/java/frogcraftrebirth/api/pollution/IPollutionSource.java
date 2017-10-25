@@ -15,6 +15,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+@Deprecated
 public interface IPollutionSource {
 
 	/**
@@ -25,7 +26,7 @@ public interface IPollutionSource {
 
 	/**
 	 * Get potion effects based on entity type
-	 * @param entity
+	 * @param entity the target
 	 * @return A collection of applicable {@link PotionEffect}
 	 */
 	Collection<PotionEffect> effects(Entity entity);

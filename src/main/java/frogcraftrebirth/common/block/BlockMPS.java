@@ -9,7 +9,6 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -25,7 +24,7 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockMPS extends BlockFrogWrenchable {
 	
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
@@ -53,7 +52,12 @@ public class BlockMPS extends BlockFrogWrenchable implements ITileEntityProvider
     }
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileMobilePowerStation();
 	}
 	

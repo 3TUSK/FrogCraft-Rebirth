@@ -39,9 +39,8 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 
 	@Override
 	public void forEach(Consumer<? super IFrogRecipeInput> action) {
-		Iterator<IFrogRecipeInput> itr = iterator();
-		while (itr.hasNext()) {
-			action.accept(itr.next());
+		for (IFrogRecipeInput iFrogRecipeInput : this) {
+			action.accept(iFrogRecipeInput);
 		}
 	}
 

@@ -30,8 +30,9 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 
 	@Nonnull
 	@Override
+	@SuppressWarnings("unchecked")
 	public <T> List<T> getActualInputs(Class<T> type) {
-		return type == ItemStack.class ? (List<T>)OreDictionary.getOres(this.entry) : Collections.EMPTY_LIST;
+		return type == ItemStack.class ? (List<T>) OreDictionary.getOres(this.entry) : Collections.EMPTY_LIST;
 	}
 
 	@Override

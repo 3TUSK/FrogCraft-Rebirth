@@ -68,14 +68,5 @@ public final class ItemUtil {
 		}
 		return array;
 	}
-	
-	public static Collection<ItemStack> toCollection(IItemHandler handler) {
-		List<ItemStack> stacks = new ArrayList<>();
-		final int slotsNum = handler.getSlots();
-		for (int index = 0; index < slotsNum; index++) {
-			stacks.add(handler.getStackInSlot(index));
-		}
-		return Collections.unmodifiableList(stacks);
-	}
 
 }

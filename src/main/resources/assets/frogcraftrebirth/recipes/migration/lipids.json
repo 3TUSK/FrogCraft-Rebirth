@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:inflammable",
+    "data": 1
+  },
+  "group": "frogcraftrebirth:migration",
+  "pattern": [
+    "   ",
+    " I ",
+    "   "
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": {
+      "item": "frogcraftrebirth:ingot",
+      "data": 2
+    }
+  }
+}

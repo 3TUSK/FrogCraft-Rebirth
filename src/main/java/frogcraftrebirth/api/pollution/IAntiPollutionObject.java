@@ -11,14 +11,15 @@ package frogcraftrebirth.api.pollution;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+@Deprecated
 public interface IAntiPollutionObject {
 	
 	/**
 	 * Restrain the contamination in certain area.
-	 * @param world 
-	 * @param pos 
+	 * @param world the world being affected
+	 * @param pos coordinate of contamination center
 	 * @param radius Affected area
-	 * @return
+	 * @return true if successfully blocks the pollution
 	 */
 	boolean restrain(World world, BlockPos pos, int radius);
 

@@ -32,7 +32,7 @@ public class ConfigGuiFactory implements IModGuiFactory {
 
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parent) {
-		return new GuiConfig(parent, Collections.singletonList(ConfigElement.from(FrogConfig.class)), FrogAPI.MODID, false, false, "FrogCraft: Rebirth", I18n.format("config.config.fcrebirth.2"));
+		return new GuiConfig(parent, Collections.singletonList(ConfigElement.from(FrogConfig.class)), FrogAPI.MODID, false, false, FrogAPI.NAME, I18n.format("config.config.fcrebirth.2"));
 	}
 
 	@Override

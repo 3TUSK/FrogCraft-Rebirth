@@ -36,7 +36,7 @@ public enum NetworkHandler {
 	}
 	
 	public static void init() {
-		FrogAPI.FROG_LOG.debug("Initializing FrogCraft Network...");
+		FrogAPI.FROG_LOG.debug("Network handler for FrogCraft: Rebirth has been set up."); // Trigger class loading
 	}
 	
 	@SubscribeEvent

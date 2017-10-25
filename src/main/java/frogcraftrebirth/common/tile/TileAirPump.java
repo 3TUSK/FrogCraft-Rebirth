@@ -116,10 +116,6 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 			return amount;
 		}
 	}
-	
-	public void setAirAmount(int amount) {
-		this.airAmount = amount;
-	}
 
 	@Override
 	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {

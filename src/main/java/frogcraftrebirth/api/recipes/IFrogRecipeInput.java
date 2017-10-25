@@ -54,7 +54,7 @@ public interface IFrogRecipeInput {
 	 * then getSize() can only be used on other ItemStack, not FluidStack or anything else.
 	 *
 	 * If consuming arbitrary ingredients is need, use {@link #accepts(Class, Object)}.
-	 * @return
+	 * @return Quantity of this input ingredient
 	 */
 	int getSize();
 

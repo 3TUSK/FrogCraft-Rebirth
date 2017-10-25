@@ -3,8 +3,8 @@ package frogcraftrebirth.common.tile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.LinkedHashSet;
+import java.util.Collections;
+import java.util.IdentityHashMap;
 import java.util.Set;
 
 import frogcraftrebirth.api.FrogAPI;
@@ -29,13 +29,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
+
+import javax.annotation.Nullable;
 
 public class TileCondenseTower extends TileEnergySink implements ICondenseTowerCore, IHasGui, IHasWork, ITickable {
 	
@@ -43,8 +45,8 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
-	private Set<ICondenseTowerOutputHatch> outputs = new LinkedHashSet<>();
-	private Set<ICondenseTowerPart> structures = new HashSet<>();
+	private boolean previousStructureCompleteness = false;
+	private Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
 	public int process, processMax;
 	private boolean working;
@@ -60,7 +62,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public boolean isCompleted() {
-		return structures.size() > 1 && outputs.size() > 0;
+		return previousStructureCompleteness ? outputs.size() > 0 : checkStructure();
 	}
 	
 	@Override
@@ -74,13 +76,15 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		}
 			
 		if (!inv.getStackInSlot(INPUT_F).isEmpty()) {
-			if (inv.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				FluidActionResult result = FluidUtil.tryEmptyContainer(inv.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
-				if (result.isSuccess() && result.result.getCount() > 0) {
+			IFluidHandlerItem fluidIn = FluidUtil.getFluidHandler(inv.extractItem(INPUT_F, 1, true));
+			if (fluidIn != null) {
+				FluidStack transferResult = FluidUtil.tryFluidTransfer(this.tank, fluidIn, Integer.MAX_VALUE, true);
+				if (transferResult != null) {
 					inv.extractItem(INPUT_F, 1, false);
-					ItemStack remainder = inv.insertItem(OUTPUT_F, result.result, false);
-					if (!remainder.isEmpty() && remainder.getCount()> 0)
+					ItemStack remainder = inv.insertItem(OUTPUT_F, fluidIn.getContainer(), false);
+					if (!remainder.isEmpty() && remainder.getCount()> 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
 				}
 			}
 		}
@@ -115,11 +119,14 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		
 		if (process == processMax) {
 			this.tank.drain(recipe.getInput().amount, true);
-			recipe.getOutput().forEach(fluid -> this.outputs.forEach(output -> {
+			recipe.getOutput().forEach(fluid -> {
+				for (ICondenseTowerOutputHatch output : this.outputs) {
 					if (output.canInject(fluid)) {
 						output.inject(fluid.copy(), true);
+						return;
 					}
-			}));
+				}
+			});
 			process = 0;
 			processMax = 0;
 			recipe = null;
@@ -138,29 +145,60 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public void onPartAttached(ICondenseTowerPart part) {
 		if (part instanceof ICondenseTowerOutputHatch) {
 			this.registerOutputHatch((ICondenseTowerOutputHatch)part);
-		} else {
-			this.registerSturcture(part);
 		}
 		part.setMainBlock(this);
 	}
 	
 	@Override
 	public void onPartRemoved(ICondenseTowerPart part) {
-		if (part instanceof TileEntity) {
-			this.outputs.removeIf(out -> out instanceof TileEntity && ((TileEntity)out).getPos().getY() >= ((TileEntity)part).getPos().getY());
-			this.structures.removeIf(p -> p instanceof TileEntity && ((TileEntity)p).getPos().getY() >= ((TileEntity)part).getPos().getY());
-		}
+		this.previousStructureCompleteness = checkStructure();
 	}
 	
 	@Override
 	public void onDestruction() {
+		outputs.stream().filter(ICondenseTowerPart::isFunctional).forEach(ICondenseTowerPart::behave);
 		outputs.forEach(output -> output.setMainBlock(null));
-		structures.forEach(part -> part.setMainBlock(null));
 		this.outputs.clear();
-		this.structures.clear();
+		TileEntity
+				struct1 = getWorld().getTileEntity(getPos().up(1)),
+				struct2 = getWorld().getTileEntity(getPos().up(2));
+		if (struct1 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)struct1).setMainBlock(null);
+		}
+		if (struct2 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)struct2).setMainBlock(null);
+		}
 	}
 
-	private boolean checkRecipe(ICondenseTowerRecipe aRecipe) {
+	private boolean checkStructure() {
+		this.outputs.clear();
+		TileEntity
+				struct1 = getWorld().getTileEntity(getPos().up(1)),
+				struct2 = getWorld().getTileEntity(getPos().up(2));
+		if (struct1 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct2).isFunctional()) {
+			for (int i = 3;;i++) {
+				TileEntity tile = getWorld().getTileEntity(getPos().up(i));
+				if (tile instanceof ICondenseTowerOutputHatch) {
+					this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
+				} else {
+					break;
+				}
+			}
+			((ICondenseTowerPart)struct1).setMainBlock(this);
+			((ICondenseTowerPart)struct2).setMainBlock(this);
+			return true;
+		} else {
+			if (struct1 instanceof ICondenseTowerPart) {
+				((ICondenseTowerPart)struct1).setMainBlock(null);
+			}
+			if (struct2 instanceof ICondenseTowerPart) {
+				((ICondenseTowerPart)struct2).setMainBlock(null);
+			}
+			return false;
+		}
+	}
+
+	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {
 		if (aRecipe == null)
 			return false;
 		for (FluidStack fluid : aRecipe.getOutput()) {
@@ -176,6 +214,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		return true;
+	}
+
+	@Override
+	public void onLoad() {
+		super.onLoad();
+		this.previousStructureCompleteness = checkStructure();
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -220,25 +264,19 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 
 	@Override
-	public boolean hasCapability(Capability<?> capability, EnumFacing facing) {
+	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> T getCapability(Capability<T> capability, EnumFacing facing) {
-		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)tank;
-		else 
-			return super.getCapability(capability, facing);
+	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
+		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ?
+				CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank) : super.getCapability(capability, facing);
 	}
 	
-	public boolean registerOutputHatch(ICondenseTowerOutputHatch output) {
+	public boolean registerOutputHatch(@Nullable ICondenseTowerOutputHatch output) {
 		return output != null && outputs.add(output);
-	}
-	
-	public boolean registerSturcture(ICondenseTowerPart structure) {
-		return structure != null && structures.add(structure);
 	}
 
 	@Override

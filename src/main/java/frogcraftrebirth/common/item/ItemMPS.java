@@ -67,10 +67,11 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	
 	public static ItemStack normalize(ItemStack stack) {
 		if (stack.getItem() instanceof ItemMPS && !stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
-			stack.getTagCompound().setInteger("charge", 0);
-			stack.getTagCompound().setInteger("maxCharge", 60000);
-			stack.getTagCompound().setInteger("tier", 1);
+			NBTTagCompound newTag = new NBTTagCompound();
+			newTag.setInteger("charge", 0);
+			newTag.setInteger("maxCharge", 60000);
+			newTag.setInteger("tier", 1);
+			stack.setTagCompound(newTag);
 			return stack;
 		} else 
 			return stack; // Prevent attaching unnecessary data to other item

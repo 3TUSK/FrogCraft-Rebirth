@@ -4,7 +4,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.api.IFrogNetworkObject;
+import frogcraftrebirth.common.network.IFrogNetworkObject;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -98,21 +98,22 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 
 	@Override
 	public FluidStack drain(int maxDrain, boolean doDrain) {	
-		if (this.fluidInv == null) 
+		if (this.fluidInv == null) {
 			return null;
-		
+		}
 		if (this.fluidInv.amount <= maxDrain) {
 			FluidStack drained = this.fluidInv.copy();
 			if (doDrain)
 				this.fluidInv = null;
 			return drained;
 		} else {
+			Fluid f = fluidInv.getFluid();
 			if (doDrain) {
 				this.fluidInv.amount -= maxDrain;
 				if (fluidInv.amount <= 0)
 					fluidInv = null;
 			}
-			return new FluidStack(this.fluidInv.getFluid(), maxDrain);
+			return new FluidStack(f, maxDrain);
 		}
 	}
 	

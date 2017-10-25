@@ -14,7 +14,6 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
-import ic2.api.recipe.IRecipeInput;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;

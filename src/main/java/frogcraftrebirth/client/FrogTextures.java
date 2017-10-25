@@ -9,12 +9,12 @@
 package frogcraftrebirth.client;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogConstants;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
-import frogcraftrebirth.common.lib.FrogFluid;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -30,15 +30,15 @@ public class FrogTextures {
 	public static void regModel(ModelRegistryEvent event) {
 		OBJLoader.INSTANCE.addDomain(FrogAPI.MODID);
 
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_60K);
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_180K);
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_360K);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_URANIUM);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_THORIUM);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_PLOTONIUM);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON_FRAME);
-		RegHelper.registerModel(FrogRegistees.JINKELA);
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_60K, "ammonia_coolant_60k");
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_180K, "ammonia_coolant_180k");
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_360K, "ammonia_coolant_360k");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_URANIUM, "uranium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_THORIUM, "thorium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_PLOTONIUM, "plutonium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.ION_CANNON, "ion_cannon");
+		RegHelper.registerModel(FrogRegistees.ION_CANNON_FRAME, "ion_cannon_frame");
+		RegHelper.registerModel(FrogRegistees.JINKELA, "jinkela");
 		
 		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 0, "tiberium_red");
 		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 1, "tiberium_blue");
@@ -48,7 +48,32 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 1, "module_electrolysis");
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 2, "module_ammonia");
 		RegHelper.registerModel(FrogRegistees.REACTION_MODULE, 3, "module_sulfuric_acid");
-		
+
+		for (int i = 0; i < FrogConstants.ORE_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.ORE_CRUSHED, i, "ore/crushed/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_PURIFIED, i, "ore/purified/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_DUST, i, "ore/dust/" + FrogConstants.ORE_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.ORE_DUST_TINY, i, "ore/dust_tiny/" + FrogConstants.ORE_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.METALLIC_MATERIAL_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.METAL_INGOT, i, "metal/ingot/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_CASING, i, "metal/casing/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_PLATE, i, "metal/plate/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_PLATE_DENSE, i, "metal/plate_dense/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_DUST, i, "metal/dust/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_DUST_TNIY, i, "metal/dust_tiny/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.NON_METAL_MATERIAL_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.NON_METAL_DUST, i, "non_metal/dust/" + FrogConstants.NON_METAL_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.NON_METAL_DUST_TINY, i, "non_metal/dust_tiny/" +  FrogConstants.NON_METAL_MATERIAL_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.INTERMEDIATE_TYPES.length; i++) {
+			RegHelper.registerModel(FrogRegistees.INTERMEDIATE, i, "intermediate/" + FrogConstants.INTERMEDIATE_TYPES[i]);
+		}
+		for (int i = 0; i < FrogConstants.INFLAMMABLE.length; i++) {
+			RegHelper.registerModel(FrogRegistees.INFLAMMABLE, i, "inflammable/" + FrogConstants.INFLAMMABLE[i]);
+		}
+
 		RegHelper.registerModel(FrogRegistees.INGOT, 0, "potassium");
 		RegHelper.registerModel(FrogRegistees.INGOT, 1, "phosphorus");
 		RegHelper.registerModel(FrogRegistees.INGOT, 2, "natural_gas_hydrate");
@@ -70,9 +95,9 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.ORE, 0, "carnallite");
 		RegHelper.registerModel(FrogRegistees.ORE, 1, "dewalquite");
 		RegHelper.registerModel(FrogRegistees.ORE, 2, "fluorapatite");
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 0);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 1);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 2);
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 0, "tiberium_red");
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 1, "tiberium_blue");
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 2, "tiberium_green");
 		
 		ModelLoader.setCustomStateMapper(FrogRegistees.MPS, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
 		RegHelper.registerModel(FrogRegistees.MPS, "mobile_power_station");
@@ -102,12 +127,12 @@ public class FrogTextures {
 		RegHelper.regFluidBlockTexture(FrogFluids.carbonOxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.fluorine);
+		RegHelper.regFluidBlockTexture(FrogFluids.glycerol);
 		RegHelper.regFluidBlockTexture(FrogFluids.methane);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitrogen);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitrogenOxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.oleum);
-		RegHelper.regFluidBlockTexture(FrogFluids.oxygen);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfuricAcid);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfurDioxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfurTrioxide);

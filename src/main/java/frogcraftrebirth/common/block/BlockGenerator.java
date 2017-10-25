@@ -6,7 +6,6 @@ import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,7 +16,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockGenerator extends BlockFrogWrenchable {
 	
 	public BlockGenerator() {
 		super(MACHINE, "generator", false, 0);
@@ -45,7 +44,12 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
 		return new TileCombustionFurnace(); //For now it is the possibility
 	}
 	
@@ -83,7 +87,15 @@ public class BlockGenerator extends BlockFrogWrenchable implements ITileEntityPr
 	}
 	
 	public enum Type implements IStringSerializableEnumImpl {
-		COMBUSTION/*, ???*/
+		COMBUSTION/*, IMAG_FLUX?, IMAG_PHASE, [NO ACCESS]*/
+		// And AcademyCraft is striking back, seal will be removed,
+		// the nearly-lost descendent *art of miracle* will revive,
+		// Believers are welcome with the neo-gilded age,
+		// Cult of Beasts will thrive, the creep will fade
+		//
+		// Yo-ake made, kono yume, kochou no yume
+		// This dream, till daybreak, is a butterfly dream.
+		//  - Team Shanghai Alice, "Kid's Festival ~ Innocent Treasures"
     }
 
 }

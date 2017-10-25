@@ -11,26 +11,28 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.PlayerDropsEvent;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
-import net.minecraftforge.event.world.ExplosionEvent;
+import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
 public class FrogEventListener {
 	
 	public static final Random RAND = new Random();
-	
+	/*
 	@SubscribeEvent
 	public void onExplosion(ExplosionEvent event) {
 		// TODO rewrite the logic
-	}
-	
+	}*/
+
+	@Deprecated
 	@SubscribeEvent
 	public void onDeath(LivingDeathEvent event) {
 		if (event.getSource() == FrogAPI.TIBERIUM) {
 			event.getEntity().entityDropItem(new ItemStack(FrogRegistees.TIBERIUM, RAND.nextInt(3), RAND.nextInt(10)), 0.50001F);
 		}
 	}
-	
+
+	@Deprecated
 	@SubscribeEvent
 	public void onPlayerDrop(PlayerDropsEvent event) {
 		if (event.getSource() == FrogAPI.TIBERIUM) {
@@ -51,7 +53,7 @@ public class FrogEventListener {
 		}
 	}
 
-	@SubscribeEvent
+	@SubscribeEvent(priority = EventPriority.LOWEST)
 	public void onFuelValueQueried(FurnaceFuelBurnTimeEvent event) {
 		if (OreDictionary.doesOreNameExist("dustSulfur")) {
 			for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {

@@ -1,6 +1,6 @@
 {
     "parent": "item/generated",
     "textures": {
-        "layer0": "frogcraftrebirth:items/ingot/natural_gas_hydrate"
+        "layer0": "minecraft:items/barrier"
     }
 }

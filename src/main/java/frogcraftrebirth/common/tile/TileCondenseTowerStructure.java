@@ -16,6 +16,8 @@ import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 
+import javax.annotation.Nullable;
+
 public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
 
 	private ICondenseTowerCore mainBlock;
@@ -31,7 +33,7 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	}
 	
 	@Override
-	public void setMainBlock(ICondenseTowerCore core) {
+	public void setMainBlock(@Nullable ICondenseTowerCore core) {
 		this.mainBlock = core;
 	}
 	

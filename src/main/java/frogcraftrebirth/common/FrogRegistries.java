@@ -150,47 +150,6 @@ public class FrogRegistries {
 						}
 					}
 				}.setRegistryName("inflammable")
-                new ItemResources("Item_Ingots", "K", "P", "NaturalGasHydrate", "Briquette", "CoalCokeShattered") {
-                    @Override
-                    public boolean onEntityItemUpdate(EntityItem entityItem) {
-                        if (entityItem.getItem().isEmpty()) {
-                            return false;
-                        }
-                        if (!entityItem.getEntityWorld().isRemote && entityItem.getItem().getMetadata() == 0) {
-                            if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogRegistees.NITRIC_ACID) {
-                                //TODO set up explosion and grant advancement to players
-                                entityItem.setDead();
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-
-                    @Override
-                    public int getItemBurnTime(ItemStack stack) {
-                        switch (stack.getMetadata()) {
-                            case 3: return 18000;
-                            case 4: return 1600;
-                            default: return 0;
-                        }
-                    }
-                }.setRegistryName("ingot"),
-                new ItemResources("Item_Dusts", "Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5").setRegistryName("dust"),
-                new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed"),
-                new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified"),
-                new ItemResources("smallDust", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("small_pile_dust"),
-                new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
-                new ItemDecayBattery("U").setRegistryName("uranium_decay_battery"),
-                new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery"),
-                new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
-                new ItemJinkela().setRegistryName("jinkela"),
-                new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
-                new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.ORE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
-                new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName())
         );
     }
 
@@ -216,9 +175,4 @@ public class FrogRegistries {
 		fluid.setBlock(block);
 	}
 
-    @Deprecated
-    @SubscribeEvent
-    public static void regPotion(RegistryEvent.Register<Potion> event) {
-        event.getRegistry().register(new PotionTiberium(0x66CCFF).setRegistryName("frogcraftrebirth:tiberium"));
-    }
 }

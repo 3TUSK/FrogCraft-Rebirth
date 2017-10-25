@@ -65,22 +65,6 @@ public class FrogTextures {
 		for (int i = 0; i < FrogConstants.INFLAMMABLE.length; i++) {
 			RegHelper.registerModel(FrogRegistees.INFLAMMABLE, i, "inflammable/" + FrogConstants.INFLAMMABLE[i]);
 		}
-
-		RegHelper.registerModel(FrogRegistees.INGOT, 0, "potassium");
-		RegHelper.registerModel(FrogRegistees.INGOT, 1, "phosphorus");
-		RegHelper.registerModel(FrogRegistees.INGOT, 2, "natural_gas_hydrate");
-		RegHelper.registerModel(FrogRegistees.INGOT, 3, "briquette");
-		RegHelper.registerModel(FrogRegistees.INGOT, 4, "shattered_coal_coke");
-		final String[] damnitSubNames = {"aluminium_oxide", "calcium_fluoride", "calcium_oxide", "calcium_hydroxide", "carnallite", "calcium_silicate", "dewalquite", "fluorapatite", "potassium_chloride", "magnalium", "magnesium_bromide", "ammonium_nitrate", "titanium_iv_oxide", "urea", "vanadium_v_oxide"};
-		for (int index = 0; index < damnitSubNames.length; index++) {
-			RegHelper.registerModel(FrogRegistees.DUST, index, "dust/" + damnitSubNames[index]);
-		}
-		final String[] damnitSubNames2 = {"carnallite", "dewalquite", "fluorapatite"};
-		for (int index = 0; index < damnitSubNames2.length; index++) {
-			RegHelper.registerModel(FrogRegistees.CRUSHED_DUST, index, "dust/" +  damnitSubNames2[index] + "_crushed");
-			RegHelper.registerModel(FrogRegistees.PURIFIED_DUST, index, "dust/" +  damnitSubNames2[index] + "_purified");
-			RegHelper.registerModel(FrogRegistees.SMALL_PILE_DUST, index, "dust/" +  damnitSubNames2[index] + "_small");
-		}
 		
 		RegHelper.registerModel(FrogRegistees.FLUID_ARMOR, "fluid_armor");
 

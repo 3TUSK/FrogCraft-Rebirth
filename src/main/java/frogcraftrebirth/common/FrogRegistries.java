@@ -5,27 +5,44 @@ import frogcraftrebirth.api.FrogConstants;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
+import frogcraftrebirth.common.lib.FrogFluid;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.potion.PotionTiberium;
-import frogcraftrebirth.common.registry.RegFluid;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fluids.BlockFluidClassic;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.registries.IForgeRegistry;
+
+import javax.annotation.Nullable;
+import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID)
 public class FrogRegistries {
 
     @SubscribeEvent
     public static void regBlock(RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(new BlockHSU(), new BlockMPS(), new BlockCondenseTower(), new BlockGenerator(),
-                new BlockMachine(), new BlockFrogOre(), new BlockTiberium());
+    	IForgeRegistry<Block> registry = event.getRegistry();
+        registry.registerAll(
+        		new BlockHSU(),
+				new BlockMPS(),
+				new BlockCondenseTower(),
+				new BlockGenerator(),
+                new BlockMachine(),
+				new BlockFrogOre(),
+				new BlockTiberium()
+		);
         GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraft_mobile_power_station");
         GameRegistry.registerTileEntity(TileHSU.class, "frogcraft_hybrid_storage_unit");
         GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraft_ultra_hybrid_storage_unit");
@@ -38,9 +55,45 @@ public class FrogRegistries {
         GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraft_advanced_chemical_reactor");
         GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraft_liquefier");
 
-        // Call this to ensure their blocks are registered at proper time
-        // TODO pass the injected dependency, i.e. the master block registry
-        RegFluid.init();
+		FrogFluids.ammonia = new FrogFluid("ammonia", 694, 240, true, EnumRarity.EPIC);
+		FrogFluids.argon = new FrogFluid("argon", 1784, 300, true, EnumRarity.RARE);
+		FrogFluids.benzene = new FrogFluid("benzene", 877, 300, true, EnumRarity.EPIC);
+		FrogFluids.bromine = new FrogFluid("bromine", 3103, 300, false, EnumRarity.UNCOMMON);
+		FrogFluids.carbonOxide = new FrogFluid("carbon_oxide", 1250, 300, true, EnumRarity.UNCOMMON);
+		FrogFluids.carbonDioxide = new FrogFluid("carbon_dioxide", 1980, 300, true, EnumRarity.COMMON);
+		FrogFluids.coalTar = new FrogFluid("coal_tar", 2000, 300, false, EnumRarity.RARE).setViscosity(2000);
+		FrogFluids.fluorine = new FrogFluid("fluorine", 1696, 300, true, EnumRarity.EPIC);
+		FrogFluids.glycerol = new FrogFluid("glycerol", 2000, 300, false, EnumRarity.UNCOMMON);
+		FrogFluids.methane = new FrogFluid("methane", 656, 300, true, EnumRarity.UNCOMMON);
+		FrogFluids.nitricAcid = new FrogFluid("nitric_acid", "nitric_acid_flow", "nitric_acid",  1420, 300, false, EnumRarity.RARE);
+		FrogFluids.nitrogen = new FrogFluid("nitrogen", 1251, 160, true, EnumRarity.COMMON);
+		FrogFluids.nitrogenOxide = new FrogFluid("nitrogen_oxide", 1340, 300, true, EnumRarity.RARE);
+		FrogFluids.oleum = new FrogFluid("oleum", 1820, 300, false, EnumRarity.RARE);
+		FrogFluids.sulfuricAcid = new FrogFluid("sulfuric_acid", 1840, 300, false, EnumRarity.RARE);
+		FrogFluids.sulfurDioxide = new FrogFluid("sulfur_dioxide", 1640, 300, true, EnumRarity.UNCOMMON);
+		FrogFluids.sulfurTrioxide = new FrogFluid("sulfur_trioxide", 1800, 300, true, EnumRarity.RARE);
+
+		regFluidWithoutBucket(registry,
+				FrogFluids.ammonia,
+				FrogFluids.argon,
+				FrogFluids.benzene,
+				FrogFluids.carbonOxide,
+				FrogFluids.carbonDioxide,
+				FrogFluids.fluorine,
+				FrogFluids.methane,
+				FrogFluids.nitrogen,
+				FrogFluids.nitrogenOxide,
+				FrogFluids.oleum,
+				FrogFluids.sulfurDioxide,
+				FrogFluids.sulfurTrioxide
+		);
+		regFluidWithBucket(registry,
+				FrogFluids.bromine,
+				FrogFluids.coalTar,
+				FrogFluids.glycerol,
+				FrogFluids.sulfuricAcid
+		);
+		regFluid(registry, FrogFluids.nitricAcid, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
     }
 
     @SubscribeEvent
@@ -56,22 +109,7 @@ public class FrogRegistries {
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-                new ItemResources("Item_Ingots", "K", "P", "fat_cluster", "Briquette", "CoalCokeShattered") {
-                    @Override
-                    public boolean onEntityItemUpdate(EntityItem entityItem) {
-                        if (entityItem.getItem().isEmpty()) {
-                            return false;
-                        }
-                        if (!entityItem.getEntityWorld().isRemote && entityItem.getItem().getMetadata() == 0) {
-                            if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogRegistees.NITRIC_ACID) {
-                                //TODO set up explosion and grant advancement to players
-                                entityItem.setDead();
-                                return false;
-                            }
-                        }
-                        return true;
-                    }
-                }.setRegistryName("ingot"),
+                new ItemResources("Item_Ingots", "K", "P", "fat_cluster", "Briquette", "CoalCokeShattered").setRegistryName("ingot"),
                 new ItemResources("Item_Dusts", "Al2O3", "CaF2", "CaO", "CaOH2", "Carnallite", "CaSiO3", "Dewalquite", "Fluorapatite", "KCl", "Magnalium", "MgBr2", "NH4NO3", "TiO2", "Urea", "V2O5").setRegistryName("dust"),
                 new ItemResources("crushedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("crushed"),
                 new ItemResources("purifiedOre", "Carnallite", "Dewalquite", "Fluorapatite").setRegistryName("purified"),
@@ -103,6 +141,20 @@ public class FrogRegistries {
 				new ItemResources("intermediate_product", FrogConstants.INTERMEDIATE_TYPES).setRegistryName("intermediate_product"),
 				new ItemResources("inflammable", FrogConstants.INFLAMMABLE) {
 					@Override
+					public boolean onEntityItemUpdate(EntityItem entityItem) {
+						if (entityItem.getItem().isEmpty()) {
+							return false;
+						}
+						if (!entityItem.getEntityWorld().isRemote && entityItem.getItem().getMetadata() == 3) { // 3 == Potassium
+							if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogRegistees.NITRIC_ACID) {
+								//TODO set up explosion and grant advancement to players
+								entityItem.setDead();
+								return false;
+							}
+						}
+						return true;
+					}
+					@Override
 					public int getItemBurnTime(ItemStack stack) {
 						switch (stack.getMetadata()) {
 							case 0: return 18000; // Briquette
@@ -114,6 +166,28 @@ public class FrogRegistries {
 				}.setRegistryName("inflammable")
         );
     }
+
+	private static void regFluidWithoutBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
+    	for (Fluid fluid : fluids) {
+    		regFluid(registry, fluid, false, null);
+		}
+	}
+
+	private static void regFluidWithBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
+		for (Fluid fluid : fluids) {
+			regFluid(registry, fluid, true, null);
+		}
+	}
+
+	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, @Nullable Function<Fluid, Block> getBlock) {
+		if (!FluidRegistry.registerFluid(fluid))
+			fluid = FluidRegistry.getFluid(fluid.getName());
+		if (regBucket)
+			FluidRegistry.addBucketForFluid(fluid);
+		Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
+		registry.register(block);
+		fluid.setBlock(block);
+	}
 
     @Deprecated
     @SubscribeEvent

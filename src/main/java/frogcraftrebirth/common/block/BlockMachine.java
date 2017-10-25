@@ -8,7 +8,6 @@ import frogcraftrebirth.common.tile.TileAdvChemReactor;
 import frogcraftrebirth.common.tile.TileAirPump;
 import frogcraftrebirth.common.tile.TileLiquefier;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -20,7 +19,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockMachine extends BlockFrogWrenchable {
 	
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
 
@@ -64,15 +63,20 @@ public class BlockMachine extends BlockFrogWrenchable implements ITileEntityProv
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta & 0b11) {
-			case 0:
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		switch (state.getValue(TYPE)) {
+			case ADVCHEMREACTOR:
 				return new TileAdvChemReactor();
-			case 1:
+			case AIRPUMP:
 				return new TileAirPump();
-			case 2:
+			case PYROLYZER:
 				return new TilePyrolyzer();
-			case 3:
+			case LIQUEFIER:
 				return new TileLiquefier();
 			default:
 				return null;

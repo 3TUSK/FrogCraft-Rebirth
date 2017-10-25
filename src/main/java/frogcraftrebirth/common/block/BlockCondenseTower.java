@@ -8,7 +8,6 @@ import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCondenseTower;
 import frogcraftrebirth.common.tile.TileCondenseTowerStructure;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -23,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockCondenseTower extends BlockFrogWrenchable {
 
 	public static final PropertyEnum<Part> TYPE = PropertyEnum.create("variant", Part.class);
 
@@ -41,13 +40,18 @@ public class BlockCondenseTower extends BlockFrogWrenchable implements ITileEnti
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta & 0b11) {
-			case 0:
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		switch (state.getValue(TYPE)) {
+			case CORE:
 				return new TileCondenseTower();
-			case 1:
+			case CYLINDER:
 				return new TileCondenseTowerStructure();
-			case 2:
+			case OUTPUT:
 				return new TileFluidOutputHatch();
 			default:
 				return null;

@@ -4,7 +4,6 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -15,7 +14,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider {
+public class BlockHSU extends BlockFrogWrenchable {
 
 	public static final PropertyEnum<Level> LEVEL = PropertyEnum.create("variant", Level.class);
 
@@ -41,11 +40,16 @@ public class BlockHSU extends BlockFrogWrenchable implements ITileEntityProvider
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world, int meta) {
-		switch (meta % 2) {
-			case 0:
+	public boolean hasTileEntity(IBlockState state) {
+		return true;
+	}
+
+	@Override
+	public TileEntity createTileEntity(World world, IBlockState state) {
+		switch (state.getValue(LEVEL)) {
+			case NORMAL:
 				return new TileHSU();
-			case 1:
+			case ULTRA:
 				return new TileHSUUltra();
 			default:
 				return null;

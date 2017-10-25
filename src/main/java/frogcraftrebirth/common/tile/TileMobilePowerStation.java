@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
-import frogcraftrebirth.api.tile.IPersonal;
 import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.gui.ContainerMPS;
@@ -184,27 +183,6 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 	@Override
 	public int getSourceTier() {
 		return tier;
-	}
-
-	@Override
-	public UUID getOwnerUUID() {
-		return owner;
-	}
-
-	@Override
-	public IPersonal setOwner(UUID owner) {
-		this.owner = owner;
-		return this;
-	}
-
-	@Override
-	public boolean match(UUID beingChecked) {
-		return owner.equals(beingChecked);
-	}
-
-	@Override
-	public String getWaringInfo(EntityPlayer player) {
-		return "ACCESS DENIED";
 	}
 
 	@Override

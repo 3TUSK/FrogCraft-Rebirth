@@ -20,15 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 class RegHelper {
-	
-	static void registerModel(Item item) {
-		registerModel(item, 0);
-	}
-	
-	static void registerModel(Block block) {
-		registerModel(block, 0);
-	}
-	
+
 	static void registerModel(Item item, String newResLoc) {
 		registerModel(item, 0, newResLoc);
 	}
@@ -36,15 +28,7 @@ class RegHelper {
 	static void registerModel(Block block, String newResLoc) {
 		registerModel(block, 0, newResLoc);
 	}
-	
-	static void registerModel(Item item, int metadata) {
-		registerModel0(item, metadata, Item.REGISTRY.getNameForObject(item).toString());
-	}
-	
-	static void registerModel(Block block, int metadata) {
-		registerModel0(Item.getItemFromBlock(block), metadata, Block.REGISTRY.getNameForObject(block).toString());
-	}
-	
+
 	static void registerModel(Item item, int metadata, String newResLoc) {
 		registerModel0(item, metadata, "frogcraftrebirth:" + newResLoc);
 	}

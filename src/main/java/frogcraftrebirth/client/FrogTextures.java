@@ -30,15 +30,15 @@ public class FrogTextures {
 	public static void regModel(ModelRegistryEvent event) {
 		OBJLoader.INSTANCE.addDomain(FrogAPI.MODID);
 
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_60K);
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_180K);
-		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_360K);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_URANIUM);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_THORIUM);
-		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_PLOTONIUM);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON);
-		RegHelper.registerModel(FrogRegistees.ION_CANNON_FRAME);
-		RegHelper.registerModel(FrogRegistees.JINKELA);
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_60K, "ammonia_coolant_60k");
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_180K, "ammonia_coolant_180k");
+		RegHelper.registerModel(FrogRegistees.AMMONIA_COOLANT_360K, "ammonia_coolant_360k");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_URANIUM, "uranium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_THORIUM, "thorium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.DECAY_BATTERY_PLOTONIUM, "plutonium_decay_battery");
+		RegHelper.registerModel(FrogRegistees.ION_CANNON, "ion_cannon");
+		RegHelper.registerModel(FrogRegistees.ION_CANNON_FRAME, "ion_cannon_frame");
+		RegHelper.registerModel(FrogRegistees.JINKELA, "jinkela");
 		
 		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 0, "tiberium_red");
 		RegHelper.registerModel(FrogRegistees.TIBERIUM_ITEM, 1, "tiberium_blue");
@@ -95,9 +95,9 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.ORE, 0, "carnallite");
 		RegHelper.registerModel(FrogRegistees.ORE, 1, "dewalquite");
 		RegHelper.registerModel(FrogRegistees.ORE, 2, "fluorapatite");
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 0);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 1);
-		RegHelper.registerModel(FrogRegistees.TIBERIUM, 2);
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 0, "tiberium_red");
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 1, "tiberium_blue");
+		RegHelper.registerModel(FrogRegistees.TIBERIUM, 2, "tiberium_green");
 		
 		ModelLoader.setCustomStateMapper(FrogRegistees.MPS, new StateMap.Builder().ignore(BlockMPS.LEVEL).build());
 		RegHelper.registerModel(FrogRegistees.MPS, "mobile_power_station");

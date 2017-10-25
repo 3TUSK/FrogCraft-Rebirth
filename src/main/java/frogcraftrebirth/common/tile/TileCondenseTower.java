@@ -156,6 +156,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void onDestruction() {
+		outputs.stream().filter(ICondenseTowerPart::isFunctional).forEach(ICondenseTowerPart::behave);
 		outputs.forEach(output -> output.setMainBlock(null));
 		this.outputs.clear();
 		TileEntity
@@ -174,7 +175,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		TileEntity
 				struct1 = getWorld().getTileEntity(getPos().up(1)),
 				struct2 = getWorld().getTileEntity(getPos().up(2));
-		if (struct1 instanceof ICondenseTowerPart && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && !((ICondenseTowerPart)struct2).isFunctional()) {
+		if (struct1 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct2).isFunctional()) {
 			for (int i = 3;;i++) {
 				TileEntity tile = getWorld().getTileEntity(getPos().up(i));
 				if (tile instanceof ICondenseTowerOutputHatch) {

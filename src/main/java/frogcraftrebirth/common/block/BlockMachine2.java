@@ -21,8 +21,11 @@ public class BlockMachine2 extends BlockFrogWrenchable {
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
 
 	public BlockMachine2() {
-		super(Material.IRON, "machine_2", false, 0, 1, 2, 3);
-
+		super(Material.IRON, "machine_2", false, 0);
+		setUnlocalizedName("machines");
+		setDefaultState(getDefaultState().withProperty(WORKING, false));
+		setHardness(5.0F);
+		setResistance(10.0F);
 	}
 	@Override
 	protected IProperty<?>[] getPropertyArray() {

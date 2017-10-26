@@ -40,6 +40,7 @@ public class FrogRegistries {
 				new BlockCondenseTower(),
 				new BlockGenerator(),
                 new BlockMachine(),
+				new BlockMachine2(),
 				new BlockFrogOre(),
 				new BlockTiberium()
 		);
@@ -54,6 +55,7 @@ public class FrogRegistries {
         GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraft_thermal_cracker");
         GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraft_advanced_chemical_reactor");
         GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraft_liquefier");
+        GameRegistry.registerTileEntity(TileAdvBlastFurnace.class, "frogcraft_adv_blast_furnace");
 
 		FrogFluids.ammonia = new FrogFluid("ammonia", 694, 240, true, EnumRarity.EPIC);
 		FrogFluids.argon = new FrogFluid("argon", 1784, 300, true, EnumRarity.RARE);
@@ -104,7 +106,8 @@ public class FrogRegistries {
                 new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.TIBERIUM, aStack -> BlockTiberium.Color.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.TIBERIUM.getRegistryName()),
+                new ItemFrogBlock(FrogRegistees.MACHINE2, sStack -> BlockMachine2.Type.values()[sStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE2.getRegistryName()),
+				new ItemFrogBlock(FrogRegistees.TIBERIUM, aStack -> BlockTiberium.Color.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.TIBERIUM.getRegistryName()),
                 new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName()),
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),

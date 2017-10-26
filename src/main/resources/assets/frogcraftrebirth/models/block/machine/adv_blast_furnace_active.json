@@ -1,0 +1,12 @@
+{
+	"parent": "frogcraftrebirth:block/machine/adv_blast_furnace",
+	"textures": {
+		"particle": "frogcraftrebirth:blocks/machines/adv_blast_furnace_base",
+		"down": "ic2:blocks/machine/processing/advanced/blast_furnace_front",
+		"up": "frogcraftrebirth:blocks/machines/adv_blast_furnace_top_active",
+		"north": "frogcraftrebirth:blocks/machines/adv_blast_furnace_front",
+		"east": "frogcraftrebirth:blocks/machines/adv_blast_furnace_side_active",
+		"south": "frogcraftrebirth:blocks/machines/adv_blast_furnace_back",
+		"west": "frogcraftrebirth:blocks/machines/adv_blast_furnace_side"
+	}
+}

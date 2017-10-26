@@ -17,6 +17,8 @@ public final class FrogRegistees {
 	public static final Block GENERATOR = null;
 	@GameRegistry.ObjectHolder("machine")
 	public static final Block MACHINE = null;
+	@GameRegistry.ObjectHolder("machine_2")
+	public static final Block MACHINE2 = null;
 	@GameRegistry.ObjectHolder("ore")
 	public static final Block ORE = null;
 	/**

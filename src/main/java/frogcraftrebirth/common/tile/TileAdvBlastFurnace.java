@@ -2,7 +2,9 @@ package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
+import frogcraftrebirth.client.gui.GuiAdvBlastFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.gui.ContainerAdvBlastFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
@@ -140,11 +142,11 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 
 	@Override
 	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return null;
+		return new ContainerAdvBlastFurnace(player.inventory, this);
 	}
 
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return null;
+		return new GuiAdvBlastFurnace(player.inventory, this);
 	}
 }

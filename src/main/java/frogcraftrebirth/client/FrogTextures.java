@@ -15,6 +15,7 @@ import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.block.BlockCondenseTower;
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.block.BlockMachine;
+import frogcraftrebirth.common.block.BlockMachine2;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -112,7 +113,10 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogRegistees.MACHINE, 1, "machine/air_pump");
 		RegHelper.registerModel(FrogRegistees.MACHINE, 2, "machine/pyrolyzer");
 		RegHelper.registerModel(FrogRegistees.MACHINE, 3, "machine/liquefier");
-		
+
+		ModelLoader.setCustomStateMapper(FrogRegistees.MACHINE2, new StateMap.Builder().withName(BlockMachine2.TYPE).build());
+		RegHelper.registerModel(FrogRegistees.MACHINE2, 0, "machine/advanced_blast_furnace");
+
 		ModelLoader.setCustomStateMapper(FrogRegistees.GENERATOR, new StateMap.Builder().build());
 		RegHelper.registerModel(FrogRegistees.GENERATOR, "combustion_furnace");
 		

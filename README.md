@@ -17,6 +17,7 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Production line of Liquid Air
  * Massive EU storage unit with limited functionality
  * Combustion Furnace - regular generator plus functionality of collecting byproduct
+ * Advanced Blast Furnace
  * Mobile Power Station
  * New ores
  * Decay Battery (Creative Only for now)
@@ -29,6 +30,7 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Cells are removed. Use IC2 Universal Fluid Cell instead.
  * Crushed ore dust, purified ore dust, and dust of small pile!
  * Full sulfuric acid production line!
+ * Advanced Blast Furnace! Used for dealing with your titanium (IV) oxide and aluminium (III) oxide.
  * Railgun and Academy Windmill are removed. The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements.
    * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
  * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt.

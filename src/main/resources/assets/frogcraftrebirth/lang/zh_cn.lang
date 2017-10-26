@@ -298,6 +298,7 @@ tile.machines.advchemreactor.name=高级化学反应器
 tile.machines.airpump.name=工业气泵
 tile.machines.pyrolyzer.name=热解裂机
 tile.machines.liquefier.name=液化机
+tile.machines.adv_blast_furnace.name=进阶高炉
 
 tile.nitricAcid.name=硝酸
 

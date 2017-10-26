@@ -298,6 +298,7 @@ tile.machines.advchemreactor.name=Advanced Chemical Reactor
 tile.machines.airpump.name=Industrial Air Pump
 tile.machines.pyrolyzer.name=Pyrolyzer
 tile.machines.liquefier.name=Liquefier
+tile.machines.adv_blast_furnace.name=Advanced Blast Furnace
 
 tile.nitricAcid.name=Nitric Acid
 

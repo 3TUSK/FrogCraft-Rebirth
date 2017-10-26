@@ -91,6 +91,11 @@ public class RegFrogRecipes {
 			// 2Al2O3 + 3C -> 2Al+ 3CO2, electrolysis
 
 			// TiO2 + 2H2 -> Ti + 2H2O, awaiting feature/adv-blast-furnace merged
+
+			/* TODO: Implement at least one of following:
+			 * Ca5(PO4)3F + 5 H2SO4 + 10 H2O → 3 H3PO4 + 5 CaSO4·2 H2O + HF
+			 * 4 Ca5(PO4)3F + 21 SiO2 + 30 C → 20 CaSiO3 + 30 CO + SiF4 + 6 P2
+			 */
 		}
 	}
 	

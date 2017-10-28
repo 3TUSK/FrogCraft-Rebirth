@@ -30,6 +30,14 @@ public interface IFrogRecipeInput {
 	}
 
 	/**
+	 *
+	 * @return true if this ingredient is empty and thus never matches anything that is not empty.
+	 */
+	default boolean isEmpty() {
+		return false;
+	}
+
+	/**
 	 * @param actualInput The actual input ingredient.
 	 * @return true if the given actual input is matched; false for otherwise.
 	 */

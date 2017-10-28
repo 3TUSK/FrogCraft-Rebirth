@@ -7,6 +7,6 @@
 		"north": "frogcraftrebirth:blocks/machines/adv_blast_furnace_front",
 		"east": "frogcraftrebirth:blocks/machines/adv_blast_furnace_side_active",
 		"south": "frogcraftrebirth:blocks/machines/adv_blast_furnace_back",
-		"west": "frogcraftrebirth:blocks/machines/adv_blast_furnace_side"
+		"west": "frogcraftrebirth:blocks/machines/adv_blast_furnace_side_active"
 	}
 }

@@ -14,6 +14,11 @@ public class FrogRecipeInputEmpty implements IFrogRecipeInput {
 	FrogRecipeInputEmpty() {}
 
 	@Override
+	public boolean isEmpty() {
+		return true;
+	}
+
+	@Override
 	public boolean matches(IFrogRecipeInput input) {
 		return input == FrogRecipeInputs.EMPTY;
 	}

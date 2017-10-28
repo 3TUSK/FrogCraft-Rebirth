@@ -36,12 +36,21 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	public final FrogFluidTank shieldGas = new FrogFluidTank(1000, "shield_gas");
 	private int heat;
 	private int progress;
+	private int progressMax;
 	private boolean working = false;
 	private IAdvBlastFurnaceRecipe recipe;
 
 	@Override
 	public boolean isWorking() {
 		return working;
+	}
+
+	public double getProgressRatio() {
+		return progressMax == 0 ? 0D : (double)progress / progressMax;
+	}
+
+	public double getHeatFillingRatio() {
+		return (double)heat / 1000;
 	}
 
 	@Override
@@ -53,6 +62,7 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 		shieldGas.readFromNBT(tag);
 		this.heat = tag.getInteger("heat");
 		this.progress = tag.getInteger("progress");
+		this.progressMax = tag.getInteger("progressMax");
 		this.working = tag.getBoolean("working");
 		this.recipe = FrogAPI.managerABF.getRecipe(new IterableFrogRecipeInputsBackedByIItemHandler(input));
 	}
@@ -65,6 +75,7 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 		shieldGas.writeToNBT(tag);
 		tag.setInteger("heat", heat);
 		tag.setInteger("progress", progress);
+		tag.setInteger("progressMax", progressMax);
 		tag.setBoolean("working", working);
 		return super.writeToNBT(tag);
 	}
@@ -81,6 +92,10 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 					if (checkRecipe(recipe)) {
 						this.recipe = recipe;
 						this.working = true;
+						this.progressMax = recipe.getTime();
+						input.extractItem(0, recipe.getInput().getSize(), false);
+						input.extractItem(1, recipe.getInputSecondary().getSize(), false);
+						inputFluid.drain(recipe.getInputFluid(), true);
 					} else {
 						this.progress = 0;
 						this.working = false;
@@ -88,11 +103,12 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 					}
 				}
 				progress++;
-				if (progress >= recipe.getTime()) {
-					this.heat -= 500; // TODO Consume some heat?
+				if (progress >= progressMax) {
+					this.heat -= recipe.getHeatConsumption();
 					this.doSmelting();
 					this.working = false;
 					this.progress = 0;
+					this.progressMax = 0;
 					this.recipe = null;
 				}
 			} else {
@@ -105,7 +121,7 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	}
 
 	private boolean checkRecipe(@Nullable IAdvBlastFurnaceRecipe recipe) {
-		if (recipe != null && recipe.getInput().matches(input.getStackInSlot(0)) && recipe.getInputSecondary().matches(input.getStackInSlot(1))) {
+		if (recipe != null && recipe.getInput().matches(input.getStackInSlot(0)) && (recipe.getInputSecondary().isEmpty() || recipe.getInputSecondary().matches(input.getStackInSlot(1)))) {
 			if (shieldGas.getFluid() == null) {
 				return recipe.getShieldGas() == null;
 			} else {
@@ -117,14 +133,11 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	}
 
 	private void doSmelting() {
-		input.extractItem(0, recipe.getInput().getSize(), false);
-		input.extractItem(1, recipe.getInputSecondary().getSize(), false);
-		inputFluid.drain(recipe.getInputFluid(), true);
-		ItemStack remainder = output.insertItem(0, recipe.getOutput(), false);
+		ItemStack remainder = output.insertItem(0, recipe.getOutput().copy(), false);
 		if (!remainder.isEmpty()) {
 			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 		}
-		ItemStack remainderByproduct = output.insertItem(1, recipe.getByproduct(), false);
+		ItemStack remainderByproduct = output.insertItem(1, recipe.getByproduct().copy(), false);
 		if (!remainderByproduct.isEmpty()) {
 			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainderByproduct);
 		}
@@ -132,12 +145,22 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-
+		this.inputFluid.writePacketData(output);
+		this.shieldGas.writePacketData(output);
+		output.writeInt(heat);
+		output.writeInt(progress);
+		output.writeInt(progressMax);
+		output.writeBoolean(working);
 	}
 
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-
+		this.inputFluid.readPacketData(input);
+		this.shieldGas.readPacketData(input);
+		this.heat = input.readInt();
+		this.progress = input.readInt();
+		this.progressMax = input.readInt();
+		this.working = input.readBoolean();
 	}
 
 	@Override

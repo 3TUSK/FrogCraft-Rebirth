@@ -353,6 +353,7 @@ gui.fluid.null=这个储罐空空如也
 jei.category.condensation=冷凝塔  冷凝
 jei.category.pyrolyzation=高温裂解
 jei.category.chemreaction=化学反应器
+jei.category.blastfurnace=进阶高炉
 
 jei.euTotal=总耗电量：%d EU
 jei.euTick=每Tick耗电量：%d EU

@@ -3,6 +3,7 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.entity.EntityIonCannonBeam;
+import frogcraftrebirth.common.lib.AdvBlastFurnaceRecipeManager;
 import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
 import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
@@ -27,6 +28,7 @@ public class FrogProxy {
 	}
 
 	public void init(FMLInitializationEvent event) {
+		FrogAPI.managerABF = new AdvBlastFurnaceRecipeManager();
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();

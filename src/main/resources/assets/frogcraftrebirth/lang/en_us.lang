@@ -353,6 +353,7 @@ gui.fluid.null=No fluid in this tank
 jei.category.condensation=Condensation
 jei.category.pyrolyzation=Pyrolysis
 jei.category.chemreaction=Adv. Chemical Reactor
+jei.category.blastfurnace=Advanced Blast Furnace
 
 jei.euTotal=Total: %d EU
 jei.euTick=Power: %d EU/t

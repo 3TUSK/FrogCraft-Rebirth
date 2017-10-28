@@ -5,6 +5,7 @@ import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.common.FrogConfig;
 import frogcraftrebirth.common.FrogFluids;
+import frogcraftrebirth.common.lib.AdvBlastFurnaceRecipe;
 import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
@@ -114,6 +115,7 @@ public class RegFrogRecipes {
 			// 2Al2O3 + 3C -> 4Al+ 3CO2, electrolysis
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 0)), new FrogRecipeInputOreDict("dustCarbon", 3)), Arrays.asList(new ItemStack(FrogRegistees.METAL_DUST, 4, 0), ItemStack.EMPTY), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 1200, 512, 3, 0));
 			// TiO2 + 2H2 -> Ti + 2H2O, awaiting feature/adv-blast-furnace merged
+			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 1, 5)), FrogRecipeInputs.EMPTY, FluidRegistry.getFluidStack("ic2hydrogen", 2000), new ItemStack(FrogRegistees.METAL_INGOT, 1, 2), ItemStack.EMPTY, FrogFluids.argon, 300, 0));
 
 			/* TODO: Implement at least one of following:
 			 * Ca5(PO4)3F + 5 H2SO4 + 10 H2O → 3 H3PO4 + 5 CaSO4·2 H2O + HF

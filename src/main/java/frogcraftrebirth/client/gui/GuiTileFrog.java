@@ -62,7 +62,7 @@ public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFro
 	 * @param tankWidth The fluid tank full width in the GUI texture
 	 * @param tankHeight The fluid tank full height in the GUI texture
 	 */
-	public void renderFluidTank(final IFluidTank tank, final int x, final int y, final int tankWidth, final int tankHeight) {
+	void renderFluidTank(final IFluidTank tank, final int x, final int y, final int tankWidth, final int tankHeight) {
 		if (tank == null || tank.getFluid() == null)
 			return;
 		
@@ -79,7 +79,7 @@ public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFro
 	 * @param x The {@link GuiContainer#drawGuiContainerForegroundLayer mouseX}
 	 * @param y The {@link GuiContainer#drawGuiContainerForegroundLayer mouseY}
 	 */
-	public void renderFluidTankTooltip(final IFluidTank tank, final int x, final int y) {
+	void renderFluidTankTooltip(final IFluidTank tank, final int x, final int y) {
 		FluidStack stack = tank.getFluid();
 		if (stack != null) {
 			String name = stack.getLocalizedName();

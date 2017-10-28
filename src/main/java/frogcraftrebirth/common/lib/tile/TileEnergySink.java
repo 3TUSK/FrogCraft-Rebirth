@@ -11,7 +11,9 @@ import net.minecraft.util.EnumFacing;
 
 public abstract class TileEnergySink extends TileEnergy implements IEnergySink {
 	
-	public int charge, maxCharge, sinkTier;
+	public int charge;
+	public int maxCharge;
+	private final int sinkTier;
 	
 	protected TileEnergySink(int sinkTier, int maxEnergy) {
 		this.sinkTier = sinkTier;

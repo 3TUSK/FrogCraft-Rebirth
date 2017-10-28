@@ -154,7 +154,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	 * Only use it on client side for forcing update.
 	 */
 	@SideOnly(Side.CLIENT)
-	public void forceFillTank(FluidStack stack) {
+	private void forceFillTank(FluidStack stack) {
 		if (stack != null)
 			this.fluidInv = stack.copy();
 	}
@@ -163,7 +163,7 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 	 * Only use it on client side for forcing update.
 	 */
 	@SideOnly(Side.CLIENT)
-	public void forceDrainTank() {
+	private void forceDrainTank() {
 		this.fluidInv = null;
 	}
 

@@ -16,11 +16,14 @@ import net.minecraft.util.EnumFacing;
 
 public abstract class TileEnergyStorage extends TileEnergy implements IEnergySink, IEnergySource, IEnergyStorage {
 
-	public EnumFacing emitDir;
-	public int storedE, maxE, output, tier;
-	protected final boolean usableForTp;
+	private EnumFacing emitDir;
+	public int storedE;
+	private int maxE;
+	public int output;
+	private int tier;
+	private final boolean usableForTp;
 	
-	public TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
+	protected TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;

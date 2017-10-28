@@ -8,10 +8,12 @@ import net.minecraft.util.ITickable;
 
 public abstract class TileEnergyGenerator extends TileEnergy implements ITickable, IEnergySource {
 
-	public int charge, sourceTier, output;
+	public int charge;
+	private final int sourceTier;
+	private final int output;
 	protected boolean isInENet;
 	
-	public TileEnergyGenerator (int sourceTier, int output) {
+	protected TileEnergyGenerator(int sourceTier, int output) {
 		this.sourceTier = sourceTier;
 		this.output = output;
 	}

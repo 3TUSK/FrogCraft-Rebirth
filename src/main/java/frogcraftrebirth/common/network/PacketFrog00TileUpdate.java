@@ -6,7 +6,6 @@ import java.io.IOException;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -15,11 +14,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class PacketFrog00TileUpdate implements IFrogPacket {
 	
 	private TileFrog tile;
-	EntityPlayer player;
 	
-	PacketFrog00TileUpdate(EntityPlayer player) {
-		this.player = player;
-	}
+	PacketFrog00TileUpdate() {}
 	
 	public PacketFrog00TileUpdate(TileFrog tile) {
 		this.tile = tile;

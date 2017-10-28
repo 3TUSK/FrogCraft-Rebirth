@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.items.IItemHandler;
 
-public class SlotFuel extends SlotFrog {
+class SlotFuel extends SlotFrog {
 
 	public SlotFuel(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);

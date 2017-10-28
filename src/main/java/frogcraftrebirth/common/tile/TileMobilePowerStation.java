@@ -36,7 +36,7 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 	
 	public final ItemStackHandler inv = new ItemStackHandler(5);
 
-	public int energy;
+	private int energy;
 	
 	protected int energyMax = 60000;
 	protected int tier = 1;

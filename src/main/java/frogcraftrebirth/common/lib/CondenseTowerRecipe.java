@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidStack;
 public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	
 	private final FluidStack input;
-	private Set<FluidStack> output;
+	private final Set<FluidStack> output;
 	private final int time, energyPerTick;
 
 	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, FluidStack[] output) {

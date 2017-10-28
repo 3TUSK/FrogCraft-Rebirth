@@ -18,11 +18,11 @@ import net.minecraft.item.ItemStack;
 
 public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	
-	protected T tile;
+	private final T tile;
 	
 	private int tileInvCount;
 	
-	public ContainerTileFrog(InventoryPlayer playerInv, T tile) {
+	ContainerTileFrog(InventoryPlayer playerInv, T tile) {
 		this.tile = tile;
 	}
 	
@@ -83,7 +83,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		return itemstack;
 	}
 	
-	protected void registerPlayerInventory(InventoryPlayer playerInv) {
+	void registerPlayerInventory(InventoryPlayer playerInv) {
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -94,7 +94,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		}
 	}
 
-	protected void sendDataToClientSide(ContainerTileFrog<?> container, EntityPlayerMP player) {
+	private void sendDataToClientSide(ContainerTileFrog<?> container, EntityPlayerMP player) {
 		IFrogPacket pkt = new PacketFrog02GuiDataUpdate(container);
 		NetworkHandler.FROG_NETWORK.sendToPlayer(pkt, player);
 	}

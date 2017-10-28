@@ -44,6 +44,6 @@ public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe
 		return null;
 	}
 
-	private static ArrayList<IAdvChemRecRecipe> recipes = new ArrayList<>();
+	private final ArrayList<IAdvChemRecRecipe> recipes = new ArrayList<>();
 
 }

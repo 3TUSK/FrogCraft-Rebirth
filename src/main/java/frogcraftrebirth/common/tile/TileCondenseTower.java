@@ -46,9 +46,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean previousStructureCompleteness = false;
-	private Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
+	private final Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
-	public int process, processMax;
+	public int process;
+	private int processMax;
 	private boolean working;
 	private boolean requireRefresh;
 	
@@ -275,8 +276,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(tank) : super.getCapability(capability, facing);
 	}
 	
-	public boolean registerOutputHatch(@Nullable ICondenseTowerOutputHatch output) {
-		return output != null && outputs.add(output);
+	private void registerOutputHatch(@Nullable ICondenseTowerOutputHatch output) {
+		if (output != null) {
+			outputs.add(output);
+		}
 	}
 
 	@Override

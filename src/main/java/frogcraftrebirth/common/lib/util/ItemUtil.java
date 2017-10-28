@@ -11,7 +11,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.oredict.OreDictionary;
 
 public final class ItemUtil {
 	
@@ -51,22 +50,6 @@ public final class ItemUtil {
 		entityItem.motionY = RAND.nextGaussian() * 0.05D + 0.2D;
 		entityItem.motionZ = RAND.nextGaussian() * 0.05D;
 		worldIn.spawnEntity(entityItem);
-	}
-	
-	public static ItemStack get1stChoiceFromOre(String entry) {
-		try {
-			return OreDictionary.getOres(entry).get(0).copy();
-		} catch (Exception e) {
-			return ItemStack.EMPTY; //fall back
-		}
-	}
-	
-	public static ItemStack[] asItemStackArray(String[] oreArray) {
-		ItemStack[] array = new ItemStack[oreArray.length];
-		for (int i=0;i<oreArray.length;i++) {
-			array[i] = get1stChoiceFromOre(oreArray[i]);
-		}
-		return array;
 	}
 
 }

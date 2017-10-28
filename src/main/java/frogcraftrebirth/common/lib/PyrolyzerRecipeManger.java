@@ -67,6 +67,6 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 		return null;
 	}
 
-	private static ArrayList<IPyrolyzerRecipe> recipes = new ArrayList<>();
+	private final ArrayList<IPyrolyzerRecipe> recipes = new ArrayList<>();
 
 }

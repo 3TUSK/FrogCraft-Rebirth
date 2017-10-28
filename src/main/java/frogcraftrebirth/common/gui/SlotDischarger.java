@@ -13,7 +13,7 @@ import ic2.api.item.IElectricItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
-public class SlotDischarger extends SlotFrog {
+class SlotDischarger extends SlotFrog {
 
 	public SlotDischarger(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);

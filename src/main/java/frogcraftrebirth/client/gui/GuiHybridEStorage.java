@@ -10,7 +10,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 @SideOnly(Side.CLIENT)
 public class GuiHybridEStorage extends GuiTileFrog<TileHSU, ContainerHybridEStorage> {
 
-	final boolean isUHSU;
+	private final boolean isUHSU;
 
 	public GuiHybridEStorage(InventoryPlayer playerInv, TileHSU tile, boolean isUHSU) {
 		super(new ContainerHybridEStorage(playerInv, tile), tile, "GUI_HSU.png");

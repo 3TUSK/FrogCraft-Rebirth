@@ -28,7 +28,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class FrogRecipes {
+class FrogRecipes {
 	
 	public static void init() {
 		initOreDict();
@@ -109,7 +109,7 @@ public class FrogRecipes {
 			sulfuricCell_2.setCount(2);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell_2), ItemStack.EMPTY, 100, 10, 0,0));
 			// 2KCl + 2H2O -> 2KOH + H2(g) + Cl2(g), manufacturing potassium hydroxide
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 2000))), Collections.EMPTY_LIST, new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 600, 512, 0, 0));
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 2000))), Collections.emptyList(), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 600, 512, 0, 0));
 			// Saponification
 
 			// 2Al2O3 + 3C -> 4Al+ 3CO2, electrolysis
@@ -156,7 +156,7 @@ public class FrogRecipes {
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.INFLAMMABLE, 8, 4)), null, true, new ItemStack(FrogRegistees.INFLAMMABLE, 1, 0));
 	}
 	
-	static void initOreDict() {
+	private static void initOreDict() {
 		OreDictionary.registerOre("jinkela", FrogRegistees.JINKELA);
 
 		OreDictionary.registerOre("ingotPotassium", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 3));

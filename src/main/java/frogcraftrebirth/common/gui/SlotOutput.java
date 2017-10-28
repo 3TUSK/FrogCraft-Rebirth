@@ -11,7 +11,7 @@ package frogcraftrebirth.common.gui;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 
-public class SlotOutput extends SlotFrog {
+class SlotOutput extends SlotFrog {
 
 	public SlotOutput(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);

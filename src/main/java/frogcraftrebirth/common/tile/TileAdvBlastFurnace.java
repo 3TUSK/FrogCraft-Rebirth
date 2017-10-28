@@ -7,8 +7,6 @@ import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.gui.ContainerAdvBlastFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
-import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
 import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItemHandler;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -20,7 +18,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;

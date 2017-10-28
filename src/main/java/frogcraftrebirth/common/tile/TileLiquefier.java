@@ -44,7 +44,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
-	public boolean working;
+	private boolean working;
 	private boolean requireRefresh;
 
 	public TileLiquefier() {

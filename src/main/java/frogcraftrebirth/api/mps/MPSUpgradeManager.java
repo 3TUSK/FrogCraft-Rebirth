@@ -20,11 +20,11 @@ public enum MPSUpgradeManager {
 	
 	INSTANCE;
 	
-	private Set<ItemStack> validSolarUpgrades = new LinkedHashSet<>();
+	private final Set<ItemStack> validSolarUpgrades = new LinkedHashSet<>();
 	
-	private Map<ItemStack, Integer> validStorageUpgrades = new LinkedHashMap<>();
+	private final Map<ItemStack, Integer> validStorageUpgrades = new LinkedHashMap<>();
 	
-	private Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<>();
+	private final Map<ItemStack, Integer> validVoltageUpgrades = new LinkedHashMap<>();
 	
 	public boolean isSolarUpgradeValid(ItemStack stack) { 
 		if (stack.isEmpty())

@@ -41,7 +41,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(16000);
 	public int process, processMax;
-	public boolean working;
+	private boolean working;
 	private IPyrolyzerRecipe recipe;
 
 	public TilePyrolyzer() {

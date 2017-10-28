@@ -58,7 +58,7 @@ public enum NetworkHandler {
 			byte identity = data.readByte();
 			switch(identity) {
 				case 0: {
-					new PacketFrog00TileUpdate(player).readData(data);
+					new PacketFrog00TileUpdate().readData(data);
 					break;
 				}
 				case 2: {

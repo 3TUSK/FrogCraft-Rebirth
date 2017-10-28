@@ -11,11 +11,11 @@ import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenClay;
 
 /** Identical to WorldGenClay, but allow user to generate their own blocks. */
-public class WorldGenClayFake extends WorldGenClay {
+class WorldGenClayFake extends WorldGenClay {
 
-	final int numberOfBlocks;
+	private final int numberOfBlocks;
 
-	final IBlockState blockstate;
+	private final IBlockState blockstate;
 
 	public WorldGenClayFake(IBlockState blockstate, int numberOfBlocks) {
 		super(0);

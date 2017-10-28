@@ -15,9 +15,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockFrog extends Block {
 	
-	public static final PropertyBool WORKING = PropertyBool.create("working");
+	protected static final PropertyBool WORKING = PropertyBool.create("working");
 	
-	protected final int[] metaArrayForCreativeTab;
+	private final int[] metaArrayForCreativeTab;
 
 	/**
 	 * @param material The block {@link Material}

@@ -25,8 +25,6 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
-import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.lib.AdvBlastFurnaceRecipe;
 import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
@@ -54,7 +52,7 @@ class FrogRecipes {
 	
 	public static void init() {
 		initOreDict();
-		if (!FrogConfig.modpackMode) {
+		if (FrogConfig.modpackOptions.enableRecipes) {
 			// --- Begin of old FrogCraft recipes, Part 1 ---
 			// CaO + H2O -> Ca(OH)2
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.NON_METAL_DUST, 1,4)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(new ItemStack(FrogRegistees.NON_METAL_DUST, 1,6)), ItemStack.EMPTY, 20, 100, 0, 1));
@@ -131,11 +129,14 @@ class FrogRecipes {
 			sulfuricCell_2.setCount(2);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.oleum, 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell_2), ItemStack.EMPTY, 100, 10, 0,0));
 			// 2KCl + 2H2O -> 2KOH + H2(g) + Cl2(g), manufacturing potassium hydroxide
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 2000))), Collections.emptyList(), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 600, 512, 0, 0));
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 3)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 2000))), Collections.emptyList(), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 600, 512, 0, 0));
 			// Saponification
 
 			// 2Al2O3 + 3C -> 4Al+ 3CO2, electrolysis
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 0)), new FrogRecipeInputOreDict("dustCarbon", 3)), Arrays.asList(new ItemStack(FrogRegistees.METAL_DUST, 4, 0), ItemStack.EMPTY), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 1200, 512, 3, 0));
+			ItemStack co2Cell = FrogRecipeInputs.UNI_CELL.copy();
+			FluidUtil.getFluidHandler(co2Cell).fill(new FluidStack(FrogFluids.carbonDioxide, 1000), true);
+			co2Cell.setCount(3);
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 0)), new FrogRecipeInputOreDict("dustCarbon", 3)), Arrays.asList(new ItemStack(FrogRegistees.METAL_DUST, 4, 0), co2Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 1200, 512, 3, 0));
 			// TiO2 + 2H2 -> Ti + 2H2O, awaiting feature/adv-blast-furnace merged
 			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 1, 5)), FrogRecipeInputs.EMPTY, FluidRegistry.getFluidStack("ic2hydrogen", 2000), new ItemStack(FrogRegistees.METAL_INGOT, 1, 2), ItemStack.EMPTY, FrogFluids.argon, 300, 0));
 
@@ -181,8 +182,8 @@ class FrogRecipes {
 	private static void initOreDict() {
 		OreDictionary.registerOre("jinkela", FrogRegistees.JINKELA);
 
-		OreDictionary.registerOre("ingotPotassium", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 3));
-		OreDictionary.registerOre("ingotPhosphorus", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 2));
+		OreDictionary.registerOre("potassium", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 3));
+		OreDictionary.registerOre("phosphorus", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 2));
 		
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogRegistees.ORE, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogRegistees.ORE, 1, 1));

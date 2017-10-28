@@ -24,10 +24,7 @@ package frogcraftrebirth.common;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.lib.AdvBlastFurnaceRecipeManager;
-import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
-import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
-import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
+import frogcraftrebirth.common.lib.*;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
@@ -55,7 +52,7 @@ public class FrogProxy {
 		}
 	}
 	
-	public void imcInit(FMLInterModComms.IMCEvent event) {
+	public final void imcInit(FMLInterModComms.IMCEvent event) {
 		FrogIMCHandler.resolveIMCMessage(event.getMessages());
 	}
 

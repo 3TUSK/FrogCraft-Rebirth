@@ -39,9 +39,9 @@ public class AdvBlastFurnaceRecipe implements IAdvBlastFurnaceRecipe {
 	private final int time;
 	private final int heatConsumption;
 
-	public AdvBlastFurnaceRecipe(IFrogRecipeInput inputPrimary, IFrogRecipeInput inputSeconary, FluidStack inputFluid, ItemStack outputPrimary, ItemStack outputSecondary, Fluid shield, int time, int heatConsumption) {
+	public AdvBlastFurnaceRecipe(IFrogRecipeInput inputPrimary, IFrogRecipeInput inputSecondary, FluidStack inputFluid, ItemStack outputPrimary, ItemStack outputSecondary, Fluid shield, int time, int heatConsumption) {
 		this.primaryInput = inputPrimary;
-		this.secondaryInput = inputSeconary;
+		this.secondaryInput = inputSecondary;
 		this.fluidInput = inputFluid;
 		this.output = outputPrimary;
 		this.byproduct = outputSecondary;

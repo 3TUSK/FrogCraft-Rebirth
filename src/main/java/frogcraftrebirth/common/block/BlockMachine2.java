@@ -24,6 +24,7 @@ package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileAdvBlastFurnace;
 import net.minecraft.block.material.Material;
@@ -56,6 +57,16 @@ public class BlockMachine2 extends BlockFrogWrenchable {
 
 	@Override
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+		switch (state.getValue(TYPE)) {
+			case ADV_BLAST_FURNACE: {
+				ItemUtil.dropInventoryItems(worldIn, pos, ((TileAdvBlastFurnace)worldIn.getTileEntity(pos)).input);
+				ItemUtil.dropInventoryItems(worldIn, pos, ((TileAdvBlastFurnace)worldIn.getTileEntity(pos)).output);
+				break;
+			}
+			default: {
+				break;
+			}
+		}
 		super.breakBlock(worldIn, pos, state);
 	}
 

@@ -52,8 +52,8 @@ public class GuiAdvBlastFurnace extends GuiTileFrog<TileAdvBlastFurnace, Contain
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		int heatPercet = (int)(24 * tile.getHeatFillingRatio());
-		this.drawTexturedModalRect(this.guiLeft + 76, this.guiTop + 51, 176, 53, heatPercet, 6);
+		int heatPercent = (int)(24 * tile.getHeatFillingRatio());
+		this.drawTexturedModalRect(this.guiLeft + 76, this.guiTop + 51, 176, 53, heatPercent, 6);
 		if (tile.isWorking()) {
 			int progressPercent = (int)(24 * tile.getProgressRatio());
 			this.drawTexturedModalRect(this.guiLeft + 76, this.guiTop + 27, 176, 59, progressPercent, 18);

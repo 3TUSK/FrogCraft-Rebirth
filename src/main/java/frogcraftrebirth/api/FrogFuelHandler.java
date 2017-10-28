@@ -35,7 +35,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
 /**
- * This FuelHanlder implementation will handle vanilla fuel registration 
+ * This FuelHandler implementation will handle vanilla fuel registration
  * in a more generic way; it will also handle Combustion Furnace fuel and 
  * byproducts registration.
  * 

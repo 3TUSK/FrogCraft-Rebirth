@@ -25,7 +25,6 @@ package frogcraftrebirth.common.tile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.UUID;
 
 import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
@@ -33,9 +32,8 @@ import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.gui.ContainerMPS;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
+import frogcraftrebirth.common.lib.tile.TileEnergy;
 import frogcraftrebirth.common.lib.tile.TileFrog;
-import ic2.api.energy.event.EnergyTileLoadEvent;
-import ic2.api.energy.event.EnergyTileUnloadEvent;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
@@ -45,50 +43,28 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickable, IEnergySource, IMobilePowerStation {
+public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITickable, IEnergySource, IMobilePowerStation {
 
 	private static final int 
 	UPGRADE_SOLAR = 0, UPGRADE_VOLTAGE = 1, UPGRADE_STORAGE = 2, 
-	CHAGRE_IN = 3, CHARGE_OUT = 4; 
+	CHARGE_IN = 3, CHARGE_OUT = 4;
 	
 	public final ItemStackHandler inv = new ItemStackHandler(5);
 
 	private int energy;
 	
-	protected int energyMax = 60000;
-	protected int tier = 1;
-	
-	private UUID owner;
-	
-	private boolean isInENet = false;
-	
-	@Override
-	public void invalidate() {
-		if (!getWorld().isRemote && isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
-			isInENet = false;
-		}
-		super.invalidate();
-	}
-	
-	@Override
-	public void validate() {
-		super.validate();
-	}
+	private int energyMax = 60000;
+	private int tier = 1;
 	
 	@Override
 	public void update() {
 		if (getWorld().isRemote)
-			return;	
-		if (!isInENet) {
-			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
-			isInENet = true;
-		}
+			return;
+
 		//Check storage upgrade, if pass, increase energy capacity
 		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
 			energyMax = 60000;
@@ -109,8 +85,8 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		if (energy > energyMax && getWorld().rand.nextInt(10) == 1)
 			energy = energyMax;
 		//Extract energy from charge-in slot
-		if (!inv.getStackInSlot(CHAGRE_IN).isEmpty() && inv.getStackInSlot(CHAGRE_IN).getItem() instanceof IElectricItem) {
-			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHAGRE_IN), 32, getSourceTier(), true, true, false);
+		if (!inv.getStackInSlot(CHARGE_IN).isEmpty() && inv.getStackInSlot(CHARGE_IN).getItem() instanceof IElectricItem) {
+			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_IN), 32, getSourceTier(), true, true, false);
 		}
 		//Offer energy to item that is in charge-out slot
 		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty() && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
@@ -137,7 +113,6 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		output.writeInt(energy);
 		output.writeInt(energyMax);
 		output.writeInt(tier);
-		output.writeUTF(owner != null ? owner.toString() : "NULL");
 	}
 
 
@@ -147,11 +122,6 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		energy = input.readInt();
 		energyMax = input.readInt();
 		tier = input.readInt();
-		try {
-			owner = UUID.fromString(input.readUTF());
-		} catch (IllegalArgumentException e) {
-			owner = null;
-		}
 	}
 	
 	
@@ -169,11 +139,6 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		energyMax = tag.getInteger("maxCharge");
 		tier = tag.getInteger("tier");
 		inv.deserializeNBT(tag.getCompoundTag("inv"));
-		try {
-			owner = UUID.fromString(tag.getString("owner"));
-		} catch (IllegalArgumentException e) {
-			owner = null;
-		}
 	}
 	
 	@Override
@@ -182,7 +147,6 @@ public class TileMobilePowerStation extends TileFrog implements IHasGui, ITickab
 		tag.setInteger("maxCharge", energyMax);
 		tag.setInteger("tier", tier);
 		tag.setTag("inv", inv.serializeNBT());
-		tag.setString("owner", owner != null ? owner.toString() : "NULL");
 	}
 
 	@Override

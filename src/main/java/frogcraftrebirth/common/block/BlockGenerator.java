@@ -59,7 +59,7 @@ public class BlockGenerator extends BlockFrogWrenchable {
 		TileFrog tile = (TileFrog)worldIn.getTileEntity(pos);
 		if (tile != null) {
 			if (tile instanceof TileCombustionFurnace) {
-				ItemUtil.dropInventroyItems(worldIn, pos, ((TileCombustionFurnace)tile).input, ((TileCombustionFurnace)tile).output, ((TileCombustionFurnace)tile).fluidIO);
+				ItemUtil.dropInventoryItems(worldIn, pos, ((TileCombustionFurnace)tile).input, ((TileCombustionFurnace)tile).output, ((TileCombustionFurnace)tile).fluidIO);
 			}
 		}
 		

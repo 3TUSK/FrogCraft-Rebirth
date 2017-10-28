@@ -48,7 +48,7 @@ public final class ItemUtil {
 	 * @param pos The position of block
 	 * @param inv An array of IItemHandler implementation. Note: all IItemHandler here are assumed to start index from zero.
 	 */
-	public static void dropInventroyItems(World worldIn, BlockPos pos, IItemHandler... inv) {
+	public static void dropInventoryItems(World worldIn, BlockPos pos, IItemHandler... inv) {
 		for (IItemHandler invSingle : inv) {
 			final int slots = invSingle.getSlots();
 			for (int index = 0; index < slots; index++) {

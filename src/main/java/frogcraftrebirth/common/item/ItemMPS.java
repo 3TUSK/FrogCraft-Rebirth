@@ -95,7 +95,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 			newTag.setInteger("tier", 1);
 			stack.setTagCompound(newTag);
 			return stack;
-		} else 
+		} else
 			return stack; // Prevent attaching unnecessary data to other item
 	}
 

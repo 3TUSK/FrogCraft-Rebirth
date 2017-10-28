@@ -61,7 +61,7 @@ final class FrogIMCHandler {
 						FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time, energyPerTick));
 						break;
 					}
-					case ("recipe.advchemreactor"): {
+					case ("recipe.adv_chem_reactor"): {
 						NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
 						ArrayList<IFrogRecipeInput> inputsArray = new ArrayList<>();
 						ArrayList<ItemStack> outputsArray = new ArrayList<>();
@@ -80,7 +80,7 @@ final class FrogIMCHandler {
 						FrogAPI.managerACR.add(new AdvChemRecRecipe(inputsArray, outputsArray, catalyst, time, energyPerTick, cellReq, cellProduce));
 						break;
 					}
-					case ("recipe.condensetower"): {
+					case ("recipe.condense_tower"): {
 						FluidStack input = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("input"));
 						NBTTagCompound outputs = theTag.getCompoundTag("outputs");
 						FluidStack[] outputArray = new FluidStack[5]; //TODO: Remove the hardcoded 5 outputs limit
@@ -92,7 +92,7 @@ final class FrogIMCHandler {
 						FrogAPI.managerCT.add(new CondenseTowerRecipe(time, energyPerTick, input, outputArray));
 						break;
 					}
-					case ("reecipe.combustionfurnace"): {
+					case ("recipe.combustion_furnace"): {
 						ItemStack input = new ItemStack(theTag.getCompoundTag("input"));
 						ItemStack output = new ItemStack(theTag.getCompoundTag("output"));
 						FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));

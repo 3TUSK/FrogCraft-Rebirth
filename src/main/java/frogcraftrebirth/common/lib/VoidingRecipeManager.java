@@ -20,14 +20,50 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.api.air;
+package frogcraftrebirth.common.lib;
 
-import net.minecraft.util.EnumFacing;
+import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
+import frogcraftrebirth.api.recipes.IRecipeManager;
 
-public interface IAirPump {
+import javax.annotation.Nullable;
+import java.util.Collection;
+import java.util.Collections;
 
-	int airAmount();
+public class VoidingRecipeManager<R> implements IRecipeManager<R> {
 
-	int extractAir(EnumFacing from, int amount, boolean simulated);
+	public static <R> IRecipeManager<R> create(String name) {
+		return new VoidingRecipeManager<>(name);
+	}
 
+	private final String name;
+
+	private VoidingRecipeManager(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void add(R recipe) {}
+
+	@Override
+	public void remove(R recipe) {}
+
+	@Override
+	public Collection<R> getRecipes() {
+		return Collections.emptyList();
+	}
+
+	@Nullable
+	@Override
+	public R getRecipe(IFrogRecipeInput... input) {
+		FrogAPI.FROG_LOG.warn("The corresponding RecipeManager for '{}' is disabled in this modpack!", name);
+		return null;
+	}
+
+	@Nullable
+	@Override
+	public R getRecipe(Iterable<IFrogRecipeInput> input) {
+		FrogAPI.FROG_LOG.warn("The corresponding RecipeManager for '{}' is disabled in this modpack!", name);
+		return null;
+	}
 }

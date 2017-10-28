@@ -57,10 +57,10 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	}
 
 	@Override
-	public void processChamber(ItemStack yourStack, IReactor reactor, int x, int y, boolean heatrun) {}
+	public void processChamber(ItemStack yourStack, IReactor reactor, int x, int y, boolean heatRun) {}
 
 	@Override
-	public boolean acceptUraniumPulse(ItemStack yourStack, IReactor reactor, ItemStack pulsingStack, int youX, int youY, int pulseX, int pulseY, boolean heatrun) {
+	public boolean acceptUraniumPulse(ItemStack yourStack, IReactor reactor, ItemStack pulsingStack, int youX, int youY, int pulseX, int pulseY, boolean heatRun) {
 		return false;
 	}
 

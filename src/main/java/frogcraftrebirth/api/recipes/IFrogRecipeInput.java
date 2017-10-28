@@ -39,8 +39,8 @@ public interface IFrogRecipeInput {
 	 * @implSpec
 	 * Contracts of {@link Object#equals} also applies here, with only difference
 	 * that a.matches(b) == true does not guarantee a.equals(b) == true. That said,
-	 * this method only checks equivalency based on exchangeability, e.g.
-	 * an instance of FluidStack may matches an instance of ItemStack that happens
+	 * this method only checks equivalency based on whether they are exchangeable or not,
+	 * e.g. an instance of FluidStack may matches an instance of ItemStack that happens
 	 * to be a fluid container with the exact same fluid stack in it.
 	 *
 	 * @return true if the given actual input is matched; false for otherwise.

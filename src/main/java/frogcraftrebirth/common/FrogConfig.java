@@ -29,11 +29,9 @@ import net.minecraftforge.common.config.Config;
 @Config.LangKey("config.fcrebirth.general")
 public class FrogConfig {
 
-	@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
-	@Config.LangKey("config.fcrebirth.modpack")
-	@Config.Name("ModpackMode")
-	@Config.RequiresMcRestart
-	public static boolean modpackMode = false;
+	@Config.Comment("All options related to modpack creation.")
+	@Config.Name("ModpackOptions")
+	public static ModpackOptions modpackOptions = new ModpackOptions();
 
 	@Config.Comment("EU consumption rate of Air Pump, in EU/t.")
 	@Config.LangKey("config.fcrebirth.machine.airpump_power_rate")
@@ -58,5 +56,51 @@ public class FrogConfig {
 	@Config.Name("EnableWorldGeneration")
 	@Config.RequiresMcRestart
 	public static boolean enableWorldGen = true;
+
+	@Config.LangKey("config.fcrebirth.modpack")
+	public static class ModpackOptions {
+
+		@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
+		@Config.LangKey("config.fcrebirth.modpack.master_recipe_switch")
+		@Config.Name("EnableAllRecipes")
+		@Config.RequiresMcRestart
+		public boolean enableRecipes = true;
+
+		@Config.Name("EnableCondenseTower")
+		@Config.RequiresMcRestart
+		public boolean enableCondenseTower = true;
+
+		@Config.Name("EnableAirPump")
+		@Config.RequiresMcRestart
+		public boolean enableAirPump = true;
+
+		@Config.Name("EnableMobilePowerStation")
+		@Config.RequiresMcRestart
+		public boolean enableMobilePowerStation = true;
+
+		@Config.Name("EnableLiquefier")
+		@Config.RequiresMcRestart
+		public boolean enableLiquefier = true;
+
+		@Config.Name("EnablePyrolyzer")
+		@Config.RequiresMcRestart
+		public boolean enablePyrolyzer = true;
+
+		@Config.Name("EnableOres")
+		@Config.RequiresMcRestart
+		public boolean enableOres = true;
+
+		@Config.Name("EnableAmmoniaCoolant")
+		@Config.RequiresMcRestart
+		public boolean enableAmmoniaCoolant = true;
+
+		@Config.Name("EnableDecayBattery")
+		@Config.RequiresMcRestart
+		public boolean enableDecayBattery = true;
+
+		@Config.Name("EnableJinkela")
+		@Config.RequiresMcRestart
+		public boolean enableJinkela = true;
+	}
 
 }

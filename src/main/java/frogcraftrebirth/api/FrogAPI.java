@@ -54,7 +54,7 @@ public final class FrogAPI {
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(FrogRegistees.HSU);
+			return new ItemStack(FrogRegistees.MACHINE);
 		}
 	};
 

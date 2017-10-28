@@ -37,9 +37,4 @@ public class FrogConfig {
 	@Config.RequiresMcRestart
 	public static boolean enableWorldGen = true;
 
-	@Config.Comment("Damage caused by Portable Ion Cannon per launch.")
-	@Config.LangKey("config.fcrebirth.misc.ion_cannon")
-	@Config.Name("IonCannonDamage")
-	@Config.RangeInt(min = 1)
-	public static double ionCannonDamage = 10;
 }

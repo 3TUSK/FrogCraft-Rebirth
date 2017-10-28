@@ -8,7 +8,6 @@ import java.util.Map.Entry;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
@@ -30,8 +29,7 @@ public final class FrogFuelHandler {
 	 */
 	public static final int BUCKET_VOLUME = 1000;
 
-	FrogFuelHandler() {
-	}
+	FrogFuelHandler() {}
 
 	/**
 	 * @deprecated Use TileEntityFurnace#getItemBurnTime
@@ -73,16 +71,6 @@ public final class FrogFuelHandler {
 	@Nonnull
 	public ItemStack getItemByproduct(@Nonnull String ore) {
 		return ore2ByproductMap.getOrDefault(ore, ItemStack.EMPTY);
-	}
-
-	@Deprecated
-	public void regFuel(@Nonnull Item fuel, int timeInTicks) {
-		regFuel(new ItemStack(fuel, 1), timeInTicks);
-	}
-
-	@Deprecated
-	public void regFuel(@Nonnull ItemStack fuel, int timeInTicks) {
-		//no-op
 	}
 
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {

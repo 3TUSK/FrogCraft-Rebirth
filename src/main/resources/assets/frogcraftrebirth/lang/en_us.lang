@@ -1,21 +1,13 @@
-﻿#Master Language File
+﻿# Master Language File, 2017.10.24
+#
+# To translators:
+# - For briquette, see the following links:
+#   https://en.wikipedia.org/wiki/Briquette
+#   https://en.wikipedia.org/wiki/Yeontan
+# - For "Jinkela", please read:
+#   https://en.wikipedia.org/wiki/Jinkela
+#   If you are not sure about the translation, please keep as it is, or use equivalent transcription
 
-#Potion
-effect.tiberium=Tiberium
-
-#Death Message
-death.attack.tiberium=%1$s is now a tiberium crystal
-
-#Chat Message
-chat.tiberiumCorrosion=One of your item stack has been contaminated by tiberium!
-
-#Items
-item.ItemMiniIonCannon.name=Portable Ion Cannon
-item.ItemMiniIonCannon.info=Powered by Global Defense Initiative
-item.ItemMiniIonCannon.coolingDown=Sorry commander, ion cannon is still cooling down, please stand by.
-item.ItemMiniIonCannon.warning=Caution: Ion Cannon has launched, starting mandatory cooling down.
-item.ItemMiniIonCannon.discharged=Ion Cannon is currently discharged, all further operation will be aborted before it is charged again.
-item.ionCannonFrame=Ion Cannon Frame
 tile.mobilePowerStation.normal.name=Mobile Power Supply
 tile.mobilePowerStation.info=§oThe best camping gear
 item.CoolantAmmonia60K=60K Ammonia Coolant Cell
@@ -30,7 +22,6 @@ item.DecayBattery.info.1=Provide you with infinite electricity at a high cost!
 item.Item_NitricAcidBucket.name=Nitric Acid Bucket
 item.Item_NitricAcidBucket.info=Warning: Super Corrosive!
 
-#Neo-meta-items
 item.metal_ingot.aluminium=Aluminium Ingot
 item.metal_ingot.aluminium.info=Al
 item.metal_ingot.magnalium=Magnalium Ingot
@@ -184,9 +175,6 @@ fluid.sulfur_dioxide.info=SO₂
 fluid.sulfur_trioxide=Sulfur Trioxide
 fluid.sulfur_trioxide.info=SO₃
 
-#Miscs
-#For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
-#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.GoldClod=Goldclod
 item.Item_Miscs.GoldClod.info=Magical fertilizer additive
 
@@ -199,89 +187,10 @@ item.reactionModule.Ammonia.info=Necessary for ammonia manufacturing
 item.reactionModule.V2O5=Vanadium Pentoxide Catalyst
 item.reactionModule.V2O5.info=Necessary for SO₃ manufacturing
 
-#Dusts
-item.Item_Dusts.CaO=Calcium Oxide Dust
-item.Item_Dusts.CaO.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Urea=Urea Dust
-item.Item_Dusts.Urea.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.NH4NO3=Ammonia Nitrate Dust
-item.Item_Dusts.NH4NO3.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.CaSiO3=Calcium Silicate Dust
-item.Item_Dusts.CaSiO3.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.CaOH2=Calcium Hydroxide Dust
-item.Item_Dusts.CaOH2.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Magnalium=Magnalium Dust
-item.Item_Dusts.Magnalium.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Carnallite=Carnallite Dust
-item.Item_Dusts.Carnallite.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.KCl=Potassium Chloride Dust
-item.Item_Dusts.KCl.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.MgBr2=Magnesium Bromied Dust
-item.Item_Dusts.MgBr2.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Fluorapatite=Fluorapatite Dust
-item.Item_Dusts.Fluorapatite.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.CaF2=Calcium Fluoride Dust
-item.Item_Dusts.CaF2.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.V2O5=Vanadium Pentoxide Dust
-item.Item_Dusts.V2O5.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Dewalquite=Dewalquite Dust
-item.Item_Dusts.Dewalquite.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.TiO2=Titanium Dioxide Dust
-item.Item_Dusts.TiO2.info=Deprecated - Craft to Convert to New Version
-item.Item_Dusts.Al2O3=Aluminum Oxide Dust
-item.Item_Dusts.Al2O3.info=Deprecated - Craft to Convert to New Version
-
-item.crushedOre.Carnallite=Crushed Carnallite Ore
-item.crushedOre.Dewalquite=Crushed Dewalquite Ore
-item.crushedOre.Fluorapatite=Crushed Fluorapatite Ore
-
-item.purifiedOre.Carnallite=Purified Carnallite Ore
-item.purifiedOre.Dewalquite=Purified Dewalquite Ore
-item.purifiedOre.Fluorapatite=Purified Fluorapatite Ore
-
-item.smallDust.Carnallite=Tiny Pile of Carnallite Dust
-item.smallDust.Dewalquite=Tiny Pile of Dewalquite Dust
-item.smallDust.Fluorapatite=Tiny Pile of Fluorapatite Dust
-
-item.crushedOre.Carnallite.info=Deprecated - Craft to Convert to New Version
-item.crushedOre.Dewalquite.info=Deprecated - Craft to Convert to New Version
-item.crushedOre.Fluorapatite.info=Deprecated - Craft to Convert to New Version
-
-item.purifiedOre.Carnallite.info=Deprecated - Craft to Convert to New Version
-item.purifiedOre.Dewalquite.info=Deprecated - Craft to Convert to New Version
-item.purifiedOre.Fluorapatite.info=Deprecated - Craft to Convert to New Version
-
-item.smallDust.Carnallite.info=Deprecated - Craft to Convert to New Version
-item.smallDust.Dewalquite.info=Deprecated - Craft to Convert to New Version
-item.smallDust.Fluorapatite.info=Deprecated - Craft to Convert to New Version
-
-#Ingots
-#To translators: for briquette, see the following links:
-#https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
-item.Item_Ingots.K=Potassium
-item.Item_Ingots.K.info=K
-item.Item_Ingots.P=Phosphor
-item.Item_Ingots.P.info=P
-item.Item_Ingots.fat_cluster=Lipid Cluster
-item.Item_Ingots.fat_cluster.info=CH₃CH₂...CH₂COOH, may contain C-C double bonds
-item.Item_Ingots.CoalCokeShattered=Coking coal fragments
-item.Item_Ingots.CoalCokeShattered.info=Efficient fuel~
-item.Item_Ingots.Briquette=Briquette
-item.Item_Ingots.Briquette.info=Chinese style
-
-item.tiberium.red=Tiberium (Red)
-item.tiberium.blue=Tiberium (Blue)
-item.tiberium.green=Tiberium (Green)
-item.tiberium.info=Be aware during operation, and also separate storage
-
 #Blocks
 tile.mineral.carnallite.name=Carnallite Ore
 tile.mineral.dewalquite.name=Dewalquite Ore
 tile.mineral.fluorapatite.name=Fluorapatite Ore
-
-tile.tiberium_crystal.red.name=Tiberium (Red)
-tile.tiberium_crystal.blue.name=Tiberium (Blue)
-tile.tiberium_crystal.green.name=Tiberium (Green)
 
 tile.condenseTower.core.name=Condense Tower
 tile.condenseTower.output.name=Liquid Outlet
@@ -305,8 +214,6 @@ tile.nitricAcid.name=Nitric Acid
 #Advancements
 advancement.fcrebirth.root.name=Origin of Chemical Industry
 advancement.fcrebirth.root.desc=BEHOLD, THE ADVANCED CHEMICAL REACTOR
-advancement.fcrebirth.ion_cannon.name=Only my railgun!
-advancement.fcrebirth.ion_cannon.desc=You think I am railgun? No! It's me, ion cannon!
 advancement.fcrebirth.evt.name=EV Transformer
 advancement.fcrebirth.evt.desc=Step down to 2048 EU/packet
 advancement.fcrebirth.potassium.name=Blown away by potassium
@@ -383,8 +290,6 @@ config.fcrebirth.machine.airpump_power_rate=Air Pump Power
 config.fcrebirth.machine.airpump_power_rate.tooltip=Liquid air generation speed of Air Pump, in mB/t.
 config.fcrebirth.machine.combustion_furnace=Combustion Furnace Output Power
 config.fcrebirth.machine.combustion_furnace.tooltip=Energy generation rate of Combustion Furnace, in EU/t.
-config.fcrebirth.misc.ion_cannon=Ion Cannon Damage
-config.fcrebirth.misc.ion_cannon.tooltip=Damage caused by Portable Ion Cannon per launch.
 
 #Misc
 itemGroup.FrogCraft=FrogCraft: Rebirth

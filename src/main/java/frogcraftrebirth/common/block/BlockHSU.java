@@ -4,6 +4,7 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileHSU;
 import frogcraftrebirth.common.tile.TileHSUUltra;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +20,7 @@ public class BlockHSU extends BlockFrogWrenchable {
 	public static final PropertyEnum<Level> LEVEL = PropertyEnum.create("variant", Level.class);
 
 	public BlockHSU() {
-		super(MACHINE, "hybrid_storage_unit", true, 0, 1);
+		super(Material.IRON, "hybrid_storage_unit", true, 0, 1);
 		setUnlocalizedName("hybridStorageUnit");
 	}
 

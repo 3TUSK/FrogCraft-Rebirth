@@ -9,6 +9,7 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -29,7 +30,7 @@ public class BlockMPS extends BlockFrogWrenchable {
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
-		super(MACHINE, "mobile_power_station", false);
+		super(Material.IRON, "mobile_power_station", false);
 		setUnlocalizedName("mobilePowerStation");
 		setDefaultState(this.getBlockState().getBaseState().withProperty(LEVEL, 0));
 		setHardness(1.0F);

@@ -161,13 +161,6 @@ public class RegFrogRecipes {
 
 		OreDictionary.registerOre("ingotPotassium", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 3));
 		OreDictionary.registerOre("ingotPhosphorus", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 2));
-
-		OreDictionary.registerOre("crystalTiberiumRed", new ItemStack(FrogRegistees.TIBERIUM, 1, 0));
-		OreDictionary.registerOre("crystalTiberiumBlue", new ItemStack(FrogRegistees.TIBERIUM, 1, 1));
-		OreDictionary.registerOre("crystalTiberiumGreen", new ItemStack(FrogRegistees.TIBERIUM, 1, 2));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 0));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 1));
-		OreDictionary.registerOre("crystalTiberium", new ItemStack(FrogRegistees.TIBERIUM, 1, 2));
 		
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogRegistees.ORE, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogRegistees.ORE, 1, 1));

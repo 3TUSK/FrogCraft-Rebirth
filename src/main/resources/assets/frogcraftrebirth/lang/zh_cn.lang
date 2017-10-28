@@ -1,21 +1,13 @@
-#Master Language File, 2016.8.18
+# Master Language File, 2017.10.24
+#
+# To translators:
+# - For briquette, see the following links:
+#   https://en.wikipedia.org/wiki/Briquette
+#   https://en.wikipedia.org/wiki/Yeontan
+# - For "Jinkela", please read:
+#   https://en.wikipedia.org/wiki/Jinkela
+#   If you are not sure about the translation, please keep as it is, or use equivalent transcription
 
-#Potion
-effect.tiberium=泰伯利亚
-
-#Death Message
-death.attack.tiberium=%1$s 被泰伯利亚同化了
-
-#Chat Message
-chat.tiberiumCorrosion=你的某个物品已被泰伯利亚污染！
-
-#Items
-item.ItemMiniIonCannon.name=便携式离子炮
-item.ItemMiniIonCannon.info=全球防御组织监制
-item.ItemMiniIonCannon.coolingDown=指挥官，很抱歉通知您，离子炮仍在冷却中，请等待冷却结束。
-item.ItemMiniIonCannon.warning=警告：离子炮已发射，现进入强制冷却模式。
-item.ItemMiniIonCannon.discharged=离子炮目前没有足够能量储存维持其运转，在能源供应恢复前，一切指令都将会被取消。
-item.ionCannonFrame=离子炮框架
 tile.mobilePowerStation.normal.name=移动电源
 tile.mobilePowerStation.info=§o外出野营的最佳伴侣
 item.CoolantAmmonia60K=60K氨冷却单元
@@ -30,7 +22,6 @@ item.DecayBattery.info.1=超高造价,无限电力！
 item.Item_NitricAcidBucket.name=硝酸桶
 item.Item_NitricAcidBucket.info=注意：超级腐蚀性液体！
 
-#Neo-meta-items
 item.metal_ingot.aluminium=铝锭
 item.metal_ingot.aluminium.info=Al
 item.metal_ingot.magnalium=铝镁合金锭
@@ -184,9 +175,6 @@ fluid.sulfur_dioxide.info=SO₂
 fluid.sulfur_trioxide=三氧化硫
 fluid.sulfur_trioxide.info=SO₃
 
-#Miscs
-#For translation of Jinkela, please read: https://en.wikipedia.org/wiki/Jinkela
-#If you are not sure about the translation, please keep as Jinkela or use equivalent transcription
 item.Item_Miscs.GoldClod=金坷垃
 item.Item_Miscs.GoldClod.info=妈妈的 金坷垃是窝的！
 
@@ -199,89 +187,10 @@ item.reactionModule.Ammonia.info=合成氨的专用催化剂
 item.reactionModule.V2O5=五氧化二钒催化剂
 item.reactionModule.V2O5.info=合成三氧化硫的专用催化剂
 
-#Dusts
-item.Item_Dusts.CaO=氧化钙粉
-item.Item_Dusts.CaO.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Urea=尿素粉
-item.Item_Dusts.Urea.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.NH4NO3=硝酸铵粉
-item.Item_Dusts.NH4NO3.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.CaSiO3=硅酸钙粉
-item.Item_Dusts.CaSiO3.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.CaOH2=氢氧化钙粉
-item.Item_Dusts.CaOH2.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Magnalium=铝镁合金粉
-item.Item_Dusts.Magnalium.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Carnallite=光卤石粉
-item.Item_Dusts.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.KCl=氯化钾
-item.Item_Dusts.KCl.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.MgBr2=溴化镁
-item.Item_Dusts.MgBr2.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Fluorapatite=氟磷灰石粉
-item.Item_Dusts.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.CaF2=氟化钙
-item.Item_Dusts.CaF2.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Dewalquite=铝钒土粉
-item.Item_Dusts.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.TiO2=二氧化钛粉
-item.Item_Dusts.TiO2.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.Al2O3=三氧化二铝粉
-item.Item_Dusts.Al2O3.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Dusts.V2O5=五氧化二钒
-item.Item_Dusts.V2O5.info=已废弃 - 放入工作台中合成以转换为正常物品
-
-item.crushedOre.Carnallite=粉碎光卤石
-item.crushedOre.Dewalquite=粉碎铝钒土矿
-item.crushedOre.Fluorapatite=粉碎氟磷灰石
-
-item.purifiedOre.Carnallite=洗净的粉碎光卤石
-item.purifiedOre.Dewalquite=洗净的粉碎铝钒土矿
-item.purifiedOre.Fluorapatite=洗净的粉碎氟磷灰石
-
-item.smallDust.Carnallite=小堆光卤石粉
-item.smallDust.Dewalquite=小堆铝钒土矿粉
-item.smallDust.Fluorapatite=小堆氟磷灰石粉
-
-item.crushedOre.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.crushedOre.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.crushedOre.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
-
-item.purifiedOre.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.purifiedOre.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.purifiedOre.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
-
-item.smallDust.Carnallite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.smallDust.Dewalquite.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.smallDust.Fluorapatite.info=已废弃 - 放入工作台中合成以转换为正常物品
-
-#Ingots
-#To translators: for briquette, see the following links:
-#https://en.wikipedia.org/wiki/Briquette https://en.wikipedia.org/wiki/Yeontan
-item.Item_Ingots.K=钾单质
-item.Item_Ingots.K.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Ingots.P=磷单质
-item.Item_Ingots.P.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Ingots.fat_cluster=油脂块
-item.Item_Ingots.fat_cluster.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Ingots.CoalCokeShattered=焦煤炭碎片
-item.Item_Ingots.CoalCokeShattered.info=已废弃 - 放入工作台中合成以转换为正常物品
-item.Item_Ingots.Briquette=蜂窝煤
-item.Item_Ingots.Briquette.info=已废弃 - 放入工作台中合成以转换为正常物品
-
-item.tiberium.red=泰伯利亚红晶
-item.tiberium.blue=泰伯利亚蓝晶
-item.tiberium.green=泰伯利亚绿晶
-item.tiberium.info=小心操作，谨记隔离储存
-
 #Blocks
 tile.mineral.carnallite.name=光卤石
 tile.mineral.dewalquite.name=铝矾土矿
 tile.mineral.fluorapatite.name=氟磷灰石
-
-tile.tiberium_crystal.red.name=泰伯利亚红晶
-tile.tiberium_crystal.blue.name=泰伯利亚蓝晶
-tile.tiberium_crystal.green.name=泰伯利亚绿晶
 
 tile.condenseTower.core.name=冷凝塔
 tile.condenseTower.output.name=冷凝塔液体出口
@@ -305,8 +214,6 @@ tile.nitricAcid.name=硝酸
 #Advancements
 advancement.fcrebirth.root.name=化学工业起源
 advancement.fcrebirth.root.desc=看啊，高级反应釜
-advancement.fcrebirth.ion_cannon.name=Only my railgun!
-advancement.fcrebirth.ion_cannon.desc=你以为我是电磁炮，其实我是离子炮哒！
 advancement.fcrebirth.evt.name=超高压变压器
 advancement.fcrebirth.evt.desc=降压到2048
 advancement.fcrebirth.potassium.name=被钾炸死
@@ -383,8 +290,6 @@ config.fcrebirth.machine.airpump_power_rate=气泵额定功率
 config.fcrebirth.machine.airpump_power_rate.tooltip=指定气泵的额定能耗速度，以 EU/tick 为单位。
 config.fcrebirth.machine.combustion_furnace=焚烧炉发电速度
 config.fcrebirth.machine.combustion_furnace.tooltip=指定焚烧炉的发电量，以 EU/tick 为单位。
-config.fcrebirth.misc.ion_cannon=离子炮伤害
-config.fcrebirth.misc.ion_cannon.tooltip=指定离子炮单次攻击可造成的伤害。
 
 #Misc
 itemGroup.FrogCraft=青蛙化工：重生

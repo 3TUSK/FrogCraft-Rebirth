@@ -6,6 +6,7 @@ import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.tile.IHasWork;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +20,7 @@ import net.minecraft.world.World;
 public class BlockGenerator extends BlockFrogWrenchable {
 	
 	public BlockGenerator() {
-		super(MACHINE, "generator", false, 0);
+		super(Material.IRON, "generator", false, 0);
 		setUnlocalizedName("generator");
 		setDefaultState(getDefaultState().withProperty(WORKING, false));
 		setHardness(5.0F);

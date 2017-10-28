@@ -7,7 +7,6 @@ import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
 import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
 import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
 import frogcraftrebirth.common.network.NetworkHandler;
-import frogcraftrebirth.common.registry.RegFrogRecipes;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -28,7 +27,7 @@ public class FrogProxy {
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
-		RegFrogRecipes.init();
+		FrogRecipes.init();
 		if (FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
@@ -39,7 +38,7 @@ public class FrogProxy {
 	}
 
 	public void postInit(FMLPostInitializationEvent event) {
-		RegFrogRecipes.postInit();
+		FrogRecipes.postInit();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

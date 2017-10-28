@@ -1,4 +1,4 @@
-package frogcraftrebirth.common.registry;
+package frogcraftrebirth.common;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogRegistees;
@@ -28,7 +28,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class RegFrogRecipes {
+public class FrogRecipes {
 	
 	public static void init() {
 		initOreDict();

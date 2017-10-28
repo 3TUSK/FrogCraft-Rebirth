@@ -61,10 +61,6 @@ public enum NetworkHandler {
 					new PacketFrog00TileUpdate(player).readData(data);
 					break;
 				}
-				case 1: {
-					new PacketFrog01Entity().readData(data);
-					break;
-				}
 				case 2: {
 					new PacketFrog02GuiDataUpdate().readData(data);
 					break;

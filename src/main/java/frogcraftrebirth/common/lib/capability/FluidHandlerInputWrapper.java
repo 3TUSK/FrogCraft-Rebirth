@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 9:16:48 PM, Aug 29, 2016, 
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.common.lib.capability;
 
 import net.minecraftforge.fluids.FluidStack;

@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 10:00:58 PM, Dec 14, 2016, 
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.common.lib.tile;
 
 import ic2.api.energy.event.EnergyTileLoadEvent;

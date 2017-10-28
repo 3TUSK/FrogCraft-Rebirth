@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 3:13:40 PM, Aug 5, 2016, 
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.client.gui;
 
 import frogcraftrebirth.api.FrogAPI;

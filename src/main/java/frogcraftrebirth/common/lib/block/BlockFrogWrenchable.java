@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/**
- * This file is a part of FrogCraftRebirth, 
- * created 3TUSK at 9:40:01 AM, Jul 24, 2016, 
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.common.lib.block;
 
 import java.util.Collections;

@@ -11,19 +11,23 @@ package frogcraftrebirth.common;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Locale;
-import java.util.Objects;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.common.lib.AdvChemRecRecipe;
 import frogcraftrebirth.common.lib.CondenseTowerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputOreDict;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputUniversalFluidCell;
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 
-public final class FrogIMCHandler {
+final class FrogIMCHandler {
 	
 	private FrogIMCHandler() {
 		throw new UnsupportedOperationException();
@@ -43,24 +47,24 @@ public final class FrogIMCHandler {
 						FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(input, output, outputFluid, time, energyPerTick));
 						break;
 					}
-					case ("recipe.advchemreactor"): { //TODO: FIX THIS
-						/*NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
-						ArrayList<OreStack> inputsArray = new ArrayList<>();
+					case ("recipe.advchemreactor"): {
+						NBTTagCompound inputs = theTag.getCompoundTag("inputs"), outputs = theTag.getCompoundTag("outputs");
+						ArrayList<IFrogRecipeInput> inputsArray = new ArrayList<>();
 						ArrayList<ItemStack> outputsArray = new ArrayList<>();
 						for (int n = 0; n < 5; n++) {
 							int index = n + 1;
-							inputsArray.add(OreStack.loadFromNBT(inputs.getCompoundTag("input" + index)));
+							inputsArray.add(parse(inputs.getCompoundTag("input" + index)));
 							outputsArray.add(new ItemStack(outputs.getCompoundTag("output" + index)));
 						}
-						inputsArray.removeIf(Objects::isNull);
-						outputsArray.removeIf(Objects::isNull);
+						inputsArray.removeIf(IFrogRecipeInput::isEmpty);
+						outputsArray.removeIf(ItemStack::isEmpty);
 						int time = theTag.getInteger("time");
 						int energyPerTick = theTag.getInteger("energyPerTick");
-						catalyst = new ItemStack(theTag.getCompoundTag("catalyst"));
+						ItemStack catalyst = new ItemStack(theTag.getCompoundTag("catalyst"));
 						int cellReq = theTag.getInteger("cellReq");
 						int cellProduce = theTag.getInteger("cellProduce");
 						FrogAPI.managerACR.add(new AdvChemRecRecipe(inputsArray, outputsArray, catalyst, time, energyPerTick, cellReq, cellProduce));
-						break;*/
+						break;
 					}
 					case ("recipe.condensetower"): {
 						FluidStack input = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("input"));
@@ -123,6 +127,15 @@ public final class FrogIMCHandler {
 						break;
 				}
 			}
+		}
+	}
+
+	private static IFrogRecipeInput parse(NBTTagCompound tag) {
+		switch (tag.getString("type").toLowerCase(Locale.ENGLISH)) {
+			case "itemstack": return new FrogRecipeInputItemStack(new ItemStack(tag));
+			case "ore": return new FrogRecipeInputOreDict(tag.getString("ore"), tag.getInteger("count"));
+			case "fluid": return new FrogRecipeInputUniversalFluidCell(FluidStack.loadFluidStackFromNBT(tag));
+			default: return FrogRecipeInputs.EMPTY;
 		}
 	}
 

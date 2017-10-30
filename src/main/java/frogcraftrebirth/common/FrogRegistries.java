@@ -36,6 +36,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -176,6 +177,21 @@ public class FrogRegistries {
 				}.setRegistryName("inflammable")
         );
     }
+
+    @SubscribeEvent
+	public static void onMissingMappingBlock(RegistryEvent.MissingMappings<Block> missingMappings) {
+		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
+	}
+
+	@SubscribeEvent
+	public static void onMissingMappingItem(RegistryEvent.MissingMappings<Item> missingMappings) {
+		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
+	}
+
+	@SubscribeEvent
+	public static void onMissingMappingPotion(RegistryEvent.MissingMappings<Potion> missingMappings) {
+		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
+	}
 
 	private static void regFluidWithoutBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
     	for (Fluid fluid : fluids) {

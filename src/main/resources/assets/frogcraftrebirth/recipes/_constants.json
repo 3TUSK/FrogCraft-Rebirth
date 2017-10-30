@@ -7,6 +7,13 @@
     }
   },
   {
+    "name": "plate_dense_steel",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateDenseSteel"
+    }
+  },
+  {
     "name": "circuit_advanced",
     "ingredient": {
       "type": "forge:ore_dict",

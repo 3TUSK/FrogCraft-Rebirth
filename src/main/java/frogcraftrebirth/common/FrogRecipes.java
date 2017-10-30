@@ -102,7 +102,7 @@ class FrogRecipes {
 			// These recipes are used for matching GregTech style. By default, they should be disabled.
 			// Not all of recipes from old FrogCraft are implemented, due to the design guideline.
 			// TODO Master switch
-			if (Loader.isModLoaded("techreborn") || Loader.isModLoaded("gregtech")) {
+			if (false && (Loader.isModLoaded("techreborn") || Loader.isModLoaded("gregtech"))) {
 				//Ca3(PO4)2 + 3SiO2 + 5 C == 3 CaSiO3 + 5CO + 2P
 				FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputOreDict("dustPhosphor", 1), new FrogRecipeInputOreDict("dustSilica", 3), new FrogRecipeInputOreDict("dustCarbon", 5)), Arrays.asList(new ItemStack(FrogRegistees.NON_METAL_DUST, 3, 2), ItemStack.EMPTY, new ItemStack(FrogRegistees.INFLAMMABLE, 2, 2)), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 0), 350, 128, 5, 0));
 				//CaSiO3=CaO+SiO2

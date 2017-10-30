@@ -41,7 +41,7 @@ public final class FrogAPI {
 		MODID = "frogcraftrebirth", 
 		NAME = "FrogCraft: Rebirth", 
 		API = "FrogAPI",
-		API_VER = "0.2";
+		API_VER = "2.0";
 
 	/**
 	 * Magic number that serves as an identifier, used by data fixer to identify whether the given

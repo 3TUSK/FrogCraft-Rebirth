@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "frogcraftrebirth:metal_dust",
+    "data": 0
+  },
+  "group": "frogcraftrebirth:resource",
+  "pattern": [
+    "DDD",
+    "DDD",
+    "DDD"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "frogcraftrebirth:metal_dust_tiny",
+      "data": 0
+    }
+  }
+}

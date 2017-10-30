@@ -68,7 +68,7 @@ public class FrogTextures {
 			RegHelper.registerModel(FrogRegistees.METAL_PLATE, i, "metal/plate/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
 			RegHelper.registerModel(FrogRegistees.METAL_PLATE_DENSE, i, "metal/plate_dense/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
 			RegHelper.registerModel(FrogRegistees.METAL_DUST, i, "metal/dust/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
-			RegHelper.registerModel(FrogRegistees.METAL_DUST_TNIY, i, "metal/dust_tiny/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
+			RegHelper.registerModel(FrogRegistees.METAL_DUST_TINY, i, "metal/dust_tiny/" + FrogConstants.METALLIC_MATERIAL_TYPES[i]);
 		}
 		for (int i = 0; i < FrogConstants.NON_METAL_MATERIAL_TYPES.length; i++) {
 			RegHelper.registerModel(FrogRegistees.NON_METAL_DUST, i, "non_metal/dust/" + FrogConstants.NON_METAL_MATERIAL_TYPES[i]);
@@ -80,8 +80,6 @@ public class FrogTextures {
 		for (int i = 0; i < FrogConstants.INFLAMMABLE.length; i++) {
 			RegHelper.registerModel(FrogRegistees.INFLAMMABLE, i, "inflammable/" + FrogConstants.INFLAMMABLE[i]);
 		}
-		
-		RegHelper.registerModel(FrogRegistees.FLUID_ARMOR, "fluid_armor");
 
 		RegHelper.registerModel(FrogRegistees.ORE, 0, "carnallite");
 		RegHelper.registerModel(FrogRegistees.ORE, 1, "dewalquite");

@@ -136,7 +136,6 @@ public class FrogRegistries {
                 new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery"),
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
                 new ItemJinkela().setRegistryName("jinkela"),
-                new ItemFluidArmor(12000).setRegistryName("fluid_armor"),
 				new ItemResources("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
 				new ItemResources("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
 				new ItemResources("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),

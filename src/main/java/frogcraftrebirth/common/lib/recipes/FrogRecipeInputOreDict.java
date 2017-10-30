@@ -30,6 +30,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 
@@ -52,9 +53,14 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 
 	@Nonnull
 	@Override
-	@SuppressWarnings("unchecked")
 	public <T> List<T> getActualInputs(Class<T> type) {
-		return type == ItemStack.class ? (List<T>) OreDictionary.getOres(this.entry) : Collections.EMPTY_LIST;
+		if (type == ItemStack.class) {
+			List<ItemStack> stacks = OreDictionary.getOres(this.entry);
+			stacks.forEach(stack -> stack.setCount(amount));
+			return stacks.stream().map(type::cast).collect(Collectors.toList());
+		} else {
+			return Collections.emptyList();
+		}
 	}
 
 	@Override

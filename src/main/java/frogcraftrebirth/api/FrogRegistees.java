@@ -69,7 +69,7 @@ public final class FrogRegistees {
 	@GameRegistry.ObjectHolder("metal_dust")
 	public static final Item METAL_DUST;
 	@GameRegistry.ObjectHolder("metal_dust_tiny")
-	public static final Item METAL_DUST_TNIY;
+	public static final Item METAL_DUST_TINY;
 	@GameRegistry.ObjectHolder("metal_casing")
 	public static final Item METAL_CASING;
 	@GameRegistry.ObjectHolder("non_metal_dust")
@@ -90,8 +90,6 @@ public final class FrogRegistees {
 	public static final Item DECAY_BATTERY_PLOTONIUM;
 	@GameRegistry.ObjectHolder("jinkela")
 	public static final Item JINKELA;
-	@GameRegistry.ObjectHolder("fluid_armor")
-	public static final Item FLUID_ARMOR;
 
 	static {
 		HSU = null;
@@ -113,7 +111,7 @@ public final class FrogRegistees {
 		METAL_PLATE = null;
 		METAL_PLATE_DENSE = null;
 		METAL_DUST = null;
-		METAL_DUST_TNIY = null;
+		METAL_DUST_TINY = null;
 		METAL_CASING = null;
 		NON_METAL_DUST = null;
 		NON_METAL_DUST_TINY = null;
@@ -124,6 +122,5 @@ public final class FrogRegistees {
 		DECAY_BATTERY_THORIUM = null;
 		DECAY_BATTERY_PLOTONIUM = null;
 		JINKELA = null;
-		FLUID_ARMOR = null;
 	}
 }

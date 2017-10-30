@@ -136,9 +136,13 @@ class FrogRecipes {
 			ItemStack co2Cell = FrogRecipeInputs.UNI_CELL.copy();
 			FluidUtil.getFluidHandler(co2Cell).fill(new FluidStack(FrogFluids.carbonDioxide, 1000), true);
 			co2Cell.setCount(3);
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 0)), new FrogRecipeInputOreDict("dustCarbon", 3)), Arrays.asList(new ItemStack(FrogRegistees.METAL_DUST, 4, 0), co2Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 1200, 512, 3, 0));
-			// TiO2 + 2H2 -> Ti + 2H2O, awaiting feature/adv-blast-furnace merged
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 2, 0)), new FrogRecipeInputOreDict("dustCoal", 3)), Arrays.asList(new ItemStack(FrogRegistees.METAL_DUST, 4, 0), co2Cell), new ItemStack(FrogRegistees.REACTION_MODULE, 1, 1), 1200, 512, 3, 0));
+
+			// TiO2 + 2H2 -> Ti + 2H2O
 			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 1, 5)), FrogRecipeInputs.EMPTY, FluidRegistry.getFluidStack("ic2hydrogen", 2000), new ItemStack(FrogRegistees.METAL_INGOT, 1, 2), ItemStack.EMPTY, FrogFluids.argon, 300, 0));
+
+			// Temperary Aluminium smelting
+			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.METAL_DUST, 1, 0)), FrogRecipeInputs.EMPTY, null, new ItemStack(FrogRegistees.METAL_INGOT, 1, 0), ItemStack.EMPTY, FrogFluids.argon, 200, 0));
 
 			/* TODO: Implement at least one of following:
 			 * Ca5(PO4)3F + 5 H2SO4 + 10 H2O → 3 H3PO4 + 5 CaSO4·2 H2O + HF
@@ -168,15 +172,27 @@ class FrogRecipes {
 	
 		NBTTagCompound centrifugeMetadata = new NBTTagCompound();
 		centrifugeMetadata.setInteger("minHeat", 500);
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_DUST, 5, 0)), centrifugeMetadata, true, new ItemStack(FrogRegistees.INTERMEDIATE, 4, 3), new ItemStack(FrogRegistees.INTERMEDIATE, 1, 2));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_DUST, 27, 1)), centrifugeMetadata, true, new ItemStack(FrogRegistees.INTERMEDIATE, 25, 0), new ItemStack(FrogRegistees.INTERMEDIATE, 1, 5), new ItemStack(FrogRegistees.INTERMEDIATE, 1, 6));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_PURIFIED, 1, 0)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 0), new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 0));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_PURIFIED, 1, 1)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 1), new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 1));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_PURIFIED, 1, 2)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 2), new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 2));
-		centrifugeMetadata.setInteger("minHeat", 1000);
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_CRUSHED, 1, 0)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 0), new ItemStack(FrogRegistees.ORE_DUST_TINY, 2, 0), IC2Items.getItem("dust", "small_lithium"));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_CRUSHED, 1, 1)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 1), new ItemStack(FrogRegistees.ORE_DUST_TINY, 2, 1), IC2Items.getItem("dust", "stone"));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_CRUSHED, 1, 2)), centrifugeMetadata, true, new ItemStack(FrogRegistees.ORE_DUST, 1, 2), new ItemStack(FrogRegistees.ORE_DUST_TINY, 2, 2), IC2Items.getItem("dust", "stone"));
 	
 		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.INFLAMMABLE, 8, 4)), null, true, new ItemStack(FrogRegistees.INFLAMMABLE, 1, 0));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 9, 0)), null, true, new ItemStack(FrogRegistees.METAL_PLATE_DENSE, 1, 0));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 9, 1)), null, true, new ItemStack(FrogRegistees.METAL_PLATE_DENSE, 1, 1));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 9, 2)), null, true, new ItemStack(FrogRegistees.METAL_PLATE_DENSE, 1, 2));
+
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_INGOT, 1, 0)), null, true, new ItemStack(FrogRegistees.METAL_PLATE, 1, 0));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_INGOT, 1, 1)), null, true, new ItemStack(FrogRegistees.METAL_PLATE, 1, 1));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_INGOT, 1, 2)), null, true, new ItemStack(FrogRegistees.METAL_PLATE, 1, 2));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 0)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 0));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 1)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 1));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 2)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 2));
+
 	}
 	
 	private static void initOreDict() {

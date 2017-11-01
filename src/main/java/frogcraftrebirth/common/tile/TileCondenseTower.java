@@ -309,6 +309,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		return new ContainerCondenseTower(player.inventory, this);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
 		return new GuiCondenseTower(player.inventory, this);

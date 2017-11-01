@@ -48,6 +48,8 @@ import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
@@ -132,15 +134,13 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 		
 		return super.hasCapability(capability, facing);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
 			EnumFacing currentFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
 			return currentFacing == facing ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank)) : super.getCapability(capability, currentFacing);
 		}
-			
 		return super.getCapability(capability, facing);
 	}
 
@@ -149,6 +149,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 		return new ContainerFluidOutputHatch(player.inventory, this);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
 		return new GuiFluidOutputHatch(player.inventory, this);

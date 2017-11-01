@@ -176,6 +176,7 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 		return new ContainerMPS(player.inventory, this);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
 		return new GuiMPS(player.inventory, this);

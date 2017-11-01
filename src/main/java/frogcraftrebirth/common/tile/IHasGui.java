@@ -27,11 +27,14 @@ import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IHasGui {
 	
 	ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player);
-	
+
+	@SideOnly(Side.CLIENT)
 	GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player);
 
 }

@@ -50,6 +50,8 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -248,6 +250,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		return new ContainerPyrolyzer(player.inventory, this);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
 		return new GuiPyrolyzer(player.inventory, this);

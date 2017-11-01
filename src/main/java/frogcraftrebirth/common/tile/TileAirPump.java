@@ -144,6 +144,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 		return new ContainerAirPump(player.inventory, this);
 	}
 
+	@SideOnly(Side.CLIENT)
 	@Override
 	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
 		return new GuiAirPump(player.inventory, this);

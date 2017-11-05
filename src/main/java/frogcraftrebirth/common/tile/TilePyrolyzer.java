@@ -80,14 +80,16 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	private int count = 0;
 	@Override
 	public void update() {
-		if (this.getWorld().isRemote && count++ > 20) {
-			getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-			count = 0;
+		if (this.getWorld().isRemote) {
+			if (count++ > 20) {
+				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
+				count = 0;
+			}
 			return;
 		}
 		
 		if (!fluidIO.getStackInSlot(INPUT_F).isEmpty()) {
-			if (fluidIO.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+			if (fluidIO.getStackInSlot(INPUT_F).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
 				FluidActionResult result = FluidUtil.tryFillContainer(fluidIO.extractItem(INPUT_F, 1, true), tank, 1000, null, true);
 				if (result.isSuccess() && result.result.getCount() > 0) {
 					fluidIO.extractItem(INPUT_F, 1, false);

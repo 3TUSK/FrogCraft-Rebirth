@@ -122,6 +122,8 @@ public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction>
 			stacks.init(index, false, 39 + i * 20, 69);
 			stacks.set(index++, outputs.get(i));
 		}
+		stacks.init(5, true, 146, 69);
+		stacks.set(5, recipeWrapper.recipe.getCatalyst());
 	}
 
 }

@@ -37,7 +37,7 @@ public class FrogConfig {
 	@Config.LangKey("config.fcrebirth.machine.airpump_power_rate")
 	@Config.Name("AirPumpPowerRate")
 	@Config.RangeInt(min = 1, max = 10000)
-	public static int airPumpPowerRate = 120;
+	public static int airPumpPowerRate = 20;
 
 	@Config.Comment("Liquid air generation speed of Air Pump, in mB/t.")
 	@Config.LangKey("config.fcrebirth.machine.airpump_gen_speed")

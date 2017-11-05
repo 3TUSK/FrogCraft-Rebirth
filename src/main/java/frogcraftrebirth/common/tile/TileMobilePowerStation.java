@@ -62,8 +62,9 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	
 	@Override
 	public void update() {
-		if (getWorld().isRemote)
+		if (getWorld().isRemote) {
 			return;
+		}
 
 		//Check storage upgrade, if pass, increase energy capacity
 		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {

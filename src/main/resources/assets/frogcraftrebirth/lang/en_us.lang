@@ -138,6 +138,10 @@ item.inflammable.lipids_cluster=Lipid Cluster
 item.inflammable.lipids_cluster.info=With animal fat as its major source
 item.inflammable.shattered_coal_coke=Shattered Coal Coke
 item.inflammable.shattered_coal_coke.info=Efficient Fuel
+item.inflammable.phosphorus=
+item.inflammable.phosphorus.info=
+item.inflammable.potassium=
+item.inflammable.potassium.info=
 
 #Fluid
 fluid.ammonia=Ammonia

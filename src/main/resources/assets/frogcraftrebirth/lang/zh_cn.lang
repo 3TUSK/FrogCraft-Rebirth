@@ -138,6 +138,10 @@ item.inflammable.lipids_cluster=油脂块
 item.inflammable.lipids_cluster.info=主要提取自动物脂肪
 item.inflammable.shattered_coal_coke=焦煤碎片
 item.inflammable.shattered_coal_coke.info=有效的燃料
+item.inflammable.phosphorus=
+item.inflammable.phosphorus.info=
+item.inflammable.potassium=
+item.inflammable.potassium.info=
 
 #Fluid
 fluid.ammonia=氨

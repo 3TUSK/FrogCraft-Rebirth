@@ -25,18 +25,22 @@ package frogcraftrebirth.common.item;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
-import ic2.api.item.IElectricItem;
+import ic2.api.item.IElectricItemManager;
+import ic2.api.item.ISpecialElectricItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
-	
+public class ItemDecayBattery extends ItemFrogCraft implements ISpecialElectricItem {
+
+	private static final IElectricItemManager DECAY_BATTERY_ELECTRIC_MANAGER = new DecayBatteryElectricManager();
+
 	public ItemDecayBattery(String name) {
 		super(false);
 		setMaxDamage(0);
@@ -44,38 +48,10 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 		setNoRepair();
 		setUnlocalizedName(name + "Battery.name");
 	}
-	
-	@Override
-	public boolean canProvideEnergy(ItemStack itemStack) {
-		setCharge(itemStack);
-		return true;
-	}
 
 	@Override
-	public double getMaxCharge(ItemStack itemStack) {
-		setCharge(itemStack);
-		return 1;
-	}
-
-	@Override
-	public int getTier(ItemStack itemStack) {
-		setCharge(itemStack);
-		return 1;
-	}
-
-	@Override
-	public double getTransferLimit(ItemStack itemStack) {
-		setCharge(itemStack);
-		return 1;
-	}
-	
-	private void setCharge(ItemStack stack) {
-		if (stack.hasTagCompound())
-			stack.getTagCompound().setInteger("charge", 1);
-		else {
-			stack.setTagCompound(new net.minecraft.nbt.NBTTagCompound());
-			stack.getTagCompound().setInteger("charge", 1);
-		}
+	public IElectricItemManager getManager(ItemStack itemStack) {
+		return DECAY_BATTERY_ELECTRIC_MANAGER; // BTM Moon: read & write NBT is expensive
 	}
 
 	@Override
@@ -89,6 +65,51 @@ public class ItemDecayBattery extends ItemFrogCraft implements IElectricItem {
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if (this.isInCreativeTab(tab)) {
 			list.add(new ItemStack(this, 1, 0));
+		}
+	}
+
+	private static final class DecayBatteryElectricManager implements IElectricItemManager {
+		@Override
+		public double charge(ItemStack itemStack, double v, int i, boolean b, boolean b1) {
+			return 0.0;
+		}
+
+		@Override
+		public double discharge(ItemStack itemStack, double v, int i, boolean b, boolean b1, boolean b2) {
+			return 1.0;
+		}
+
+		@Override
+		public double getCharge(ItemStack itemStack) {
+			return 1.0;
+		}
+
+		@Override
+		public double getMaxCharge(ItemStack itemStack) {
+			return 1.0;
+		}
+
+		@Override
+		public boolean canUse(ItemStack itemStack, double v) {
+			return true;
+		}
+
+		@Override
+		public boolean use(ItemStack itemStack, double v, EntityLivingBase entityLivingBase) {
+			return true;
+		}
+
+		@Override
+		public void chargeFromArmor(ItemStack itemStack, EntityLivingBase entityLivingBase) {}
+
+		@Override //Side note: there is no need to translate - EU is the symbol of IC2 electricity unit
+		public String getToolTip(ItemStack itemStack) {
+			return "1 /1 EU";
+		}
+
+		@Override
+		public int getTier(ItemStack itemStack) {
+			return 1;
 		}
 	}
 

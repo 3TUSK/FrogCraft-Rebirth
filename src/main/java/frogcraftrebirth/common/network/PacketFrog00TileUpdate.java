@@ -28,6 +28,7 @@ import java.io.IOException;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
@@ -56,7 +57,12 @@ public class PacketFrog00TileUpdate implements IFrogPacket {
 	@Override
 	public void readData(DataInputStream input) throws IOException {
 		BlockPos aPos = new BlockPos(input.readInt(), input.readInt(), input.readInt());
-		TileEntity tile = Minecraft.getMinecraft().world.getTileEntity(aPos);
+		WorldClient world = Minecraft.getMinecraft().world;
+		if (world == null) {
+			return; // BTM Moon: you will understand that this is possible during joining server
+		}
+
+		TileEntity tile = world.getTileEntity(aPos);
 		
 		if (tile instanceof IFrogNetworkObject)
 			((IFrogNetworkObject) tile).readPacketData(input);

@@ -88,7 +88,7 @@ public enum NetworkHandler {
 					break;
 				}
 			}
-		} catch (IOException e) {
+		} catch (Exception e) { // BTM Moon: catch everything, don't crash the client - only causes render abnormality
 			FrogAPI.FROG_LOG.error("Fail to unpack data, please report to author!", e);
 		}
 	}
@@ -101,10 +101,9 @@ public enum NetworkHandler {
 				default:
 					break; // This suppresses unused warning
 			}
-		} catch (IOException e) {
+		} catch (Exception e) { // BTM Moon: catch everything, don't crash the server - only causes weird de-sync
 			FrogAPI.FROG_LOG.error("Fail to unpack data, please report to author!", e);
 		}
-		
 	}
 	
 	private static ByteBuf asByteBuf(IFrogPacket packet) {

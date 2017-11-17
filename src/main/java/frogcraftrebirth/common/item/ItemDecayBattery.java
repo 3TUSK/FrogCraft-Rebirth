@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
 import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.IElectricItemManager;
 import ic2.api.item.ISpecialElectricItem;
@@ -34,8 +32,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemDecayBattery extends ItemFrogCraft implements ISpecialElectricItem {
 
@@ -61,7 +59,6 @@ public class ItemDecayBattery extends ItemFrogCraft implements ISpecialElectricI
 	}
 	
 	@Override
-	@SideOnly(Side.CLIENT)
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if (this.isInCreativeTab(tab)) {
 			list.add(new ItemStack(this, 1, 0));

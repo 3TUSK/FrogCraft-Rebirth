@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
 import frogcraftrebirth.common.block.BlockMPS;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import ic2.api.item.ElectricItem;
@@ -35,8 +33,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
@@ -68,8 +66,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 		normalize(itemStack);
 		return itemStack.getTagCompound().getInteger("tier") * 32;
 	}
-	
-	@SideOnly(Side.CLIENT)
+
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
 		if (this.isInCreativeTab(tab)) {
@@ -80,8 +77,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 			list.add(discharged);
 		}
 	}
-	
-	@SideOnly(Side.CLIENT)
+
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> aList, ITooltipFlag flag) {
 		aList.add(I18n.format("tile.mobilePowerStation.info"));

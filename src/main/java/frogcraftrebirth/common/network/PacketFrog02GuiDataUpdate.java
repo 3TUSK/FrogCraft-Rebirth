@@ -51,7 +51,8 @@ public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 	public void readData(DataInputStream input) throws IOException {
 		int gui = input.readInt();
 		EntityPlayerSP player = FMLClientHandler.instance().getClient().player;
-		if (player.openContainer.windowId == gui && player.openContainer instanceof ContainerTileFrog)
+		// BTM Moon: who the hell knows when it's null?
+		if (player != null && player.openContainer.windowId == gui && player.openContainer instanceof ContainerTileFrog)
 			((ContainerTileFrog<?>)player.openContainer).updateContainer(input);
 	}
 

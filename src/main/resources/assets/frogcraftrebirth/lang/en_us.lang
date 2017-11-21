@@ -1,4 +1,4 @@
-﻿# Master Language File, 2017.10.24
+# Master Language File, 2017.10.24
 #
 # To translators:
 # - For briquette, see the following links:
@@ -138,10 +138,10 @@ item.inflammable.lipids_cluster=Lipid Cluster
 item.inflammable.lipids_cluster.info=With animal fat as its major source
 item.inflammable.shattered_coal_coke=Shattered Coal Coke
 item.inflammable.shattered_coal_coke.info=Efficient Fuel
-item.inflammable.phosphorus=
-item.inflammable.phosphorus.info=
-item.inflammable.potassium=
-item.inflammable.potassium.info=
+item.inflammable.phosphorus=Phosphorus
+item.inflammable.phosphorus.info=P
+item.inflammable.potassium=Potassium
+item.inflammable.potassium.info=K
 
 #Fluid
 fluid.ammonia=Ammonia

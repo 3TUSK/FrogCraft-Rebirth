@@ -138,10 +138,10 @@ item.inflammable.lipids_cluster=油脂块
 item.inflammable.lipids_cluster.info=主要提取自动物脂肪
 item.inflammable.shattered_coal_coke=焦煤碎片
 item.inflammable.shattered_coal_coke.info=有效的燃料
-item.inflammable.phosphorus=
-item.inflammable.phosphorus.info=
-item.inflammable.potassium=
-item.inflammable.potassium.info=
+item.inflammable.phosphorus=磷
+item.inflammable.phosphorus.info=P
+item.inflammable.potassium=钾
+item.inflammable.potassium.info=K
 
 #Fluid
 fluid.ammonia=氨
@@ -233,7 +233,7 @@ advancement.fcrebirth.hsu.desc=可以存储100000000EU！
 advancement.fcrebirth.uhsu.name=变态的MFSU
 advancement.fcrebirth.uhsu.desc=可以存储1000000000EU！
 advancement.fcrebirth.goldclod.name=妈妈的
-advancement.fcrebirth.goldclod.desc=金坷拉是我的！
+advancement.fcrebirth.goldclod.desc=金坷垃是我的！
 advancement.fcrebirth.advchem.name=化学之路
 advancement.fcrebirth.advchem.desc=能出现嘛有趣的反应呢？
 advancement.fcrebirth.condensetower.name=分离他们？

@@ -31,11 +31,13 @@ FrogCraft: Rebirth is spiritual successor of [FrogCraft][link_FrogCraft_original
  * Crushed ore dust, purified ore dust, and dust of small pile!
  * Full sulfuric acid production line!
  * Advanced Blast Furnace! Used for dealing with your titanium (IV) oxide and aluminium (III) oxide.
- * Railgun and Academy Windmill are removed. The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements.
-   * As a replacement of Railgun, a whole new item named *Portable Ion Cannon* is added. This is a rough reference to [Command & Conquer 3: Tiberium War](https://en.wikipedia.org/wiki/Command_%26_Conquer_3:_Tiberium_Wars) plots.
- * Marble and Basalt are removed. They used to be a substitution to RedPower's Marble and Basalt.
+ * Railgun and Academy Windmill are removed. 
+   * The reason of FrogCraft being named so is believed as a reference to anime [_A Certain Scientific Railgun_](https://en.wikipedia.org/wiki/A_Certain_Scientific_Railgun), and the evidences are the Railgun and Academy Windmill. 
+   * Right now I consider [AcademyCraft][link_ACMOD] as the spiritual successor of FrogCraft's anime elements. Surely AcademyCraft is not on 1.12.2 yet, but as far as I know, the author is working on it slowly.
+   * There used to be a replacement of Railgun, but it was removed since 2.0.0 due to technical difficulty.
+ * Marble and Basalt are removed. They were substitutions to RedPower's Marble and Basalt.
    * There is still plan about adding something like Portland Cement, but there is no action on that.
- * Ruby, Sapphire and Green Sapphire are substituted with [Tiberium](https://en.wikipedia.org/wiki/Tiberium). Reason is same as of Marble and Basalt.
+ * Ruby, Sapphire and Green Sapphire are removed. Reason is same as of Marble and Basalt.
  * Four industrial machines are separated out into [a new mod called "Industrial Machine"](https://github.com/3TUSK/IndustrialMachine). 
  * **This mod now requires Java 8 to run**. If you plan to use FrogCraft: Rebirth on dedicated server, please be aware of your Java version.
 
@@ -51,7 +53,7 @@ I have created several pages on different site for different users:
 This assumes that you have Gradle installed. If not, try find a wrapper script.
 
 ````bash
-gradle setupDecompWorkspace
+$ gradle setupDecompWorkspace
 ````
 
 Append `eclipse`, `idea` or other sorts when possible.

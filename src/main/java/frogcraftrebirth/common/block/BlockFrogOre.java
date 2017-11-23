@@ -39,7 +39,7 @@ public class BlockFrogOre extends BlockFrog {
 		setHardness(5.0F);
 		setResistance(15.0f);
 		setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
-		setHarvestLevel("shovel", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.CARNALLITE));
+		setHarvestLevel("shovel", 0, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.CARNALLITE));
 		setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.DEWALQUITE));
 		setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
 	}

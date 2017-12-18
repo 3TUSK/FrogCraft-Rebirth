@@ -205,13 +205,19 @@ public class FrogRegistries {
 	}
 
 	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, @Nullable Function<Fluid, Block> getBlock) {
-		if (!FluidRegistry.registerFluid(fluid))
-			fluid = FluidRegistry.getFluid(fluid.getName());
-		if (regBucket)
-			FluidRegistry.addBucketForFluid(fluid);
-		Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
-		registry.register(block);
-		fluid.setBlock(block);
+    	regFluid(registry, fluid, regBucket, false, null);
+	}
+
+	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, boolean regBlock, @Nullable Function<Fluid, Block> getBlock) {
+		FluidRegistry.registerFluid(fluid);
+		if (regBlock && fluid.getBlock() == null) {
+			Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
+			registry.register(block);
+			fluid.setBlock(block);
+			if (regBucket) {
+				FluidRegistry.addBucketForFluid(fluid);
+			}
+		}
 	}
 
 }

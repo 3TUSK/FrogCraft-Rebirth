@@ -20,31 +20,20 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.lib;
+package frogcraftrebirth.common.lib.util;
 
-import net.minecraft.item.EnumRarity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 
-public class FrogFluid extends Fluid {
-	
-	public FrogFluid(String name, int density, int temperature, boolean gaseous, EnumRarity rarity) {
-		this(name, name, name, density, temperature, gaseous, rarity);
-	}
+import java.util.IdentityHashMap;
+import java.util.Map;
 
-	public FrogFluid(String name, String resLoc, int density, int temperature, boolean gaseous, EnumRarity rarity) {
-		this(name, resLoc, resLoc, density, temperature, gaseous, rarity);
-	}
-	
-	public FrogFluid(String name, String flow, String still, int density, int temperature, boolean gaseous, EnumRarity rarity) {
-		super(name, new ResourceLocation("frogcraftrebirth", "fluids/" + flow), new ResourceLocation("frogcraftrebirth", "fluids/" + still));
-		this.setDensity(density);
-		this.setTemperature(temperature);
-		this.setGaseous(gaseous);
-	}
+public class FluidStackFactory {
 
-	public final String toString() {
-		return "FrogFluid{" + this.fluidName + "}";
-	}
+	private final Map<String, Fluid> fluidLookup = new IdentityHashMap<>();
 
+	public FluidStack create(String id, int amount) {
+		return new FluidStack(fluidLookup.computeIfAbsent(id, FluidRegistry::getFluid), amount);
+	}
 }

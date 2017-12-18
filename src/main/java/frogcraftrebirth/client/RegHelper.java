@@ -22,6 +22,8 @@
 
 package frogcraftrebirth.client;
 
+import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.common.lib.FrogFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -29,6 +31,7 @@ import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -56,13 +59,21 @@ class RegHelper {
 	}
 	
 	static void regFluidBlockTexture(Fluid fluid) {
-		ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
-		ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
-			@Override
-			protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
-				return aResource;
+		if (fluid instanceof FrogFluid) {
+			if (fluid.getBlock() != null) {
+				ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
+				ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
+					@Override
+					protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+						return aResource;
+					}
+				});
+			} else {
+				FrogAPI.FROG_LOG.debug("Not registering models for block of fluid '{}' because it has no block", fluid.toString());
 			}
-		});
+		} else {
+			FrogAPI.FROG_LOG.debug("Not registering models for block of fluid '{}' because it's not controlled by FrogCraft: Rebirth", fluid.toString(), fluid.getBlock());
+		}
 	}
 
 }

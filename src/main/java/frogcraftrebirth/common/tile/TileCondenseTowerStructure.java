@@ -57,13 +57,9 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	}
 
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		
-	}
+	public void writePacketData(DataOutputStream output) {}
 
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		
-	}
+	public void readPacketData(DataInputStream input) {}
 
 }

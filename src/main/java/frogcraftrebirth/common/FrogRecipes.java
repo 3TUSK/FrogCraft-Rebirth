@@ -197,11 +197,6 @@ class FrogRecipes {
 	}
 	
 	private static void initOreDict() {
-		OreDictionary.registerOre("jinkela", FrogRegistees.JINKELA);
-
-		OreDictionary.registerOre("potassium", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 3));
-		OreDictionary.registerOre("phosphorus", new ItemStack(FrogRegistees.INFLAMMABLE, 1, 2));
-		
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogRegistees.ORE, 1, 0));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogRegistees.ORE, 1, 1));
 		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogRegistees.ORE, 1, 2));
@@ -215,5 +210,17 @@ class FrogRecipes {
 		OreDictionary.registerOre("dustTinyFluorapatite", new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 2));
 		
 		OreDictionary.registerOre("dustVanadiumPentoxide", new ItemStack(FrogRegistees.INTERMEDIATE, 1, 6));
+
+		OreDictionary.registerOre("dustAluminium", new ItemStack(FrogRegistees.METAL_DUST, 1, 0));
+		OreDictionary.registerOre("dustMagnalium", new ItemStack(FrogRegistees.METAL_DUST, 1, 1));
+		OreDictionary.registerOre("dustTitanium", new ItemStack(FrogRegistees.METAL_DUST, 1, 2));
+
+		OreDictionary.registerOre("ingotAluminium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 0));
+		OreDictionary.registerOre("ingotMagnalium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 1));
+		OreDictionary.registerOre("ingotTitanium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 2));
+
+		OreDictionary.registerOre("plateAluminium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 0));
+		OreDictionary.registerOre("plateMagnalium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 1));
+		OreDictionary.registerOre("plateTitanium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 2));
 	}
 }

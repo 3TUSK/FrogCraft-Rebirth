@@ -33,6 +33,10 @@ public class FrogConfig {
 	@Config.Name("ModpackOptions")
 	public static ModpackOptions modpackOptions = new ModpackOptions();
 
+	@Config.Comment("All options related to cross-mod compatilibity")
+	@Config.Name("CompatibilityOptions")
+	public static CompatibilityOptions compatibilityOptions = new CompatibilityOptions();
+
 	@Config.Comment("EU consumption rate of Air Pump, in EU/t.")
 	@Config.LangKey("config.fcrebirth.machine.airpump_power_rate")
 	@Config.Name("AirPumpPowerRate")
@@ -56,6 +60,11 @@ public class FrogConfig {
 	@Config.Name("EnableWorldGeneration")
 	@Config.RequiresMcRestart
 	public static boolean enableWorldGen = true;
+
+
+	public static class CompatibilityOptions {
+		public boolean enableTechRebornCompatibility = false;
+	}
 
 	@Config.LangKey("config.fcrebirth.modpack")
 	public static class ModpackOptions {

@@ -192,20 +192,23 @@ public class FrogRegistries {
 		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
 	}
 
+	@Deprecated
 	private static void regFluidWithoutBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
     	for (Fluid fluid : fluids) {
     		regFluid(registry, fluid, false, null);
 		}
 	}
 
+	@Deprecated
 	private static void regFluidWithBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
 		for (Fluid fluid : fluids) {
 			regFluid(registry, fluid, true, null);
 		}
 	}
 
+	@Deprecated
 	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, @Nullable Function<Fluid, Block> getBlock) {
-    	regFluid(registry, fluid, regBucket, false, null);
+    	regFluid(registry, fluid, regBucket, true, null);
 	}
 
 	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, boolean regBlock, @Nullable Function<Fluid, Block> getBlock) {

@@ -28,11 +28,15 @@ import java.util.Collection;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import org.apache.commons.lang3.Validate;
 
 public class AdvChemRecRecipeManager implements IRecipeManager<IAdvChemRecRecipe> {
 
 	@Override
 	public void add(IAdvChemRecRecipe recipe) {
+		Validate.notNull(recipe);
+		Validate.isTrue(recipe.getEnergyRate() > 0);
+		Validate.isTrue(recipe.getTime() > 0);
 		recipes.add(recipe);
 	}
 

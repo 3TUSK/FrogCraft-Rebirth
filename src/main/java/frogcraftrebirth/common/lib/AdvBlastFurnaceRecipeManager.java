@@ -25,6 +25,7 @@ package frogcraftrebirth.common.lib;
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IRecipeManager;
+import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nullable;
 import java.util.*;
@@ -35,6 +36,8 @@ public class AdvBlastFurnaceRecipeManager implements IRecipeManager<IAdvBlastFur
 
 	@Override
 	public void add(IAdvBlastFurnaceRecipe recipe) {
+		Validate.isTrue(!recipe.getInput().isEmpty());
+		Validate.isTrue(!recipe.getOutput().isEmpty());
 		this.recipes.add(recipe);
 	}
 

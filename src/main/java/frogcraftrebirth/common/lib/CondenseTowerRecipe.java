@@ -40,6 +40,13 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 		this(time, energyPerTick, input, Arrays.asList(output));
 	}
 
+	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Set<FluidStack> output) {
+		this.output = output;
+		this.input = input;
+		this.time = time;
+		this.energyPerTick = energyPerTick;
+	}
+
 	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Collection<FluidStack> output) {
 		this.output = new HashSet<>(output);
 		this.input = input;

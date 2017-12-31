@@ -69,6 +69,12 @@ public class FrogConfig {
 	@Config.LangKey("config.fcrebirth.modpack")
 	public static class ModpackOptions {
 
+		@Config.Comment("If true, things like ingotAluminum will be registered for aluminium ingot.")
+		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name")
+		@Config.Name("AlternativeAluminiumOreDictEntry")
+		@Config.RequiresMcRestart
+		public boolean altAluminiumOreDict = false;
+
 		@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
 		@Config.LangKey("config.fcrebirth.modpack.master_recipe_switch")
 		@Config.Name("EnableAllRecipes")

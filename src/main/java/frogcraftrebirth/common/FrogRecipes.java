@@ -44,6 +44,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 
 import java.util.Arrays;
@@ -52,7 +53,6 @@ import java.util.Collections;
 class FrogRecipes {
 	
 	public static void init() {
-		initOreDict();
 		if (FrogConfig.modpackOptions.enableRecipes) {
 			FluidStackFactory fluidFactory = new FluidStackFactory();
 			// --- Begin of old FrogCraft recipes, Part 1 ---
@@ -193,34 +193,39 @@ class FrogRecipes {
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 0)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 0));
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 1)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 1));
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.METAL_PLATE, 1, 2)), null, true, new ItemStack(FrogRegistees.METAL_CASING, 2, 2));
-
 	}
 	
-	private static void initOreDict() {
-		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogRegistees.ORE, 1, 0));
-		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogRegistees.ORE, 1, 1));
-		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogRegistees.ORE, 1, 2));
+	static void initOreDict() {
+		OreDictionary.registerOre("oreCarnallite", GameRegistry.makeItemStack("frogcraftrebirth:ore", 0, 1, null));
+		OreDictionary.registerOre("oreDewalquite", GameRegistry.makeItemStack("frogcraftrebirth:ore", 1, 1, null));
+		OreDictionary.registerOre("oreFluorapatite", GameRegistry.makeItemStack("frogcraftrebirth:ore", 2, 1, null));
 		
-		OreDictionary.registerOre("dustCarnallite", new ItemStack(FrogRegistees.ORE_DUST, 1, 0));
-		OreDictionary.registerOre("dustDewalquite", new ItemStack(FrogRegistees.ORE_DUST, 1, 1));
-		OreDictionary.registerOre("dustFluorapatite", new ItemStack(FrogRegistees.ORE_DUST, 1, 2));
+		OreDictionary.registerOre("dustCarnallite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust", 0, 1, null));
+		OreDictionary.registerOre("dustDewalquite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust", 1, 1, null));
+		OreDictionary.registerOre("dustFluorapatite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust", 2, 1, null));
 		
-		OreDictionary.registerOre("dustTinyCarnallite", new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 0));
-		OreDictionary.registerOre("dustTinyDewalquite", new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 1));
-		OreDictionary.registerOre("dustTinyFluorapatite", new ItemStack(FrogRegistees.ORE_DUST_TINY, 1, 2));
+		OreDictionary.registerOre("dustTinyCarnallite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust_tiny", 0, 1, null));
+		OreDictionary.registerOre("dustTinyDewalquite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust_tiny", 1, 1, null));
+		OreDictionary.registerOre("dustTinyFluorapatite", GameRegistry.makeItemStack("frogcraftrebirth:ore_dust_tiny", 2, 1, null));
 		
-		OreDictionary.registerOre("dustVanadiumPentoxide", new ItemStack(FrogRegistees.INTERMEDIATE, 1, 6));
+		OreDictionary.registerOre("dustVanadiumPentoxide", GameRegistry.makeItemStack("frogcraftrebirth:intermediate_product", 6, 1, null));
 
-		OreDictionary.registerOre("dustAluminium", new ItemStack(FrogRegistees.METAL_DUST, 1, 0));
-		OreDictionary.registerOre("dustMagnalium", new ItemStack(FrogRegistees.METAL_DUST, 1, 1));
-		OreDictionary.registerOre("dustTitanium", new ItemStack(FrogRegistees.METAL_DUST, 1, 2));
+		OreDictionary.registerOre("dustAluminium", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 0, 1, null));
+		OreDictionary.registerOre("dustMagnalium", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 1, 1, null));
+		OreDictionary.registerOre("dustTitanium", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 2, 1, null));
 
-		OreDictionary.registerOre("ingotAluminium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 0));
-		OreDictionary.registerOre("ingotMagnalium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 1));
-		OreDictionary.registerOre("ingotTitanium", new ItemStack(FrogRegistees.METAL_INGOT, 1, 2));
+		OreDictionary.registerOre("ingotAluminium", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 0, 1, null));
+		OreDictionary.registerOre("ingotMagnalium", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 1, 1, null));
+		OreDictionary.registerOre("ingotTitanium", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 2, 1, null));
 
-		OreDictionary.registerOre("plateAluminium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 0));
-		OreDictionary.registerOre("plateMagnalium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 1));
-		OreDictionary.registerOre("plateTitanium", new ItemStack(FrogRegistees.METAL_PLATE, 1, 2));
+		OreDictionary.registerOre("plateAluminium", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 0, 1, null));
+		OreDictionary.registerOre("plateMagnalium", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 1, 1, null));
+		OreDictionary.registerOre("plateTitanium", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 2, 1, null));
+
+		if (FrogConfig.modpackOptions.altAluminiumOreDict) {
+			OreDictionary.registerOre("dustAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 0, 1, null));
+			OreDictionary.registerOre("ingotAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 0, 1, null));
+			OreDictionary.registerOre("plateAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 0, 1, null));
+		}
 	}
 }

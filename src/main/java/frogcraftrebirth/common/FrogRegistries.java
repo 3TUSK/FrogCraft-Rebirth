@@ -175,6 +175,8 @@ public class FrogRegistries {
 					}
 				}.setRegistryName("inflammable")
         );
+
+        FrogRecipes.initOreDict();
     }
 
     @SubscribeEvent

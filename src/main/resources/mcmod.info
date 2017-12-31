@@ -1,18 +1,19 @@
 [
-	{
-    	"modid": "frogcraftrebirth",
-    	"name": "FrogCraft: Rebirth",
-    	"description": "Taking back the chemical industry to Minecraft world!",
-    	"version": "${version}",
-    	"mcversion": "${mcversion}",
-    	"url" : "",
-    	"updateUrl": "",
-    	"authorList": ["FrogCraftRebirth Dev. Team"],
-    	"credits": "M3gaFra3k, ueyudiud, dunge, Glease, huangziye812, and all contributors on GitHub",
-    	"logoFile": "logo.png",
-    	"screenshots": [],
-    	"parent": "",
-    	"requiredMods": ["forge@[12.18.1.2063,)", "ic2"],
-    	"dependencies": ["jei"]
-	}
+  {
+    "modid": "frogcraftrebirth",
+    "name": "FrogCraft: Rebirth",
+    "description": "Taking back the chemical industry to Minecraft world!",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url" : "",
+    "updateUrl": "",
+    "authorList": ["FrogCraftRebirth Dev. Team"],
+    "credits": "M3gaFra3k, ueyudiud, dunge, Glease, huangziye812, and all contributors on GitHub",
+    "logoFile": "logo.png",
+    "screenshots": [],
+    "parent": "",
+    "useDependencyInformation": true,
+    "requiredMods": ["ic2"],
+    "dependencies": ["jei"]
+  }
 ]

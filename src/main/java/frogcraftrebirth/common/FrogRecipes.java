@@ -223,9 +223,15 @@ class FrogRecipes {
 		OreDictionary.registerOre("plateTitanium", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 2, 1, null));
 
 		if (FrogConfig.modpackOptions.altAluminiumOreDict) {
-			OreDictionary.registerOre("dustAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 0, 1, null));
-			OreDictionary.registerOre("ingotAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 0, 1, null));
-			OreDictionary.registerOre("plateAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 0, 1, null));
+			if (FrogConfig.modpackOptions.altAluminiumDustOreDict) {
+				OreDictionary.registerOre("dustAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_dust", 0, 1, null));
+			}
+			if (FrogConfig.modpackOptions.altAluminiumIngotOreDict) {
+				OreDictionary.registerOre("ingotAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_ingot", 0, 1, null));
+			}
+			if (FrogConfig.modpackOptions.altAluminiumPlateOreDict) {
+				OreDictionary.registerOre("plateAluminum", GameRegistry.makeItemStack("frogcraftrebirth:metal_plate", 0, 1, null));
+			}
 		}
 	}
 }

@@ -69,11 +69,29 @@ public class FrogConfig {
 	@Config.LangKey("config.fcrebirth.modpack")
 	public static class ModpackOptions {
 
-		@Config.Comment("If true, things like ingotAluminum will be registered for aluminium ingot.")
-		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name")
+		@Config.Comment("If true, aluminium will have aluminum series ore dictionary entries.")
+		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.all")
 		@Config.Name("AlternativeAluminiumOreDictEntry")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumOreDict = false;
+
+		@Config.Comment("If true, dustAluminum will be registered for aluminium dust. Will do nothing if altAluminiumOreDict is set to false.")
+		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.dust")
+		@Config.Name("AlternativeAluminiumOreDictEntryForDust")
+		@Config.RequiresMcRestart
+		public boolean altAluminiumDustOreDict = false;
+
+		@Config.Comment("If true, ingotAluminium will be registered for aluminium ingot. Will do nothing if altAluminiumOreDict is set to false.")
+		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.ingot")
+		@Config.Name("AlternativeAluminiumOreDictEntryForIngot")
+		@Config.RequiresMcRestart
+		public boolean altAluminiumIngotOreDict = false;
+
+		@Config.Comment("If true, plateAluminum will be registered for aluminium plate. Will do nothing if altAluminiumOreDict is set to false.")
+		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.plate")
+		@Config.Name("AlternativeAluminiumOreDictEntryForPlate")
+		@Config.RequiresMcRestart
+		public boolean altAluminiumPlateOreDict = false;
 
 		@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
 		@Config.LangKey("config.fcrebirth.modpack.master_recipe_switch")

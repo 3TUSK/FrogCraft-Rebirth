@@ -41,7 +41,7 @@ public abstract class TileEnergy extends TileFrog implements IEnergyTile {
 	}
 	
 	@Override
-	public void validate() {
+	public void onLoad() {
 		if (!getWorld().isRemote && !isInEnergyNet) {
 			MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
 			isInEnergyNet = true;

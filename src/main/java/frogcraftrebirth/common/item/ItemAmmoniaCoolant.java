@@ -50,6 +50,11 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.CoolantAmmonia.info", type));
 	}
+
+	@Override
+	public boolean showDurabilityBar(ItemStack stack) {
+		return true;
+	}
 	
 	@Override
 	public boolean canBePlacedIn(ItemStack stack, IReactor reactor) {

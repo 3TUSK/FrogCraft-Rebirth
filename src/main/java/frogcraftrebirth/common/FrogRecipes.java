@@ -164,7 +164,10 @@ class FrogRecipes {
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE, 1, 0)), null, true, new ItemStack(FrogRegistees.ORE_CRUSHED, 3, 0));
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE, 1, 1)), null, true, new ItemStack(FrogRegistees.ORE_CRUSHED, 3, 1));
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE, 1, 2)), null, true, new ItemStack(FrogRegistees.ORE_CRUSHED, 3, 2));
-		
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotAluminium"), null, true, new ItemStack(FrogRegistees.METAL_DUST, 1, 0));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotMagnalium"), null, true, new ItemStack(FrogRegistees.METAL_DUST, 1, 1));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, true, new ItemStack(FrogRegistees.NON_METAL_DUST, 1, 2));
+
 		NBTTagCompound oreWashingMetadata = new NBTTagCompound();
 		oreWashingMetadata.setInteger("amount", 500);
 		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogRegistees.ORE_CRUSHED, 1, 0)), oreWashingMetadata, true, new ItemStack(FrogRegistees.ORE_PURIFIED, 1, 0), new ItemStack(FrogRegistees.ORE_DUST_TINY, 2, 0), new ItemStack(Blocks.SAND));

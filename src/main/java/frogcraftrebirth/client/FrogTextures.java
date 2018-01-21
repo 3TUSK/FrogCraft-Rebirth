@@ -114,6 +114,7 @@ public class FrogTextures {
 		RegHelper.regFluidBlockTexture(FrogFluids.bromine);
 		RegHelper.regFluidBlockTexture(FrogFluids.carbonDioxide);
 		RegHelper.regFluidBlockTexture(FrogFluids.carbonOxide);
+		RegHelper.regFluidBlockTexture(FrogFluids.chlorine);
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.fluorine);
 		RegHelper.regFluidBlockTexture(FrogFluids.glycerol);

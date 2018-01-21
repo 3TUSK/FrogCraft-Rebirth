@@ -26,12 +26,12 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
-import java.util.IdentityHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 public class FluidStackFactory {
 
-	private final Map<String, Fluid> fluidLookup = new IdentityHashMap<>();
+	private final Map<String, Fluid> fluidLookup = new HashMap<>();
 
 	public FluidStack create(String id, int amount) {
 		return new FluidStack(fluidLookup.computeIfAbsent(id, FluidRegistry::getFluid), amount);

@@ -25,6 +25,10 @@
 			"model": "forge:fluid",
 			"custom": { "fluid": "carbon_oxide" }
 		},
+		"chlorine": {
+			"model": "forge:fluid",
+			"custom": { "fluid": "chlorine" }
+		},
 		"coal_tar": {
 			"model": "forge:fluid",
 			"custom": { "fluid": "coal_tar" }

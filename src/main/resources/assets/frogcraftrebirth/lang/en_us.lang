@@ -10,10 +10,10 @@
 
 tile.mobilePowerStation.normal.name=Mobile Power Supply
 tile.mobilePowerStation.info=§oThe best camping gear
-item.CoolantAmmonia60K=60K Ammonia Coolant Cell
-item.CoolantAmmonia180K=180K Ammonia Coolant Cell
-item.CoolantAmmonia360K=360K Ammonia Coolant Cell
-item.CoolantAmmonia.info=A ordinary %s ammonia coolant cell
+item.frogcraftrebirth.ammonia_coolant.60K=60K Ammonia Coolant Cell
+item.frogcraftrebirth.ammonia_coolant.180K=180K Ammonia Coolant Cell
+item.frogcraftrebirth.ammonia_coolant.360K=360K Ammonia Coolant Cell
+item.frogcraftrebirth.ammonia_coolant.info=A ordinary %s ammonia coolant cell
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery

@@ -42,13 +42,13 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 		super(false);
 		this.heatStorage = storage;
 		this.type = type;
-		setUnlocalizedName("CoolantAmmonia"+type);
+		setUnlocalizedName("frogcraftrebirth.ammonia_coolant." + type);
 		setMaxDamage(10000);
 	}
 	
 	@Override
 	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.CoolantAmmonia.info", type));
+		tooltips.add(I18n.format("item.frogcraftrebirth.ammonia_coolant.info", type));
 	}
 
 	@Override
@@ -81,17 +81,17 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 
 	@Override
 	public int getCurrentHeat(ItemStack yourStack, IReactor reactor, int x, int y) {
-		return yourStack.getTagCompound().getInteger("heat");
+		NBTTagCompound tag = yourStack.getTagCompound();
+		return tag == null ? 0 : tag.getInteger("heat");
 	}
 
 	@Override
 	public int alterHeat(ItemStack yourStack, IReactor reactor, int x, int y, int heat) {
-		int coolantHeat;
-		try {
+		int coolantHeat = 0;
+		if (yourStack.hasTagCompound()) {
 			coolantHeat = yourStack.getTagCompound().getInteger("heat");
-		} catch (NullPointerException e) {
+		} else {
 			yourStack.setTagCompound(new NBTTagCompound());
-			coolantHeat = 0;
 		}
 		
 		if (coolantHeat > this.heatStorage) {

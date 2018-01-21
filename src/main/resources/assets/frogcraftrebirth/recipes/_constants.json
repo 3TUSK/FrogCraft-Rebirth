@@ -1,5 +1,12 @@
 [
   {
+    "name": "plate_aluminium",
+    "ingredient": {
+      "type": "forge:ore_dict",
+      "ore": "plateAluminium"
+    }
+  },
+  {
     "name": "plate_steel",
     "ingredient": {
       "type": "forge:ore_dict",

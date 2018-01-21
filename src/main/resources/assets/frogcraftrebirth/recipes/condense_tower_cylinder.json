@@ -12,7 +12,7 @@
   "type": "forge:ore_shaped",
   "key": {
     "S": {
-      "item": "#plate_steel"
+      "item": "#plate_aluminium"
     },
     "P": {
       "item": "ic2:mining_pipe",

@@ -143,7 +143,7 @@ class FrogRecipes {
 			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.INTERMEDIATE, 1, 5)), FrogRecipeInputs.EMPTY, FluidRegistry.getFluidStack("ic2hydrogen", 2000), new ItemStack(FrogRegistees.METAL_INGOT, 1, 2), ItemStack.EMPTY, FrogFluids.argon, 300, 0));
 
 			// Temperary Aluminium smelting
-			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.METAL_DUST, 1, 0)), FrogRecipeInputs.EMPTY, null, new ItemStack(FrogRegistees.METAL_INGOT, 1, 0), ItemStack.EMPTY, FrogFluids.argon, 200, 0));
+			FrogAPI.managerABF.add(new AdvBlastFurnaceRecipe(new FrogRecipeInputItemStack(new ItemStack(FrogRegistees.METAL_DUST, 1, 0)), FrogRecipeInputs.EMPTY, null, new ItemStack(FrogRegistees.METAL_INGOT, 1, 0), ItemStack.EMPTY, null, 200, 0));
 
 			/* TODO: Implement at least one of following:
 			 * Ca5(PO4)3F + 5 H2SO4 + 10 H2O → 3 H3PO4 + 5 CaSO4·2 H2O + HF

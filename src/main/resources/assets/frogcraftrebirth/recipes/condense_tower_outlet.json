@@ -12,7 +12,7 @@
   "type": "forge:ore_shaped",
   "key": {
     "S": {
-      "item": "#plate_steel"
+      "item": "#plate_aluminium"
     },
     "G": {
       "item": "ic2:glass",

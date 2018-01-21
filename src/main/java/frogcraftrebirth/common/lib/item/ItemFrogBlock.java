@@ -28,6 +28,10 @@ import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 
+/**
+ * Deprecated due to 1.13 flattening. Use {@link ItemBlock} directly.
+ */
+@Deprecated
 public class ItemFrogBlock extends ItemBlock {
 	
 	private final Function<ItemStack, String> subName;

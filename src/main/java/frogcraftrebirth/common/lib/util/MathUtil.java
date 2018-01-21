@@ -22,36 +22,36 @@
 
 package frogcraftrebirth.common.lib.util;
 
-public class FrogMath {
-	
-	/**
-	 * This has been annoying me for a very long time. Now it's time to end it.
-	 * @param base base of the logarithm
-	 * @param exp exponential 
-	 * @return log<sub>base</sub>(exp)
-	 */
-	public static double logBase(double base, double exp) {
-		return Math.log(exp)/Math.log(base);
-	}
-	
-	public static double cot(double radians) {
-		return 1/Math.tan(radians);
-	}
-	
-	public static double sec(double radians) {
-		return 1/Math.cos(radians);
-	}
-	
-	public static double csc(double radians) {
-		return 1/Math.sin(radians);
-	}
+import frogcraftrebirth.api.FrogAPI;
+
+import java.lang.invoke.MethodHandle;
+import java.lang.invoke.MethodHandles;
+import java.lang.invoke.MethodType;
+
+public final class MathUtil {
 	
 	public static String toFancyString(int value) {
-		try {
-			return (String) Class.forName("ic2.core.util.Util").getDeclaredMethod("toSiString", double.class, int.class).invoke(null, value, 2);
-		} catch (Exception e) {
+		if (toSiString != null) {
+			try {
+				return toSiString.invoke( value, 2).toString();
+			} catch (Throwable t) { // MethodHandle::invoke throws Throwable.
+				return Integer.toString(value); // You know it doesn't work when you see all digits.
+			}
+		} else {
 			return Integer.toString(value);
 		}
 	}
 
+	static {
+		MethodHandle toSiStringImpl = null;
+		try {
+			toSiStringImpl = MethodHandles.lookup().findStatic(ic2.core.util.Util.class,"toSiString", MethodType.methodType(String.class, double.class, int.class)
+			);
+		} catch (Exception e) {
+			FrogAPI.FROG_LOG.info("Notify author if you see this message. This message means that author of FrogCraft: Rebirth must update his scientific notation converter.");
+		}
+		toSiString = toSiStringImpl;
+	}
+
+	private static final MethodHandle toSiString;
 }

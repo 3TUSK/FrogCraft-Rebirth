@@ -39,7 +39,8 @@ public final class FrogConstants {
 	public static final String[] METALLIC_MATERIAL_TYPES = {
 			"aluminium",
 			"magnalium",
-			"titanium"
+			"titanium",
+			"magnesium"
 	};
 
 	public static final String[] NON_METAL_MATERIAL_TYPES = {

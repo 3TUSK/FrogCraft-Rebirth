@@ -19,24 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+@ParametersAreNonnullByDefault
+package frogcraftrebirth.common.block;
 
-package frogcraftrebirth.common.lib.item;
-
-import frogcraftrebirth.api.FrogAPI;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.translation.I18n;
-
-public abstract class ItemFrog extends Item {
-
-	public ItemFrog() {
-		this.setCreativeTab(FrogAPI.TAB);
-	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-		return I18n.translateToLocal(getUnlocalizedName(stack));
-	}
-
-}
+import javax.annotation.ParametersAreNonnullByDefault;

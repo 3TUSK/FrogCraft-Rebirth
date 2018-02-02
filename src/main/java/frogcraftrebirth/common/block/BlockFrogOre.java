@@ -29,6 +29,10 @@ import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 
+/**
+ * Deprecated due to 1.13 flattening. Will be rewrite soon.
+ */
+@Deprecated
 public class BlockFrogOre extends BlockFrog {
 	
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
@@ -44,7 +48,6 @@ public class BlockFrogOre extends BlockFrog {
 		setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
 	}
 
-	@Override
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { TYPE };
 	}

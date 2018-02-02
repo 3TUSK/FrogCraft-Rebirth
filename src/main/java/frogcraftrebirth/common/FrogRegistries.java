@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 import java.util.function.Function;
 
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID)
-public class FrogRegistries {
+public final class FrogRegistries {
 
     @SubscribeEvent
     public static void regBlock(RegistryEvent.Register<Block> event) {

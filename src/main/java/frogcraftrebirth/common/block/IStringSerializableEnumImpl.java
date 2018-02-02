@@ -26,6 +26,12 @@ import java.util.Locale;
 
 import net.minecraft.util.IStringSerializable;
 
+/**
+ * Deprecated, because 1.13 flattening nullifies the reason of this existing.
+ * No replacement is available, nor will there be, because it is recommended to
+ * split different type of blocks into different Block instance.
+ */
+@Deprecated
 public interface IStringSerializableEnumImpl extends IStringSerializable {
 	
 	String name(); // java.lang.Enum already has the same function. So...

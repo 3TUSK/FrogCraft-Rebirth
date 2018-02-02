@@ -46,7 +46,6 @@ public class BlockHSU extends BlockFrogWrenchable {
 		setUnlocalizedName("hybridStorageUnit");
 	}
 
-	@Override
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { LEVEL, FACING_ALL };
 	}

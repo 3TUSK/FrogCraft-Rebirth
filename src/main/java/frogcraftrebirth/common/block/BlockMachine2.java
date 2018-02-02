@@ -39,6 +39,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+/**
+ * Deprecated due to 1.13 flattening. Use {@link BlockHorizontal} for all blocks that
+ * has TileEntity with inventory and IEnergyTile, and can only supports horizontal facing.
+ */
+@Deprecated
 public class BlockMachine2 extends BlockFrogWrenchable {
 
 	public static final PropertyEnum<Type> TYPE = PropertyEnum.create("variant", Type.class);
@@ -50,7 +55,7 @@ public class BlockMachine2 extends BlockFrogWrenchable {
 		setHardness(5.0F);
 		setResistance(10.0F);
 	}
-	@Override
+	
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { TYPE, FACING_HORIZONTAL, WORKING };
 	}

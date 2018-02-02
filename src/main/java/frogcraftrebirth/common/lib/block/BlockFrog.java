@@ -23,54 +23,46 @@
 package frogcraftrebirth.common.lib.block;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.common.block.BlockHorizontal;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public abstract class BlockFrog extends Block {
-	
+
+	/**
+	 * Deprecated, due to this is not always used by any of its subclass.
+	 * See {@link BlockHorizontal} and other new classes
+	 * for replacement, which are fields with same name.
+	 */
+	@Deprecated
 	protected static final PropertyBool WORKING = PropertyBool.create("working");
-	
-	private final int[] metaArrayForCreativeTab;
+
+	/**
+	 * Deprecated due to 1.13 flattening.
+	 * No replacement available.
+	 */
+	@Deprecated
+	private final int[] metaArrayForCreativeTab = null;
 
 	/**
 	 * @param material The block {@link Material}
 	 * @param registryName The unique identifier for registry.
-	 * @param metaForDisplay An array of integer, used for determining which blocks will show in creative tab
+	 * @param metaForDisplay An array of integer, used for determining which blocks will show in creative tab.
+	 *
+	 * @implNote
+	 * Parameter metaForDisplay will not function, due to 1.13 flattening.
 	 */
 	protected BlockFrog(Material material, String registryName, int... metaForDisplay) {
 		super(material);
-		setRegistryName(registryName);
+		setRegistryName(registryName); // TODO Remove this call, as we need to reuse class
 		setCreativeTab(FrogAPI.TAB);
-		this.metaArrayForCreativeTab = metaForDisplay;
 	}
-	
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, getPropertyArray());
-	}
-	
-	protected abstract IProperty<?>[] getPropertyArray();
-	
+
 	@Override
 	public int damageDropped(IBlockState state) {
 		return state.getBlock().getMetaFromState(state);
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void getSubBlocks(CreativeTabs tab, NonNullList<ItemStack> list) {
-		for (int i : metaArrayForCreativeTab) {
-			list.add(new ItemStack(this, 1, i));
-		}
 	}
 
 }

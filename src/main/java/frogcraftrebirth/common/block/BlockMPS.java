@@ -48,7 +48,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockMPS extends BlockFrogWrenchable {
-	
+
+	/**
+	 * Deprecated, as it is never used, and the proposed purpose, providing light, has never functioned
+	 */
+	@Deprecated
 	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
 	
 	public BlockMPS() {
@@ -58,8 +62,7 @@ public class BlockMPS extends BlockFrogWrenchable {
 		setHardness(1.0F);
 		setResistance(1.0F);	
 	}
-	
-	@Override
+
 	protected IProperty<?>[] getPropertyArray() {
 		return new IProperty[] { LEVEL };
 	}

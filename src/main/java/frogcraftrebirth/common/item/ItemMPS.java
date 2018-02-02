@@ -29,6 +29,7 @@ import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -36,10 +37,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemMPS extends ItemFrogBlock implements IElectricItem {
+public class ItemMPS extends ItemBlock implements IElectricItem {
 
 	public ItemMPS(BlockMPS block) {
-		super(block, aStack -> "normal");
+		super(block);
+		setUnlocalizedName(block.getUnlocalizedName()); // TODO Make sure this works
 		setHasSubtypes(false);
 		setMaxStackSize(1);
 	}

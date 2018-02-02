@@ -49,6 +49,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
@@ -199,10 +200,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				struct1 = getWorld().getTileEntity(getPos().up(1)),
 				struct2 = getWorld().getTileEntity(getPos().up(2));
 		if (struct1 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct2).isFunctional()) {
-			for (int i = 3;;i++) {
-				TileEntity tile = getWorld().getTileEntity(getPos().up(i));
-				if (tile instanceof ICondenseTowerOutputHatch) {
-					this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
+			BlockPos.MutableBlockPos posTmp = new BlockPos.MutableBlockPos(this.getPos());
+			TileEntity outletCheck;
+			while ((outletCheck = world.getTileEntity(posTmp)) != null) {
+				if (outletCheck instanceof ICondenseTowerOutputHatch) {
+					this.registerOutputHatch((ICondenseTowerOutputHatch) outletCheck);
+					posTmp.move(EnumFacing.UP);
 				} else {
 					break;
 				}

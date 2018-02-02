@@ -20,54 +20,31 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.lib.item;
+package frogcraftrebirth.common.lib.util;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.item.ItemFrog;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.text.translation.I18n;
 
-/**
- * Deprecated due to 1.13 flattening. Use {@link ItemFrog}.
- */
-@Deprecated
-public abstract class ItemFrogCraft extends Item {
-	
-	protected String[] nameArray;
+public final class ItemFactory {
 
-	public ItemFrogCraft(boolean hasSubType){
-		this.setCreativeTab(FrogAPI.TAB);
-		if (hasSubType) {
-			this.setMaxDamage(0);
-			this.setHasSubtypes(true);
-		}
+	/**
+	 * Create a ready-to-go {@link Item} instance.
+	 * @param uid The unique identifier of Item. Must be all lowercase.
+	 * @return the Item instance with given registry name
+	 */
+	public final Item create(String uid) {
+		return new ItemFrog().setUnlocalizedName(uid).setRegistryName(FrogAPI.MODID, uid);
 	}
 
-	@SuppressWarnings("deprecation")
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-		return I18n.translateToLocal(getUnlocalizedName(stack));
-	}
-
-	@Override
-	public void getSubItems(CreativeTabs tabs, NonNullList<ItemStack> list) {
-		if (this.isInCreativeTab(tabs)) {
-			if (!getHasSubtypes()) {
-				super.getSubItems(tabs, list);
-				return;
-			}
-			for (int i = 0; i < nameArray.length; i++) {
-				list.add(new ItemStack(this, 1, i));
-			}
-		}
-	}
-	
-	protected ItemFrogCraft setSubNameArray(String... names) {
-		this.nameArray = names;
-		return this;
+	/**
+	 * Create a ready-to-go {@link Item} instance with custom unlocalized name
+	 * @param uid The unique identifier of Item. Must be all lowercase.
+	 * @param langKey The localization key of name of the Item
+	 * @return the Item instance
+	 */
+	public final Item create(String uid, String langKey) {
+		return new ItemFrog().setUnlocalizedName(langKey).setRegistryName(FrogAPI.MODID, uid);
 	}
 
 }

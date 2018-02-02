@@ -33,13 +33,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 
-public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent {
+public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 
 	private final int heatStorage;
 	private final String type;
 	
 	public ItemAmmoniaCoolant(String type, int storage) {
-		super(false);
+		super();
 		this.heatStorage = storage;
 		this.type = type;
 		setUnlocalizedName("frogcraftrebirth.ammonia_coolant." + type);

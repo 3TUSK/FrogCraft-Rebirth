@@ -37,11 +37,11 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
+public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
-		super(false);
-		setUnlocalizedName("Item_Miscs.GoldClod");
+		super();
+		setUnlocalizedName("jinkela");
 	}
 
 	@Override

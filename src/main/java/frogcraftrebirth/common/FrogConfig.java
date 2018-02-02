@@ -27,7 +27,7 @@ import net.minecraftforge.common.config.Config;
 
 @Config(modid = FrogAPI.MODID)
 @Config.LangKey("config.fcrebirth.general")
-public class FrogConfig {
+public final class FrogConfig {
 
 	@Config.Comment("All options related to modpack creation.")
 	@Config.Name("ModpackOptions")
@@ -62,12 +62,12 @@ public class FrogConfig {
 	public static boolean enableWorldGen = true;
 
 
-	public static class CompatibilityOptions {
+	public static final class CompatibilityOptions {
 		public boolean enableTechRebornCompatibility = false;
 	}
 
 	@Config.LangKey("config.fcrebirth.modpack")
-	public static class ModpackOptions {
+	public static final class ModpackOptions {
 
 		@Config.Comment("If true, aluminium will have aluminum series ore dictionary entries.")
 		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.all")

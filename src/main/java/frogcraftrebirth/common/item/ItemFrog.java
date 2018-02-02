@@ -22,39 +22,21 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
+import frogcraftrebirth.api.FrogAPI;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
+import net.minecraft.util.text.translation.I18n;
 
-/**
- * Deprecated due to 1.13 flattenning. Use {@link ItemFrog}
- */
-@Deprecated
-public class ItemResources extends ItemFrogCraft {
+public class ItemFrog extends Item {
 
-	public ItemResources(String unlocalizedName, String... subNameArray) {
-		this(true, unlocalizedName, subNameArray);
-	}
-	
-	public ItemResources(boolean hasSubType, String unlocalizedName, String... subNameArray) {
-		super(hasSubType);
-		setUnlocalizedName(unlocalizedName);
-		if (hasSubType && subNameArray.length > 0)
-			setSubNameArray(subNameArray);
+	public ItemFrog() {
+		this.setCreativeTab(FrogAPI.TAB);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
-	}
-	
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return nameArray != null ? super.getUnlocalizedName()+"."+nameArray[stack.getMetadata()] : super.getUnlocalizedName(stack);
+	public String getItemStackDisplayName(ItemStack stack) {
+		return I18n.translateToLocal(getUnlocalizedName(stack));
 	}
 
 }

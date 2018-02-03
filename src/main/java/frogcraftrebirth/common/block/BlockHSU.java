@@ -25,10 +25,8 @@ package frogcraftrebirth.common.block;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileHSU;
-import frogcraftrebirth.common.tile.TileHSUUltra;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -37,17 +35,22 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+
 public class BlockHSU extends BlockFrogWrenchable {
 
-	public static final PropertyEnum<Level> LEVEL = PropertyEnum.create("variant", Level.class);
+	private final Class<? extends TileHSU> type;
 
-	public BlockHSU() {
-		super(Material.IRON, "hybrid_storage_unit", true, 0, 1);
+	public BlockHSU(@Nonnull Class<? extends TileHSU> glass) {
+		super(Material.IRON, true);
+		this.type = glass;
 		setUnlocalizedName("hybridStorageUnit");
 	}
 
-	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { LEVEL, FACING_ALL };
+	@Nonnull
+	@Override
+	public BlockStateContainer getBlockState() {
+		return new BlockStateContainer(this, FACING_ALL);
 	}
 
 	@Override
@@ -68,33 +71,26 @@ public class BlockHSU extends BlockFrogWrenchable {
 
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
-		switch (state.getValue(LEVEL)) {
-			case NORMAL:
-				return new TileHSU();
-			case ULTRA:
-				return new TileHSUUltra();
-			default:
-				return null;
+		try {
+			return type.newInstance();
+		} catch (Exception ignored) {
+			return null;
 		}
 	}
 
 	@Override
 	public int damageDropped(IBlockState state) {
-		return state.getValue(LEVEL).ordinal();
+		return 0;
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING_ALL).getIndex() * 2 + state.getValue(LEVEL).ordinal();
+		return state.getValue(FACING_ALL).getIndex();
 	}
 
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta % 2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta % 6]);
+		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);
 	}
-
-	public enum Level implements IStringSerializableEnumImpl {
-		NORMAL, ULTRA
-    }
 
 }

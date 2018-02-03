@@ -22,6 +22,7 @@
 
 package frogcraftrebirth.common.block;
 
+import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -38,20 +39,16 @@ import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
- * A custom Block that mimics vanilla BlockOre, except that it always drop the ore itself
+ * A custom Block that mimics vanilla BlockOre, except that it always drop the ore itself.
+ *
+ * @see net.minecraft.block.BlockOre
  */
 public class BlockMineral extends Block {
 
 	public BlockMineral(MapColor color, String harvestTool, int harvestLevel) {
 		super(Material.ROCK, color);
+		this.setCreativeTab(FrogAPI.TAB);
 		this.setHarvestLevel(harvestTool, harvestLevel);
-		// some data from old BlockFrogOre
-		// setHardness(5.0F);
-		// setResistance(15.0f);
-		// setDefaultState(this.blockState.getBaseState().withProperty(TYPE, Type.CARNALLITE));
-		// setHarvestLevel("shovel", 0, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.CARNALLITE));
-		// setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.DEWALQUITE));
-		// setHarvestLevel("pickaxe", 2, new BlockStateContainer.Builder(this).add(TYPE).build().getBaseState().withProperty(TYPE, Type.FLUORAPATITE));
 	}
 
 	@Nonnull

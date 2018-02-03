@@ -46,8 +46,8 @@ public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchab
 	
 	private final boolean allowVerticalRotation;
 
-	protected BlockFrogWrenchable(Material material, String registryName, boolean allowVerticalRotation, int... metaForDisplay) {
-		super(material, registryName, metaForDisplay);
+	protected BlockFrogWrenchable(Material material, boolean allowVerticalRotation) {
+		super(material);
 		this.allowVerticalRotation = allowVerticalRotation;
 	}
 	

@@ -58,7 +58,8 @@ public final class FrogRegistries {
     public static void regBlock(RegistryEvent.Register<Block> event) {
     	IForgeRegistry<Block> registry = event.getRegistry();
         registry.registerAll(
-        		new BlockHSU(),
+        		new BlockHSU(TileHSU.class).setUnlocalizedName("frogcraftrebirth.hsu").setRegistryName("hsu"),
+				new BlockHSU(TileHSUUltra.class).setUnlocalizedName("frogcraftrebirth.uhsu").setRegistryName("uhsu"),
 				new BlockMPS(),
 				new BlockCondenseTower(),
 				new BlockGenerator(),
@@ -131,8 +132,9 @@ public final class FrogRegistries {
                 new ItemBlock(Block.getBlockFromName("frogcraftrebirth:carnallite")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:dewalquite")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:fluorapatite")),
+				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:hsu")),
+				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:uhsu")),
 				new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE2, sStack -> BlockMachine2.Type.values()[sStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE2.getRegistryName()),
                 new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName()),

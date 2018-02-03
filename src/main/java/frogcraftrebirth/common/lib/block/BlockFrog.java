@@ -40,23 +40,10 @@ public abstract class BlockFrog extends Block {
 	protected static final PropertyBool WORKING = PropertyBool.create("working");
 
 	/**
-	 * Deprecated due to 1.13 flattening.
-	 * No replacement available.
-	 */
-	@Deprecated
-	private final int[] metaArrayForCreativeTab = null;
-
-	/**
 	 * @param material The block {@link Material}
-	 * @param registryName The unique identifier for registry.
-	 * @param metaForDisplay An array of integer, used for determining which blocks will show in creative tab.
-	 *
-	 * @implNote
-	 * Parameter metaForDisplay will not function, due to 1.13 flattening.
 	 */
-	protected BlockFrog(Material material, String registryName, int... metaForDisplay) {
+	protected BlockFrog(Material material) {
 		super(material);
-		setRegistryName(registryName); // TODO Remove this call, as we need to reuse class
 		setCreativeTab(FrogAPI.TAB);
 	}
 

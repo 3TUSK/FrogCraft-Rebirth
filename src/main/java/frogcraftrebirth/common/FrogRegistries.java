@@ -31,10 +31,12 @@ import frogcraftrebirth.common.lib.FrogFluid;
 import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
@@ -62,7 +64,9 @@ public final class FrogRegistries {
 				new BlockGenerator(),
                 new BlockMachine(),
 				new BlockMachine2(),
-				new BlockFrogOre()
+				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.carnallite").setRegistryName("carnallite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.dewalquite").setRegistryName("dewalquite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.fluorapatite").setRegistryName("fluorapatite")
 		);
         GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraft_mobile_power_station");
         GameRegistry.registerTileEntity(TileHSU.class, "frogcraft_hybrid_storage_unit");
@@ -124,8 +128,10 @@ public final class FrogRegistries {
     public static void regItem(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
                 new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.ORE, aStack -> BlockFrogOre.Type.values()[aStack.getMetadata()].getName()).setRegistryName(FrogRegistees.ORE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
+                new ItemBlock(Block.getBlockFromName("frogcraftrebirth:carnallite")),
+				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:dewalquite")),
+				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:fluorapatite")),
+				new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.HSU, aStack -> BlockHSU.Level.values()[aStack.getMetadata() % 2].getName()).setRegistryName(FrogRegistees.HSU.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
                 new ItemFrogBlock(FrogRegistees.MACHINE2, sStack -> BlockMachine2.Type.values()[sStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE2.getRegistryName()),

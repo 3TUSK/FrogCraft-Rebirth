@@ -30,10 +30,10 @@ import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
 import frogcraftrebirth.client.gui.GuiTileFrog;
+import frogcraftrebirth.common.block.IHorizontal;
 import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
@@ -128,7 +128,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(IHorizontal.FACING_HORIZONTAL);
 			return currectFacing == facing;
 		}
 		
@@ -138,7 +138,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currentFacing = getWorld().getBlockState(getPos()).getValue(BlockFrogWrenchable.FACING_HORIZONTAL);
+			EnumFacing currentFacing = getWorld().getBlockState(getPos()).getValue(IHorizontal.FACING_HORIZONTAL);
 			return currentFacing == facing ? CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank)) : super.getCapability(capability, currentFacing);
 		}
 		return super.getCapability(capability, facing);

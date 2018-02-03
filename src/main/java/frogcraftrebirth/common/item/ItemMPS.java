@@ -23,7 +23,6 @@
 package frogcraftrebirth.common.item;
 
 import frogcraftrebirth.common.block.BlockMPS;
-import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;

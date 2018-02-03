@@ -29,11 +29,7 @@ import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.item.ItemMPS;
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,26 +43,14 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMPS extends BlockFrogWrenchable {
+public class BlockMPS extends BlockMechanism {
 
-	/**
-	 * Deprecated, as it is never used, and the proposed purpose, providing light, has never functioned
-	 */
-	@Deprecated
-	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
-	
 	public BlockMPS() {
-		super(Material.IRON, "mobile_power_station", false);
-		setUnlocalizedName("mobilePowerStation");
-		setDefaultState(this.getBlockState().getBaseState().withProperty(LEVEL, 0));
+		super(TileMobilePowerStation.class);
 		setHardness(1.0F);
 		setResistance(1.0F);	
 	}
 
-	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { LEVEL };
-	}
-	
 	@Override
 	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;
@@ -90,20 +74,6 @@ public class BlockMPS extends BlockFrogWrenchable {
 	@Override
 	public int damageDropped(IBlockState state) {
 		return 0;
-	}
-	
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		try {
-			TileEntity tile = worldIn.getTileEntity(pos);
-			float ratio = 0F;
-			if (tile instanceof TileMobilePowerStation) {
-				ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
-			}
-			return state.withProperty(LEVEL, ratio >= 5F ? 5 : (int)ratio);
-		} catch (Exception e) {
-			return state.withProperty(LEVEL, 0);
-		}
 	}
 	
 	@Override

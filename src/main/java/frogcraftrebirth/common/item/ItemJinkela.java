@@ -24,7 +24,6 @@ package frogcraftrebirth.common.item;
 
 import java.util.List;
 
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;

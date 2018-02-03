@@ -28,7 +28,6 @@ import frogcraftrebirth.api.FrogRegistees;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
 import frogcraftrebirth.common.lib.FrogFluid;
-import frogcraftrebirth.common.lib.item.ItemFrogBlock;
 import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -60,11 +59,21 @@ public final class FrogRegistries {
         registry.registerAll(
         		new BlockHSU(TileHSU.class).setUnlocalizedName("frogcraftrebirth.hsu").setRegistryName("hsu"),
 				new BlockHSU(TileHSUUltra.class).setUnlocalizedName("frogcraftrebirth.uhsu").setRegistryName("uhsu"),
-				new BlockMPS(),
-				new BlockCondenseTower(),
-				new BlockGenerator(),
-                new BlockMachine(),
-				new BlockMachine2(),
+				new BlockMPS().setUnlocalizedName("frogcraftrebirth.mobile_power_station").setRegistryName("mobile_power_station"),
+				//new BlockCondenseTower(),
+				//new BlockGenerator(),
+                //new BlockMachine(),
+				//new BlockMachine2(),
+				/*
+				 * Air Pump -> BlockMachinery
+				 * Adv. Chem. Reactor -> BlockMachineryDirectional
+				 * Adv. Blast Furnace -> BlockMachineryDirectional
+				 * Combustion Furnace -> BlockMachineryDirectional
+				 * Liquefier -> BlockMachinery
+				 * Condense Tower Core -> BlockMachineryDirectional
+				 * Condense Tower Cylinder -> BlockMechanism
+				 * Condense Tower Outlet -> BlockMechanismDirectional?
+				 */
 				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.carnallite").setRegistryName("carnallite"),
 				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.dewalquite").setRegistryName("dewalquite"),
 				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("frogcraftrebirth.fluorapatite").setRegistryName("fluorapatite")
@@ -128,38 +137,38 @@ public final class FrogRegistries {
     @SubscribeEvent
     public static void regItem(RegistryEvent.Register<Item> event) {
         event.getRegistry().registerAll(
-                new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
+                //new ItemFrogBlock(FrogRegistees.CONDENSE_TOWER, aStack -> BlockCondenseTower.Part.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.CONDENSE_TOWER.getRegistryName()),
                 new ItemBlock(Block.getBlockFromName("frogcraftrebirth:carnallite")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:dewalquite")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:fluorapatite")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:hsu")),
 				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:uhsu")),
-				new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
-                new ItemFrogBlock(FrogRegistees.MACHINE2, sStack -> BlockMachine2.Type.values()[sStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE2.getRegistryName()),
+				//new ItemFrogBlock(FrogRegistees.GENERATOR, aStack -> "combustionFurnace").setRegistryName(FrogRegistees.GENERATOR.getRegistryName()),
+                //new ItemFrogBlock(FrogRegistees.MACHINE, aStack -> BlockMachine.Type.values()[aStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE.getRegistryName()),
+                //new ItemFrogBlock(FrogRegistees.MACHINE2, sStack -> BlockMachine2.Type.values()[sStack.getMetadata() & 0b11].getName()).setRegistryName(FrogRegistees.MACHINE2.getRegistryName()),
                 new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName()),
                 new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
                 new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
                 new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-                new ItemResources("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
+                new ItemResource("reactionModule", "Heating", "Electrolyze", "Ammonia", "V2O5").setRegistryName("catalyst_module"),
                 new ItemDecayBattery("U").setRegistryName("uranium_decay_battery"),
                 new ItemDecayBattery("Th").setRegistryName("thorium_decay_battery"),
                 new ItemDecayBattery("Pu").setRegistryName("plutoium_decay_battery"),
                 new ItemJinkela().setRegistryName("jinkela"),
-				new ItemResources("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
-				new ItemResources("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
-				new ItemResources("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),
-				new ItemResources("metal_plate", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate"),
-				new ItemResources("metal_plate_dense", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate_dense"),
-				new ItemResources("metal_casing", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_casing"),
-				new ItemResources("ore_crushed", FrogConstants.ORE_TYPES).setRegistryName("ore_crushed"),
-				new ItemResources("ore_purified", FrogConstants.ORE_TYPES).setRegistryName("ore_purified"),
-				new ItemResources("ore_dust", FrogConstants.ORE_TYPES).setRegistryName("ore_dust"),
-				new ItemResources("ore_dust_tiny", FrogConstants.ORE_TYPES).setRegistryName("ore_dust_tiny"),
-				new ItemResources("non_metal_dust", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust"),
-				new ItemResources("non_metal_dust_tiny", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust_tiny"),
-				new ItemResources("intermediate_product", FrogConstants.INTERMEDIATE_TYPES).setRegistryName("intermediate_product"),
-				new ItemResources("inflammable", FrogConstants.INFLAMMABLE) {
+				new ItemResource("metal_ingot", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_ingot"),
+				new ItemResource("metal_dust", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust"),
+				new ItemResource("metal_dust_tiny", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_dust_tiny"),
+				new ItemResource("metal_plate", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate"),
+				new ItemResource("metal_plate_dense", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_plate_dense"),
+				new ItemResource("metal_casing", FrogConstants.METALLIC_MATERIAL_TYPES).setRegistryName("metal_casing"),
+				new ItemResource("ore_crushed", FrogConstants.ORE_TYPES).setRegistryName("ore_crushed"),
+				new ItemResource("ore_purified", FrogConstants.ORE_TYPES).setRegistryName("ore_purified"),
+				new ItemResource("ore_dust", FrogConstants.ORE_TYPES).setRegistryName("ore_dust"),
+				new ItemResource("ore_dust_tiny", FrogConstants.ORE_TYPES).setRegistryName("ore_dust_tiny"),
+				new ItemResource("non_metal_dust", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust"),
+				new ItemResource("non_metal_dust_tiny", FrogConstants.NON_METAL_MATERIAL_TYPES).setRegistryName("non_metal_dust_tiny"),
+				new ItemResource("intermediate_product", FrogConstants.INTERMEDIATE_TYPES).setRegistryName("intermediate_product"),
+				new ItemResource("inflammable", FrogConstants.INFLAMMABLE) {
 					@Override
 					public boolean onEntityItemUpdate(EntityItem entityItem) {
 						if (entityItem.getItem().isEmpty()) {

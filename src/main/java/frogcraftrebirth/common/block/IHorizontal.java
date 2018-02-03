@@ -22,43 +22,40 @@
 
 package frogcraftrebirth.common.block;
 
-import frogcraftrebirth.common.tile.TileHSU;
-import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
+/**
+ * A restricted version of {@link IRotatable}, in which only EAST, WEST, NORTH, SOUTH orientation are permitted.
+ */
+public interface IHorizontal extends IRotatable {
 
-public class BlockHSU extends BlockMechanism implements IRotatable {
-
-	public BlockHSU(@Nonnull Class<? extends TileHSU> glass) {
-		super(glass);
-		setUnlocalizedName("hybridStorageUnit");
-	}
-
-	@Nonnull
 	@Override
-	public BlockStateContainer getBlockState() {
-		return new BlockStateContainer(this, FACING_ALL);
+	default void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		worldIn.setBlockState(pos, state.withProperty(FACING_HORIZONTAL, placer.getHorizontalFacing().getOpposite()));
 	}
 
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		IRotatable.super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+	default EnumFacing getFacing(World world, BlockPos pos) {
+		return world.getBlockState(pos).getValue(FACING_HORIZONTAL);
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING_ALL).getIndex();
+	default boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
+		if (newDirection.getAxis() != EnumFacing.Axis.Y) { // Only UP and DOWN have EnumFacing.Axis.Y
+			world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_HORIZONTAL, newDirection), 2);
+			return true;
+		} else {
+			return false;
+		}
 	}
 
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);
-	}
-
+	PropertyDirection FACING_HORIZONTAL = BlockHorizontal.FACING;
 }

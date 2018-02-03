@@ -22,22 +22,38 @@
 
 package frogcraftrebirth.common.block;
 
-import java.util.Locale;
+import frogcraftrebirth.common.lib.tile.TileFrog;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
-import net.minecraft.util.IStringSerializable;
+import javax.annotation.Nonnull;
 
-/**
- * Deprecated, because 1.13 flattening nullifies the reason of this existing.
- * No replacement is available, nor will there be, because it is recommended to
- * split different type of blocks into different Block instance.
- */
-@Deprecated
-public interface IStringSerializableEnumImpl extends IStringSerializable {
-	
-	String name(); // java.lang.Enum already has the same function. So...
-	
-	default String getName() {
-		return this.name().toLowerCase(Locale.ENGLISH);
+public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
+
+	protected static final PropertyBool WORKING = PropertyBool.create("working");
+
+	/**
+	 * @param glass The type of TileEntity this block provies
+	 */
+	protected BlockMachinery(Class<? extends TileFrog> glass) {
+		super(glass);
+	}
+
+	@Nonnull
+	@Override
+	public BlockStateContainer getBlockState() {
+		return new BlockStateContainer(this, WORKING);
+	}
+
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		return IGuiAccessible.super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
 	}
 
 }

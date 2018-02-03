@@ -20,18 +20,12 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.lib.block;
+package frogcraftrebirth.common.block;
 
-import java.util.Collections;
-import java.util.List;
-
+import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.tile.IWrenchable;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -39,53 +33,38 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public abstract class BlockFrogWrenchable extends BlockFrog implements IWrenchable {
-	
-	public static final PropertyDirection FACING_ALL = BlockDirectional.FACING;
-	public static final PropertyDirection FACING_HORIZONTAL = BlockHorizontal.FACING;
-	
-	private final boolean allowVerticalRotation;
+import javax.annotation.Nonnull;
+import java.util.List;
 
-	protected BlockFrogWrenchable(Material material, boolean allowVerticalRotation) {
-		super(material);
-		this.allowVerticalRotation = allowVerticalRotation;
+public class BlockMachineryDirectional extends BlockMachinery implements IWrenchable, IHorizontal {
+
+	public BlockMachineryDirectional(@Nonnull Class<? extends TileFrog> glass) {
+		super(glass);
 	}
-	
+
+	@Nonnull
 	@Override
-	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
-		worldIn.setBlockState(pos, state.withProperty(allowVerticalRotation ? FACING_ALL : FACING_HORIZONTAL, placer.getHorizontalFacing().getOpposite()));
+	public BlockStateContainer getBlockState() {
+		return new BlockStateContainer(this, WORKING, FACING_HORIZONTAL);
 	}
 
 	@Override
 	public EnumFacing getFacing(World world, BlockPos pos) {
-		return world.getBlockState(pos).getValue(allowVerticalRotation ? FACING_ALL : FACING_HORIZONTAL);
+		return IHorizontal.super.getFacing(world, pos);
 	}
 
 	@Override
 	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
-		if (!allowVerticalRotation) {
-			switch (newDirection) {
-				case UP:
-				case DOWN: return false;
-				default: {
-					world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_HORIZONTAL, newDirection), 2);
-					return true;
-				}
-			}
-		} else {
-			world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING_ALL, newDirection), 2);
-			return true;
-		}
+		return IHorizontal.super.setFacing(world, pos, newDirection, player);
 	}
 
 	@Override
 	public boolean wrenchCanRemove(World world, BlockPos pos, EntityPlayer player) {
-		return true;
+		return IHorizontal.super.wrenchCanRemove(world, pos, player);
 	}
 
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		return Collections.singletonList(new ItemStack(state.getBlock(), 1, state.getBlock().damageDropped(state)));
+		return IHorizontal.super.getWrenchDrops(world, pos, state, te, player, fortune);
 	}
-
 }

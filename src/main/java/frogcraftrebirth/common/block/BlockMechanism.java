@@ -22,32 +22,32 @@
 
 package frogcraftrebirth.common.block;
 
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
+import frogcraftrebirth.common.lib.block.BlockFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import ic2.api.tile.IWrenchable;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
-public class BlockHorizontal extends BlockFrogWrenchable {
+public class BlockMechanism extends BlockFrog implements IWrenchable {
 
-	protected static final PropertyBool WORKING = PropertyBool.create("working");
+	private final Class<? extends TileFrog> type;
 
-	private Class<? extends TileFrog> classBlockEntity;
-
-	protected BlockHorizontal(String registryName) {
-		super(Material.IRON, registryName, false);
-	}
-
-	@Override
-	protected BlockStateContainer createBlockState() {
-		return new BlockStateContainer(this, WORKING);
+	/**
+	 * {@inheritDoc}
+	 */
+	protected BlockMechanism(@Nonnull Class<? extends TileFrog> glass) {
+		super(Material.IRON);
+		this.type = glass;
 	}
 
 	// Explicitly override this, forcing us not relying on metadata anymore
@@ -65,7 +65,7 @@ public class BlockHorizontal extends BlockFrogWrenchable {
 	@Override
 	public TileEntity createTileEntity(World world, IBlockState state) {
 		try {
-			return classBlockEntity != null ? classBlockEntity.newInstance() : null;
+			return type.newInstance();
 		} catch (Exception ignored) {
 			return null;
 		}
@@ -78,5 +78,25 @@ public class BlockHorizontal extends BlockFrogWrenchable {
 			((TileFrog)tileEntity).onBlockDestroyed(worldIn, pos, state); // TODO Do we need a separate interface for this guy?
 		}
 		super.breakBlock(worldIn, pos, state);
+	}
+
+	@Override
+	public EnumFacing getFacing(World world, BlockPos blockPos) {
+		return null;
+	}
+
+	@Override
+	public boolean setFacing(World world, BlockPos blockPos, EnumFacing enumFacing, EntityPlayer entityPlayer) {
+		return false;
+	}
+
+	@Override
+	public boolean wrenchCanRemove(World world, BlockPos blockPos, EntityPlayer entityPlayer) {
+		return true;
+	}
+
+	@Override
+	public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
+		return null;
 	}
 }

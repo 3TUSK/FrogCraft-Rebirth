@@ -23,21 +23,11 @@
 package frogcraftrebirth.common.lib.block;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.block.BlockHorizontal;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.IBlockState;
 
 public abstract class BlockFrog extends Block {
-
-	/**
-	 * Deprecated, due to this is not always used by any of its subclass.
-	 * See {@link BlockHorizontal} and other new classes
-	 * for replacement, which are fields with same name.
-	 */
-	@Deprecated
-	protected static final PropertyBool WORKING = PropertyBool.create("working");
 
 	/**
 	 * @param material The block {@link Material}
@@ -49,7 +39,7 @@ public abstract class BlockFrog extends Block {
 
 	@Override
 	public int damageDropped(IBlockState state) {
-		return state.getBlock().getMetaFromState(state);
+		return 0;
 	}
 
 }

@@ -20,37 +20,25 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.lib.item;
+package frogcraftrebirth.common.block;
 
-import java.util.function.Function;
-
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
+import frogcraftrebirth.FrogCraftRebirth;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 /**
- * Deprecated due to 1.13 flattening. Use {@link ItemBlock} directly.
+ * Shortcut for letting a block have its GUI.
  */
-@Deprecated
-public class ItemFrogBlock extends ItemBlock {
-	
-	private final Function<ItemStack, String> subName;
-	
-	public ItemFrogBlock(Block block, Function<ItemStack, String> subNameGetter) {
-		super(block);
-		setHasSubtypes(true);
-		setMaxDamage(0);
-		this.subName = subNameGetter;
-	}
-	
-	@Override
-	public int getMetadata(int meta) {
-		return meta;
-	}
-	
-	@Override
-	public String getUnlocalizedName(ItemStack stack) {
-		return super.getUnlocalizedName(stack) + "." + subName.apply(stack);
-	}
+public interface IGuiAccessible {
 
+	default boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote) {
+			playerIn.openGui(FrogCraftRebirth.getInstance(), 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
+	}
 }

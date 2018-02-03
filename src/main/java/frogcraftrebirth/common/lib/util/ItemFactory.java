@@ -24,6 +24,7 @@ package frogcraftrebirth.common.lib.util;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.item.ItemFrog;
+import frogcraftrebirth.common.item.ItemResource;
 import net.minecraft.item.Item;
 
 public final class ItemFactory {
@@ -45,6 +46,10 @@ public final class ItemFactory {
 	 */
 	public final Item create(String uid, String langKey) {
 		return new ItemFrog().setUnlocalizedName(langKey).setRegistryName(FrogAPI.MODID, uid);
+	}
+
+	public final Item createWithTooltip(String uid) {
+		return new ItemResource().setUnlocalizedName(uid).setRegistryName(uid).setRegistryName(FrogAPI.MODID, uid);
 	}
 
 }

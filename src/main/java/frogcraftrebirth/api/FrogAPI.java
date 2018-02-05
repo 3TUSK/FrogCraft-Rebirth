@@ -41,12 +41,15 @@ public final class FrogAPI {
 		MODID = "frogcraftrebirth", 
 		NAME = "FrogCraft: Rebirth", 
 		API = "FrogAPI",
-		API_VER = "2.0";
+		API_VER = "3.0";
 
 	/**
 	 * Magic number that serves as an identifier, used by data fixer to identify whether the given
 	 * save contains data from older version of FrogCraft: Rebirth.
+	 *
+	 * @deprecated Currently not used, scheduled to be removed
 	 */
+	@Deprecated
 	public static final int DATA_FIXER_REMARK = 20160730;
 
 	public static final Logger FROG_LOG = LogManager.getLogger("FrogCraft-Rebirth");
@@ -54,7 +57,7 @@ public final class FrogAPI {
 	public static final CreativeTabs TAB = new CreativeTabs("FrogCraft") {
 		@Override
 		public ItemStack getTabIconItem() {
-			return new ItemStack(FrogRegistees.MACHINE);
+			return new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR);
 		}
 	};
 

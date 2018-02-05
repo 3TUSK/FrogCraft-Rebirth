@@ -23,7 +23,7 @@
 package frogcraftrebirth.common;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.FrogRegistees;
+import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.common.block.*;
 import frogcraftrebirth.common.item.*;
 import frogcraftrebirth.common.lib.FrogFluid;
@@ -66,6 +66,7 @@ public final class FrogRegistries {
 				new BlockMachineryDirectional(TileAdvChemReactor.class).setRegistryName("frogcraftrebirth:advanced_chemical_reactor"),
 				new BlockMachineryDirectional(TileAdvBlastFurnace.class).setRegistryName("frogcraftrebirth:advanced_blast_furnace"),
 				new BlockMachineryDirectional(TileCombustionFurnace.class).setRegistryName("frogcraftrebirth:combustion_furnace"),
+				new BlockMachineryDirectional(TilePyrolyzer.class).setRegistryName("frogcraftrebirth:pyrolyzer"),
 				new BlockMachineryDirectional(TileCondenseTower.class).setRegistryName("frogcraftrebirth:condense_tower_core"),
 				new BlockMechanism(TileCondenseTowerStructure.class).setRegistryName("frogcraftrebirth:condense_tower_cylinder"),
 				new BlockMechanismDirectional(TileFluidOutputHatch.class).setRegistryName("frogcraftrebirth:condense_tower_outlet")
@@ -130,12 +131,21 @@ public final class FrogRegistries {
 	public static void regItem(RegistryEvent.Register<Item> event) {
 		final ItemFactory factory = new ItemFactory();
 		event.getRegistry().registerAll(
-				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:carnallite")), 
-				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:dewalquite")), 
-				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:fluorapatite")), 
-				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:hsu")), 
-				new ItemBlock(Block.getBlockFromName("frogcraftrebirth:uhsu")), 
-				new ItemMPS((BlockMPS) FrogRegistees.MPS).setRegistryName(FrogRegistees.MPS.getRegistryName()), 
+				new ItemBlock(FrogGameObjects.CARNALLITE),
+				new ItemBlock(FrogGameObjects.DEWALQUITE),
+				new ItemBlock(FrogGameObjects.FLUORAPATITE),
+				new ItemBlock(FrogGameObjects.HSU),
+				new ItemBlock(FrogGameObjects.UHSU),
+				new ItemBlock(FrogGameObjects.AIR_PUMP),
+				new ItemBlock(FrogGameObjects.LIQUEFIER),
+				new ItemBlock(FrogGameObjects.ADV_CHEM_REACTOR),
+				new ItemBlock(FrogGameObjects.ADV_BLAST_FURNACE),
+				new ItemBlock(FrogGameObjects.COMBUSTION_FURNACE),
+				new ItemBlock(FrogGameObjects.PYROLYZER),
+				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_CORE),
+				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_CYLINDER),
+				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_OUTLET),
+				new ItemMPS((BlockMPS) FrogGameObjects.MPS).setRegistryName(FrogGameObjects.MPS.getRegistryName()),
 				new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"), 
 				new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"), 
 				new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"), 
@@ -214,7 +224,7 @@ public final class FrogRegistries {
 					@Override
 					public boolean onEntityItemUpdate(EntityItem entityItem) {
 						if (!entityItem.getEntityWorld().isRemote && !entityItem.getItem().isEmpty() && entityItem.getItem().getItem() == this) {
-							if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogRegistees.NITRIC_ACID) {
+							if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogGameObjects.NITRIC_ACID) {
 								//TODO set up explosion and grant advancement to players
 								entityItem.setDead();
 								return true;

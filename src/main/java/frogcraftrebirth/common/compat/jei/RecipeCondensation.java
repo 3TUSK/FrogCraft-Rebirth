@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
 
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;

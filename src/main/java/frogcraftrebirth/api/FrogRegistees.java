@@ -26,6 +26,10 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
+/**
+ * @deprecated Merge into {@link FrogGameObjects}.
+ */
+@Deprecated
 @GameRegistry.ObjectHolder(FrogAPI.MODID)
 public final class FrogRegistees {
 	@GameRegistry.ObjectHolder("hybrid_storage_unit")

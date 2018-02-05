@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.List;
-
 import javax.annotation.Nonnull;
 
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;

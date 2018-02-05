@@ -24,6 +24,9 @@ package frogcraftrebirth.common.item;
 
 import net.minecraft.item.ItemStack;
 
+/**
+ * Specialized {@link ItemResource} that can be recognized as furnace fuel.
+ */
 public class ItemFlammable extends ItemResource {
 
 	private final int burnTime;

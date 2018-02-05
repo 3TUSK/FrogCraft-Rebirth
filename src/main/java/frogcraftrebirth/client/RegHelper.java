@@ -38,23 +38,31 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 class RegHelper {
 
 	static void registerModel(Item item, String newResLoc) {
-		registerModel(item, 0, newResLoc);
+		registerModel0(item, 0, "frogcraftrebirth:" + newResLoc);
 	}
 	
 	static void registerModel(Block block, String newResLoc) {
-		registerModel(block, 0, newResLoc);
+		registerModel0(Item.getItemFromBlock(block), 0, "frogcraftrebirth:" + newResLoc);
 	}
 
+	/**
+	 * @deprecated Flattening. Please remove all metadata usage and refer to {@link #registerModel(Item, String)}
+	 */
+	@Deprecated
 	static void registerModel(Item item, int metadata, String newResLoc) {
 		registerModel0(item, metadata, "frogcraftrebirth:" + newResLoc);
 	}
-	
+
+	/**
+	 * @deprecated Flattening. Please remove all metadata usage and refer to {@link #registerModel(Block, String)}
+	 */
+	@Deprecated
 	static void registerModel(Block block, int metadata, String newResLoc) {
 		registerModel0(Item.getItemFromBlock(block), metadata, "frogcraftrebirth:" + newResLoc);
 	}
 	
 	private static void registerModel0(Item item, int metadata, String resourceLocation) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, "inventory"));
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(resourceLocation, "inventory"));
 	}
 	
 	static void regFluidBlockTexture(Fluid fluid) {

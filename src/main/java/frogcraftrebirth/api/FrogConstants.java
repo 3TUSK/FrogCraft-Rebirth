@@ -23,8 +23,13 @@
 package frogcraftrebirth.api;
 
 /**
+ * @deprecated Merge into {@link FrogGameObjects}.
+ *
+ * <p>
  * Collection of constants used by the internal of FrogCraft: Rebirth.
+ * </p>
  */
+@Deprecated
 public final class FrogConstants {
 	private FrogConstants() {
 		throw new UnsupportedOperationException("No instance for you");

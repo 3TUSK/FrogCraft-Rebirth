@@ -24,7 +24,7 @@ package frogcraftrebirth.common.block;
 
 import java.util.Random;
 
-import frogcraftrebirth.api.FrogRegistees;
+import frogcraftrebirth.api.FrogGameObjects;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -105,7 +105,7 @@ public class BlockNitricAcid extends BlockFluidClassic {
 		super.onEntityCollidedWithBlock(world, pos, state, entity);
 		if (entity instanceof EntityItem) {
 			ItemStack stack = ((EntityItem)entity).getItem();
-			if (stack.getItem() == FrogRegistees.INFLAMMABLE && stack.getMetadata() == 3) {
+			if (stack.getItem() == FrogGameObjects.POTASSIUM) {
 				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
 			}
 		}

@@ -22,7 +22,7 @@
 
 package frogcraftrebirth.common.world;
 
-import frogcraftrebirth.api.FrogRegistees;
+import frogcraftrebirth.api.FrogGameObjects;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.OreGenEvent;
@@ -32,9 +32,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 public final class FrogWorldGenerator {
 
 	// TODO Fix these guys
-	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(FrogRegistees.ORE.getDefaultState(), 3);
-	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(FrogRegistees.ORE.getDefaultState(), 15);
-	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FrogRegistees.ORE.getDefaultState(), 15);
+	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(FrogGameObjects.CARNALLITE.getDefaultState(), 3);
+	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(FrogGameObjects.DEWALQUITE.getDefaultState(), 15);
+	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FrogGameObjects.FLUORAPATITE.getDefaultState(), 15);
 
 	@SubscribeEvent
 	public void onOreGen(OreGenEvent.Post event) {

@@ -40,12 +40,27 @@ public class BlockMachineryDirectional extends BlockMachinery implements IWrench
 
 	public BlockMachineryDirectional(@Nonnull Class<? extends TileFrog> glass) {
 		super(glass);
+		this.setDefaultState(this.blockState.getBaseState()
+				.withProperty(WORKING, Boolean.FALSE)
+				.withProperty(FACING_HORIZONTAL, EnumFacing.NORTH));
 	}
 
 	@Nonnull
 	@Override
-	public BlockStateContainer getBlockState() {
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, WORKING, FACING_HORIZONTAL);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return ((state.getValue(WORKING) ? 1 : 0) << 2 ) + state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState()
+				.withProperty(WORKING, (meta >> 2) == 0 ? Boolean.FALSE : Boolean.TRUE)
+				.withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));
 	}
 
 	@Override

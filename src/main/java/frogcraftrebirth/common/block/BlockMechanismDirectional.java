@@ -39,14 +39,24 @@ public class BlockMechanismDirectional extends BlockMechanism implements IHorizo
 
 	public BlockMechanismDirectional(Class<? extends TileFrog> glass) {
 		super(glass);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING_HORIZONTAL, EnumFacing.NORTH));
 	}
 
 	@Nonnull
 	@Override
-	public BlockStateContainer getBlockState() {
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FACING_HORIZONTAL);
 	}
 
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));
+	}
 
 	@Override
 	public EnumFacing getFacing(World world, BlockPos pos) {

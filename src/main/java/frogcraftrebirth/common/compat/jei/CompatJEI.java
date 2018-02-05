@@ -25,7 +25,7 @@ package frogcraftrebirth.common.compat.jei;
 import java.util.Arrays;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.api.FrogRegistees;
+import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
@@ -67,10 +67,10 @@ public class CompatJEI implements IModPlugin {
 		registry.handleRecipes(IPyrolyzerRecipe.class, new RecipeWrapperFactoryPyrolyzation(), "frogcraftrebirth.pyrolyzation");
 		registry.handleRecipes(IAdvBlastFurnaceRecipe.class, new RecipeWrapperFactoryBlastFurnace(), "frogcraftrebirth.blastfurnace");
 
-		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.MACHINE, 1, 0), "frogcraftrebirth.chemreaction");
-		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), "frogcraftrebirth.condensation");
-		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.MACHINE, 1, 2), "frogcraftrebirth.pyrolyzation");
-		registry.addRecipeCatalyst(new ItemStack(FrogRegistees.MACHINE2, 1, 0), "frogcraftrebirth.blastfurnace");
+		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR), "frogcraftrebirth.chemreaction");
+		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.CONDENSE_TOWER_CORE), "frogcraftrebirth.condensation");
+		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.PYROLYZER), "frogcraftrebirth.pyrolyzation");
+		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.ADV_BLAST_FURNACE), "frogcraftrebirth.blastfurnace");
 
 		registry.addRecipes(FrogAPI.managerACR.getRecipes(), "frogcraftrebirth.chemreaction");
 		registry.addRecipes(FrogAPI.managerCT.getRecipes(), "frogcraftrebirth.condensation");
@@ -83,12 +83,12 @@ public class CompatJEI implements IModPlugin {
 		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
 		registry.addRecipeClickArea(GuiAdvBlastFurnace.class, 76, 27, 24, 17, "frogcraftrebirth.blastfurnace");
 
-		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 0), ItemStack.class, "jei.doc.advChemReactor");
-		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 1), ItemStack.class, "jei.doc.airPump");
-		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 2), ItemStack.class, "jei.doc.pyrolyzer");
-		registry.addIngredientInfo(new ItemStack(FrogRegistees.MACHINE, 1, 3), ItemStack.class, "jei.doc.liquefier");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR), ItemStack.class, "jei.doc.advChemReactor");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.AIR_PUMP), ItemStack.class, "jei.doc.airPump");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.PYROLYZER), ItemStack.class, "jei.doc.pyrolyzer");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.LIQUEFIER), ItemStack.class, "jei.doc.liquefier");
 		
-		registry.addIngredientInfo(Arrays.asList(new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 0), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 1), new ItemStack(FrogRegistees.CONDENSE_TOWER, 1, 2)), ItemStack.class, "jei.doc.condenseTower");
+		registry.addIngredientInfo(Arrays.asList(new ItemStack(FrogGameObjects.CONDENSE_TOWER_CORE), new ItemStack(FrogGameObjects.CONDENSE_TOWER_CYLINDER), new ItemStack(FrogGameObjects.CONDENSE_TOWER_OUTLET)), ItemStack.class, "jei.doc.condenseTower");
 	}
 
 	@Override

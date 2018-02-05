@@ -37,11 +37,12 @@ public class BlockHSU extends BlockMechanism implements IRotatable {
 
 	public BlockHSU(@Nonnull Class<? extends TileHSU> glass) {
 		super(glass);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING_ALL, EnumFacing.NORTH));
 	}
 
 	@Nonnull
 	@Override
-	public BlockStateContainer getBlockState() {
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FACING_ALL);
 	}
 

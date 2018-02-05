@@ -43,17 +43,28 @@ public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 	 */
 	public BlockMachinery(Class<? extends TileFrog> glass) {
 		super(glass);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(WORKING, Boolean.FALSE));
 	}
 
 	@Nonnull
 	@Override
-	public BlockStateContainer getBlockState() {
+	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, WORKING);
 	}
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		return IGuiAccessible.super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
+	}
+
+	@Override
+	public int getMetaFromState(IBlockState state) {
+		return state.getValue(WORKING) ? 1 : 0;
+	}
+
+	@Override
+	public IBlockState getStateFromMeta(int meta) {
+		return this.getDefaultState().withProperty(WORKING, meta == 0 ? Boolean.FALSE : Boolean.TRUE);
 	}
 
 }

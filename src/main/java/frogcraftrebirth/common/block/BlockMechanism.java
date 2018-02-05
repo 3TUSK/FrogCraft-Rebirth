@@ -45,7 +45,7 @@ public class BlockMechanism extends BlockFrog implements IWrenchable {
 	/**
 	 * {@inheritDoc}
 	 */
-	protected BlockMechanism(@Nonnull Class<? extends TileFrog> glass) {
+	public BlockMechanism(@Nonnull Class<? extends TileFrog> glass) {
 		super(Material.IRON);
 		this.type = glass;
 	}

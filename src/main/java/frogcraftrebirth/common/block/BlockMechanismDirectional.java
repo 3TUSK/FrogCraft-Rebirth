@@ -23,37 +23,48 @@
 package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 import javax.annotation.Nonnull;
+import java.util.List;
 
-public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
+public class BlockMechanismDirectional extends BlockMechanism implements IHorizontal {
 
-	protected static final PropertyBool WORKING = PropertyBool.create("working");
-
-	/**
-	 * @param glass The type of TileEntity this block provies
-	 */
-	public BlockMachinery(Class<? extends TileFrog> glass) {
+	public BlockMechanismDirectional(Class<? extends TileFrog> glass) {
 		super(glass);
 	}
 
 	@Nonnull
 	@Override
 	public BlockStateContainer getBlockState() {
-		return new BlockStateContainer(this, WORKING);
+		return new BlockStateContainer(this, FACING_HORIZONTAL);
+	}
+
+
+	@Override
+	public EnumFacing getFacing(World world, BlockPos pos) {
+		return IHorizontal.super.getFacing(world, pos);
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		return IGuiAccessible.super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
+	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
+		return IHorizontal.super.setFacing(world, pos, newDirection, player);
 	}
 
+	@Override
+	public boolean wrenchCanRemove(World world, BlockPos pos, EntityPlayer player) {
+		return IHorizontal.super.wrenchCanRemove(world, pos, player);
+	}
+
+	@Override
+	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
+		return IHorizontal.super.getWrenchDrops(world, pos, state, te, player, fortune);
+	}
 }

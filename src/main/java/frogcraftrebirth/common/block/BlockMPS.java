@@ -29,6 +29,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
+import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.state.IBlockState;
@@ -81,8 +82,10 @@ public class BlockMPS extends BlockMechanism {
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation) {		
 			if (stack.getTagCompound() != null) {
-				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
-				tile.loadDataFrom(stack.getTagCompound());
+				TileEntity tile = worldIn.getTileEntity(pos);
+				if (tile instanceof IMobilePowerStation) {
+					((IMobilePowerStation)tile).loadDataFrom(stack.getTagCompound());
+				}
 			}
 		}
 	}
@@ -117,15 +120,21 @@ public class BlockMPS extends BlockMechanism {
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		ItemStack stack = new ItemStack(this, 1, 0);
-		if (!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
-		if (world.getTileEntity(pos) instanceof TileMobilePowerStation) {
-			((TileMobilePowerStation)world.getTileEntity(pos)).saveDataTo(stack.getTagCompound());
+		NBTTagCompound tagMPS;
+		if (stack.getTagCompound() != null) {
+			tagMPS = stack.getTagCompound();
+		} else {
+			tagMPS = new NBTTagCompound();
+			stack.setTagCompound(tagMPS);
+		}
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof TileMobilePowerStation) {
+			((TileMobilePowerStation)tile).saveDataTo(tagMPS);
 			return stack;
 		} else {
-			stack.getTagCompound().setInteger("charge", 0);
-			stack.getTagCompound().setInteger("maxCharge", 60000);
-			stack.getTagCompound().setInteger("tier", 1);
+			tagMPS.setInteger("charge", 0);
+			tagMPS.setInteger("maxCharge", 60000);
+			tagMPS.setInteger("tier", 1);
 			return stack;
 		}
 	}

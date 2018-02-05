@@ -27,15 +27,18 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.text.translation.I18n;
 
+import javax.annotation.Nonnull;
+
 public class ItemFrog extends Item {
 
 	public ItemFrog() {
 		this.setCreativeTab(FrogAPI.TAB);
 	}
 
-	@SuppressWarnings("deprecation")
+	@Nonnull
 	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
+	@SuppressWarnings("deprecation")
+	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
 		return I18n.translateToLocal(getUnlocalizedName(stack));
 	}
 

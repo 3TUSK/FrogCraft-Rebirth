@@ -22,18 +22,18 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 
-public class ItemResource extends ItemFrog {
+public class ItemFlammable extends ItemResource {
 
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
+	private final int burnTime;
+
+	public ItemFlammable(int burnTime) {
+		this.burnTime = burnTime;
 	}
 
+	@Override
+	public int getItemBurnTime(ItemStack itemStack) {
+		return this.burnTime;
+	}
 }

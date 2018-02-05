@@ -30,6 +30,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemDecayBattery extends ItemFrog implements ISpecialElectricItem {
@@ -50,7 +51,7 @@ public class ItemDecayBattery extends ItemFrog implements ISpecialElectricItem {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.DecayBattery.info.0"));
 		tooltips.add(I18n.format("item.DecayBattery.info.1"));
 	}

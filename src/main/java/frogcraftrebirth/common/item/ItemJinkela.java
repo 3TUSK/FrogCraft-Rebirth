@@ -36,6 +36,9 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
 public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
 
 	public ItemJinkela() {
@@ -43,6 +46,7 @@ public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
 		setUnlocalizedName("jinkela");
 	}
 
+	@Nonnull
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!playerIn.canPlayerEdit(pos, facing, playerIn.getHeldItem(hand)))
@@ -67,7 +71,7 @@ public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.Item_Miscs.GoldClod.info"));
 	}
 

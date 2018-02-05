@@ -135,7 +135,7 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 			} else {
 				TileEntity tile = getWorld().getTileEntity(getPos().down());
 				if (tile instanceof IHeatSource) {
-					this.heat += ((IHeatSource)tile).requestHeat(EnumFacing.UP, 10);
+					this.heat += ((IHeatSource)tile).drawHeat(EnumFacing.UP, 10, false);
 				}
 			}
 		}

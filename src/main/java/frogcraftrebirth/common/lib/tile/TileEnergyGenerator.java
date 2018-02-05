@@ -28,12 +28,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEnergyGenerator extends TileEnergy implements ITickable, IEnergySource {
 
 	public int charge;
 	private final int sourceTier;
 	private final int output;
-	protected boolean isInENet;
 	
 	protected TileEnergyGenerator(int sourceTier, int output) {
 		this.sourceTier = sourceTier;
@@ -45,7 +46,8 @@ public abstract class TileEnergyGenerator extends TileEnergy implements ITickabl
 		super.readFromNBT(tag);
 		this.charge = tag.getInteger("charge");
 	}
-	
+
+	@Nonnull
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);

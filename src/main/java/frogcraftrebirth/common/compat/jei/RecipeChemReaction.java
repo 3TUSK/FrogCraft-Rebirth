@@ -54,11 +54,6 @@ public class RecipeChemReaction implements IRecipeWrapper {
 	}
 
 	@Override
-	public List<String> getTooltipStrings(int mouseX, int mouseY) {
-		return null;
-	}
-
-	@Override
 	public boolean handleClick(Minecraft minecraft, int mouseX, int mouseY, int mouseButton) {
 		return false;
 	}

@@ -36,6 +36,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEnergyStorage extends TileEnergy implements IEnergySink, IEnergySource, IEnergyStorage {
 
 	private EnumFacing emitDir;
@@ -60,7 +62,8 @@ public abstract class TileEnergyStorage extends TileEnergy implements IEnergySin
 		this.maxE = tag.getInteger("maxCharge");
 		this.output = tag.getInteger("output");
 	}
-	
+
+	@Nonnull
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", storedE);

@@ -29,10 +29,12 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
+
 public class ItemResource extends ItemFrog {
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
 	}
 

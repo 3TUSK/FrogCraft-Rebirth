@@ -34,6 +34,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemMPS extends ItemBlock implements IElectricItem {
@@ -80,7 +81,7 @@ public class ItemMPS extends ItemBlock implements IElectricItem {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> aList, ITooltipFlag flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> aList, ITooltipFlag flag) {
 		aList.add(I18n.format("tile.mobilePowerStation.info"));
 	}
 	

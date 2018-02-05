@@ -24,6 +24,7 @@ package frogcraftrebirth.common.lib.block;
 
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 
@@ -34,6 +35,11 @@ public abstract class BlockFrog extends Block {
 	 */
 	protected BlockFrog(Material material) {
 		super(material);
+		setCreativeTab(FrogAPI.TAB);
+	}
+
+	protected BlockFrog(Material material, MapColor color) {
+		super(material, color);
 		setCreativeTab(FrogAPI.TAB);
 	}
 

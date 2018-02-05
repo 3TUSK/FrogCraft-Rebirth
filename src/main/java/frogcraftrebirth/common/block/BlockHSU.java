@@ -37,7 +37,6 @@ public class BlockHSU extends BlockMechanism implements IRotatable {
 
 	public BlockHSU(@Nonnull Class<? extends TileHSU> glass) {
 		super(glass);
-		setUnlocalizedName("hybridStorageUnit");
 	}
 
 	@Nonnull
@@ -56,6 +55,7 @@ public class BlockHSU extends BlockMechanism implements IRotatable {
 		return state.getValue(FACING_ALL).getIndex();
 	}
 
+	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);

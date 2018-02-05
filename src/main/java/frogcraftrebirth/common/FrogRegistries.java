@@ -39,7 +39,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.potion.Potion;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -108,8 +107,27 @@ public final class FrogRegistries {
 		FrogFluids.sulfurDioxide = new FrogFluid("sulfur_dioxide", 1640, 300, true, EnumRarity.UNCOMMON);
 		FrogFluids.sulfurTrioxide = new FrogFluid("sulfur_trioxide", 1800, 300, true, EnumRarity.RARE);
 
-		regFluidWithoutBucket(registry, FrogFluids.ammonia, FrogFluids.argon, FrogFluids.benzene, FrogFluids.carbonOxide, FrogFluids.carbonDioxide, FrogFluids.chlorine, FrogFluids.fluorine, FrogFluids.methane, FrogFluids.nitrogen, FrogFluids.nitrogenOxide, FrogFluids.oleum, FrogFluids.sulfurDioxide, FrogFluids.sulfurTrioxide);
-		regFluidWithBucket(registry, FrogFluids.bromine, FrogFluids.coalTar, FrogFluids.glycerol, FrogFluids.sulfuricAcid);
+		regFluidWithoutBucket(registry,
+				FrogFluids.ammonia,
+				FrogFluids.argon,
+				FrogFluids.benzene,
+				FrogFluids.carbonOxide,
+				FrogFluids.carbonDioxide,
+				FrogFluids.chlorine,
+				FrogFluids.fluorine,
+				FrogFluids.methane,
+				FrogFluids.nitrogen,
+				FrogFluids.nitrogenOxide,
+				FrogFluids.oleum,
+				FrogFluids.sulfurDioxide,
+				FrogFluids.sulfurTrioxide
+		);
+		regFluidWithBucket(registry,
+				FrogFluids.bromine,
+				FrogFluids.coalTar,
+				FrogFluids.glycerol,
+				FrogFluids.sulfuricAcid
+		);
 		regFluid(registry, FrogFluids.nitricAcid, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
 	}
 
@@ -212,21 +230,6 @@ public final class FrogRegistries {
 				}.setUnlocalizedName("potassium").setRegistryName("potassium")
 		);
 		FrogRecipes.initOreDict();
-	}
-
-	@SubscribeEvent
-	public static void onMissingMappingBlock(RegistryEvent.MissingMappings<Block> missingMappings) {
-		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
-	}
-
-	@SubscribeEvent
-	public static void onMissingMappingItem(RegistryEvent.MissingMappings<Item> missingMappings) {
-		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
-	}
-
-	@SubscribeEvent
-	public static void onMissingMappingPotion(RegistryEvent.MissingMappings<Potion> missingMappings) {
-		missingMappings.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
 	}
 
 	@Deprecated

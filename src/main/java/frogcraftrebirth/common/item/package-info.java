@@ -19,46 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+@ParametersAreNonnullByDefault
+package frogcraftrebirth.common.item;
 
-package frogcraftrebirth.common.tile;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-
-import frogcraftrebirth.api.tile.ICondenseTowerCore;
-import frogcraftrebirth.api.tile.ICondenseTowerPart;
-import frogcraftrebirth.common.lib.tile.TileFrog;
-
-import javax.annotation.Nullable;
-
-public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
-
-	private ICondenseTowerCore mainBlock;
-	
-	@Override
-	public void behave() {
-		
-	}
-	
-	@Override
-	public ICondenseTowerCore getMainBlock() {
-		return mainBlock;
-	}
-	
-	@Override
-	public void setMainBlock(@Nullable ICondenseTowerCore core) {
-		this.mainBlock = core;
-	}
-	
-	@Override
-	public boolean isFunctional() {
-		return false;
-	}
-
-	@Override
-	public void writePacketData(DataOutputStream output) {}
-
-	@Override
-	public void readPacketData(DataInputStream input) {}
-
-}
+import javax.annotation.ParametersAreNonnullByDefault;

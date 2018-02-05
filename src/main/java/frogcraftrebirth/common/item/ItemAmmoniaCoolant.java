@@ -24,7 +24,6 @@ package frogcraftrebirth.common.item;
 
 import java.util.List;
 
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.reactor.IReactor;
 import ic2.api.reactor.IReactorComponent;
 import net.minecraft.client.resources.I18n;
@@ -32,6 +31,8 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
+import javax.annotation.Nullable;
 
 public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 
@@ -47,7 +48,7 @@ public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 	}
 	
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
 		tooltips.add(I18n.format("item.frogcraftrebirth.ammonia_coolant.info", type));
 	}
 

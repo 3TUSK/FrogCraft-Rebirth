@@ -148,7 +148,10 @@ final class FrogIMCHandler {
 		switch (tag.getString("type").toLowerCase(Locale.ENGLISH)) {
 			case "itemstack": return new FrogRecipeInputItemStack(new ItemStack(tag));
 			case "ore": return new FrogRecipeInputOreDict(tag.getString("ore"), tag.getInteger("count"));
-			case "fluid": return new FrogRecipeInputUniversalFluidCell(FluidStack.loadFluidStackFromNBT(tag));
+			case "fluid": {
+				FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tag);
+				return fluidStack == null ? FrogRecipeInputs.EMPTY : new FrogRecipeInputUniversalFluidCell(fluidStack);
+			}
 			default: return FrogRecipeInputs.EMPTY;
 		}
 	}

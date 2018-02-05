@@ -25,6 +25,7 @@ package frogcraftrebirth.common.block;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
@@ -95,7 +96,7 @@ public class BlockMPS extends BlockMechanism {
 	}
 	
 	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tile, @Nullable ItemStack stack) {
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tile, ItemStack stack) {
 		if (tile instanceof TileMobilePowerStation) {
 			ItemStack mps = new ItemStack(this, 1);
 			if (!mps.hasTagCompound())
@@ -111,12 +112,8 @@ public class BlockMPS extends BlockMechanism {
 	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState();
-	}
-	
+
+	@Nonnull
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		ItemStack stack = new ItemStack(this, 1, 0);

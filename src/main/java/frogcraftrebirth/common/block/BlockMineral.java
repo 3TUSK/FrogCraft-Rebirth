@@ -22,8 +22,7 @@
 
 package frogcraftrebirth.common.block;
 
-import frogcraftrebirth.api.FrogAPI;
-import net.minecraft.block.Block;
+import frogcraftrebirth.common.lib.block.BlockFrog;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -43,11 +42,10 @@ import java.util.Random;
  *
  * @see net.minecraft.block.BlockOre
  */
-public class BlockMineral extends Block {
+public class BlockMineral extends BlockFrog {
 
 	public BlockMineral(MapColor color, String harvestTool, int harvestLevel) {
 		super(Material.ROCK, color);
-		this.setCreativeTab(FrogAPI.TAB);
 		this.setHarvestLevel(harvestTool, harvestLevel);
 	}
 

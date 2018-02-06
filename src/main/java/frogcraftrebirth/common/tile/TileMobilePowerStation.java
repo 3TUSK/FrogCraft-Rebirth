@@ -38,10 +38,12 @@ import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -70,13 +72,13 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
 			energyMax = 60000;
 		} else {
-			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
+			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncrementOf((inv.getStackInSlot(UPGRADE_STORAGE)));
 		}
 		//Check transformer upgrade, if pass, increase voltage level
 		if (inv.getStackInSlot(UPGRADE_VOLTAGE).isEmpty()) {
 			tier = 1;
 		} else {
-			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
+			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncrementOf(inv.getStackInSlot(UPGRADE_VOLTAGE));
 		}
 		//Check solar upgrade, if pass, generate energy from sunlight
 		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && getWorld().isDaytime() && getWorld().canBlockSeeSky(getPos())) {
@@ -171,6 +173,9 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	public int getSourceTier() {
 		return tier;
 	}
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
 
 	@Override
 	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {

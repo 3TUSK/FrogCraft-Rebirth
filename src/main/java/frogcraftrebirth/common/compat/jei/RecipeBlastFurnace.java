@@ -33,7 +33,7 @@ import java.util.Arrays;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class RecipeBlastFurnace implements IRecipeWrapper {
+class RecipeBlastFurnace implements IRecipeWrapper {
 
 	final IAdvBlastFurnaceRecipe recipe;
 

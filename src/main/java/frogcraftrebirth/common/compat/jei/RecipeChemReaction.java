@@ -33,7 +33,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
-public class RecipeChemReaction implements IRecipeWrapper {
+class RecipeChemReaction implements IRecipeWrapper {
 	
 	final IAdvChemRecRecipe recipe;
 	

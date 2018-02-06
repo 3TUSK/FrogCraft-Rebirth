@@ -22,11 +22,9 @@
 
 package frogcraftrebirth.common.lib;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Set;
 
+import com.google.common.collect.ImmutableSet;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -37,18 +35,14 @@ public class CondenseTowerRecipe implements ICondenseTowerRecipe {
 	private final int time, energyPerTick;
 
 	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, FluidStack[] output) {
-		this(time, energyPerTick, input, Arrays.asList(output));
-	}
-
-	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Set<FluidStack> output) {
-		this.output = output;
+		this.output = ImmutableSet.copyOf(output);
 		this.input = input;
 		this.time = time;
 		this.energyPerTick = energyPerTick;
 	}
 
-	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Collection<FluidStack> output) {
-		this.output = new HashSet<>(output);
+	public CondenseTowerRecipe(int time, int energyPerTick, FluidStack input, Set<FluidStack> output) {
+		this.output = output;
 		this.input = input;
 		this.time = time;
 		this.energyPerTick = energyPerTick;

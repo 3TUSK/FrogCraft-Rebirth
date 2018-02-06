@@ -36,7 +36,7 @@ import javax.annotation.Nonnull;
 
 public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 
-	protected static final PropertyBool WORKING = PropertyBool.create("working");
+	static final PropertyBool WORKING = PropertyBool.create("working");
 
 	/**
 	 * @param glass The type of TileEntity this block provies
@@ -62,6 +62,7 @@ public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 		return state.getValue(WORKING) ? 1 : 0;
 	}
 
+	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(WORKING, meta == 0 ? Boolean.FALSE : Boolean.TRUE);

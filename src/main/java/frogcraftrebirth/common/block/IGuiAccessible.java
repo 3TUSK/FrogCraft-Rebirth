@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 /**
  * Shortcut for letting a block have its GUI.
  */
-public interface IGuiAccessible {
+interface IGuiAccessible {
 
 	default boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
 		if (!worldIn.isRemote) {

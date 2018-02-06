@@ -44,12 +44,14 @@ import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
@@ -119,11 +121,14 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 		}
 		else if (charge < 0)
 			charge = 0;
-		
-		if (process == 200) {
-			if (((IAirPump)tile).airAmount() >= 1000) {
-				((IAirPump)tile).extractAir(EnumFacing.DOWN, 1000, false);	
-				tank.fill(FluidRegistry.getFluidStack("ic2air", 10), true);
+
+		// TODO Should we restore FrogCraft's own Liquefied Air? So that this machine can have orginal working flow
+
+		if (process == 100) {
+			// According to original FrogCraft, best match
+			if (((IAirPump)tile).extractAir(EnumFacing.UP, 1200, true) > 1200) {
+				((IAirPump)tile).extractAir(EnumFacing.UP, 1200, false);
+				tank.fill(FluidRegistry.getFluidStack("ic2air", 1000), true);
 			}
 			
 			process = 0;
@@ -175,6 +180,12 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 			return (T)new FluidHandlerOutputWrapper(tank);
 		else 
 			return super.getCapability(capability, facing);
+	}
+
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
 	}
 
 	@Override

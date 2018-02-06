@@ -36,17 +36,19 @@ import java.io.IOException;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergyEmitter;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, IAirPump, IHasWork {
 
-	private static final int MAX_AIR = 1000;
+	private static final int MAX_AIR = 100000; // According to original FrogCraft
 	private static final int MAX_CHARGE = 10000;
 	
 	public int charge;
@@ -138,6 +140,10 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 			return amount;
 		}
 	}
+
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
 
 	@Override
 	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {

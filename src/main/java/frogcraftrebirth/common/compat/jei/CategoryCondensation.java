@@ -39,10 +39,10 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
+class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 
-	protected final IDrawable background;
-	protected final IDrawableAnimated progressBar;
+	private final IDrawable background;
+	private final IDrawableAnimated progressBar;
 	
 	public CategoryCondensation(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_condense_tower.png");

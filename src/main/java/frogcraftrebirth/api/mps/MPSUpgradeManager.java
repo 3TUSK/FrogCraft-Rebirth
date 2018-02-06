@@ -49,8 +49,8 @@ public enum MPSUpgradeManager {
 		}
 		return false;
 	}
-	
-	public int getEnergyStoreIncreasementFrom(ItemStack stack) {
+
+	public int getEnergyStoreIncrementOf(ItemStack stack) {
 		if (stack.isEmpty())
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validStorageUpgrades.entrySet()) {
@@ -60,8 +60,16 @@ public enum MPSUpgradeManager {
 		}
 		return 0;
 	}
-	
-	public int getVoltageIncreasementFrom(ItemStack stack) {
+
+	/**
+	 * @deprecated renaming
+	 */
+	@Deprecated
+	public int getEnergyStoreIncreasementFrom(ItemStack stack) {
+		return getEnergyStoreIncrementOf(stack);
+	}
+
+	public int getVoltageIncrementOf(ItemStack stack) {
 		if (stack.isEmpty())
 			return 0;
 		for (Map.Entry<ItemStack, Integer> entry : validVoltageUpgrades.entrySet()) {
@@ -71,7 +79,15 @@ public enum MPSUpgradeManager {
 		}
 		return 0;
 	}
-	
+
+	/**
+	 * @deprecated renaming
+	 */
+	@Deprecated
+	public int getVoltageIncreasementFrom(ItemStack stack) {
+		return getVoltageIncrementOf(stack);
+	}
+
 	/**
 	 * @param stack The upgrade item being registered
 	 * @return true if succeed, false if fail

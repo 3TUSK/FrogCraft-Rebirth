@@ -40,11 +40,13 @@ import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
@@ -245,6 +247,12 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		}
 		
 		return super.getCapability(capability, facing);
+	}
+
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, input, output, fluidIO);
 	}
 
 	@Override

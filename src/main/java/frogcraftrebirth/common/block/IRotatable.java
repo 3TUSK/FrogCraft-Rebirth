@@ -37,7 +37,7 @@ import net.minecraft.world.World;
 import java.util.Collections;
 import java.util.List;
 
-public interface IRotatable extends IWrenchable {
+interface IRotatable extends IWrenchable {
 
 	default void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		worldIn.setBlockState(pos, state.withProperty(FACING_ALL, placer.getHorizontalFacing().getOpposite()));

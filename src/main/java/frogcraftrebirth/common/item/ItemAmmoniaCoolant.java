@@ -88,11 +88,13 @@ public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 
 	@Override
 	public int alterHeat(ItemStack yourStack, IReactor reactor, int x, int y, int heat) {
+		NBTTagCompound itemTag = yourStack.getTagCompound();
 		int coolantHeat = 0;
-		if (yourStack.hasTagCompound()) {
+		if (itemTag != null) {
 			coolantHeat = yourStack.getTagCompound().getInteger("heat");
 		} else {
-			yourStack.setTagCompound(new NBTTagCompound());
+			itemTag = new NBTTagCompound();
+			yourStack.setTagCompound(itemTag);
 		}
 		
 		if (coolantHeat > this.heatStorage) {
@@ -110,8 +112,8 @@ public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 			heat = 0;
 		}
 		
-		yourStack.setItemDamage(this.getMaxDamage(yourStack) * coolantHeat / this.heatStorage );
-		yourStack.getTagCompound().setInteger("heat", coolantHeat);
+		yourStack.setItemDamage(this.getMaxDamage(yourStack) * coolantHeat / this.heatStorage);
+		itemTag.setInteger("heat", coolantHeat);
 		return heat;
 	}
 

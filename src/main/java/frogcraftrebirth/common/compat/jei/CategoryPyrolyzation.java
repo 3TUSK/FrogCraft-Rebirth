@@ -41,13 +41,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
+class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 
-	protected final IDrawable background;
-	protected final IDrawable tankOverlay;
-	protected final IDrawable fireOverlay;
-	protected final IDrawableAnimated electricBar;
-	protected final IDrawableAnimated progressBar;
+	private final IDrawable background;
+	private final IDrawable tankOverlay;
+	private final IDrawable fireOverlay;
+	private final IDrawableAnimated electricBar;
+	private final IDrawableAnimated progressBar;
 	
 	public CategoryPyrolyzation(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/GUI_Pyrolyzer.png");

@@ -31,6 +31,8 @@ import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEnergySink extends TileEnergy implements IEnergySink {
 	
 	public int charge;
@@ -61,6 +63,7 @@ public abstract class TileEnergySink extends TileEnergy implements IEnergySink {
 		output.writeInt(maxCharge);
 	}
 	
+	@Nonnull
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);

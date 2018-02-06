@@ -38,6 +38,8 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 
+import javax.annotation.Nonnull;
+
 public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	
 	private final T tile;
@@ -47,7 +49,8 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 	ContainerTileFrog(InventoryPlayer playerInv, T tile) {
 		this.tile = tile;
 	}
-	
+
+	@Nonnull
 	@Override
 	public Slot addSlotToContainer(Slot slot) {
 		if (!(slot.inventory instanceof InventoryPlayer))
@@ -69,7 +72,8 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 				sendDataToClientSide(this, (EntityPlayerMP)listener);
 		}
 	}
-	
+
+	@Nonnull
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;

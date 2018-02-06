@@ -28,6 +28,9 @@ import java.io.DataOutputStream;
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
@@ -61,4 +64,11 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	@Override
 	public void readPacketData(DataInputStream input) {}
 
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		if (this.mainBlock != null) {
+			mainBlock.onPartRemoved(this);
+		}
+	}
 }

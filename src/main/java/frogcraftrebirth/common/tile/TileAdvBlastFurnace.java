@@ -33,12 +33,14 @@ import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItem
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.energy.tile.IHeatSource;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -182,6 +184,11 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 		this.progress = input.readInt();
 		this.progressMax = input.readInt();
 		this.working = input.readBoolean();
+	}
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, input, output);
 	}
 
 	@Override

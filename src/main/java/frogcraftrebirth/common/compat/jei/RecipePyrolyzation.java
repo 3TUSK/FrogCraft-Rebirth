@@ -32,7 +32,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class RecipePyrolyzation implements IRecipeWrapper {
+class RecipePyrolyzation implements IRecipeWrapper {
 	
 	private final IPyrolyzerRecipe recipe;
 	

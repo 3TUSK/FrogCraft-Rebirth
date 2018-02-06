@@ -35,7 +35,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.List;
 
-public class CategoryBlastFurnace implements IRecipeCategory<RecipeBlastFurnace> {
+class CategoryBlastFurnace implements IRecipeCategory<RecipeBlastFurnace> {
 
 	private final IDrawable background;
 	private final IDrawableAnimated progressBar;

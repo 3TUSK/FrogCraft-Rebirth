@@ -145,7 +145,7 @@ public final class FrogRegistries {
 				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_CORE).setRegistryName("condense_tower_core"),
 				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_CYLINDER).setRegistryName("condense_tower_cylinder"),
 				new ItemBlock(FrogGameObjects.CONDENSE_TOWER_OUTLET).setRegistryName("condense_tower_outlet"),
-				new ItemMPS((BlockMPS) FrogGameObjects.MPS).setRegistryName(FrogGameObjects.MPS.getRegistryName()),
+				new ItemMPS((BlockMPS) FrogGameObjects.MPS).setRegistryName("mobile_power_station"),
 				new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
 				new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
 				new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),

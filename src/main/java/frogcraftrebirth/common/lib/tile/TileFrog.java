@@ -33,18 +33,17 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public abstract class TileFrog extends TileEntity implements IFrogNetworkObject {
-	
+
 	protected final void sendTileUpdatePacket(TileFrog tile) {
 		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(tile));
 	}
 
 	/**
 	 * Called when {@link Block#breakBlock(World, BlockPos, IBlockState)} is called
+	 *
 	 * @param worldIn the World instance
-	 * @param pos the position
-	 * @param state the current BlockState, use this one instead of querying via {@link TileEntity#getWorld()}
+	 * @param pos     the position
+	 * @param state   the current BlockState, use this one instead of querying via {@link TileEntity#getWorld()}
 	 */
-	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
-		// TODO Make it abstract
-	}
+	public abstract void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state);
 }

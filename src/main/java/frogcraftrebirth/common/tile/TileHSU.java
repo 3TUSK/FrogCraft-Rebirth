@@ -28,12 +28,15 @@ import frogcraftrebirth.common.gui.ContainerHybridEStorage;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.item.ElectricItem;
 import ic2.api.item.IElectricItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
@@ -51,8 +54,7 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		this(100000000, 2048, 5, true);
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	protected TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
+	TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
 		super(maxEnergy, output, tier, allowTelep);
 	}
 
@@ -93,7 +95,13 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ?
+			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv) : super.getCapability(capability, facing);
+	}
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
 	}
 
 	@Override

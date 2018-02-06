@@ -36,11 +36,13 @@ import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItem
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
@@ -225,6 +227,11 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 			}
 		}	
 		return super.getCapability(capability, facing);
+	}
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, module, input, output, cellInput, cellOutput);
 	}
 
 	@Override

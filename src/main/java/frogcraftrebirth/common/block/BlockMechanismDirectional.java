@@ -53,6 +53,7 @@ public class BlockMechanismDirectional extends BlockMechanism implements IHorizo
 		return state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
 	}
 
+	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));

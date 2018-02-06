@@ -43,6 +43,7 @@ import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -71,7 +72,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	private boolean previousStructureCompleteness = false;
 	private final Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
-	public int process;
+	private int process;
 	private int processMax;
 	private boolean working;
 	private boolean requireRefresh;
@@ -305,6 +306,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		if (output != null) {
 			outputs.add(output);
 		}
+	}
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
+		this.onDestruction();
 	}
 
 	@Override

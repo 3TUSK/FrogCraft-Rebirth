@@ -31,7 +31,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
-public class RecipeCondensation implements IRecipeWrapper {
+class RecipeCondensation implements IRecipeWrapper {
 	
 	private final ICondenseTowerRecipe recipe;
 	

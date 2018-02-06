@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:condense_tower",
-      "data": 0
+      "item": "frogcraftrebirth:condense_tower_core"
     },
     "title": {
       "translate": "advancement.fcrebirth.condensetower.name"
@@ -18,8 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "frogcraftrebirth:condense_tower",
-            "data": 0
+            "item": "frogcraftrebirth:condense_tower_core"
           }
         ]
       }

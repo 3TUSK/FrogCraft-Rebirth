@@ -1,10 +1,9 @@
 {
 	"forge_marker": 1,
+	"defaults": {
+		"model": "frogcraftrebirth:hybrid_storage_unit"
+	},
 	"variants": {
-		"variant": {
-			"normal": { "model": "frogcraftrebirth:hybrid_storage_unit" },
-			"ultra": { "model": "frogcraftrebirth:ultra_hybrid_storage_unit" }
-		},
 		"facing": {
 			"up": { "x": 90 },
 			"down": { "x": 270 },

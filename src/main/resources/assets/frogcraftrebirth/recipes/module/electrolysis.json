@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:catalyst_module",
-    "data": 1
+    "item": "frogcraftrebirth:electrolysis_module"
   },
   "group": "frogcraftrebirth:module",
   "pattern": [

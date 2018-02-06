@@ -35,16 +35,20 @@ import java.util.stream.Stream;
 
 public class RecipeBlastFurnace implements IRecipeWrapper {
 
-	private final IAdvBlastFurnaceRecipe recipe;
+	final IAdvBlastFurnaceRecipe recipe;
 
-	public RecipeBlastFurnace(IAdvBlastFurnaceRecipe recipe) {
+	RecipeBlastFurnace(IAdvBlastFurnaceRecipe recipe) {
 		this.recipe = recipe;
 	}
 
 	@Override
 	public void getIngredients(IIngredients ingredients) {
 		ingredients.setInputLists(ItemStack.class, Stream.of(recipe.getInput(), recipe.getInputSecondary()).map(i -> i.getActualInputs(ItemStack.class)).collect(Collectors.toList()));
-		ingredients.setInputs(FluidStack.class, Arrays.asList(recipe.getInputFluid(), new FluidStack(recipe.getShieldGas(), 1000)));
+		if (recipe.getShieldGas() != null) {
+			ingredients.setInputs(FluidStack.class, Arrays.asList(recipe.getInputFluid(), new FluidStack(recipe.getShieldGas(), 1000)));
+		} else {
+			ingredients.setInput(FluidStack.class, recipe.getInputFluid());
+		}
 		ingredients.setOutputs(ItemStack.class, Arrays.asList(recipe.getOutput(), recipe.getByproduct()));
 	}
 

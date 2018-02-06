@@ -37,11 +37,11 @@ import java.util.List;
 
 public class CategoryBlastFurnace implements IRecipeCategory<RecipeBlastFurnace> {
 
-	protected final IDrawable background;
-	protected final IDrawableAnimated progressBar;
-	protected final IDrawableAnimated heatBar;
+	private final IDrawable background;
+	private final IDrawableAnimated progressBar;
+	private final IDrawableAnimated heatBar;
 
-	public CategoryBlastFurnace(IGuiHelper helper) {
+	CategoryBlastFurnace(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_blast_furnace.png");
 		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 59, 24, 18);
@@ -93,7 +93,9 @@ public class CategoryBlastFurnace implements IRecipeCategory<RecipeBlastFurnace>
 		IGuiFluidStackGroup fluidStackGroup = recipeLayout.getFluidStacks();
 		fluidStackGroup.init(0, true, 8, 39, 16, 47, 8000, true, null);
 		fluidStackGroup.set(0, listsInputsFluid.get(0).get(0));
-		fluidStackGroup.init(1, true, 152, 39, 16, 47, 1000, true, null);
-		fluidStackGroup.set(1, listsInputsFluid.get(1).get(0));
+		if (recipeWrapper.recipe.getShieldGas() != null) {
+			fluidStackGroup.init(1, true, 152, 39, 16, 47, 1000, true, null);
+			fluidStackGroup.set(1, listsInputsFluid.get(1).get(0));
+		}
 	}
 }

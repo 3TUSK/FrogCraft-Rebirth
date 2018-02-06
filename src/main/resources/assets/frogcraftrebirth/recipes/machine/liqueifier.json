@@ -1,13 +1,12 @@
 {
   "result": {
-    "item": "frogcraftrebirth:machine",
-    "data": 1
+    "item": "frogcraftrebirth:liquefier"
   },
   "group": "frogcraftrebirth:machine",
   "pattern": [
-    "#C#",
     "#P#",
-    "#A#"
+    "#Z#",
+    "CAC"
   ],
   "type": "forge:ore_shaped",
   "key": {
@@ -15,6 +14,11 @@
       "item": "ic2:te",
       "data": 32,
       "_comment": "32 -> Pump"
+    },
+    "Z": {
+      "item": "ic2:te",
+      "data": 43,
+      "_comment": "43 -> Compressor"
     },
     "#": {
       "item": "ic2:fluid_cell",

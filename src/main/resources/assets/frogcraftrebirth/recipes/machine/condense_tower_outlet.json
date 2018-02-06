@@ -1,11 +1,10 @@
 {
   "result": {
-    "item": "frogcraftrebirth:condense_tower",
-    "data": 1
+    "item": "frogcraftrebirth:condense_tower_outlet"
   },
   "group": "frogcraftrebirth:machine",
   "pattern": [
-    "SPS",
+    "SGS",
     "SPS",
     "SAS"
   ],
@@ -13,6 +12,10 @@
   "key": {
     "S": {
       "item": "#plate_aluminium"
+    },
+    "G": {
+      "item": "ic2:glass",
+      "data": 0
     },
     "P": {
       "item": "ic2:mining_pipe",

@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:catalyst_module",
-    "data": 3
+    "item": "frogcraftrebirth:sulfur_trioxide_module"
   },
   "group": "frogcraftrebirth:module",
   "pattern": [
@@ -17,11 +16,10 @@
       "_comment": "3 -> Adv. Alloy Plate"
     },
     "V": {
-      "item": "#dust_vanadium_pentoxide"
+      "item": "frogcraftrebirth:vanadium_oxide_dust"
     },
     "M": {
-      "item": "frogcraftrebirth:catalyst_module",
-      "data": 0
+      "item": "frogcraftrebirth:heating_module"
     }
   }
 }

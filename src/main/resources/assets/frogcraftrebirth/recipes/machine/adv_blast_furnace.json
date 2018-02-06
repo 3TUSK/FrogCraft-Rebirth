@@ -1,31 +1,31 @@
 {
   "result": {
-    "item": "frogcraftrebirth:machine",
+    "item": "frogcraftrebirth:advanced_blast_furnace",
     "data": 0
   },
   "group": "frogcraftrebirth:machine",
   "pattern": [
     "PMP",
-    "CEC",
+    "CBC",
     "PAP"
   ],
   "type": "forge:ore_shaped",
   "key": {
     "P": {
-      "item": "#plate_steel"
+      "item": "#plate_dense_steel"
     },
     "M": {
       "item": "ic2:te",
-      "data": 37,
-      "_comment": "37 -> Magnetizer"
+      "data": 12,
+      "_comment": "12 -> Electric Heater"
     },
     "C": {
       "item": "#circuit_advanced"
     },
-    "E": {
+    "B": {
       "item": "ic2:te",
-      "data": 45,
-      "_comment": "45 -> Extractor"
+      "data": 50,
+      "_comment": "50 -> Blast Furnace"
     },
     "A": {
       "item": "ic2:resource",

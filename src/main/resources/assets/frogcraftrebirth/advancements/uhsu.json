@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:hybrid_storage_unit",
-      "data": 1
+      "item": "frogcraftrebirth:uhsu"
     },
     "title": {
       "translate": "advancement.fcrebirth.uhsu.name"
@@ -18,8 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "frogcraftrebirth:hybrid_storage_unit",
-            "data": 1
+            "item": "frogcraftrebirth:uhsu"
           }
         ]
       }

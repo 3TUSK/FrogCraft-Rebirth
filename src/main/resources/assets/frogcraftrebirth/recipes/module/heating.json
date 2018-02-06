@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:catalyst_module",
-    "data": 0
+    "item": "frogcraftrebirth:heating_module"
   },
   "group": "frogcraftrebirth:module",
   "pattern": [

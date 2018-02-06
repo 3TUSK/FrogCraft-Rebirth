@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:machine",
-    "data": 2
+    "item": "frogcraftrebirth:pyrolyzer"
   },
   "group": "frogcraftrebirth:machine",
   "pattern": [
@@ -29,8 +28,7 @@
       "_comment": "13 -> Advanced Machine Casing"
     },
     "H": {
-      "item": "frogcraftrebirth:catalyst_module",
-      "data": 0
+      "item": "frogcraftrebirth:heating_module"
     }
   }
 }

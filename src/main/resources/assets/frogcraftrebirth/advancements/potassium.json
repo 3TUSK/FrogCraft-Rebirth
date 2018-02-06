@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:inflammable",
-      "data": 3
+      "item": "frogcraftrebirth:potassium"
     },
     "title": {
       "translate": "advancement.fcrebirth.potassium.name"

@@ -1,13 +1,12 @@
 {
   "result": {
-    "item": "frogcraftrebirth:ore_dust_tiny",
-    "data": 1,
+    "item": "frogcraftrebirth:tiny_fluorapatite_dust",
     "count": 9
   },
   "type": "forge:ore_shapeless",
   "ingredients": [
     {
-      "item": "#dust_dewalquite"
+      "item": "#dust_fluorapatite"
     }
   ]
 }

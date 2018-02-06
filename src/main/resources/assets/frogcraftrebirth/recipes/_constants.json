@@ -49,13 +49,6 @@
     }
   },
   {
-    "name": "dust_vanadium_pentoxide",
-    "ingredient": {
-      "type": "forge:ore_dict",
-      "ore": "dustVanadiumPentoxide"
-    }
-  },
-  {
     "name": "dust_tiny_carnallite",
     "ingredient": {
       "type": "forge:ore_dict",

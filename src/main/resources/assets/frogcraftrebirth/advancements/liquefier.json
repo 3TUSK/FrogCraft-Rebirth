@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:machine",
-      "data": 3
+      "item": "frogcraftrebirth:liquefier"
     },
     "title": {
       "translate": "advancement.fcrebirth.liquefier.name"
@@ -18,8 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "frogcraftrebirth:machine",
-            "data": 3
+            "item": "frogcraftrebirth:liquefier"
           }
         ]
       }

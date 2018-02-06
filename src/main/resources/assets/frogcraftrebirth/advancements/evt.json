@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:hybrid_storage_unit",
-      "data": 0
+      "item": "frogcraftrebirth:hsu"
     },
     "title": {
       "translate": "advancement.fcrebirth.evt.name"

@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:catalyst_module",
-    "data": 2
+    "item": "frogcraftrebirth:ammonia_catalyst_module"
   },
   "group": "frogcraftrebirth:module",
   "pattern": [
@@ -15,8 +14,7 @@
       "item": "#plate_iron"
     },
     "M": {
-      "item": "frogcraftrebirth:catalyst_module",
-      "data": 0
+      "item": "frogcraftrebirth:heating_module"
     }
   }
 }

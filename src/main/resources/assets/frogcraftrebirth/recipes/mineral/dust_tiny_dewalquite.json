@@ -1,13 +1,12 @@
 {
   "result": {
-    "item": "frogcraftrebirth:ore_dust_tiny",
-    "data": 0,
+    "item": "frogcraftrebirth:tiny_dewalquite_dust",
     "count": 9
   },
   "type": "forge:ore_shapeless",
   "ingredients": [
     {
-      "item": "#dust_carnallite"
+      "item": "#dust_dewalquite"
     }
   ]
 }

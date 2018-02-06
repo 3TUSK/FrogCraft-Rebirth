@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:condense_tower",
-    "data": 0
+    "item": "frogcraftrebirth:condense_tower_core"
   },
   "group": "frogcraftrebirth:machine",
   "pattern": [
@@ -28,8 +27,7 @@
       "_comment": "32 -> Pump"
     },
     "Y": {
-      "item": "frogcraftrebirth:condense_tower",
-      "data": 1
+      "item": "frogcraftrebirth:condense_tower_cylinder"
     }
   }
 }

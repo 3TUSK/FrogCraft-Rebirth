@@ -1,7 +1,6 @@
 {
   "result": {
-    "item": "frogcraftrebirth:ore_dust",
-    "data": 2
+    "item": "frogcraftrebirth:fluorapatite_dust"
   },
   "group": "frogcraftrebirth:resource",
   "pattern": [

@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:machine",
-      "data": 1
+      "item": "frogcraftrebirth:air_pump"
     },
     "title": {
       "translate": "advancement.fcrebirth.airpump.name"
@@ -18,8 +17,7 @@
       "conditions": {
         "items": [
           {
-            "item": "frogcraftrebirth:machine",
-            "data": 1
+            "item": "frogcraftrebirth:air_pump"
           }
         ]
       }

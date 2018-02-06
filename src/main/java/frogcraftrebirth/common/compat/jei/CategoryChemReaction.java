@@ -44,11 +44,11 @@ import net.minecraft.util.ResourceLocation;
 
 public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	
-	protected final IDrawable background;
-	protected final IDrawableAnimated progressBar;
-	protected final IDrawableAnimated chargeBar;
+	private final IDrawable background;
+	private final IDrawableAnimated progressBar;
+	private final IDrawableAnimated chargeBar;
 	
-	public CategoryChemReaction(IGuiHelper helper) {
+	CategoryChemReaction(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_chem_reactor.png");
 		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 30, 10);

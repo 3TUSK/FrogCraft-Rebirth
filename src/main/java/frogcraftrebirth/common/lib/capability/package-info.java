@@ -20,32 +20,7 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.lib.block;
+@ParametersAreNonnullByDefault
+package frogcraftrebirth.common.lib.capability;
 
-import frogcraftrebirth.api.FrogAPI;
-import net.minecraft.block.Block;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-
-public abstract class BlockFrog extends Block {
-
-	/**
-	 * @param material The block {@link Material}
-	 */
-	protected BlockFrog(Material material) {
-		super(material);
-		setCreativeTab(FrogAPI.TAB);
-	}
-
-	protected BlockFrog(Material material, MapColor color) {
-		super(material, color);
-		setCreativeTab(FrogAPI.TAB);
-	}
-
-	@Override
-	public int damageDropped(IBlockState state) {
-		return 0;
-	}
-
-}
+import javax.annotation.ParametersAreNonnullByDefault;

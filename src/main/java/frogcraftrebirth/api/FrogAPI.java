@@ -28,8 +28,6 @@ import net.minecraft.item.ItemStack;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.annotation.Nonnull;
-
 public final class FrogAPI {
 
 	// Why you want an instance of this?
@@ -63,13 +61,12 @@ public final class FrogAPI {
 
 	public static final FrogFuelHandler FUEL_REG = new FrogFuelHandler();
 
-	@Nonnull
 	public static IRecipeManager<IAdvBlastFurnaceRecipe> managerABF;
-	@Nonnull
+
 	public static IRecipeManager<IAdvChemRecRecipe> managerACR;
-	@Nonnull
+
 	public static IRecipeManager<ICondenseTowerRecipe> managerCT;
-	@Nonnull
+
 	public static IRecipeManager<IPyrolyzerRecipe> managerPyrolyzer;
 
 }

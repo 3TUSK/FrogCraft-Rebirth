@@ -118,7 +118,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			return;
 		}
 		
-		if (recipe == null) {
+		if (recipe == null && tank.getFluid() != null) {
 			recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(tank.getFluid()));
 			if (checkRecipe(recipe)) {
 				processMax = recipe.getTime();
@@ -273,7 +273,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
-		this.recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe"))));
+		FluidStack inputFluid = FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe"));
+		if (inputFluid != null) {
+			this.recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(inputFluid));
+		}
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");

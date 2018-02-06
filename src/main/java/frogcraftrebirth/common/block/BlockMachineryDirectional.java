@@ -56,6 +56,7 @@ public class BlockMachineryDirectional extends BlockMachinery implements IWrench
 		return ((state.getValue(WORKING) ? 1 : 0) << 2 ) + state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
 	}
 
+	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState()

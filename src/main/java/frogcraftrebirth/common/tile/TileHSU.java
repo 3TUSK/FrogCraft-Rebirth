@@ -58,6 +58,10 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		super(maxEnergy, output, tier, allowTelep);
 	}
 
+	public void updateOutputDirection(EnumFacing newDirection) {
+		this.emitDir = newDirection;
+	}
+
 	@Override
 	public void update() {
 		if (getWorld().isRemote)

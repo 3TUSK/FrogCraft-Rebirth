@@ -40,8 +40,8 @@ import javax.annotation.Nonnull;
 
 public abstract class TileEnergyStorage extends TileEnergy implements IEnergySink, IEnergySource, IEnergyStorage {
 
-	private EnumFacing emitDir;
-	public int storedE;
+	protected EnumFacing emitDir;
+	protected int storedE;
 	private int maxE;
 	public int output;
 	private int tier;

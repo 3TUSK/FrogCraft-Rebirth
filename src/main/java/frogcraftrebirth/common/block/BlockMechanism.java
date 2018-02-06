@@ -22,9 +22,9 @@
 
 package frogcraftrebirth.common.block;
 
-import frogcraftrebirth.common.lib.block.BlockFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.tile.IWrenchable;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,13 +38,10 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class BlockMechanism extends BlockFrog implements IWrenchable {
+public class BlockMechanism extends Block implements IWrenchable {
 
 	private final Class<? extends TileFrog> type;
 
-	/**
-	 * {@inheritDoc}
-	 */
 	public BlockMechanism(@Nonnull Class<? extends TileFrog> glass) {
 		super(Material.IRON);
 		this.type = glass;

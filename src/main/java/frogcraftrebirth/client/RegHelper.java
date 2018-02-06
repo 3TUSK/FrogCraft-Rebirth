@@ -34,35 +34,21 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
 class RegHelper {
 
 	static void registerModel(Item item, String newResLoc) {
-		registerModel0(item, 0, "frogcraftrebirth:" + newResLoc);
+		registerModel0(item, "frogcraftrebirth:" + newResLoc);
 	}
 	
 	static void registerModel(Block block, String newResLoc) {
-		registerModel0(Item.getItemFromBlock(block), 0, "frogcraftrebirth:" + newResLoc);
-	}
-
-	/**
-	 * @deprecated Flattening. Please remove all metadata usage and refer to {@link #registerModel(Item, String)}
-	 */
-	@Deprecated
-	static void registerModel(Item item, int metadata, String newResLoc) {
-		registerModel0(item, metadata, "frogcraftrebirth:" + newResLoc);
-	}
-
-	/**
-	 * @deprecated Flattening. Please remove all metadata usage and refer to {@link #registerModel(Block, String)}
-	 */
-	@Deprecated
-	static void registerModel(Block block, int metadata, String newResLoc) {
-		registerModel0(Item.getItemFromBlock(block), metadata, "frogcraftrebirth:" + newResLoc);
+		registerModel0(Item.getItemFromBlock(block), "frogcraftrebirth:" + newResLoc);
 	}
 	
-	private static void registerModel0(Item item, int metadata, String resourceLocation) {
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(resourceLocation, "inventory"));
+	private static void registerModel0(Item item, String identifier) {
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(identifier, "inventory"));
 	}
 	
 	static void regFluidBlockTexture(Fluid fluid) {
@@ -70,8 +56,9 @@ class RegHelper {
 			if (fluid.getBlock() != null) {
 				ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
 				ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
+					@Nonnull
 					@Override
-					protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+					protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
 						return aResource;
 					}
 				});

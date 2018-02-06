@@ -45,9 +45,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.registries.IForgeRegistry;
 
-import javax.annotation.Nullable;
-import java.util.function.Function;
-
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID)
 public final class FrogRegistries {
 
@@ -124,7 +121,7 @@ public final class FrogRegistries {
 				FrogFluids.glycerol,
 				FrogFluids.sulfuricAcid
 		);
-		regFluid(registry, FrogFluids.nitricAcid, true, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
+		regFluid(registry, FrogFluids.nitricAcid, new BlockNitricAcid(FrogFluids.nitricAcid).setRegistryName("nitric_acid"));
     }
 
 	@SubscribeEvent
@@ -245,7 +242,7 @@ public final class FrogRegistries {
 
 	private static void regFluids(IForgeRegistry<Block> registry, Fluid... fluids) {
 		for (Fluid fluid : fluids) {
-			regFluid(registry, fluid, true, true, null);
+			regFluid(registry, fluid, null);
 		}
 	}
 
@@ -253,16 +250,14 @@ public final class FrogRegistries {
 		FluidRegistry.registerFluid(fluid);
 	}
 
-	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, boolean regBlock, @Nullable Function<Fluid, Block> getBlock) {
+	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, Block fluidBlock) {
 		FluidRegistry.registerFluid(fluid);
-		if (regBlock && fluid.getBlock() == null) {
-			Block block = getBlock == null ? new BlockFluidClassic(fluid, Material.WATER).setRegistryName(fluid.getName()) : getBlock.apply(fluid);
-			registry.register(block);
-			fluid.setBlock(block);
-			if (regBucket) {
-				FluidRegistry.addBucketForFluid(fluid);
-			}
+		if (fluidBlock == null) {
+			fluidBlock = new BlockFluidClassic(fluid, Material.WATER);
 		}
+		registry.register(fluidBlock);
+		fluid.setBlock(fluidBlock);
+		FluidRegistry.addBucketForFluid(fluid);
 	}
 
 }

@@ -25,6 +25,7 @@ package frogcraftrebirth.common.lib.recipes;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import net.minecraftforge.items.IItemHandler;
 
+import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
@@ -38,6 +39,7 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 		this.handlerWrapped = handler;
 	}
 
+	@Nonnull
 	@Override
 	public Iterator<IFrogRecipeInput> iterator() {
 		return new Iterator<IFrogRecipeInput>() {

@@ -25,7 +25,9 @@ package frogcraftrebirth.client;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.common.FrogFluids;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -35,7 +37,6 @@ public class FrogTextures {
 
 	@SubscribeEvent
 	public static void regModel(ModelRegistryEvent event) {
-
 		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_60K, "ammonia_coolant_60k");
 		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_180K, "ammonia_coolant_180k");
 		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_360K, "ammonia_coolant_360k");
@@ -131,6 +132,7 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.UHSU, "ultra_hybrid_storage_unit");
 
 		RegHelper.regFluidBlockTexture(FrogFluids.bromine);
+		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.glycerol);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfuricAcid);
@@ -149,8 +151,8 @@ public class FrogTextures {
 		textureMap.registerSprite(FrogFluids.carbonDioxide.getStill());
 		textureMap.registerSprite(FrogFluids.carbonOxide.getFlowing());
 		textureMap.registerSprite(FrogFluids.carbonOxide.getStill());
-		textureMap.registerSprite(FrogFluids.coalTar.getFlowing());
-		textureMap.registerSprite(FrogFluids.coalTar.getStill());
+		textureMap.registerSprite(FrogFluids.chlorine.getFlowing());
+		textureMap.registerSprite(FrogFluids.chlorine.getStill());
 		textureMap.registerSprite(FrogFluids.fluorine.getFlowing());
 		textureMap.registerSprite(FrogFluids.fluorine.getStill());
 		textureMap.registerSprite(FrogFluids.methane.getFlowing());

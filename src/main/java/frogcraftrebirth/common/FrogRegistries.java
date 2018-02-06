@@ -103,7 +103,7 @@ public final class FrogRegistries {
 		FrogFluids.sulfurDioxide = new FrogFluid("sulfur_dioxide", 1640, 300, true, EnumRarity.UNCOMMON);
 		FrogFluids.sulfurTrioxide = new FrogFluid("sulfur_trioxide", 1800, 300, true, EnumRarity.RARE);
 
-		regFluidWithoutBucket(registry,
+		regFluids(
 				FrogFluids.ammonia,
 				FrogFluids.argon,
 				FrogFluids.benzene,
@@ -118,14 +118,14 @@ public final class FrogRegistries {
 				FrogFluids.sulfurDioxide,
 				FrogFluids.sulfurTrioxide
 		);
-		regFluidWithBucket(registry,
+		regFluids(registry,
 				FrogFluids.bromine,
 				FrogFluids.coalTar,
 				FrogFluids.glycerol,
 				FrogFluids.sulfuricAcid
 		);
-		regFluid(registry, FrogFluids.nitricAcid, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
-	}
+		regFluid(registry, FrogFluids.nitricAcid, true, true, fluid -> new BlockNitricAcid(fluid).setRegistryName("nitric_acid"));
+    }
 
 	@SubscribeEvent
 	public static void regItem(RegistryEvent.Register<Item> event) {
@@ -237,23 +237,20 @@ public final class FrogRegistries {
 		FrogRecipes.initOreDict();
 	}
 
-	@Deprecated
-	private static void regFluidWithoutBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
-		for (Fluid fluid : fluids) {
-			regFluid(registry, fluid, false, null);
+	private static void regFluids(Fluid... fluids) {
+		for (Fluid f : fluids) {
+			regFluid(f);
 		}
 	}
 
-	@Deprecated
-	private static void regFluidWithBucket(IForgeRegistry<Block> registry, Fluid... fluids) {
+	private static void regFluids(IForgeRegistry<Block> registry, Fluid... fluids) {
 		for (Fluid fluid : fluids) {
-			regFluid(registry, fluid, true, null);
+			regFluid(registry, fluid, true, true, null);
 		}
 	}
 
-	@Deprecated
-	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, @Nullable Function<Fluid, Block> getBlock) {
-		regFluid(registry, fluid, regBucket, true, null);
+	private static void regFluid(Fluid fluid) {
+		FluidRegistry.registerFluid(fluid);
 	}
 
 	private static void regFluid(IForgeRegistry<Block> registry, Fluid fluid, boolean regBucket, boolean regBlock, @Nullable Function<Fluid, Block> getBlock) {

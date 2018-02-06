@@ -130,24 +130,41 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.HSU, "hybrid_storage_unit");
 		RegHelper.registerModel(FrogGameObjects.UHSU, "ultra_hybrid_storage_unit");
 
-		RegHelper.regFluidBlockTexture(FrogFluids.ammonia);
-		RegHelper.regFluidBlockTexture(FrogFluids.argon);
-		RegHelper.regFluidBlockTexture(FrogFluids.benzene);
 		RegHelper.regFluidBlockTexture(FrogFluids.bromine);
-		RegHelper.regFluidBlockTexture(FrogFluids.carbonDioxide);
-		RegHelper.regFluidBlockTexture(FrogFluids.carbonOxide);
-		RegHelper.regFluidBlockTexture(FrogFluids.chlorine);
-		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
-		RegHelper.regFluidBlockTexture(FrogFluids.fluorine);
 		RegHelper.regFluidBlockTexture(FrogFluids.glycerol);
-		RegHelper.regFluidBlockTexture(FrogFluids.methane);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);
-		RegHelper.regFluidBlockTexture(FrogFluids.nitrogen);
-		RegHelper.regFluidBlockTexture(FrogFluids.nitrogenOxide);
-		RegHelper.regFluidBlockTexture(FrogFluids.oleum);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfuricAcid);
-		RegHelper.regFluidBlockTexture(FrogFluids.sulfurDioxide);
-		RegHelper.regFluidBlockTexture(FrogFluids.sulfurTrioxide);
+	}
+
+	@SubscribeEvent
+	public static void regFluidSpirit(TextureStitchEvent event) {
+		TextureMap textureMap = event.getMap();
+		textureMap.registerSprite(FrogFluids.ammonia.getFlowing());
+		textureMap.registerSprite(FrogFluids.ammonia.getStill());
+		textureMap.registerSprite(FrogFluids.argon.getFlowing());
+		textureMap.registerSprite(FrogFluids.argon.getStill());
+		textureMap.registerSprite(FrogFluids.benzene.getFlowing());
+		textureMap.registerSprite(FrogFluids.benzene.getStill());
+		textureMap.registerSprite(FrogFluids.carbonDioxide.getFlowing());
+		textureMap.registerSprite(FrogFluids.carbonDioxide.getStill());
+		textureMap.registerSprite(FrogFluids.carbonOxide.getFlowing());
+		textureMap.registerSprite(FrogFluids.carbonOxide.getStill());
+		textureMap.registerSprite(FrogFluids.coalTar.getFlowing());
+		textureMap.registerSprite(FrogFluids.coalTar.getStill());
+		textureMap.registerSprite(FrogFluids.fluorine.getFlowing());
+		textureMap.registerSprite(FrogFluids.fluorine.getStill());
+		textureMap.registerSprite(FrogFluids.methane.getFlowing());
+		textureMap.registerSprite(FrogFluids.methane.getStill());
+		textureMap.registerSprite(FrogFluids.nitrogen.getFlowing());
+		textureMap.registerSprite(FrogFluids.nitrogen.getStill());
+		textureMap.registerSprite(FrogFluids.nitrogenOxide.getFlowing());
+		textureMap.registerSprite(FrogFluids.nitrogenOxide.getStill());
+		textureMap.registerSprite(FrogFluids.oleum.getFlowing());
+		textureMap.registerSprite(FrogFluids.oleum.getStill());
+		textureMap.registerSprite(FrogFluids.sulfurDioxide.getFlowing());
+		textureMap.registerSprite(FrogFluids.sulfurDioxide.getStill());
+		textureMap.registerSprite(FrogFluids.sulfurTrioxide.getFlowing());
+		textureMap.registerSprite(FrogFluids.sulfurTrioxide.getStill());
 	}
 
 }

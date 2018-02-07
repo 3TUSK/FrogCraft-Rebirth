@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package frogcraftrebirth.common.block;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -54,6 +55,11 @@ public class BlockMechanismDirectional extends BlockMechanism implements IHorizo
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));
+	}
+
+	@Override
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		IHorizontal.super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
 	}
 
 	@Override

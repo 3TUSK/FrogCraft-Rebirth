@@ -32,8 +32,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-
 public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 
 	static final PropertyBool WORKING = PropertyBool.create("working");
@@ -46,7 +44,6 @@ public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 		this.setDefaultState(this.blockState.getBaseState().withProperty(WORKING, Boolean.FALSE));
 	}
 
-	@Nonnull
 	@Override
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, WORKING);
@@ -62,7 +59,6 @@ public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 		return state.getValue(WORKING) ? 1 : 0;
 	}
 
-	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(WORKING, meta == 0 ? Boolean.FALSE : Boolean.TRUE);

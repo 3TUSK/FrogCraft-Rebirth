@@ -19,10 +19,48 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-@MethodsReturnNonnullByDefault
-@ParametersAreNonnullByDefault
+
 package frogcraftrebirth.common.block;
 
-import mcp.MethodsReturnNonnullByDefault;
+import frogcraftrebirth.api.FrogAPI;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.text.translation.I18n;
 
-import javax.annotation.ParametersAreNonnullByDefault;
+import javax.annotation.Nonnull;
+
+/**
+ * Base block for all blocks added by FrogCraft: Rebirth.
+ * Tweaked for better i18n support.
+ */
+public class BlockFrog extends Block {
+
+	private String unlocalizedName;
+
+	BlockFrog(Material material, MapColor color) {
+		super(material, color);
+		this.setCreativeTab(FrogAPI.TAB);
+	}
+
+	BlockFrog(Material material) {
+		super(material);
+		this.setCreativeTab(FrogAPI.TAB);
+	}
+
+	@Override
+	public String getLocalizedName() {
+		return I18n.translateToLocal(this.getUnlocalizedName());
+	}
+
+	@Override
+	public String getUnlocalizedName() {
+		return this.unlocalizedName;
+	}
+
+	@Override
+	public Block setUnlocalizedName(String unlocalizedName) {
+		this.unlocalizedName = "block.frogcraftrebirth." + unlocalizedName;
+		return this;
+	}
+}

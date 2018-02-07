@@ -42,7 +42,7 @@ public class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_360K, "ammonia_coolant_360k");
 		RegHelper.registerModel(FrogGameObjects.URANIUM_DECAY_BATTERY, "uranium_decay_battery");
 		RegHelper.registerModel(FrogGameObjects.THORIUM_DECAY_BATTERY, "thorium_decay_battery");
-		RegHelper.registerModel(FrogGameObjects.PLUTOIUM_DECAY_BATTERY, "plutonium_decay_battery");
+		RegHelper.registerModel(FrogGameObjects.PLUTONIUM_DECAY_BATTERY, "plutonium_decay_battery");
 		RegHelper.registerModel(FrogGameObjects.JINKELA, "jinkela");
 
 		RegHelper.registerModel(FrogGameObjects.HEATING_MODULE, "module_heating");

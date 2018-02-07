@@ -28,7 +28,6 @@ import ic2.api.item.IElectricItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
@@ -37,7 +36,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemMPS extends ItemBlock implements IElectricItem {
+public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	public ItemMPS(BlockMPS block) {
 		super(block);
@@ -82,7 +81,7 @@ public class ItemMPS extends ItemBlock implements IElectricItem {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> aList, ITooltipFlag flag) {
-		aList.add(I18n.format("tile.mobilePowerStation.info"));
+		aList.add(I18n.format("block.frogcraftrebirth.mobile_power_station.info"));
 	}
 	
 	public static ItemStack normalize(ItemStack stack) {

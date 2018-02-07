@@ -37,12 +37,11 @@ public class ItemDecayBattery extends ItemFrog implements ISpecialElectricItem {
 
 	private static final IElectricItemManager DECAY_BATTERY_ELECTRIC_MANAGER = new DecayBatteryElectricManager();
 
-	public ItemDecayBattery(String name) {
+	public ItemDecayBattery() {
 		super();
 		setMaxDamage(0);
 		setMaxStackSize(1);
 		setNoRepair();
-		setUnlocalizedName(name + "Battery.name");
 	}
 
 	@Override
@@ -52,8 +51,8 @@ public class ItemDecayBattery extends ItemFrog implements ISpecialElectricItem {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.DecayBattery.info.0"));
-		tooltips.add(I18n.format("item.DecayBattery.info.1"));
+		tooltips.add(I18n.format("item.decay_battery.info.0"));
+		tooltips.add(I18n.format("item.decay_battery.info.1"));
 	}
 
 	private static final class DecayBatteryElectricManager implements IElectricItemManager {

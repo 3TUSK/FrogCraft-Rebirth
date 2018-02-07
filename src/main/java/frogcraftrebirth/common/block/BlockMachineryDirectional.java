@@ -33,19 +33,17 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class BlockMachineryDirectional extends BlockMachinery implements IWrenchable, IHorizontal {
 
-	public BlockMachineryDirectional(@Nonnull Class<? extends TileFrog> glass) {
+	public BlockMachineryDirectional(Class<? extends TileFrog> glass) {
 		super(glass);
 		this.setDefaultState(this.blockState.getBaseState()
 				.withProperty(WORKING, Boolean.FALSE)
 				.withProperty(FACING_HORIZONTAL, EnumFacing.NORTH));
 	}
 
-	@Nonnull
 	@Override
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, WORKING, FACING_HORIZONTAL);
@@ -56,7 +54,6 @@ public class BlockMachineryDirectional extends BlockMachinery implements IWrench
 		return ((state.getValue(WORKING) ? 1 : 0) << 2 ) + state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
 	}
 
-	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState()

@@ -24,7 +24,6 @@ package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.tile.IWrenchable;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -34,15 +33,15 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.Collections;
 import java.util.List;
 
-public class BlockMechanism extends Block implements IWrenchable {
+public class BlockMechanism extends BlockFrog implements IWrenchable {
 
 	private final Class<? extends TileFrog> type;
 
-	public BlockMechanism(@Nonnull Class<? extends TileFrog> glass) {
+	public BlockMechanism(Class<? extends TileFrog> glass) {
 		super(Material.IRON);
 		this.type = glass;
 	}
@@ -94,6 +93,6 @@ public class BlockMechanism extends Block implements IWrenchable {
 
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos blockPos, IBlockState iBlockState, TileEntity tileEntity, EntityPlayer entityPlayer, int i) {
-		return null;
+		return Collections.emptyList();
 	}
 }

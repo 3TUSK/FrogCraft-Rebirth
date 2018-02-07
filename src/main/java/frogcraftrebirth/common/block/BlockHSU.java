@@ -33,16 +33,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-
 public class BlockHSU extends BlockMechanism implements IRotatable {
 
-	public BlockHSU(@Nonnull Class<? extends TileHSU> glass) {
+	public BlockHSU(Class<? extends TileHSU> glass) {
 		super(glass);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING_ALL, EnumFacing.NORTH));
 	}
 
-	@Nonnull
 	@Override
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FACING_ALL);
@@ -67,7 +64,6 @@ public class BlockHSU extends BlockMechanism implements IRotatable {
 		return state.getValue(FACING_ALL).getIndex();
 	}
 
-	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);

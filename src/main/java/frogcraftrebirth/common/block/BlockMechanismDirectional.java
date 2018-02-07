@@ -32,7 +32,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import java.util.List;
 
 public class BlockMechanismDirectional extends BlockMechanism implements IHorizontal {
@@ -42,7 +41,6 @@ public class BlockMechanismDirectional extends BlockMechanism implements IHorizo
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING_HORIZONTAL, EnumFacing.NORTH));
 	}
 
-	@Nonnull
 	@Override
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, FACING_HORIZONTAL);
@@ -53,7 +51,6 @@ public class BlockMechanismDirectional extends BlockMechanism implements IHorizo
 		return state.getValue(FACING_HORIZONTAL).getHorizontalIndex();
 	}
 
-	@Nonnull
 	@Override
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));

@@ -22,7 +22,6 @@
 
 package frogcraftrebirth.common.block;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +33,6 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
 import java.util.Random;
 
 /**
@@ -42,14 +40,13 @@ import java.util.Random;
  *
  * @see net.minecraft.block.BlockOre
  */
-public class BlockMineral extends Block {
+public class BlockMineral extends BlockFrog {
 
 	public BlockMineral(MapColor color, String harvestTool, int harvestLevel) {
 		super(Material.ROCK, color);
 		this.setHarvestLevel(harvestTool, harvestLevel);
 	}
 
-	@Nonnull
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		return Item.getItemFromBlock(this);
@@ -80,7 +77,6 @@ public class BlockMineral extends Block {
 		return 0;
 	}
 
-	@Nonnull
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		return new ItemStack(this);

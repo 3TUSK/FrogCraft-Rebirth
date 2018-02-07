@@ -74,7 +74,7 @@ public class FrogGameObjects {
 
 	public static final Item THORIUM_DECAY_BATTERY;
 
-	public static final Item PLUTOIUM_DECAY_BATTERY;
+	public static final Item PLUTONIUM_DECAY_BATTERY;
 
 	public static final Item JINKELA;
 
@@ -236,7 +236,7 @@ public class FrogGameObjects {
 		AMMONIA_COOLANT_360K = null;
 		URANIUM_DECAY_BATTERY = null;
 		THORIUM_DECAY_BATTERY = null;
-		PLUTOIUM_DECAY_BATTERY = null;
+		PLUTONIUM_DECAY_BATTERY = null;
 		JINKELA = null;
 		HEATING_MODULE = null;
 		ELECTROLYSIS_MODULE = null;

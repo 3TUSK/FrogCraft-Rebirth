@@ -25,7 +25,6 @@ package frogcraftrebirth.common.block;
 import java.util.Collections;
 import java.util.List;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
@@ -116,7 +115,6 @@ public class BlockMPS extends BlockMechanism {
 		return 0;
 	}
 
-	@Nonnull
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		ItemStack stack = new ItemStack(this, 1, 0);

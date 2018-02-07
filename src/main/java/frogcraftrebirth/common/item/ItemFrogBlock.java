@@ -20,60 +20,20 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.api;
+package frogcraftrebirth.common.item;
 
-/**
- * @deprecated Merge into {@link FrogGameObjects}.
- *
- * <p>
- * Collection of constants used by the internal of FrogCraft: Rebirth.
- * </p>
- */
-@Deprecated
-public final class FrogConstants {
-	private FrogConstants() {
-		throw new UnsupportedOperationException("No instance for you");
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+
+public class ItemFrogBlock extends ItemBlock {
+
+	public ItemFrogBlock(Block block) {
+		super(block);
 	}
 
-	public static final String[] ORE_TYPES = {
-			"carnallite",
-			"dewalquite",
-			"fluorapatite"
-	};
-
-	public static final String[] METALLIC_MATERIAL_TYPES = {
-			"aluminium",
-			"magnalium",
-			"titanium",
-			"magnesium"
-	};
-
-	public static final String[] NON_METAL_MATERIAL_TYPES = {
-			"ammonium_nitrate",
-			"calcite",
-			"calcium_silicate",
-			"gypsum",
-			"quicklime",
-			"silica",
-			"slaked_lime",
-			"urea"
-	};
-
-	public static final String[] INTERMEDIATE_TYPES = {
-			"aluminium_oxide",
-			"calcium_fluoride",
-			"magnesium_bromide",
-			"potassium_chloride",
-			"sodium_chloride",
-			"titanium_oxide",
-			"vanadium_oxide"
-	};
-
-	public static final String[] INFLAMMABLE = {
-			"briquette",
-			"lipids_cluster",
-			"phosphorus",
-			"potassium",
-			"shattered_coal_coke"
-	};
+	@Override
+	public String getItemStackDisplayName(ItemStack stack) {
+		return this.block.getLocalizedName();
+	}
 }

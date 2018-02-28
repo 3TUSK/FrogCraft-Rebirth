@@ -159,43 +159,43 @@ class FrogRecipes {
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
 
 		Recipes.advRecipes.addRecipe(new ItemStack(FrogGameObjects.AMMONIA_COOLANT_60K), " T ", "TCT", " T ", 'T', "plateTin", 'C', FluidRegistry.getFluidStack("ammonia", 1000));
-		Recipes.advRecipes.addRecipe(new ItemStack(FrogGameObjects.JINKELA), "KKK", "PPP", "NNN", 'K', "ingotPotassium", 'P', "ingotPhosphorus", 'N', FluidRegistry.getFluidStack("nitrogen", 1000));
+		Recipes.advRecipes.addRecipe(new ItemStack(FrogGameObjects.JINKELA), "KKK", "PPP", "NNN", 'K', new ItemStack(FrogGameObjects.POTASSIUM), 'P', new ItemStack(FrogGameObjects.PHOSPHORUS), 'N', FluidRegistry.getFluidStack("nitrogen", 1000));
 
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE)), null, true, new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE, 3, 0));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE)), null, true, new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE, 3, 1));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.FLUORAPATITE)), null, true, new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE, 3, 2));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotAluminium"), null, true, new ItemStack(FrogGameObjects.ALUMINIUM_DUST));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotMagnalium"), null, true, new ItemStack(FrogGameObjects.MAGNALIUM_DUST));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, true, new ItemStack(FrogGameObjects.TITANIUM_DUST));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE, 3, 0));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE, 3, 1));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.FLUORAPATITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE, 3, 2));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotAluminium"), null, false, new ItemStack(FrogGameObjects.ALUMINIUM_DUST));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotMagnalium"), null, false, new ItemStack(FrogGameObjects.MAGNALIUM_DUST));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(FrogGameObjects.TITANIUM_DUST));
 
 		NBTTagCompound oreWashingMetadata = new NBTTagCompound();
 		oreWashingMetadata.setInteger("amount", 500);
-		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE)), oreWashingMetadata, true, new ItemStack(FrogGameObjects.PURIFIED_CARNALLITE_ORE), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST, 2), new ItemStack(Blocks.SAND));
-		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE)), oreWashingMetadata, true, new ItemStack(FrogGameObjects.PURIFIED_DEWALQUITE_ORE), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST, 2), IC2Items.getItem("dust", "stone"));
-		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE)), oreWashingMetadata, true, new ItemStack(FrogGameObjects.PURIFIED_FLUORAPATITE_ORE), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE)), oreWashingMetadata, false, new ItemStack(FrogGameObjects.PURIFIED_CARNALLITE_ORE), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST, 2), new ItemStack(Blocks.SAND));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE)), oreWashingMetadata, false, new ItemStack(FrogGameObjects.PURIFIED_DEWALQUITE_ORE), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.oreWashing.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE)), oreWashingMetadata, false, new ItemStack(FrogGameObjects.PURIFIED_FLUORAPATITE_ORE), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST, 2), IC2Items.getItem("dust", "stone"));
 	
 		NBTTagCompound centrifugeMetadata = new NBTTagCompound();
 		centrifugeMetadata.setInteger("minHeat", 500);
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE_DUST, 5, 0)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.POTASSIUM_CHLORIDE_DUST, 4), new ItemStack(FrogGameObjects.MAGNESIUM_BROMIDE_DUST, 1));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE_DUST, 27, 1)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.ALUMINIUM_OXIDE_DUST, 25), new ItemStack(FrogGameObjects.TITANIUM_OXIDE_DUST, 1), new ItemStack(FrogGameObjects.VANADIUM_OXIDE_DUST, 1));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_CARNALLITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.CARNALLITE_DUST), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_DEWALQUITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.DEWALQUITE_DUST), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_FLUORAPATITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.FLUORAPATITE_DUST), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.CARNALLITE_DUST), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST, 2), IC2Items.getItem("dust", "small_lithium"));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.DEWALQUITE_DUST), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST, 2), IC2Items.getItem("dust", "stone"));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE)), centrifugeMetadata, true, new ItemStack(FrogGameObjects.FLUORAPATITE_DUST), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE_DUST, 5, 0)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.POTASSIUM_CHLORIDE_DUST, 4), new ItemStack(FrogGameObjects.MAGNESIUM_BROMIDE_DUST, 1));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE_DUST, 27, 1)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.ALUMINIUM_OXIDE_DUST, 25), new ItemStack(FrogGameObjects.TITANIUM_OXIDE_DUST, 1), new ItemStack(FrogGameObjects.VANADIUM_OXIDE_DUST, 1));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_CARNALLITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.CARNALLITE_DUST), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_DEWALQUITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.DEWALQUITE_DUST), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_FLUORAPATITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.FLUORAPATITE_DUST), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.CARNALLITE_DUST), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST, 2), IC2Items.getItem("dust", "small_lithium"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.DEWALQUITE_DUST), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST, 2), IC2Items.getItem("dust", "stone"));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.FLUORAPATITE_DUST), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST, 2), IC2Items.getItem("dust", "stone"));
 	
-		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE, 8)), null, true, new ItemStack(FrogGameObjects.BRIQUETTE));
-		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_PLATE, 9)), null, true, new ItemStack(FrogGameObjects.DENSE_ALUMINIUM_PLATE, 1));
-		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_PLATE, 9)), null, true, new ItemStack(FrogGameObjects.DENSE_MAGNALIUM_PLATE, 1));
-		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_PLATE, 9)), null, true, new ItemStack(FrogGameObjects.DENSE_TITANIUM_PLATE, 1));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE, 8)), null, false, new ItemStack(FrogGameObjects.BRIQUETTE));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_PLATE, 9)), null, false, new ItemStack(FrogGameObjects.DENSE_ALUMINIUM_PLATE, 1));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_PLATE, 9)), null, false, new ItemStack(FrogGameObjects.DENSE_MAGNALIUM_PLATE, 1));
+		Recipes.compressor.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_PLATE, 9)), null, false, new ItemStack(FrogGameObjects.DENSE_TITANIUM_PLATE, 1));
 
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_INGOT)), null, true, new ItemStack(FrogGameObjects.ALUMINIUM_PLATE));
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_INGOT)), null, true, new ItemStack(FrogGameObjects.MAGNALIUM_PLATE));
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_INGOT)), null, true, new ItemStack(FrogGameObjects.TITANIUM_PLATE));
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_PLATE)), null, true, new ItemStack(FrogGameObjects.ALUMINIUM_CASING, 2));
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_PLATE)), null, true, new ItemStack(FrogGameObjects.MAGNALIUM_CASING, 2));
-		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_PLATE)), null, true, new ItemStack(FrogGameObjects.TITANIUM_CASING, 2));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_INGOT)), null, false, new ItemStack(FrogGameObjects.ALUMINIUM_PLATE));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_INGOT)), null, false, new ItemStack(FrogGameObjects.MAGNALIUM_PLATE));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_INGOT)), null, false, new ItemStack(FrogGameObjects.TITANIUM_PLATE));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.ALUMINIUM_PLATE)), null, false, new ItemStack(FrogGameObjects.ALUMINIUM_CASING, 2));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNALIUM_PLATE)), null, false, new ItemStack(FrogGameObjects.MAGNALIUM_CASING, 2));
+		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.TITANIUM_PLATE)), null, false, new ItemStack(FrogGameObjects.TITANIUM_CASING, 2));
 	}
 	
 	static void initOreDict() {

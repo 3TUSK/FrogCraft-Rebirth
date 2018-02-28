@@ -42,7 +42,7 @@ import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
 
 @JEIPlugin
-public class CompatJEI implements IModPlugin {
+public final class CompatJEI implements IModPlugin {
 
 	@Override
 	public void registerItemSubtypes(ISubtypeRegistry subtypeRegistry) {}

@@ -33,7 +33,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID, value = Side.CLIENT)
-public class FrogTextures {
+public final class FrogTextures {
 
 	@SubscribeEvent
 	public static void regModel(ModelRegistryEvent event) {

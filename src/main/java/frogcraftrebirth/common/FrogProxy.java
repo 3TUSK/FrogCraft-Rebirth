@@ -34,13 +34,17 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
+import javax.annotation.OverridingMethodsMustInvokeSuper;
+
 public class FrogProxy {
 
+	@OverridingMethodsMustInvokeSuper
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 	}
 
+	@OverridingMethodsMustInvokeSuper
 	public void init(FMLInitializationEvent event) {
 		FrogAPI.managerABF = new AdvBlastFurnaceRecipeManager();
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
@@ -56,6 +60,7 @@ public class FrogProxy {
 		FrogIMCHandler.resolveIMCMessage(event.getMessages());
 	}
 
+	@OverridingMethodsMustInvokeSuper
 	public void postInit(FMLPostInitializationEvent event) {
 		FrogRecipes.postInit();
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());

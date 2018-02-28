@@ -28,25 +28,25 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
-public class FrogProxyClient extends FrogProxy {
+public final class FrogProxyClient extends FrogProxy {
 	
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		super.preInit(event);
-		FrogAPI.FROG_LOG.info("Client side pre-initialization finished");
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed pre-initialization phase");
 	}
 
 	@Override
 	public void init(FMLInitializationEvent event) {
 		super.init(event);
-		FrogAPI.FROG_LOG.info("Client side initialization finished");
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed initialization phase");
 	}
 	
 	@Override
 	public void postInit(FMLPostInitializationEvent event) {
 		super.postInit(event);
-		FrogAPI.FROG_LOG.info("Client side post-initialization finished");
-		FrogAPI.FROG_LOG.info("FrogCraft has finished loading. The era of chemistry will begin!");
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed post-initialization phase");
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has finished loading. The era from chemistry will begin!");
 	}
 
 }

@@ -78,7 +78,7 @@ public class BlockMechanism extends BlockFrog implements IWrenchable {
 
 	@Override
 	public EnumFacing getFacing(World world, BlockPos blockPos) {
-		return null;
+		return EnumFacing.NORTH; // TODO Are we sure we will default to it?
 	}
 
 	@Override

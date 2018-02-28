@@ -29,6 +29,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
@@ -37,18 +38,18 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nonnull;
 
 @SideOnly(Side.CLIENT)
-class RegHelper {
+final class RegHelper {
+
+	static void registerModel(Block block, String newResLoc) {
+		registerModel(Item.getItemFromBlock(block), newResLoc);
+	}
 
 	static void registerModel(Item item, String newResLoc) {
-		registerModel0(item, "frogcraftrebirth:" + newResLoc);
+		registerModel0(item, new ResourceLocation(FrogAPI.MODID, newResLoc));
 	}
 	
-	static void registerModel(Block block, String newResLoc) {
-		registerModel0(Item.getItemFromBlock(block), "frogcraftrebirth:" + newResLoc);
-	}
-	
-	private static void registerModel0(Item item, String identifier) {
-		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(identifier, "inventory"));
+	private static void registerModel0(Item item, ResourceLocation path) {
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(path, "inventory"));
 	}
 	
 	static void regFluidBlockTexture(Fluid fluid) {

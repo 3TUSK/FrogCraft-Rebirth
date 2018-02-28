@@ -28,8 +28,6 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.text.translation.I18n;
 
-import javax.annotation.Nonnull;
-
 /**
  * Base block for all blocks added by FrogCraft: Rebirth.
  * Tweaked for better i18n support.

@@ -27,7 +27,14 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface IPyrolyzerRecipe {
 
+	/**
+	 * @deprecated Use {@link #getActualInput()}
+	 * @return The input
+	 */
+	@Deprecated
 	ItemStack getInput();
+
+	IFrogRecipeInput getActualInput();
 
 	ItemStack getOutput();
 

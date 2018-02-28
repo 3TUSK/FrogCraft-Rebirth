@@ -152,11 +152,11 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				return false;
 		}
 
-		return input.getStackInSlot(INPUT).isItemEqual(recipe.getInput()) && !input.extractItem(INPUT, recipe.getInput().getCount(), true).isEmpty();
+		return recipe.getActualInput().matches(input.getStackInSlot(INPUT)) && !input.extractItem(INPUT, recipe.getActualInput().getSize(), true).isEmpty();
 	}
 	
 	private void pyrolyze() {
-		input.extractItem(INPUT, recipe.getInput().getCount(), false);
+		input.extractItem(INPUT, recipe.getActualInput().getSize(), false);
 		ItemStack remainder = output.insertItem(OUTPUT, recipe.getOutput(), false);
 		if (!remainder.isEmpty() && remainder.getCount() > 0)
 			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
@@ -175,7 +175,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
-		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(new ItemStack(tag.getCompoundTag("recipeInput"))));
+		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(input.getStackInSlot(INPUT)));
 	}
 
 	@Override
@@ -205,8 +205,6 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
-		if (recipe != null)
-			tag.setTag("recipeInput", recipe.getInput().writeToNBT(new NBTTagCompound()));
 		return super.writeToNBT(tag);
 	}
 

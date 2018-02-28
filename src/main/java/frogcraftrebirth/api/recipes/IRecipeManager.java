@@ -29,6 +29,9 @@ import java.util.Collection;
  * A <code>RecipeManager</code> represents a manager
  * dedicated for a certain type of recipe (which is
  * represented by type parameter, R).
+ *
+ * @param <R> The type of recipe objects that this object holds
+ *
  * @since 1.0.0
  */
 public interface IRecipeManager<R> {

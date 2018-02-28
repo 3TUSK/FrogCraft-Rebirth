@@ -32,11 +32,11 @@ import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 	
-	private ContainerTileFrog<?> guiContainer;
+	private ContainerTileFrog guiContainer;
 	
 	PacketFrog02GuiDataUpdate() {}
 	
-	public PacketFrog02GuiDataUpdate(ContainerTileFrog<?> guiContainer) {
+	public PacketFrog02GuiDataUpdate(ContainerTileFrog guiContainer) {
 		this.guiContainer = guiContainer;
 	}
 	
@@ -53,7 +53,7 @@ public class PacketFrog02GuiDataUpdate implements IFrogPacket {
 		EntityPlayerSP player = FMLClientHandler.instance().getClient().player;
 		// BTM Moon: who the hell knows when it's null?
 		if (player != null && player.openContainer.windowId == gui && player.openContainer instanceof ContainerTileFrog)
-			((ContainerTileFrog<?>)player.openContainer).updateContainer(input);
+			((ContainerTileFrog)player.openContainer).updateContainer(input);
 	}
 
 }

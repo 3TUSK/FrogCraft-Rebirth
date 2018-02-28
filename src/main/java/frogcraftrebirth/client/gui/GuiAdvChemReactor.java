@@ -24,18 +24,17 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileAdvChemReactor;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiAdvChemReactor extends GuiTileFrog<TileAdvChemReactor, ContainerAdvChemReactor> {
+public class GuiAdvChemReactor extends GuiTileFrog<TileAdvChemReactor> {
 
-	public GuiAdvChemReactor(InventoryPlayer playerInv, TileAdvChemReactor tile) {
-		super(new ContainerAdvChemReactor(playerInv, tile), tile, "gui_adv_chem_reactor.png");
+	public GuiAdvChemReactor(ContainerTileFrog container, TileAdvChemReactor tile) {
+		super(container, tile, "gui_adv_chem_reactor.png");
 	}
 	
 	@Override

@@ -24,19 +24,18 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerAirPump;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileAirPump;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiAirPump extends GuiTileFrog<TileAirPump, ContainerAirPump> {
+public class GuiAirPump extends GuiTileFrog<TileAirPump> {
 
-	public GuiAirPump(InventoryPlayer playerInv, TileAirPump tile) {
-		super(new ContainerAirPump(playerInv, tile), tile, "gui_air_pump.png");
+	public GuiAirPump(ContainerTileFrog container, TileAirPump tile) {
+		super(container, tile, "gui_air_pump.png");
 	}
 
 	@Override

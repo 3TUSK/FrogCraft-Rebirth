@@ -24,19 +24,18 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerPyrolyzer;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TilePyrolyzer;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiPyrolyzer extends GuiTileFrog<TilePyrolyzer, ContainerPyrolyzer> {
+public class GuiPyrolyzer extends GuiTileFrog<TilePyrolyzer> {
 
-	public GuiPyrolyzer(InventoryPlayer playerInv, TilePyrolyzer tile) {
-		super(new ContainerPyrolyzer(playerInv, tile), tile, "GUI_Pyrolyzer.png");
+	public GuiPyrolyzer(ContainerTileFrog container, TilePyrolyzer tile) {
+		super(container, tile, "GUI_Pyrolyzer.png");
 	}
 	
 	@Override

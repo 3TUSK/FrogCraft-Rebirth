@@ -26,7 +26,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import frogcraftrebirth.client.gui.GuiAdvBlastFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerAdvBlastFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItemHandler;
@@ -192,13 +191,19 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAdvBlastFurnace(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withPlayerInventory(player.inventory)
+				.withStandardSlot(input, 0, 33, 26)
+				.withStandardSlot(input, 1, 51, 26)
+				.withOutputSlot(output, 0, 109, 26)
+				.withOutputSlot(output, 1, 127, 26)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAdvBlastFurnace(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAdvBlastFurnace(this.getGuiContainer(world, player), this);
 	}
 }

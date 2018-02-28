@@ -32,9 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IHasGui {
 	
-	ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player);
+	ContainerTileFrog getGuiContainer(World world, EntityPlayer player);
 
 	@SideOnly(Side.CLIENT)
-	GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player);
+	GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player);
 
 }

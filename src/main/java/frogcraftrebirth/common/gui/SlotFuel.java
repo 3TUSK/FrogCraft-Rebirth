@@ -28,7 +28,7 @@ import net.minecraftforge.items.IItemHandler;
 
 class SlotFuel extends SlotFrog {
 
-	public SlotFuel(IItemHandler inv, int index, int x, int y) {
+	SlotFuel(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);
 	}
 	

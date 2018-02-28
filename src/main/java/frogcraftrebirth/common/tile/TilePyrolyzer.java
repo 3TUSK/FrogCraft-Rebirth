@@ -30,7 +30,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
@@ -245,7 +244,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 			if (facing != null)
 				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		}
-		
+
 		return super.getCapability(capability, facing);
 	}
 
@@ -256,14 +255,20 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerPyrolyzer(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withPlayerInventory(player.inventory)
+				.withStandardSlot(input, 0, 24, 28)
+				.withOutputSlot(output, 0, 75, 28)
+				.withStandardSlot(fluidIO, 0, 113, 21)
+				.withOutputSlot(fluidIO, 1, 113, 56)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiPyrolyzer(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiPyrolyzer(this.getGuiContainer(world, player), this);
 	}
 
 }

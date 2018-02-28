@@ -40,15 +40,15 @@ import java.util.Arrays;
 import java.util.Collections;
 
 @SideOnly(Side.CLIENT)
-public abstract class GuiTileFrog<T extends TileFrog, C extends ContainerTileFrog<T>> extends GuiContainer {
+public abstract class GuiTileFrog<T extends TileFrog> extends GuiContainer {
 
 	public static final int GRAY_40 = 0x404040;
 	public static final int GREEN_3E = 0x20EB3E;
 	
 	protected final T tile;
-	protected final ResourceLocation guiBackground;
+	final ResourceLocation guiBackground;
 	
-	protected GuiTileFrog(C inventorySlotsIn, T tile, String textureName) {
+	protected GuiTileFrog(ContainerTileFrog inventorySlotsIn, T tile, String textureName) {
 		super(inventorySlotsIn);
 		this.tile = tile;
 		this.guiBackground = new ResourceLocation(FrogAPI.MODID, "textures/gui/" + textureName);

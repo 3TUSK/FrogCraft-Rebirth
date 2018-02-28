@@ -24,18 +24,17 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerCondenseTower;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileCondenseTower;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCondenseTower> {
+public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower> {
 
-	public GuiCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
-		super(new ContainerCondenseTower(playerInv, tile), tile, "gui_condense_tower_core.png");
+	public GuiCondenseTower(ContainerTileFrog container, TileCondenseTower tile) {
+		super(container, tile, "gui_condense_tower_core.png");
 	}
 	
 	@Override
@@ -59,7 +58,7 @@ public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCo
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
 		
-		int chargeIcon = 14 * tile.charge / 10000; //Max charge of Condense Tower
+		int chargeIcon = 14 * tile.charge / 10000; //Max charge from Condense Tower
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 27 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 14, chargeIcon);
 		
 		this.renderFluidTank(tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);

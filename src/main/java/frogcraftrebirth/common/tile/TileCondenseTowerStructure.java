@@ -39,9 +39,7 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	private ICondenseTowerCore mainBlock;
 	
 	@Override
-	public void behave() {
-		
-	}
+	public void behave() {}
 	
 	@Override
 	public ICondenseTowerCore getMainBlock() {

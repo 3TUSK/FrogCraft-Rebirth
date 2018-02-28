@@ -27,7 +27,7 @@ import net.minecraftforge.items.IItemHandler;
 
 class SlotOutput extends SlotFrog {
 
-	public SlotOutput(IItemHandler inv, int index, int x, int y) {
+	SlotOutput(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);
 	}
 	

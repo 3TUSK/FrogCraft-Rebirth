@@ -30,7 +30,6 @@ import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerMPS;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergy;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -178,14 +177,21 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerMPS(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(inv, 0, 20, 20)
+				.withStandardSlot(inv, 1, 38, 20)
+				.withStandardSlot(inv, 2, 56, 20)
+				.withChargerSlot(inv, 3, 113, 24)
+				.withDischargerSlot(inv, 4, 113, 42)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiMPS(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiMPS(this.getGuiContainer(world, player), this);
 	}
 
 }

@@ -22,18 +22,17 @@
 
 package frogcraftrebirth.client.gui;
 
-import frogcraftrebirth.common.gui.ContainerMPS;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiMPS extends GuiTileFrog<TileMobilePowerStation, ContainerMPS> {
+public class GuiMPS extends GuiTileFrog<TileMobilePowerStation> {
 
-	public GuiMPS(InventoryPlayer playerInv, TileMobilePowerStation tile) {
-		super(new ContainerMPS(playerInv, tile), tile, "gui_mps.png");
+	public GuiMPS(ContainerTileFrog container, TileMobilePowerStation tile) {
+		super(container, tile, "gui_mps.png");
 	}
 
 	@Override

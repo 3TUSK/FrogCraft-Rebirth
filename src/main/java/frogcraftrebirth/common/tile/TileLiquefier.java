@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/*
- * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 2:55:25 PM, Apr 2, 2016, EST
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.common.tile;
 
 import java.io.DataInputStream;
@@ -37,7 +29,6 @@ import java.io.IOException;
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiLiquefier;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerLiquefier;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
@@ -172,16 +163,14 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)new FluidHandlerOutputWrapper(tank);
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		else 
 			return super.getCapability(capability, facing);
 	}
-
 
 	@Override
 	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
@@ -189,14 +178,18 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerLiquefier(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(inv, 0, 113, 21)
+				.withOutputSlot(inv, 1, 113, 56)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiLiquefier(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiLiquefier(this.getGuiContainer(world, player), this);
 	}
 
 }

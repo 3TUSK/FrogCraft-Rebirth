@@ -30,7 +30,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
@@ -244,14 +243,20 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerCombustionFurnace(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(input, 0, 24, 28)
+				.withOutputSlot(output, 0, 75, 28)
+				.withStandardSlot(fluidIO, 0, 113, 21)
+				.withOutputSlot(fluidIO, 1, 113, 56)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiCombustionFurnace(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiCombustionFurnace(this.getGuiContainer(world, player), this);
 	}
 
 }

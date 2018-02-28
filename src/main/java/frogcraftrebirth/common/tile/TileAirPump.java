@@ -26,13 +26,7 @@ import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiAirPump;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
-
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergyEmitter;
@@ -45,6 +39,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.IOException;
 
 public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, IAirPump, IHasWork {
 
@@ -146,13 +144,13 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAirPump(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this).withPlayerInventory(player.inventory).build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAirPump(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAirPump(this.getGuiContainer(world, player), this);
 	}
 }

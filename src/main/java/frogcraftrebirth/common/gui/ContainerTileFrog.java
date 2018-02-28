@@ -25,6 +25,8 @@ package frogcraftrebirth.common.gui;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.network.IFrogPacket;
@@ -37,26 +39,20 @@ import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 
-public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
+public class ContainerTileFrog extends Container {
 	
-	private final T tile;
+	private final TileFrog tile;
 	
-	private int tileInvCount;
+	private final int tileInvCount;
 	
-	ContainerTileFrog(InventoryPlayer playerInv, T tile) {
+	ContainerTileFrog(TileFrog tile, final int customSlotCount) {
 		this.tile = tile;
-	}
-
-	@Nonnull
-	@Override
-	public Slot addSlotToContainer(Slot slot) {
-		if (!(slot.inventory instanceof InventoryPlayer))
-			tileInvCount++;
-		
-		return super.addSlotToContainer(slot);
+		this.tileInvCount = customSlotCount;
 	}
 	
 	@Override
@@ -83,7 +79,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (index >= 0 && index <= this.tileInvCount) {
+			if (/*index >= 0 && */index <= this.tileInvCount) {
 				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) {
 					return ItemStack.EMPTY;
 				}
@@ -120,7 +116,7 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 		}
 	}
 
-	private void sendDataToClientSide(ContainerTileFrog<?> container, EntityPlayerMP player) {
+	private void sendDataToClientSide(ContainerTileFrog container, EntityPlayerMP player) {
 		IFrogPacket pkt = new PacketFrog02GuiDataUpdate(container);
 		NetworkHandler.FROG_NETWORK.sendToPlayer(pkt, player);
 	}
@@ -131,6 +127,62 @@ public abstract class ContainerTileFrog<T extends TileFrog> extends Container {
 
 	public void updateContainer(DataInputStream input) throws IOException {
 		tile.readPacketData(input);
+	}
+
+	public static final class Builder {
+
+		public static Builder from(TileFrog tile) {
+			return new Builder(tile);
+		}
+
+		private final TileFrog tile;
+		private InventoryPlayer inventoryPlayer;
+		private List<Slot> slots = new ArrayList<>(16); // Consider about the fact that A.C.R. has 13 slots
+		private int nonPlayerSlotCounter = 0;
+
+		private Builder(final TileFrog tile) {
+			this.tile = tile;
+		}
+
+		public Builder withPlayerInventory(InventoryPlayer inv) {
+			this.inventoryPlayer = inv;
+			return this;
+		}
+
+		public Builder withStandardSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+			nonPlayerSlotCounter++;
+			slots.add(new SlotItemHandler(itemHandler, index, x, y));
+			return this;
+		}
+
+		public Builder withOutputSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+			nonPlayerSlotCounter++;
+			slots.add(new SlotOutput(itemHandler, index, x, y));
+			return this;
+		}
+
+		public Builder withChargerSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+			nonPlayerSlotCounter++;
+			slots.add(new SlotCharger(itemHandler, index, x, y));
+			return this;
+		}
+
+		public Builder withDischargerSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+			nonPlayerSlotCounter++;
+			slots.add(new SlotDischarger(itemHandler, index, x, y));
+			return this;
+		}
+
+		public ContainerTileFrog build() {
+			final ContainerTileFrog container = new ContainerTileFrog(this.tile, this.nonPlayerSlotCounter);
+			if (inventoryPlayer != null) {
+				container.registerPlayerInventory(inventoryPlayer);
+			}
+			slots.forEach(container::addSlotToContainer);
+			slots = null;
+			return container;
+		}
+
 	}
 
 }

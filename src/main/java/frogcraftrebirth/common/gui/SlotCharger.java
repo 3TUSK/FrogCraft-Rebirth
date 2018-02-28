@@ -29,13 +29,13 @@ import net.minecraftforge.items.IItemHandler;
 
 class SlotCharger extends SlotFrog {
 
-	public SlotCharger(IItemHandler inv, int index, int x, int y) {
+	SlotCharger(IItemHandler inv, int index, int x, int y) {
 		super(inv, index, x, y);
 	}
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return stack != null && stack.getItem() instanceof IElectricItem && ElectricItem.manager.charge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true) > 0;
+		return !stack.isEmpty() && stack.getItem() instanceof IElectricItem && ElectricItem.manager.charge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true) > 0;
 	}
 
 }

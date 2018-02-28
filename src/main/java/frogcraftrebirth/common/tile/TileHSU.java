@@ -24,7 +24,6 @@ package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerHybridEStorage;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -109,14 +108,18 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerHybridEStorage(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withChargerSlot(inv, 0, 113, 24)
+				.withDischargerSlot(inv, 1, 113, 42)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiHybridEStorage(player.inventory, this, this instanceof TileHSUUltra);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiHybridEStorage(this.getGuiContainer(world, player), this, this instanceof TileHSUUltra);
 	}
 
 }

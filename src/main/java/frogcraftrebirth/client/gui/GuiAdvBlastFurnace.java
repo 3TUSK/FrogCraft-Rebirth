@@ -22,17 +22,16 @@
 
 package frogcraftrebirth.client.gui;
 
-import frogcraftrebirth.common.gui.ContainerAdvBlastFurnace;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.tile.TileAdvBlastFurnace;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiAdvBlastFurnace extends GuiTileFrog<TileAdvBlastFurnace, ContainerAdvBlastFurnace> {
+public class GuiAdvBlastFurnace extends GuiTileFrog<TileAdvBlastFurnace> {
 
-	public GuiAdvBlastFurnace(InventoryPlayer playerInv, TileAdvBlastFurnace tile) {
-		super(new ContainerAdvBlastFurnace(playerInv, tile), tile, "gui_adv_blast_furnace.png");
+	public GuiAdvBlastFurnace(ContainerTileFrog container, TileAdvBlastFurnace tile) {
+		super(container, tile, "gui_adv_blast_furnace.png");
 	}
 
 	@Override

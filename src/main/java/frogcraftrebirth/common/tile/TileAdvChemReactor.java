@@ -27,7 +27,6 @@ import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
@@ -235,14 +234,29 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAdvChemReactor(player.inventory, this);
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(module, 0, 147, 152)
+				.withStandardSlot(cellInput, 0, 12, 22)
+				.withOutputSlot(cellOutput, 0, 12, 52)
+				.withStandardSlot(input, 0, 40, 22)
+				.withStandardSlot(input, 1, 60, 22)
+				.withStandardSlot(input, 2, 80, 22)
+				.withStandardSlot(input, 3, 100, 52)
+				.withStandardSlot(input, 4, 120, 52)
+				.withStandardSlot(output, 0, 40, 52)
+				.withStandardSlot(output, 1, 60, 52)
+				.withStandardSlot(output, 2, 80, 52)
+				.withStandardSlot(output, 3, 100, 52)
+				.withStandardSlot(output, 4, 120, 52)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAdvChemReactor(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAdvChemReactor(this.getGuiContainer(world, player), this);
 	}
 
 }

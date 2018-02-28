@@ -22,17 +22,16 @@
 
 package frogcraftrebirth.client.gui;
 
-import frogcraftrebirth.common.gui.ContainerFluidOutputHatch;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.tile.TileFluidOutputHatch;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiFluidOutputHatch extends GuiTileFrog<TileFluidOutputHatch, ContainerFluidOutputHatch> {
+public class GuiFluidOutputHatch extends GuiTileFrog<TileFluidOutputHatch> {
 
-	public GuiFluidOutputHatch(InventoryPlayer playerInv, TileFluidOutputHatch tile) {
-		super(new ContainerFluidOutputHatch(playerInv, tile), tile, "GUI_Liquid_Output.png");
+	public GuiFluidOutputHatch(ContainerTileFrog container, TileFluidOutputHatch tile) {
+		super(container, tile, "GUI_Liquid_Output.png");
 	}
 	
 	@Override

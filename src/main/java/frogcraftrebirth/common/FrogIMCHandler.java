@@ -53,7 +53,7 @@ final class FrogIMCHandler {
 				NBTTagCompound theTag = message.getNBTValue();
 				switch (message.key.toLowerCase(Locale.ENGLISH)) {
 					case ("recipe.pyrolyzer"): {
-						ItemStack input = new ItemStack(theTag.getCompoundTag("input"));
+						IFrogRecipeInput input = parse(theTag.getCompoundTag("input"));
 						ItemStack output = new ItemStack(theTag.getCompoundTag("output"));
 						FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
 						int time = theTag.getInteger("time");

@@ -44,13 +44,13 @@ import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 
-public class ContainerTileFrog extends Container {
+public final class ContainerTileFrog extends Container {
 	
 	private final TileFrog tile;
 	
 	private final int tileInvCount;
 	
-	ContainerTileFrog(TileFrog tile, final int customSlotCount) {
+	private ContainerTileFrog(TileFrog tile, final int customSlotCount) {
 		this.tile = tile;
 		this.tileInvCount = customSlotCount;
 	}
@@ -105,7 +105,7 @@ public class ContainerTileFrog extends Container {
 		return itemstack;
 	}
 	
-	void registerPlayerInventory(InventoryPlayer playerInv) {
+	private void registerPlayerInventory(InventoryPlayer playerInv) {
 		for (int i = 0; i < 3; ++i) {
 			for (int j = 0; j < 9; ++j) {
 				this.addSlotToContainer(new Slot(playerInv, j + i * 9 + 9, 8 + j * 18, 84 + i * 18));
@@ -167,7 +167,7 @@ public class ContainerTileFrog extends Container {
 			return this;
 		}
 
-		public Builder withDischargerSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+		public Builder withDischargeSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
 			nonPlayerSlotCounter++;
 			slots.add(new SlotDischarger(itemHandler, index, x, y));
 			return this;

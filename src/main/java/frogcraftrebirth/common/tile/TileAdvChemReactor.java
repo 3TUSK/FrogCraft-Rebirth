@@ -60,11 +60,11 @@ import java.util.List;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 
-	public final ItemStackHandler module = new ItemStackHandler();
-	public final ItemStackHandler input = new ItemStackHandler(5);
-	public final ItemStackHandler output = new ItemStackHandler(5);
-	public final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
-	public final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
+	private final ItemStackHandler module = new ItemStackHandler();
+	private final ItemStackHandler input = new ItemStackHandler(5);
+	private final ItemStackHandler output = new ItemStackHandler(5);
+	private final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
+	private final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
 	
 	public int process, processMax;
 	private boolean working;
@@ -244,11 +244,11 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 				.withStandardSlot(input, 2, 80, 22)
 				.withStandardSlot(input, 3, 100, 52)
 				.withStandardSlot(input, 4, 120, 52)
-				.withStandardSlot(output, 0, 40, 52)
-				.withStandardSlot(output, 1, 60, 52)
-				.withStandardSlot(output, 2, 80, 52)
-				.withStandardSlot(output, 3, 100, 52)
-				.withStandardSlot(output, 4, 120, 52)
+				.withOutputSlot(output, 0, 40, 52)
+				.withOutputSlot(output, 1, 60, 52)
+				.withOutputSlot(output, 2, 80, 52)
+				.withOutputSlot(output, 3, 100, 52)
+				.withOutputSlot(output, 4, 120, 52)
 				.withPlayerInventory(player.inventory)
 				.build();
 	}

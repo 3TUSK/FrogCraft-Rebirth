@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
 
 public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;

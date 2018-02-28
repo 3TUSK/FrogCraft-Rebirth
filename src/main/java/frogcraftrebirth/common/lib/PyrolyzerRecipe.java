@@ -42,11 +42,6 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 		this.energyPerTick = energyPerTick;
 	}
 
-	@Deprecated
-	public ItemStack getInput() {
-		return ItemStack.EMPTY;
-	}
-
 	@Override
 	public IFrogRecipeInput getActualInput() {
 		return input;

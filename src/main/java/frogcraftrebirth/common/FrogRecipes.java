@@ -84,9 +84,9 @@ class FrogRecipes {
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, fluidFactory.create("coal_tar", 25), new FluidStack[] { fluidFactory.create("benzene", 2), fluidFactory.create("ammonia", 3), fluidFactory.create("carbon_oxide", 5), fluidFactory.create("methane", 10), fluidFactory.create("ic2hydrogen", 5) }));
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, fluidFactory.create("ic2air", 12), new FluidStack[] { fluidFactory.create("argon", 1), fluidFactory.create("nitrogen", 7), fluidFactory.create("ic2oxygen", 2), fluidFactory.create("carbon_dioxide", 2) }));
 
-			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(IC2Items.getItem("dust", "coal"), new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE), fluidFactory.create("coal_tar", 50), 80, 48));
-			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.COBBLESTONE), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));
-			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new ItemStack(Blocks.STONE), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));
+			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputOreDict("dustCoal", 1), new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE), fluidFactory.create("coal_tar", 50), 80, 48));
+			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputItemStack(new ItemStack(Blocks.COBBLESTONE)), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));
+			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputItemStack(new ItemStack(Blocks.STONE)), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));
 
 			//C+O2=CO2
 			FrogAPI.FUEL_REG.regFuelByproduct(new ItemStack(Items.COAL, 1, 0), FrogFluids.carbonDioxide);

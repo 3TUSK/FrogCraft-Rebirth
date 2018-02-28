@@ -66,7 +66,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	private static final int INPUT_F = 0, OUTPUT_F = 1;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean previousStructureCompleteness = false;
 	private final Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());

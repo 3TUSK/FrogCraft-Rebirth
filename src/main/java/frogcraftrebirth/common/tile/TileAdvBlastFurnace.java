@@ -52,8 +52,8 @@ import java.io.IOException;
 
 public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, ITickable {
 
-	public final ItemStackHandler input = new ItemStackHandler(2);
-	public final ItemStackHandler output = new ItemStackHandler(2);
+	private final ItemStackHandler input = new ItemStackHandler(2);
+	private final ItemStackHandler output = new ItemStackHandler(2);
 	public final FrogFluidTank inputFluid = new FrogFluidTank(8000, "input_fluid");
 	public final FrogFluidTank shieldGas = new FrogFluidTank(1000, "shield_gas");
 	private int heat;

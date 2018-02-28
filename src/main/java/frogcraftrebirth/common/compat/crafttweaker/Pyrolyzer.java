@@ -26,9 +26,11 @@ import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.liquid.ILiquidStack;
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.common.lib.PyrolyzerRecipe;
 import net.minecraft.item.ItemStack;
@@ -41,7 +43,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 public final class Pyrolyzer {
 
 	public static void add(
-			IItemStack input,
+			IIngredient input,
 			IItemStack output,
 			ILiquidStack outputFluid,
 			int time,
@@ -60,8 +62,8 @@ public final class Pyrolyzer {
 
 		private final IPyrolyzerRecipe recipe;
 
-		Addition(IItemStack input, IItemStack output, ILiquidStack outputFluid, int time, int power) {
-			ItemStack actualInput = input == null ? ItemStack.EMPTY : (ItemStack) input.getInternal();
+		Addition(IIngredient input, IItemStack output, ILiquidStack outputFluid, int time, int power) {
+			IFrogRecipeInput actualInput = CompatCraftTweaker.tryResolve(input);
 			ItemStack actualOutput = output == null ? ItemStack.EMPTY : (ItemStack) output.getInternal();
 			FluidStack actualOutputFluid = outputFluid != null ? (FluidStack) outputFluid.getInternal() : null;
 			this.recipe = new PyrolyzerRecipe(actualInput, actualOutput, actualOutputFluid, time, power);
@@ -88,7 +90,7 @@ public final class Pyrolyzer {
 				actualInput = ItemStack.EMPTY;
 			}
 			for (IPyrolyzerRecipe r : FrogAPI.managerPyrolyzer.getRecipes()) {
-				if (r.getInput().equals(actualInput)) {
+				if (r.getActualInput().matches(actualInput)) {
 					this.recipe = r;
 					return;
 				}

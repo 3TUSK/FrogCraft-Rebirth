@@ -61,9 +61,9 @@ import javax.annotation.Nullable;
 public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 
 	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
-	public final ItemStackHandler input = new ItemStackHandler();
-	public final ItemStackHandler output = new ItemStackHandler();
-	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
+	private final ItemStackHandler input = new ItemStackHandler();
+	private final ItemStackHandler output = new ItemStackHandler();
+	private final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(16000);
 	public int process, processMax;
 	private boolean working;

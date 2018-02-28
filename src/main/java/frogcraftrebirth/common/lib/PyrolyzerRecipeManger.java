@@ -24,6 +24,7 @@ package frogcraftrebirth.common.lib;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
@@ -52,40 +53,36 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 	public IPyrolyzerRecipe getRecipe(IFrogRecipeInput... inputs) {
 		if (inputs.length == 0)
 			return null;
-		IFrogRecipeInput input = inputs[0];
-		if (input == null)
-			return null;
-		List<ItemStack> list = input.getActualInputs(ItemStack.class);
-		if (list.size() > 0) {
-			ItemStack first = list.get(0);
-			if (first.isEmpty())
-				return null;
 
-			for (IPyrolyzerRecipe r : recipes) {
-				if (r.getInput().isItemEqual(first) && first.getCount() > r.getInput().getCount()) {
-					return r;
-				}
+		IFrogRecipeInput input = inputs[0];
+		if (input == null || input.isEmpty())
+			return null;
+
+		for (IPyrolyzerRecipe r : recipes) {
+			if (r.getActualInput().matches(input) && input.getSize() > r.getActualInput().getSize()) {
+				return r;
 			}
 		}
 		return null;
 	}
 
 	public IPyrolyzerRecipe getRecipe(Iterable<IFrogRecipeInput> inputs) {
-		IFrogRecipeInput input = inputs.iterator().next();
-		if (input == null)
-			return null;
-		List<ItemStack> list = input.getActualInputs(ItemStack.class);
-		if (list.size() > 0) {
-			ItemStack first = list.get(0);
-			if (first.isEmpty())
-				return null;
+		Iterator<IFrogRecipeInput> iterator = inputs.iterator();
 
-			for (IPyrolyzerRecipe r : recipes) {
-				if (r.getInput().isItemEqual(first) && first.getCount() > r.getInput().getCount()) {
-					return r;
-				}
+		if (!iterator.hasNext()) {
+			return null;
+		}
+
+		IFrogRecipeInput input = iterator.next();
+		if (input == null || input.isEmpty())
+			return null;
+
+		for (IPyrolyzerRecipe r : recipes) {
+			if (r.getActualInput().matches(input) && input.getSize() >= r.getActualInput().getSize()) {
+				return r;
 			}
 		}
+
 		return null;
 	}
 

@@ -59,7 +59,7 @@ public class GuiLiquefier extends GuiTileFrog<TileLiquefier> {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float partialTicks, int mouseX, int mouseY) {
 		super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY);
-		int chargeIcon = 14 * tile.charge / 10000; // TileLiquefier has max charge from 10000;
+		int chargeIcon = 14 * tile.charge / 10000; // TileLiquefier has max charge of 10000;
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 27 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 14, chargeIcon);
 	
 		int progress = 24 * tile.process / 200;

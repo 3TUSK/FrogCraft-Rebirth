@@ -54,7 +54,7 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	UPGRADE_SOLAR = 0, UPGRADE_VOLTAGE = 1, UPGRADE_STORAGE = 2, 
 	CHARGE_IN = 3, CHARGE_OUT = 4;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(5);
+	private final ItemStackHandler inv = new ItemStackHandler(5);
 
 	private int energy;
 	
@@ -183,7 +183,7 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 				.withStandardSlot(inv, 1, 38, 20)
 				.withStandardSlot(inv, 2, 56, 20)
 				.withChargerSlot(inv, 3, 113, 24)
-				.withDischargerSlot(inv, 4, 113, 42)
+				.withDischargeSlot(inv, 4, 113, 42)
 				.withPlayerInventory(player.inventory)
 				.build();
 	}

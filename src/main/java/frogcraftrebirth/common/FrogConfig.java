@@ -25,6 +25,7 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraftforge.common.config.Config;
 
+@SuppressWarnings("CanBeFinal")
 @Config(modid = FrogAPI.MODID)
 @Config.LangKey("config.fcrebirth.general")
 public final class FrogConfig {

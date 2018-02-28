@@ -59,7 +59,7 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	private ICondenseTowerCore mainBlock;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 
 	@Override

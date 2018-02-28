@@ -42,7 +42,7 @@ class RecipePyrolyzation implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInput(ItemStack.class, recipe.getInput());
+		ingredients.setInput(ItemStack.class, recipe.getActualInput().getActualInputs(ItemStack.class));
 		ingredients.setOutput(ItemStack.class, recipe.getOutput());
 		ingredients.setOutput(FluidStack.class, recipe.getOutputFluid());
 	}

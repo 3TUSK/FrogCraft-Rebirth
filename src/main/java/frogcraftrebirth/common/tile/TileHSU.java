@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 
 public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	
 	public TileHSU() {
 		this(100000000, 2048, 5, true);
@@ -111,7 +111,7 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
 		return ContainerTileFrog.Builder.from(this)
 				.withChargerSlot(inv, 0, 113, 24)
-				.withDischargerSlot(inv, 1, 113, 42)
+				.withDischargeSlot(inv, 1, 113, 42)
 				.withPlayerInventory(player.inventory)
 				.build();
 	}

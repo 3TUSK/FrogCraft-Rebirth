@@ -32,7 +32,9 @@ public interface IPyrolyzerRecipe {
 	 * @return The input
 	 */
 	@Deprecated
-	ItemStack getInput();
+	default ItemStack getInput() {
+		return ItemStack.EMPTY;
+	}
 
 	IFrogRecipeInput getActualInput();
 

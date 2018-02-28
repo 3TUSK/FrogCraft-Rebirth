@@ -61,9 +61,10 @@ import javax.annotation.Nullable;
 public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGui, IHasWork {
 
 	private static final int CHARGE_MAX = 5000;
-	public final ItemStackHandler input = new ItemStackHandler();
-	public final ItemStackHandler output = new ItemStackHandler();
-	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
+
+	private final ItemStackHandler input = new ItemStackHandler();
+	private final ItemStackHandler output = new ItemStackHandler();
+	private final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public boolean working = false;

@@ -51,7 +51,7 @@ public class FrogProxy {
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
 		FrogRecipes.init();
-		if (FrogConfig.enableWorldGen) {
+		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
 	}

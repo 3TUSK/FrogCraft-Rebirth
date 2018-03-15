@@ -154,6 +154,10 @@ class FrogRecipes {
 	}
 	
 	public static void postInit() {
+		if (!FrogConfig.modpackOptions.enableRecipes) {
+			return;
+		}
+
 		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
@@ -176,8 +180,8 @@ class FrogRecipes {
 	
 		NBTTagCompound centrifugeMetadata = new NBTTagCompound();
 		centrifugeMetadata.setInteger("minHeat", 500);
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE_DUST, 5, 0)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.POTASSIUM_CHLORIDE_DUST, 4), new ItemStack(FrogGameObjects.MAGNESIUM_BROMIDE_DUST, 1));
-		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE_DUST, 27, 1)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.ALUMINIUM_OXIDE_DUST, 25), new ItemStack(FrogGameObjects.TITANIUM_OXIDE_DUST, 1), new ItemStack(FrogGameObjects.VANADIUM_OXIDE_DUST, 1));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE_DUST, 5)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.POTASSIUM_CHLORIDE_DUST, 4), new ItemStack(FrogGameObjects.MAGNESIUM_BROMIDE_DUST, 1));
+		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE_DUST, 27)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.ALUMINIUM_OXIDE_DUST, 25), new ItemStack(FrogGameObjects.TITANIUM_OXIDE_DUST, 1), new ItemStack(FrogGameObjects.VANADIUM_OXIDE_DUST, 1));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_CARNALLITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.CARNALLITE_DUST), new ItemStack(FrogGameObjects.TINY_CARNALLITE_DUST));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_DEWALQUITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.DEWALQUITE_DUST), new ItemStack(FrogGameObjects.TINY_DEWALQUITE_DUST));
 		Recipes.centrifuge.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.PURIFIED_FLUORAPATITE_ORE)), centrifugeMetadata, false, new ItemStack(FrogGameObjects.FLUORAPATITE_DUST), new ItemStack(FrogGameObjects.TINY_FLUORAPATITE_DUST));
@@ -199,6 +203,10 @@ class FrogRecipes {
 	}
 	
 	static void initOreDict() {
+		if (!FrogConfig.modpackOptions.enableOreDictEntries) {
+			return;
+		}
+
 		OreDictionary.registerOre("oreCarnallite", GameRegistry.makeItemStack("frogcraftrebirth:carnallite", 0, 1, null));
 		OreDictionary.registerOre("oreDewalquite", GameRegistry.makeItemStack("frogcraftrebirth:dewalquite", 0, 1, null));
 		OreDictionary.registerOre("oreFluorapatite", GameRegistry.makeItemStack("frogcraftrebirth:fluorapatite", 0, 1, null));

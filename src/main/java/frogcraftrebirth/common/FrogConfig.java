@@ -94,7 +94,12 @@ public final class FrogConfig {
 		@Config.RequiresMcRestart
 		public boolean altAluminiumPlateOreDict = false;
 
-		@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
+		@Config.Comment("If false, FrogCraft: Rebirth won't register anything to Ore Dictionary.")
+		@Config.Name("EnableOreDictEntries")
+		@Config.RequiresMcRestart
+		public boolean enableOreDictEntries;
+
+		@Config.Comment("If false, all recipes will gone. Useful for modpack creators when they need some total overhaul.")
 		@Config.LangKey("config.fcrebirth.modpack.master_recipe_switch")
 		@Config.Name("EnableAllRecipes")
 		@Config.RequiresMcRestart

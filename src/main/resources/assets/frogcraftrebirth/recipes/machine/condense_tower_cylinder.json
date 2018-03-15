@@ -1,4 +1,9 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
     "item": "frogcraftrebirth:condense_tower_cylinder"
   },

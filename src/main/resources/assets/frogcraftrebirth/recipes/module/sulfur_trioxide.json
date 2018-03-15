@@ -1,4 +1,9 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
     "item": "frogcraftrebirth:sulfur_trioxide_module"
   },

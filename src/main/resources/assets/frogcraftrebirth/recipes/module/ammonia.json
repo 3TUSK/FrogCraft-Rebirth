@@ -1,4 +1,9 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
     "item": "frogcraftrebirth:ammonia_catalyst_module"
   },

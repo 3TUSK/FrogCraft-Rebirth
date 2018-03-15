@@ -1,4 +1,9 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
     "item": "frogcraftrebirth:combustion_furnace",
     "data": 0

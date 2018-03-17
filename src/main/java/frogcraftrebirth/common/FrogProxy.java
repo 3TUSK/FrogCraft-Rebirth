@@ -25,9 +25,13 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.*;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthItemRemapper;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
+import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ModFixs;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -54,6 +58,8 @@ public class FrogProxy {
 		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
+		ModFixs fixer = FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);
+		fixer.registerFix(FixTypes.ITEM_INSTANCE, new LegacyFrogCraftRebirthItemRemapper());
 	}
 	
 	public final void imcInit(FMLInterModComms.IMCEvent event) {

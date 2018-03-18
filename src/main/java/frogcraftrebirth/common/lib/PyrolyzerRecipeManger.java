@@ -25,12 +25,10 @@ package frogcraftrebirth.common.lib;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.List;
 
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.api.recipes.IRecipeManager;
-import net.minecraft.item.ItemStack;
 
 public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 

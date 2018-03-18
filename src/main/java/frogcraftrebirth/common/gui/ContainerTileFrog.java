@@ -54,21 +54,29 @@ public final class ContainerTileFrog extends Container {
 		this.tile = tile;
 		this.tileInvCount = customSlotCount;
 	}
-	
+
+	// This is overridden to ensure that the ::addSlotToContainer call below has access to this method
+	@Override
+	protected Slot addSlotToContainer(Slot slot) {
+		return super.addSlotToContainer(slot);
+	}
+
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
 	}
-	
+
 	@Override
 	public void detectAndSendChanges() {
 		super.detectAndSendChanges();
 		for (IContainerListener listener : listeners) {
-			if (listener instanceof EntityPlayerMP)
-				sendDataToClientSide(this, (EntityPlayerMP)listener);
+			if (listener instanceof EntityPlayerMP) {
+				sendDataToClientSide(this, (EntityPlayerMP) listener);
+			}
 		}
 	}
 
+	// TODO Fix the weird stack transfer
 	@Nonnull
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer player, int index) {

@@ -57,57 +57,37 @@ public class BlockNitricAcid extends BlockFluidClassic {
 		return !world.getBlockState(pos).getMaterial().isLiquid() && super.displaceIfPossible(world, pos);
 	}
 
-	private int corrosion;
 	@Override
 	public void updateTick(World world, BlockPos pos, IBlockState state, Random rand) {
 		super.updateTick(world, pos, state, rand);
-		if (rand.nextBoolean()) return;
+
+		if (rand.nextBoolean()) {
+			return;
+		}
 		
-		for (int m=-3;m<3;m++) {
-			for (int n=-3;n<3;n++) {
-				int randInt = rand.nextInt(10);
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRASS.getDefaultState() && randInt < 7) {
+		for (int m = -3; m < 3; m++) {
+			for (int n = -3; n < 3; n++) {
+				int randInt = rand.nextInt(100);
+				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRASS.getDefaultState() && randInt < 75) {
 					world.setBlockState(pos.north(m).east(n), Blocks.DIRT.getDefaultState());
-					++corrosion;
-					checkCorrosion(world, pos);
 				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.DIRT.getDefaultState() && randInt < 5) {
+				if (world.getBlockState(pos.north(m).east(n)) == Blocks.DIRT.getDefaultState() && randInt < 50) {
 					world.setBlockState(pos.north(m).east(n), Blocks.SAND.getDefaultState());
-					++corrosion;
-					checkCorrosion(world, pos);
 				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.STONE.getDefaultState() && randInt < 5) {
+				if (world.getBlockState(pos.north(m).east(n)) == Blocks.STONE.getDefaultState() && randInt < 25) {
 					world.setBlockState(pos.north(m).east(n), Blocks.COBBLESTONE.getDefaultState());
-					++corrosion;
-					checkCorrosion(world, pos);
 				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.COBBLESTONE.getDefaultState() && randInt < 8) {
+				if (world.getBlockState(pos.north(m).east(n)) == Blocks.COBBLESTONE.getDefaultState() && randInt < 15) {
 					world.setBlockState(pos.north(m).east(n), Blocks.GRAVEL.getDefaultState());
-					++corrosion;
-					checkCorrosion(world, pos);
 				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRAVEL.getDefaultState() && randInt < 6) {
+				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRAVEL.getDefaultState() && randInt < 20) {
 					world.setBlockState(pos.north(m).east(n), Blocks.SAND.getDefaultState());
-					++corrosion;
-					checkCorrosion(world, pos);	
 				}
 			}
 		}
-	}
-	
-	private void checkCorrosion(World world, BlockPos pos) {
-		if (corrosion > 20)
+
+		if (rand.nextInt(1000) == 0) {
 			world.setBlockToAir(pos);
-	}
-	
-	@Override
-	public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity entity) {
-		super.onEntityCollidedWithBlock(world, pos, state, entity);
-		if (entity instanceof EntityItem) {
-			ItemStack stack = ((EntityItem)entity).getItem();
-			if (stack.getItem() == FrogGameObjects.POTASSIUM) {
-				world.createExplosion(entity, pos.getX(), pos.getY(), pos.getZ(), 15F, true);
-			}
 		}
 	}
 

@@ -124,6 +124,7 @@ public final class FrogRegistries {
 		Block nitricAcidBlock = new BlockNitricAcid(FrogFluids.nitricAcid).setRegistryName("nitric_acid");
 		registry.register(nitricAcidBlock);
 		FrogFluids.nitricAcid.setBlock(nitricAcidBlock);
+		FluidRegistry.addBucketForFluid(FrogFluids.nitricAcid);
     }
 
 	@SubscribeEvent
@@ -219,19 +220,7 @@ public final class FrogRegistries {
 				new ItemFlammable(18000).setUnlocalizedName("frogcraftrebirth.briquette").setRegistryName("briquette"),
 				new ItemFlammable(1600).setUnlocalizedName("frogcraftrebirth.shattered_coal_coke").setRegistryName("shattered_coal_coke"),
 				new ItemFlammable(200).setUnlocalizedName("frogcraftrebirth.lipid").setRegistryName("lipid"),
-				new ItemResource() {
-					@Override
-					public boolean onEntityItemUpdate(EntityItem entityItem) {
-						if (!entityItem.getEntityWorld().isRemote && !entityItem.getItem().isEmpty() && entityItem.getItem().getItem() == this) {
-							if (entityItem.getEntityWorld().getBlockState(entityItem.getPosition()).getBlock() == FrogGameObjects.NITRIC_ACID) {
-								//TODO set up explosion and grant advancement to players
-								entityItem.setDead();
-								return true;
-							}
-						}
-						return false;
-					}
-				}.setUnlocalizedName("potassium").setRegistryName("potassium")
+				new ItemPotassium().setUnlocalizedName("potassium").setRegistryName("potassium")
 		);
 		FrogRecipes.initOreDict();
 	}

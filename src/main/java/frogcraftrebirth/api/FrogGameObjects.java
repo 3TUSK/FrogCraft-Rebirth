@@ -216,4 +216,6 @@ public class FrogGameObjects {
 
 	public static final Item POTASSIUM = Items.AIR;
 
+	public static final Item SOAP = Items.AIR; // TODO Implement this item
+
 }

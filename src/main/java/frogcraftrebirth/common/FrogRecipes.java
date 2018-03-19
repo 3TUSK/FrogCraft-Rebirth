@@ -149,6 +149,11 @@ class FrogRecipes {
 			 * Ca5(PO4)3F + 5 H2SO4 + 10 H2O → 3 H3PO4 + 5 CaSO4·2 H2O + HF
 			 * 4 Ca5(PO4)3F + 21 SiO2 + 30 C → 20 CaSiO3 + 30 CO + SiF4 + 6 P2
 			 */
+
+			/* TODO: Correctly implement saponification
+			 * Still need potassium hydroxide and soap (sludge?)
+			 */
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogGameObjects.LIPID, 3))), Arrays.asList(new ItemStack(FrogGameObjects.SOAP)), ItemStack.EMPTY, 100, 20, 2, 3));
 			// --- End of FrogCraft: Rebirth recipes --
 		}
 	}

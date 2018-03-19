@@ -35,7 +35,7 @@ import java.util.Map;
 @ParametersAreNonnullByDefault
 public final class LegacyFrogCraftRebirthItemRemapper implements IFixableData {
 
-	private static Map<ItemInfoTuple, String> FLATTENING_MAP = new HashMap<>();
+	private static final Map<ItemInfoTuple, String> FLATTENING_MAP = new HashMap<>();
 
 	static class ItemInfoTuple {
 		final String id;

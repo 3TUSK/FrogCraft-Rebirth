@@ -100,19 +100,19 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 			this.playerAdvancements = playerAdvancementsIn;
 		}
 
-		public boolean isEmpty() {
+		boolean isEmpty() {
 			return this.listeners.isEmpty();
 		}
 
-		public void add(Listener<PotassiumExplosionTrigger.Instance> listener) {
+		void add(Listener<PotassiumExplosionTrigger.Instance> listener) {
 			this.listeners.add(listener);
 		}
 
-		public void remove(Listener<PotassiumExplosionTrigger.Instance> listener) {
+		void remove(Listener<PotassiumExplosionTrigger.Instance> listener) {
 			this.listeners.remove(listener);
 		}
 
-		public void trigger() {
+		void trigger() {
 			for (Listener<PotassiumExplosionTrigger.Instance> listener : this.listeners) {
 				listener.grantCriterion(this.playerAdvancements);
 			}

@@ -32,7 +32,6 @@ import frogcraftrebirth.common.tile.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -223,6 +222,16 @@ public final class FrogRegistries {
 				new ItemPotassium().setUnlocalizedName("potassium").setRegistryName("potassium")
 		);
 		FrogRecipes.initOreDict();
+	}
+
+	@SubscribeEvent
+	public static void onMissingBlock(RegistryEvent.MissingMappings<Block> event) {
+		event.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
+	}
+
+	@SubscribeEvent
+	public static void onMissingItem(RegistryEvent.MissingMappings<Item> event) {
+		event.getMappings().forEach(RegistryEvent.MissingMappings.Mapping::ignore);
 	}
 
 	private static void regFluids(Fluid... fluids) {

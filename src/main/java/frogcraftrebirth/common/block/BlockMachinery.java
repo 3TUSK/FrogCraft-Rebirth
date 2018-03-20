@@ -22,6 +22,7 @@
 
 package frogcraftrebirth.common.block;
 
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
@@ -32,12 +33,12 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
+public class BlockMachinery extends BlockMechanism {
 
 	static final PropertyBool WORKING = PropertyBool.create("working");
 
 	/**
-	 * @param glass The type of TileEntity this block provies
+	 * @param glass The type of TileEntity this block provides
 	 */
 	public BlockMachinery(Class<? extends TileFrog> glass) {
 		super(glass);
@@ -51,7 +52,10 @@ public class BlockMachinery extends BlockMechanism implements IGuiAccessible {
 
 	@Override
 	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		return IGuiAccessible.super.onBlockActivated(worldIn, pos, state, playerIn, hand, side, hitX, hitY, hitZ);
+		if (!worldIn.isRemote) {
+			playerIn.openGui(FrogCraftRebirth.getInstance(), 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
 	}
 
 	@Override

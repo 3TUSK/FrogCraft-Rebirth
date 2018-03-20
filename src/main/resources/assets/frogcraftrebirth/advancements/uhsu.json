@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:uhsu"
     },
     "title": {
-      "translate": "advancement.fcrebirth.uhsu.name"
+      "translate": "advancement.frogcraftrebirth.uhsu.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.uhsu.desc"
+      "translate": "advancement.frogcraftrebirth.uhsu.desc"
     },
     "announce_to_chat": false
   },

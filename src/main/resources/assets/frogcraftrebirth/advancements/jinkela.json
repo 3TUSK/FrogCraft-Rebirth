@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:jinkela"
     },
     "title": {
-      "translate": "advancement.fcrebirth.goldclod.name"
+      "translate": "advancement.frogcraftrebirth.jinkela.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.goldclod.desc"
+      "translate": "advancement.frogcraftrebirth.jinkela.desc"
     },
     "announce_to_chat": false
   },

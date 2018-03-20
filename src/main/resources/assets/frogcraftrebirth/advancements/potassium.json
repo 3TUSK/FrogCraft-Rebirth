@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:potassium"
     },
     "title": {
-      "translate": "advancement.fcrebirth.potassium.name"
+      "translate": "advancement.frogcraftrebirth.potassium.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.potassium.desc"
+      "translate": "advancement.frogcraftrebirth.potassium.desc"
     },
     "announce_to_chat": true
   },

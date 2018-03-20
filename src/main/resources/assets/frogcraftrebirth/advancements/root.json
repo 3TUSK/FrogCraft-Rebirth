@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:hsu"
     },
     "title": {
-      "translate": "advancement.fcrebirth.root.name"
+      "translate": "advancement.frogcraftrebirth.root.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.root.desc"
+      "translate": "advancement.frogcraftrebirth.root.desc"
     },
     "background": "minecraft:textures/gui/advancements/backgrounds/stone.png",
     "announce_to_chat": false

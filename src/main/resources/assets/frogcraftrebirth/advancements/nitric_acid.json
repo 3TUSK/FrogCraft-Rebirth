@@ -6,10 +6,10 @@
       "nbt": "{\"FluidName\": \"nitric_acid\", \"Amount\": 1000}"
     },
     "title": {
-      "translate": "advancement.fcrebirth.suicide_expert.name"
+      "translate": "advancement.frogcraftrebirth.suicide_expert.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.suicide_expert.desc"
+      "translate": "advancement.frogcraftrebirth.suicide_expert.desc"
     },
     "announce_to_chat": false
   },

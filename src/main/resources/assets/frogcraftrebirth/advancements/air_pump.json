@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:air_pump"
     },
     "title": {
-      "translate": "advancement.fcrebirth.airpump.name"
+      "translate": "advancement.frogcraftrebirth.air_pump.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.airpump.desc"
+      "translate": "advancement.frogcraftrebirth.air_pump.desc"
     },
     "announce_to_chat": true
   },

@@ -4,10 +4,10 @@
       "item": "frogcraftrebirth:advanced_chemical_reactor"
     },
     "title": {
-      "translate": "advancement.fcrebirth.advchem.name"
+      "translate": "advancement.frogcraftrebirth.adv_chem.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.advchem.desc"
+      "translate": "advancement.frogcraftrebirth.adv_chem.desc"
     },
     "announce_to_chat": true
   },

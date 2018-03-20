@@ -31,7 +31,6 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 public final class FrogWorldGenerator {
 
-	// TODO Fix these guys
 	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(FrogGameObjects.CARNALLITE.getDefaultState(), 3);
 	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(FrogGameObjects.DEWALQUITE.getDefaultState(), 15);
 	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FrogGameObjects.FLUORAPATITE.getDefaultState(), 15);

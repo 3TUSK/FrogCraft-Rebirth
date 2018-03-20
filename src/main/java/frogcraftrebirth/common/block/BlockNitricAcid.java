@@ -61,23 +61,31 @@ public class BlockNitricAcid extends BlockFluidClassic {
 			return;
 		}
 		
-		for (int m = -3; m < 3; m++) {
-			for (int n = -3; n < 3; n++) {
-				int randInt = rand.nextInt(100);
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRASS.getDefaultState() && randInt < 75) {
-					world.setBlockState(pos.north(m).east(n), Blocks.DIRT.getDefaultState());
-				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.DIRT.getDefaultState() && randInt < 50) {
-					world.setBlockState(pos.north(m).east(n), Blocks.SAND.getDefaultState());
-				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.STONE.getDefaultState() && randInt < 25) {
-					world.setBlockState(pos.north(m).east(n), Blocks.COBBLESTONE.getDefaultState());
-				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.COBBLESTONE.getDefaultState() && randInt < 15) {
-					world.setBlockState(pos.north(m).east(n), Blocks.GRAVEL.getDefaultState());
-				}
-				if (world.getBlockState(pos.north(m).east(n)) == Blocks.GRAVEL.getDefaultState() && randInt < 20) {
-					world.setBlockState(pos.north(m).east(n), Blocks.SAND.getDefaultState());
+		for (int m = -2; m < 3; m++) {
+			for (int n = -2; n < 3; n++) {
+				for (int o = -2; o < 0; o++) {
+					int randInt = rand.nextInt(100);
+					if (randInt < 75 && world.getBlockState(pos.add(m, n, o)) == Blocks.GRASS.getDefaultState()) {
+						world.setBlockState(pos.add(m, n, o), Blocks.DIRT.getDefaultState());
+					}
+					if (randInt < 50 && world.getBlockState(pos.add(m, n, o)) == Blocks.DIRT.getDefaultState()) {
+						world.setBlockState(pos.add(m, n, o), Blocks.SAND.getDefaultState());
+						continue;
+					}
+					if (randInt < 25 && world.getBlockState(pos.add(m, n, o)) == Blocks.STONE.getDefaultState()) {
+						world.setBlockState(pos.add(m, n, o), Blocks.COBBLESTONE.getDefaultState());
+					}
+					if (randInt < 15 && world.getBlockState(pos.add(m, n, o)) == Blocks.COBBLESTONE.getDefaultState()) {
+						world.setBlockState(pos.add(m, n, o), Blocks.GRAVEL.getDefaultState());
+						continue;
+					}
+					if (randInt < 20 && world.getBlockState(pos.add(m, n, o)) == Blocks.GRAVEL.getDefaultState()) {
+						world.setBlockState(pos.add(m, n, o), Blocks.SAND.getDefaultState());
+						continue;
+					}
+					if (randInt < 10 && world.getBlockState(pos.add(m, n, o)).getBlock() == Blocks.SAND) {
+						world.setBlockToAir(pos.north(m).east(n));
+					}
 				}
 			}
 		}

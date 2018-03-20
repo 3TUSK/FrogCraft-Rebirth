@@ -28,15 +28,16 @@ import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.advancements.ICriterionTrigger;
 import net.minecraft.advancements.PlayerAdvancements;
 import net.minecraft.advancements.critereon.AbstractCriterionInstance;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.util.JsonUtils;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 @ParametersAreNonnullByDefault
 public final class PotassiumExplosionTrigger implements ICriterionTrigger<PotassiumExplosionTrigger.Instance> {
@@ -76,20 +77,30 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 
 	@Override
 	public PotassiumExplosionTrigger.Instance deserializeInstance(JsonObject json, JsonDeserializationContext context) {
-		return new PotassiumExplosionTrigger.Instance();
+		ResourceLocation blockIdentifier = new ResourceLocation(JsonUtils.getString(json, "block"));
+		return new PotassiumExplosionTrigger.Instance(blockIdentifier);
 	}
 
-	public final void trigger(EntityPlayerMP player) {
+	public final void trigger(EntityPlayerMP player, IBlockState state) {
 		PotassiumExplosionTrigger.Listeners listeners = this.listeners.get(player.getAdvancements());
 		if (listeners != null) {
-			listeners.trigger();
+			listeners.trigger(state);
 		}
 	}
 
 	static class Instance extends AbstractCriterionInstance {
-		Instance() {
+
+		private final Block block;
+
+		Instance(ResourceLocation identifier) {
 			super(PotassiumExplosionTrigger.ID);
+			this.block = ForgeRegistries.BLOCKS.getValue(identifier);
 		}
+
+		boolean test(IBlockState state) {
+			return state.getBlock() == this.block;
+		}
+
 	}
 
 	private static class Listeners {
@@ -112,8 +123,14 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 			this.listeners.remove(listener);
 		}
 
-		void trigger() {
-			for (Listener<PotassiumExplosionTrigger.Instance> listener : this.listeners) {
+		void trigger(IBlockState state) {
+			List<Listener<Instance>> validListenerList = new ArrayList<>();
+			for (Listener<PotassiumExplosionTrigger.Instance> listener : listeners) {
+				if (listener.getCriterionInstance().test(state)) {
+					validListenerList.add(listener);
+				}
+			}
+			for (Listener<PotassiumExplosionTrigger.Instance> listener : validListenerList) {
 				listener.grantCriterion(this.playerAdvancements);
 			}
 		}

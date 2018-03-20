@@ -14,8 +14,11 @@
     "announce_to_chat": false
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "toss_potassium": {
+      "trigger": "frogcraftrebirth:potassium_explosion",
+      "conditions": {
+        "block": "frogcraftrebirth:nitric_acid"
+      }
     }
   },
   "parent": "frogcraftrebirth:potassium"

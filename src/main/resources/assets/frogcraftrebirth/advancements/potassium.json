@@ -13,7 +13,10 @@
   },
   "criteria": {
     "toss_potassium": {
-      "trigger": "frogcraftrebirth:potassium_explosion"
+      "trigger": "frogcraftrebirth:potassium_explosion",
+      "conditions": {
+        "block": "minecraft:water"
+      }
     }
   },
   "parent": "frogcraftrebirth:root"

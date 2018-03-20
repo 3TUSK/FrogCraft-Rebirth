@@ -39,11 +39,11 @@ import net.minecraft.world.World;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
+public class ItemJinkela extends ItemFrog {
 
 	public ItemJinkela() {
 		super();
-		setUnlocalizedName("jinkela");
+		setUnlocalizedName("frogcraftrebirth.jinkela");
 	}
 
 	@Nonnull
@@ -72,13 +72,7 @@ public class ItemJinkela extends ItemFrog /*implements IWarpingGear*/ {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.Item_Miscs.GoldClod.info"));
+		tooltips.add(I18n.format("item.frogcraftrebirth.jinkela.info"));
 	}
-
-	//@Optional.Method(modid = "thaumcraft")
-	//@Override
-	//public int getWarp(ItemStack stack, EntityPlayer player) {
-	//	return stack.stackSize;
-	//}
 
 }

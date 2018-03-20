@@ -13,7 +13,6 @@ tile.mobilePowerStation.info=§oThe best camping gear
 item.frogcraftrebirth.ammonia_coolant.60K=60K Ammonia Coolant Cell
 item.frogcraftrebirth.ammonia_coolant.180K=180K Ammonia Coolant Cell
 item.frogcraftrebirth.ammonia_coolant.360K=360K Ammonia Coolant Cell
-item.frogcraftrebirth.ammonia_coolant.info=A ordinary %s ammonia coolant cell
 item.UBattery.name=Uranium Decay Battery
 item.ThBattery.name=Thorium Decay Battery
 item.PuBattery.name=Plutonium Decay Battery
@@ -191,8 +190,8 @@ fluid.sulfur_dioxide.info=SO₂
 fluid.sulfur_trioxide=Sulfur Trioxide
 fluid.sulfur_trioxide.info=SO₃
 
-item.Item_Miscs.GoldClod=Goldclod
-item.Item_Miscs.GoldClod.info=Magical fertilizer additive
+item.frogcraftrebirth.jinkela=Goldclod
+item.frogcraftrebirth.jinkela.info=Magical fertilizer additive
 
 item.reactionModule.Electrolyze=Electrolyzer Component
 item.reactionModule.Electrolyze.info=Electrolyze the reactant

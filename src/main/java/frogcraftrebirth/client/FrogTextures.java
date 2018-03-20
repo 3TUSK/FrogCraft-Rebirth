@@ -131,9 +131,7 @@ public final class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.HSU, "hybrid_storage_unit");
 		RegHelper.registerModel(FrogGameObjects.UHSU, "ultra_hybrid_storage_unit");
 
-		RegHelper.regFluidBlockTexture(FrogFluids.bromine);
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
-		RegHelper.regFluidBlockTexture(FrogFluids.glycerol);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);
 		RegHelper.regFluidBlockTexture(FrogFluids.sulfuricAcid);
 	}
@@ -147,6 +145,8 @@ public final class FrogTextures {
 		textureMap.registerSprite(FrogFluids.argon.getStill());
 		textureMap.registerSprite(FrogFluids.benzene.getFlowing());
 		textureMap.registerSprite(FrogFluids.benzene.getStill());
+		textureMap.registerSprite(FrogFluids.bromine.getFlowing());
+		textureMap.registerSprite(FrogFluids.bromine.getStill());
 		textureMap.registerSprite(FrogFluids.carbonDioxide.getFlowing());
 		textureMap.registerSprite(FrogFluids.carbonDioxide.getStill());
 		textureMap.registerSprite(FrogFluids.carbonOxide.getFlowing());
@@ -155,6 +155,8 @@ public final class FrogTextures {
 		textureMap.registerSprite(FrogFluids.chlorine.getStill());
 		textureMap.registerSprite(FrogFluids.fluorine.getFlowing());
 		textureMap.registerSprite(FrogFluids.fluorine.getStill());
+		textureMap.registerSprite(FrogFluids.glycerol.getFlowing());
+		textureMap.registerSprite(FrogFluids.glycerol.getStill());
 		textureMap.registerSprite(FrogFluids.methane.getFlowing());
 		textureMap.registerSprite(FrogFluids.methane.getStill());
 		textureMap.registerSprite(FrogFluids.nitrogen.getFlowing());

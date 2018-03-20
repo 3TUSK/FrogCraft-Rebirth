@@ -1,17 +1,9 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"bromine": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "bromine" }
-		},
 		"coal_tar": {
 			"model": "forge:fluid",
 			"custom": { "fluid": "coal_tar" }
-		},
-		"glycerol": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "glycerol" }
 		},
 		"nitric_acid": {
 			"model": "forge:fluid",

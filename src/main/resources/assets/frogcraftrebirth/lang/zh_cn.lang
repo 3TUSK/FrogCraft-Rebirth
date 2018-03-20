@@ -10,10 +10,9 @@
 
 block.frogcraftrebirth.mobile_power_station=移动电源
 block.frogcraftrebirth.mobile_power_station.info=§o外出野营的最佳伴侣
-item.ammonia_coolant_60k=60K氨冷却单元
-item.ammonia_coolant_180k=180K氨冷却单元
-item.ammonia_coolant_360k=360K氨冷却单元
-item.ammonia_coolant.info=一个普通的%s氨冷却单元
+item.ammonia_coolant_60k=60K 氨冷却单元
+item.ammonia_coolant_180k=180K 氨冷却单元
+item.ammonia_coolant_360k=360K 氨冷却单元
 item.uranium_decay_battery=铀衰变电池
 item.thorium_decay_battery=钍衰变电池
 item.plutonium_decay_battery=钚衰变电池

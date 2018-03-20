@@ -27,6 +27,7 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.*;
 import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthBlockRemapper;
 import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthItemRemapper;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthTileEntityRemapper;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraft.util.datafix.FixTypes;
@@ -62,6 +63,7 @@ public class FrogProxy {
 		ModFixs fixer = FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);
 		fixer.registerFix(FixTypes.ITEM_INSTANCE, new LegacyFrogCraftRebirthItemRemapper());
 		fixer.registerFix(FixTypes.CHUNK, new LegacyFrogCraftRebirthBlockRemapper());
+		fixer.registerFix(FixTypes.BLOCK_ENTITY, new LegacyFrogCraftRebirthTileEntityRemapper());
 	}
 	
 	public final void imcInit(FMLInterModComms.IMCEvent event) {

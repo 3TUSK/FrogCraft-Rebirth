@@ -35,13 +35,11 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import org.apache.commons.lang3.Validate;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-@ParametersAreNonnullByDefault
-public class LegacyFrogCraftRebirthBlockRemapper implements IFixableData {
+public final class LegacyFrogCraftRebirthBlockRemapper implements IFixableData {
 
 	private static final Map<BlockMetadataTuple, BlockMetadataTuple> MIGRATION_MAP = new HashMap<>();
 
@@ -53,7 +51,7 @@ public class LegacyFrogCraftRebirthBlockRemapper implements IFixableData {
 	// https://minecraft.gamepedia.com/Chunk_format
 	@Nonnull
 	@Override
-	public NBTTagCompound fixTagCompound(NBTTagCompound compound) {
+	public NBTTagCompound fixTagCompound(@Nonnull NBTTagCompound compound) {
 		try {
 			NBTTagCompound chunk = compound.getCompoundTag("Level");
 			NBTTagList subChunkList = chunk.getTagList("Sections", Constants.NBT.TAG_COMPOUND);

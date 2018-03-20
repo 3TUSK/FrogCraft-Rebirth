@@ -28,11 +28,9 @@ import net.minecraft.util.datafix.IFixableData;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.HashMap;
 import java.util.Map;
 
-@ParametersAreNonnullByDefault
 public final class LegacyFrogCraftRebirthItemRemapper implements IFixableData {
 
 	private static final Map<ItemInfoTuple, String> FLATTENING_MAP = new HashMap<>();
@@ -62,7 +60,7 @@ public final class LegacyFrogCraftRebirthItemRemapper implements IFixableData {
 
 	@Nonnull
 	@Override
-	public NBTTagCompound fixTagCompound(NBTTagCompound compound) {
+	public NBTTagCompound fixTagCompound(@Nonnull NBTTagCompound compound) {
 		flatteningFrogCraftRebirthItems(compound);
 		return compound;
 	}

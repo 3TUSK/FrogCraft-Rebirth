@@ -50,34 +50,34 @@ public final class FrogRegistries {
 	public static void regBlock(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		registry.registerAll(
-				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("carnallite").setRegistryName("frogcraftrebirth:carnallite"),
-				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("dewalquite").setRegistryName("frogcraftrebirth:dewalquite"),
-				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("fluorapatite").setRegistryName("frogcraftrebirth:fluorapatite"),
-				new BlockHSU(TileHSU.class).setUnlocalizedName("hsu").setRegistryName("frogcraftrebirth:hsu"),
-				new BlockHSU(TileHSUUltra.class).setUnlocalizedName("uhsu").setRegistryName("frogcraftrebirth:uhsu"),
-				new BlockMPS().setUnlocalizedName("mobile_power_station").setRegistryName("frogcraftrebirth:mobile_power_station"),
-				new BlockMachinery(TileAirPump.class).setUnlocalizedName("air_pump").setRegistryName("frogcraftrebirth:air_pump"),
-				new BlockMachinery(TileLiquefier.class).setUnlocalizedName("liquefier").setRegistryName("frogcraftrebirth:liquefier"),
-				new BlockMachineryDirectional(TileAdvChemReactor.class).setUnlocalizedName("advanced_chemical_reactor").setRegistryName("frogcraftrebirth:advanced_chemical_reactor"),
-				new BlockMachineryDirectional(TileAdvBlastFurnace.class).setUnlocalizedName("advanced_blast_furnace").setRegistryName("frogcraftrebirth:advanced_blast_furnace"),
-				new BlockMachineryDirectional(TileCombustionFurnace.class).setUnlocalizedName("combustion_furnace").setRegistryName("frogcraftrebirth:combustion_furnace"),
-				new BlockMachineryDirectional(TilePyrolyzer.class).setUnlocalizedName("pyrolyzer").setRegistryName("frogcraftrebirth:pyrolyzer"),
-				new BlockMachineryDirectional(TileCondenseTower.class).setUnlocalizedName("condense_tower_core").setRegistryName("frogcraftrebirth:condense_tower_core"),
-				new BlockMechanism(TileCondenseTowerStructure.class).setUnlocalizedName("condense_tower_cylinder").setRegistryName("frogcraftrebirth:condense_tower_cylinder"),
-				new BlockMechanismDirectional(TileFluidOutputHatch.class).setUnlocalizedName("condense_tower_outlet").setRegistryName("frogcraftrebirth:condense_tower_outlet")
+				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("carnallite").setRegistryName("carnallite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("dewalquite").setRegistryName("dewalquite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("fluorapatite").setRegistryName("fluorapatite"),
+				new BlockHSU(TileHSU.class).setUnlocalizedName("hsu").setRegistryName("hsu"),
+				new BlockHSU(TileHSUUltra.class).setUnlocalizedName("uhsu").setRegistryName("uhsu"),
+				new BlockMPS().setUnlocalizedName("mobile_power_station").setRegistryName("mobile_power_station"),
+				new BlockMachinery(TileAirPump.class).setUnlocalizedName("air_pump").setRegistryName("air_pump"),
+				new BlockMachinery(TileLiquefier.class).setUnlocalizedName("liquefier").setRegistryName("liquefier"),
+				new BlockMachineryDirectional(TileAdvChemReactor.class).setUnlocalizedName("advanced_chemical_reactor").setRegistryName("advanced_chemical_reactor"),
+				new BlockMachineryDirectional(TileAdvBlastFurnace.class).setUnlocalizedName("advanced_blast_furnace").setRegistryName("advanced_blast_furnace"),
+				new BlockMachineryDirectional(TileCombustionFurnace.class).setUnlocalizedName("combustion_furnace").setRegistryName("combustion_furnace"),
+				new BlockMachineryDirectional(TilePyrolyzer.class).setUnlocalizedName("pyrolyzer").setRegistryName("pyrolyzer"),
+				new BlockMachineryDirectional(TileCondenseTower.class).setUnlocalizedName("condense_tower_core").setRegistryName("condense_tower_core"),
+				new BlockMechanism(TileCondenseTowerStructure.class).setUnlocalizedName("condense_tower_cylinder").setRegistryName("condense_tower_cylinder"),
+				new BlockMechanismDirectional(TileFluidOutputHatch.class).setUnlocalizedName("condense_tower_outlet").setRegistryName("condense_tower_outlet")
 		);
-		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraft_mobile_power_station");
-		GameRegistry.registerTileEntity(TileHSU.class, "frogcraft_hybrid_storage_unit");
-		GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraft_ultra_hybrid_storage_unit");
-		GameRegistry.registerTileEntity(TileAirPump.class, "frogcraft_air_pump");
-		GameRegistry.registerTileEntity(TileCondenseTower.class, "frogcraft_condense_tower_core");
-		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "frogcraft_condense_tower_cylinder");
-		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "frogcraft_condense_tower_outlet");
-		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "frogcraft_combustion_furnace");
-		GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraft_thermal_cracker");
-		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraft_advanced_chemical_reactor");
-		GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraft_liquefier");
-		GameRegistry.registerTileEntity(TileAdvBlastFurnace.class, "frogcraft_adv_blast_furnace");
+		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraftrebirth:mobile_power_station");
+		GameRegistry.registerTileEntity(TileHSU.class, "frogcraftrebirth:hybrid_storage_unit");
+		GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraftrebirth:ultra_hybrid_storage_unit");
+		GameRegistry.registerTileEntity(TileAirPump.class, "frogcraftrebirth:air_pump");
+		GameRegistry.registerTileEntity(TileCondenseTower.class, "frogcraftrebirth:condense_tower_core");
+		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "frogcraftrebirth:condense_tower_cylinder");
+		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "frogcraftrebirth:condense_tower_outlet");
+		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "frogcraftrebirth:combustion_furnace");
+		GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraftrebirth:thermal_cracker");
+		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraftrebirth:advanced_chemical_reactor");
+		GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraftrebirth:liquefier");
+		GameRegistry.registerTileEntity(TileAdvBlastFurnace.class, "frogcraftrebirth:adv_blast_furnace");
 
 		FrogFluids.ammonia = new FrogFluid("ammonia", 694, 240, true, EnumRarity.EPIC);
 		FrogFluids.argon = new FrogFluid("argon", 1784, 300, true, EnumRarity.RARE);
@@ -102,10 +102,12 @@ public final class FrogRegistries {
 				FrogFluids.ammonia,
 				FrogFluids.argon,
 				FrogFluids.benzene,
+				FrogFluids.bromine,
 				FrogFluids.carbonOxide,
 				FrogFluids.carbonDioxide,
 				FrogFluids.chlorine,
 				FrogFluids.fluorine,
+				FrogFluids.glycerol,
 				FrogFluids.methane,
 				FrogFluids.nitrogen,
 				FrogFluids.nitrogenOxide,
@@ -114,9 +116,7 @@ public final class FrogRegistries {
 				FrogFluids.sulfurTrioxide
 		);
 		regFluids(registry,
-				FrogFluids.bromine,
 				FrogFluids.coalTar,
-				FrogFluids.glycerol,
 				FrogFluids.sulfuricAcid
 		);
 		FluidRegistry.registerFluid(FrogFluids.nitricAcid);

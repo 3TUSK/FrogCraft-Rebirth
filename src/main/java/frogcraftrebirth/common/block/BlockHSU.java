@@ -65,6 +65,7 @@ public class BlockHSU extends BlockMechanism implements IRotatable {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);
 	}

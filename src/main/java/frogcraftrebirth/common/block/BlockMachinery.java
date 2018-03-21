@@ -64,6 +64,7 @@ public class BlockMachinery extends BlockMechanism {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState().withProperty(WORKING, meta == 0 ? Boolean.FALSE : Boolean.TRUE);
 	}

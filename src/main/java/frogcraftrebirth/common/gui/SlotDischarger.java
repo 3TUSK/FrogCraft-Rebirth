@@ -23,7 +23,6 @@
 package frogcraftrebirth.common.gui;
 
 import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 

@@ -31,7 +31,6 @@ import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.api.mps.IMobilePowerStation;
-import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;

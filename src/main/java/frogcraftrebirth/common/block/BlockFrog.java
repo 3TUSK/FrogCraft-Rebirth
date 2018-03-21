@@ -47,6 +47,7 @@ public class BlockFrog extends Block {
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public String getLocalizedName() {
 		return I18n.translateToLocal(this.getUnlocalizedName());
 	}

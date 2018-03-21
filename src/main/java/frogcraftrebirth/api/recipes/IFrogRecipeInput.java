@@ -33,15 +33,26 @@ import java.util.List;
 public interface IFrogRecipeInput {
 
 	/**
+	 * Determine whether this input object is empty, which implies calling either
+	 * {@link #matches(Object)} or {@link #matches(IFrogRecipeInput)} will return {@code false}.
+	 *
+	 * The definition of emptiness varies on implementations. For example, instance of ItemStack is
+	 * considered empty when: 1. size < 1, or 2. getItem() == Items.AIR, or 3. that instance is
+	 * the ItemStack.EMPTY instance.
+	 *
+	 * @return true if this ingredient is empty.
+	 */
+	default boolean isEmpty() {
+		return false;
+	}
+
+	/**
 	 * A specialized version of {@link #matches(Object)}.
-	 * @param input Wrapped <code>IFrogRecipeInput</code>
 	 *
 	 * @implSpec
-	 * Contracts of {@link Object#equals} also applies here, with only difference
-	 * that a.matches(b) == true does not guarantee a.equals(b) == true. That said,
-	 * this method only checks equivalency based on whether they are exchangeable or not,
-	 * e.g. an instance of FluidStack may matches an instance of ItemStack that happens
-	 * to be a fluid container with the exact same fluid stack in it.
+	 * The same specification of {@link #matches(Object)} also applied here.
+	 *
+	 * @param input Wrapped <code>IFrogRecipeInput</code>
 	 *
 	 * @return true if the given actual input is matched; false for otherwise.
 	 *
@@ -53,26 +64,57 @@ public interface IFrogRecipeInput {
 
 	/**
 	 *
-	 * @return true if this ingredient is empty and thus never matches anything that is not empty.
-	 */
-	default boolean isEmpty() {
-		return false;
-	}
-
-	/**
-	 * @param actualInput The actual input ingredient.
-	 * @return true if the given actual input is matched; false for otherwise.
+	 * @implSpec
+	 * The following contraction must be followed:
+	 * <ul>
+	 *     <li>
+	 *         Reflexive. i.e. For Object x that is instance of IFrogRecipeInput,
+	 *         {@code x.matches(x)} holds true.
+	 *     </li>
+	 *     <li>
+	 *         Transitive. i.e. For Object x, y, z that are all instances of
+	 *         IFrogRecipeInput, both {@code x.matches(y)} and {@code y.matches(z)}
+	 *         holding true imply that {@code x.matches(z)} holds true.
+	 *     </li>
+	 *     <li>
+	 *         Consistent. i.e. For object x, y that are both instances of
+	 *         IFrogRecipeInput, multiple invocations of {@code x.matches(y)} must not
+	 *         evaluate to different result, if and only if none of them are modified
+	 *         among invocations.
+	 *     </li>
+	 *     <li>
+	 *         For any instance of this class x, {@code x.matches(null)} holds false.
+	 *     </li>
+	 *     <li>
+	 *         For any instance of this class x, {@code x.isEmpty()} holds true implies
+	 *         x::matches holds false
+	 *     </li>
+	 * </ul>
+	 * That said, this is not a equivalence relation, as {@code x.matches(y)} does not
+	 * guarantee {@code y.matches(x)} (under most circumstances it's not true, example -
+	 * input of "1 piles of sugar" may match "4 pile of sugar", but not vice versa.)
+	 *
+	 * @param actualInput The actual input object to be examined.
+	 * @return true if the given actual input has same type with this ingredient, and size of actual
+	 *         input is larger than size of this object; false for otherwise.
 	 */
 	boolean matches(Object actualInput);
 
 	/**
-	 * Retrieve a list of possible inputs.
-	 * <p>
-	 *     Note that, elements in returned list must satisfy that match(input) == true.
-	 * </p>
+	 * Retrieve a view-only list in which:
+	 * <ul>
+	 *     <li>for all element e in the list, {@code type.isInstance(e)} holds true</li>
+	 *     <li>for all element e in the list, {@code this.matches(e)} holds true</li>
+	 * </ul>
+	 *
+	 * @implSpec
+	 * Returning {@code null} is prohibited. In case there is no instances of given type
+	 * to put into the returning List, returning an empty list, preferably that of
+	 * {@link java.util.Collections#emptyList}.
+	 *
 	 * @param type The type reference of actual inputs
 	 * @param <T> The type of inputs (e.g ItemStack, FluidStack, etc.)
-	 * @return A list contains given type of inputs.
+	 * @return A view-only list that contains given type of inputs, may be empty.
 	 */
 	@Nonnull
 	<T> List<T> getActualInputs(Class<T> type);
@@ -83,16 +125,19 @@ public interface IFrogRecipeInput {
 	 * wrapped input is known. Example: if one implementation wraps an ItemStack,
 	 * then getSize() can only be used on other ItemStack, not FluidStack or anything else.
 	 *
-	 * If consuming arbitrary ingredients is need, use {@link #accepts(Class, Object)}.
+	 * For consuming arbitrary ingredients, use {@link #accepts(Class, Object)}.
+	 *
 	 * @return Quantity of this input ingredient
 	 */
 	int getSize();
 
 	/**
 	 * Accepts arbitrary ingredient input and consumes it according to the type provided.
+	 *
 	 * @param type The type reference of actual input
 	 * @param actualInput The actual input ingredient object
 	 * @param <I> The type of actual input
+	 *
 	 * @return The remainder, maybe <code>null</code>.
 	 */
 	@Nullable

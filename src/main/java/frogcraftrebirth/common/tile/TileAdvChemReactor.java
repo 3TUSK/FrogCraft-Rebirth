@@ -236,14 +236,14 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	@Override
 	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
 		return ContainerTileFrog.Builder.from(this)
-				.withStandardSlot(module, 0, 147, 152)
+				.withStandardSlot(module, 0, 147, 52)
 				.withStandardSlot(cellInput, 0, 12, 22)
 				.withOutputSlot(cellOutput, 0, 12, 52)
 				.withStandardSlot(input, 0, 40, 22)
 				.withStandardSlot(input, 1, 60, 22)
 				.withStandardSlot(input, 2, 80, 22)
-				.withStandardSlot(input, 3, 100, 52)
-				.withStandardSlot(input, 4, 120, 52)
+				.withStandardSlot(input, 3, 100, 22)
+				.withStandardSlot(input, 4, 120, 22)
 				.withOutputSlot(output, 0, 40, 52)
 				.withOutputSlot(output, 1, 60, 52)
 				.withOutputSlot(output, 2, 80, 52)

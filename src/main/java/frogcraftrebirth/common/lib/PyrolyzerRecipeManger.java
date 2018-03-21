@@ -57,7 +57,7 @@ public class PyrolyzerRecipeManger implements IRecipeManager<IPyrolyzerRecipe>{
 			return null;
 
 		for (IPyrolyzerRecipe r : recipes) {
-			if (r.getActualInput().matches(input) && input.getSize() > r.getActualInput().getSize()) {
+			if (r.getActualInput().matches(input) && input.getSize() >= r.getActualInput().getSize()) {
 				return r;
 			}
 		}

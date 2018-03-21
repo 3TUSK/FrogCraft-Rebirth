@@ -35,7 +35,7 @@ class SlotCharger extends SlotFrog {
 
 	@Override
 	public boolean isItemValid(ItemStack stack) {
-		return !stack.isEmpty() && stack.getItem() instanceof IElectricItem && ElectricItem.manager.charge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true) > 0;
+		return !stack.isEmpty() && ElectricItem.manager.charge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true) > 0;
 	}
 
 }

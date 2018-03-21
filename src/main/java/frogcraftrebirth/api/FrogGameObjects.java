@@ -66,6 +66,9 @@ public class FrogGameObjects {
 
 	public static final Block NITRIC_ACID = Blocks.AIR;
 
+	@GameRegistry.ObjectHolder("mobile_power_station")
+	public static final Item MPS_ITEM = Items.AIR;
+
 	public static final Item AMMONIA_COOLANT_60K = Items.AIR;
 
 	public static final Item AMMONIA_COOLANT_180K = Items.AIR;

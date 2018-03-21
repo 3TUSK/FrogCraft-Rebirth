@@ -36,7 +36,6 @@ import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
@@ -84,15 +83,16 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 			energy += 1;
 		}
 		// For each tick, there is 10% probability that overflowed energy disappears
-		if (energy > energyMax && getWorld().rand.nextInt(10) == 1)
+		if (energy > energyMax && getWorld().rand.nextInt(10) == 1) {
 			energy = energyMax;
+		}
 		//Extract energy from charge-in slot
-		if (!inv.getStackInSlot(CHARGE_IN).isEmpty() && inv.getStackInSlot(CHARGE_IN).getItem() instanceof IElectricItem) {
-			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_IN), 32, getSourceTier(), true, true, false);
+		if (!inv.getStackInSlot(CHARGE_IN).isEmpty()) {
+			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_IN), this.getOfferedEnergy(), this.tier, false, false);
 		}
 		//Offer energy to item that is in charge-out slot
-		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty() && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
-			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
+		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty()) {
+			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_OUT), 32, this.tier, true, true, false);
 		}
 		
 		this.sendTileUpdatePacket(this);
@@ -179,11 +179,11 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	@Override
 	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
 		return ContainerTileFrog.Builder.from(this)
-				.withStandardSlot(inv, 0, 20, 20)
-				.withStandardSlot(inv, 1, 38, 20)
-				.withStandardSlot(inv, 2, 56, 20)
-				.withChargerSlot(inv, 3, 113, 24)
-				.withDischargeSlot(inv, 4, 113, 42)
+				.withStandardSlot(inv, UPGRADE_SOLAR, 20, 20)
+				.withStandardSlot(inv, UPGRADE_VOLTAGE, 38, 20)
+				.withStandardSlot(inv, UPGRADE_STORAGE, 56, 20)
+				.withChargerSlot(inv, CHARGE_IN, 113, 24)
+				.withDischargeSlot(inv, CHARGE_OUT, 113, 42)
 				.withPlayerInventory(player.inventory)
 				.build();
 	}

@@ -20,22 +20,28 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.gui;
+package frogcraftrebirth.common.lib.util;
 
-import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.items.IItemHandler;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.Constants;
 
-class SlotDischarger extends SlotFrog {
+public final class NBTUtil {
 
-	SlotDischarger(IItemHandler inv, int index, int x, int y) {
-		super(inv, index, x, y);
+	private NBTUtil() {}
+
+	public static int getIntegerOrDefault(NBTTagCompound tag, String key, int defaultValue) {
+		if (tag != null && tag.hasKey(key, Constants.NBT.TAG_INT)) {
+			return tag.getInteger(key);
+		} else {
+			return defaultValue;
+		}
 	}
 
-	@Override
-	public boolean isItemValid(ItemStack stack) {
-		return !stack.isEmpty() && ElectricItem.manager.discharge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true, true) > 0;
+	public static double getDoubleOrDefault(NBTTagCompound tag, String key, double defaultValue) {
+		if (tag != null && tag.hasKey(key, Constants.NBT.TAG_DOUBLE)) {
+			return tag.getDouble(key);
+		} else {
+			return defaultValue;
+		}
 	}
-
 }

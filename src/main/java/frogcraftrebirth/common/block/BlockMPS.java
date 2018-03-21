@@ -28,6 +28,8 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
+import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.common.item.ItemMPS;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
@@ -149,13 +151,14 @@ public class BlockMPS extends BlockMechanism {
 	
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		ItemStack stack = new ItemStack(this, 1, 0);
-		stack.setTagCompound(new NBTTagCompound());
-		if (te instanceof TileMobilePowerStation)
-			((TileMobilePowerStation)te).saveDataTo(stack.getTagCompound());
-		else
-			ItemMPS.normalize(stack);
-		return Collections.singletonList(stack);
+		NBTTagCompound data = new NBTTagCompound();
+		if (te instanceof TileMobilePowerStation) {
+			((TileMobilePowerStation) te).saveDataTo(data);
+		} else {
+			FrogAPI.FROG_LOG.fatal("MPS block has wrong TileEntity type {}", te);
+			throw new IllegalStateException("MPS has wrong TileEntity type");
+		}
+		return Collections.singletonList(new ItemStack(FrogGameObjects.MPS_ITEM, 1, 0, data));
 	}
 
 }

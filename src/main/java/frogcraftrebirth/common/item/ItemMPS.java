@@ -43,7 +43,7 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 
 	public ItemMPS(BlockMPS block) {
 		super(block);
-		setUnlocalizedName(block.getUnlocalizedName()); // TODO Make sure this works
+		setUnlocalizedName(block.getUnlocalizedName());
 		setMaxStackSize(1);
 	}
 

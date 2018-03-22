@@ -47,10 +47,32 @@ public interface IFrogRecipeInput {
 	}
 
 	/**
-	 * A specialized version of {@link #matches(Object)}.
+	 * Determine whether the given object can
 	 *
 	 * @implSpec
-	 * The same specification of {@link #matches(Object)} also applied here.
+	 * The following contracts must be followed:
+	 * <ul>
+	 *     <li>
+	 *         Consistent. i.e. For IFrogRecipeInput x, y, multiple invocations of
+	 *         {@code x.matches(y)} must not evaluate to different result, if and only
+	 *         if none of them are modified among invocations.
+	 *     </li>
+	 *     <li>
+	 *         If the given {@code input} object is instance of {@code IFrogRecipeInput},
+	 *         then this method should delegate to {@link #matches(IFrogRecipeInput)}.
+	 *         Otherwise, the rules stated below applies.
+	 *     </li>
+	 *     <li>
+	 *         For any instance of this class x, {@code x.matches(null)} holds false.
+	 *     </li>
+	 *     <li>
+	 *         For any instance of this class x, {@code x.isEmpty()} holds true implies
+	 *         that this method will always return {@code false}.
+	 *     </li>
+	 * </ul>
+	 * That said, this is not a equivalence relation, as {@code x.matches(y)} does not
+	 * guarantee {@code y.matches(x)} (under most circumstances it's not true, example -
+	 * input of "1 piles of sugar" may match "4 pile of sugar", but not vice versa.)
 	 *
 	 * @param input Wrapped <code>IFrogRecipeInput</code>
 	 *
@@ -58,47 +80,55 @@ public interface IFrogRecipeInput {
 	 *
 	 * @see Object#equals
 	 */
-	default boolean matches(IFrogRecipeInput input) {
-		return this.equals(input);
-	}
+	boolean matches(Object input);
 
 	/**
+	 * A specialized version of {@link #matches(Object)}.
 	 *
 	 * @implSpec
-	 * The following contraction must be followed:
+	 * The following contracts must be followed:
 	 * <ul>
 	 *     <li>
-	 *         Reflexive. i.e. For Object x that is instance of IFrogRecipeInput,
-	 *         {@code x.matches(x)} holds true.
+	 *         Reflexive. i.e. For IFrogRecipeInput x, {@code x.matches(x)} holds true.
 	 *     </li>
 	 *     <li>
-	 *         Transitive. i.e. For Object x, y, z that are all instances of
-	 *         IFrogRecipeInput, both {@code x.matches(y)} and {@code y.matches(z)}
-	 *         holding true imply that {@code x.matches(z)} holds true.
+	 *         Transitive. i.e. For IFrogRecipeInput x, y, z, both {@code x.matches(y)}
+	 *         and {@code y.matches(z)} holding true imply that {@code x.matches(z)}
+	 *         holds true.
 	 *     </li>
 	 *     <li>
-	 *         Consistent. i.e. For object x, y that are both instances of
-	 *         IFrogRecipeInput, multiple invocations of {@code x.matches(y)} must not
-	 *         evaluate to different result, if and only if none of them are modified
-	 *         among invocations.
+	 *         Consistent. i.e. For IFrogRecipeInput x, y, multiple invocations of
+	 *         {@code x.matches(y)} must not evaluate to different result, if and only
+	 *         if none of them are modified among invocations.
 	 *     </li>
 	 *     <li>
 	 *         For any instance of this class x, {@code x.matches(null)} holds false.
 	 *     </li>
 	 *     <li>
 	 *         For any instance of this class x, {@code x.isEmpty()} holds true implies
-	 *         x::matches holds false
+	 *         that this method will always return {@code false}, unless the given {@code
+	 *         input} is x itself, in which it will return {@code true} instead.
 	 *     </li>
 	 * </ul>
 	 * That said, this is not a equivalence relation, as {@code x.matches(y)} does not
-	 * guarantee {@code y.matches(x)} (under most circumstances it's not true, example -
-	 * input of "1 piles of sugar" may match "4 pile of sugar", but not vice versa.)
+	 * always guarantee {@code y.matches(x)}. In another word, this method is antisymmetric.
+	 * Example:
+	 * <ul>
+	 *     <li>
+	 *         Input of "1 piles of sugar" may match "4 pile of sugar", but not vice versa.
+	 *     </li>
+	 *     <li>
+	 *         Input of "1 iron ingot" can of course match "1 iron ingot", and vice versa.
+	 *     </li>
+	 * </ul>
 	 *
-	 * @param actualInput The actual input object to be examined.
+	 * @param input The actual input object to be examined.
 	 * @return true if the given actual input has same type with this ingredient, and size of actual
 	 *         input is larger than size of this object; false for otherwise.
 	 */
-	boolean matches(Object actualInput);
+	default boolean matches(IFrogRecipeInput input) {
+		return this.equals(input);
+	}
 
 	/**
 	 * Retrieve a view-only list in which:
@@ -122,8 +152,10 @@ public interface IFrogRecipeInput {
 	/**
 	 * Retrieve the size of this input. The definition of size varies on the actual
 	 * input type, i.e. return value of this method can only be used when type of the
-	 * wrapped input is known. Example: if one implementation wraps an ItemStack,
-	 * then getSize() can only be used on other ItemStack, not FluidStack or anything else.
+	 * wrapped input is known.
+	 *
+	 * Example: if one implementation wraps an ItemStack, then getSize() can only be
+	 * used on other ItemStack, not FluidStack or anything else.
 	 *
 	 * For consuming arbitrary ingredients, use {@link #accepts(Class, Object)}.
 	 *

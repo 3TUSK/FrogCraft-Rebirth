@@ -143,12 +143,12 @@ item.titanium_oxide_dust.info=TiO₂
 item.vanadium_oxide_dust=五氧化二钒
 item.vanadium_oxide_dust.info=V₂O₅
 
-item.briquette=蜂窝煤
-item.briquette.info=中国特色！
-item.lipid=油脂
-item.lipid.info=主要提取自动物脂肪
-item.shattered_coal_coke=焦煤碎片
-item.shattered_coal_coke.info=有效的燃料
+item.frogcraftrebirth.briquette=蜂窝煤
+item.frogcraftrebirth.briquette.info=中国特色！
+item.frogcraftrebirth.lipid=油脂
+item.frogcraftrebirth.lipid.info=主要提取自动物脂肪
+item.frogcraftrebirth.shattered_coal_coke=焦煤碎片
+item.frogcraftrebirth.shattered_coal_coke.info=有效的燃料
 item.phosphorus=磷
 item.phosphorus.info=P
 item.potassium=钾
@@ -190,8 +190,8 @@ fluid.sulfur_dioxide.info=SO₂
 fluid.sulfur_trioxide=三氧化硫
 fluid.sulfur_trioxide.info=SO₃
 
-item.jinkela=金坷垃
-item.jinkela.info=妈妈的 金坷垃是窝的！
+item.frogcraftrebirth.jinkela=金坷垃
+item.frogcraftrebirth.jinkela.info=妈妈的 金坷垃是窝的！
 
 item.electrolysis_module=电解器插件
 item.electrolysis_module.info=电解反应物
@@ -267,7 +267,7 @@ gui.combustionFurnace.title=焚烧炉
 
 gui.MPS.title=移动电源
 
-gui.fluid=流体名称：%s
+gui.fluid.name=流体名称：%s
 gui.fluid.amount=流体存量：%d mB
 gui.fluid.null=这个储罐空空如也
 

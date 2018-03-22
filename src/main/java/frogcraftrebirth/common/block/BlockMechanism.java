@@ -22,7 +22,9 @@
 
 package frogcraftrebirth.common.block;
 
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.tile.IHasGui;
 import ic2.api.tile.IWrenchable;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -30,6 +32,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -71,14 +74,22 @@ public class BlockMechanism extends BlockFrog implements IWrenchable {
 	public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
 		TileEntity tileEntity = worldIn.getTileEntity(pos);
 		if (tileEntity instanceof TileFrog) {
-			((TileFrog)tileEntity).onBlockDestroyed(worldIn, pos, state); // TODO Do we need a separate interface for this guy?
+			((TileFrog)tileEntity).onBlockDestroyed(worldIn, pos, state);
 		}
 		super.breakBlock(worldIn, pos, state);
 	}
 
 	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if (!worldIn.isRemote && IHasGui.class.isAssignableFrom(this.type)) {
+			playerIn.openGui(FrogCraftRebirth.getInstance(), 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
+		}
+		return true;
+	}
+
+	@Override
 	public EnumFacing getFacing(World world, BlockPos blockPos) {
-		return EnumFacing.NORTH; // TODO Are we sure we will default to it?
+		return EnumFacing.NORTH;
 	}
 
 	@Override

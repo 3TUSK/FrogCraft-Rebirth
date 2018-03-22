@@ -87,12 +87,16 @@ public final class ContainerTileFrog extends Container {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			if (/*index >= 0 && */index <= this.tileInvCount) {
-				if (!this.mergeItemStack(itemstack1, this.tileInvCount, 27 + this.tileInvCount, true)) {
+			if (index < this.tileInvCount) {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount, this.tileInvCount + 36, true)) {
 					return ItemStack.EMPTY;
 				}
-			} else if (index > this.tileInvCount && index < 27 + this.tileInvCount) {
-				if (!this.mergeItemStack(itemstack1, this.inventorySlots.size() - 9, this.inventorySlots.size(), false)) {
+			} else if (index >= this.tileInvCount && index < this.tileInvCount + 27) {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount + 27, this.inventorySlots.size(), false)) {
+					return ItemStack.EMPTY;
+				}
+			} else {
+				if (!this.mergeItemStack(itemstack1, this.tileInvCount, this.tileInvCount + 27, false)) {
 					return ItemStack.EMPTY;
 				}
 			}
@@ -183,10 +187,10 @@ public final class ContainerTileFrog extends Container {
 
 		public ContainerTileFrog build() {
 			final ContainerTileFrog container = new ContainerTileFrog(this.tile, this.nonPlayerSlotCounter);
+			slots.forEach(container::addSlotToContainer);
 			if (inventoryPlayer != null) {
 				container.registerPlayerInventory(inventoryPlayer);
 			}
-			slots.forEach(container::addSlotToContainer);
 			slots = null;
 			return container;
 		}

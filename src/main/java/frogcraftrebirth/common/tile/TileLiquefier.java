@@ -84,12 +84,13 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 		}
 		
 		if (!inv.getStackInSlot(0).isEmpty()) {
-			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
+				FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
 				if (result.isSuccess() && result.result.getCount() > 0) {
 					ItemStack remainder = inv.insertItem(1, result.result, false);
-					if (!remainder.isEmpty() && remainder.getCount() > 0)
+					if (!remainder.isEmpty() && remainder.getCount() > 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
 				}
 			}
 		}
@@ -106,8 +107,8 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 		working = true;
 		requireRefresh = true;
 		
-		if (charge >= 128) {
-			charge -= 128;
+		if (charge >= 32) {
+			charge -= 32;
 			++process;
 		}
 		else if (charge < 0)
@@ -117,7 +118,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 
 		if (process == 100) {
 			// According to original FrogCraft, best match
-			if (((IAirPump)tile).extractAir(EnumFacing.UP, 1200, true) > 1200) {
+			if (((IAirPump)tile).extractAir(EnumFacing.UP, 1200, true) >= 1200) {
 				((IAirPump)tile).extractAir(EnumFacing.UP, 1200, false);
 				tank.fill(FluidRegistry.getFluidStack("ic2air", 1000), true);
 			}

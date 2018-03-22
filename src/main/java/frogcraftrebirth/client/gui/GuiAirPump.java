@@ -55,7 +55,7 @@ public class GuiAirPump extends GuiTileFrog<TileAirPump> {
 		int chargeIcon = 14 * tile.charge / 10000; // TileAirPump.MAX_CHARGE = 10000;
 		this.drawTexturedModalRect(this.guiLeft + 118, this.guiTop + 33 + 14 - chargeIcon, 188, 14 - chargeIcon, 10, chargeIcon);
 		
-		int airPercentage = 40 * tile.airAmount() / 1000; //TileAirPump.MAX_AIR = 1000;
+		int airPercentage = 40 * tile.airAmount() / 100000; //TileAirPump.MAX_AIR = 100000;
 		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 63 - airPercentage, 176, 0, 12, airPercentage);
 		this.drawTexturedModalRect(this.guiLeft + 145, this.guiTop + 60 - airPercentage, 176, 41, 12, 4);
 	}

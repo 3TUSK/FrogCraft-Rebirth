@@ -37,10 +37,7 @@ import javax.annotation.Nullable;
 public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
 
 	private ICondenseTowerCore mainBlock;
-	
-	@Override
-	public void behave() {}
-	
+
 	@Override
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;

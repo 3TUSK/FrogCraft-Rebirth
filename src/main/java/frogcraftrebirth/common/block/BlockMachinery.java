@@ -51,14 +51,6 @@ public class BlockMachinery extends BlockMechanism {
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) {
-			playerIn.openGui(FrogCraftRebirth.getInstance(), 0, worldIn, pos.getX(), pos.getY(), pos.getZ());
-		}
-		return true;
-	}
-
-	@Override
 	public int getMetaFromState(IBlockState state) {
 		return state.getValue(WORKING) ? 1 : 0;
 	}

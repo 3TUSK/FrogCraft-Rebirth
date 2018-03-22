@@ -113,11 +113,11 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		
-		if (!this.isCompleted()) {
+		if (!this.isCompleted() || tank.getFluid() == null) {
 			return;
 		}
 		
-		if (recipe == null && tank.getFluid() != null) {
+		if (recipe == null) {
 			recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(tank.getFluid()));
 			if (checkRecipe(recipe)) {
 				processMax = recipe.getTime();
@@ -159,12 +159,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		this.sendTileUpdatePacket(this);
 		this.requireRefresh = true;
 	}
-	
-	@Override
-	public void behave() {
-		
-	}
-	
+
 	@Override
 	public void onPartAttached(ICondenseTowerPart part) {
 		if (part instanceof ICondenseTowerOutputHatch) {
@@ -180,27 +175,24 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void onDestruction() {
-		outputs.stream().filter(ICondenseTowerPart::isFunctional).forEach(ICondenseTowerPart::behave);
 		outputs.forEach(output -> output.setMainBlock(null));
 		this.outputs.clear();
-		TileEntity
-				struct1 = getWorld().getTileEntity(getPos().up(1)),
-				struct2 = getWorld().getTileEntity(getPos().up(2));
-		if (struct1 instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)struct1).setMainBlock(null);
+		TileEntity structure1 = getWorld().getTileEntity(getPos().up(1));
+		TileEntity structure2 = getWorld().getTileEntity(getPos().up(2));
+		if (structure1 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)structure1).setMainBlock(null);
 		}
-		if (struct2 instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)struct2).setMainBlock(null);
+		if (structure2 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)structure2).setMainBlock(null);
 		}
 	}
 
 	private boolean checkStructure() {
 		this.outputs.clear();
-		TileEntity
-				struct1 = getWorld().getTileEntity(getPos().up(1)),
-				struct2 = getWorld().getTileEntity(getPos().up(2));
-		if (struct1 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct2).isFunctional()) {
-			BlockPos.MutableBlockPos posTmp = new BlockPos.MutableBlockPos(this.getPos());
+		TileEntity structure1 = getWorld().getTileEntity(getPos().up(1));
+		TileEntity structure2 = getWorld().getTileEntity(getPos().up(2));
+		if (isValidStructure(structure1) && isValidStructure(structure2)) {
+			BlockPos.MutableBlockPos posTmp = new BlockPos.MutableBlockPos(this.getPos().up(3));
 			TileEntity outletCheck;
 			while ((outletCheck = world.getTileEntity(posTmp)) != null) {
 				if (outletCheck instanceof ICondenseTowerOutputHatch) {
@@ -210,18 +202,18 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 					break;
 				}
 			}
-			((ICondenseTowerPart)struct1).setMainBlock(this);
-			((ICondenseTowerPart)struct2).setMainBlock(this);
-			return true;
+			((ICondenseTowerPart)structure1).setMainBlock(this);
+			((ICondenseTowerPart)structure2).setMainBlock(this);
+			return this.outputs.size() > 0;
 		} else {
-			if (struct1 instanceof ICondenseTowerPart) {
-				((ICondenseTowerPart)struct1).setMainBlock(null);
-			}
-			if (struct2 instanceof ICondenseTowerPart) {
-				((ICondenseTowerPart)struct2).setMainBlock(null);
-			}
 			return false;
 		}
+	}
+
+	private boolean isValidStructure(@Nullable TileEntity tileEntity) {
+		return tileEntity != null
+				&& tileEntity instanceof ICondenseTowerPart
+				&& !((ICondenseTowerPart) tileEntity).isFunctional();
 	}
 
 	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {

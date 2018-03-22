@@ -26,12 +26,6 @@ import javax.annotation.Nullable;
 
 public interface ICondenseTowerPart {
 
-	/**
-	 * Callback at certain game ticks. The exact time of this method
-	 * being called is undefined.
-	 */
-	void behave();
-	
 	@Nullable
 	ICondenseTowerCore getMainBlock();
 	

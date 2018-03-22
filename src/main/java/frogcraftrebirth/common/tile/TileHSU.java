@@ -66,11 +66,11 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		if (getWorld().isRemote)
 			return;
 		
-		if (!inv.getStackInSlot(1).isEmpty() && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(1).isEmpty()) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);
 		}
 		
-		if (!inv.getStackInSlot(0).isEmpty() && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(0).isEmpty()) {
 			this.storedE -= ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		}
 		

@@ -48,8 +48,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 
 	private static final int MAX_AIR = 100000; // According to original FrogCraft
 	private static final int MAX_CHARGE = 10000;
-	
-	public int charge;
+
 	private int airAmount, tick;
 	
 	public TileAirPump() {

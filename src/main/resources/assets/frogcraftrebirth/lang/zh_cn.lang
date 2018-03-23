@@ -289,7 +289,7 @@ nei.tickWithCatalyst=催化下的反应时间
 nei.catalystRequired=这个反应需要催化剂！
 nei.outputLiquid=输出液体
 
-jei.doc.advChemReactor=高级化学反应器是一台可以承载各种化学反应的高级机器。\n它拥有5输入格、5输出格、独立的通用流体单元输入格和输出格、以及反应模块安装插槽。
+jei.doc.advChemReactor=高级化学反应器是一台可以承载各种化学反应的高级机器。\n它拥有 5 输入格、5 输出格、独立的通用流体单元输入格和输出格、以及反应模块安装插槽。
 jei.doc.airPump=工业气泵是一台可以产生压缩空气的机器。将其置于液化机正下方，可为液化机源源不断地提供压缩空气。
 jei.doc.pyrolyzer=热裂解机通过产生极高热量来分解物质。\n其能耗由分解的物质所决定。
 jei.doc.liquefier=液化机可将压缩空气转化为液化空气。目前，只有工业气泵可为其提供高压空气。
@@ -297,7 +297,7 @@ jei.doc.liquefier=液化机可将压缩空气转化为液化空气。目前，�
 jei.doc.condenseTower=冷凝塔是一种可根据液体沸点不同，将混合液体分离成数种纯净物的多方块设备。
 
 #Config
-config.config.frogcraftrebirth.2=设定
+config.frogcraftrebirth.2=设定
 
 config.frogcraftrebirth.general=一般设定
 config.frogcraftrebirth.general.tooltip=所有青蛙化工的配置项目均可在此找到。

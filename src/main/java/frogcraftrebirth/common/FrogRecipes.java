@@ -82,7 +82,7 @@ class FrogRecipes {
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("sulfur_dioxide", 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogGameObjects.SULFUR_TRIOXIDE_MODULE), 300, 100, 0, 1));
 
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, fluidFactory.create("coal_tar", 25), new FluidStack[] { fluidFactory.create("benzene", 2), fluidFactory.create("ammonia", 3), fluidFactory.create("carbon_oxide", 5), fluidFactory.create("methane", 10), fluidFactory.create("ic2hydrogen", 5) }));
-			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, fluidFactory.create("ic2air", 12), new FluidStack[] { fluidFactory.create("argon", 1), fluidFactory.create("nitrogen", 7), fluidFactory.create("ic2oxygen", 2), fluidFactory.create("carbon_dioxide", 2) }));
+			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, fluidFactory.create("liquefied", 12), new FluidStack[] { fluidFactory.create("argon", 1), fluidFactory.create("nitrogen", 7), fluidFactory.create("ic2oxygen", 2), fluidFactory.create("carbon_dioxide", 2) }));
 
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputOreDict("dustCoal", 1), new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE), fluidFactory.create("coal_tar", 50), 80, 48));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputItemStack(new ItemStack(Blocks.COBBLESTONE)), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));

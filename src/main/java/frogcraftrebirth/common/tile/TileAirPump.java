@@ -125,14 +125,14 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	}
 
 	@Override
-	public int extractAir(EnumFacing from, int amount, boolean simluated) {
+	public int extractAir(EnumFacing from, int amount, boolean simulated) {
 		if (amount > this.airAmount) {
 			int toReturn = this.airAmount;
-			if (!simluated)
+			if (!simulated)
 				this.airAmount = 0;
 			return toReturn;
 		} else {
-			if (!simluated)
+			if (!simulated)
 				this.airAmount -= amount;
 			return amount;
 		}

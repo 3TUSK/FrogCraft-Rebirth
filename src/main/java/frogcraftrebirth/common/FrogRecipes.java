@@ -42,7 +42,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fml.common.Loader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
@@ -63,26 +62,21 @@ class FrogRecipes {
 			// N2 + 3H2 -> 2NH3
 			ItemStack hydrogenCells = IC2Items.getItem("fluid_cell", "ic2hydrogen");
 			hydrogenCells.setCount(3);
-			ItemStack ammoniaCell = FrogRecipeInputs.UNI_CELL.copy();
-			FluidUtil.getFluidHandler(ammoniaCell).fill(fluidFactory.create("ammonia", 1000), true);
-			ammoniaCell.setCount(2);
+			ItemStack ammoniaCell = fluidFactory.createCell("ammonia", 2);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("nitrogen", 1000)), new FrogRecipeInputItemStack(hydrogenCells)), Collections.singleton(ammoniaCell), new ItemStack(FrogGameObjects.AMMONIA_CATALYST_MODULE), 150, 128, 0, 2));
 			// CO2 + 2NH3 -> CO(NH2)2 + H2O
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("carbon_dioxide", 1000)), new FrogRecipeInputItemStack(ammoniaCell.copy())), Arrays.asList(new ItemStack(FrogGameObjects.UREA_DUST), IC2Items.getItem("fluid_cell", "water")), ItemStack.EMPTY,50, 40, 0, 2));
 			// HNO3 + NH3 -> NH4NO3
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("nitric_acid", 1000)), new FrogRecipeInputUniversalFluidCell(fluidFactory.create("ammonia", 1000))), Collections.singleton(new ItemStack(FrogGameObjects.AMMONIUM_NITRATE_DUST)), ItemStack.EMPTY, 10, 10, 0, 2));
 			//SO3+H2O->H2SO4
-			ItemStack sulfuricCell = FrogRecipeInputs.UNI_CELL.copy();
-			FluidUtil.getFluidHandler(sulfuricCell).fill(fluidFactory.create("sulfuric_acid", 1000), true);
-			sulfuricCell.setCount(1);
+			ItemStack sulfuricCell = fluidFactory.createCell("sulfuric_acid", 1);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("sulfur_trioxide", 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell), ItemStack.EMPTY, 1200, 128, 0, 1));
 			//2SO2+O2->2SO3
-			ItemStack so3Cell = FrogRecipeInputs.UNI_CELL.copy();
-			FluidUtil.getFluidHandler(so3Cell).fill(fluidFactory.create("sulfur_trioxide", 1000), true);
+			ItemStack so3Cell = fluidFactory.createCell("sulfur_trioxide", 1);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("sulfur_dioxide", 1000)), new FrogRecipeInputItemStack(IC2Items.getItem("fluid_cell", "ic2oxygen"))), Collections.singleton(so3Cell), new ItemStack(FrogGameObjects.SULFUR_TRIOXIDE_MODULE), 300, 100, 0, 1));
 
 			FrogAPI.managerCT.add(new CondenseTowerRecipe(100, 75, fluidFactory.create("coal_tar", 25), new FluidStack[] { fluidFactory.create("benzene", 2), fluidFactory.create("ammonia", 3), fluidFactory.create("carbon_oxide", 5), fluidFactory.create("methane", 10), fluidFactory.create("ic2hydrogen", 5) }));
-			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, fluidFactory.create("liquefied", 12), new FluidStack[] { fluidFactory.create("argon", 1), fluidFactory.create("nitrogen", 7), fluidFactory.create("ic2oxygen", 2), fluidFactory.create("carbon_dioxide", 2) }));
+			FrogAPI.managerCT.add(new CondenseTowerRecipe(10, 75, fluidFactory.create("liquefied_air", 12), new FluidStack[] { fluidFactory.create("argon", 1), fluidFactory.create("nitrogen", 7), fluidFactory.create("ic2oxygen", 2), fluidFactory.create("carbon_dioxide", 2) }));
 
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputOreDict("dustCoal", 1), new ItemStack(FrogGameObjects.SHATTERED_COAL_COKE), fluidFactory.create("coal_tar", 50), 80, 48));
 			FrogAPI.managerPyrolyzer.add(new PyrolyzerRecipe(new FrogRecipeInputItemStack(new ItemStack(Blocks.COBBLESTONE)), new ItemStack(FrogGameObjects.QUICKLIME_DUST), fluidFactory.create("carbon_dioxide", 50), 100, 64));
@@ -122,8 +116,7 @@ class FrogRecipes {
 			// of the only few chemical engineering mods known in the community.
 
 			// H2SO4(l) + SO3(g) -> H2S2O7(l), i.e. oleum
-			ItemStack oleumCell = FrogRecipeInputs.UNI_CELL.copy();
-			FluidUtil.getFluidHandler(oleumCell).fill(new FluidStack(FrogFluids.oleum, 1000), true);
+			ItemStack oleumCell = fluidFactory.createCell("oleum", 1);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("sulfuric_acid", 1000)), new FrogRecipeInputUniversalFluidCell(fluidFactory.create("sulfur_trioxide", 1000))), Collections.singleton(oleumCell), ItemStack.EMPTY, 200, 10, 0, 1));
 			// H2S2O7 + H2O -> 2H2SO4, mimicking contact process https://en.wikipedia.org/wiki/Contact_process
 			ItemStack sulfuricCell_2 = sulfuricCell.copy();
@@ -134,9 +127,7 @@ class FrogRecipes {
 			// Saponification
 
 			// 2Al2O3 + 3C -> 4Al+ 3CO2, electrolysis
-			ItemStack co2Cell = FrogRecipeInputs.UNI_CELL.copy();
-			FluidUtil.getFluidHandler(co2Cell).fill(fluidFactory.create("carbon_dioxide", 1000), true);
-			co2Cell.setCount(3);
+			ItemStack co2Cell = fluidFactory.createCell("carbon_dioxide", 3);
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogGameObjects.ALUMINIUM_OXIDE_DUST, 2)), new FrogRecipeInputOreDict("dustCoal", 3)), Arrays.asList(new ItemStack(FrogGameObjects.ALUMINIUM_DUST, 4), co2Cell), new ItemStack(FrogGameObjects.ELECTROLYSIS_MODULE), 1200, 512, 3, 0));
 
 			// TiO2 + 2H2 -> Ti + 2H2O

@@ -117,15 +117,15 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 	}
 
 	@Override
-	public void inject(FluidStack stack, boolean simluated) {
-		this.tank.fill(stack, simluated);
+	public void inject(FluidStack stack, boolean simulated) {
+		this.tank.fill(stack, simulated);
 	}
 	
 	@Override
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY) {
-			EnumFacing currectFacing = getWorld().getBlockState(getPos()).getValue(IHorizontal.FACING_HORIZONTAL);
-			return currectFacing == facing;
+			EnumFacing currentFacing = getWorld().getBlockState(getPos()).getValue(IHorizontal.FACING_HORIZONTAL);
+			return currentFacing == facing;
 		}
 		
 		return super.hasCapability(capability, facing);

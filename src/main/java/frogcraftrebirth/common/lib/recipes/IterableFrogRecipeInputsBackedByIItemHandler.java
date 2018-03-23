@@ -104,7 +104,7 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 			/**
 			 * {@inheritDoc}
 			 * @implSpec
-			 * This implemention, by default, has characteristics of
+			 * This implementation, by default, has characteristics of
 			 * {@link #ORDERED}, {@link #SIZED}, and {@link #NONNULL}.
 			 * @return
 			 */

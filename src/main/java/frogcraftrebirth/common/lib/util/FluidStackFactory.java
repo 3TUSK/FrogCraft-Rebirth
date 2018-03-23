@@ -22,12 +22,17 @@
 
 package frogcraftrebirth.common.lib.util;
 
+import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FluidStackFactory {
 
@@ -35,5 +40,14 @@ public class FluidStackFactory {
 
 	public FluidStack create(String id, int amount) {
 		return new FluidStack(fluidLookup.computeIfAbsent(id, FluidRegistry::getFluid), amount);
+	}
+
+	public ItemStack createCell(String id, int cellCount) {
+		ItemStack cell = FrogRecipeInputs.UNI_CELL.copy();
+		IFluidHandler fluidHandler = FluidUtil.getFluidHandler(cell);
+		Objects.requireNonNull(fluidHandler, "Detecting IC2 Universal Fluid Cell that has no IFluidHandler support")
+				.fill(this.create(id, Fluid.BUCKET_VOLUME), true);
+		cell.setCount(cellCount);
+		return cell;
 	}
 }

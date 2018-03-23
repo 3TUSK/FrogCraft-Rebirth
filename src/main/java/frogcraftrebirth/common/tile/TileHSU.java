@@ -29,7 +29,6 @@ import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;

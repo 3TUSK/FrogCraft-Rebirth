@@ -52,7 +52,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	private int airAmount, tick;
 	
 	public TileAirPump() {
-		super(1, MAX_CHARGE);
+		super(2, MAX_CHARGE); // 2 implies Middle Voltage (MV)
 	}
 	
 	@Override

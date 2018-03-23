@@ -89,6 +89,7 @@ public final class FrogRegistries {
 		FrogFluids.coalTar = new FrogFluid("coal_tar", 2000, 300, false, EnumRarity.RARE).setViscosity(2000);
 		FrogFluids.fluorine = new FrogFluid("fluorine", 1696, 300, true, EnumRarity.EPIC);
 		FrogFluids.glycerol = new FrogFluid("glycerol", 2000, 300, false, EnumRarity.UNCOMMON);
+		FrogFluids.liquefiedAir = new FrogFluid("liquefied_air", 1293, 160, false, EnumRarity.EPIC);
 		FrogFluids.methane = new FrogFluid("methane", 656, 300, true, EnumRarity.UNCOMMON);
 		FrogFluids.nitricAcid = new FrogFluid("nitric_acid", "nitric_acid_flow", "nitric_acid", 1420, 300, false, EnumRarity.RARE);
 		FrogFluids.nitrogen = new FrogFluid("nitrogen", 1251, 160, true, EnumRarity.COMMON);
@@ -108,6 +109,7 @@ public final class FrogRegistries {
 				FrogFluids.chlorine,
 				FrogFluids.fluorine,
 				FrogFluids.glycerol,
+				FrogFluids.liquefiedAir,
 				FrogFluids.methane,
 				FrogFluids.nitrogen,
 				FrogFluids.nitrogenOxide,

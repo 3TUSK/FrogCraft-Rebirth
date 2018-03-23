@@ -53,5 +53,6 @@ public class FrogFluids {
 	public static Fluid gasoline;
 	public static Fluid glycerol;
 	public static Fluid kerosene;
+	public static Fluid liquefiedAir;
 	public static Fluid methane;
 }

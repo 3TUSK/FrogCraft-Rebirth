@@ -157,6 +157,8 @@ public final class FrogTextures {
 		textureMap.registerSprite(FrogFluids.fluorine.getStill());
 		textureMap.registerSprite(FrogFluids.glycerol.getFlowing());
 		textureMap.registerSprite(FrogFluids.glycerol.getStill());
+		textureMap.registerSprite(FrogFluids.liquefiedAir.getFlowing());
+		textureMap.registerSprite(FrogFluids.liquefiedAir.getStill());
 		textureMap.registerSprite(FrogFluids.methane.getFlowing());
 		textureMap.registerSprite(FrogFluids.methane.getStill());
 		textureMap.registerSprite(FrogFluids.nitrogen.getFlowing());

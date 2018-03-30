@@ -246,7 +246,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	@Override
 	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
 		return ContainerTileFrog.Builder.from(this)
-				.withStandardSlot(input, 0, 24, 28)
+				.withFurnaceFuelSlot(input, 0, 24, 28)
 				.withOutputSlot(output, 0, 75, 28)
 				.withStandardSlot(fluidIO, 0, 113, 21)
 				.withOutputSlot(fluidIO, 1, 113, 56)

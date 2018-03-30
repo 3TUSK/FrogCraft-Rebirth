@@ -22,12 +22,33 @@
 
 package frogcraftrebirth.common.gui;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
+import javax.annotation.Nonnull;
+import java.util.Objects;
+import java.util.function.Predicate;
+
 class SlotFrog extends SlotItemHandler {
 
+	private static final Predicate<ItemStack> DEFAULT_VALIDATOR = stack -> true;
+
+	static final Predicate<ItemStack> OUTPUT = stack -> false;
+
+	private final Predicate<ItemStack> validator;
+
 	SlotFrog(IItemHandler inv, int index, int x, int y) {
+		this(inv, index, x, y, DEFAULT_VALIDATOR);
+	}
+
+	SlotFrog(IItemHandler inv, int index, int x, int y, Predicate<ItemStack> validator) {
 		super(inv, index, x, y);
+		this.validator = Objects.requireNonNull(validator);
+	}
+
+	@Override
+	public boolean isItemValid(@Nonnull ItemStack stack) {
+		return validator.test(stack);
 	}
 }

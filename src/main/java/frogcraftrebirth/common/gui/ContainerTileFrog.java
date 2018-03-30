@@ -29,9 +29,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import frogcraftrebirth.common.network.IFrogPacket;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
+import ic2.api.item.ElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -40,7 +42,6 @@ import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import net.minecraftforge.items.SlotItemHandler;
 
 import javax.annotation.Nonnull;
 
@@ -163,25 +164,31 @@ public final class ContainerTileFrog extends Container {
 
 		public Builder withStandardSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
 			nonPlayerSlotCounter++;
-			slots.add(new SlotItemHandler(itemHandler, index, x, y));
+			slots.add(new SlotFrog(itemHandler, index, x, y));
+			return this;
+		}
+
+		public Builder withFurnaceFuelSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
+			nonPlayerSlotCounter++;
+			slots.add(new SlotFrog(itemHandler, index, x, y, ItemUtil.FURNACE_FUEL_CHECKER));
 			return this;
 		}
 
 		public Builder withOutputSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
 			nonPlayerSlotCounter++;
-			slots.add(new SlotOutput(itemHandler, index, x, y));
+			slots.add(new SlotFrog(itemHandler, index, x, y, SlotFrog.OUTPUT));
 			return this;
 		}
 
 		public Builder withChargerSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
 			nonPlayerSlotCounter++;
-			slots.add(new SlotCharger(itemHandler, index, x, y));
+			slots.add(new SlotFrog(itemHandler, index, x, y, stack -> !stack.isEmpty() && ElectricItem.manager.charge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true) > 0));
 			return this;
 		}
 
 		public Builder withDischargeSlot(IItemHandlerModifiable itemHandler, int index, int x, int y) {
 			nonPlayerSlotCounter++;
-			slots.add(new SlotDischarger(itemHandler, index, x, y));
+			slots.add(new SlotFrog(itemHandler, index, x, y, stack -> !stack.isEmpty() && ElectricItem.manager.discharge(stack, Double.MAX_VALUE, Integer.MAX_VALUE, true, true, true) > 0));
 			return this;
 		}
 

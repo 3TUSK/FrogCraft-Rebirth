@@ -22,7 +22,7 @@
 
 package frogcraftrebirth.common.lib.util;
 
-import java.util.*;
+import java.util.Random;
 import java.util.function.Predicate;
 
 import javax.annotation.Nonnull;
@@ -30,6 +30,7 @@ import javax.annotation.Nonnull;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
@@ -42,8 +43,14 @@ public final class ItemUtil {
 
 	public static final Predicate<ItemStack> NON_EMPTY_PREDICATE = stack -> !stack.isEmpty();
 
+	public static final Predicate<ItemStack> FURNACE_FUEL_CHECKER = ItemUtil::isFurnaceFuel;
+
+	public static boolean isFurnaceFuel(ItemStack itemStack) {
+		return TileEntityFurnace.getItemBurnTime(itemStack) > 0;
+	}
+
 	/**
-	 * Identical to {@link InventoryHelper#dropInventoryItems}, except this one is designed for {@link IItemHandler}.
+	 * Identical to {@link InventoryHelper#dropInventoryItems}, except being designed for {@link IItemHandler}.
 	 * @param worldIn The world that block is in
 	 * @param pos The position of block
 	 * @param inv An array of IItemHandler implementation. Note: all IItemHandler here are assumed to start index from zero.

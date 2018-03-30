@@ -95,6 +95,7 @@ public final class FrogRegistries {
 		FrogFluids.nitrogen = new FrogFluid("nitrogen", 1251, 160, true, EnumRarity.COMMON);
 		FrogFluids.nitrogenOxide = new FrogFluid("nitrogen_oxide", 1340, 300, true, EnumRarity.RARE);
 		FrogFluids.oleum = new FrogFluid("oleum", 1820, 300, false, EnumRarity.RARE);
+		FrogFluids.potassiumHydroxide = new FrogFluid("potassium_hydroxide", 2120, 300, false, EnumRarity.RARE);
 		FrogFluids.sulfuricAcid = new FrogFluid("sulfuric_acid", 1840, 300, false, EnumRarity.RARE);
 		FrogFluids.sulfurDioxide = new FrogFluid("sulfur_dioxide", 1640, 300, true, EnumRarity.UNCOMMON);
 		FrogFluids.sulfurTrioxide = new FrogFluid("sulfur_trioxide", 1800, 300, true, EnumRarity.RARE);
@@ -114,6 +115,7 @@ public final class FrogRegistries {
 				FrogFluids.nitrogen,
 				FrogFluids.nitrogenOxide,
 				FrogFluids.oleum,
+				FrogFluids.potassiumHydroxide,
 				FrogFluids.sulfurDioxide,
 				FrogFluids.sulfurTrioxide
 		);
@@ -218,12 +220,16 @@ public final class FrogRegistries {
 				factory.create("titanium_oxide_dust"),
 				factory.create("vanadium_oxide_dust"),
 				factory.create("phosphorus"),
+				factory.create("soap"),
 				new ItemFlammable(18000).setUnlocalizedName("frogcraftrebirth.briquette").setRegistryName("briquette"),
 				new ItemFlammable(1600).setUnlocalizedName("frogcraftrebirth.shattered_coal_coke").setRegistryName("shattered_coal_coke"),
 				new ItemFlammable(200).setUnlocalizedName("frogcraftrebirth.lipid").setRegistryName("lipid"),
 				new ItemPotassium().setUnlocalizedName("potassium").setRegistryName("potassium")
 		);
-		FrogRecipes.initOreDict();
+
+		if (FrogConfig.modpackOptions.enableOreDictEntries) {
+			FrogRecipes.initOreDict();
+		}
 	}
 
 	@SubscribeEvent

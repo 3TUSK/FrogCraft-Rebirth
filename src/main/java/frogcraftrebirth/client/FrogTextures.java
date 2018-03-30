@@ -114,6 +114,7 @@ public final class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.PHOSPHORUS, "inflammable/phosphorus");
 		RegHelper.registerModel(FrogGameObjects.POTASSIUM, "inflammable/potassium");
 		RegHelper.registerModel(FrogGameObjects.SHATTERED_COAL_COKE, "inflammable/shattered_coal_coke");
+		RegHelper.registerModel(FrogGameObjects.SOAP, "soap");
 
 		RegHelper.registerModel(FrogGameObjects.CARNALLITE, "carnallite");
 		RegHelper.registerModel(FrogGameObjects.DEWALQUITE, "dewalquite");

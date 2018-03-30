@@ -124,7 +124,6 @@ class FrogRecipes {
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputUniversalFluidCell(fluidFactory.create("oleum", 1000)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 1000))), Collections.singleton(sulfuricCell_2), ItemStack.EMPTY, 100, 10, 0,0));
 			// 2KCl + 2H2O -> 2KOH + H2(g) + Cl2(g), manufacturing potassium hydroxide
 			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogGameObjects.POTASSIUM_CHLORIDE_DUST, 2)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FluidRegistry.WATER, 2000))), Collections.emptyList(), new ItemStack(FrogGameObjects.ELECTROLYSIS_MODULE), 600, 512, 0, 0));
-			// Saponification
 
 			// 2Al2O3 + 3C -> 4Al+ 3CO2, electrolysis
 			ItemStack co2Cell = fluidFactory.createCell("carbon_dioxide", 3);
@@ -141,19 +140,14 @@ class FrogRecipes {
 			 * 4 Ca5(PO4)3F + 21 SiO2 + 30 C → 20 CaSiO3 + 30 CO + SiF4 + 6 P2
 			 */
 
-			/* TODO: Correctly implement saponification
-			 * Still need potassium hydroxide and soap (sludge?)
-			 */
-			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogGameObjects.LIPID, 3))), Arrays.asList(new ItemStack(FrogGameObjects.SOAP)), ItemStack.EMPTY, 100, 20, 2, 3));
+			// Saponification
+			ItemStack glycerolCells = fluidFactory.createCell("glycerol", 3);
+			FrogAPI.managerACR.add(new AdvChemRecRecipe(Arrays.asList(new FrogRecipeInputItemStack(new ItemStack(FrogGameObjects.LIPID)), new FrogRecipeInputUniversalFluidCell(new FluidStack(FrogFluids.potassiumHydroxide, 3000))), Arrays.asList(new ItemStack(FrogGameObjects.SOAP), glycerolCells), new ItemStack(FrogGameObjects.HEATING_MODULE), 100, 20, 0, 0));
 			// --- End of FrogCraft: Rebirth recipes --
 		}
 	}
 	
-	public static void postInit() {
-		if (!FrogConfig.modpackOptions.enableRecipes) {
-			return;
-		}
-
+	static void postInit() {
 		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
@@ -199,10 +193,6 @@ class FrogRecipes {
 	}
 	
 	static void initOreDict() {
-		if (!FrogConfig.modpackOptions.enableOreDictEntries) {
-			return;
-		}
-
 		OreDictionary.registerOre("oreCarnallite", GameRegistry.makeItemStack("frogcraftrebirth:carnallite", 0, 1, null));
 		OreDictionary.registerOre("oreDewalquite", GameRegistry.makeItemStack("frogcraftrebirth:dewalquite", 0, 1, null));
 		OreDictionary.registerOre("oreFluorapatite", GameRegistry.makeItemStack("frogcraftrebirth:fluorapatite", 0, 1, null));

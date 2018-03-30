@@ -56,7 +56,9 @@ public class FrogProxy {
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
-		FrogRecipes.init();
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.init();
+		}
 		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
@@ -72,7 +74,9 @@ public class FrogProxy {
 
 	@OverridingMethodsMustInvokeSuper
 	public void postInit(FMLPostInitializationEvent event) {
-		FrogRecipes.postInit();
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.postInit();
+		}
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

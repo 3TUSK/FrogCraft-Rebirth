@@ -45,25 +45,7 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public final class FrogFuelHandler {
 
-	/**
-	 * Use 1000mB as default volume.
-	 * @see FrogFuelHandler#regFuelByproduct(ItemStack fuel, Fluid byproduct)
-	 * @deprecated Use {@link Fluid#BUCKET_VOLUME}
-	 */
-	@Deprecated
-	public static final int BUCKET_VOLUME = Fluid.BUCKET_VOLUME;
-
 	FrogFuelHandler() {}
-
-	/**
-	 * @deprecated Use TileEntityFurnace#getItemBurnTime
-	 * @param fuel The item to be queried for burn time
-	 * @return The burn time
-	 */
-	@Deprecated
-	public int getBurnTime(@Nonnull ItemStack fuel) {
-		return net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime(fuel);
-	}
 
 	@Nullable
 	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {

@@ -110,7 +110,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 
 	private void doWorkCycle() {
 		TileEntity tile = getWorld().getTileEntity(getPos().down());
-		if (tile != null && tile instanceof IAirPump) {
+		if (tile instanceof IAirPump) {
 			working = true;
 			requireRefresh = true;
 		} else if (!inv.getStackInSlot(INPUT_AIR_IN).isEmpty()) {
@@ -136,7 +136,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 
 		if (process == 100) {
 			// According to original FrogCraft, best match
-			if (tile != null && tile instanceof IAirPump && ((IAirPump) tile).extractAir(EnumFacing.UP, 1200, true) >= 1200) {
+			if (tile instanceof IAirPump && ((IAirPump) tile).extractAir(EnumFacing.UP, 1200, true) >= 1200) {
 				((IAirPump) tile).extractAir(EnumFacing.UP, 1200, false);
 				tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
 			} else {

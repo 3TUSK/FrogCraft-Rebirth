@@ -211,9 +211,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 
 	private boolean isValidStructure(@Nullable TileEntity tileEntity) {
-		return tileEntity != null
-				&& tileEntity instanceof ICondenseTowerPart
-				&& !((ICondenseTowerPart) tileEntity).isFunctional();
+		return tileEntity instanceof ICondenseTowerPart && !((ICondenseTowerPart) tileEntity).isFunctional();
 	}
 
 	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {

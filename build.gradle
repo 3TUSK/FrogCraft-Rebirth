@@ -20,6 +20,10 @@ version = "${FCR_Ver_Major}.${FCR_Ver_Minor}.${FCR_Ver_Patch}"
 group = "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
+if (System.getenv('PUBLIC_BUILD') == null) {
+    version += "+" + "git rev-parse --short HEAD".execute().text.trim()
+}
+
 repositories {
     maven {
         name = "jei"

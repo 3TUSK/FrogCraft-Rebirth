@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,18 +30,18 @@ import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.client.gui.GuiMPS;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerMPS;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergy;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import ic2.api.energy.tile.IEnergyAcceptor;
 import ic2.api.energy.tile.IEnergySource;
 import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -53,7 +53,7 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	UPGRADE_SOLAR = 0, UPGRADE_VOLTAGE = 1, UPGRADE_STORAGE = 2, 
 	CHARGE_IN = 3, CHARGE_OUT = 4;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(5);
+	private final ItemStackHandler inv = new ItemStackHandler(5);
 
 	private int energy;
 	
@@ -70,28 +70,29 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
 			energyMax = 60000;
 		} else {
-			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncreasementFrom((inv.getStackInSlot(UPGRADE_STORAGE)));
+			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncrementOf((inv.getStackInSlot(UPGRADE_STORAGE)));
 		}
 		//Check transformer upgrade, if pass, increase voltage level
 		if (inv.getStackInSlot(UPGRADE_VOLTAGE).isEmpty()) {
 			tier = 1;
 		} else {
-			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncreasementFrom(inv.getStackInSlot(UPGRADE_VOLTAGE));
+			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncrementOf(inv.getStackInSlot(UPGRADE_VOLTAGE));
 		}
 		//Check solar upgrade, if pass, generate energy from sunlight
 		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && getWorld().isDaytime() && getWorld().canBlockSeeSky(getPos())) {
 			energy += 1;
 		}
 		// For each tick, there is 10% probability that overflowed energy disappears
-		if (energy > energyMax && getWorld().rand.nextInt(10) == 1)
+		if (energy > energyMax && getWorld().rand.nextInt(10) == 1) {
 			energy = energyMax;
+		}
 		//Extract energy from charge-in slot
-		if (!inv.getStackInSlot(CHARGE_IN).isEmpty() && inv.getStackInSlot(CHARGE_IN).getItem() instanceof IElectricItem) {
-			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_IN), 32, getSourceTier(), true, true, false);
+		if (!inv.getStackInSlot(CHARGE_IN).isEmpty()) {
+			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_IN), this.getOfferedEnergy(), this.tier, false, false);
 		}
 		//Offer energy to item that is in charge-out slot
-		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty() && inv.getStackInSlot(CHARGE_OUT).getItem() instanceof IElectricItem) {
-			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_OUT), this.getOfferedEnergy(), getSourceTier(), false, false);
+		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty()) {
+			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_OUT), 32, this.tier, true, true, false);
 		}
 		
 		this.sendTileUpdatePacket(this);
@@ -173,14 +174,24 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerMPS(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(inv, UPGRADE_SOLAR, 20, 20)
+				.withStandardSlot(inv, UPGRADE_VOLTAGE, 38, 20)
+				.withStandardSlot(inv, UPGRADE_STORAGE, 56, 20)
+				.withChargerSlot(inv, CHARGE_IN, 113, 24)
+				.withDischargeSlot(inv, CHARGE_OUT, 113, 42)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiMPS(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiMPS(this.getGuiContainer(world, player), this);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,7 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.common.collect.ImmutableList;
@@ -34,7 +33,7 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 
-public class RecipeChemReaction implements IRecipeWrapper {
+class RecipeChemReaction implements IRecipeWrapper {
 	
 	final IAdvChemRecRecipe recipe;
 	
@@ -51,11 +50,6 @@ public class RecipeChemReaction implements IRecipeWrapper {
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
 		
-	}
-
-	@Override
-	public List<String> getTooltipStrings(int mouseX, int mouseY) {
-		return null;
 	}
 
 	@Override

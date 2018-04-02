@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -43,8 +43,7 @@ public class FrogRecipeInputFluidStack implements IFrogRecipeInput {
 
 	@Override
 	public boolean matches(IFrogRecipeInput input) {
-		List<FluidStack> list = input.getActualInputs(FluidStack.class);
-		return list.size() > 0 && list.stream().anyMatch(input::equals);
+		return this.equals(input);
 	}
 
 	@Override

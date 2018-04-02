@@ -2,12 +2,6 @@
 	"forge_marker": 1,
 	"variants": {
 		"inventory": [{}],
-		"facing": {
-			"east": { "y": 90, "uvlock": true },
-			"north": {},
-			"south": { "y": 180, "uvlock": true },
-			"west": { "y": 270, "uvlock": true }
-		},
 		"working": {
 			"false": { "model": "frogcraftrebirth:machine/liquefier" }, 
 			"true": { "model": "frogcraftrebirth:machine/liquefier_active" }

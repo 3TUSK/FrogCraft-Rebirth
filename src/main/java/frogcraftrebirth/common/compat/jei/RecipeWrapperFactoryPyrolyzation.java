@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 
-public class RecipeWrapperFactoryPyrolyzation implements IRecipeWrapperFactory<IPyrolyzerRecipe> {
+class RecipeWrapperFactoryPyrolyzation implements IRecipeWrapperFactory<IPyrolyzerRecipe> {
 
 	@Override
 	public IRecipeWrapper getRecipeWrapper(IPyrolyzerRecipe recipe) {

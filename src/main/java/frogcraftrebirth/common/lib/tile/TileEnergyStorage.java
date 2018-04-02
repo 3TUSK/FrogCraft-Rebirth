@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,10 +36,12 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 
+import javax.annotation.Nonnull;
+
 public abstract class TileEnergyStorage extends TileEnergy implements IEnergySink, IEnergySource, IEnergyStorage {
 
-	private EnumFacing emitDir;
-	public int storedE;
+	protected EnumFacing emitDir;
+	protected int storedE;
 	private int maxE;
 	public int output;
 	private int tier;
@@ -60,7 +62,8 @@ public abstract class TileEnergyStorage extends TileEnergy implements IEnergySin
 		this.maxE = tag.getInteger("maxCharge");
 		this.output = tag.getInteger("output");
 	}
-	
+
+	@Nonnull
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", storedE);

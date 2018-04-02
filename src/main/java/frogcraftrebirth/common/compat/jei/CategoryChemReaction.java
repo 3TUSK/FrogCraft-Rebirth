@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -42,13 +42,13 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
-public class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
+class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	
-	protected final IDrawable background;
-	protected final IDrawableAnimated progressBar;
-	protected final IDrawableAnimated chargeBar;
+	private final IDrawable background;
+	private final IDrawableAnimated progressBar;
+	private final IDrawableAnimated chargeBar;
 	
-	public CategoryChemReaction(IGuiHelper helper) {
+	CategoryChemReaction(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_chem_reactor.png");
 		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 30, 10);

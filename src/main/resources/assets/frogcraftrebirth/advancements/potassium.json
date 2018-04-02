@@ -1,20 +1,22 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:inflammable",
-      "data": 3
+      "item": "frogcraftrebirth:potassium"
     },
     "title": {
-      "translate": "advancement.fcrebirth.potassium.name"
+      "translate": "advancement.frogcraftrebirth.potassium.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.potassium.desc"
+      "translate": "advancement.frogcraftrebirth.potassium.desc"
     },
     "announce_to_chat": true
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "toss_potassium": {
+      "trigger": "frogcraftrebirth:potassium_explosion",
+      "conditions": {
+        "block": "minecraft:water"
+      }
     }
   },
   "parent": "frogcraftrebirth:root"

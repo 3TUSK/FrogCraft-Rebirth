@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,18 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileCombustionFurnace;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace, ContainerCombustionFurnace> {
+public class GuiCombustionFurnace extends GuiTileFrog<TileCombustionFurnace> {
 
-	public GuiCombustionFurnace(InventoryPlayer playerInv, TileCombustionFurnace tile) {
-		super(new ContainerCombustionFurnace(playerInv, tile), tile, "gui_combustion_furnace.png");
+	public GuiCombustionFurnace(ContainerTileFrog container, TileCombustionFurnace tile) {
+		super(container, tile, "gui_combustion_furnace.png");
 	}
 	
 	@Override

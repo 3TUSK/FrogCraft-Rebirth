@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -36,19 +36,20 @@ import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.client.gui.GuiCondenseTower;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerCondenseTower;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputFluidStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidStack;
@@ -65,12 +66,12 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	private static final int INPUT_F = 0, OUTPUT_F = 1;
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	private boolean previousStructureCompleteness = false;
 	private final Set<ICondenseTowerOutputHatch> outputs = Collections.newSetFromMap(new IdentityHashMap<>());
 	private ICondenseTowerRecipe recipe;
-	public int process;
+	private int process;
 	private int processMax;
 	private boolean working;
 	private boolean requireRefresh;
@@ -112,7 +113,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			}
 		}
 		
-		if (!this.isCompleted()) {
+		if (!this.isCompleted() || tank.getFluid() == null) {
 			return;
 		}
 		
@@ -158,12 +159,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		this.sendTileUpdatePacket(this);
 		this.requireRefresh = true;
 	}
-	
-	@Override
-	public void behave() {
-		
-	}
-	
+
 	@Override
 	public void onPartAttached(ICondenseTowerPart part) {
 		if (part instanceof ICondenseTowerOutputHatch) {
@@ -179,46 +175,43 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void onDestruction() {
-		outputs.stream().filter(ICondenseTowerPart::isFunctional).forEach(ICondenseTowerPart::behave);
 		outputs.forEach(output -> output.setMainBlock(null));
 		this.outputs.clear();
-		TileEntity
-				struct1 = getWorld().getTileEntity(getPos().up(1)),
-				struct2 = getWorld().getTileEntity(getPos().up(2));
-		if (struct1 instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)struct1).setMainBlock(null);
+		TileEntity structure1 = getWorld().getTileEntity(getPos().up(1));
+		TileEntity structure2 = getWorld().getTileEntity(getPos().up(2));
+		if (structure1 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)structure1).setMainBlock(null);
 		}
-		if (struct2 instanceof ICondenseTowerPart) {
-			((ICondenseTowerPart)struct2).setMainBlock(null);
+		if (structure2 instanceof ICondenseTowerPart) {
+			((ICondenseTowerPart)structure2).setMainBlock(null);
 		}
 	}
 
 	private boolean checkStructure() {
 		this.outputs.clear();
-		TileEntity
-				struct1 = getWorld().getTileEntity(getPos().up(1)),
-				struct2 = getWorld().getTileEntity(getPos().up(2));
-		if (struct1 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct1).isFunctional() && struct2 instanceof ICondenseTowerPart && !((ICondenseTowerPart)struct2).isFunctional()) {
-			for (int i = 3;;i++) {
-				TileEntity tile = getWorld().getTileEntity(getPos().up(i));
-				if (tile instanceof ICondenseTowerOutputHatch) {
-					this.registerOutputHatch((ICondenseTowerOutputHatch)tile);
+		TileEntity structure1 = getWorld().getTileEntity(getPos().up(1));
+		TileEntity structure2 = getWorld().getTileEntity(getPos().up(2));
+		if (isValidStructure(structure1) && isValidStructure(structure2)) {
+			BlockPos.MutableBlockPos posTmp = new BlockPos.MutableBlockPos(this.getPos().up(3));
+			TileEntity outletCheck;
+			while ((outletCheck = world.getTileEntity(posTmp)) != null) {
+				if (outletCheck instanceof ICondenseTowerOutputHatch) {
+					this.registerOutputHatch((ICondenseTowerOutputHatch) outletCheck);
+					posTmp.move(EnumFacing.UP);
 				} else {
 					break;
 				}
 			}
-			((ICondenseTowerPart)struct1).setMainBlock(this);
-			((ICondenseTowerPart)struct2).setMainBlock(this);
-			return true;
+			((ICondenseTowerPart)structure1).setMainBlock(this);
+			((ICondenseTowerPart)structure2).setMainBlock(this);
+			return this.outputs.size() > 0;
 		} else {
-			if (struct1 instanceof ICondenseTowerPart) {
-				((ICondenseTowerPart)struct1).setMainBlock(null);
-			}
-			if (struct2 instanceof ICondenseTowerPart) {
-				((ICondenseTowerPart)struct2).setMainBlock(null);
-			}
 			return false;
 		}
+	}
+
+	private boolean isValidStructure(@Nullable TileEntity tileEntity) {
+		return tileEntity instanceof ICondenseTowerPart && !((ICondenseTowerPart) tileEntity).isFunctional();
 	}
 
 	private boolean checkRecipe(@Nullable ICondenseTowerRecipe aRecipe) {
@@ -269,7 +262,10 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
 		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
-		this.recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe"))));
+		FluidStack inputFluid = FluidStack.loadFluidStackFromNBT(tag.getCompoundTag("recipe"));
+		if (inputFluid != null) {
+			this.recipe = FrogAPI.managerCT.getRecipe(new FrogRecipeInputFluidStack(inputFluid));
+		}
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
@@ -305,13 +301,23 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerCondenseTower(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
+		this.onDestruction();
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(inv, 0, 113, 21)
+				.withOutputSlot(inv, 1, 113, 56)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiCondenseTower(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiCondenseTower(this.getGuiContainer(world, player), this);
 	}
 }

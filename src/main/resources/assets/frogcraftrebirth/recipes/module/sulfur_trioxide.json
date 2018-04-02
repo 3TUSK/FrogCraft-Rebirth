@@ -1,0 +1,30 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:sulfur_trioxide_module"
+  },
+  "group": "frogcraftrebirth:module",
+  "pattern": [
+    "AVA",
+    "VMV",
+    "AVA"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "A": {
+      "item": "ic2:crafting",
+      "data": 3,
+      "_comment": "3 -> Adv. Alloy Plate"
+    },
+    "V": {
+      "item": "frogcraftrebirth:vanadium_oxide_dust"
+    },
+    "M": {
+      "item": "frogcraftrebirth:heating_module"
+    }
+  }
+}

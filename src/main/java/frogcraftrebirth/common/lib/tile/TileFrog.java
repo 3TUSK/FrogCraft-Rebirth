@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,24 @@ import static frogcraftrebirth.common.network.NetworkHandler.FROG_NETWORK;
 
 import frogcraftrebirth.common.network.IFrogNetworkObject;
 import frogcraftrebirth.common.network.PacketFrog00TileUpdate;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 public abstract class TileFrog extends TileEntity implements IFrogNetworkObject {
-	
-	protected void sendTileUpdatePacket(TileFrog tile) {
+
+	protected final void sendTileUpdatePacket(TileFrog tile) {
 		FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(tile));
 	}
 
+	/**
+	 * Called when {@link Block#breakBlock(World, BlockPos, IBlockState)} is called
+	 *
+	 * @param worldIn the World instance
+	 * @param pos     the position
+	 * @param state   the current BlockState, use this one instead of querying via {@link TileEntity#getWorld()}
+	 */
+	public abstract void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state);
 }

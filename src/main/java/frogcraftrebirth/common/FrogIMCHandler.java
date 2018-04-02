@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ final class FrogIMCHandler {
 				NBTTagCompound theTag = message.getNBTValue();
 				switch (message.key.toLowerCase(Locale.ENGLISH)) {
 					case ("recipe.pyrolyzer"): {
-						ItemStack input = new ItemStack(theTag.getCompoundTag("input"));
+						IFrogRecipeInput input = parse(theTag.getCompoundTag("input"));
 						ItemStack output = new ItemStack(theTag.getCompoundTag("output"));
 						FluidStack outputFluid = FluidStack.loadFluidStackFromNBT(theTag.getCompoundTag("fluid"));
 						int time = theTag.getInteger("time");
@@ -148,7 +148,10 @@ final class FrogIMCHandler {
 		switch (tag.getString("type").toLowerCase(Locale.ENGLISH)) {
 			case "itemstack": return new FrogRecipeInputItemStack(new ItemStack(tag));
 			case "ore": return new FrogRecipeInputOreDict(tag.getString("ore"), tag.getInteger("count"));
-			case "fluid": return new FrogRecipeInputUniversalFluidCell(FluidStack.loadFluidStackFromNBT(tag));
+			case "fluid": {
+				FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(tag);
+				return fluidStack == null ? FrogRecipeInputs.EMPTY : new FrogRecipeInputUniversalFluidCell(fluidStack);
+			}
 			default: return FrogRecipeInputs.EMPTY;
 		}
 	}

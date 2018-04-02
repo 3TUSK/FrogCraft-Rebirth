@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -32,9 +32,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public interface IHasGui {
 	
-	ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player);
+	ContainerTileFrog getGuiContainer(World world, EntityPlayer player);
 
 	@SideOnly(Side.CLIENT)
-	GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player);
+	GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player);
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,29 +22,26 @@
 
 package frogcraftrebirth.common.item;
 
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.item.IElectricItemManager;
 import ic2.api.item.ISpecialElectricItem;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
-public class ItemDecayBattery extends ItemFrogCraft implements ISpecialElectricItem {
+public class ItemDecayBattery extends ItemFrog implements ISpecialElectricItem {
 
 	private static final IElectricItemManager DECAY_BATTERY_ELECTRIC_MANAGER = new DecayBatteryElectricManager();
 
-	public ItemDecayBattery(String name) {
-		super(false);
+	public ItemDecayBattery() {
+		super();
 		setMaxDamage(0);
 		setMaxStackSize(1);
 		setNoRepair();
-		setUnlocalizedName(name + "Battery.name");
 	}
 
 	@Override
@@ -53,16 +50,9 @@ public class ItemDecayBattery extends ItemFrogCraft implements ISpecialElectricI
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.DecayBattery.info.0"));
-		tooltips.add(I18n.format("item.DecayBattery.info.1"));
-	}
-	
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> list) {
-		if (this.isInCreativeTab(tab)) {
-			list.add(new ItemStack(this, 1, 0));
-		}
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
+		tooltips.add(I18n.format("item.decay_battery.info.0"));
+		tooltips.add(I18n.format("item.decay_battery.info.1"));
 	}
 
 	private static final class DecayBatteryElectricManager implements IElectricItemManager {

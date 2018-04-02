@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -20,14 +20,6 @@
  * THE SOFTWARE.
  */
 
-/*
- * This file is a part of FrogCraftRebirth, 
- * created by 3TUSK at 2:55:25 PM, Apr 2, 2016, EST
- * FrogCraftRebirth, is open-source under MIT license,
- * check https://github.com/FrogCraft-Rebirth/
- * FrogCraft-Rebirth/LICENSE_FrogCraft_Rebirth for 
- * more information.
- */
 package frogcraftrebirth.common.tile;
 
 import java.io.DataInputStream;
@@ -37,25 +29,28 @@ import java.io.IOException;
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiLiquefier;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerLiquefier;
+import frogcraftrebirth.common.FrogFluids;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
-import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
@@ -63,8 +58,10 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 
 public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, ITickable {
-	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+
+	private static final int INPUT_AIR_IN = 0, INPUT_AIR_OUT = 1, OUTPUT_LIQUID_IN = 2, OUTPUT_LIQUID_OUT = 3;
+
+	private final ItemStackHandler inv = new ItemStackHandler(4);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public int process;
@@ -89,48 +86,74 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 			}
 			return;
 		}
-		
-		if (!inv.getStackInSlot(0).isEmpty()) {
-			if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
-				FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, false), tank, 1000, null, true);
+
+		if (!tank.isFull()) {
+			this.doWorkCycle();
+		}
+
+		if (!inv.getStackInSlot(OUTPUT_LIQUID_IN).isEmpty()) {
+			if (inv.getStackInSlot(OUTPUT_LIQUID_IN).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_ITEM_CAPABILITY, null)) {
+				FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(OUTPUT_LIQUID_IN, 1, true), tank, 1000, null, true);
 				if (result.isSuccess() && result.result.getCount() > 0) {
-					ItemStack remainder = inv.insertItem(1, result.result, false);
-					if (!remainder.isEmpty() && remainder.getCount() > 0)
+					inv.extractItem(OUTPUT_LIQUID_IN, 1, false);
+					ItemStack remainder = inv.insertItem(OUTPUT_LIQUID_OUT, result.result, false);
+					if (!remainder.isEmpty() && remainder.getCount() > 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
 				}
 			}
 		}
 		
+		this.sendTileUpdatePacket(this);
+		this.markDirty();
+	}
+
+	private void doWorkCycle() {
 		TileEntity tile = getWorld().getTileEntity(getPos().down());
-		if (tile == null || !(tile instanceof IAirPump) || tank.isFull()) {
+		if (tile instanceof IAirPump) {
+			working = true;
+			requireRefresh = true;
+		} else if (!inv.getStackInSlot(INPUT_AIR_IN).isEmpty()) {
+			FluidStack contained = FluidUtil.getFluidContained(inv.getStackInSlot(INPUT_AIR_IN));
+			if (contained != null && contained.getFluid() == FrogFluids.liquefiedAir) {
+				working = true;
+				requireRefresh = true;
+			}
+		} else {
 			this.working = false;
 			this.sendTileUpdatePacket(this);
 			this.markDirty();
 			this.requireRefresh = true;
 			return;
 		}
-		
-		working = true;
-		requireRefresh = true;
-		
-		if (charge >= 128) {
-			charge -= 128;
+
+		if (charge >= 32) {
+			charge -= 32;
 			++process;
-		}
-		else if (charge < 0)
+		} else if (charge < 0) {
 			charge = 0;
-		
-		if (process == 200) {
-			if (((IAirPump)tile).airAmount() >= 1000) {
-				((IAirPump)tile).extractAir(EnumFacing.DOWN, 1000, false);	
-				tank.fill(FluidRegistry.getFluidStack("ic2air", 10), true);
-			}
-			
+		}
+
+		if (process == 100) {
+			// According to original FrogCraft, best match
+			if (tile instanceof IAirPump && ((IAirPump) tile).extractAir(EnumFacing.UP, 1200, true) >= 1200) {
+				((IAirPump) tile).extractAir(EnumFacing.UP, 1200, false);
+				tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
+			} else {
+				IFluidHandlerItem fluidIn = FluidUtil.getFluidHandler(inv.extractItem(INPUT_AIR_IN, 1, true));
+				if (fluidIn != null) {
+					inv.extractItem(INPUT_AIR_IN, 1, false);
+					fluidIn.drain(Integer.MAX_VALUE, true); // Blame IC2.
+					ItemStack remainder = inv.insertItem(INPUT_AIR_OUT, fluidIn.getContainer(), false);
+					tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
+					if (!remainder.isEmpty() && remainder.getCount() > 0) {
+						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
+				}
+			} // else? this round is waste.
+
 			process = 0;
 		}
-		
-		this.sendTileUpdatePacket(this);
-		this.markDirty();
 	}
 	
 	@Override
@@ -153,12 +176,14 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
 		this.tank.readFromNBT(tag);
+		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
 		this.process = tag.getInteger("process");
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		this.tank.writeToNBT(tag);
+		tag.setTag("inv", this.inv.serializeNBT());
 		tag.setInteger("process", this.process);
 		return super.writeToNBT(tag);
 	}
@@ -167,25 +192,35 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		if (capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY)
-			return (T)new FluidHandlerOutputWrapper(tank);
+			return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		else 
 			return super.getCapability(capability, facing);
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerLiquefier(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(inv, 0, 47, 21)
+				.withOutputSlot(inv, 1, 47, 56)
+				.withStandardSlot(inv, 2, 113, 21)
+				.withOutputSlot(inv, 3, 113, 56)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiLiquefier(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiLiquefier(this.getGuiContainer(world, player), this);
 	}
 
 }

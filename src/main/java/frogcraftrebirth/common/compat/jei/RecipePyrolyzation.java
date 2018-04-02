@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.List;
-
 import javax.annotation.Nonnull;
 
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
@@ -34,7 +32,7 @@ import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-public class RecipePyrolyzation implements IRecipeWrapper {
+class RecipePyrolyzation implements IRecipeWrapper {
 	
 	private final IPyrolyzerRecipe recipe;
 	
@@ -44,7 +42,7 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInput(ItemStack.class, recipe.getInput());
+		ingredients.setInput(ItemStack.class, recipe.getActualInput().getActualInputs(ItemStack.class));
 		ingredients.setOutput(ItemStack.class, recipe.getOutput());
 		ingredients.setOutput(FluidStack.class, recipe.getOutputFluid());
 	}
@@ -54,11 +52,6 @@ public class RecipePyrolyzation implements IRecipeWrapper {
 		minecraft.fontRenderer.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 80, 0x404040);
 		minecraft.fontRenderer.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
 		minecraft.fontRenderer.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 60, 0x404040);
-	}
-
-	@Override
-	public List<String> getTooltipStrings(int mouseX, int mouseY) {
-		return null;
 	}
 
 	@Override

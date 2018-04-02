@@ -1,0 +1,38 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:condense_tower_core"
+  },
+  "group": "frogcraftrebirth:machine",
+  "pattern": [
+    "MAM",
+    "CPC",
+    "CYC"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "M": {
+      "item": "ic2:mining_pipe",
+      "data": 0
+    },
+    "A": {
+      "item": "#circuit_advanced"
+    },
+    "C": {
+      "item": "ic2:fluid_cell",
+      "data": 0
+    },
+    "P": {
+      "item": "ic2:te",
+      "data": 32,
+      "_comment": "32 -> Pump"
+    },
+    "Y": {
+      "item": "frogcraftrebirth:condense_tower_cylinder"
+    }
+  }
+}

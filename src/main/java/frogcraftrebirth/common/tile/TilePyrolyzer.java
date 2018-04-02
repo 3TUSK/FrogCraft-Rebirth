@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerPyrolyzer;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
@@ -40,11 +39,13 @@ import frogcraftrebirth.common.lib.recipes.FrogRecipeInputItemStack;
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fluids.FluidActionResult;
@@ -60,9 +61,9 @@ import javax.annotation.Nullable;
 public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 
 	private static final int INPUT = 0, OUTPUT = 0, INPUT_F = 0, OUTPUT_F = 1;
-	public final ItemStackHandler input = new ItemStackHandler();
-	public final ItemStackHandler output = new ItemStackHandler();
-	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
+	private final ItemStackHandler input = new ItemStackHandler();
+	private final ItemStackHandler output = new ItemStackHandler();
+	private final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(16000);
 	public int process, processMax;
 	private boolean working;
@@ -151,11 +152,11 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				return false;
 		}
 
-		return input.getStackInSlot(INPUT).isItemEqual(recipe.getInput()) && !input.extractItem(INPUT, recipe.getInput().getCount(), true).isEmpty();
+		return recipe.getActualInput().matches(input.getStackInSlot(INPUT)) && !input.extractItem(INPUT, recipe.getActualInput().getSize(), true).isEmpty();
 	}
 	
 	private void pyrolyze() {
-		input.extractItem(INPUT, recipe.getInput().getCount(), false);
+		input.extractItem(INPUT, recipe.getActualInput().getSize(), false);
 		ItemStack remainder = output.insertItem(OUTPUT, recipe.getOutput(), false);
 		if (!remainder.isEmpty() && remainder.getCount() > 0)
 			ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
@@ -174,7 +175,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		this.working = tag.getBoolean("working");
 		this.process = tag.getInteger("process");
 		this.processMax = tag.getInteger("processMax");
-		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(new ItemStack(tag.getCompoundTag("recipeInput"))));
+		this.recipe = FrogAPI.managerPyrolyzer.getRecipe(new FrogRecipeInputItemStack(input.getStackInSlot(INPUT)));
 	}
 
 	@Override
@@ -204,8 +205,6 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		tag.setBoolean("working", this.working);
 		tag.setInteger("process", this.process);
 		tag.setInteger("processMax", this.processMax);
-		if (recipe != null)
-			tag.setTag("recipeInput", recipe.getInput().writeToNBT(new NBTTagCompound()));
 		return super.writeToNBT(tag);
 	}
 
@@ -243,19 +242,31 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 			if (facing != null)
 				return CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY.cast(new FluidHandlerOutputWrapper(tank));
 		}
-		
+
 		return super.getCapability(capability, facing);
 	}
 
+
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerPyrolyzer(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, input, output, fluidIO);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withPlayerInventory(player.inventory)
+				.withStandardSlot(input, 0, 24, 28)
+				.withOutputSlot(output, 0, 75, 28)
+				.withStandardSlot(fluidIO, 0, 113, 21)
+				.withOutputSlot(fluidIO, 1, 113, 56)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiPyrolyzer(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiPyrolyzer(this.getGuiContainer(world, player), this);
 	}
 
 }

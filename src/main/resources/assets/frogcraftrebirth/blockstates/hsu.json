@@ -1,0 +1,16 @@
+{
+	"forge_marker": 1,
+	"defaults": {
+		"model": "frogcraftrebirth:hybrid_storage_unit"
+	},
+	"variants": {
+		"facing": {
+			"up": { "x": 90 },
+			"down": { "x": 270 },
+			"east": { "y": 90, "uvlock": true },
+			"north": {},
+			"south": { "y": 180, "uvlock": true },
+			"west": { "y": 270, "uvlock": true }
+		}
+	}
+}

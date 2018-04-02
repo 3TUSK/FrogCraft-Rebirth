@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,19 +26,20 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import frogcraftrebirth.client.gui.GuiAdvBlastFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerAdvBlastFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItemHandler;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.energy.tile.IHeatSource;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -51,8 +52,8 @@ import java.io.IOException;
 
 public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, ITickable {
 
-	public final ItemStackHandler input = new ItemStackHandler(2);
-	public final ItemStackHandler output = new ItemStackHandler(2);
+	private final ItemStackHandler input = new ItemStackHandler(2);
+	private final ItemStackHandler output = new ItemStackHandler(2);
 	public final FrogFluidTank inputFluid = new FrogFluidTank(8000, "input_fluid");
 	public final FrogFluidTank shieldGas = new FrogFluidTank(1000, "shield_gas");
 	private int heat;
@@ -135,7 +136,7 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 			} else {
 				TileEntity tile = getWorld().getTileEntity(getPos().down());
 				if (tile instanceof IHeatSource) {
-					this.heat += ((IHeatSource)tile).requestHeat(EnumFacing.UP, 10);
+					this.heat += ((IHeatSource)tile).drawHeat(EnumFacing.UP, 10, false);
 				}
 			}
 		}
@@ -185,13 +186,24 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAdvBlastFurnace(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, input, output);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withPlayerInventory(player.inventory)
+				.withStandardSlot(input, 0, 33, 26)
+				.withStandardSlot(input, 1, 51, 26)
+				.withOutputSlot(output, 0, 109, 26)
+				.withOutputSlot(output, 1, 127, 26)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAdvBlastFurnace(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAdvBlastFurnace(this.getGuiContainer(world, player), this);
 	}
 }

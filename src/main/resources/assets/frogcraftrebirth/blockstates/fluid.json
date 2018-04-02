@@ -1,81 +1,17 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"ammonia": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "ammonia" }
-		},
-		"argon": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "argon" }
-		},
-		"benzene": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "benzene" }
-		},
-		"bromine": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "bromine" }
-		},
-		"carbon_dioxide": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "carbon_dioxide" }
-		},
-		"carbon_oxide": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "carbon_oxide" }
-		},
-		"chlorine": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "chlorine" }
-		},
 		"coal_tar": {
 			"model": "forge:fluid",
 			"custom": { "fluid": "coal_tar" }
-		},
-		"fluorine": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "fluorine" }
-		},
-		"glycerol": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "glycerol" }
-		},
-		"methane": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "methane" }
 		},
 		"nitric_acid": {
 			"model": "forge:fluid",
 			"custom": { "fluid": "nitric_acid" }
 		},
-		"nitrogen": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "nitrogen" }
-		},
-		"nitrogen_oxide": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "nitrogen_oxide" }
-		},
-		"oleum": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "oleum" }
-		},
-		"oxygen": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "oxygen" }
-		},
 		"sulfuric_acid": {
 			"model": "forge:fluid",
 			"custom": { "fluid": "sulfuric_acid"}
-		},
-		"sulfur_dioxide": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "sulfur_dioxide" }
-		},
-		"sulfur_trioxide": {
-			"model": "forge:fluid",
-			"custom": { "fluid": "sulfur_trioxide" }
 		}
 	}
 }

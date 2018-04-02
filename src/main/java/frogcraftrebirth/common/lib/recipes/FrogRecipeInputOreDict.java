@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -55,9 +55,12 @@ public class FrogRecipeInputOreDict implements IFrogRecipeInput {
 	@Override
 	public <T> List<T> getActualInputs(Class<T> type) {
 		if (type == ItemStack.class) {
-			List<ItemStack> stacks = OreDictionary.getOres(this.entry);
-			stacks.forEach(stack -> stack.setCount(amount));
-			return stacks.stream().map(type::cast).collect(Collectors.toList());
+			return OreDictionary.getOres(this.entry)
+					.stream()
+					.map(ItemStack::copy)
+					.peek(stack -> stack.setCount(this.amount))
+					.map(type::cast)
+					.collect(Collectors.toList());
 		} else {
 			return Collections.emptyList();
 		}

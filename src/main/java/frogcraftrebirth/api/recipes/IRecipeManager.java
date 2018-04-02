@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,6 +29,9 @@ import java.util.Collection;
  * A <code>RecipeManager</code> represents a manager
  * dedicated for a certain type of recipe (which is
  * represented by type parameter, R).
+ *
+ * @param <R> The type of recipe objects that this object holds
+ *
  * @since 1.0.0
  */
 public interface IRecipeManager<R> {

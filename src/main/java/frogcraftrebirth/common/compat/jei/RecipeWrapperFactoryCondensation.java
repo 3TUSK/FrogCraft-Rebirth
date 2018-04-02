@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,7 +26,7 @@ import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
 
-public class RecipeWrapperFactoryCondensation implements IRecipeWrapperFactory<ICondenseTowerRecipe> {
+class RecipeWrapperFactoryCondensation implements IRecipeWrapperFactory<ICondenseTowerRecipe> {
 	@Override
 	public IRecipeWrapper getRecipeWrapper(ICondenseTowerRecipe recipe) {
 		return new RecipeCondensation(recipe);

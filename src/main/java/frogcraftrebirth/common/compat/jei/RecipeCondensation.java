@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import java.util.List;
-
 import com.google.common.collect.ImmutableList;
 
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
@@ -33,7 +31,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
 
-public class RecipeCondensation implements IRecipeWrapper {
+class RecipeCondensation implements IRecipeWrapper {
 	
 	private final ICondenseTowerRecipe recipe;
 	
@@ -52,11 +50,6 @@ public class RecipeCondensation implements IRecipeWrapper {
 		minecraft.fontRenderer.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
 		minecraft.fontRenderer.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 60, 0x404040);
 		minecraft.fontRenderer.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 50, 0x404040);
-	}
-
-	@Override
-	public List<String> getTooltipStrings(int mouseX, int mouseY) {
-		return null;
 	}
 
 	@Override

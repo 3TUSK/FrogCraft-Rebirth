@@ -1,20 +1,28 @@
 {
   "display": {
     "icon": {
-      "item": "frogcraftrebirth:hybrid_storage_unit",
-      "data": 0
+      "item": "frogcraftrebirth:hsu"
     },
     "title": {
-      "translate": "advancement.fcrebirth.evt.name"
+      "translate": "advancement.frogcraftrebirth.evt.name"
     },
     "description": {
-      "translate": "advancement.fcrebirth.evt.desc"
+      "translate": "advancement.frogcraftrebirth.evt.desc"
     },
     "announce_to_chat": false
   },
   "criteria": {
-    "placeholder": {
-      "trigger": "minecraft:impossible"
+    "ev_transformer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "ic2:te",
+            "data": 80,
+            "_comment": "80 -> EV Transformer. Since IC2 got this covered, we don't need to re-invent the wheel for now."
+          }
+        ]
+      }
     }
   },
   "parent": "frogcraftrebirth:root"

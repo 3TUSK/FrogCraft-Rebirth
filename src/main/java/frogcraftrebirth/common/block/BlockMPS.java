@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -28,12 +28,10 @@ import java.util.List;
 import javax.annotation.Nullable;
 
 import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.common.item.ItemMPS;
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
+import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.api.FrogGameObjects;
+import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.common.tile.TileMobilePowerStation;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -47,23 +45,14 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockMPS extends BlockFrogWrenchable {
-	
-	public static final PropertyInteger LEVEL = PropertyInteger.create("charge_level", 0, 5);
-	
+public class BlockMPS extends BlockMechanism {
+
 	public BlockMPS() {
-		super(Material.IRON, "mobile_power_station", false);
-		setUnlocalizedName("mobilePowerStation");
-		setDefaultState(this.getBlockState().getBaseState().withProperty(LEVEL, 0));
+		super(TileMobilePowerStation.class);
 		setHardness(1.0F);
 		setResistance(1.0F);	
 	}
-	
-	@Override
-	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { LEVEL };
-	}
-	
+
 	@Override
 	public boolean canBeReplacedByLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return false;
@@ -90,25 +79,13 @@ public class BlockMPS extends BlockFrogWrenchable {
 	}
 	
 	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
-		try {
-			TileEntity tile = worldIn.getTileEntity(pos);
-			float ratio = 0F;
-			if (tile instanceof TileMobilePowerStation) {
-				ratio = 5 * ((TileMobilePowerStation)tile).getCurrentEnergy() / ((TileMobilePowerStation)tile).getCurrentEnergyCapacity();
-			}
-			return state.withProperty(LEVEL, ratio >= 5F ? 5 : (int)ratio);
-		} catch (Exception e) {
-			return state.withProperty(LEVEL, 0);
-		}
-	}
-	
-	@Override
 	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
 		if (worldIn.getTileEntity(pos) instanceof TileMobilePowerStation) {		
 			if (stack.getTagCompound() != null) {
-				TileMobilePowerStation tile = (TileMobilePowerStation) worldIn.getTileEntity(pos);
-				tile.loadDataFrom(stack.getTagCompound());
+				TileEntity tile = worldIn.getTileEntity(pos);
+				if (tile instanceof IMobilePowerStation) {
+					((IMobilePowerStation)tile).loadDataFrom(stack.getTagCompound());
+				}
 			}
 		}
 	}
@@ -122,7 +99,7 @@ public class BlockMPS extends BlockFrogWrenchable {
 	}
 	
 	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tile, @Nullable ItemStack stack) {
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity tile, ItemStack stack) {
 		if (tile instanceof TileMobilePowerStation) {
 			ItemStack mps = new ItemStack(this, 1);
 			if (!mps.hasTagCompound())
@@ -138,24 +115,25 @@ public class BlockMPS extends BlockFrogWrenchable {
 	public int getMetaFromState(IBlockState state) {
 		return 0;
 	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState();
-	}
-	
+
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 		ItemStack stack = new ItemStack(this, 1, 0);
-		if (!stack.hasTagCompound())
-			stack.setTagCompound(new NBTTagCompound());
-		if (world.getTileEntity(pos) instanceof TileMobilePowerStation) {
-			((TileMobilePowerStation)world.getTileEntity(pos)).saveDataTo(stack.getTagCompound());
+		NBTTagCompound tagMPS;
+		if (stack.getTagCompound() != null) {
+			tagMPS = stack.getTagCompound();
+		} else {
+			tagMPS = new NBTTagCompound();
+			stack.setTagCompound(tagMPS);
+		}
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof TileMobilePowerStation) {
+			((TileMobilePowerStation)tile).saveDataTo(tagMPS);
 			return stack;
 		} else {
-			stack.getTagCompound().setInteger("charge", 0);
-			stack.getTagCompound().setInteger("maxCharge", 60000);
-			stack.getTagCompound().setInteger("tier", 1);
+			tagMPS.setInteger("charge", 0);
+			tagMPS.setInteger("maxCharge", 60000);
+			tagMPS.setInteger("tier", 1);
 			return stack;
 		}
 	}
@@ -172,13 +150,14 @@ public class BlockMPS extends BlockFrogWrenchable {
 	
 	@Override
 	public List<ItemStack> getWrenchDrops(World world, BlockPos pos, IBlockState state, TileEntity te, EntityPlayer player, int fortune) {
-		ItemStack stack = new ItemStack(this, 1, 0);
-		stack.setTagCompound(new NBTTagCompound());
-		if (te instanceof TileMobilePowerStation)
-			((TileMobilePowerStation)te).saveDataTo(stack.getTagCompound());
-		else
-			ItemMPS.normalize(stack);
-		return Collections.singletonList(stack);
+		NBTTagCompound data = new NBTTagCompound();
+		if (te instanceof TileMobilePowerStation) {
+			((TileMobilePowerStation) te).saveDataTo(data);
+		} else {
+			FrogAPI.FROG_LOG.fatal("MPS block has wrong TileEntity type {}", te);
+			throw new IllegalStateException("MPS has wrong TileEntity type");
+		}
+		return Collections.singletonList(new ItemStack(FrogGameObjects.MPS_ITEM, 1, 0, data));
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,8 +45,7 @@ public final class MathUtil {
 	static {
 		MethodHandle toSiStringImpl = null;
 		try {
-			toSiStringImpl = MethodHandles.lookup().findStatic(ic2.core.util.Util.class,"toSiString", MethodType.methodType(String.class, double.class, int.class)
-			);
+			toSiStringImpl = MethodHandles.lookup().findStatic(ic2.core.util.Util.class,"toSiString", MethodType.methodType(String.class, double.class, int.class));
 		} catch (Exception e) {
 			FrogAPI.FROG_LOG.info("Notify author if you see this message. This message means that author of FrogCraft: Rebirth must update his scientific notation converter.");
 		}

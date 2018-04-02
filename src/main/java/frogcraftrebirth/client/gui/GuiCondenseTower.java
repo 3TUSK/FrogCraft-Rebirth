@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,18 +24,17 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerCondenseTower;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileCondenseTower;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower, ContainerCondenseTower> {
+public class GuiCondenseTower extends GuiTileFrog<TileCondenseTower> {
 
-	public GuiCondenseTower(InventoryPlayer playerInv, TileCondenseTower tile) {
-		super(new ContainerCondenseTower(playerInv, tile), tile, "gui_condense_tower_core.png");
+	public GuiCondenseTower(ContainerTileFrog container, TileCondenseTower tile) {
+		super(container, tile, "gui_condense_tower_core.png");
 	}
 	
 	@Override

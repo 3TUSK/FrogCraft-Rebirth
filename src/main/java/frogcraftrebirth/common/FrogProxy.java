@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,9 +25,14 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.*;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthBlockRemapper;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthItemRemapper;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthTileEntityRemapper;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
+import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
@@ -35,31 +40,43 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
+import javax.annotation.OverridingMethodsMustInvokeSuper;
+
 public class FrogProxy {
 
+	@OverridingMethodsMustInvokeSuper
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 	}
 
+	@OverridingMethodsMustInvokeSuper
 	public void init(FMLInitializationEvent event) {
 		FrogAPI.managerABF = new AdvBlastFurnaceRecipeManager();
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();
 		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
-		FrogRecipes.init();
-		if (FrogConfig.enableWorldGen) {
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.init();
+		}
+		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
-		FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);
+		ModFixs fixer = FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);
+		fixer.registerFix(FixTypes.ITEM_INSTANCE, new LegacyFrogCraftRebirthItemRemapper());
+		fixer.registerFix(FixTypes.CHUNK, new LegacyFrogCraftRebirthBlockRemapper());
+		fixer.registerFix(FixTypes.BLOCK_ENTITY, new LegacyFrogCraftRebirthTileEntityRemapper());
 	}
 	
 	public final void imcInit(FMLInterModComms.IMCEvent event) {
 		FrogIMCHandler.resolveIMCMessage(event.getMessages());
 	}
 
+	@OverridingMethodsMustInvokeSuper
 	public void postInit(FMLPostInitializationEvent event) {
-		FrogRecipes.postInit();
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.postInit();
+		}
 		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 	}
 

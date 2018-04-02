@@ -1,7 +1,11 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
-    "item": "frogcraftrebirth:metal_dust",
-    "data": 0
+    "item": "frogcraftrebirth:aluminium_dust"
   },
   "group": "frogcraftrebirth:resource",
   "pattern": [
@@ -12,8 +16,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "D": {
-      "item": "frogcraftrebirth:metal_dust_tiny",
-      "data": 0
+      "item": "frogcraftrebirth:tiny_aluminium_dust"
     }
   }
 }

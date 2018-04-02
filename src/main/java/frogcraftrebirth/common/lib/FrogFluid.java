@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -31,16 +31,13 @@ public class FrogFluid extends Fluid {
 	public FrogFluid(String name, int density, int temperature, boolean gaseous, EnumRarity rarity) {
 		this(name, name, name, density, temperature, gaseous, rarity);
 	}
-
-	public FrogFluid(String name, String resLoc, int density, int temperature, boolean gaseous, EnumRarity rarity) {
-		this(name, resLoc, resLoc, density, temperature, gaseous, rarity);
-	}
 	
 	public FrogFluid(String name, String flow, String still, int density, int temperature, boolean gaseous, EnumRarity rarity) {
 		super(name, new ResourceLocation("frogcraftrebirth", "fluids/" + flow), new ResourceLocation("frogcraftrebirth", "fluids/" + still));
 		this.setDensity(density);
 		this.setTemperature(temperature);
 		this.setGaseous(gaseous);
+		this.setRarity(rarity);
 	}
 
 	public final String toString() {

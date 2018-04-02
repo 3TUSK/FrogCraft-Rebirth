@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -45,23 +45,7 @@ import net.minecraftforge.fluids.FluidStack;
  */
 public final class FrogFuelHandler {
 
-	/**
-	 * Use 1000mB as default volume.
-	 * @see FrogFuelHandler#regFuelByproduct(ItemStack fuel, Fluid byproduct)
-	 */
-	public static final int BUCKET_VOLUME = 1000;
-
 	FrogFuelHandler() {}
-
-	/**
-	 * @deprecated Use TileEntityFurnace#getItemBurnTime
-	 * @param fuel The item to be queried for burn time
-	 * @return The burn time
-	 */
-	@Deprecated
-	public int getBurnTime(@Nonnull ItemStack fuel) {
-		return net.minecraft.tileentity.TileEntityFurnace.getItemBurnTime(fuel);
-	}
 
 	@Nullable
 	public FluidStack getFluidByproduct(@Nonnull ItemStack aStack) {
@@ -96,7 +80,7 @@ public final class FrogFuelHandler {
 	}
 
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull Fluid byproduct) {
-		regFuelByproduct(fuel, new FluidStack(byproduct, BUCKET_VOLUME));
+		regFuelByproduct(fuel, new FluidStack(byproduct, Fluid.BUCKET_VOLUME));
 	}
 
 	public void regFuelByproduct(@Nonnull ItemStack fuel, @Nonnull FluidStack byproduct) {
@@ -108,7 +92,7 @@ public final class FrogFuelHandler {
 	}
 	
 	public void regFuelByproduct(@Nonnull String ore, @Nonnull Fluid byproduct) {
-		regFuelByproduct(ore, new FluidStack(byproduct, BUCKET_VOLUME));
+		regFuelByproduct(ore, new FluidStack(byproduct, Fluid.BUCKET_VOLUME));
 	}
 	
 	public void regFuelByproduct(@Nonnull String ore, @Nonnull FluidStack byproduct) {

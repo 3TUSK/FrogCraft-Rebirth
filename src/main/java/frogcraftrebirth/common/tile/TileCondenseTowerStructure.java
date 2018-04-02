@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,23 +24,20 @@ package frogcraftrebirth.common.tile;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.io.IOException;
 
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
 public class TileCondenseTowerStructure extends TileFrog implements ICondenseTowerPart {
 
 	private ICondenseTowerCore mainBlock;
-	
-	@Override
-	public void behave() {
-		
-	}
-	
+
 	@Override
 	public ICondenseTowerCore getMainBlock() {
 		return mainBlock;
@@ -62,4 +59,11 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	@Override
 	public void readPacketData(DataInputStream input) {}
 
+
+	@Override
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		if (this.mainBlock != null) {
+			mainBlock.onPartRemoved(this);
+		}
+	}
 }

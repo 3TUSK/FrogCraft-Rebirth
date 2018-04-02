@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,19 +22,18 @@
 
 package frogcraftrebirth.common.world;
 
-import frogcraftrebirth.api.FrogRegistees;
+import frogcraftrebirth.api.FrogGameObjects;
 import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.OreGenEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import frogcraftrebirth.common.block.BlockFrogOre;
 
 public final class FrogWorldGenerator {
 
-	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.CARNALLITE), 3);
-	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.DEWALQUITE), 15);
-	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FrogRegistees.ORE.getDefaultState().withProperty(BlockFrogOre.TYPE, BlockFrogOre.Type.FLUORAPATITE), 15);
+	private static final WorldGenerator CARNALLITE_GEN = new WorldGenClayFake(FrogGameObjects.CARNALLITE.getDefaultState(), 3);
+	private static final WorldGenerator DEWALQUITE_GEN = new WorldGenMinable(FrogGameObjects.DEWALQUITE.getDefaultState(), 15);
+	private static final WorldGenerator FLUORAPATITE_GEN = new WorldGenMinable(FrogGameObjects.FLUORAPATITE.getDefaultState(), 15);
 
 	@SubscribeEvent
 	public void onOreGen(OreGenEvent.Post event) {

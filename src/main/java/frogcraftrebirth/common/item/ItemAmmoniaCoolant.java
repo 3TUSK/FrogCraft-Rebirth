@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,33 +22,20 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import ic2.api.reactor.IReactor;
 import ic2.api.reactor.IReactorComponent;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 
-public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorComponent {
+public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 
 	private final int heatStorage;
-	private final String type;
 	
 	public ItemAmmoniaCoolant(String type, int storage) {
-		super(false);
+		super();
 		this.heatStorage = storage;
-		this.type = type;
 		setUnlocalizedName("frogcraftrebirth.ammonia_coolant." + type);
 		setMaxDamage(10000);
-	}
-	
-	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.frogcraftrebirth.ammonia_coolant.info", type));
 	}
 
 	@Override
@@ -87,11 +74,13 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 
 	@Override
 	public int alterHeat(ItemStack yourStack, IReactor reactor, int x, int y, int heat) {
+		NBTTagCompound itemTag = yourStack.getTagCompound();
 		int coolantHeat = 0;
-		if (yourStack.hasTagCompound()) {
+		if (itemTag != null) {
 			coolantHeat = yourStack.getTagCompound().getInteger("heat");
 		} else {
-			yourStack.setTagCompound(new NBTTagCompound());
+			itemTag = new NBTTagCompound();
+			yourStack.setTagCompound(itemTag);
 		}
 		
 		if (coolantHeat > this.heatStorage) {
@@ -109,8 +98,8 @@ public class ItemAmmoniaCoolant extends ItemFrogCraft implements IReactorCompone
 			heat = 0;
 		}
 		
-		yourStack.setItemDamage(this.getMaxDamage(yourStack) * coolantHeat / this.heatStorage );
-		yourStack.getTagCompound().setInteger("heat", coolantHeat);
+		yourStack.setItemDamage(this.getMaxDamage(yourStack) * coolantHeat / this.heatStorage);
+		itemTag.setInteger("heat", coolantHeat);
 		return heat;
 	}
 

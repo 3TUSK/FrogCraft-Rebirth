@@ -1,0 +1,10 @@
+{
+	"forge_marker": 1,
+	"variants": {
+		"inventory": [{}],
+		"working": {
+			"false": { "model": "frogcraftrebirth:machine/air_pump" },
+			"true": { "model": "frogcraftrebirth:machine/air_pump" }
+		}
+	}
+}

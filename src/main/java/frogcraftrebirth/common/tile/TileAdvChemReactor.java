@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -27,7 +27,6 @@ import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.client.gui.GuiAdvChemReactor;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerAdvChemReactor;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.capability.ItemHandlerInputWrapper;
 import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
@@ -36,11 +35,13 @@ import frogcraftrebirth.common.lib.recipes.IterableFrogRecipeInputsBackedByIItem
 import frogcraftrebirth.common.lib.tile.TileEnergySink;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
@@ -59,11 +60,11 @@ import java.util.List;
 
 public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasWork, ITickable {
 
-	public final ItemStackHandler module = new ItemStackHandler();
-	public final ItemStackHandler input = new ItemStackHandler(5);
-	public final ItemStackHandler output = new ItemStackHandler(5);
-	public final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
-	public final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
+	private final ItemStackHandler module = new ItemStackHandler();
+	private final ItemStackHandler input = new ItemStackHandler(5);
+	private final ItemStackHandler output = new ItemStackHandler(5);
+	private final ItemHandlerUniversalCell cellInput = new ItemHandlerUniversalCell();
+	private final ItemHandlerUniversalCell cellOutput = new ItemHandlerUniversalCell();
 	
 	public int process, processMax;
 	private boolean working;
@@ -228,14 +229,34 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAdvChemReactor(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, module, input, output, cellInput, cellOutput);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withStandardSlot(module, 0, 147, 52)
+				.withStandardSlot(cellInput, 0, 12, 22)
+				.withOutputSlot(cellOutput, 0, 12, 52)
+				.withStandardSlot(input, 0, 40, 22)
+				.withStandardSlot(input, 1, 60, 22)
+				.withStandardSlot(input, 2, 80, 22)
+				.withStandardSlot(input, 3, 100, 22)
+				.withStandardSlot(input, 4, 120, 22)
+				.withOutputSlot(output, 0, 40, 52)
+				.withOutputSlot(output, 1, 60, 52)
+				.withOutputSlot(output, 2, 80, 52)
+				.withOutputSlot(output, 3, 100, 52)
+				.withOutputSlot(output, 4, 120, 52)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAdvChemReactor(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAdvChemReactor(this.getGuiContainer(world, player), this);
 	}
 
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,6 +25,7 @@ package frogcraftrebirth.common.lib.recipes;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import net.minecraftforge.items.IItemHandler;
 
+import javax.annotation.Nonnull;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Spliterator;
@@ -38,6 +39,7 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 		this.handlerWrapped = handler;
 	}
 
+	@Nonnull
 	@Override
 	public Iterator<IFrogRecipeInput> iterator() {
 		return new Iterator<IFrogRecipeInput>() {
@@ -102,7 +104,7 @@ public class IterableFrogRecipeInputsBackedByIItemHandler implements Iterable<IF
 			/**
 			 * {@inheritDoc}
 			 * @implSpec
-			 * This implemention, by default, has characteristics of
+			 * This implementation, by default, has characteristics of
 			 * {@link #ORDERED}, {@link #SIZED}, and {@link #NONNULL}.
 			 * @return
 			 */

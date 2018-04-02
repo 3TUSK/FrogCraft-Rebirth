@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,6 @@ import javax.annotation.Nullable;
 
 public interface ICondenseTowerPart {
 
-	/**
-	 * Callback at certain game ticks. The exact time of this method
-	 * being called is undefined.
-	 */
-	void behave();
-	
 	@Nullable
 	ICondenseTowerCore getMainBlock();
 	

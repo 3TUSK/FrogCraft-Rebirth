@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,20 +22,19 @@
 
 package frogcraftrebirth.client.gui;
 
-import frogcraftrebirth.common.gui.ContainerHybridEStorage;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.tile.TileHSU;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiHybridEStorage extends GuiTileFrog<TileHSU, ContainerHybridEStorage> {
+public class GuiHybridEStorage extends GuiTileFrog<TileHSU> {
 
 	private final boolean isUHSU;
 
-	public GuiHybridEStorage(InventoryPlayer playerInv, TileHSU tile, boolean isUHSU) {
-		super(new ContainerHybridEStorage(playerInv, tile), tile, "GUI_HSU.png");
+	public GuiHybridEStorage(ContainerTileFrog container, TileHSU tile, boolean isUHSU) {
+		super(container, tile, "GUI_HSU.png");
 		this.isUHSU = isUHSU;
 	}
 

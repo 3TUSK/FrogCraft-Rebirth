@@ -1,7 +1,12 @@
 {
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
   "result": {
     "item": "frogcraftrebirth:mobile_power_station",
-    "data": 0
+    "nbt": "{\"charge\": 0, \"maxCharge\": 60000, \"tier\": 1}"
   },
   "group": "frogcraftrebirth:misc",
   "pattern": [
@@ -17,11 +22,18 @@
     "C": {
       "item": "#circuit_advanced"
     },
-    "B": {
-      "item": "ic2:te",
-      "data": 68,
-      "_comment": "68 -> BatBox"
-    },
+    "B": [
+      {
+        "item": "ic2:te",
+        "data": 68,
+        "_comment": "68 -> BatBox Charge Pad"
+      },
+      {
+        "item": "ic2:te",
+        "data": 72,
+        "_comment": "72 -> BatBox"
+      }
+    ],
     "F": {
       "item": "ic2:te",
       "data": 44,

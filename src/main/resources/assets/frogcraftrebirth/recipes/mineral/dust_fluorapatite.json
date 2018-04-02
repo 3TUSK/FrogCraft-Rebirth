@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:fluorapatite_dust"
+  },
+  "group": "frogcraftrebirth:resource",
+  "pattern": [
+    "DDD",
+    "DDD",
+    "DDD"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "#dust_tiny_fluorapatite"
+    }
+  }
+}

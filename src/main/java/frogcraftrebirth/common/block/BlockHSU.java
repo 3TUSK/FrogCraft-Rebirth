@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,80 +22,52 @@
 
 package frogcraftrebirth.common.block;
 
-import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.common.lib.block.BlockFrogWrenchable;
 import frogcraftrebirth.common.tile.TileHSU;
-import frogcraftrebirth.common.tile.TileHSUUltra;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class BlockHSU extends BlockFrogWrenchable {
+public class BlockHSU extends BlockMechanism implements IRotatable {
 
-	public static final PropertyEnum<Level> LEVEL = PropertyEnum.create("variant", Level.class);
-
-	public BlockHSU() {
-		super(Material.IRON, "hybrid_storage_unit", true, 0, 1);
-		setUnlocalizedName("hybridStorageUnit");
+	public BlockHSU(Class<? extends TileHSU> glass) {
+		super(glass);
+		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING_ALL, EnumFacing.NORTH));
 	}
 
 	@Override
-	protected IProperty<?>[] getPropertyArray() {
-		return new IProperty[] { LEVEL, FACING_ALL };
+	public BlockStateContainer createBlockState() {
+		return new BlockStateContainer(this, FACING_ALL);
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if (worldIn.isRemote) {
-			return true;
-		} else if (worldIn.getTileEntity(pos) instanceof TileHSU) {
-			playerIn.openGui(FrogCraftRebirth.getInstance(), 1, worldIn, pos.getX(), pos.getY(), pos.getZ());
-			return true;
+	public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+		IRotatable.super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+	}
+
+	@Override
+	public boolean setFacing(World world, BlockPos pos, EnumFacing newDirection, EntityPlayer player) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof TileHSU) {
+			((TileHSU)tile).updateOutputDirection(newDirection);
 		}
-		return false;
-	}
-
-	@Override
-	public boolean hasTileEntity(IBlockState state) {
-		return true;
-	}
-
-	@Override
-	public TileEntity createTileEntity(World world, IBlockState state) {
-		switch (state.getValue(LEVEL)) {
-			case NORMAL:
-				return new TileHSU();
-			case ULTRA:
-				return new TileHSUUltra();
-			default:
-				return null;
-		}
-	}
-
-	@Override
-	public int damageDropped(IBlockState state) {
-		return state.getValue(LEVEL).ordinal();
+		return IRotatable.super.setFacing(world, pos, newDirection, player);
 	}
 
 	@Override
 	public int getMetaFromState(IBlockState state) {
-		return state.getValue(FACING_ALL).getIndex() * 2 + state.getValue(LEVEL).ordinal();
+		return state.getValue(FACING_ALL).getIndex();
 	}
 
 	@Override
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta) {
-		return this.getDefaultState().withProperty(LEVEL, Level.values()[meta % 2]).withProperty(FACING_ALL, EnumFacing.VALUES[meta % 6]);
+		return this.getDefaultState().withProperty(FACING_ALL, EnumFacing.VALUES[meta]);
 	}
-
-	public enum Level implements IStringSerializableEnumImpl {
-		NORMAL, ULTRA
-    }
 
 }

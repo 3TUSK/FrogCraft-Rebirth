@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -25,76 +25,82 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraftforge.common.config.Config;
 
+@SuppressWarnings("CanBeFinal")
 @Config(modid = FrogAPI.MODID)
-@Config.LangKey("config.fcrebirth.general")
-public class FrogConfig {
+@Config.LangKey("config.frogcraftrebirth.general")
+public final class FrogConfig {
 
 	@Config.Comment("All options related to modpack creation.")
 	@Config.Name("ModpackOptions")
 	public static ModpackOptions modpackOptions = new ModpackOptions();
 
-	@Config.Comment("All options related to cross-mod compatilibity")
+	@Config.Comment("All options related to cross-mod compatibility")
 	@Config.Name("CompatibilityOptions")
 	public static CompatibilityOptions compatibilityOptions = new CompatibilityOptions();
 
 	@Config.Comment("EU consumption rate of Air Pump, in EU/t.")
-	@Config.LangKey("config.fcrebirth.machine.airpump_power_rate")
+	@Config.LangKey("config.frogcraftrebirth.machine.airpump_power_rate")
 	@Config.Name("AirPumpPowerRate")
 	@Config.RangeInt(min = 1, max = 10000)
-	public static int airPumpPowerRate = 20;
+	public static int airPumpPowerRate = 32;
 
 	@Config.Comment("Liquid air generation speed of Air Pump, in mB/t.")
-	@Config.LangKey("config.fcrebirth.machine.airpump_gen_speed")
+	@Config.LangKey("config.frogcraftrebirth.machine.airpump_gen_speed")
 	@Config.Name("AirPumpGenSpeed")
 	@Config.RangeInt(min = 1, max = 1000)
 	public static int airPumpGenerationRate = 50;
 
 	@Config.Comment("Energy generation rate of Combustion Furnace, in EU/t.")
-	@Config.LangKey("config.fcrebirth.machine.combustion_furnace")
+	@Config.LangKey("config.frogcraftrebirth.machine.combustion_furnace")
 	@Config.Name("CombustionFurnaceGen")
 	@Config.RangeInt(min = 1)
 	public static int combustionFurnaceGenRate = 10;
 
 	@Config.Comment("Set to false to disable all world generation from FrogCraft: Rebirth.")
-	@Config.LangKey("config.fcrebirth.worldgen")
+	@Config.LangKey("config.frogcraftrebirth.worldgen")
 	@Config.Name("EnableWorldGeneration")
 	@Config.RequiresMcRestart
 	public static boolean enableWorldGen = true;
 
 
-	public static class CompatibilityOptions {
+	public static final class CompatibilityOptions {
 		public boolean enableTechRebornCompatibility = false;
 	}
 
-	@Config.LangKey("config.fcrebirth.modpack")
-	public static class ModpackOptions {
+	@Config.LangKey("config.frogcraftrebirth.modpack")
+	public static final class ModpackOptions {
 
 		@Config.Comment("If true, aluminium will have aluminum series ore dictionary entries.")
-		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.all")
+		@Config.LangKey("config.frogcraftrebirth.modpack.alt_aluminium_name.all")
 		@Config.Name("AlternativeAluminiumOreDictEntry")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumOreDict = false;
 
 		@Config.Comment("If true, dustAluminum will be registered for aluminium dust. Will do nothing if altAluminiumOreDict is set to false.")
-		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.dust")
+		@Config.LangKey("config.frogcraftrebirth.modpack.alt_aluminium_name.dust")
 		@Config.Name("AlternativeAluminiumOreDictEntryForDust")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumDustOreDict = false;
 
 		@Config.Comment("If true, ingotAluminium will be registered for aluminium ingot. Will do nothing if altAluminiumOreDict is set to false.")
-		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.ingot")
+		@Config.LangKey("config.frogcraftrebirth.modpack.alt_aluminium_name.ingot")
 		@Config.Name("AlternativeAluminiumOreDictEntryForIngot")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumIngotOreDict = false;
 
 		@Config.Comment("If true, plateAluminum will be registered for aluminium plate. Will do nothing if altAluminiumOreDict is set to false.")
-		@Config.LangKey("config.fcrebirth.modpack.alt_aluminium_name.plate")
+		@Config.LangKey("config.frogcraftrebirth.modpack.alt_aluminium_name.plate")
 		@Config.Name("AlternativeAluminiumOreDictEntryForPlate")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumPlateOreDict = false;
 
-		@Config.Comment("Set it to true to disable all recipes. Useful for modpack creators.")
-		@Config.LangKey("config.fcrebirth.modpack.master_recipe_switch")
+		@Config.Comment("If false, FrogCraft: Rebirth won't register anything to Ore Dictionary.")
+		@Config.Name("EnableOreDictEntries")
+		@Config.RequiresMcRestart
+		public boolean enableOreDictEntries;
+
+		@Config.Comment("If false, all recipes will gone. Useful for modpack creators when they need some total overhaul.")
+		@Config.LangKey("config.frogcraftrebirth.modpack.master_recipe_switch")
 		@Config.Name("EnableAllRecipes")
 		@Config.RequiresMcRestart
 		public boolean enableRecipes = true;

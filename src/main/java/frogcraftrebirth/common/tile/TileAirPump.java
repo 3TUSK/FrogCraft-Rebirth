@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -26,34 +26,33 @@ import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiAirPump;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.gui.ContainerAirPump;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
+import frogcraftrebirth.common.lib.tile.TileEnergySink;
+import frogcraftrebirth.common.lib.tile.TileFrog;
+import ic2.api.energy.tile.IEnergyEmitter;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import frogcraftrebirth.common.lib.tile.TileEnergySink;
-import frogcraftrebirth.common.lib.tile.TileFrog;
-import ic2.api.energy.tile.IEnergyEmitter;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ITickable;
-import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
-
 public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, IAirPump, IHasWork {
 
-	private static final int MAX_AIR = 1000;
+	private static final int MAX_AIR = 100000; // According to original FrogCraft
 	private static final int MAX_CHARGE = 10000;
-	
-	public int charge;
+
 	private int airAmount, tick;
 	
 	public TileAirPump() {
-		super(1, MAX_CHARGE);
+		super(2, MAX_CHARGE); // 2 implies Middle Voltage (MV)
 	}
 	
 	@Override
@@ -126,27 +125,31 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	}
 
 	@Override
-	public int extractAir(EnumFacing from, int amount, boolean simluated) {
+	public int extractAir(EnumFacing from, int amount, boolean simulated) {
 		if (amount > this.airAmount) {
 			int toReturn = this.airAmount;
-			if (!simluated)
+			if (!simulated)
 				this.airAmount = 0;
 			return toReturn;
 		} else {
-			if (!simluated)
+			if (!simulated)
 				this.airAmount -= amount;
 			return amount;
 		}
 	}
 
+
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerAirPump(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this).withPlayerInventory(player.inventory).build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiAirPump(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiAirPump(this.getGuiContainer(world, player), this);
 	}
 }

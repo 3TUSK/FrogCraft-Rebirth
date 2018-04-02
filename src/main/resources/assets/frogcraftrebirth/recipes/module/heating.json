@@ -1,0 +1,30 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:heating_module"
+  },
+  "group": "frogcraftrebirth:module",
+  "pattern": [
+    " B ",
+    "SCS",
+    " B "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "B": {
+      "item": "ic2:crafting",
+      "data": 8
+    },
+    "S": {
+      "item": "ic2:casing",
+      "data": 5
+    },
+    "C": {
+      "item": "#circuit_advanced"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:tiny_carnallite_dust",
+    "count": 9
+  },
+  "type": "forge:ore_shapeless",
+  "ingredients": [
+    {
+      "item": "#dust_carnallite"
+    }
+  ]
+}

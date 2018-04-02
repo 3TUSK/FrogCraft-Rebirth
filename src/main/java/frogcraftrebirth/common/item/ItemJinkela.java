@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ package frogcraftrebirth.common.item;
 
 import java.util.List;
 
-import frogcraftrebirth.common.lib.item.ItemFrogCraft;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.resources.I18n;
@@ -37,13 +36,17 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
+
+public class ItemJinkela extends ItemFrog {
 
 	public ItemJinkela() {
-		super(false);
-		setUnlocalizedName("Item_Miscs.GoldClod");
+		super();
+		setUnlocalizedName("frogcraftrebirth.jinkela");
 	}
 
+	@Nonnull
 	@Override
 	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 		if (!playerIn.canPlayerEdit(pos, facing, playerIn.getHeldItem(hand)))
@@ -68,14 +71,8 @@ public class ItemJinkela extends ItemFrogCraft /*implements IWarpingGear*/ {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.Item_Miscs.GoldClod.info"));
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
+		tooltips.add(I18n.format("item.frogcraftrebirth.jinkela.info"));
 	}
-
-	//@Optional.Method(modid = "thaumcraft")
-	//@Override
-	//public int getWarp(ItemStack stack, EntityPlayer player) {
-	//	return stack.stackSize;
-	//}
 
 }

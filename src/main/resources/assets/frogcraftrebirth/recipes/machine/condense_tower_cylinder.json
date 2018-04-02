@@ -1,0 +1,30 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:condense_tower_cylinder"
+  },
+  "group": "frogcraftrebirth:machine",
+  "pattern": [
+    "SPS",
+    "SPS",
+    "SAS"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "S": {
+      "item": "#plate_aluminium"
+    },
+    "P": {
+      "item": "ic2:mining_pipe",
+      "data": 0
+    },
+    "A": {
+      "item": "ic2:resource",
+      "data": 13
+    }
+  }
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -30,7 +30,6 @@ import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
 import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.gui.ContainerCombustionFurnace;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.FrogFluidTank;
 import frogcraftrebirth.common.lib.capability.FluidHandlerOutputWrapper;
@@ -39,10 +38,12 @@ import frogcraftrebirth.common.lib.capability.ItemHandlerOutputWrapper;
 import frogcraftrebirth.common.lib.tile.TileEnergyGenerator;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.event.ForgeEventFactory;
@@ -60,9 +61,10 @@ import javax.annotation.Nullable;
 public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGui, IHasWork {
 
 	private static final int CHARGE_MAX = 5000;
-	public final ItemStackHandler input = new ItemStackHandler();
-	public final ItemStackHandler output = new ItemStackHandler();
-	public final ItemStackHandler fluidIO = new ItemStackHandler(2);
+
+	private final ItemStackHandler input = new ItemStackHandler();
+	private final ItemStackHandler output = new ItemStackHandler();
+	private final ItemStackHandler fluidIO = new ItemStackHandler(2);
 	public final FrogFluidTank tank = new FrogFluidTank(8000);
 	
 	public boolean working = false;
@@ -235,15 +237,27 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		return super.getCapability(capability, facing);
 	}
 
+
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerCombustionFurnace(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, input, output, fluidIO);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withFurnaceFuelSlot(input, 0, 24, 28)
+				.withOutputSlot(output, 0, 75, 28)
+				.withStandardSlot(fluidIO, 0, 113, 21)
+				.withOutputSlot(fluidIO, 1, 113, 56)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiCombustionFurnace(player.inventory, this);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiCombustionFurnace(this.getGuiContainer(world, player), this);
 	}
 
 }

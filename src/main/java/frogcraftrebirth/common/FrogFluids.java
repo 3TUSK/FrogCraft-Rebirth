@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -53,5 +53,6 @@ public class FrogFluids {
 	public static Fluid gasoline;
 	public static Fluid glycerol;
 	public static Fluid kerosene;
+	public static Fluid liquefiedAir;
 	public static Fluid methane;
 }

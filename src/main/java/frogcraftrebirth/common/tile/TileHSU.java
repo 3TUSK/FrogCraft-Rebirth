@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,16 +24,17 @@ package frogcraftrebirth.common.tile;
 
 import frogcraftrebirth.client.gui.GuiHybridEStorage;
 import frogcraftrebirth.client.gui.GuiTileFrog;
-import frogcraftrebirth.common.gui.ContainerHybridEStorage;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileEnergyStorage;
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.lib.util.ItemUtil;
 import ic2.api.item.ElectricItem;
-import ic2.api.item.IElectricItem;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
@@ -45,15 +46,18 @@ import javax.annotation.Nullable;
 
 public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	
-	public final ItemStackHandler inv = new ItemStackHandler(2);
+	private final ItemStackHandler inv = new ItemStackHandler(2);
 	
 	public TileHSU() {
 		this(100000000, 2048, 5, true);
 	}
 
-	@SuppressWarnings("WeakerAccess")
-	protected TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
+	TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
 		super(maxEnergy, output, tier, allowTelep);
+	}
+
+	public void updateOutputDirection(EnumFacing newDirection) {
+		this.emitDir = newDirection;
 	}
 
 	@Override
@@ -61,11 +65,11 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		if (getWorld().isRemote)
 			return;
 		
-		if (!inv.getStackInSlot(1).isEmpty() && inv.getStackInSlot(1).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(1).isEmpty()) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);
 		}
 		
-		if (!inv.getStackInSlot(0).isEmpty() && inv.getStackInSlot(0).getItem() instanceof IElectricItem) {
+		if (!inv.getStackInSlot(0).isEmpty()) {
 			this.storedE -= ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		}
 		
@@ -93,18 +97,28 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	@SuppressWarnings("unchecked")
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
-		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ? (T)inv : super.getCapability(capability, facing);
+		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ?
+			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv) : super.getCapability(capability, facing);
 	}
 
 	@Override
-	public ContainerTileFrog<? extends TileFrog> getGuiContainer(World world, EntityPlayer player) {
-		return new ContainerHybridEStorage(player.inventory, this);
+	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {
+		ItemUtil.dropInventoryItems(worldIn, pos, inv);
+	}
+
+	@Override
+	public ContainerTileFrog getGuiContainer(World world, EntityPlayer player) {
+		return ContainerTileFrog.Builder.from(this)
+				.withChargerSlot(inv, 0, 113, 24)
+				.withDischargeSlot(inv, 1, 113, 42)
+				.withPlayerInventory(player.inventory)
+				.build();
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public GuiTileFrog<? extends TileFrog, ? extends ContainerTileFrog<? extends TileFrog>> getGui(World world, EntityPlayer player) {
-		return new GuiHybridEStorage(player.inventory, this, this instanceof TileHSUUltra);
+	public GuiTileFrog<? extends TileFrog> getGui(World world, EntityPlayer player) {
+		return new GuiHybridEStorage(this.getGuiContainer(world, player), this, this instanceof TileHSUUltra);
 	}
 
 }

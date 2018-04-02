@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,19 +24,18 @@ package frogcraftrebirth.client.gui;
 
 import java.util.Collections;
 
-import frogcraftrebirth.common.gui.ContainerLiquefier;
+import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.util.MathUtil;
 import frogcraftrebirth.common.tile.TileLiquefier;
 import net.minecraft.client.resources.I18n;
-import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
-public class GuiLiquefier extends GuiTileFrog<TileLiquefier, ContainerLiquefier> {
+public class GuiLiquefier extends GuiTileFrog<TileLiquefier> {
 
-	public GuiLiquefier(InventoryPlayer playerInv, TileLiquefier tile) {
-		super(new ContainerLiquefier(playerInv, tile), tile, "GUI_Liquefier.png");
+	public GuiLiquefier(ContainerTileFrog container, TileLiquefier tile) {
+		super(container, tile, "GUI_Liquefier.png");
 	}
 	
 	@Override
@@ -63,7 +62,7 @@ public class GuiLiquefier extends GuiTileFrog<TileLiquefier, ContainerLiquefier>
 		int chargeIcon = 14 * tile.charge / 10000; // TileLiquefier has max charge of 10000;
 		this.drawTexturedModalRect(this.guiLeft + 81, this.guiTop + 27 + 14 - chargeIcon, 176, 52 + 14 - chargeIcon, 14, chargeIcon);
 	
-		int progress = 24 * tile.process / 200;
+		int progress = 24 * tile.process / 100;
 		this.drawTexturedModalRect(this.guiLeft + 77, this.guiTop + 56, 176, 70, progress, 17);
 	
 		this.renderFluidTank(tile.tank, this.guiLeft + 143, this.guiTop + 23, 16, 47);

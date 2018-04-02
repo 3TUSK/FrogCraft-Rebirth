@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -29,32 +29,27 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+
 @SideOnly(Side.CLIENT)
-class RegHelper {
+final class RegHelper {
+
+	static void registerModel(Block block, String newResLoc) {
+		registerModel(Item.getItemFromBlock(block), newResLoc);
+	}
 
 	static void registerModel(Item item, String newResLoc) {
-		registerModel(item, 0, newResLoc);
+		registerModel0(item, new ResourceLocation(FrogAPI.MODID, newResLoc));
 	}
 	
-	static void registerModel(Block block, String newResLoc) {
-		registerModel(block, 0, newResLoc);
-	}
-
-	static void registerModel(Item item, int metadata, String newResLoc) {
-		registerModel0(item, metadata, "frogcraftrebirth:" + newResLoc);
-	}
-	
-	static void registerModel(Block block, int metadata, String newResLoc) {
-		registerModel0(Item.getItemFromBlock(block), metadata, "frogcraftrebirth:" + newResLoc);
-	}
-	
-	private static void registerModel0(Item item, int metadata, String resourceLocation) {
-		ModelLoader.setCustomModelResourceLocation(item, metadata, new ModelResourceLocation(resourceLocation, "inventory"));
+	private static void registerModel0(Item item, ResourceLocation path) {
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(path, "inventory"));
 	}
 	
 	static void regFluidBlockTexture(Fluid fluid) {
@@ -62,8 +57,9 @@ class RegHelper {
 			if (fluid.getBlock() != null) {
 				ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
 				ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
+					@Nonnull
 					@Override
-					protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+					protected ModelResourceLocation getModelResourceLocation(@Nonnull IBlockState state) {
 						return aResource;
 					}
 				});

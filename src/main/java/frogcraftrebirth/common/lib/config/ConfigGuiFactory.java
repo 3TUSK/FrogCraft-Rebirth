@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -46,7 +46,7 @@ public class ConfigGuiFactory implements IModGuiFactory {
 
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parent) {
-		return new GuiConfig(parent, Collections.singletonList(ConfigElement.from(FrogConfig.class)), FrogAPI.MODID, false, false, FrogAPI.NAME, I18n.format("config.config.fcrebirth.2"));
+		return new GuiConfig(parent, Collections.singletonList(ConfigElement.from(FrogConfig.class)), FrogAPI.MODID, false, false, FrogAPI.NAME, I18n.format("config.frogcraftrebirth.2"));
 	}
 
 	@Override

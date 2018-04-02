@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -75,8 +75,7 @@ public enum NetworkHandler {
 	
 	@SideOnly(Side.CLIENT)
 	private void decodeDataClient(InputStream input, EntityPlayerSP player) {
-		DataInputStream data = new DataInputStream(input);
-		try {
+		try (DataInputStream data = new DataInputStream(input)){
 			byte identity = data.readByte();
 			switch(identity) {
 				case 0: {
@@ -94,8 +93,7 @@ public enum NetworkHandler {
 	}
 	
 	private void decodeDataServer(InputStream input, EntityPlayerMP player) {
-		DataInputStream data = new DataInputStream(input);
-		try {
+		try (DataInputStream data = new DataInputStream(input)){
 			byte identity = data.readByte();
 			switch (identity) {
 				default:

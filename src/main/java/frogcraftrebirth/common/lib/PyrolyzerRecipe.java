@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2017 3TUSK, et al.
+ * Copyright (c) 2015 - 2018 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,28 +22,31 @@
 
 package frogcraftrebirth.common.lib;
 
+import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 
-	private final ItemStack input, output;
+	private final IFrogRecipeInput input;
+	private final ItemStack output;
 	private final FluidStack outputFluid;
 	private final int time, energyPerTick;
 	
-	public PyrolyzerRecipe(ItemStack input, ItemStack output, FluidStack outputFluid, int time, int energyPerTick){
+	public PyrolyzerRecipe(IFrogRecipeInput input, ItemStack output, FluidStack outputFluid, int time, int energyPerTick) {
 		this.input = input;
 		this.output = output;
 		this.outputFluid = outputFluid;
 		this.time = time;
 		this.energyPerTick = energyPerTick;
 	}
-	
-	public ItemStack getInput() {
-		return input.copy();
+
+	@Override
+	public IFrogRecipeInput getActualInput() {
+		return input;
 	}
-	
+
 	public ItemStack getOutput() {
 		return output.copy();
 	}
@@ -62,7 +65,7 @@ public class PyrolyzerRecipe implements IPyrolyzerRecipe {
 	
 	@Override
 	public boolean equals(Object r) {
-		return r instanceof PyrolyzerRecipe && ((PyrolyzerRecipe)r).getInput().isItemEqual(this.input);
+		return r instanceof PyrolyzerRecipe && ((PyrolyzerRecipe)r).getActualInput().matches(this.input);
 	}
 
 }

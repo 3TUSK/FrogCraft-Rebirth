@@ -8,18 +8,18 @@
 #   https://en.wikipedia.org/wiki/Jinkela
 #   If you are not sure about the translation, please keep as it is, or use equivalent transcription
 
-tile.mobilePowerStation.normal.name=Mobile Power Supply
-tile.mobilePowerStation.info=§oThe best camping gear
+block.frogcraftrebirth.mobile_power_station=Mobile Power Supply
+block.frogcraftrebirth.mobile_power_station.info=§oThe best camping gear
 item.frogcraftrebirth.ammonia_coolant.60K=60K Ammonia Coolant Cell
 item.frogcraftrebirth.ammonia_coolant.180K=180K Ammonia Coolant Cell
 item.frogcraftrebirth.ammonia_coolant.360K=360K Ammonia Coolant Cell
-item.UBattery.name=Uranium Decay Battery
-item.ThBattery.name=Thorium Decay Battery
-item.PuBattery.name=Plutonium Decay Battery
-item.DecayBattery.info.0=A radioactive decay battery
-item.DecayBattery.info.1=Provide you with infinite electricity at a high cost!
-item.Item_NitricAcidBucket.name=Nitric Acid Bucket
-item.Item_NitricAcidBucket.info=Warning: Super Corrosive!
+item.uranium_decay_battery=Uranium Decay Battery
+item.thorium_decay_battery=Thorium Decay Battery
+item.plutonium_decay_battery=Plutonium Decay Battery
+item.decay_battery.info.0=A radioactive decay battery
+item.decay_battery.info.1=Provide you with infinite electricity at a high cost!
+item.nitric_acid_bucket.name=Nitric Acid Bucket
+item.nitric_acid_bucket.info=Warning: Super Corrosive!
 
 item.metal_ingot.aluminium=Aluminium Ingot
 item.metal_ingot.aluminium.info=Al
@@ -197,38 +197,38 @@ fluid.sulfur_trioxide.info=SO₃
 item.frogcraftrebirth.jinkela=Goldclod
 item.frogcraftrebirth.jinkela.info=Magical fertilizer additive
 
-item.reactionModule.Electrolyze=Electrolyzer Component
-item.reactionModule.Electrolyze.info=Electrolyze the reactant
-item.reactionModule.Heating=Heating Component
-item.reactionModule.Heating.info=Provide heat to an endothermic reaction
-item.reactionModule.Ammonia=Ammonia Catalyst
-item.reactionModule.Ammonia.info=Necessary for ammonia manufacturing
-item.reactionModule.V2O5=Vanadium Pentoxide Catalyst
-item.reactionModule.V2O5.info=Necessary for SO₃ manufacturing
+item.electrolysis_module=Electrolyzer Component
+item.electrolysis_module.info=Electrolyze the reactant
+item.heating_module=Heating Component
+item.heating_module.info=Provide heat to an endothermic reaction
+item.ammonia_catalyst_module=Ammonia Catalyst
+item.ammonia_catalyst_module.info=Necessary for ammonia manufacturing
+item.sulfur_trioxide_module=Vanadium Pentoxide Catalyst
+item.sulfur_trioxide_module.info=Necessary for SO₃ manufacturing
 
 #Blocks
-tile.mineral.carnallite.name=Carnallite Ore
-tile.mineral.dewalquite.name=Dewalquite Ore
-tile.mineral.fluorapatite.name=Fluorapatite Ore
+block.frogcraftrebirth.carnallite=Carnallite Ore
+block.frogcraftrebirth.dewalquite=Dewalquite Ore
+block.frogcraftrebirth.fluorapatite=Fluorapatite Ore
 
-tile.condenseTower.core.name=Condense Tower
-tile.condenseTower.output.name=Liquid Outlet
-tile.condenseTower.cylinder.name=Condense Tower Wall
+block.frogcraftrebirth.condense_tower_core=Condense Tower
+block.frogcraftrebirth.condense_tower_output=Liquid Outlet
+block.frogcraftrebirth.condense_tower_cylinder=Condense Tower Wall
 
-tile.hybridStorageUnit.normal.name=Hybrid Storage Unit (HSU)
-tile.hybridStorageUnit.ultra.name=Ultimate Hybrid Storage Unit (UHSU)
+block.frogcraftrebirth.hsu=Hybrid Storage Unit (HSU)
+block.frogcraftrebirth.uhsu=Ultimate Hybrid Storage Unit (UHSU)
 
-tile.hybridStorageUnit.EVT.name=EV Transformer
+block.frogcraftrebirth.extreme_voltage_transformer=EV Transformer
 
-tile.generator.combustionFurnace.name=Combustion Furnace
+block.frogcraftrebirth.combustion_furnace=Combustion Furnace
 
-tile.machines.advchemreactor.name=Advanced Chemical Reactor
-tile.machines.airpump.name=Industrial Air Pump
-tile.machines.pyrolyzer.name=Pyrolyzer
-tile.machines.liquefier.name=Liquefier
-tile.machines.adv_blast_furnace.name=Advanced Blast Furnace
+block.frogcraftrebirth.advanced_chemical_reactor=Advanced Chemical Reactor
+block.frogcraftrebirth.air_pump=Industrial Air Pump
+block.frogcraftrebirth.pyrolyzer=Pyrolyzer
+block.frogcraftrebirth.liquefier=Liquefier
+block.frogcraftrebirth.advanced_blast_furnace=Advanced Blast Furnace
 
-tile.nitricAcid.name=Nitric Acid
+block.frogcraftrebirth.nitric_acid=Nitric Acid
 
 #Advancements
 advancement.frogcraftrebirth.root.name=Origin of Chemical Industry
@@ -275,7 +275,7 @@ gui.fluid.name=Name: %s
 gui.fluid.amount=Amount: %d mB
 gui.fluid.null=No fluid in this tank
 
-#JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
+#JEI GUI texts
 jei.category.condensation=Condensation
 jei.category.pyrolyzation=Pyrolysis
 jei.category.chemreaction=Adv. Chemical Reactor
@@ -285,9 +285,9 @@ jei.euTotal=Total: %d EU
 jei.euTick=Power: %d EU/t
 jei.tick=Time in ticks: %d
 
-nei.tickWithCatalyst=Reaction tick under catalyst
-nei.catalystRequired=This reaction requires catalyst
-nei.outputLiquid=Output liquid
+jei.tickWithCatalyst=Reaction tick under catalyst
+jei.catalystRequired=This reaction requires catalyst
+jei.outputLiquid=Output liquid
 
 jei.doc.advChemReactor=Advanced Chemical Reactor is a highly-advanced machine that is capable to allow many chemical reaction happen inside of it. \nIt has 5 input slots, 5 output slots, individual cell input/output slot and a reaction module slot.
 jei.doc.airPump=Air Pump is a machine that can produce high-pressure air. Place one of it below Liquefier will automatically supply Liquefier with high-pressure air. 

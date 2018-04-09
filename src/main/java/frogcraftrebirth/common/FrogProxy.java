@@ -52,6 +52,9 @@ public class FrogProxy {
 
 	@OverridingMethodsMustInvokeSuper
 	public void init(FMLInitializationEvent event) {
+		if (FrogConfig.modpackOptions.enableOreDictEntries) {
+			FrogRecipes.initOreDict();
+		}
 		FrogAPI.managerABF = new AdvBlastFurnaceRecipeManager();
 		FrogAPI.managerACR = new AdvChemRecRecipeManager();
 		FrogAPI.managerCT = new CondenseTowerRecipeManager();

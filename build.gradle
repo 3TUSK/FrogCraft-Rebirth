@@ -75,12 +75,12 @@ processResources {
 }
 
 task devJar(type: Jar, dependsOn: jar) {
-    classifier 'dev'
+    classifier = 'dev'
     from sourceSets.main.output
 }
 
 task apiJar(type: Jar, dependsOn: jar) {
-    classifier 'api'
+    classifier = 'api'
     from (sourceSets.main.output) {
         include "frogcraftrebirth/api/**"
     }

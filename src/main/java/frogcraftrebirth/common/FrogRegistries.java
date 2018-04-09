@@ -226,10 +226,6 @@ public final class FrogRegistries {
 				new ItemFlammable(200).setUnlocalizedName("frogcraftrebirth.lipid").setRegistryName("lipid"),
 				new ItemPotassium().setUnlocalizedName("potassium").setRegistryName("potassium")
 		);
-
-		if (FrogConfig.modpackOptions.enableOreDictEntries) {
-			FrogRecipes.initOreDict();
-		}
 	}
 
 	@SubscribeEvent

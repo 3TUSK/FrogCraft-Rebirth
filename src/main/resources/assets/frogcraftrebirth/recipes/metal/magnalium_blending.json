@@ -1,0 +1,27 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:magnalium_dust",
+    "count": 3
+  },
+  "group": "frogcraftrebirth:resource",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustAluminium"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustAluminium"
+    },
+    {
+      "type": "forge:ore_dict",
+      "ore": "dustMagnesium"
+    }
+  ]
+}

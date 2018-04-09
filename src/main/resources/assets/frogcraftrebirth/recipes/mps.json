@@ -16,9 +16,14 @@
   ],
   "type": "forge:ore_shaped",
   "key": {
-    "I": {
-      "item": "#plate_iron"
-    },
+    "I": [
+      {
+        "item": "#plate_iron"
+      },
+      {
+        "item": "#plate_aluminium"
+      }
+    ],
     "C": {
       "item": "#circuit_advanced"
     },

@@ -1,0 +1,22 @@
+{
+  "conditions": [
+    {
+      "type": "enable"
+    }
+  ],
+  "result": {
+    "item": "frogcraftrebirth:magnesium_dust"
+  },
+  "group": "frogcraftrebirth:resource",
+  "pattern": [
+    "DDD",
+    "DDD",
+    "DDD"
+  ],
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "D": {
+      "item": "frogcraftrebirth:tiny_magnesium_dust"
+    }
+  }
+}

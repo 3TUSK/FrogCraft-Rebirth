@@ -25,7 +25,7 @@ package frogcraftrebirth.common;
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraftforge.common.config.Config;
 
-@SuppressWarnings("CanBeFinal")
+@SuppressWarnings({"CanBeFinal", "WeakerAccess"})
 @Config(modid = FrogAPI.MODID)
 @Config.LangKey("config.frogcraftrebirth.general")
 public final class FrogConfig {
@@ -62,7 +62,6 @@ public final class FrogConfig {
 	@Config.RequiresMcRestart
 	public static boolean enableWorldGen = true;
 
-
 	public static final class CompatibilityOptions {
 		public boolean enableTechRebornCompatibility = false;
 	}
@@ -93,6 +92,12 @@ public final class FrogConfig {
 		@Config.Name("AlternativeAluminiumOreDictEntryForPlate")
 		@Config.RequiresMcRestart
 		public boolean altAluminiumPlateOreDict = false;
+
+		@Config.Comment("If true, plateDenseAluminum will be registered for aluminium plate. Will do nothing if altAluminiumOreDict is set to false.")
+		@Config.LangKey("config.frogcraftrebirth.modpack.alt_aluminium_name.dense_plate")
+		@Config.Name("AlternativeAluminiumOreDictEntryForDensePlate")
+		@Config.RequiresMcRestart
+		public boolean altAluminiumDensePlateOreDict;
 
 		@Config.Comment("If false, FrogCraft: Rebirth won't register anything to Ore Dictionary.")
 		@Config.Name("EnableOreDictEntries")

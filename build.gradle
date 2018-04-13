@@ -21,7 +21,7 @@ group = "frogcraftrebirth"
 archivesBaseName = "FrogCraft-Rebirth"
 
 if (System.getenv('PUBLIC_BUILD') == null) {
-    version += "+" + "git rev-parse --short HEAD".execute().text.trim()
+    version += "+" + "git rev-parse --short HEAD".execute().text.trim() + "-SNAPSHOT"
 }
 
 repositories {
@@ -46,6 +46,13 @@ minecraft {
     mappings = Mapping_Ver
     
     replace "@VERSION@", project.version
+}
+
+jar {
+    manifest {
+        attributes 'Maven-Artifact': "${project.group}:${project.archivesBaseName}:${project.version}"
+        attributes 'Timestamp': System.currentTimeMillis()
+    }
 }
 
 dependencies {

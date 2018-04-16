@@ -138,7 +138,7 @@ public final class FrogTextures {
 	}
 
 	@SubscribeEvent
-	public static void regFluidSpirit(TextureStitchEvent event) {
+	public static void regFluidSpirit(TextureStitchEvent.Pre event) {
 		TextureMap textureMap = event.getMap();
 		textureMap.registerSprite(FrogFluids.ammonia.getFlowing());
 		textureMap.registerSprite(FrogFluids.ammonia.getStill());

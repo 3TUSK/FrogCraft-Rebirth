@@ -41,13 +41,13 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 
-final class FrogIMCHandler {
+public final class FrogIMCHandler {
 	
 	private FrogIMCHandler() {
 		throw new UnsupportedOperationException();
 	}
 	
-	static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
+	public static void resolveIMCMessage(Collection<FMLInterModComms.IMCMessage> messages) {
 		for (FMLInterModComms.IMCMessage message : messages) {
 			if (message.isNBTMessage()) {
 				NBTTagCompound theTag = message.getNBTValue();

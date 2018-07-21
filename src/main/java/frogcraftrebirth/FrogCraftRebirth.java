@@ -23,13 +23,30 @@
 package frogcraftrebirth;
 
 import frogcraftrebirth.api.FrogAPI;
-import frogcraftrebirth.common.FrogProxy;
+import frogcraftrebirth.common.FrogConfig;
+import frogcraftrebirth.common.FrogEventListener;
+import frogcraftrebirth.common.FrogGuiHandler;
+import frogcraftrebirth.common.FrogIMCHandler;
+import frogcraftrebirth.common.FrogRecipes;
+import frogcraftrebirth.common.lib.AdvBlastFurnaceRecipeManager;
+import frogcraftrebirth.common.lib.AdvChemRecRecipeManager;
+import frogcraftrebirth.common.lib.CondenseTowerRecipeManager;
+import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthBlockRemapper;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthItemRemapper;
+import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthTileEntityRemapper;
+import frogcraftrebirth.common.network.NetworkHandler;
+import frogcraftrebirth.common.world.FrogWorldGenerator;
+import net.minecraft.util.datafix.FixTypes;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.util.ModFixs;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  * Entry class of the mod, FrogCraft: Rebirth.
@@ -61,38 +78,47 @@ public final class FrogCraftRebirth {
 		return INSTANCE;
 	}
 
-	/**
-	 * The proxy instance to which the entry class delegate all its methods.
-	 * <p>
-	 *     Note that the actual value is injected during the mod construction
-	 *     period. The actual value is determined by the physical server/client.
-	 * </p>
-	 */
-	@SidedProxy(serverSide = "frogcraftrebirth.common.FrogProxy", clientSide = "frogcraftrebirth.client.FrogProxyClient")
-	public static FrogProxy proxy;
-
 	private FrogCraftRebirth() {
-		net.minecraftforge.fluids.FluidRegistry.enableUniversalBucket();
-	}
-
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		proxy.preInit(event);
+		FluidRegistry.enableUniversalBucket();
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		proxy.init(event);
+		NetworkHandler.init();
+		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
+		if (FrogConfig.modpackOptions.enableOreDictEntries) {
+			FrogRecipes.initOreDict();
+		}
+		FrogAPI.managerABF = new AdvBlastFurnaceRecipeManager();
+		FrogAPI.managerACR = new AdvChemRecRecipeManager();
+		FrogAPI.managerCT = new CondenseTowerRecipeManager();
+		FrogAPI.managerPyrolyzer = new PyrolyzerRecipeManger();
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.init();
+		}
+		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
+			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
+		}
+		ModFixs fixer = FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);
+		fixer.registerFix(FixTypes.ITEM_INSTANCE, new LegacyFrogCraftRebirthItemRemapper());
+		fixer.registerFix(FixTypes.CHUNK, new LegacyFrogCraftRebirthBlockRemapper());
+		fixer.registerFix(FixTypes.BLOCK_ENTITY, new LegacyFrogCraftRebirthTileEntityRemapper());
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed initialization phase");
 	}
 
 	@Mod.EventHandler
 	public void imcInit(FMLInterModComms.IMCEvent event) {
-		proxy.imcInit(event);
+		FrogIMCHandler.resolveIMCMessage(event.getMessages());
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		proxy.postInit(event);
+		if (FrogConfig.modpackOptions.enableRecipes) {
+			FrogRecipes.postInit();
+		}
+		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed post-initialization phase");
+		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has finished loading. The era from chemistry will begin!");
 	}
 
 }

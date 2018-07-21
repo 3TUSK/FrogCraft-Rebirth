@@ -49,7 +49,7 @@ import net.minecraftforge.oredict.OreDictionary;
 import java.util.Arrays;
 import java.util.Collections;
 
-class FrogRecipes {
+public class FrogRecipes {
 	
 	public static void init() {
 		if (FrogConfig.modpackOptions.enableRecipes) {
@@ -147,7 +147,7 @@ class FrogRecipes {
 		}
 	}
 	
-	static void postInit() {
+	public static void postInit() {
 		MPSUpgradeManager.INSTANCE.registerSolarUpgrade(IC2Items.getItem("te", "solar_generator"));
 		MPSUpgradeManager.INSTANCE.registerStorageUpgrade(IC2Items.getItem("upgrade", "energy_storage"), 10000);
 		MPSUpgradeManager.INSTANCE.registerVoltageUpgrades(IC2Items.getItem("upgrade", "transformer"), 1);
@@ -212,7 +212,7 @@ class FrogRecipes {
 		Recipes.metalformerRolling.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.MAGNESIUM_PLATE)), null, false, new ItemStack(FrogGameObjects.MAGNESIUM_CASING, 2));
 	}
 	
-	static void initOreDict() {
+	public static void initOreDict() {
 		OreDictionary.registerOre("oreCarnallite", new ItemStack(FrogGameObjects.CARNALLITE));
 		OreDictionary.registerOre("oreDewalquite", new ItemStack(FrogGameObjects.DEWALQUITE));
 		OreDictionary.registerOre("oreFluorapatite", new ItemStack(FrogGameObjects.FLUORAPATITE));

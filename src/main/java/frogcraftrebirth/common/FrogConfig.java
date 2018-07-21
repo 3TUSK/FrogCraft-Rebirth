@@ -32,11 +32,11 @@ public final class FrogConfig {
 
 	@Config.Comment("All options related to modpack creation.")
 	@Config.Name("ModpackOptions")
-	public static ModpackOptions modpackOptions = new ModpackOptions();
+	public static final ModpackOptions modpackOptions = new ModpackOptions();
 
 	@Config.Comment("All options related to cross-mod compatibility")
 	@Config.Name("CompatibilityOptions")
-	public static CompatibilityOptions compatibilityOptions = new CompatibilityOptions();
+	public static final CompatibilityOptions compatibilityOptions = new CompatibilityOptions();
 
 	@Config.Comment("EU consumption rate of Air Pump, in EU/t.")
 	@Config.LangKey("config.frogcraftrebirth.machine.airpump_power_rate")
@@ -110,25 +110,9 @@ public final class FrogConfig {
 		@Config.RequiresMcRestart
 		public boolean enableRecipes = true;
 
-		@Config.Name("EnableCondenseTower")
-		@Config.RequiresMcRestart
-		public boolean enableCondenseTower = true;
-
-		@Config.Name("EnableAirPump")
-		@Config.RequiresMcRestart
-		public boolean enableAirPump = true;
-
 		@Config.Name("EnableMobilePowerStation")
 		@Config.RequiresMcRestart
 		public boolean enableMobilePowerStation = true;
-
-		@Config.Name("EnableLiquefier")
-		@Config.RequiresMcRestart
-		public boolean enableLiquefier = true;
-
-		@Config.Name("EnablePyrolyzer")
-		@Config.RequiresMcRestart
-		public boolean enablePyrolyzer = true;
 
 		@Config.Name("EnableOres")
 		@Config.RequiresMcRestart

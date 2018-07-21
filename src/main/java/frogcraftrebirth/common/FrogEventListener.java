@@ -28,21 +28,23 @@ import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.event.furnace.FurnaceFuelBurnTimeEvent;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.oredict.OreDictionary;
 
+@Mod.EventBusSubscriber(modid = FrogAPI.MODID)
 public final class FrogEventListener {
 
 	@SubscribeEvent
-	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
+	public static void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent event) {
 		if (event.getModID().equals(FrogAPI.MODID)) {
 			ConfigManager.sync(FrogAPI.MODID, Config.Type.INSTANCE);
 		}
 	}
 
 	@SubscribeEvent(priority = EventPriority.LOWEST)
-	public void onFuelValueQueried(FurnaceFuelBurnTimeEvent event) {
+	public static void onFuelValueQueried(FurnaceFuelBurnTimeEvent event) {
 		if (OreDictionary.doesOreNameExist("dustSulfur")) {
 			for (ItemStack stack : OreDictionary.getOres("dustSulfur")) {
 				if (stack.isItemEqual(event.getItemStack())) {

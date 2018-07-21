@@ -24,7 +24,6 @@ package frogcraftrebirth;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.FrogConfig;
-import frogcraftrebirth.common.FrogEventListener;
 import frogcraftrebirth.common.FrogGuiHandler;
 import frogcraftrebirth.common.FrogIMCHandler;
 import frogcraftrebirth.common.FrogRecipes;
@@ -116,7 +115,6 @@ public final class FrogCraftRebirth {
 		if (FrogConfig.modpackOptions.enableRecipes) {
 			FrogRecipes.postInit();
 		}
-		MinecraftForge.EVENT_BUS.register(new FrogEventListener());
 		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has completed post-initialization phase");
 		FrogAPI.FROG_LOG.info("FrogCraft: Rebirth has finished loading. The era from chemistry will begin!");
 	}

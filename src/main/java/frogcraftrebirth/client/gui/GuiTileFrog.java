@@ -23,6 +23,7 @@
 package frogcraftrebirth.client.gui;
 
 import frogcraftrebirth.api.FrogAPI;
+import frogcraftrebirth.client.FluidStackRenderer;
 import frogcraftrebirth.common.gui.ContainerTileFrog;
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -77,14 +78,8 @@ public abstract class GuiTileFrog<T extends TileFrog> extends GuiContainer {
 	 * @param tankHeight The fluid tank full height in the GUI texture
 	 */
 	void renderFluidTank(final IFluidTank tank, final int x, final int y, final int tankWidth, final int tankHeight) {
-		if (tank == null || tank.getFluid() == null)
-			return;
-		
-		TextureAtlasSprite fluidSprite = this.mc.getTextureMapBlocks().getAtlasSprite(tank.getFluid().getFluid().getStill().toString());
-		this.mc.getTextureManager().bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
-		
-		int scaledHeight = tankHeight * tank.getFluidAmount() / tank.getCapacity();
-		this.drawTexturedModalRect(x, y + tankHeight - scaledHeight, fluidSprite, tankWidth, scaledHeight);
+		FluidStackRenderer renderer = new FluidStackRenderer(tank.getCapacity(), true, tankWidth, tankHeight);
+		renderer.render(mc, x, y, tank.getFluid());
 	}
 	
 	/**
@@ -94,12 +89,11 @@ public abstract class GuiTileFrog<T extends TileFrog> extends GuiContainer {
 	 * @param y The {@link GuiContainer#drawGuiContainerForegroundLayer mouseY}
 	 */
 	void renderFluidTankTooltip(final IFluidTank tank, final int x, final int y) {
+		FluidStackRenderer renderer = new FluidStackRenderer(tank.getCapacity(), true, 0, 0);
+
 		FluidStack stack = tank.getFluid();
 		if (stack != null) {
-			String name = stack.getLocalizedName();
-			int amount = stack.amount;
-			String[] info = new String[] {I18n.format("gui.fluid.name", name), I18n.format("gui.fluid.amount", amount)};
-			this.drawHoveringText(Arrays.asList(info), x - guiLeft, y - guiTop);
+			this.drawHoveringText(renderer.getTooltip(tank.getFluid()), x - guiLeft, y - guiTop);
 		} else {
 			this.drawHoveringText(Collections.singletonList(I18n.format("gui.fluid.null")), x - guiLeft, y - guiTop);
 		}

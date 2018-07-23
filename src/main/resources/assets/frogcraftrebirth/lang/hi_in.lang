@@ -177,8 +177,6 @@ gui.combustionFurnace.title=ज्वलन का भट्ठी
 
 gui.MPS.title=मोबाइल पावर सप्लाई
 
-gui.fluid.name=Name: %s
-gui.fluid.amount=Amount: %d mB
 gui.fluid.null=इस टैंक में कोई लिक्विड नहीं है
 
 #JEI GUI texts - some of those keys start with nei for legacy reasons, and will be changed soon.
@@ -188,6 +186,9 @@ jei.category.pyrolyzation=पयरोलाईसिस
 jei.euTotal=Total: %d EU
 jei.euTick=Power: %d EU/t
 jei.tick=Time in ticks: %d
+
+jei.tooltip.liquid.amount.with.capacity=%,d / %,d mB
+jei.tooltip.liquid.amount=%,d mB
 
 nei.tickWithCatalyst=रीऐक्शन टिक कैटलस्ट के नीचे
 nei.catalystRequired=इस रीऐक्शन को कैटलस्ट की ज़रारत है

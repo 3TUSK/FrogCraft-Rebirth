@@ -49,14 +49,14 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 /**
  * Entry class of the mod, FrogCraft: Rebirth.
- * By setting useMetadta = true, its metadata is provided via mcmod.info
+ * By setting useMetadata = true, its metadata is provided via mcmod.info
  * file under resources folder.
  * Some of the metadata is hardcoded hereby to ensure that
  * ForgeModLoader won't complain at runtime.
  */
 @Mod(
-		modid = FrogAPI.MODID, 
-		name = FrogAPI.NAME, 
+		modid = FrogAPI.MODID,
+		name = FrogAPI.NAME,
 		version = "@VERSION@",
 		acceptedMinecraftVersions = "[1.12, 1.13)",
 		guiFactory = "frogcraftrebirth.common.lib.config.ConfigGuiFactory", 

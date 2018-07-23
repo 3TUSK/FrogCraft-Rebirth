@@ -265,6 +265,7 @@ gui.HSU.store=EU: %d
 gui.HSU.max=Max. EU: %d
 gui.HSU.output=Output: %d EU/tick
 
+gui.air_pump.title=Industrial Air Pump
 gui.pyrolyzer.title=Pyrolyzer
 
 gui.combustionFurnace.title=Combustion Furnace

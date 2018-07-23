@@ -41,7 +41,7 @@ public class GuiAirPump extends GuiTileFrog<TileAirPump> {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		super.drawGuiContainerForegroundLayer(mouseX, mouseY);
-		this.fontRenderer.drawString("Industrial Air Pump", 8, ySize - 155, 4210752);
+		this.fontRenderer.drawString(I18n.format("gui.air_pump.title"), 8, ySize - 155, 4210752);
 		this.fontRenderer.drawString(I18n.format("container.inventory"), 8, this.ySize - 96 + 2, 4210752);
 		
 		if (mouseX > 118 + guiLeft && mouseX < 132 + guiLeft && mouseY > 33 + guiTop && mouseY < 47 + guiTop) {

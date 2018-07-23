@@ -265,6 +265,7 @@ gui.HSU.store=当前EU：%d
 gui.HSU.max=最大EU：%d
 gui.HSU.output=当前输出：%d EU/tick
 
+gui.air_pump.title=工业气泵
 gui.pyrolyzer.title=热裂解机
 
 gui.combustionFurnace.title=焚烧炉

@@ -1,5 +1,10 @@
 {
-	"variants": {
-		"normal": { "model": "frogcraftrebirth:dewalquite" }
-	}
+  "forge_marker": 1,
+  "defaults": {
+    "model": "frogcraftrebirth:dewalquite"
+  },
+  "variants": {
+    "inventory": [{ "transform": "forge:default-block" }],
+    "normal": [{}]
+  }
 }

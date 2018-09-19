@@ -1,5 +1,10 @@
 {
-	"variants": {
-		"normal": { "model": "frogcraftrebirth:fluorapatite" }
-	}
+  "forge_marker": 1,
+  "defaults": {
+    "model": "frogcraftrebirth:fluorapatite"
+  },
+  "variants": {
+    "inventory": [{ "transform": "forge:default-block" }],
+    "normal": [{}]
+  }
 }

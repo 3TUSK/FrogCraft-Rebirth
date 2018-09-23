@@ -1,9 +1,12 @@
 {
 	"forge_marker": 1,
+	"defaults": {
+		"model": "frogcraftrebirth:condense_tower_cylinder"
+	},
 	"variants": {
-		"inventory": [{}],
-		"normal": {
-			"model": "frogcraftrebirth:condense_tower_cylinder"
-		}
+		"inventory": [{
+			"transform": "forge:default-block"
+		}],
+		"normal": [{}]
 	}
 }

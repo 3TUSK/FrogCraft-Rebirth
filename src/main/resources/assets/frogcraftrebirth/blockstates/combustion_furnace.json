@@ -1,6 +1,10 @@
 {
 	"forge_marker": 1,
 	"variants": {
+		"inventory": [{
+			"model": "frogcraftrebirth:combustion_furnace",
+			"transform": "forge:default-block"
+		}],
 		"facing": {
 			"east": { "y": 90, "uvlock": true },
 			"north": {},

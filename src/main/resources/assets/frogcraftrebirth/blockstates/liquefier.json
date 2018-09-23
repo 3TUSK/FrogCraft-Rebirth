@@ -1,9 +1,14 @@
 {
 	"forge_marker": 1,
+	"defaults": {
+		"model": "frogcraftrebirth:machine/liquefier"
+	},
 	"variants": {
-		"inventory": [{}],
+		"inventory": [{
+			"transform": "forge:default-block"
+		}],
 		"working": {
-			"false": { "model": "frogcraftrebirth:machine/liquefier" }, 
+			"false": {},
 			"true": { "model": "frogcraftrebirth:machine/liquefier_active" }
 		}
 	}

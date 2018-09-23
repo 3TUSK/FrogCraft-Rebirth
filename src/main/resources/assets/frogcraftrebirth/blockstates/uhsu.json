@@ -4,6 +4,9 @@
 		"model": "frogcraftrebirth:ultra_hybrid_storage_unit"
 	},
 	"variants": {
+		"inventory": [{
+			"transform": "forge:default-block"
+		}],
 		"facing": {
 			"up": { "x": 90 },
 			"down": { "x": 270 },

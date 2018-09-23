@@ -1,10 +1,12 @@
 {
-	"forge_marker": 1,
-	"defaults": {
-		"model": "frogcraftrebirth:mobile_power_station"
-	},
-	"variants": {
-		"normal": [{}],
-		"inventory": [{}]
-	}
+  "forge_marker": 1,
+  "defaults": {
+    "model": "frogcraftrebirth:mobile_power_station"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{
+        "transform": "forge:default-block"
+    }]
+  }
 }

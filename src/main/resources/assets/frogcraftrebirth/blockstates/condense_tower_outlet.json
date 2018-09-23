@@ -4,8 +4,9 @@
 		"model": "frogcraftrebirth:condense_tower_outlet"
 	},
 	"variants": {
-		"normal": [{}],
-		"inventory": [{}],
+		"inventory": [{
+			"transform": "forge:default-block"
+		}],
 		"facing": {
 			"north": {},
 			"east": { "y": 90, "uvlock": true },

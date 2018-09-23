@@ -1,7 +1,10 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"inventory": [{}],
+		"inventory": [{
+			"model": "frogcraftrebirth:machine/adv_chem_reactor",
+			"transform": "forge:default-block"
+		}],
 		"facing": {
 			"east": { "y": 90, "uvlock": true },
 			"north": {},

@@ -36,16 +36,17 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nonnull;
+import java.util.Objects;
 
 @SideOnly(Side.CLIENT)
 final class RegHelper {
 
-	static void registerModel(Block block, String newResLoc) {
-		registerModel(Item.getItemFromBlock(block), newResLoc);
+	static void registerModel(Block block) {
+		registerModel(Item.getItemFromBlock(block), Objects.requireNonNull(block.getRegistryName()).getPath());
 	}
 
 	static void registerModel(Item item, String newResLoc) {
-		registerModel0(item, new ResourceLocation(FrogAPI.MODID, newResLoc));
+		registerModel0(Objects.requireNonNull(item), new ResourceLocation(FrogAPI.MODID, newResLoc));
 	}
 	
 	private static void registerModel0(Item item, ResourceLocation path) {

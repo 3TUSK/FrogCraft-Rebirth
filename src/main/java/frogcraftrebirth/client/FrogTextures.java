@@ -116,21 +116,21 @@ public final class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.SHATTERED_COAL_COKE, "inflammable/shattered_coal_coke");
 		RegHelper.registerModel(FrogGameObjects.SOAP, "soap");
 
-		RegHelper.registerModel(FrogGameObjects.CARNALLITE, "carnallite");
-		RegHelper.registerModel(FrogGameObjects.DEWALQUITE, "dewalquite");
-		RegHelper.registerModel(FrogGameObjects.FLUORAPATITE, "fluorapatite");
-		RegHelper.registerModel(FrogGameObjects.MPS, "mobile_power_station");
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CORE, "condensetower/core");
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CYLINDER, "condensetower/cylinder");
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_OUTLET, "condensetower/outlet");
-		RegHelper.registerModel(FrogGameObjects.ADV_CHEM_REACTOR, "machine/advanced_chemical_reactor");
-		RegHelper.registerModel(FrogGameObjects.AIR_PUMP, "machine/air_pump");
-		RegHelper.registerModel(FrogGameObjects.PYROLYZER, "machine/pyrolyzer");
-		RegHelper.registerModel(FrogGameObjects.LIQUEFIER, "machine/liquefier");
-		RegHelper.registerModel(FrogGameObjects.ADV_BLAST_FURNACE, "machine/advanced_blast_furnace");
-		RegHelper.registerModel(FrogGameObjects.COMBUSTION_FURNACE, "combustion_furnace");
-		RegHelper.registerModel(FrogGameObjects.HSU, "hybrid_storage_unit");
-		RegHelper.registerModel(FrogGameObjects.UHSU, "ultra_hybrid_storage_unit");
+		RegHelper.registerModel(FrogGameObjects.CARNALLITE);
+		RegHelper.registerModel(FrogGameObjects.DEWALQUITE);
+		RegHelper.registerModel(FrogGameObjects.FLUORAPATITE);
+		RegHelper.registerModel(FrogGameObjects.MPS);
+		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CORE);
+		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CYLINDER);
+		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_OUTLET);
+		RegHelper.registerModel(FrogGameObjects.ADV_CHEM_REACTOR);
+		RegHelper.registerModel(FrogGameObjects.AIR_PUMP);
+		RegHelper.registerModel(FrogGameObjects.PYROLYZER);
+		RegHelper.registerModel(FrogGameObjects.LIQUEFIER);
+		RegHelper.registerModel(FrogGameObjects.ADV_BLAST_FURNACE);
+		RegHelper.registerModel(FrogGameObjects.COMBUSTION_FURNACE);
+		RegHelper.registerModel(FrogGameObjects.HSU);
+		RegHelper.registerModel(FrogGameObjects.UHSU);
 
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);

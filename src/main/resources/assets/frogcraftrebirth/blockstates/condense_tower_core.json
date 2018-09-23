@@ -1,8 +1,10 @@
 {
 	"forge_marker": 1,
 	"variants": {
-		"normal": [{}],
-		"inventory": [{}],
+		"inventory": [{
+			"model": "frogcraftrebirth:condense_tower_core",
+			"transform": "forge:default-block"
+		}],
 		"facing": {
 			"north": {},
 			"east": { "y": 90, "uvlock": true },

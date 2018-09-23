@@ -34,6 +34,7 @@ import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.BlockFluidClassic;
 import net.minecraftforge.fluids.Fluid;
@@ -66,18 +67,18 @@ public final class FrogRegistries {
 				new BlockMechanism(TileCondenseTowerStructure.class).setTranslationKey("condense_tower_cylinder").setRegistryName("condense_tower_cylinder"),
 				new BlockMechanismDirectional(TileFluidOutputHatch.class).setTranslationKey("condense_tower_outlet").setRegistryName("condense_tower_outlet")
 		);
-		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraftrebirth:mobile_power_station");
-		GameRegistry.registerTileEntity(TileHSU.class, "frogcraftrebirth:hybrid_storage_unit");
-		GameRegistry.registerTileEntity(TileHSUUltra.class, "frogcraftrebirth:ultra_hybrid_storage_unit");
-		GameRegistry.registerTileEntity(TileAirPump.class, "frogcraftrebirth:air_pump");
-		GameRegistry.registerTileEntity(TileCondenseTower.class, "frogcraftrebirth:condense_tower_core");
-		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, "frogcraftrebirth:condense_tower_cylinder");
-		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, "frogcraftrebirth:condense_tower_outlet");
-		GameRegistry.registerTileEntity(TileCombustionFurnace.class, "frogcraftrebirth:combustion_furnace");
-		GameRegistry.registerTileEntity(TilePyrolyzer.class, "frogcraftrebirth:thermal_cracker");
-		GameRegistry.registerTileEntity(TileAdvChemReactor.class, "frogcraftrebirth:advanced_chemical_reactor");
-		GameRegistry.registerTileEntity(TileLiquefier.class, "frogcraftrebirth:liquefier");
-		GameRegistry.registerTileEntity(TileAdvBlastFurnace.class, "frogcraftrebirth:adv_blast_furnace");
+		GameRegistry.registerTileEntity(TileMobilePowerStation.class, new ResourceLocation(FrogAPI.MODID, "mobile_power_station"));
+		GameRegistry.registerTileEntity(TileHSU.class, new ResourceLocation(FrogAPI.MODID, "hybrid_storage_unit"));
+		GameRegistry.registerTileEntity(TileHSUUltra.class, new ResourceLocation(FrogAPI.MODID, "ultra_hybrid_storage_unit"));
+		GameRegistry.registerTileEntity(TileAirPump.class, new ResourceLocation(FrogAPI.MODID, "air_pump"));
+		GameRegistry.registerTileEntity(TileCondenseTower.class, new ResourceLocation(FrogAPI.MODID, "condense_tower_core"));
+		GameRegistry.registerTileEntity(TileCondenseTowerStructure.class, new ResourceLocation(FrogAPI.MODID, "condense_tower_cylinder"));
+		GameRegistry.registerTileEntity(TileFluidOutputHatch.class, new ResourceLocation(FrogAPI.MODID, "condense_tower_outlet"));
+		GameRegistry.registerTileEntity(TileCombustionFurnace.class, new ResourceLocation(FrogAPI.MODID, "combustion_furnace"));
+		GameRegistry.registerTileEntity(TilePyrolyzer.class, new ResourceLocation(FrogAPI.MODID, "thermal_cracker"));
+		GameRegistry.registerTileEntity(TileAdvChemReactor.class, new ResourceLocation(FrogAPI.MODID, "advanced_chemical_reactor"));
+		GameRegistry.registerTileEntity(TileLiquefier.class, new ResourceLocation(FrogAPI.MODID, "liquefier"));
+		GameRegistry.registerTileEntity(TileAdvBlastFurnace.class, new ResourceLocation(FrogAPI.MODID, "adv_blast_furnace"));
 
 		FrogFluids.ammonia = new FrogFluid("ammonia", 694, 240, true, EnumRarity.EPIC);
 		FrogFluids.argon = new FrogFluid("argon", 1784, 300, true, EnumRarity.RARE);

@@ -35,7 +35,7 @@ public final class ItemFactory {
 	 * @return the Item instance with given registry name
 	 */
 	public final Item create(String uid) {
-		return new ItemFrog().setUnlocalizedName(uid).setRegistryName(FrogAPI.MODID, uid);
+		return new ItemFrog().setTranslationKey(uid).setRegistryName(FrogAPI.MODID, uid);
 	}
 
 	/**
@@ -45,11 +45,11 @@ public final class ItemFactory {
 	 * @return the Item instance
 	 */
 	public final Item create(String uid, String langKey) {
-		return new ItemFrog().setUnlocalizedName(langKey).setRegistryName(FrogAPI.MODID, uid);
+		return new ItemFrog().setTranslationKey(langKey).setRegistryName(FrogAPI.MODID, uid);
 	}
 
 	public final Item createWithTooltip(String uid) {
-		return new ItemResource().setUnlocalizedName(uid).setRegistryName(uid).setRegistryName(FrogAPI.MODID, uid);
+		return new ItemResource().setTranslationKey(uid).setRegistryName(uid).setRegistryName(FrogAPI.MODID, uid);
 	}
 
 }

@@ -50,21 +50,21 @@ public final class FrogRegistries {
 	public static void regBlock(RegistryEvent.Register<Block> event) {
 		IForgeRegistry<Block> registry = event.getRegistry();
 		registry.registerAll(
-				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("carnallite").setRegistryName("carnallite"),
-				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("dewalquite").setRegistryName("dewalquite"),
-				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setUnlocalizedName("fluorapatite").setRegistryName("fluorapatite"),
-				new BlockHSU(TileHSU.class).setUnlocalizedName("hsu").setRegistryName("hsu"),
-				new BlockHSU(TileHSUUltra.class).setUnlocalizedName("uhsu").setRegistryName("uhsu"),
-				new BlockMPS().setUnlocalizedName("mobile_power_station").setRegistryName("mobile_power_station"),
-				new BlockMachinery(TileAirPump.class).setUnlocalizedName("air_pump").setRegistryName("air_pump"),
-				new BlockMachinery(TileLiquefier.class).setUnlocalizedName("liquefier").setRegistryName("liquefier"),
-				new BlockMachineryDirectional(TileAdvChemReactor.class).setUnlocalizedName("advanced_chemical_reactor").setRegistryName("advanced_chemical_reactor"),
-				new BlockMachineryDirectional(TileAdvBlastFurnace.class).setUnlocalizedName("advanced_blast_furnace").setRegistryName("advanced_blast_furnace"),
-				new BlockMachineryDirectional(TileCombustionFurnace.class).setUnlocalizedName("combustion_furnace").setRegistryName("combustion_furnace"),
-				new BlockMachineryDirectional(TilePyrolyzer.class).setUnlocalizedName("pyrolyzer").setRegistryName("pyrolyzer"),
-				new BlockMachineryDirectional(TileCondenseTower.class).setUnlocalizedName("condense_tower_core").setRegistryName("condense_tower_core"),
-				new BlockMechanism(TileCondenseTowerStructure.class).setUnlocalizedName("condense_tower_cylinder").setRegistryName("condense_tower_cylinder"),
-				new BlockMechanismDirectional(TileFluidOutputHatch.class).setUnlocalizedName("condense_tower_outlet").setRegistryName("condense_tower_outlet")
+				new BlockMineral(MapColor.DIRT, "shovel", 0).setHardness(5.0F).setResistance(15.0F).setTranslationKey("carnallite").setRegistryName("carnallite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setTranslationKey("dewalquite").setRegistryName("dewalquite"),
+				new BlockMineral(MapColor.STONE, "pickaxe", 2).setHardness(5.0F).setResistance(15.0F).setTranslationKey("fluorapatite").setRegistryName("fluorapatite"),
+				new BlockHSU(TileHSU.class).setTranslationKey("hsu").setRegistryName("hsu"),
+				new BlockHSU(TileHSUUltra.class).setTranslationKey("uhsu").setRegistryName("uhsu"),
+				new BlockMPS().setTranslationKey("mobile_power_station").setRegistryName("mobile_power_station"),
+				new BlockMachinery(TileAirPump.class).setTranslationKey("air_pump").setRegistryName("air_pump"),
+				new BlockMachinery(TileLiquefier.class).setTranslationKey("liquefier").setRegistryName("liquefier"),
+				new BlockMachineryDirectional(TileAdvChemReactor.class).setTranslationKey("advanced_chemical_reactor").setRegistryName("advanced_chemical_reactor"),
+				new BlockMachineryDirectional(TileAdvBlastFurnace.class).setTranslationKey("advanced_blast_furnace").setRegistryName("advanced_blast_furnace"),
+				new BlockMachineryDirectional(TileCombustionFurnace.class).setTranslationKey("combustion_furnace").setRegistryName("combustion_furnace"),
+				new BlockMachineryDirectional(TilePyrolyzer.class).setTranslationKey("pyrolyzer").setRegistryName("pyrolyzer"),
+				new BlockMachineryDirectional(TileCondenseTower.class).setTranslationKey("condense_tower_core").setRegistryName("condense_tower_core"),
+				new BlockMechanism(TileCondenseTowerStructure.class).setTranslationKey("condense_tower_cylinder").setRegistryName("condense_tower_cylinder"),
+				new BlockMechanismDirectional(TileFluidOutputHatch.class).setTranslationKey("condense_tower_outlet").setRegistryName("condense_tower_outlet")
 		);
 		GameRegistry.registerTileEntity(TileMobilePowerStation.class, "frogcraftrebirth:mobile_power_station");
 		GameRegistry.registerTileEntity(TileHSU.class, "frogcraftrebirth:hybrid_storage_unit");
@@ -152,9 +152,9 @@ public final class FrogRegistries {
 				new ItemAmmoniaCoolant("60K", 6000).setRegistryName("ammonia_coolant_60k"),
 				new ItemAmmoniaCoolant("180K", 18000).setRegistryName("ammonia_coolant_180k"),
 				new ItemAmmoniaCoolant("360K", 36000).setRegistryName("ammonia_coolant_360k"),
-				new ItemDecayBattery().setUnlocalizedName("uranium_decay_battery").setRegistryName("uranium_decay_battery"),
-				new ItemDecayBattery().setUnlocalizedName("thorium_decay_battery").setRegistryName("thorium_decay_battery"),
-				new ItemDecayBattery().setUnlocalizedName("plutonium_decay_battery").setRegistryName("plutonium_decay_battery"),
+				new ItemDecayBattery().setTranslationKey("uranium_decay_battery").setRegistryName("uranium_decay_battery"),
+				new ItemDecayBattery().setTranslationKey("thorium_decay_battery").setRegistryName("thorium_decay_battery"),
+				new ItemDecayBattery().setTranslationKey("plutonium_decay_battery").setRegistryName("plutonium_decay_battery"),
 				new ItemJinkela().setRegistryName("jinkela"),
 				factory.create("heating_module"),
 				factory.create("electrolysis_module"),
@@ -221,10 +221,10 @@ public final class FrogRegistries {
 				factory.create("vanadium_oxide_dust"),
 				factory.create("phosphorus"),
 				factory.create("soap"),
-				new ItemFlammable(18000).setUnlocalizedName("frogcraftrebirth.briquette").setRegistryName("briquette"),
-				new ItemFlammable(1600).setUnlocalizedName("frogcraftrebirth.shattered_coal_coke").setRegistryName("shattered_coal_coke"),
-				new ItemFlammable(200).setUnlocalizedName("frogcraftrebirth.lipid").setRegistryName("lipid"),
-				new ItemPotassium().setUnlocalizedName("potassium").setRegistryName("potassium")
+				new ItemFlammable(18000).setTranslationKey("frogcraftrebirth.briquette").setRegistryName("briquette"),
+				new ItemFlammable(1600).setTranslationKey("frogcraftrebirth.shattered_coal_coke").setRegistryName("shattered_coal_coke"),
+				new ItemFlammable(200).setTranslationKey("frogcraftrebirth.lipid").setRegistryName("lipid"),
+				new ItemPotassium().setTranslationKey("potassium").setRegistryName("potassium")
 		);
 	}
 

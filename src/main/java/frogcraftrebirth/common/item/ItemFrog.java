@@ -39,7 +39,7 @@ public class ItemFrog extends Item {
 	@Override
 	@SuppressWarnings("deprecation")
 	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-		return I18n.translateToLocal(getUnlocalizedName(stack));
+		return I18n.translateToLocal(getTranslationKey(stack));
 	}
 
 }

@@ -75,7 +75,7 @@ public final class LegacyFrogCraftRebirthBlockRemapper implements IFixableData {
 					int lowerID = blocksRaw[pos]; // The last 8 bits of block id
 					int meta = metadata.getFromIndex(pos);
 					ResourceLocation namespace = Block.getBlockById(lowerID + upperID).getRegistryName();
-					if (namespace != null && FrogAPI.MODID.equals(namespace.getResourceDomain())) {
+					if (namespace != null && FrogAPI.MODID.equals(namespace.getNamespace())) {
 						BlockMetadataTuple mapped = MIGRATION_MAP.get(new BlockMetadataTuple(namespace.toString(), meta));
 						if (mapped != null) {
 							Block block = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(mapped.namespace));

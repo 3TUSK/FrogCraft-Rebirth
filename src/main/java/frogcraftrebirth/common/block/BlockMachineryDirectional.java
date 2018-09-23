@@ -59,7 +59,7 @@ public class BlockMachineryDirectional extends BlockMachinery implements IWrench
 	public IBlockState getStateFromMeta(int meta) {
 		return this.getDefaultState()
 				.withProperty(WORKING, (meta >> 2) == 0 ? Boolean.FALSE : Boolean.TRUE)
-				.withProperty(FACING_HORIZONTAL, EnumFacing.getHorizontal(meta & 3));
+				.withProperty(FACING_HORIZONTAL, EnumFacing.byHorizontalIndex(meta & 3));
 	}
 
 	@Override

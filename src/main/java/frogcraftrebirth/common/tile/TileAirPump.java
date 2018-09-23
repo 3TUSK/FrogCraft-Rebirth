@@ -57,7 +57,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	
 	@Override
 	public boolean isWorking() {
-		return getWorld().isBlockIndirectlyGettingPowered(this.pos) == 0;
+		return getWorld().getRedstonePowerFromNeighbors(this.pos) == 0; // func_175687_A
 	}
 	
 	@Override
@@ -66,7 +66,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 			return;
 		}
 		
-		if (this.getWorld().isBlockIndirectlyGettingPowered(this.pos) != 0)
+		if (this.getWorld().getRedstonePowerFromNeighbors(this.pos) != 0)
 			return;
 		
 		if (this.charge < FrogConfig.airPumpPowerRate)

@@ -34,7 +34,7 @@ import net.minecraft.util.text.translation.I18n;
  */
 public class BlockFrog extends Block {
 
-	private String unlocalizedName;
+	private String langKey;
 
 	BlockFrog(Material material, MapColor color) {
 		super(material, color);
@@ -49,17 +49,17 @@ public class BlockFrog extends Block {
 	@Override
 	@SuppressWarnings("deprecation")
 	public String getLocalizedName() {
-		return I18n.translateToLocal(this.getUnlocalizedName());
+		return I18n.translateToLocal(this.getTranslationKey());
 	}
 
 	@Override
-	public String getUnlocalizedName() {
-		return this.unlocalizedName;
+	public String getTranslationKey() {
+		return this.langKey;
 	}
 
 	@Override
-	public Block setUnlocalizedName(String unlocalizedName) {
-		this.unlocalizedName = "block.frogcraftrebirth." + unlocalizedName;
+	public Block setTranslationKey(String key) {
+		this.langKey = "block.frogcraftrebirth." + key;
 		return this;
 	}
 }

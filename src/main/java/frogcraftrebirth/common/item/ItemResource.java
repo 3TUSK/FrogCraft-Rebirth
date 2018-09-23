@@ -35,7 +35,7 @@ public class ItemResource extends ItemFrog {
 
 	@Override
 	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format(getUnlocalizedName(stack) + ".info"));
+		tooltips.add(I18n.format(getTranslationKey(stack) + ".info"));
 	}
 
 }

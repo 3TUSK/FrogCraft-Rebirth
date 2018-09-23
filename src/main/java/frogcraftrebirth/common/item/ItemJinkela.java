@@ -43,7 +43,7 @@ public class ItemJinkela extends ItemFrog {
 
 	public ItemJinkela() {
 		super();
-		setUnlocalizedName("frogcraftrebirth.jinkela");
+		setTranslationKey("frogcraftrebirth.jinkela");
 	}
 
 	@Nonnull

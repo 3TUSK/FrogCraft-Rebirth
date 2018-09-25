@@ -95,7 +95,7 @@ public final class FrogCraftRebirth {
 		if (FrogConfig.modpackOptions.enableRecipes) {
 			FrogRecipes.init();
 		}
-		if (FrogConfig.modpackOptions.enableOres && FrogConfig.enableWorldGen) {
+		if (FrogConfig.enableWorldGen) {
 			MinecraftForge.ORE_GEN_BUS.register(new FrogWorldGenerator());
 		}
 		ModFixs fixer = FMLCommonHandler.instance().getDataFixer().init(FrogAPI.MODID, FrogAPI.DATA_FIXER_REMARK);

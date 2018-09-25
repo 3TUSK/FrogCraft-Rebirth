@@ -110,25 +110,6 @@ public final class FrogConfig {
 		@Config.RequiresMcRestart
 		public boolean enableRecipes = true;
 
-		@Config.Name("EnableMobilePowerStation")
-		@Config.RequiresMcRestart
-		public boolean enableMobilePowerStation = true;
-
-		@Config.Name("EnableOres")
-		@Config.RequiresMcRestart
-		public boolean enableOres = true;
-
-		@Config.Name("EnableAmmoniaCoolant")
-		@Config.RequiresMcRestart
-		public boolean enableAmmoniaCoolant = true;
-
-		@Config.Name("EnableDecayBattery")
-		@Config.RequiresMcRestart
-		public boolean enableDecayBattery = true;
-
-		@Config.Name("EnableJinkela")
-		@Config.RequiresMcRestart
-		public boolean enableJinkela = true;
 	}
 
 }

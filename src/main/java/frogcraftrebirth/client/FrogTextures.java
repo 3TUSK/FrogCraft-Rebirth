@@ -28,9 +28,12 @@ import frogcraftrebirth.common.FrogFluids;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
+
+import java.lang.reflect.Field;
 
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID, value = Side.CLIENT)
 public final class FrogTextures {
@@ -140,38 +143,14 @@ public final class FrogTextures {
 	@SubscribeEvent
 	public static void regFluidSpirit(TextureStitchEvent.Pre event) {
 		TextureMap textureMap = event.getMap();
-		textureMap.registerSprite(FrogFluids.ammonia.getFlowing());
-		textureMap.registerSprite(FrogFluids.ammonia.getStill());
-		textureMap.registerSprite(FrogFluids.argon.getFlowing());
-		textureMap.registerSprite(FrogFluids.argon.getStill());
-		textureMap.registerSprite(FrogFluids.benzene.getFlowing());
-		textureMap.registerSprite(FrogFluids.benzene.getStill());
-		textureMap.registerSprite(FrogFluids.bromine.getFlowing());
-		textureMap.registerSprite(FrogFluids.bromine.getStill());
-		textureMap.registerSprite(FrogFluids.carbonDioxide.getFlowing());
-		textureMap.registerSprite(FrogFluids.carbonDioxide.getStill());
-		textureMap.registerSprite(FrogFluids.carbonOxide.getFlowing());
-		textureMap.registerSprite(FrogFluids.carbonOxide.getStill());
-		textureMap.registerSprite(FrogFluids.chlorine.getFlowing());
-		textureMap.registerSprite(FrogFluids.chlorine.getStill());
-		textureMap.registerSprite(FrogFluids.fluorine.getFlowing());
-		textureMap.registerSprite(FrogFluids.fluorine.getStill());
-		textureMap.registerSprite(FrogFluids.glycerol.getFlowing());
-		textureMap.registerSprite(FrogFluids.glycerol.getStill());
-		textureMap.registerSprite(FrogFluids.liquefiedAir.getFlowing());
-		textureMap.registerSprite(FrogFluids.liquefiedAir.getStill());
-		textureMap.registerSprite(FrogFluids.methane.getFlowing());
-		textureMap.registerSprite(FrogFluids.methane.getStill());
-		textureMap.registerSprite(FrogFluids.nitrogen.getFlowing());
-		textureMap.registerSprite(FrogFluids.nitrogen.getStill());
-		textureMap.registerSprite(FrogFluids.nitrogenOxide.getFlowing());
-		textureMap.registerSprite(FrogFluids.nitrogenOxide.getStill());
-		textureMap.registerSprite(FrogFluids.oleum.getFlowing());
-		textureMap.registerSprite(FrogFluids.oleum.getStill());
-		textureMap.registerSprite(FrogFluids.sulfurDioxide.getFlowing());
-		textureMap.registerSprite(FrogFluids.sulfurDioxide.getStill());
-		textureMap.registerSprite(FrogFluids.sulfurTrioxide.getFlowing());
-		textureMap.registerSprite(FrogFluids.sulfurTrioxide.getStill());
+		for (Field field : FrogFluids.class.getFields()) {
+			try {
+				Fluid fluid = (Fluid) field.get(null);
+				textureMap.registerSprite(fluid.getFlowing());
+				textureMap.registerSprite(fluid.getStill());
+			} catch (IllegalAccessException | NullPointerException ignored) { // I promise that won't be happened
+			}
+		}
 	}
 
 }

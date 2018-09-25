@@ -180,6 +180,9 @@ nei.tickWithCatalyst=Reaktion tickt unter Katalysator
 nei.catalystRequired=Diese Reaktion benötigt Katalysator
 nei.outputLiquid=Stoße Flüssigkeit aus
 
+jei.tooltip.liquid.amount.with.capacity=%,d / %,d mB
+jei.tooltip.liquid.amount=%,d mB
+
 #Misc
 itemGroup.FrogCraft=FrogCraft
 

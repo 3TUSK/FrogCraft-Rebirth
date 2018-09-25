@@ -272,8 +272,6 @@ gui.combustionFurnace.title=焚烧炉
 
 gui.MPS.title=移动电源
 
-gui.fluid.name=流体名称：%s
-gui.fluid.amount=流体存量：%d mB
 gui.fluid.null=这个储罐空空如也
 
 #JEI GUI texts
@@ -296,6 +294,9 @@ jei.doc.pyrolyzer=热裂解机通过产生极高热量来分解物质。\n其能
 jei.doc.liquefier=液化机可将压缩空气转化为液化空气。目前，只有工业气泵可为其提供高压空气。
 
 jei.doc.condenseTower=冷凝塔是一种可根据液体沸点不同，将混合液体分离成数种纯净物的多方块设备。
+
+jei.tooltip.liquid.amount.with.capacity=%,d / %,d mB
+jei.tooltip.liquid.amount=%,d mB
 
 #Config
 config.frogcraftrebirth.2=设定

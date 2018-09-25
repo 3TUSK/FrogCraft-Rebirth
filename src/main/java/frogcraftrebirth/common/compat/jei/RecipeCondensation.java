@@ -23,13 +23,15 @@
 package frogcraftrebirth.common.compat.jei;
 
 import com.google.common.collect.ImmutableList;
-
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
+import frogcraftrebirth.client.GuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraftforge.fluids.FluidStack;
+
+import java.util.Arrays;
 
 class RecipeCondensation implements IRecipeWrapper {
 	
@@ -47,9 +49,11 @@ class RecipeCondensation implements IRecipeWrapper {
 
 	@Override
 	public void drawInfo(Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY) {
-		minecraft.fontRenderer.drawString(I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 70, 0x404040);
-		minecraft.fontRenderer.drawString(I18n.format("jei.euTick", recipe.getEnergyPerTick()), recipeWidth - 160, recipeHeight - 60, 0x404040);
-		minecraft.fontRenderer.drawString(I18n.format("jei.tick", recipe.getTime()), recipeWidth - 160, recipeHeight - 50, 0x404040);
+		GuiHelper.renderStringList(minecraft, Arrays.asList(
+				I18n.format("jei.tick", recipe.getTime()),
+				I18n.format("jei.euTick", recipe.getEnergyPerTick()),
+				I18n.format("jei.euTotal", recipe.getTime() * recipe.getEnergyPerTick())
+		), recipeWidth - 160, recipeHeight - 50, 0x404040);
 	}
 
 	@Override

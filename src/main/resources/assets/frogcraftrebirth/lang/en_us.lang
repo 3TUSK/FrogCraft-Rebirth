@@ -272,8 +272,6 @@ gui.combustionFurnace.title=Combustion Furnace
 
 gui.MPS.title=Mobile Power Supply
 
-gui.fluid.name=Name: %s
-gui.fluid.amount=Amount: %d mB
 gui.fluid.null=No fluid in this tank
 
 #JEI GUI texts
@@ -296,6 +294,9 @@ jei.doc.pyrolyzer=Pyrolyzer can use extreme amount of heat to decompose several 
 jei.doc.liquefier=Liquefier can convert high-pressure air into liquefied air. It requires an Air Pump below it in order to get air supply.
 
 jei.doc.condenseTower=Condense Tower is a multiblock structure that can separate liquid mixture into several pure liquid, based on differences among boiling point of liquids.
+
+jei.tooltip.liquid.amount.with.capacity=%,d / %,d mB
+jei.tooltip.liquid.amount=%,d mB
 
 #Config
 config.frogcraftrebirth.2=Config Settings

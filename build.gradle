@@ -46,6 +46,8 @@ minecraft {
     mappings = Mapping_Ver
     
     replace "@VERSION@", project.version
+    
+    useDepAts = true
 }
 
 jar {

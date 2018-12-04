@@ -30,7 +30,11 @@ import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
-import frogcraftrebirth.client.gui.*;
+import frogcraftrebirth.client.gui.GuiAdvBlastFurnace;
+import frogcraftrebirth.client.gui.GuiAdvChemReactor;
+import frogcraftrebirth.client.gui.GuiCondenseTower;
+import frogcraftrebirth.client.gui.GuiMPS;
+import frogcraftrebirth.client.gui.GuiPyrolyzer;
 import mezz.jei.api.IJeiRuntime;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.IModRegistry;
@@ -63,10 +67,10 @@ public final class CompatJEI implements IModPlugin {
 
 	@Override
 	public void register(IModRegistry registry) {
-		registry.handleRecipes(IAdvChemRecRecipe.class, new RecipeWrapperFactoryChemReaction(), "frogcraftrebirth.chemreaction");
-		registry.handleRecipes(ICondenseTowerRecipe.class, new RecipeWrapperFactoryCondensation(), "frogcraftrebirth.condensation");
-		registry.handleRecipes(IPyrolyzerRecipe.class, new RecipeWrapperFactoryPyrolyzation(), "frogcraftrebirth.pyrolyzation");
-		registry.handleRecipes(IAdvBlastFurnaceRecipe.class, new RecipeWrapperFactoryBlastFurnace(), "frogcraftrebirth.blastfurnace");
+		registry.handleRecipes(IAdvChemRecRecipe.class, RecipeChemReaction::new, "frogcraftrebirth.chemreaction");
+		registry.handleRecipes(ICondenseTowerRecipe.class, RecipeCondensation::new, "frogcraftrebirth.condensation");
+		registry.handleRecipes(IPyrolyzerRecipe.class, RecipePyrolyzation::new, "frogcraftrebirth.pyrolyzation");
+		registry.handleRecipes(IAdvBlastFurnaceRecipe.class, RecipeBlastFurnace::new, "frogcraftrebirth.blastfurnace");
 
 		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR), "frogcraftrebirth.chemreaction");
 		registry.addRecipeCatalyst(new ItemStack(FrogGameObjects.CONDENSE_TOWER_CORE), "frogcraftrebirth.condensation");

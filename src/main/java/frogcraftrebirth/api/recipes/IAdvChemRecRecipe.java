@@ -27,6 +27,14 @@ import java.util.Collection;
 
 import net.minecraft.item.ItemStack;
 
+/**
+ * @deprecated {@link #getInputs()} does not have indexed operation (i.e.
+ * not a {@link java.util.List List}), which will make {@link #matchInputs}
+ * fail. Use {@link AdvChemReaction} instead. Plus, both {@link
+ * #getRequiredCellAmount()} and {@link #getProducedCellAmount()} will phase
+ * out after the redesign, in favor of using FluidStack directly.
+ */
+@Deprecated
 public interface IAdvChemRecRecipe {
 
 	Collection<IFrogRecipeInput> getInputs();

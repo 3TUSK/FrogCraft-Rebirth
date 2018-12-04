@@ -22,27 +22,28 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import com.google.common.collect.ImmutableList;
-
 import frogcraftrebirth.api.recipes.ICondenseTowerRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
-import net.minecraftforge.fluids.FluidStack;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 class RecipeCondensation implements IRecipeWrapper {
 	
 	private final ICondenseTowerRecipe recipe;
 	
-	public RecipeCondensation(ICondenseTowerRecipe recipe) {
+	RecipeCondensation(ICondenseTowerRecipe recipe) {
 		this.recipe = recipe;
 	}
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputs(FluidStack.class, ImmutableList.of(recipe.getInput()));
-		ingredients.setOutputs(FluidStack.class, ImmutableList.copyOf(recipe.getOutput()));
+		ingredients.setInputs(VanillaTypes.FLUID, Collections.singletonList(recipe.getInput()));
+		ingredients.setOutputs(VanillaTypes.FLUID, new ArrayList<>(recipe.getOutput()));
 	}
 
 	@Override

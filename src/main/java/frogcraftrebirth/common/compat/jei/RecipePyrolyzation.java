@@ -26,6 +26,7 @@ import javax.annotation.Nonnull;
 
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -42,9 +43,9 @@ class RecipePyrolyzation implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInput(ItemStack.class, recipe.getActualInput().getActualInputs(ItemStack.class));
-		ingredients.setOutput(ItemStack.class, recipe.getOutput());
-		ingredients.setOutput(FluidStack.class, recipe.getOutputFluid());
+		ingredients.setInputs(VanillaTypes.ITEM, recipe.getActualInput().getActualInputs(ItemStack.class));
+		ingredients.setOutput(VanillaTypes.ITEM, recipe.getOutput());
+		ingredients.setOutput(VanillaTypes.FLUID, recipe.getOutputFluid());
 	}
 
 	@Override

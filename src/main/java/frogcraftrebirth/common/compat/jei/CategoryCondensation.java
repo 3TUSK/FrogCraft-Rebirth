@@ -33,6 +33,7 @@ import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.gui.IGuiFluidStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -46,7 +47,9 @@ class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 	
 	public CategoryCondensation(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_condense_tower.png");
-		background = helper.createDrawable(backgroundTexture, 5, 30, 165, 100, 0,0,5,10);
+		background = helper.drawableBuilder(backgroundTexture, 5, 30, 165, 100)
+				.addPadding( 0,0,5,10)
+				.build();
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 24, 16);
 		progressBar = helper.createAnimatedDrawable(progressBarBackground, 100, StartDirection.LEFT, false);
 	}
@@ -85,12 +88,12 @@ class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 	@Override
 	public void setRecipe(IRecipeLayout recipeLayout, RecipeCondensation recipeWrapper, IIngredients ingredients) {
 		IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-		fluidStacks.init(0, true, 14, 4, 16, 16, ingredients.getInputs(FluidStack.class).get(0).get(0).amount, false, null);
-		fluidStacks.set(0, ingredients.getInputs(FluidStack.class).get(0));
-		final int size = ingredients.getOutputs(FluidStack.class).size();
+		fluidStacks.init(0, true, 14, 4, 16, 16, ingredients.getInputs(VanillaTypes.FLUID).get(0).get(0).amount, false, null);
+		fluidStacks.set(0, ingredients.getInputs(VanillaTypes.FLUID).get(0));
+		final int size = ingredients.getOutputs(VanillaTypes.FLUID).size();
 		for (int index = 0; index < size; index++) {
-			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, ingredients.getOutputs(FluidStack.class).get(index).get(0).amount, false, null);
-			fluidStacks.set(index + 1, ingredients.getOutputs(FluidStack.class).get(index));
+			fluidStacks.init(index + 1, true, (18 * index) + 76, 4, 16, 16, ingredients.getOutputs(VanillaTypes.FLUID).get(index).get(0).amount, false, null);
+			fluidStacks.set(index + 1, ingredients.getOutputs(VanillaTypes.FLUID).get(index));
 		}
 	}
 

@@ -24,14 +24,13 @@ package frogcraftrebirth.common.compat.jei;
 
 import frogcraftrebirth.api.recipes.IAdvBlastFurnaceRecipe;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 class RecipeBlastFurnace implements IRecipeWrapper {
 
@@ -43,13 +42,13 @@ class RecipeBlastFurnace implements IRecipeWrapper {
 
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputLists(ItemStack.class, Stream.of(recipe.getInput(), recipe.getInputSecondary()).map(i -> i.getActualInputs(ItemStack.class)).collect(Collectors.toList()));
+		ingredients.setInputLists(VanillaTypes.ITEM, Arrays.asList(recipe.getInput().getActualInputs(ItemStack.class), recipe.getInputSecondary().getActualInputs(ItemStack.class)));
 		if (recipe.getShieldGas() != null) {
-			ingredients.setInputs(FluidStack.class, Arrays.asList(recipe.getInputFluid(), new FluidStack(recipe.getShieldGas(), 1000)));
+			ingredients.setInputs(VanillaTypes.FLUID, Arrays.asList(recipe.getInputFluid(), new FluidStack(recipe.getShieldGas(), 1000)));
 		} else {
-			ingredients.setInput(FluidStack.class, recipe.getInputFluid());
+			ingredients.setInput(VanillaTypes.FLUID, recipe.getInputFluid());
 		}
-		ingredients.setOutputs(ItemStack.class, Arrays.asList(recipe.getOutput(), recipe.getByproduct()));
+		ingredients.setOutputs(VanillaTypes.ITEM, Arrays.asList(recipe.getOutput(), recipe.getByproduct()));
 	}
 
 	@Override

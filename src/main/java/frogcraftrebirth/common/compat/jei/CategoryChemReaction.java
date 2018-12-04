@@ -36,6 +36,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.IDrawableAnimated.StartDirection;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
@@ -50,7 +51,9 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	
 	CategoryChemReaction(IGuiHelper helper) {
 		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_chem_reactor.png");
-		background = helper.createDrawable(backgroundTexture, 5, 5, 165, 70, 23, 88, 5, 10);
+		background = helper.drawableBuilder(backgroundTexture, 5, 5, 165, 70)
+				.addPadding( 23, 88, 5, 10)
+				.build();
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 0, 30, 10);
 		progressBar = helper.createAnimatedDrawable(progressBarBackground, 100, StartDirection.TOP, false);
 		IDrawableStatic chargeBarBackground = helper.createDrawable(backgroundTexture, 176, 17, 14, 14);
@@ -116,7 +119,7 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 			stacks.set(index++, input.getActualInputs(ItemStack.class));
 		}
 		index = 6;
-		List<List<ItemStack>> outputs = ingredients.getOutputs(ItemStack.class);
+		List<List<ItemStack>> outputs = ingredients.getOutputs(VanillaTypes.ITEM);
 		final int outputSize = outputs.size();
 		for (int i = 0; i < outputSize; i++){
 			stacks.init(index, false, 39 + i * 20, 69);

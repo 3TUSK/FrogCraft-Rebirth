@@ -37,6 +37,7 @@ import mezz.jei.api.IModRegistry;
 import mezz.jei.api.ISubtypeRegistry;
 import mezz.jei.api.JEIPlugin;
 import mezz.jei.api.ingredients.IModIngredientRegistration;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
 import net.minecraft.item.ItemStack;
@@ -83,12 +84,12 @@ public final class CompatJEI implements IModPlugin {
 		registry.addRecipeClickArea(GuiPyrolyzer.class, 45, 29, 24, 17, "frogcraftrebirth.pyrolyzation");
 		registry.addRecipeClickArea(GuiAdvBlastFurnace.class, 76, 27, 24, 17, "frogcraftrebirth.blastfurnace");
 
-		registry.addIngredientInfo(new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR), ItemStack.class, "jei.doc.advChemReactor");
-		registry.addIngredientInfo(new ItemStack(FrogGameObjects.AIR_PUMP), ItemStack.class, "jei.doc.airPump");
-		registry.addIngredientInfo(new ItemStack(FrogGameObjects.PYROLYZER), ItemStack.class, "jei.doc.pyrolyzer");
-		registry.addIngredientInfo(new ItemStack(FrogGameObjects.LIQUEFIER), ItemStack.class, "jei.doc.liquefier");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.ADV_CHEM_REACTOR), VanillaTypes.ITEM, "jei.doc.advChemReactor");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.AIR_PUMP), VanillaTypes.ITEM, "jei.doc.airPump");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.PYROLYZER), VanillaTypes.ITEM, "jei.doc.pyrolyzer");
+		registry.addIngredientInfo(new ItemStack(FrogGameObjects.LIQUEFIER), VanillaTypes.ITEM, "jei.doc.liquefier");
 		
-		registry.addIngredientInfo(Arrays.asList(new ItemStack(FrogGameObjects.CONDENSE_TOWER_CORE), new ItemStack(FrogGameObjects.CONDENSE_TOWER_CYLINDER), new ItemStack(FrogGameObjects.CONDENSE_TOWER_OUTLET)), ItemStack.class, "jei.doc.condenseTower");
+		registry.addIngredientInfo(Arrays.asList(new ItemStack(FrogGameObjects.CONDENSE_TOWER_CORE), new ItemStack(FrogGameObjects.CONDENSE_TOWER_CYLINDER), new ItemStack(FrogGameObjects.CONDENSE_TOWER_OUTLET)), VanillaTypes.ITEM, "jei.doc.condenseTower");
 	}
 
 	@Override

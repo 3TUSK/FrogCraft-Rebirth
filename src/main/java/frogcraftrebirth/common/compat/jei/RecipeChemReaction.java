@@ -29,9 +29,9 @@ import com.google.common.collect.ImmutableList;
 import frogcraftrebirth.api.recipes.IAdvChemRecRecipe;
 import frogcraftrebirth.common.lib.recipes.FrogRecipeInputs;
 import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.ItemStack;
 
 class RecipeChemReaction implements IRecipeWrapper {
 	
@@ -43,8 +43,8 @@ class RecipeChemReaction implements IRecipeWrapper {
 	
 	@Override
 	public void getIngredients(IIngredients ingredients) {
-		ingredients.setInputLists(ItemStack.class, ImmutableList.copyOf(recipe.getInputs().stream().map(FrogRecipeInputs.MAP_TO_ITEM).collect(Collectors.toList())));
-		ingredients.setOutputs(ItemStack.class, ImmutableList.copyOf(recipe.getOutputs()));
+		ingredients.setInputLists(VanillaTypes.ITEM, ImmutableList.copyOf(recipe.getInputs().stream().map(FrogRecipeInputs.MAP_TO_ITEM).collect(Collectors.toList())));
+		ingredients.setOutputs(VanillaTypes.ITEM, ImmutableList.copyOf(recipe.getOutputs()));
 	}
 
 	@Override

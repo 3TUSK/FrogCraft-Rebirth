@@ -12,7 +12,7 @@
     "screenshots": [],
     "parent": "",
     "useDependencyInformation": true,
-    "requiredMods": ["forge@[14.23.3.2694,)", "ic2"],
-    "dependencies": ["forge@[14.23.3.2694,)", "ic2"]
+    "requiredMods": [ "forge@[14.23.3.2694,)", "ic2" ],
+    "dependencies": [ "forge@[14.23.3.2694,)", "ic2", "jei@[4.13.1,)" ]
   }
 ]

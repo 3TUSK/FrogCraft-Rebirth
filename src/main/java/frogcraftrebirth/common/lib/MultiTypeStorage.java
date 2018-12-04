@@ -46,7 +46,7 @@ import java.util.Arrays;
  * where there is real need of holding more than two types of objects.
  */
 public final class MultiTypeStorage {
-	
+
 	enum IOStrategy {
 		/**
 		 * Represent the status of permitting neither input nor output.
@@ -184,16 +184,22 @@ public final class MultiTypeStorage {
 
 	public static final class FluidSlot implements Slot<FluidStack>, IFluidTank {
 
+		public static final int DEFAULT_CAPACITY = 8000;
+
 		private FluidStack content;
 		private final int capacity;
 
 		// Reasonable size of 8000. What could go wrong with it?!
 		public FluidSlot() {
-			this(8000, null);
+			this(DEFAULT_CAPACITY, null);
 		}
 
 		public FluidSlot(int capacity) {
 			this(capacity, null);
+		}
+
+		public FluidSlot(FluidStack content) {
+			this(DEFAULT_CAPACITY, content);
 		}
 
 		public FluidSlot(int capacity, FluidStack content) {
@@ -327,6 +333,21 @@ public final class MultiTypeStorage {
 		public Void extract(int toTake, boolean simulate) {
 			return null;
 		}
+
+		@Override
+		public <R> R getContentOrDefault(Class<R> type, R fallback) {
+			return fallback;
+		}
+
+		@Override
+		public <R> R insertOrReturnVerbatim(Class<R> type, R toAdd, boolean simulate) {
+			return toAdd;
+		}
+
+		@Override
+		public <R> R extractOrReturnEmpty(Class<R> type, int toTake, boolean simulate, R fallbackEmpty) {
+			return fallbackEmpty;
+		}
 	}
 
 	private final Slot<?> inv[];
@@ -344,7 +365,8 @@ public final class MultiTypeStorage {
 		return inv[index];
 	}
 
-	public void set(int index, Slot<?> newSlot) {
+	// TODO For fluid, there is need of customizing capacity. We need a Supplier of some sort...
+	void set(int index, Slot<?> newSlot) {
 		this.inv[index] = newSlot;
 	}
 
@@ -431,7 +453,15 @@ public final class MultiTypeStorage {
 					break;
 				}
 				Slot<?> toQuery = MultiTypeStorage.this.indexOf(index);
-				if (toQuery.getType() == FluidStack.class) {
+				if (toQuery.isEmpty()) {
+					FluidStack moveToNewSlot = toFill.copy();
+					moveToNewSlot.amount = Math.min(FluidSlot.DEFAULT_CAPACITY, toFill.amount);
+					if (doFill) {
+						MultiTypeStorage.this.set(index, new FluidSlot(moveToNewSlot));
+					}
+					toFill.amount -= moveToNewSlot.amount;
+					accepted += moveToNewSlot.amount;
+				} else if (toQuery.getType() == FluidStack.class) {
 					toFill = toQuery.insertOrReturnVerbatim(FluidStack.class, toFill, !doFill);
 					if (toFill == null) {
 						accepted = resource.amount;
@@ -472,4 +502,5 @@ public final class MultiTypeStorage {
 			return null;
 		}
 	}
+
 }

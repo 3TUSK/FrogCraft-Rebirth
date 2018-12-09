@@ -93,8 +93,7 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY ?

@@ -20,25 +20,19 @@
  * THE SOFTWARE.
  */
 
-package frogcraftrebirth.common.item;
+package frogcraftrebirth.client;
 
-import frogcraftrebirth.FrogCraftRebirth;
-import frogcraftrebirth.api.FrogAPI;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import frogcraftrebirth.FrogSidedProxy;
+import net.minecraft.client.resources.I18n;
 
-import javax.annotation.Nonnull;
-
-public class ItemFrog extends Item {
-
-	public ItemFrog() {
-		this.setCreativeTab(FrogAPI.TAB);
-	}
-
-	@Nonnull
+public final class FrogClientProxy implements FrogSidedProxy {
 	@Override
-	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
-		return FrogCraftRebirth.sideDelegate.translate(this.getTranslationKey(stack));
+	public String translate(String key) {
+		return I18n.format(key);
 	}
 
+	@Override
+	public String translate(String key, Object... params) {
+		return I18n.format(key, params);
+	}
 }

@@ -34,8 +34,8 @@ public class ItemAmmoniaCoolant extends ItemFrog implements IReactorComponent {
 	public ItemAmmoniaCoolant(String type, int storage) {
 		super();
 		this.heatStorage = storage;
-		setTranslationKey("frogcraftrebirth.ammonia_coolant." + type);
-		setMaxDamage(10000);
+		this.setTranslationKey("frogcraftrebirth.ammonia_coolant." + type);
+		this.setMaxDamage(10000);
 	}
 
 	@Override

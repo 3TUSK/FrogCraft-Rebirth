@@ -22,11 +22,11 @@
 
 package frogcraftrebirth.common.block;
 
+import frogcraftrebirth.FrogCraftRebirth;
 import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.text.translation.I18n;
 
 /**
  * Base block for all blocks added by FrogCraft: Rebirth.
@@ -47,9 +47,8 @@ public class BlockFrog extends Block {
 	}
 
 	@Override
-	@SuppressWarnings("deprecation")
 	public String getLocalizedName() {
-		return I18n.translateToLocal(this.getTranslationKey());
+		return FrogCraftRebirth.sideDelegate.translate(this.getTranslationKey());
 	}
 
 	@Override

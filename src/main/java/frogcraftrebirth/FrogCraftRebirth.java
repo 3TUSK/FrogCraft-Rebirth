@@ -42,6 +42,7 @@ import net.minecraftforge.common.util.ModFixs;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLInterModComms;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -75,6 +76,11 @@ public final class FrogCraftRebirth {
 	public static FrogCraftRebirth getInstance() {
 		return INSTANCE;
 	}
+
+	@SidedProxy(modId = FrogAPI.MODID,
+			clientSide = "frogcraftrebirth.client.FrogClientProxy",
+			serverSide = "frogcraftrebirth.server.FrogServerProxy")
+	public static FrogSidedProxy sideDelegate;
 
 	private FrogCraftRebirth() {
 		FluidRegistry.enableUniversalBucket();

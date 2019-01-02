@@ -48,7 +48,7 @@ class CategoryBlastFurnace implements IRecipeCategory<RecipeBlastFurnace> {
 	private final IDrawableAnimated heatBar;
 
 	CategoryBlastFurnace(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_blast_furnace.png");
+		ResourceLocation backgroundTexture = new ResourceLocation(FrogAPI.MODID, "textures/gui/gui_adv_blast_furnace.png");
 		background = helper.drawableBuilder(backgroundTexture, 5, 5, 165, 70).addPadding(23, 88, 5, 10).build();
 		IDrawableStatic progressBarBackground = helper.createDrawable(backgroundTexture, 176, 59, 24, 18);
 		progressBar = helper.createAnimatedDrawable(progressBarBackground, 100, IDrawableAnimated.StartDirection.LEFT, false);

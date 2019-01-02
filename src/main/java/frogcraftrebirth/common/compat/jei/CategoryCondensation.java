@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import javax.annotation.Nullable;
-
 import frogcraftrebirth.api.FrogAPI;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -39,13 +37,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
-class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
+final class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 
 	private final IDrawable background;
 	private final IDrawableAnimated progressBar;
 	
-	public CategoryCondensation(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_condense_tower.png");
+	CategoryCondensation(IGuiHelper helper) {
+		ResourceLocation backgroundTexture = new ResourceLocation(FrogAPI.MODID, "textures/gui/gui_condense_tower.png");
 		background = helper.drawableBuilder(backgroundTexture, 5, 30, 165, 100)
 				.addPadding( 0,0,5,10)
 				.build();
@@ -71,12 +69,6 @@ class CategoryCondensation implements IRecipeCategory<RecipeCondensation> {
 	@Override
 	public IDrawable getBackground() {
 		return background;
-	}
-	
-	@Override
-	@Nullable
-	public IDrawable getIcon() {
-		return null; //Delegate to JEI
 	}
 
 	@Override

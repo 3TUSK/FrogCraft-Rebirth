@@ -24,8 +24,6 @@ package frogcraftrebirth.common.compat.jei;
 
 import java.util.List;
 
-import javax.annotation.Nullable;
-
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IFrogRecipeInput;
 import mezz.jei.api.IGuiHelper;
@@ -50,7 +48,7 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	private final IDrawableAnimated chargeBar;
 	
 	CategoryChemReaction(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/gui_adv_chem_reactor.png");
+		ResourceLocation backgroundTexture = new ResourceLocation(FrogAPI.MODID, "textures/gui/gui_adv_chem_reactor.png");
 		background = helper.drawableBuilder(backgroundTexture, 5, 5, 165, 70)
 				.addPadding( 23, 88, 5, 10)
 				.build();
@@ -79,12 +77,6 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	public IDrawable getBackground() {
 		return background;
 	}
-	
-	@Override
-	@Nullable
-	public IDrawable getIcon() {
-		return null; //Delegate to JEI
-	}
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
@@ -93,14 +85,14 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipeChemReaction recipeWrapper, IIngredients ingredients) {
-		recipeWrapper.getIngredients(ingredients);
-		IGuiItemStackGroup stacks = recipeLayout.getItemStacks();
+	public void setRecipe(IRecipeLayout layout, RecipeChemReaction recipe, IIngredients ingredients) {
+		recipe.getIngredients(ingredients);
+		IGuiItemStackGroup stacks = layout.getItemStacks();
 		final int
-		cellInput = recipeWrapper.recipe.getRequiredCellAmount(),
-		cellOutput = recipeWrapper.recipe.getProducedCellAmount();
+		cellInput = recipe.recipe.getRequiredCellAmount(),
+		cellOutput = recipe.recipe.getProducedCellAmount();
 		stacks.init(0, true, 150, 69);
-		stacks.set(0, recipeWrapper.recipe.getCatalyst()); //Dirty. Real McCoy. The same below.
+		stacks.set(0, recipe.recipe.getCatalyst()); //Dirty. Real McCoy. The same below.
 		if (cellInput > 0) {
 			stacks.init(11, true, 11, 39);
 			ItemStack cells = ic2.api.item.IC2Items.getItem("fluid_cell");
@@ -114,7 +106,7 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 			stacks.set(12, cells);
 		}
 		int index = 0;
-		for (IFrogRecipeInput input : recipeWrapper.recipe.getInputs()) {
+		for (IFrogRecipeInput input : recipe.recipe.getInputs()) {
 			stacks.init(index, true, 39 + index * 20, 39);
 			stacks.set(index++, input.getActualInputs(ItemStack.class));
 		}
@@ -126,7 +118,7 @@ class CategoryChemReaction implements IRecipeCategory<RecipeChemReaction> {
 			stacks.set(index++, outputs.get(i));
 		}
 		stacks.init(5, true, 146, 69);
-		stacks.set(5, recipeWrapper.recipe.getCatalyst());
+		stacks.set(5, recipe.recipe.getCatalyst());
 	}
 
 }

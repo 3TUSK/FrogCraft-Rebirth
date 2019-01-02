@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.compat.jei;
 
-import javax.annotation.Nullable;
-
 import frogcraftrebirth.api.FrogAPI;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -40,7 +38,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.ResourceLocation;
 
-class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
+final class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 
 	private final IDrawable background;
 	private final IDrawable tankOverlay;
@@ -48,8 +46,8 @@ class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 	private final IDrawableAnimated electricBar;
 	private final IDrawableAnimated progressBar;
 	
-	public CategoryPyrolyzation(IGuiHelper helper) {
-		ResourceLocation backgroundTexture = new ResourceLocation("frogcraftrebirth", "textures/gui/GUI_Pyrolyzer.png");
+	CategoryPyrolyzation(IGuiHelper helper) {
+		ResourceLocation backgroundTexture = new ResourceLocation(FrogAPI.MODID, "textures/gui/GUI_Pyrolyzer.png");
 		background = helper.drawableBuilder(backgroundTexture, 5, 5, 165, 70)
 				.addPadding(23, 88, 5, 10)
 				.build();
@@ -80,12 +78,6 @@ class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 	public IDrawable getBackground() {
 		return background;
 	}
-	
-	@Override
-	@Nullable
-	public IDrawable getIcon() {
-		return null; //Delegate to JEI
-	}
 
 	@Override
 	public void drawExtras(Minecraft minecraft) {
@@ -95,9 +87,9 @@ class CategoryPyrolyzation implements IRecipeCategory<RecipePyrolyzation> {
 	}
 
 	@Override
-	public void setRecipe(IRecipeLayout recipeLayout, RecipePyrolyzation recipeWrapper, IIngredients ingredients) {
-		IGuiItemStackGroup items = recipeLayout.getItemStacks();
-		IGuiFluidStackGroup fluids = recipeLayout.getFluidStacks();
+	public void setRecipe(IRecipeLayout layout, RecipePyrolyzation recipe, IIngredients ingredients) {
+		IGuiItemStackGroup items = layout.getItemStacks();
+		IGuiFluidStackGroup fluids = layout.getFluidStacks();
 		items.init(0, true, 23, 45);
 		items.set(0, ingredients.getInputs(VanillaTypes.ITEM).get(0));
 		items.init(1, false, 74, 45);

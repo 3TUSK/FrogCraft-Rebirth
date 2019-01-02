@@ -35,8 +35,10 @@ import io.netty.buffer.Unpooled;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.network.INetHandler;
 import net.minecraft.network.NetHandlerPlayServer;
 import net.minecraft.network.PacketBuffer;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.network.FMLEventChannel;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
@@ -70,22 +72,36 @@ public enum NetworkHandler {
 	@SubscribeEvent
 	public void clientPacket(ClientCustomPacketEvent event) {
 		ByteBufInputStream input = new ByteBufInputStream(event.getPacket().payload());
-		decodeDataClient(input, Minecraft.getMinecraft().player);
+		decodeDataClient(input, event.getHandler(), Minecraft.getMinecraft().player);
 	}
 	
 	@SideOnly(Side.CLIENT)
-	private void decodeDataClient(InputStream input, EntityPlayerSP player) {
+	private void decodeDataClient(InputStream input, INetHandler netHandler, EntityPlayerSP player) {
 		try (DataInputStream data = new DataInputStream(input)){
 			byte identity = data.readByte();
+			IFrogPacket packet;
 			switch(identity) {
 				case 0: {
-					new PacketFrog00TileUpdate().readData(data);
+					packet = new PacketFrog00TileUpdate();
 					break;
 				}
 				case 2: {
-					new PacketFrog02GuiDataUpdate().readData(data);
+					packet = new PacketFrog02GuiDataUpdate();
 					break;
 				}
+				default: {
+					packet = null;
+					break;
+				}
+			}
+			if (packet != null) {
+				FMLCommonHandler.instance().getWorldThread(netHandler).addScheduledTask(() -> {
+					try {
+						packet.readData(data);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				});
 			}
 		} catch (Exception e) { // BTM Moon: catch everything, don't crash the client - only causes render abnormality
 			FrogAPI.FROG_LOG.error("Fail to unpack data, please report to author!", e);

@@ -36,15 +36,18 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
 import javax.annotation.Nonnull;
-import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
-@ParametersAreNonnullByDefault
 public final class PotassiumExplosionTrigger implements ICriterionTrigger<PotassiumExplosionTrigger.Instance> {
 
 	private static final ResourceLocation ID = new ResourceLocation(FrogAPI.MODID, "potassium_explosion");
 
-	private final Map<PlayerAdvancements, PotassiumExplosionTrigger.Listeners> listeners = new HashMap<>();
+	private final Map<PlayerAdvancements, Set<Listener<Instance>>> listeners = new HashMap<>();
 
 	@Nonnull
 	@Override
@@ -53,19 +56,18 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 	}
 
 	@Override
-	public void addListener(PlayerAdvancements playerAdvancementsIn, Listener<PotassiumExplosionTrigger.Instance> listener) {
-		this.listeners.computeIfAbsent(playerAdvancementsIn, Listeners::new).add(listener);
+	public void addListener(PlayerAdvancements playerAdvancements, Listener<PotassiumExplosionTrigger.Instance> listener) {
+		this.listeners.computeIfAbsent(playerAdvancements, ignored -> new HashSet<>()).add(listener);
 	}
 
 	@Override
-	public void removeListener(PlayerAdvancements playerAdvancementsIn, Listener<PotassiumExplosionTrigger.Instance> listener) {
-		Listeners listeners = this.listeners.get(playerAdvancementsIn);
+	public void removeListener(PlayerAdvancements playerAdvancements, Listener<PotassiumExplosionTrigger.Instance> listener) {
+		Set<Listener<PotassiumExplosionTrigger.Instance>> listeners = this.listeners.get(playerAdvancements);
 
 		if (listeners != null) {
 			listeners.remove(listener);
-
 			if (listeners.isEmpty()) {
-				this.listeners.remove(playerAdvancementsIn);
+				this.listeners.remove(playerAdvancements);
 			}
 		}
 	}
@@ -82,9 +84,18 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 	}
 
 	public final void trigger(EntityPlayerMP player, IBlockState state) {
-		PotassiumExplosionTrigger.Listeners listeners = this.listeners.get(player.getAdvancements());
+		PlayerAdvancements advancements = player.getAdvancements();
+		Set<Listener<PotassiumExplosionTrigger.Instance>> listeners = this.listeners.get(advancements);
 		if (listeners != null) {
-			listeners.trigger(state);
+			List<Listener<Instance>> validListenerList = new ArrayList<>();
+			for (Listener<PotassiumExplosionTrigger.Instance> listener : listeners) {
+				if (listener.getCriterionInstance().test(state)) {
+					validListenerList.add(listener);
+				}
+			}
+			for (Listener<PotassiumExplosionTrigger.Instance> listener : validListenerList) {
+				listener.grantCriterion(advancements);
+			}
 		}
 	}
 
@@ -103,36 +114,4 @@ public final class PotassiumExplosionTrigger implements ICriterionTrigger<Potass
 
 	}
 
-	private static class Listeners {
-		private final PlayerAdvancements playerAdvancements;
-		private final Set<Listener<Instance>> listeners = new HashSet<>();
-
-		Listeners(PlayerAdvancements playerAdvancementsIn) {
-			this.playerAdvancements = playerAdvancementsIn;
-		}
-
-		boolean isEmpty() {
-			return this.listeners.isEmpty();
-		}
-
-		void add(Listener<PotassiumExplosionTrigger.Instance> listener) {
-			this.listeners.add(listener);
-		}
-
-		void remove(Listener<PotassiumExplosionTrigger.Instance> listener) {
-			this.listeners.remove(listener);
-		}
-
-		void trigger(IBlockState state) {
-			List<Listener<Instance>> validListenerList = new ArrayList<>();
-			for (Listener<PotassiumExplosionTrigger.Instance> listener : listeners) {
-				if (listener.getCriterionInstance().test(state)) {
-					validListenerList.add(listener);
-				}
-			}
-			for (Listener<PotassiumExplosionTrigger.Instance> listener : validListenerList) {
-				listener.grantCriterion(this.playerAdvancements);
-			}
-		}
-	}
 }

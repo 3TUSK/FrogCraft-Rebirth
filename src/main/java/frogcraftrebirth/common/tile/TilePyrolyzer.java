@@ -78,14 +78,9 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		return working;
 	}
 
-	private int count = 0;
 	@Override
 	public void update() {
 		if (this.getWorld().isRemote) {
-			if (count++ > 20) {
-				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-				count = 0;
-			}
 			return;
 		}
 		
@@ -114,11 +109,13 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 			} else {
 				this.recipe = null;
 				this.working = false;
 				this.sendTileUpdatePacket(this);
 				this.markDirty();
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 				return;
 			}
 		} else {

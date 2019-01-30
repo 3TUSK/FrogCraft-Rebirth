@@ -79,21 +79,7 @@ public enum NetworkHandler {
 	private void decodeDataClient(InputStream input, INetHandler netHandler, EntityPlayerSP player) {
 		try (DataInputStream data = new DataInputStream(input)){
 			byte identity = data.readByte();
-			IFrogPacket packet;
-			switch(identity) {
-				case 0: {
-					packet = new PacketFrog00TileUpdate();
-					break;
-				}
-				case 2: {
-					packet = new PacketFrog02GuiDataUpdate();
-					break;
-				}
-				default: {
-					packet = null;
-					break;
-				}
-			}
+			IFrogPacket packet = identity == 0 ? new PacketFrog00TileUpdate() : null;
 			if (packet != null) {
 				FMLCommonHandler.instance().getWorldThread(netHandler).addScheduledTask(() -> {
 					try {

@@ -22,23 +22,15 @@
 
 package frogcraftrebirth.common.gui;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
 import frogcraftrebirth.common.lib.util.ItemUtil;
-import frogcraftrebirth.common.network.IFrogPacket;
-import frogcraftrebirth.common.network.NetworkHandler;
-import frogcraftrebirth.common.network.PacketFrog02GuiDataUpdate;
 import ic2.api.item.ElectricItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
-import net.minecraft.inventory.IContainerListener;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandlerModifiable;
@@ -56,7 +48,9 @@ public final class ContainerTileFrog extends Container {
 		this.tileInvCount = customSlotCount;
 	}
 
-	// This is overridden to ensure that the ::addSlotToContainer call below has access to this method
+	// This is overridden to ensure that the Builder::addSlotToContainer call below
+	// has access to this method; otherwise, it will fail at runtime even if it can
+	// be compiled.
 	@Override
 	protected Slot addSlotToContainer(Slot slot) {
 		return super.addSlotToContainer(slot);
@@ -65,16 +59,6 @@ public final class ContainerTileFrog extends Container {
 	@Override
 	public boolean canInteractWith(EntityPlayer player) {
 		return true;
-	}
-
-	@Override
-	public void detectAndSendChanges() {
-		super.detectAndSendChanges();
-		for (IContainerListener listener : listeners) {
-			if (listener instanceof EntityPlayerMP) {
-				sendDataToClientSide(this, (EntityPlayerMP) listener);
-			}
-		}
 	}
 
 	// TODO Fix the weird stack transfer
@@ -127,19 +111,6 @@ public final class ContainerTileFrog extends Container {
 		for (int i = 0; i < 9; ++i) {
 			this.addSlotToContainer(new Slot(playerInv, i, 8 + i * 18, 142));
 		}
-	}
-
-	private void sendDataToClientSide(ContainerTileFrog container, EntityPlayerMP player) {
-		IFrogPacket pkt = new PacketFrog02GuiDataUpdate(container);
-		NetworkHandler.FROG_NETWORK.sendToPlayer(pkt, player);
-	}
-	
-	public void writeDataForSync(DataOutputStream output) throws IOException {
-		tile.writePacketData(output);
-	}
-
-	public void updateContainer(DataInputStream input) throws IOException {
-		tile.readPacketData(input);
 	}
 
 	public static final class Builder {

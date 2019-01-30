@@ -23,9 +23,13 @@
 package frogcraftrebirth.common.block;
 
 import frogcraftrebirth.common.lib.tile.TileFrog;
+import frogcraftrebirth.common.tile.IHasWork;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 
 public class BlockMachinery extends BlockMechanism {
 
@@ -42,6 +46,15 @@ public class BlockMachinery extends BlockMechanism {
 	@Override
 	public BlockStateContainer createBlockState() {
 		return new BlockStateContainer(this, WORKING);
+	}
+
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos) {
+		TileEntity tile = world.getTileEntity(pos);
+		if (tile instanceof IHasWork) {
+			state = state.withProperty(WORKING, ((IHasWork) tile).isWorking());
+		}
+		return state;
 	}
 
 	@Override

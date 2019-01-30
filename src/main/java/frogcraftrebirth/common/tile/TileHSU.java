@@ -52,8 +52,8 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 		this(100000000, 2048, 5, true);
 	}
 
-	TileHSU(int maxEnergy, int output, int tier, boolean allowTelep) {
-		super(maxEnergy, output, tier, allowTelep);
+	TileHSU(int maxEnergy, int output, int tier, boolean allowTp) {
+		super(maxEnergy, output, tier, allowTp);
 	}
 
 	public void updateOutputDirection(EnumFacing newDirection) {

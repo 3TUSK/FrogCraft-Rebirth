@@ -45,14 +45,14 @@ public abstract class TileEnergyStorage extends TileEnergy implements IEnergySin
 	private int maxE;
 	public int output;
 	private int tier;
-	private final boolean usableForTp;
+	private final boolean allowTp;
 	
-	protected TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTelep) {
+	protected TileEnergyStorage(int maxEnergy, int output, int tier, boolean allowTp) {
 		this.storedE = 0;
 		this.maxE = maxEnergy;
 		this.output = output;
 		this.tier = tier;
-		this.usableForTp = allowTelep;
+		this.allowTp = allowTp;
 	}
 	
 	@Override
@@ -134,7 +134,7 @@ public abstract class TileEnergyStorage extends TileEnergy implements IEnergySin
 
 	@Override
 	public boolean isTeleporterCompatible(EnumFacing direction) {
-		return usableForTp;
+		return allowTp;
 	}
 
 	@Override

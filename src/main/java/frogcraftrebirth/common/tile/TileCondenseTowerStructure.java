@@ -22,9 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerPart;
 import frogcraftrebirth.common.lib.tile.TileFrog;
@@ -52,13 +49,6 @@ public class TileCondenseTowerStructure extends TileFrog implements ICondenseTow
 	public boolean isFunctional() {
 		return false;
 	}
-
-	@Override
-	public void writePacketData(DataOutputStream output) {}
-
-	@Override
-	public void readPacketData(DataInputStream input) {}
-
 
 	@Override
 	public void onBlockDestroyed(World worldIn, BlockPos pos, IBlockState state) {

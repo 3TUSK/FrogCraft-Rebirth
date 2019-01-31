@@ -73,20 +73,20 @@ public abstract class TileEnergyStorage extends TileEnergy implements IEnergySin
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeInt(this.storedE);
-		output.writeInt(this.maxE);
-		output.writeInt(this.output); //not the OutputStream, but the EU output per tick.
-		output.writeInt(this.tier);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		data.setInteger("charge", this.storedE);
+		data.setInteger("maxCharge", this.maxE);
+		data.setInteger("output", this.output);
+		data.setInteger("tier", this.tier);
+		return super.writePacketData(data);
 	}
-	
-	@SideOnly(Side.CLIENT)
+
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		this.storedE = input.readInt();
-		this.maxE = input.readInt();
-		this.output = input.readInt();
-		this.tier = input.readInt();
+	public void readPacketData(NBTTagCompound data) {
+		this.storedE = data.getInteger("charge");
+		this.maxE = data.getInteger("maxCharge");
+		this.output = data.getInteger("output");
+		this.tier = data.getInteger("tier");
 	}
 	
 	@Override

@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.client.gui.GuiCombustionFurnace;
 import frogcraftrebirth.client.gui.GuiTileFrog;
@@ -169,19 +165,21 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	}
 	
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		//tank.readPacketData(input);
-		this.time = input.readInt();
-		this.timeMax = input.readInt();
-		this.working = input.readBoolean();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.tank.readFromNBT(data);
+		this.time = data.getInteger("time");
+		this.timeMax = data.getInteger("timeMax");
+		this.working = data.getBoolean("working");
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		//tank.writePacketData(output);
-		output.writeInt(time);
-		output.writeInt(timeMax);
-		output.writeBoolean(working);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		this.tank.writeToNBT(data);
+		data.setInteger("time", this.time);
+		data.setInteger("timeMax", this.timeMax);
+		data.setBoolean("working", this.working);
+		return super.writePacketData(data);
 	}
 	
 	@Override

@@ -157,19 +157,19 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 	
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
-		//this.tank.readPacketData(input);
-		this.process = input.readInt();
-		this.working = input.readBoolean();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.tank.readFromNBT(data);
+		this.process = data.getInteger("process");
+		this.working = data.getBoolean("working");
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
-		//this.tank.writePacketData(output);
-		output.writeInt(process);
-		output.writeBoolean(working);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		this.tank.writeToNBT(data);
+		data.setInteger("process", this.process);
+		data.setBoolean("working", this.working);
+		return super.writePacketData(data);
 	}
 	
 	@Override

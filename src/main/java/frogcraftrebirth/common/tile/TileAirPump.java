@@ -40,10 +40,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, IAirPump, IHasWork {
 
 	private static final int MAX_AIR = 100000; // According to original FrogCraft
@@ -100,18 +96,17 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
-		output.writeInt(airAmount);
-		output.writeInt(tick);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		data.setInteger("air", this.airAmount);
+		data.setInteger("tick", this.tick);
+		return super.writePacketData(data);
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
-		this.airAmount = input.readInt();
-		this.tick = input.readInt();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.airAmount = data.getInteger("air");
+		this.tick = data.getInteger("tick");
 	}
 
 	@Override

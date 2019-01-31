@@ -22,9 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.Collections;
 import java.util.IdentityHashMap;
 import java.util.Set;
@@ -237,24 +234,23 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 		super.onLoad();
 		this.previousStructureCompleteness = checkStructure();
 	}
-	
-	@SideOnly(Side.CLIENT)
+
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
-		//tank.readPacketData(input);
-		this.process = input.readInt();
-		this.processMax = input.readInt();
-		this.working = input.readBoolean();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.tank.readFromNBT(data);
+		this.process = data.getInteger("process");
+		this.processMax = data.getInteger("processMax");
+		this.working = data.getBoolean("working");
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
-		//tank.writePacketData(output);
-		output.writeInt(process);
-		output.writeInt(processMax);
-		output.writeBoolean(working);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		this.tank.writeToNBT(data);
+		data.setInteger("process", this.process);
+		data.setInteger("processMax", this.processMax);
+		data.setBoolean("working", this.working);
+		return super.writePacketData(data);
 	}
 	
 	@Override

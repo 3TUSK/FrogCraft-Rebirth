@@ -46,9 +46,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 
 public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, ITickable {
 
@@ -166,23 +163,25 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		//this.inputFluid.writePacketData(output);
-		//this.shieldGas.writePacketData(output);
-		output.writeInt(heat);
-		output.writeInt(progress);
-		output.writeInt(progressMax);
-		output.writeBoolean(working);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		this.inputFluid.writeToNBT(data);
+		this.shieldGas.writeToNBT(data);
+		data.setInteger("heat", this.heat);
+		data.setInteger("process", this.progress);
+		data.setInteger("processMax", this.progressMax);
+		data.setBoolean("working", this.working);
+		return super.writePacketData(data);
 	}
 
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		//this.inputFluid.readPacketData(input);
-		//this.shieldGas.readPacketData(input);
-		this.heat = input.readInt();
-		this.progress = input.readInt();
-		this.progressMax = input.readInt();
-		this.working = input.readBoolean();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.inputFluid.readFromNBT(data);
+		this.shieldGas.readFromNBT(data);
+		this.heat = data.getInteger("heat");
+		this.progress = data.getInteger("process");
+		this.progressMax = data.getInteger("processMax");
+		this.working = data.getBoolean("working");
 	}
 
 	@Override

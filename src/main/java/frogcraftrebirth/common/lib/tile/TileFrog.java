@@ -22,7 +22,6 @@
 
 package frogcraftrebirth.common.lib.tile;
 
-import frogcraftrebirth.common.network.IFrogNetworkObject;
 import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.network.PacketFrog00TileUpdate;
 import net.minecraft.block.Block;
@@ -37,7 +36,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 
-public abstract class TileFrog extends TileEntity implements IFrogNetworkObject {
+public abstract class TileFrog extends TileEntity {
 
 	/**
 	 * @deprecated NetworkHandler will be removed; use {@link #syncToTrackingClients()} instead.

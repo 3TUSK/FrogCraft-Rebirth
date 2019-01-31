@@ -176,21 +176,21 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	}
 
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
-		//tank.readPacketData(input);
-		working = input.readBoolean();
-		process = input.readInt();
-		processMax = input.readInt();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.tank.readFromNBT(data);
+		this.working = data.getBoolean("working");
+		this.process = data.getInteger("process");
+		this.processMax = data.getInteger("processMax");
 	}
 
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
-		//tank.writePacketData(output);
-		output.writeBoolean(working);
-		output.writeInt(process);
-		output.writeInt(processMax);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		this.tank.writeToNBT(data);
+		data.setBoolean("working", this.working);
+		data.setInteger("process", this.process);
+		data.setInteger("processMax", this.processMax);
+		return super.writePacketData(data);
 	}
 
 	@Override

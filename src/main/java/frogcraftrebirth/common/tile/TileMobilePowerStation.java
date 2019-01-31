@@ -111,21 +111,20 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeInt(energy);
-		output.writeInt(energyMax);
-		output.writeInt(tier);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		data.setInteger("charge", energy);
+		data.setInteger("maxCharge", energyMax);
+		data.setInteger("tier", tier);
+		return super.writePacketData(data);
 	}
 
-
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		energy = input.readInt();
-		energyMax = input.readInt();
-		tier = input.readInt();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.energy = data.getInteger("charge");
+		this.energyMax = data.getInteger("maxCharge");
+		this.tier = data.getInteger("tier");
 	}
-	
 	
 	public int getCurrentEnergy() {
 		return this.energy;

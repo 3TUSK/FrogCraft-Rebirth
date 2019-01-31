@@ -47,12 +47,12 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.*;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -108,19 +108,19 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	}
 	
 	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		super.readPacketData(input);
-		this.process = input.readInt();
-		this.processMax = input.readInt();
-		this.working = input.readBoolean();
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.process = data.getInteger("process");
+		this.processMax = data.getInteger("processMax");
+		this.working = data.getBoolean("working");
 	}
 	
 	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		super.writePacketData(output);
-		output.writeInt(process);
-		output.writeInt(processMax);
-		output.writeBoolean(working);
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		data.setInteger("process", this.process);
+		data.setInteger("processMax", this.processMax);
+		data.setBoolean("working", this.working);
+		return super.writePacketData(data);
 	}
 	
 	@Override

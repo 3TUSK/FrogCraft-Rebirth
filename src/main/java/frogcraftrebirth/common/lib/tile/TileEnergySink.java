@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.lib.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import ic2.api.energy.tile.IEnergyEmitter;
 import ic2.api.energy.tile.IEnergySink;
 import net.minecraft.nbt.NBTTagCompound;
@@ -50,25 +46,27 @@ public abstract class TileEnergySink extends TileEnergy implements IEnergySink {
 		this.charge = tag.getInteger("charge");
 		this.maxCharge = tag.getInteger("maxCharge");
 	}
-	
-	@Override
-	public void readPacketData(DataInputStream input) throws IOException {
-		charge = input.readInt();
-		maxCharge = input.readInt();
-	}
-	
-	@Override
-	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeInt(charge);
-		output.writeInt(maxCharge);
-	}
-	
+
 	@Nonnull
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
 		tag.setInteger("charge", this.charge);
 		tag.setInteger("maxCharge", maxCharge);
 		return super.writeToNBT(tag);
+	}
+
+	@Override
+	public void readPacketData(NBTTagCompound data) {
+		super.readPacketData(data);
+		this.charge = data.getInteger("charge");
+		this.maxCharge = data.getInteger("maxCharge");
+	}
+	
+	@Override
+	public NBTTagCompound writePacketData(NBTTagCompound data) {
+		data.setInteger("charge", this.charge);
+		data.setInteger("maxCharge", this.maxCharge);
+		return super.writePacketData(data);
 	}
 
 	@Override

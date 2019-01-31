@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.recipes.IPyrolyzerRecipe;
 import frogcraftrebirth.client.gui.GuiPyrolyzer;
@@ -97,10 +93,14 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 		}
 
 		if (input.getStackInSlot(INPUT).isEmpty()) { //Operation aborted
-			this.working = false;
-			this.recipe = null;
-			this.process = 0;
-			this.processMax = 0;
+			if (working) {
+				this.working = false;
+				this.recipe = null;
+				this.process = 0;
+				this.processMax = 0;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
+			}
+			return;
 		}
 		
 		if (!working || recipe == null) {
@@ -109,15 +109,12 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
-				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 			} else {
 				this.recipe = null;
 				this.working = false;
-				this.sendTileUpdatePacket(this);
 				this.markDirty();
-				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
-				return;
 			}
+			this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 		} else {
 			if (this.charge <= recipe.getEnergyPerTick()) {
 				process = 0; //Similar as GregTech machine, all progress will lose when power is insufficient
@@ -131,11 +128,11 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 				process = 0;
 				processMax = 0;
 				recipe = null;
+				this.markDirty();
 			}
+
+			this.syncToTrackingClients();
 		}
-		
-		this.sendTileUpdatePacket(this);
-		this.markDirty();
 	}
 	
 	private boolean canWork(@Nullable IPyrolyzerRecipe recipe) {

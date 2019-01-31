@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.api.mps.IMobilePowerStation;
 import frogcraftrebirth.api.mps.MPSUpgradeManager;
 import frogcraftrebirth.client.gui.GuiMPS;
@@ -62,40 +58,40 @@ public class TileMobilePowerStation extends TileEnergy implements IHasGui, ITick
 	
 	@Override
 	public void update() {
-		if (getWorld().isRemote) {
+		if (this.getWorld().isRemote) {
 			return;
 		}
 
 		//Check storage upgrade, if pass, increase energy capacity
-		if (inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
-			energyMax = 60000;
+		if (this.inv.getStackInSlot(UPGRADE_STORAGE).isEmpty()) {
+			this.energyMax = 60000;
 		} else {
-			energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncrementOf((inv.getStackInSlot(UPGRADE_STORAGE)));
+			this.energyMax = 60000 + MPSUpgradeManager.INSTANCE.getEnergyStoreIncrementOf((inv.getStackInSlot(UPGRADE_STORAGE)));
 		}
 		//Check transformer upgrade, if pass, increase voltage level
-		if (inv.getStackInSlot(UPGRADE_VOLTAGE).isEmpty()) {
-			tier = 1;
+		if (this.inv.getStackInSlot(UPGRADE_VOLTAGE).isEmpty()) {
+			this.tier = 1;
 		} else {
-			tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncrementOf(inv.getStackInSlot(UPGRADE_VOLTAGE));
+			this.tier = 1 + MPSUpgradeManager.INSTANCE.getVoltageIncrementOf(inv.getStackInSlot(UPGRADE_VOLTAGE));
 		}
 		//Check solar upgrade, if pass, generate energy from sunlight
 		if (MPSUpgradeManager.INSTANCE.isSolarUpgradeValid(inv.getStackInSlot(UPGRADE_SOLAR)) && getWorld().isDaytime() && getWorld().canBlockSeeSky(getPos())) {
-			energy += 1;
+			this.energy += 1;
 		}
 		// For each tick, there is 10% probability that overflowed energy disappears
-		if (energy > energyMax && getWorld().rand.nextInt(10) == 1) {
-			energy = energyMax;
+		if (this.energy > this.energyMax && this.getWorld().rand.nextInt(10) == 1) {
+			this.energy = this.energyMax;
 		}
 		//Extract energy from charge-in slot
-		if (!inv.getStackInSlot(CHARGE_IN).isEmpty()) {
+		if (!this.inv.getStackInSlot(CHARGE_IN).isEmpty()) {
 			this.energy -= ElectricItem.manager.charge(inv.getStackInSlot(CHARGE_IN), this.getOfferedEnergy(), this.tier, false, false);
 		}
 		//Offer energy to item that is in charge-out slot
-		if (!inv.getStackInSlot(CHARGE_OUT).isEmpty()) {
+		if (!this.inv.getStackInSlot(CHARGE_OUT).isEmpty()) {
 			this.energy += ElectricItem.manager.discharge(inv.getStackInSlot(CHARGE_OUT), 32, this.tier, true, true, false);
 		}
 		
-		this.sendTileUpdatePacket(this);
+		this.syncToTrackingClients();
 		this.markDirty();
 	}
 	

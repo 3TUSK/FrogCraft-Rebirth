@@ -75,10 +75,10 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		input.deserializeNBT(tag.getCompoundTag("input"));
-		output.deserializeNBT(tag.getCompoundTag("output"));
-		inputFluid.readFromNBT(tag);
-		shieldGas.readFromNBT(tag);
+		this.input.deserializeNBT(tag.getCompoundTag("input"));
+		this.output.deserializeNBT(tag.getCompoundTag("output"));
+		this.inputFluid.readFromNBT(tag);
+		this.shieldGas.readFromNBT(tag);
 		this.heat = tag.getInteger("heat");
 		this.progress = tag.getInteger("progress");
 		this.progressMax = tag.getInteger("progressMax");
@@ -101,28 +101,26 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 
 	@Override
 	public void update() {
-		if (getWorld().isRemote) {
-			getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-		} else {
-			if (heat >= 1000) {
-				heat = 1000; // Normalize
-				if (!working || this.recipe == null) {
+		if (!this.getWorld().isRemote) {
+			if (this.heat >= 1000) {
+				this.heat = 1000; // Normalize
+				if (!this.working || this.recipe == null) {
 					IAdvBlastFurnaceRecipe recipe = FrogAPI.managerABF.getRecipe(new IterableFrogRecipeInputsBackedByIItemHandler(input));
 					if (checkRecipe(recipe)) {
 						this.recipe = recipe;
 						this.working = true;
 						this.progressMax = recipe.getTime();
-						input.extractItem(0, recipe.getInput().getSize(), false);
-						input.extractItem(1, recipe.getInputSecondary().getSize(), false);
-						inputFluid.drain(recipe.getInputFluid(), true);
+						this.input.extractItem(0, recipe.getInput().getSize(), false);
+						this.input.extractItem(1, recipe.getInputSecondary().getSize(), false);
+						this.inputFluid.drain(recipe.getInputFluid(), true);
 					} else {
 						this.progress = 0;
 						this.working = false;
 						return;
 					}
 				}
-				progress++;
-				if (progress >= progressMax) {
+				this.progress++;
+				if (this.progress >= this.progressMax) {
 					this.heat -= recipe.getHeatConsumption();
 					this.doSmelting();
 					this.working = false;

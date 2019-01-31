@@ -79,7 +79,7 @@ public class TileAirPump extends TileEnergySink implements IHasGui, ITickable, I
 			this.airAmount += FrogConfig.airPumpGenerationRate;
 			tick = 0;
 		}
-		this.sendTileUpdatePacket(this);
+		this.syncToTrackingClients();
 		this.markDirty();
 	}
 	

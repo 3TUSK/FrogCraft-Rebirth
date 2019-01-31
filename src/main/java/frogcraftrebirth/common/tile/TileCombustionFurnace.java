@@ -88,9 +88,8 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 		
 		//Don't stuck the inventory
 		if (!output.getStackInSlot(0).isEmpty() && output.getStackInSlot(0).getCount() >= output.getStackInSlot(0).getMaxStackSize()) {
-			this.sendTileUpdatePacket(this);
-			this.markDirty();
-			this.requireRefresh = true;
+			this.working = false;
+			this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 			return;
 		}
 		
@@ -125,14 +124,15 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 				if (result.isSuccess() && result.result.getCount() > 0) {
 					fluidIO.extractItem(0, 1, false);
 					ItemStack remainder = fluidIO.insertItem(1, result.result, false);
-					if (!remainder.isEmpty() && remainder.getCount() > 0)
+					if (!remainder.isEmpty() && remainder.getCount() > 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+					}
+					this.markDirty();
 				}
 			}
 		}
 		
-		this.sendTileUpdatePacket(this);
-		this.markDirty();
+		this.syncToTrackingClients();
 	}
 	
 	private void bonus(ItemStack input) {

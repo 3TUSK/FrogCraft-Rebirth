@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.api.air.IAirPump;
 import frogcraftrebirth.client.gui.GuiLiquefier;
 import frogcraftrebirth.client.gui.GuiTileFrog;
@@ -66,7 +62,6 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	
 	public int process;
 	private boolean working;
-	private boolean requireRefresh;
 
 	public TileLiquefier() {
 		super(2, 10000);
@@ -79,11 +74,7 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 	
 	@Override
 	public void update() {
-		if (getWorld().isRemote) {
-			if (requireRefresh) {
-				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-				requireRefresh = false;
-			}
+		if (this.getWorld().isRemote) {
 			return;
 		}
 
@@ -100,59 +91,54 @@ public class TileLiquefier extends TileEnergySink implements IHasGui, IHasWork, 
 					if (!remainder.isEmpty() && remainder.getCount() > 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 					}
+					this.markDirty();
 				}
 			}
 		}
-		
-		this.sendTileUpdatePacket(this);
-		this.markDirty();
 	}
 
 	private void doWorkCycle() {
 		TileEntity tile = getWorld().getTileEntity(getPos().down());
 		if (tile instanceof IAirPump) {
-			working = true;
-			requireRefresh = true;
+			this.working = true;
 		} else if (!inv.getStackInSlot(INPUT_AIR_IN).isEmpty()) {
 			FluidStack contained = FluidUtil.getFluidContained(inv.getStackInSlot(INPUT_AIR_IN));
 			if (contained != null && contained.getFluid() == FrogFluids.liquefiedAir) {
-				working = true;
-				requireRefresh = true;
+				this.working = true;
 			}
 		} else {
 			this.working = false;
-			this.sendTileUpdatePacket(this);
+			this.syncToTrackingClients();
 			this.markDirty();
-			this.requireRefresh = true;
 			return;
 		}
 
-		if (charge >= 32) {
-			charge -= 32;
-			++process;
-		} else if (charge < 0) {
-			charge = 0;
+		if (this.charge >= 32) {
+			this.charge -= 32;
+			this.process++;
+		} else if (this.charge < 0) {
+			this.charge = 0;
 		}
 
-		if (process == 100) {
+		if (this.process == 100) {
 			// According to original FrogCraft, best match
 			if (tile instanceof IAirPump && ((IAirPump) tile).extractAir(EnumFacing.UP, 1200, true) >= 1200) {
 				((IAirPump) tile).extractAir(EnumFacing.UP, 1200, false);
-				tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
+				this.tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
 			} else {
 				IFluidHandlerItem fluidIn = FluidUtil.getFluidHandler(inv.extractItem(INPUT_AIR_IN, 1, true));
 				if (fluidIn != null) {
-					inv.extractItem(INPUT_AIR_IN, 1, false);
+					this.inv.extractItem(INPUT_AIR_IN, 1, false);
 					fluidIn.drain(Integer.MAX_VALUE, true); // Blame IC2.
 					ItemStack remainder = inv.insertItem(INPUT_AIR_OUT, fluidIn.getContainer(), false);
-					tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
+					this.tank.fill(new FluidStack(FrogFluids.liquefiedAir, 1000), true);
 					if (!remainder.isEmpty() && remainder.getCount() > 0) {
 						ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
 					}
 				}
 			} // else? this round is waste.
 
-			process = 0;
+			this.process = 0;
 		}
 	}
 	

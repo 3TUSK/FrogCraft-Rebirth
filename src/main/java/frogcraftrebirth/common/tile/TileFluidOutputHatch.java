@@ -22,10 +22,6 @@
 
 package frogcraftrebirth.common.tile;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
 import frogcraftrebirth.api.tile.ICondenseTowerCore;
 import frogcraftrebirth.api.tile.ICondenseTowerOutputHatch;
 import frogcraftrebirth.client.gui.GuiFluidOutputHatch;
@@ -64,18 +60,21 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	@Override
 	public void update() {
-		if (!getWorld().isRemote) {
-			if (tank.getFluidAmount() != 0 && !inv.getStackInSlot(0).isEmpty()) {
-				if (inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
+		if (!this.getWorld().isRemote) {
+			if (this.tank.getFluidAmount() != 0 && !this.inv.getStackInSlot(0).isEmpty()) {
+				if (this.inv.getStackInSlot(0).hasCapability(CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY, null)) {
 					FluidActionResult result = FluidUtil.tryFillContainer(inv.extractItem(0, 1, true), tank, 1000, null, true);
 					if (result.isSuccess() && result.result.getCount() > 0) {
-						inv.extractItem(0, 1, false);
+						this.inv.extractItem(0, 1, false);
 						ItemStack remainder = inv.insertItem(1, result.result, false);
-						if (!remainder.isEmpty() && remainder.getCount() > 0)
+						if (!remainder.isEmpty() && remainder.getCount() > 0) {
 							ItemUtil.dropItemStackAsEntityInsanely(getWorld(), getPos(), remainder);
+						}
+						this.markDirty();
 					}
 				}
-			} 
+			}
+			this.syncToTrackingClients();
 		}
 	}
 

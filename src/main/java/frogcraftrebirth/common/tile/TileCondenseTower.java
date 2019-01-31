@@ -71,7 +71,6 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	private int process;
 	private int processMax;
 	private boolean working;
-	private boolean requireRefresh;
 	
 	public TileCondenseTower() {
 		super(3, 10000);
@@ -88,11 +87,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	
 	@Override
 	public void update() {
-		if (getWorld().isRemote) {
-			if (requireRefresh) {
-				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-				requireRefresh = false;
-			}
+		if (this.getWorld().isRemote) {
 			return;
 		}
 			
@@ -120,12 +115,11 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 				processMax = recipe.getTime();
 				process = 0;
 				working = true;
-				this.requireRefresh = true;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 			} else {
 				working = false; // Put working = false here, so that debug screen won't blink (hopefully)
 				this.markDirty();
-				this.sendTileUpdatePacket(this);
-				this.requireRefresh = true;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 				return;
 			}
 		}
@@ -151,10 +145,9 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 			process = 0;
 			processMax = 0;
 			recipe = null;
+			this.markDirty();
 		}
-		this.markDirty();
-		this.sendTileUpdatePacket(this);
-		this.requireRefresh = true;
+		this.syncToTrackingClients();
 	}
 
 	@Override
@@ -282,8 +275,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY || super.hasCapability(capability, facing);
 	}
-	
-	@SuppressWarnings("unchecked")
+
 	@Override
 	public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing) {
 		return capability == CapabilityFluidHandler.FLUID_HANDLER_CAPABILITY ?

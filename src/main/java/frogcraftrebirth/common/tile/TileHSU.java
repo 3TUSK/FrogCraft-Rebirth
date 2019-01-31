@@ -62,30 +62,31 @@ public class TileHSU extends TileEnergyStorage implements IHasGui, ITickable {
 
 	@Override
 	public void update() {
-		if (getWorld().isRemote)
+		if (this.getWorld().isRemote) {
 			return;
+		}
 		
-		if (!inv.getStackInSlot(1).isEmpty()) {
+		if (!this.inv.getStackInSlot(1).isEmpty()) {
 			this.storedE += ElectricItem.manager.discharge(inv.getStackInSlot(1), output, getSourceTier(), true, false, false);
 		}
 		
-		if (!inv.getStackInSlot(0).isEmpty()) {
+		if (!this.inv.getStackInSlot(0).isEmpty()) {
 			this.storedE -= ElectricItem.manager.charge(inv.getStackInSlot(0), this.getOutputEnergyUnitsPerTick(), getSourceTier(), false, false);
 		}
 		
-		sendTileUpdatePacket(this);	
-		markDirty();
+		this.syncToTrackingClients();
+		this.markDirty();
 	}
 	
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		inv.deserializeNBT(tag.getCompoundTag("inv"));
+		this.inv.deserializeNBT(tag.getCompoundTag("inv"));
 	}
 	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound tag) {
-		tag.setTag("inv", inv.serializeNBT());
+		tag.setTag("inv", this.inv.serializeNBT());
 		return super.writeToNBT(tag);
 	}
 	

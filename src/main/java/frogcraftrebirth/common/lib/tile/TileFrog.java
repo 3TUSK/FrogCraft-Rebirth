@@ -36,15 +36,6 @@ import net.minecraft.world.WorldServer;
 
 public abstract class TileFrog extends TileEntity {
 
-	/**
-	 * @deprecated NetworkHandler will be removed; use {@link #syncToTrackingClients()} instead.
-	 * @param tile the tile entity to be synced
-	 */
-	@Deprecated
-	protected final void sendTileUpdatePacket(TileFrog tile) {
-		tile.syncToTrackingClients();
-	}
-
 	protected final void syncToTrackingClients() {
 		if (!this.world.isRemote) {
 			SPacketUpdateTileEntity packet = this.getUpdatePacket();
@@ -68,7 +59,10 @@ public abstract class TileFrog extends TileEntity {
 	}
 
 	protected void readPacketData(NBTTagCompound data) {
-		// Default to no-op
+		// TODO Can we somehow avoid unnecessary render update?
+		if (this.world.isRemote) {
+			this.world.markBlockRangeForRenderUpdate(this.pos, this.pos);
+		}
 	}
 
 	protected NBTTagCompound writePacketData(NBTTagCompound data) {

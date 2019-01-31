@@ -69,7 +69,6 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	
 	public int process, processMax;
 	private boolean working;
-	private boolean requireRefresh;
 	private IAdvChemRecRecipe recipe;
 	
 	public TileAdvChemReactor() {
@@ -125,11 +124,7 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 	
 	@Override
 	public void update() {
-		if (getWorld().isRemote) {
-			if (requireRefresh) {
-				getWorld().markBlockRangeForRenderUpdate(getPos(), getPos());
-				requireRefresh = false;
-			}
+		if (this.getWorld().isRemote) {
 			return;
 		}
 		
@@ -141,12 +136,10 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 				this.process = 0;
 				this.processMax = recipe.getTime();
 				this.working = true;
-				this.requireRefresh = true;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 			} else {
 				this.working = false;
-				this.sendTileUpdatePacket(this);
-				this.markDirty();
-				this.requireRefresh = true;
+				this.world.notifyBlockUpdate(this.pos, this.world.getBlockState(this.pos), this.world.getBlockState(this.pos), 1 | 2);
 				return;
 			}
 		}
@@ -161,10 +154,10 @@ public class TileAdvChemReactor extends TileEnergySink implements IHasGui, IHasW
 			this.process = 0;
 			this.processMax = 0;
 			this.recipe = null;
+			this.markDirty();
 		}
 		
-		this.sendTileUpdatePacket(this);
-		this.markDirty();
+		this.syncToTrackingClients();
 	}
 
 	private boolean checkRecipe(@Nullable IAdvChemRecRecipe recipe) {

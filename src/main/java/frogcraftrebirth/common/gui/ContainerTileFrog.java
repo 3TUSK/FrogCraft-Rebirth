@@ -39,12 +39,9 @@ import javax.annotation.Nonnull;
 
 public final class ContainerTileFrog extends Container {
 	
-	private final TileFrog tile;
-	
 	private final int tileInvCount;
 	
-	private ContainerTileFrog(TileFrog tile, final int customSlotCount) {
-		this.tile = tile;
+	private ContainerTileFrog(final int customSlotCount) {
 		this.tileInvCount = customSlotCount;
 	}
 
@@ -116,16 +113,16 @@ public final class ContainerTileFrog extends Container {
 	public static final class Builder {
 
 		public static Builder from(TileFrog tile) {
-			return new Builder(tile);
+			// That parameter is legacy remain.
+			return new Builder();
 		}
 
-		private final TileFrog tile;
 		private InventoryPlayer inventoryPlayer;
 		private List<Slot> slots = new ArrayList<>(16); // Consider about the fact that A.C.R. has 13 slots
 		private int nonPlayerSlotCounter = 0;
 
-		private Builder(final TileFrog tile) {
-			this.tile = tile;
+		private Builder() {
+			// No-op
 		}
 
 		public Builder withPlayerInventory(InventoryPlayer inv) {
@@ -164,7 +161,7 @@ public final class ContainerTileFrog extends Container {
 		}
 
 		public ContainerTileFrog build() {
-			final ContainerTileFrog container = new ContainerTileFrog(this.tile, this.nonPlayerSlotCounter);
+			final ContainerTileFrog container = new ContainerTileFrog(this.nonPlayerSlotCounter);
 			slots.forEach(container::addSlotToContainer);
 			if (inventoryPlayer != null) {
 				container.registerPlayerInventory(inventoryPlayer);

@@ -51,7 +51,7 @@ public class FrogRecipeInputItemStack implements IFrogRecipeInput {
 	@Nonnull
 	@Override
 	public <T> List<T> getActualInputs(Class<T> type) {
-		return type == ItemStack.class ? Collections.singletonList(type.cast(stack)) : Collections.EMPTY_LIST;
+		return type == ItemStack.class ? Collections.singletonList(type.cast(stack)) : Collections.emptyList();
 	}
 
 	@Override

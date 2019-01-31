@@ -90,7 +90,7 @@ public final class CondenseTower {
 
 		@Override
 		public String describe() {
-			return "Adding Condense Tower recipe " + Objects.toString(this.recipe);
+			return "Adding Condense Tower recipe " + this.recipe;
 		}
 	}
 
@@ -117,7 +117,7 @@ public final class CondenseTower {
 
 		@Override
 		public String describe() {
-			return "Removing Condense Tower recipe" + Objects.toString(this.recipe);
+			return "Removing Condense Tower recipe" + this.recipe;
 		}
 	}
 }

@@ -242,7 +242,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
-		tank.readPacketData(input);
+		//tank.readPacketData(input);
 		this.process = input.readInt();
 		this.processMax = input.readInt();
 		this.working = input.readBoolean();
@@ -251,7 +251,7 @@ public class TileCondenseTower extends TileEnergySink implements ICondenseTowerC
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
-		tank.writePacketData(output);
+		//tank.writePacketData(output);
 		output.writeInt(process);
 		output.writeInt(processMax);
 		output.writeBoolean(working);

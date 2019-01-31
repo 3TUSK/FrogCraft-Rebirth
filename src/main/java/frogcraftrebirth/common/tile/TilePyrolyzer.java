@@ -178,7 +178,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
 		super.readPacketData(input);
-		tank.readPacketData(input);
+		//tank.readPacketData(input);
 		working = input.readBoolean();
 		process = input.readInt();
 		processMax = input.readInt();
@@ -187,7 +187,7 @@ public class TilePyrolyzer extends TileEnergySink implements IHasGui, IHasWork, 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
 		super.writePacketData(output);
-		tank.writePacketData(output);
+		//tank.writePacketData(output);
 		output.writeBoolean(working);
 		output.writeInt(process);
 		output.writeInt(processMax);

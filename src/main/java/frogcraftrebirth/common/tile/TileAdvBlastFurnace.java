@@ -167,8 +167,8 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		this.inputFluid.writePacketData(output);
-		this.shieldGas.writePacketData(output);
+		//this.inputFluid.writePacketData(output);
+		//this.shieldGas.writePacketData(output);
 		output.writeInt(heat);
 		output.writeInt(progress);
 		output.writeInt(progressMax);
@@ -177,8 +177,8 @@ public class TileAdvBlastFurnace extends TileFrog implements IHasGui, IHasWork, 
 
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		this.inputFluid.readPacketData(input);
-		this.shieldGas.readPacketData(input);
+		//this.inputFluid.readPacketData(input);
+		//this.shieldGas.readPacketData(input);
 		this.heat = input.readInt();
 		this.progress = input.readInt();
 		this.progressMax = input.readInt();

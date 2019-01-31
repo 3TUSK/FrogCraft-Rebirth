@@ -22,14 +22,8 @@
 
 package frogcraftrebirth.common.lib;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
-
-import frogcraftrebirth.common.network.IFrogNetworkObject;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidTank;
@@ -42,7 +36,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
  * Create a instance of this class will provide a efficient way to manage fluid.
  * @author 3TUSK
  */
-public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObject {
+public class FrogFluidTank implements IFluidTank, IFluidHandler {
 
 	private final int capacity;
 	private FluidStack fluidInv;
@@ -146,26 +140,6 @@ public class FrogFluidTank implements IFluidTank, IFluidHandler, IFrogNetworkObj
 		} else {
 			return null;
 		}
-	}
-	
-	public void writePacketData(DataOutputStream output) throws IOException {
-		output.writeUTF(fluidInv != null ? FluidRegistry.getFluidName(fluidInv) : "EmptyTank");
-		output.writeInt(getFluidAmount());
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public void readPacketData(DataInputStream input) throws IOException {
-		String fluidID = input.readUTF();
-		int fluidAmount = input.readInt();
-		
-		if (fluidID.equals("EmptyTank")) {
-			this.forceDrainTank();
-			return;
-		}
-		
-		Fluid fluid = FluidRegistry.getFluid(fluidID);
-		if (fluid != null)
-			this.forceFillTank(new FluidStack(fluid, fluidAmount));
 	}
 	
 	public boolean isFull() {

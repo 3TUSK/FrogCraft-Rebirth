@@ -93,12 +93,12 @@ public class TileFluidOutputHatch extends TileFrog implements ICondenseTowerOutp
 
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		tank.readPacketData(input);
+		//tank.readPacketData(input);
 	}
 
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		tank.writePacketData(output);
+		//tank.writePacketData(output);
 	}
 
 	@Override

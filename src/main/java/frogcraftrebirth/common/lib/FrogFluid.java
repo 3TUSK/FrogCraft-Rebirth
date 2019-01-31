@@ -22,6 +22,7 @@
 
 package frogcraftrebirth.common.lib;
 
+import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
@@ -33,7 +34,7 @@ public class FrogFluid extends Fluid {
 	}
 	
 	public FrogFluid(String name, String flow, String still, int density, int temperature, boolean gaseous, EnumRarity rarity) {
-		super(name, new ResourceLocation("frogcraftrebirth", "fluids/" + flow), new ResourceLocation("frogcraftrebirth", "fluids/" + still));
+		super(name, new ResourceLocation(FrogAPI.MODID, "fluids/" + flow), new ResourceLocation(FrogAPI.MODID, "fluids/" + still));
 		this.setDensity(density);
 		this.setTemperature(temperature);
 		this.setGaseous(gaseous);

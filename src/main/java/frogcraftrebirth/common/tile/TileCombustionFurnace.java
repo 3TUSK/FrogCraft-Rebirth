@@ -170,7 +170,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	
 	@Override
 	public void readPacketData(DataInputStream input) throws IOException {
-		tank.readPacketData(input);
+		//tank.readPacketData(input);
 		this.time = input.readInt();
 		this.timeMax = input.readInt();
 		this.working = input.readBoolean();
@@ -178,7 +178,7 @@ public class TileCombustionFurnace extends TileEnergyGenerator implements IHasGu
 	
 	@Override
 	public void writePacketData(DataOutputStream output) throws IOException {
-		tank.writePacketData(output);
+		//tank.writePacketData(output);
 		output.writeInt(time);
 		output.writeInt(timeMax);
 		output.writeBoolean(working);

@@ -1,5 +1,5 @@
 {
   "conditions": {
-    "enable": "frogcraftrebirth.common.lib.FrogConfigDrivenRecipeCondition"
+    "enable": "frogcraftrebirth.common.lib.EnableRecipeCondition"
   }
 }

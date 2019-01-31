@@ -34,7 +34,6 @@ import frogcraftrebirth.common.lib.PyrolyzerRecipeManger;
 import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthBlockRemapper;
 import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthItemRemapper;
 import frogcraftrebirth.common.migration.LegacyFrogCraftRebirthTileEntityRemapper;
-import frogcraftrebirth.common.network.NetworkHandler;
 import frogcraftrebirth.common.world.FrogWorldGenerator;
 import net.minecraft.util.datafix.FixTypes;
 import net.minecraftforge.common.MinecraftForge;
@@ -88,7 +87,6 @@ public final class FrogCraftRebirth {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
 		if (FrogConfig.modpackOptions.enableOreDictEntries) {
 			FrogRecipes.initOreDict();

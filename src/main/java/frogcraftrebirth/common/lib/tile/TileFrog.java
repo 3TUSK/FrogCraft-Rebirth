@@ -22,8 +22,6 @@
 
 package frogcraftrebirth.common.lib.tile;
 
-import frogcraftrebirth.common.network.NetworkHandler;
-import frogcraftrebirth.common.network.PacketFrog00TileUpdate;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -44,7 +42,7 @@ public abstract class TileFrog extends TileEntity {
 	 */
 	@Deprecated
 	protected final void sendTileUpdatePacket(TileFrog tile) {
-		NetworkHandler.FROG_NETWORK.sendToAll(new PacketFrog00TileUpdate(tile));
+		tile.syncToTrackingClients();
 	}
 
 	protected final void syncToTrackingClients() {

@@ -34,6 +34,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+@Deprecated
 public class PacketFrog00TileUpdate implements IFrogPacket {
 	
 	private TileFrog tile;

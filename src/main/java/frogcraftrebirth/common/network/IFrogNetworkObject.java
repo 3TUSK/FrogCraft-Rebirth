@@ -26,6 +26,10 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
+/**
+ * @deprecated This is a mistake from the beginning of time, and it shall be purged.
+ */
+@Deprecated
 public interface IFrogNetworkObject {
 
 	void writePacketData(DataOutputStream output) throws IOException;

@@ -33,6 +33,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -83,8 +85,9 @@ public class ItemMPS extends ItemFrogBlock implements IElectricItem {
 	}
 
 	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> aList, ITooltipFlag flag) {
-		aList.add(I18n.format("block.frogcraftrebirth.mobile_power_station.info"));
+	@SideOnly(Side.CLIENT)
+	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
+		tooltips.add(I18n.format("block.frogcraftrebirth.mobile_power_station.info"));
 	}
 
 }

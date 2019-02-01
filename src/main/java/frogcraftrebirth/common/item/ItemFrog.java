@@ -27,17 +27,14 @@ import frogcraftrebirth.api.FrogAPI;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import javax.annotation.Nonnull;
-
 public class ItemFrog extends Item {
 
 	public ItemFrog() {
 		this.setCreativeTab(FrogAPI.TAB);
 	}
 
-	@Nonnull
 	@Override
-	public String getItemStackDisplayName(@Nonnull ItemStack stack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 		return FrogCraftRebirth.sideDelegate.translate(this.getTranslationKey(stack));
 	}
 

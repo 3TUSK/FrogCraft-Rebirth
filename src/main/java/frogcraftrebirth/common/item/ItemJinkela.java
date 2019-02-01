@@ -22,45 +22,37 @@
 
 package frogcraftrebirth.common.item;
 
-import java.util.List;
-
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
-
-public class ItemJinkela extends ItemFrog {
+public class ItemJinkela extends ItemResource {
 
 	public ItemJinkela() {
 		super();
-		setTranslationKey("frogcraftrebirth.jinkela");
+		this.setTranslationKey("frogcraftrebirth.jinkela");
 	}
 
-	@Nonnull
 	@Override
-	public EnumActionResult onItemUse(EntityPlayer playerIn, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!playerIn.canPlayerEdit(pos, facing, playerIn.getHeldItem(hand)))
+	public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+		if (!player.canPlayerEdit(pos, facing, player.getHeldItem(hand))) {
 			return EnumActionResult.FAIL;
+		}
 		
-		IBlockState state = worldIn.getBlockState(pos);
+		IBlockState state = world.getBlockState(pos);
 		
 		if (state.getBlock() instanceof IGrowable) {
-			IGrowable igrowable = (IGrowable)state.getBlock();
-			if (igrowable.canGrow(worldIn, pos, state, worldIn.isRemote)) {
-				if (!worldIn.isRemote) {
-					if (igrowable.canUseBonemeal(worldIn, worldIn.rand, pos, state)) {
-						igrowable.grow(worldIn, worldIn.rand, pos, state);
-						worldIn.playEvent(2005, pos, 0);
+			IGrowable growable = (IGrowable)state.getBlock();
+			if (growable.canGrow(world, pos, state, world.isRemote)) {
+				if (!world.isRemote) {
+					if (growable.canUseBonemeal(world, world.rand, pos, state)) {
+						growable.grow(world, world.rand, pos, state);
+						world.playEvent(2005, pos, 0); // Bone-meal particle effects
 						return EnumActionResult.SUCCESS;
 					}
 				}
@@ -68,11 +60,6 @@ public class ItemJinkela extends ItemFrog {
 		} 
 		
 		return EnumActionResult.PASS;
-	}
-
-	@Override
-	public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltips, ITooltipFlag flag) {
-		tooltips.add(I18n.format("item.frogcraftrebirth.jinkela.info"));
 	}
 
 }

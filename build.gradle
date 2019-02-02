@@ -56,15 +56,15 @@ jar {
 }
 
 dependencies {
-    provided "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112:api"
-    provided "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
+    compileOnly "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112:api"
+    compileOnly "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
-    deobfCompile "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112"
     deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${CraftTweaker_Ver}"
     deobfCompile "CraftTweaker2:CraftTweaker2-API:${CraftTweaker_Ver}"
     deobfCompile "CraftTweaker2:ZenScript:${CraftTweaker_Ver}"
 
-    runtime "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
+    implementation "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
+    implementation "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112"
 }
 
 processResources {

@@ -59,10 +59,10 @@ dependencies {
     compileOnly "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112:api"
     compileOnly "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
 
-    deobfCompile "CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${CraftTweaker_Ver}"
-    deobfCompile "CraftTweaker2:CraftTweaker2-API:${CraftTweaker_Ver}"
-    deobfCompile "CraftTweaker2:ZenScript:${CraftTweaker_Ver}"
-
+    deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${CraftTweaker_Ver}") {
+        exclude group: 'org.ow2.asm'
+        exclude group: 'com.google.code.gson'
+    }
     implementation "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
     implementation "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112"
 }

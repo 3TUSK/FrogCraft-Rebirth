@@ -25,30 +25,43 @@ package frogcraftrebirth.client;
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.api.FrogGameObjects;
 import frogcraftrebirth.common.FrogFluids;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.texture.TextureMap;
+import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.event.TextureStitchEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 
+import java.util.Objects;
+
 @Mod.EventBusSubscriber(modid = FrogAPI.MODID, value = Side.CLIENT)
 public final class FrogTextures {
 
+	private static void mapModel(Block block) {
+		mapModel(Objects.requireNonNull(Item.getItemFromBlock(block), "You don't need map model for block without its item form."));
+	}
+
+	private static void mapModel(Item item) {
+		ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(Objects.requireNonNull(item.getRegistryName()), "inventory"));
+	}
+
 	@SubscribeEvent
 	public static void regModel(ModelRegistryEvent event) {
-		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_60K, "ammonia_coolant_60k");
-		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_180K, "ammonia_coolant_180k");
-		RegHelper.registerModel(FrogGameObjects.AMMONIA_COOLANT_360K, "ammonia_coolant_360k");
-		RegHelper.registerModel(FrogGameObjects.URANIUM_DECAY_BATTERY, "uranium_decay_battery");
-		RegHelper.registerModel(FrogGameObjects.THORIUM_DECAY_BATTERY, "thorium_decay_battery");
-		RegHelper.registerModel(FrogGameObjects.PLUTONIUM_DECAY_BATTERY, "plutonium_decay_battery");
-		RegHelper.registerModel(FrogGameObjects.JINKELA, "jinkela");
-
-		RegHelper.registerModel(FrogGameObjects.HEATING_MODULE, "module_heating");
-		RegHelper.registerModel(FrogGameObjects.ELECTROLYSIS_MODULE, "module_electrolysis");
-		RegHelper.registerModel(FrogGameObjects.AMMONIA_CATALYST_MODULE, "module_ammonia");
-		RegHelper.registerModel(FrogGameObjects.SULFUR_TRIOXIDE_MODULE, "module_sulfuric_acid");
+		mapModel(FrogGameObjects.AMMONIA_COOLANT_60K);
+		mapModel(FrogGameObjects.AMMONIA_COOLANT_180K);
+		mapModel(FrogGameObjects.AMMONIA_COOLANT_360K);
+		mapModel(FrogGameObjects.URANIUM_DECAY_BATTERY);
+		mapModel(FrogGameObjects.THORIUM_DECAY_BATTERY);
+		mapModel(FrogGameObjects.PLUTONIUM_DECAY_BATTERY);
+		mapModel(FrogGameObjects.JINKELA);
+		mapModel(FrogGameObjects.HEATING_MODULE);
+		mapModel(FrogGameObjects.ELECTROLYSIS_MODULE);
+		mapModel(FrogGameObjects.AMMONIA_CATALYST_MODULE);
+		mapModel(FrogGameObjects.SULFUR_TRIOXIDE_MODULE);
 
 		RegHelper.registerModel(FrogGameObjects.CRUSHED_CARNALLITE_ORE, "ore/crushed/carnallite");
 		RegHelper.registerModel(FrogGameObjects.PURIFIED_CARNALLITE_ORE, "ore/purified/carnallite");
@@ -116,21 +129,21 @@ public final class FrogTextures {
 		RegHelper.registerModel(FrogGameObjects.SHATTERED_COAL_COKE, "inflammable/shattered_coal_coke");
 		RegHelper.registerModel(FrogGameObjects.SOAP, "soap");
 
-		RegHelper.registerModel(FrogGameObjects.CARNALLITE);
-		RegHelper.registerModel(FrogGameObjects.DEWALQUITE);
-		RegHelper.registerModel(FrogGameObjects.FLUORAPATITE);
-		RegHelper.registerModel(FrogGameObjects.MPS);
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CORE);
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_CYLINDER);
-		RegHelper.registerModel(FrogGameObjects.CONDENSE_TOWER_OUTLET);
-		RegHelper.registerModel(FrogGameObjects.ADV_CHEM_REACTOR);
-		RegHelper.registerModel(FrogGameObjects.AIR_PUMP);
-		RegHelper.registerModel(FrogGameObjects.PYROLYZER);
-		RegHelper.registerModel(FrogGameObjects.LIQUEFIER);
-		RegHelper.registerModel(FrogGameObjects.ADV_BLAST_FURNACE);
-		RegHelper.registerModel(FrogGameObjects.COMBUSTION_FURNACE);
-		RegHelper.registerModel(FrogGameObjects.HSU);
-		RegHelper.registerModel(FrogGameObjects.UHSU);
+		mapModel(FrogGameObjects.CARNALLITE);
+		mapModel(FrogGameObjects.DEWALQUITE);
+		mapModel(FrogGameObjects.FLUORAPATITE);
+		mapModel(FrogGameObjects.MPS);
+		mapModel(FrogGameObjects.CONDENSE_TOWER_CORE);
+		mapModel(FrogGameObjects.CONDENSE_TOWER_CYLINDER);
+		mapModel(FrogGameObjects.CONDENSE_TOWER_OUTLET);
+		mapModel(FrogGameObjects.ADV_CHEM_REACTOR);
+		mapModel(FrogGameObjects.AIR_PUMP);
+		mapModel(FrogGameObjects.PYROLYZER);
+		mapModel(FrogGameObjects.LIQUEFIER);
+		mapModel(FrogGameObjects.ADV_BLAST_FURNACE);
+		mapModel(FrogGameObjects.COMBUSTION_FURNACE);
+		mapModel(FrogGameObjects.HSU);
+		mapModel(FrogGameObjects.UHSU);
 
 		RegHelper.regFluidBlockTexture(FrogFluids.coalTar);
 		RegHelper.regFluidBlockTexture(FrogFluids.nitricAcid);

@@ -38,10 +38,6 @@ import java.util.Objects;
 
 final class RegHelper {
 
-	static void registerModel(Block block) {
-		registerModel(Item.getItemFromBlock(block), Objects.requireNonNull(block.getRegistryName()).getPath());
-	}
-
 	static void registerModel(Item item, String newResLoc) {
 		registerModel0(Objects.requireNonNull(item), new ResourceLocation(FrogAPI.MODID, newResLoc));
 	}
@@ -53,7 +49,7 @@ final class RegHelper {
 	static void regFluidBlockTexture(Fluid fluid) {
 		if (fluid instanceof FrogFluid) {
 			if (fluid.getBlock() != null) {
-				ModelResourceLocation aResource = new ModelResourceLocation("frogcraftrebirth:fluid", fluid.getName());
+				ModelResourceLocation aResource = new ModelResourceLocation(new ResourceLocation(FrogAPI.MODID, "fluid"), fluid.getName());
 				ModelLoader.setCustomStateMapper(fluid.getBlock(), new StateMapperBase() {
 					@Nonnull
 					@Override

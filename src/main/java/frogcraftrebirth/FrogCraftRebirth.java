@@ -87,7 +87,7 @@ public final class FrogCraftRebirth {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.getInstance(), new FrogGuiHandler());
+		NetworkRegistry.INSTANCE.registerGuiHandler(FrogCraftRebirth.INSTANCE, new FrogGuiHandler());
 		if (FrogConfig.modpackOptions.enableOreDictEntries) {
 			FrogRecipes.initOreDict();
 		}

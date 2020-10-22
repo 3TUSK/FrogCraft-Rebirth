@@ -40,10 +40,10 @@ repositories {
 }
 
 minecraft {
-    version = "${Minecraft_Ver}-${MinecraftFogre_Ver}"
+    version = "1.12.2-14.23.5.2847"
     runDir = "run"
 
-    mappings = Mapping_Ver
+    mappings = "stable_39"
     
     replace "@VERSION@", project.version
 }
@@ -56,15 +56,16 @@ jar {
 }
 
 dependencies {
-    compileOnly "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112:api"
-    compileOnly "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}:api"
+    compileOnly "net.industrial-craft:industrialcraft-2:2.8.221-ex112:api"
+    compileOnly "mezz.jei:jei_1.12.2:4.16.1.302:api"
 
-    deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-${CraftTweaker_Ver}") {
+    deobfCompile("CraftTweaker2:CraftTweaker2-MC1120-Main:1.12-4.1.20.594") {
         exclude group: 'org.ow2.asm'
         exclude group: 'com.google.code.gson'
     }
-    implementation "mezz.jei:jei_${Minecraft_Ver}:${JEI_Ver}"
-    implementation "net.industrial-craft:industrialcraft-2:${IC2_Ver}-ex112"
+
+    implementation "mezz.jei:jei_1.12.2:4.16.1.302"
+    implementation "net.industrial-craft:industrialcraft-2:2.8.221-ex112"
 }
 
 processResources {
@@ -73,17 +74,12 @@ processResources {
 
     from(sourceSets.main.resources.srcDirs) {
         include 'mcmod.info'
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion':project.minecraft.version
     }
 
     from(sourceSets.main.resources.srcDirs) {
         exclude 'mcmod.info'
     }
-}
-
-task devJar(type: Jar, dependsOn: jar) {
-    classifier = 'dev'
-    from sourceSets.main.output
 }
 
 task apiJar(type: Jar, dependsOn: jar) {
@@ -94,6 +90,5 @@ task apiJar(type: Jar, dependsOn: jar) {
 }
 
 artifacts {
-    archives devJar
     archives apiJar
 }

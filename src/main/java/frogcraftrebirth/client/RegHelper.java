@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2015 - 2019 3TUSK, et al.
+ * Copyright (c) 2015 - 2020 3TUSK, et al.
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -24,7 +24,6 @@ package frogcraftrebirth.client;
 
 import frogcraftrebirth.api.FrogAPI;
 import frogcraftrebirth.common.lib.FrogFluid;
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;

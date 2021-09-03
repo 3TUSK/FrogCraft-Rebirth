@@ -154,9 +154,9 @@ public class FrogRecipes {
 		Recipes.advRecipes.addRecipe(new ItemStack(FrogGameObjects.AMMONIA_COOLANT_60K), " T ", "TCT", " T ", 'T', "plateTin", 'C', FluidRegistry.getFluidStack("ammonia", 1000));
 		Recipes.advRecipes.addRecipe(new ItemStack(FrogGameObjects.JINKELA), "KKK", "PPP", "NNN", 'K', new ItemStack(FrogGameObjects.POTASSIUM), 'P', new ItemStack(FrogGameObjects.PHOSPHORUS), 'N', FluidRegistry.getFluidStack("nitrogen", 1000));
 
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE, 3, 0));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE, 3, 1));
-		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.FLUORAPATITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE, 3, 2));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.CARNALLITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_CARNALLITE_ORE, 3));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.DEWALQUITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_DEWALQUITE_ORE, 3));
+		Recipes.macerator.addRecipe(Recipes.inputFactory.forStack(new ItemStack(FrogGameObjects.FLUORAPATITE)), null, false, new ItemStack(FrogGameObjects.CRUSHED_FLUORAPATITE_ORE, 3));
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotAluminium"), null, false, new ItemStack(FrogGameObjects.ALUMINIUM_DUST));
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotMagnalium"), null, false, new ItemStack(FrogGameObjects.MAGNALIUM_DUST));
 		Recipes.macerator.addRecipe(Recipes.inputFactory.forOreDict("ingotTitanium"), null, false, new ItemStack(FrogGameObjects.TITANIUM_DUST));
